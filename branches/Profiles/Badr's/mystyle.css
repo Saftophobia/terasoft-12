@@ -1,0 +1,119 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+h1{
+	font: bold 36px ALGERIAN;
+}
+h2{
+	font: bold 22px Tohoma;
+	color: white;
+}
+h4{
+	width: 10px;
+}
+header, section, footer, article{
+	display:block;
+}
+body{
+	text-align:center;
+}
+#big_wrapper{
+	border: 1px solid #7fff00;
+	width: 1000px;
+	margin: 20px auto;
+	text-align: left;
+}
+#top_header{
+	background: black;
+	color:#B0C4DE;
+	color: white;
+	border: 1px solid #7fff00;
+	padding: 20px;
+	opacity:0.60;
+	filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+ 
+#main_section{
+	 float: left;
+	 width: 650px;
+	 margin: 30px;
+}
+#side_news{
+	float: left;
+	width: 220px;
+	margin: 20px 0px;
+	margin-left: 10px;
+	margin-top: 29px;
+	padding: 28px;
+	background: black;
+	border: 1px solid #7fff00;
+	color: #7fff00;
+	color:#B0C4DE;
+	opacity:0.60;
+	filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+
+#side_newz{
+	float: left;
+	width: 220px;
+	margin: 20px 0px;
+	margin-left: 10px;
+	margin-top: 29px;
+	padding: 28px;
+	background: black;
+	border: 1px solid #7fff00;
+	color: #7fff00;
+	color:#B0C4DE;
+	opacity:0.60;
+	filter:alpha(opacity=60); /* For IE8 and earlier */
+	position:relative;
+	left:-500px;
+	top:300px;
+}
+#zeft{
+position: absolute;
+top: 40%;
+left: 50%;
+}
+#the_footer{
+	clear:both;
+	text-align:center;
+	padding: 20px;
+	border-top: 2px solid #7fff00; 
+	color: #B0C4DE;
+}
+
+#about_me{
+	text-indent: 40px;
+}
+#h{
+	font: bold 30px BRUSH SCRIPT MT;
+}
+#fb_tw_gp_yt{
+	text-indent:5px;
+	position:relative;
+	left: -500px;
+	top: 360px;
+}
+article{
+	 float: left;
+	 background: black;
+	 border: 1px solid #7fff00;
+	 padding: 20px;
+	 margin-bottom: 15px;
+	 color:#7fff00;
+	 opacity:0.60;
+	 filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+article footer{
+	text-align: right;
+	color: #B0C4DE;
+}
+b{
+	color:#7fff00;
+}
+A:link {text-decoration: none ; color: #7fff00;}
+A:visited {text-decoration: none; color: #7fff00;}
+A:active {text-decoration: none; color: #7fff00;}
+A:hover {text-decoration: underline; color: #7fff00;}

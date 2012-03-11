@@ -1,0 +1,134 @@
+body {
+	background: url("images/1411.png") repeat;
+	margin: 0px;
+	padding: 0px;
+}
+
+h3 {
+	font-family: Opificio, Corbel, Consolas, Segoe UI;
+	font-variant: small-caps;
+	font-weight: 100;
+	font-size: 60px;
+	color: #060606;
+	margin: 0px;
+	padding: 0px;
+}
+
+h4{
+
+	font-family: Corbel;
+	color: #a4d50d;
+	margin: 0;
+	margin-left: 0px;
+	padding: 0px;
+}
+
+h5{
+
+	font-family: Corbel;
+	color: #2E2633;
+	margin: 0;
+	margin-bottom: 3px;
+	padding: 0px;
+}
+
+h6 { 
+	font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	color: red;
+	font-weight: 200;
+	font-size: 15px;
+}
+	
+
+#container {
+	width: 1020px;
+	margin-left: 140px;
+	margin-top: 80px;
+	border: 10px solid rgb(255, 255, 255);
+    border: 10px solid rgba(255, 255, 255, .3);
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	-moz-background-clip: border;     /* Firefox 3.6 */
+	-webkit-background-clip: border;  /* Safari 4? Chrome 6? */
+	background-clip: border-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+
+	-moz-background-clip: padding;     /* Firefox 3.6 */
+	-webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+	background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+
+	-moz-background-clip: content;     /* Firefox 3.6 */
+	-webkit-background-clip: content;  /* Safari 4? Chrome 6? */
+	background-clip: content-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+
+#bla {
+	padding: 20px;
+	width: 980px;
+	background-image: linear-gradient(bottom, rgb(250,250,250) 50%, rgb(209,209,209) 0%);
+	background-image: -o-linear-gradient(bottom, rgb(250,250,250) 50%, rgb(209,209,209) 0%);
+	background-image: -moz-linear-gradient(bottom, rgb(250,250,250) 50%, rgb(209,209,209) 0%);
+	background-image: -webkit-linear-gradient(bottom, rgb(250,250,250) 50%, rgb(209,209,209) 0%);
+	background-image: -ms-linear-gradient(bottom, rgb(250,250,250) 50%, rgb(209,209,209) 0%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.5, rgb(250,250,250)),
+		color-stop(0, rgb(209,209,209))
+	);
+	-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+
+}
+
+#container #about {
+	font-family: Corbel;
+	width: 500px;
+	color: #008C9E;
+}
+
+.photo
+{
+	float: right;
+	position: relative;
+	top: -280px;
+	left: -50px;
+	width: 300px;
+	height: 225px;
+	border: 1px solid #060606;
+}
+
+#Liverpool {
+	display: inline;
+	color: red;
+}
+
+#livphoto {
+	position: relative;
+	left: -50px;
+	display: none;
+}
+
+.livphoto {
+	float: right;
+	position: relative;
+	top: -300px;
+	left: -20px;
+	border: 0px; 
+}
+#photohidden { 
+	display: none;
+}
+
+#skills, #meh {
+	color: #00B4CC;
+	font-family: Corbel;
+}	

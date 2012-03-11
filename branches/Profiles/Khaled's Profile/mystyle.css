@@ -1,0 +1,26 @@
+div.mypic{
+margin:20px;
+	float: left;	
+}
+div.container {
+ background: black;
+ margin:10px;
+ }
+ div.subtitle {
+ color:orange;
+ margin:20px;
+ }
+ div.text {
+ margin:20px;
+ color:silver;
+ }
+ div.title {
+ top:20px;
+ color:orange;
+ }
+ 
+ div.youtube {
+position:absolute;
+bottom:120px;
+right:50px;
+}

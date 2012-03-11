@@ -1,0 +1,18 @@
+﻿body 
+{
+    background-color:lightblue;
+    font-family:Book Antiqua;
+    color:darkcyan;
+}
+
+image
+{
+    position:relative;
+}
+
+div
+{
+    color:darkgreen;
+    font-family:Courier New Greek;
+    width:auto;
+}

@@ -1,0 +1,56 @@
+
+<html>
+<head>
+	<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type"/>
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+	<script type="text/javascript" src="jquery-1.2.6.min.js"></script>
+	<script type="text/javascript">
+		function slideSwitch() {
+			var $active = $('#slideshow IMG.active');
+
+			if ($active.length == 0) $active = $('#slideshow IMG:last');
+
+			var $next = $active.next().length ? $active.next()
+        : $('#slideshow IMG:first');
+
+			$active.addClass('last-active');
+
+			$next.css({ opacity: 0.0 })
+        .addClass('active')
+        .animate({ opacity: 1.0 }, 1000, function () {
+        	$active.removeClass('active last-active');
+        });
+		}
+
+		$(function () {
+			setInterval("slideSwitch()", 3000);
+		});
+	</script>
+</head>
+
+<body>
+	<h1>Bishoy Bassem Morris</h1>
+	
+	<div id="menucontainer">
+		<div id="menunav">
+			<ul>
+				<li><a href="aboutme.html" class="current"><span>About me</span></a></li>
+				<li><a href="work.html"><span>Work</span></a></li>
+				<li><a href="contact.html"><span>Contact</span></a></li>
+			</ul>
+		</div>
+	</div>
+	<div style="background-image: url('images/grad2.png'); background-repeat: repeat; height:480px;">
+		<div id="slideshow" style="position: relative; top: 30px; left: 20px;">
+			<img src="images/1.jpg" class="active" style="border: 1px solid #000000;" />
+			<img src="images/2.jpg" style="border: 1px solid #000000;" />
+			<img src="images/3.jpg" style="border: 1px solid #000000;" />
+			<img src="images/4.jpg" style="border: 1px solid #000000;" />
+		</div>
+		<p style="position: absolute; top: 220px; left: 290px;">
+			Hi, i am bishoy, i like games and i spend a lot of time <br/> (of course playing =D) and developing them too, i really 
+			<br /> love to bring ideas to life and you're gonna love it when <br/>you work with me ;D
+		</p>
+	</div>
+</body>
+</html>
