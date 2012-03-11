@@ -1,0 +1,83 @@
+html {
+	margin-top: 0px;
+	margin-right: 2px;
+	margin-bottom: 13px;
+	margin-left: 21px;
+	border: 15px solid black;
+	background: url(img/Ibex.jpg);
+}
+div.sal {
+	color: orange;
+	font: "Franklin Gothic Medium";
+	font-size: 26px;
+}
+div.me {
+
+	font-weight: bold;
+	color: white;
+	font-size: 40px;
+}
+div.guc {
+	font-size: 23px;
+	color: gray;
+}
+div.sub {
+	font-size: 23px;
+	color: red;
+}
+div.info {
+	font-size: 20px;
+	color: white;
+}
+div.who {
+	font-size: 25px;
+	color: white;
+}
+div.banner {
+	/*background: url("img/back1.png") repeat;*/
+}
+div.special {
+	font-size: 33px;
+	font: Helvetica;
+	color: green;
+}
+div.container {
+	width: 95%;
+	height:100%
+	padding: 30px;
+}
+footer {
+	background-image: url("img/background.PNG") ;
+	opacity: 0.9;
+	height: 10px;
+}
+
+div.pic {
+	margin: 5px;
+	float: right;
+	position: right;
+	border: 3px;
+	border-color: white;
+}
+div.twitter{
+	padding-left:240px;
+}
+footer:hover {
+	height: 120px;
+}
+div.sn{
+float:right;
+	display: none;
+
+}
+div.contacting{
+	background-image: url("img/background.PNG") ;
+	width:auto;
+	height: 40px;
+	font-size:30px;
+	padding-left:550px;
+}
+
+footer:hover div.sn {
+	display: block;
+}
