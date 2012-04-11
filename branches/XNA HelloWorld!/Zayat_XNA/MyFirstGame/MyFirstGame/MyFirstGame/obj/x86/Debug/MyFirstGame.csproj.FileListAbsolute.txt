@@ -1,0 +1,7 @@
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\bin\x86\Debug\MyFirstGame.exe
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\bin\x86\Debug\MyFirstGame.pdb
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\obj\x86\Debug\MyFirstGame.exe
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\obj\x86\Debug\MyFirstGame.pdb
+c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGame\bin\x86\Debug\Content\mytexture.xnb
