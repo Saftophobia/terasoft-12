@@ -1,0 +1,10 @@
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\XNA Task.exe
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\XNA Task.pdb
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\obj\x86\Debug\XNA Task.exe
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\obj\x86\Debug\XNA Task.pdb
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\laser.xnb
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\mine.xnb
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\player.xnb
+c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\gameFont.xnb
