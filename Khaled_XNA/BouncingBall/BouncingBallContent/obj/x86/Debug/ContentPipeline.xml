@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBall\bin\x86\Debug\Content\images\lol.xnb</Output>
-      <Time>2012-04-13T23:24:35.0509843+02:00</Time>
+      <Output>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\images\lol.xnb</Output>
+      <Time>2012-04-14T00:02:06.1297386+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -16,10 +16,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBallContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBall\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBallContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBall\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
