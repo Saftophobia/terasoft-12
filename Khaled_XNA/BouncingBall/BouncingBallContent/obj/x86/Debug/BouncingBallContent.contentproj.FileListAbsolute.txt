@@ -1,0 +1,1 @@
+c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBallContent\obj\x86\Debug\ResolveAssemblyReference.cache
