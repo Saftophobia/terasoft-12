@@ -38,7 +38,7 @@ namespace BouncingBall
             }
             else if (Position.X <= 0)
             {
-                velX = 90;
+                velX = 10;
             }
             if (Position.Y + Texture.Height >= StageHeight)
             {
@@ -46,7 +46,7 @@ namespace BouncingBall
             }
             else if (Position.Y <= 0)
             {
-                velY = 90;
+                velY = 10;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
