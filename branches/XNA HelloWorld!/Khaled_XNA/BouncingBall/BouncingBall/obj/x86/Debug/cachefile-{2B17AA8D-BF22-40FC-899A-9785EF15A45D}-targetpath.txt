@@ -1,0 +1,2 @@
+Content\images\lol.xnb
+Content\images\lol.png
