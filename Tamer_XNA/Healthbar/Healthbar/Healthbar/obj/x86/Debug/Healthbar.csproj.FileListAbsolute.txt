@@ -1,0 +1,7 @@
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\bin\x86\Debug\Healthbar.exe
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\bin\x86\Debug\Healthbar.pdb
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\obj\x86\Debug\Healthbar.exe
+c:\users\tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\obj\x86\Debug\Healthbar.pdb
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\Healthbar\Healthbar\Healthbar\bin\x86\Debug\Content\HealthBar.xnb
