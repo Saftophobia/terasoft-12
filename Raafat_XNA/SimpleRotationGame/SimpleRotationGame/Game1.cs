@@ -26,6 +26,7 @@ namespace WindowsGame1
         private Texture2D shuttle;
         private Texture2D earth;
         private float angle = 0;
+        private Vector2 speed = new Vector2(50.0f, 50.0f);
 
 
 
@@ -86,6 +87,7 @@ namespace WindowsGame1
 
             // TODO: Add your update logic here
 
+
             base.Update(gameTime);
         }
 
@@ -97,9 +99,7 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            // spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            //spriteBatch.Draw(earth, new Vector2(400, 250), Color.White);
-            //spriteBatch.Draw(shuttle, new Vector2(450, 250), Color.White);
+            
             Vector2 location = new Vector2(400, 240);
             Rectangle sourceRectangle = new Rectangle(0, 0, shuttle.Width, shuttle.Height);
             Vector2 origin = new Vector2(0, 0);
