@@ -1,0 +1,7 @@
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\bin\x86\Debug\Content\tera.xnb
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\bin\x86\Debug\Bisho_XNA.exe
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\bin\x86\Debug\Bisho_XNA.pdb
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\obj\x86\Debug\Bisho_XNA.exe
+c:\users\bbms\documents\visual studio 2010\Projects\Bisho_XNA\Bisho_XNA\Bisho_XNA\obj\x86\Debug\Bisho_XNA.pdb
