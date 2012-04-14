@@ -22,7 +22,7 @@ namespace XNA
         SpriteBatch spriteBatch;
         Ball gameBall;
         //Number of goals is changed from here, max 60
-        Goal[] goals = new Goal[35];
+        Goal[] goals = new Goal[55];
         int minX = 50;
         int minY = 30;
         Controller controller;
@@ -36,7 +36,7 @@ namespace XNA
         Boolean over;
         Score[] scores;
         Boolean[] score;
-        
+        int current=0;
 
         public Main()
         {
@@ -264,10 +264,25 @@ namespace XNA
                 {
                     if (!goalTypes[i].Equals("Images/4"))
                     {
-                        goals[i].setExists(false); 
+                        goals[i].setExists(false);                       
+
                     }
                     if (!hit[i] && !goalTypes[i].Equals("Images/4"))
                     {
+                        if (goalTypes[i].Equals("Images/1"))
+                        {
+                            current += 25;
+                        }
+
+                        if (goalTypes[i].Equals("Images/2"))
+                        {
+                            current += 50;
+                        }
+
+                        if (goalTypes[i].Equals("Images/3"))
+                        {
+                            current += 50;
+                        }
                         score[i] = true;    
                         goalCounter++;
                         hit[i] = true;
@@ -350,7 +365,8 @@ namespace XNA
                 graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             c1.draw(spriteBatch);
 
-
+            
+           
             for (int i = 0; i <= score.Length - 1; i++)
             {
                 if (score[i])
@@ -375,6 +391,16 @@ namespace XNA
             {
                 goals[i].draw(spriteBatch);
             }
+
+
+
+
+            SpriteBatch sx = spriteBatch;
+            sx.Begin();
+            SpriteFont f1 = Content.Load<SpriteFont>("Images/Font");
+            spriteBatch.DrawString(f1, "Score: "+current, new Vector2(340, 0), Microsoft.Xna.Framework.Color.Red);
+            sx.End();
+            
             controller.draw(spriteBatch);
             base.Draw(gameTime);
         }
