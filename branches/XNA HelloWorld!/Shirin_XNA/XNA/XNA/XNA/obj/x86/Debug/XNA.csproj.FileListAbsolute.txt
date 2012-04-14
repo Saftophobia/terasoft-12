@@ -1,0 +1,13 @@
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\ball.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\XNA.exe
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\XNA.pdb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\obj\x86\Debug\XNA.exe
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\obj\x86\Debug\XNA.pdb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\1.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\2.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\3.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\4.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\control.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\win.xnb

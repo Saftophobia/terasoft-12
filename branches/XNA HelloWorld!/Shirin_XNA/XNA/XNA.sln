@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNA", "XNA\XNA\XNA.csproj", "{CC991FE1-4269-421A-A12A-28200D1E95A9}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "XNAContent", "XNA\XNAContent\XNAContent.contentproj", "{0429F1A4-131E-4FF6-95C3-E7890B79E441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC991FE1-4269-421A-A12A-28200D1E95A9}.Debug|x86.ActiveCfg = Debug|x86
+		{CC991FE1-4269-421A-A12A-28200D1E95A9}.Debug|x86.Build.0 = Debug|x86
+		{CC991FE1-4269-421A-A12A-28200D1E95A9}.Release|x86.ActiveCfg = Release|x86
+		{CC991FE1-4269-421A-A12A-28200D1E95A9}.Release|x86.Build.0 = Release|x86
+		{0429F1A4-131E-4FF6-95C3-E7890B79E441}.Debug|x86.ActiveCfg = Debug|x86
+		{0429F1A4-131E-4FF6-95C3-E7890B79E441}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
