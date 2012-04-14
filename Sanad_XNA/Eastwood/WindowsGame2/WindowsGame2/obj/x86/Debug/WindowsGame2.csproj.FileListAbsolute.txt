@@ -1,0 +1,21 @@
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\eastwood.xnb
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+c:\users\ams\documents\visual studio 2010\Projects\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\eastwood.xnb
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+C:\Users\AMS\Desktop\WindowsGame2\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\eastwood.xnb
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
