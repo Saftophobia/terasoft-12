@@ -1,0 +1,7 @@
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\bin\x86\Debug\HelloWorld!.exe
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\bin\x86\Debug\HelloWorld!.pdb
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\obj\x86\Debug\HelloWorld!.exe
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\obj\x86\Debug\HelloWorld!.pdb
+C:\Users\Michel\Desktop\XNA HelloWorld!\Michel_XNA\HelloWorld!\HelloWorld!\HelloWorld!\bin\x86\Debug\Content\WizardSquare.xnb
