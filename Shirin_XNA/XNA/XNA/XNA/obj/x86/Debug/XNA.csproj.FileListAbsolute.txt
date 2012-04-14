@@ -11,3 +11,8 @@ C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\C
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\4.xnb
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\control.xnb
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\win.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\Loss.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\fifty.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\hundred.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\twentyfive.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\bk.xnb

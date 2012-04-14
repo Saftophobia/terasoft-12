@@ -22,7 +22,7 @@ namespace XNA
         SpriteBatch spriteBatch;
         Ball gameBall;
         //Number of goals is changed from here, max 60
-        Goal[] goals = new Goal[50];
+        Goal[] goals = new Goal[35];
         int minX = 50;
         int minY = 30;
         Controller controller;
@@ -32,6 +32,11 @@ namespace XNA
         String[] goalTypes;
         List<float> storage = new List<float>();
         int globalCounter = 0;
+        Loss loss;
+        Boolean over;
+        Score[] scores;
+        Boolean[] score;
+        
 
         public Main()
         {
@@ -45,17 +50,26 @@ namespace XNA
         {
             gameBall = new Ball(Content.Load<Texture2D>("Images/ball"), new Vector2(100, 100),
                 graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            scores = new Score[goals.Length];
 
             win = new Win(Content.Load<Texture2D>("Images/win"), new Vector2(735, 150),
                 graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            loss = new Loss(Content.Load<Texture2D>("Images/Loss"), new Vector2(735, 90),
+                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
+            over = false;
 
             hit = new Boolean[goals.Length];
             goalTypes = new String[goals.Length];
+            score = new Boolean [goals.Length];
+
+
+
 
             for (int i = 0; i <= hit.Length - 1; i++)
             {
                 hit[i] = false;
+                score[i] = false;
             }
 
             String[] s = new String[4];
@@ -83,6 +97,14 @@ namespace XNA
             int[] temp1 = new int[4];
             int[] temp2 = new int[60];
             int u = 0;
+            int[] temp3 = new int[780];
+
+            int f=0;
+            foreach(int n in UniqueRandom(0,779))
+            {
+                temp3[f] = n;
+                f++;
+            }
 
             foreach (int i in UniqueRandom(0, 3))
             {
@@ -109,8 +131,29 @@ namespace XNA
                 if (q == 4)
                 {
                     q = 0;
-                }
+                }                
                 String directory = s[x1];
+                
+                if(directory.Equals("Images/1"))
+                {
+                    scores[i] = new Score(Content.Load<Texture2D>("Images/twentyfive"), new Vector2(temp3[i], 500),
+                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);   
+                }
+                if (directory.Equals("Images/2"))
+                {
+                    scores[i] = new Score(Content.Load<Texture2D>("Images/fifty"), new Vector2(temp3[i], 600),
+                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); 
+                }
+                if (directory.Equals("Images/3"))
+                {
+                    scores[i] = new Score(Content.Load<Texture2D>("Images/hundred"), new Vector2(temp3[i], 700),
+                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight); 
+                }
+                if (directory.Equals("Images/4"))
+                {
+                    scores[i] = null;
+                }
+
                 Vector2 vectorx = post[x2];
                 goalTypes[i] = directory;
                 goals[i] = new Goal(Content.Load<Texture2D>(directory), vectorx,
@@ -216,14 +259,16 @@ namespace XNA
             {
                 if (gameBall.getPosition().X >= goals[i].getXPosition() - 50
                     && gameBall.getPosition().X < goals[i].getXPosition() + goals[i].getTextureWidth()
-                    && gameBall.getPosition().Y == goals[i].getYPosition())
+                    && gameBall.getPosition().Y >= goals[i].getYPosition()
+                    && gameBall.getPosition().Y < goals[i].getYPosition()+10)
                 {
                     if (!goalTypes[i].Equals("Images/4"))
                     {
-                        goals[i].setExists(false);
+                        goals[i].setExists(false); 
                     }
                     if (!hit[i] && !goalTypes[i].Equals("Images/4"))
                     {
+                        score[i] = true;    
                         goalCounter++;
                         hit[i] = true;
                     }
@@ -232,26 +277,54 @@ namespace XNA
                         if ((int)storage[globalCounter - 2] > gameBall.getPosition().Y)
                         {
                             gameBall.setBarrier(true);
-                        }
-                        else
-                        {
-                            gameBall.setUpper(true);
-                        }
+                        }                        
                     }
 
 
                 }
+
+
+                if (gameBall.getPosition().X >= goals[i].getXPosition() - 50
+                    && gameBall.getPosition().X < goals[i].getXPosition() + goals[i].getTextureWidth()
+                    && gameBall.getPosition().Y < goals[i].getYPosition() && 
+                    gameBall.getPosition().Y >= goals[i].getYPosition()-30)
+                {
+                    try
+                    {
+                        if (goalTypes[i].Equals("Images/4"))
+                        {
+
+                            if ((int)storage[globalCounter - 2] <= gameBall.getPosition().Y)
+                            {
+                                gameBall.setUpper(true);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                
+                }
+
+
             }
             if (goalCounter == goals.Length - countBarriers(goalTypes))
             {
                 win.Update(gameTime);
-
+                over = true;
             }
 
-
-
-
-
+            if (gameBall.getPosition().Y > 440&&!over)
+            {
+                loss.Update(gameTime);
+            }
+            for (int i = 0; i <= score.Length - 1; i++)
+            {
+                if (score[i])
+                {
+                    scores[i].Update(gameTime);
+                }
+            }
             gameBall.Update(gameTime, controller);
             base.Update(gameTime);
         }
@@ -272,11 +345,30 @@ namespace XNA
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+            //background
+            Win c1 = new Win(Content.Load<Texture2D>("Images/bk"), new Vector2(0, 0),
+                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            c1.draw(spriteBatch);
 
-            if (goalCounter == goals.Length)
+
+            for (int i = 0; i <= score.Length - 1; i++)
+            {
+                if (score[i])
+                {
+                    scores[i].draw(spriteBatch);
+                }
+            }
+
+            if (gameBall.getPosition().Y > 440&&!over)
+            {
+                loss.draw(spriteBatch);
+            }
+
+
+            if (goalCounter == goals.Length - countBarriers(goalTypes))
             {
                 win.draw(spriteBatch);
-
+                over = true;
             }
             gameBall.draw(spriteBatch);
             for (int i = 0; i <= goals.Length - 1; i++)

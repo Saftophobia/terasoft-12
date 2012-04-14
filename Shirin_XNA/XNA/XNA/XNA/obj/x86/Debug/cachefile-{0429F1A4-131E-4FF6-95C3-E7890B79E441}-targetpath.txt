@@ -5,3 +5,8 @@ Content\Images\3.xnb
 Content\Images\4.xnb
 Content\Images\control.xnb
 Content\Images\win.xnb
+Content\Images\Loss.xnb
+Content\Images\fifty.xnb
+Content\Images\hundred.xnb
+Content\Images\twentyfive.xnb
+Content\Images\bk.xnb

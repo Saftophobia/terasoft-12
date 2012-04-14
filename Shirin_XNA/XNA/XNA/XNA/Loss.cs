@@ -14,14 +14,14 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace XNA
 {
-    class Win
+    class Loss
     {
         Boolean Exists;
         Vector2 Position;
         Texture2D Texture;
         int StageWidth, StageHeight;
 
-        public Win(Texture2D a, Vector2 b, int c, int d)
+        public Loss(Texture2D a, Vector2 b, int c, int d)
         {
             Exists = true;
             Position = b;
@@ -67,10 +67,10 @@ namespace XNA
 
         public void Update(GameTime gameTime)
         {
-            if (Position.X > 110)
+            if (Position.X > 180)
             {
                 Position.X--;
-            }            
+            }
         }
 
 
