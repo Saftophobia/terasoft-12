@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Healthbar", "Healthbar\Healthbar\Healthbar.csproj", "{8C6D168F-4413-4346-A21D-66D70C47AAC5}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "HealthbarContent", "Healthbar\HealthbarContent\HealthbarContent.contentproj", "{04F19FE5-2C2E-46B1-B8DD-5AF28242EFD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C6D168F-4413-4346-A21D-66D70C47AAC5}.Debug|x86.ActiveCfg = Debug|x86
+		{8C6D168F-4413-4346-A21D-66D70C47AAC5}.Debug|x86.Build.0 = Debug|x86
+		{8C6D168F-4413-4346-A21D-66D70C47AAC5}.Release|x86.ActiveCfg = Release|x86
+		{8C6D168F-4413-4346-A21D-66D70C47AAC5}.Release|x86.Build.0 = Release|x86
+		{04F19FE5-2C2E-46B1-B8DD-5AF28242EFD2}.Debug|x86.ActiveCfg = Debug|x86
+		{04F19FE5-2C2E-46B1-B8DD-5AF28242EFD2}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
