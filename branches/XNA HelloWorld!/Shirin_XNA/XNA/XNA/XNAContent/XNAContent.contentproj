@@ -92,6 +92,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\bk.jpg">
+      <Name>bk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Images\fifty.png">
       <Name>fifty</Name>
       <Importer>TextureImporter</Importer>
@@ -109,10 +116,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\bk.jpg">
-      <Name>bk</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+    <Compile Include="Images\Font.spritefont">
+      <Name>Font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

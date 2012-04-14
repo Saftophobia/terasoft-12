@@ -16,3 +16,4 @@ C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\C
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\hundred.xnb
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\twentyfive.xnb
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\bk.xnb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\Font.xnb
