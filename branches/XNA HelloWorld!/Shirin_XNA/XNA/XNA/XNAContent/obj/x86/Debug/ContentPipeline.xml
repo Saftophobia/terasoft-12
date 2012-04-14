@@ -64,6 +64,51 @@
       <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\win.xnb</Output>
       <Time>2012-04-14T14:17:18.6995082+00:00</Time>
     </Item>
+    <Item>
+      <Source>Images\Loss.png</Source>
+      <Name>Images\Loss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\Loss.xnb</Output>
+      <Time>2012-04-14T19:15:27.7913951+00:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\fifty.png</Source>
+      <Name>Images\fifty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\fifty.xnb</Output>
+      <Time>2012-04-14T19:38:20.604307+00:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\hundred.png</Source>
+      <Name>Images\hundred</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\hundred.xnb</Output>
+      <Time>2012-04-14T19:38:20.604307+00:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\twentyfive.png</Source>
+      <Name>Images\twentyfive</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\twentyfive.xnb</Output>
+      <Time>2012-04-14T19:38:20.604307+00:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\bk.jpg</Source>
+      <Name>Images\bk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\XNA\XNA\XNA\bin\x86\Debug\Content\Images\bk.xnb</Output>
+      <Time>2012-04-14T20:09:51.0995239+00:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

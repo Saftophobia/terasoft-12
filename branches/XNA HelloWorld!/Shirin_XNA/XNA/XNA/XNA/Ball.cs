@@ -82,12 +82,13 @@ namespace XNA
 
             if (upperCollision&&Position.Y>0)
             {
+                
                 Position.Y -= 2*velY;
             }
 
             if (hitBarrier)
             {
-
+                
                 Position.Y += 2 * velY;
             }
 
