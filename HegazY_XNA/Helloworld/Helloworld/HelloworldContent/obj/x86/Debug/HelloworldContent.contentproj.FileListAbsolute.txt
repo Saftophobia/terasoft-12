@@ -1,0 +1,1 @@
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\HelloworldContent\obj\x86\Debug\ResolveAssemblyReference.cache

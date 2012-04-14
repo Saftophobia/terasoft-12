@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helloworld", "Helloworld\Helloworld\Helloworld.csproj", "{A52C130F-902A-47DC-B659-62B3DECEB99A}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "HelloworldContent", "Helloworld\HelloworldContent\HelloworldContent.contentproj", "{D92D4AAF-640C-4184-8416-0B57ABA3134F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A52C130F-902A-47DC-B659-62B3DECEB99A}.Debug|x86.ActiveCfg = Debug|x86
+		{A52C130F-902A-47DC-B659-62B3DECEB99A}.Debug|x86.Build.0 = Debug|x86
+		{A52C130F-902A-47DC-B659-62B3DECEB99A}.Release|x86.ActiveCfg = Release|x86
+		{A52C130F-902A-47DC-B659-62B3DECEB99A}.Release|x86.Build.0 = Release|x86
+		{D92D4AAF-640C-4184-8416-0B57ABA3134F}.Debug|x86.ActiveCfg = Debug|x86
+		{D92D4AAF-640C-4184-8416-0B57ABA3134F}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
