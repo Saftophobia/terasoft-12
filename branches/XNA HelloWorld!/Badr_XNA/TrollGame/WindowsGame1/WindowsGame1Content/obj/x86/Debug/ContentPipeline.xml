@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Images\epic_trollface.xnb</Output>
+      <Output>F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Images\epic_trollface.xnb</Output>
       <Time>2012-03-19T19:54:08.6454305+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -16,10 +16,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1Content\</RootDirectory>
+      <LoggerRootDirectory>F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\</LoggerRootDirectory>
+      <IntermediateDirectory>F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
