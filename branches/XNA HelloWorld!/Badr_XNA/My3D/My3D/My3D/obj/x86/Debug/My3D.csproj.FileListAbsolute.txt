@@ -1,0 +1,6 @@
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\bin\x86\Debug\My3D.exe
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\bin\x86\Debug\My3D.pdb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\obj\x86\Debug\My3D.exe
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\My3D\My3D\My3D\obj\x86\Debug\My3D.pdb
