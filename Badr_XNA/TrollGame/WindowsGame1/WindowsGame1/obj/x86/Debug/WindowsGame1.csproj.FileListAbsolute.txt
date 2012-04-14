@@ -5,3 +5,10 @@ C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\W
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Images\epic_trollface.xnb
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\bin\x86\Debug\Content\Images\epic_trollface.xnb
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.exe
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\bin\x86\Debug\WindowsGame1.pdb
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.exe
+F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1\obj\x86\Debug\WindowsGame1.pdb
