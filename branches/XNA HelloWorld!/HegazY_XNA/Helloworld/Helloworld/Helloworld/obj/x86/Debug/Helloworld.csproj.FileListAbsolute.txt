@@ -1,0 +1,7 @@
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\bin\x86\Debug\Content\images\ball.xnb
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\bin\x86\Debug\Helloworld.exe
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\bin\x86\Debug\Helloworld.pdb
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\obj\x86\Debug\Helloworld.exe
+c:\users\ahmed\documents\visual studio 2010\Projects\Helloworld\Helloworld\Helloworld\obj\x86\Debug\Helloworld.pdb
