@@ -9,6 +9,7 @@ namespace Mechanect.Classes
     {
         Hole hole;
         Ball ball;
+        User user;
         float wind;
         float friction;
     }
