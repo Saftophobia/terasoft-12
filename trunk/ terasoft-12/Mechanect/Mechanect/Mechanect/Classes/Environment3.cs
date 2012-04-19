@@ -44,7 +44,7 @@ namespace Mechanect.Classes
                 return Constants3.NEGATIVE_LMASS;
             //hole position not before the leg position
             if (hole.Position.Z - user.ShootingPosition.Z > 0)
-                return Constants3.NEGATIVE_HPOSY;
+                return Constants3.NEGATIVE_HPOSZ;
             if (friction <= 0)
                 return Constants3.NEGATIVE_FRICTION;
             if (ball.Radius > hole.Radius)
