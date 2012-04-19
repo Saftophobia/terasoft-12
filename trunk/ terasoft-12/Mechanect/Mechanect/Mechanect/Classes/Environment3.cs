@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Mechanect.Classes
 {
-    class Environment3
+    class Environment3 : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private Hole hole;
         private Ball ball;
@@ -14,7 +19,7 @@ namespace Mechanect.Classes
         private float wind;
         private float friction;
 
-        public Environment3(User user, float minBallMass, float maxBallMass)
+        public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
         {
 
             this.user = user;
@@ -98,5 +103,30 @@ namespace Mechanect.Classes
                 }
             } while ((x = IsSolvable()) != Constants3.SOLVABLE_EXPERIMENT);
         }
+
+
+        #region Omar's Methods
+
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
+
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+        }
+
+
+
+
+        #endregion
     }
 }
