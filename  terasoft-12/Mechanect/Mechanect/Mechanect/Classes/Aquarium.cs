@@ -24,7 +24,7 @@ namespace Mechanect.Classes
         /// returns the location of the Aquarium.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public Point getLocation()
@@ -35,7 +35,7 @@ namespace Mechanect.Classes
         /// returns the height of the Aquarium.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public int getHeight()
@@ -46,7 +46,7 @@ namespace Mechanect.Classes
         /// returns the width of the Aquarium.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public int getWidth()
