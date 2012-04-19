@@ -70,7 +70,7 @@ namespace Mechanect.Classes
         //                    hole.Position = (Vector2.Add(hole.Position, new Vector2(1, 0)))
         //                else friction++;break;
         //            case Constants3.HOLE_OUT_OF_FAR_RANGE: if (hole.Position.X == Constants3.MAX_HOLEPOSX && hole.Position.Y != Constants3.MAX_HOLEPOSY)
-        //                    hole.Position = (Vector2.Subtract(hole.getPosition(), new Vector2(0, -1)));
+        //                    hole.Position = (Vector2.Subtract(hole.Position, new Vector2(0, -1)));
         //                else if (hole.Position.Y == Constants3.MAX_HOLEPOSX && hole.Position.X != Constants3.MAX_HOLEPOSY)
         //                    hole.Position = (Vector2.Subtract(hole.Position, new Vector2(1, 0)));
         //                else if (wind != 0)
