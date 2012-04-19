@@ -14,6 +14,15 @@ namespace Mechanect.Classes
         private float wind;
         private float friction;
 
+        public Environment3(User user, float minBallMass, float maxBallMass)
+        {
+
+            this.user = user;
+            ball = new Ball(minBallMass,maxBallMass);
+           
+        }
+        
+
 
         public int IsSolvable()
         {
