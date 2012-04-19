@@ -22,7 +22,7 @@ namespace Mechanect.Classes
         /// returns the location of the predator.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
        
