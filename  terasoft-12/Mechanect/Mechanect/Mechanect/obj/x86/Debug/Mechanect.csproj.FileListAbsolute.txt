@@ -1,0 +1,2 @@
+C:\Users\Tamerko-pc\Desktop\xs\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Tamerko-pc\Desktop\xs\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
