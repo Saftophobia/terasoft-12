@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mechanect", "Mechanect\Mechanect\Mechanect.csproj", "{381BBF5A-322A-434A-9867-2DEBCA749103}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "MechanectContent", "Mechanect\MechanectContent\MechanectContent.contentproj", "{86D5B048-45DE-4E57-A784-B816A9166EE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechanectContent", "Mechanect\MechanectContent\MechanectContent.contentproj", "{86D5B048-45DE-4E57-A784-B816A9166EE4}"
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
