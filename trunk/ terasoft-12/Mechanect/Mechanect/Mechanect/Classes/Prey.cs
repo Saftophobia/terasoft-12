@@ -23,7 +23,7 @@ namespace Mechanect.Classes
         /// returns the location of the prey.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public Point getLocation()
@@ -35,7 +35,7 @@ namespace Mechanect.Classes
         /// return the Height of the Prey
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public int getHeight()
@@ -46,7 +46,7 @@ namespace Mechanect.Classes
         /// return the Width of the Prey
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para
+        /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
         public int getWidth()
