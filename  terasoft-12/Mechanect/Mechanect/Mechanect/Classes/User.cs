@@ -8,6 +8,35 @@ namespace Mechanect.Classes
 {
     class User
     {
+
+
+      
+
+        private Skeleton user;
+        public Skeleton User
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                user = value;
+            }
+        }
+
+        private Kinect kinect;
+        public Kinect Kinect
+        {
+            get
+            {
+                return kinect;
+            }
+            set
+            {
+                kinect = value;
+            }
+        }
         private double assumedLegMass;
         public double AssumedLegMass
         {
@@ -31,6 +60,16 @@ namespace Mechanect.Classes
             {
                 shootingPosition = value;
             }
+        }
+
+        
+
+        public User(float assumedLegMass)
+        {
+            kinect = new Kinect();
+            user = kinect.requestSkeleton();
+            this.assumedLegMass = assumedLegMass;
+
         }
     }
 }
