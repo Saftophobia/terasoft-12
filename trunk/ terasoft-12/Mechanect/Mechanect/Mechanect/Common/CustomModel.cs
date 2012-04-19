@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Cameras;
 
 namespace Mechanect.Common
 {
@@ -30,7 +31,7 @@ namespace Mechanect.Common
             model.CopyAbsoluteBoneTransformsTo(modelTransforms);
         }
 
-        public void Draw(Matrix view, Matrix projection)
+        public void Draw(Camera camera)
         {
             Matrix world = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position);
             foreach (ModelMesh mesh in model.Meshes)
@@ -40,8 +41,8 @@ namespace Mechanect.Common
                 {
                     BasicEffect e = (BasicEffect)part.Effect;
                     e.World = localWorld;
-                    e.View = view;
-                    e.Projection = projection;
+                    e.View = camera.view;
+                    e.Projection = camera.projection;
                     e.EnableDefaultLighting();
                 }
                 mesh.Draw();
