@@ -18,6 +18,8 @@ namespace Mechanect.Classes
         private User user;
         private float wind;
         private float friction;
+        private bool hasCollidedWithBall, ballShot;
+        private double ballMass, assumedLegMass;
 
         public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
         {
@@ -110,11 +112,17 @@ namespace Mechanect.Classes
 
         public override void Update(GameTime gameTime)
         {
+            Tools3.update_MeasuringVelocityAndAngle(user);
+            checkCollision();
+            shoot();
             base.Update(gameTime);
         }
 
         public override void Initialize()
         {
+            hasCollidedWithBall = false;
+            ballShot = false;
+            assumedLegMass = user.AssumedLegMass;
             base.Initialize();
         }
 
@@ -124,8 +132,53 @@ namespace Mechanect.Classes
             base.LoadContent();
         }
 
+        public void shoot()
+        {
+            Vector3 initialLegVelocity; //This variable represents the velocity of the leg with which the user has shot the ball.
+            initialLegVelocity = new Vector3((float)(user.Velocity * Math.Cos(user.Angle)), 0, -(float)(user.Velocity * Math.Sin(user.Angle)));
+            if (hasCollidedWithBall && !ballShot)
+            {
+                ballMass = ball.Mass; //get the mass of the ball
+                Vector3 velocityAfterCollision = getVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
+                ball.Velocity = velocityAfterCollision; // update the velocity of the ball
+                ballShot = true;
+            }
+        }
 
+        public void checkCollision()
+        {
 
+            Vector3 legPosition; //Current position of leg.
+            legPosition = new Vector3((float)user.CurrentRightLegPositionX, 0, (float)user.CurrentRightLegPositionZ);
+
+            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < 150f)
+            {
+                hasCollidedWithBall = true;
+                user.ShootingPosition = legPosition;
+            }
+            else
+                hasCollidedWithBall = false;
+        }
+
+        public Vector3 getVelocityAfterCollision(Vector3 initialVelocity)
+        {
+            double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
+
+            double acceleration = -(friction + wind); //Deceleration of the ball due to resistance.
+
+            //Get the velocity of the ball right before the collision.
+            initialVelocityBall = Math.Sqrt((ball.Velocity.LengthSquared() + (2 * acceleration * Math.Abs(Vector3.Distance(ball.Position, user.ShootingPosition)))));
+            initialVelocityLeg = initialVelocity.Length();
+
+            //Calculate the angle with which the user has shot the ball.
+            angle = Math.Atan2(-initialVelocity.Z, initialVelocity.X);
+
+            //Calculate what will the ball's speed be after collision using conservation of momentum equation.
+            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * initialVelocityLeg)) / ballMass;
+
+            //Return a vector containing the ball's speed and direction.
+            return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
+        }
 
         #endregion
     }

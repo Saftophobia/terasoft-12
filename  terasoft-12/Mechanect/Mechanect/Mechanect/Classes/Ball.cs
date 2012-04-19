@@ -14,6 +14,13 @@ namespace Mechanect.Classes
             get { return position; }
             set {position = value;}
         }
+
+        private Vector3 velocity;
+        public Vector3 Velocity
+        {
+            get { return velocity; }
+            set { velocity = value; }
+        }
         private int radius;
         public int Radius {
             get 
