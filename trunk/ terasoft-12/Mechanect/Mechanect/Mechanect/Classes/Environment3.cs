@@ -8,11 +8,11 @@ namespace Mechanect.Classes
 {
     class Environment3
     {
-        Hole hole;
-        Ball ball;
-        User user;
-        float wind;
-        float friction;
+        private Hole hole;
+        private Ball ball;
+        private User user;
+        private float wind;
+        private float friction;
 
 
         //public int IsSolvable()
