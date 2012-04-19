@@ -261,7 +261,7 @@ namespace Mechanect.Classes
 
 
         private Skeleton user;
-        public Skeleton User
+        public Skeleton USER
         {
             get
             {
