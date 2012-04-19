@@ -116,6 +116,9 @@
     <Compile Include="Classes\Aquarium.cs" />
     <Compile Include="Classes\Avatar.cs" />
     <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\Constants1.cs" />
+    <Compile Include="Classes\Constants2.cs" />
+    <Compile Include="Classes\Constants3.cs" />
     <Compile Include="Classes\Environment2.cs" />
     <Compile Include="Classes\Environment3.cs" />
     <Compile Include="Classes\Game.cs" />
