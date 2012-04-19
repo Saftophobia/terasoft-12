@@ -13,5 +13,8 @@ namespace Mechanect.Classes
         public static const float MAX_VELOCITYX = 1.0f;
         public static const float MAX_HOLEPOSX = 1.0f;
         public static const float MAX_HOLEPOSY = 1.0f;
+        public static const float NORMAL_LEG_MASS = 0.01f;
+        public static const double unitTime = 0.0333333333334; //seconds
+        public static const float legMovementTolerance = 0.09f; //meters
     }
 }
