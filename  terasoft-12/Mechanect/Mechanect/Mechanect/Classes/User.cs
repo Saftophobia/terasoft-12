@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Kinect;
+using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
     class User
     {
-
-
-      
 
         private Skeleton user;
         public Skeleton User
@@ -25,8 +24,8 @@ namespace Mechanect.Classes
             }
         }
 
-        private Kinect kinect;
-        public Kinect Kinect
+        private MKinect kinect;
+        public MKinect Kinect
         {
             get
             {
@@ -66,7 +65,7 @@ namespace Mechanect.Classes
 
         public User(float assumedLegMass)
         {
-            kinect = new Kinect();
+            kinect = new MKinect();
             user = kinect.requestSkeleton();
             this.assumedLegMass = assumedLegMass;
 
