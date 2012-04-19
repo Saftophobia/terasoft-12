@@ -302,8 +302,8 @@ namespace Mechanect.Classes
                 assumedLegMass = value;
             }
         }
-        private Vector2 shootingPosition;
-        public Vector2 ShootingPosition
+        private Vector3 shootingPosition;
+        public Vector3 ShootingPosition
         {
             get
             {
