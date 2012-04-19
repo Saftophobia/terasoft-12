@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mechanect.Classes
 {
-    class Constants3
+    static class Constants3
     {
         public const float MIN_VELOCITYY = 1.0f;
         public const float MIN_VELOCITYX = 1.0f;
