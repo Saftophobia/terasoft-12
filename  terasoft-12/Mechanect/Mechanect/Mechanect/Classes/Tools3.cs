@@ -16,7 +16,7 @@ namespace Mechanect.Classes
         public static void update_MeasuringVelocityAndAngle(User user)
         {
             user.setSkeleton();
-            Skeleton skeleton = user.User;
+            Skeleton skeleton = user.USER;
 
             if (skeleton != null)
             {
