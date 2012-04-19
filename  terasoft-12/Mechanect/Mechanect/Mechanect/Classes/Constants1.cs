@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mechanect.Classes
 {
-    class Constants1
+    static class Constants1
     {
     }
 }
