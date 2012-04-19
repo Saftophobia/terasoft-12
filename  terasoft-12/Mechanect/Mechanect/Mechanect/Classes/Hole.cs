@@ -20,8 +20,8 @@ namespace Mechanect.Classes
                 radius = value;
             }
         }
-        private Vector2 position;
-        public Vector2 Position
+        private Vector3 position;
+        public Vector3 Position
         {
             get
             {
