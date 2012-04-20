@@ -19,12 +19,27 @@ namespace Mechanect.Common
         private Skeleton[] _FrameSkeletons;
 
         public Skeleton globalSkeleton;
+        private int frameRate;
+        private int frameCounter;
 
         public MKinect()
         {
             KinectSensor.KinectSensors.StatusChanged += KinectSensors_StatusChanged;
             this.KinectDevice = KinectSensor.KinectSensors
             .FirstOrDefault(x => x.Status == KinectStatus.Connected);
+            frameRate = 30;
+            frameCounter = 0;
+        }
+
+        /// <summary>
+        /// This method should be used to set the frame capturing rate for the kinect sensor.
+        /// Note that this method will set any input bigger than 30 to 30, because the maximum kinect framerate is 30
+        /// </summary>
+        /// <param name="frameRate"></param>
+        public void SetFPS(int frameRate)
+        {
+            this.frameRate = frameRate;
+            frameCounter = 0;
         }
 
         private void KinectSensors_StatusChanged(object sender, StatusChangedEventArgs e)
@@ -89,6 +104,15 @@ namespace Mechanect.Common
 
         private void KinectDevice_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
+            //to be tested if it works correctly on the kinect tomorrow
+            if (frameCounter == frameRate)
+            {
+                frameCounter = 0;
+                return;
+            }
+            else
+                frameCounter++;
+            
             using (SkeletonFrame frame = e.OpenSkeletonFrame())
             {
                 if (frame != null)
