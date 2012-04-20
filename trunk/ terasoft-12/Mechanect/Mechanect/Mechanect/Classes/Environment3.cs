@@ -112,15 +112,15 @@ namespace Mechanect.Classes
             } while ((x = IsSolvable()) != Constants3.solvableExperiment);
         }
 
-        /// <author>
-        /// Ahmad Sanad
-        /// </author>
+
+        /// <remarks>
+        ///<para>AUTHOR: NAME </para>
+        ///</remarks>
         /// <summary>
         /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, and calls methods to inform the user if he won or not.
         /// </summary>
         private void hasScored()
         {
-
             Vector3 hole = this.hole.Position;
             Vector3 ballVelocity = ball.Velocity;
             Vector3 InitialPosition = ball.Position;
