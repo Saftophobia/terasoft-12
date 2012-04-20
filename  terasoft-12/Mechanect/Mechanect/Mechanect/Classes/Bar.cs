@@ -55,7 +55,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Initializes the Bar
         /// </summary>
-        /// <example>This sample shows how to call the <see cref="GetZero"/> method.
+        /// <example>This sample shows how instaniate the Bar class.
         /// <code>
         ///  protected override void LoadContent()
         ///  {
