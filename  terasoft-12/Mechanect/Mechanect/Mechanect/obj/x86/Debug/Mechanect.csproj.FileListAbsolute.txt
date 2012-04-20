@@ -7,3 +7,9 @@ C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x8
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.pdb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\background.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\bowl2.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\worm.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\xyAxis.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb

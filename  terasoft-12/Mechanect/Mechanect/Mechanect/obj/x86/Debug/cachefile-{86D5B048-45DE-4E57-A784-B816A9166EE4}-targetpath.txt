@@ -1,1 +1,7 @@
 Content\ball.xnb
+Content\Models\fish.xnb
+Content\Textures\background.xnb
+Content\Textures\bowl2.xnb
+Content\Textures\worm.xnb
+Content\Textures\xyAxis.xnb
+Content\TropicalFish12_0.xnb
