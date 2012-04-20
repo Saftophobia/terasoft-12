@@ -258,7 +258,7 @@ namespace Mechanect.Classes
 
         public static void setVelocityRelativeToGivenMass(float velocity,User user)
         {
-            user.Velocity = (float)(Constants3.NORMAL_LEG_MASS / user.AssumedLegMass) * user.Velocity;
+            user.Velocity = (float)(Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity;
         }
 
         public static bool hasAnkleCollidedWithTheBall()
