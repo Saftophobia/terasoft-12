@@ -8,6 +8,9 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Mechanect.Common;
+using Mechanect.Screens;
+
 
 namespace Mechanect
 {
@@ -18,11 +21,15 @@ namespace Mechanect
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ScreenManager screenManager;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            screenManager = new ScreenManager(this);
+            Components.Add(screenManager);
+            
         }
 
         /// <summary>
@@ -46,7 +53,7 @@ namespace Mechanect
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            screenManager.AddScreen(new PauseScreen());
             // TODO: use this.Content to load your game content here
         }
 
