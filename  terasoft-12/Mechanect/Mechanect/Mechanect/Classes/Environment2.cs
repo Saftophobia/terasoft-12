@@ -322,6 +322,9 @@ namespace Mechanect
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(0f, 0f), Color.Red);
+            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(900f, 680f), Color.Red);
+            
             if (!preyEaten)
                 spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
             if (grayScreen)
