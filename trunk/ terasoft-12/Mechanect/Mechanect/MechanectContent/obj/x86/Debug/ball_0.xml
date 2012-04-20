@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Platonic</Name>
     <Identity>
-      <SourceFilename>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\ball.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\MechanectContent\ball.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -26,7 +26,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Platonic</Name>
       <Identity>
-        <SourceFilename>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\ball.fbx</SourceFilename>
+        <SourceFilename>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\MechanectContent\ball.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
