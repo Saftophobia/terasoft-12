@@ -7,49 +7,73 @@ using Mechanect.Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Mechanect.Cameras;
+using Mechanect.Classes;
+using Microsoft.Kinect;
 
-namespace Mechanect.Classes
+namespace Mechanect.Screens
 {
     class PauseScreen:Mechanect.Common.GameScreen
     {
         ContentManager content;
         Viewport viewPort;
+        SpriteBatch spriteBatch;
         
         Texture2D givens;
         Vector2 givensPosition;
 
 
         Texture2D velocityBar;
-        Vector2 vBarPositio;
+        Vector2 vBarPosition;
 
-        CustomModel rotationArrow;
-        Vector3 arrowPosition;
-        Vector3 arrowRotation;
-        Vector3 arrowScale;
-        float deltaArrowRotation;
+      
+        Vector2 fillPosition;
+        List<Vector2> fillsPositions;
+        List<Texture2D> fills;
 
-        Camera camera;
-        Vector3 cameraPosition;
-        Vector3 targetPosition;
 
-           public PauseScreen()
+        Texture2D arrow;
+        Vector2 arrowPosition;
+        float arrowAngle;
+        float arrowScale;
+    
+        User user;
+        MKinect kinect;
+        Boolean hasNotWaited;
+        VoiceCommands voiceCommands;
+           public PauseScreen(User user,MKinect kinect)
         {
-            content = ScreenManager.Game.Content;
-            viewPort = ScreenManager.GraphicsDevice.Viewport;
-            arrowRotation = new Vector3(0, 0, 0);
-            arrowPosition = new Vector3(viewPort.Width, 0, -1000);
-            deltaArrowRotation = 0.02f;
-            cameraPosition = new Vector3(-3000, 900, 100);
-            targetPosition = new Vector3(100, 1000, 100);
+
+            this.user = user;
+            this.kinect = kinect;
+            hasNotWaited = true;
+            voiceCommands = new VoiceCommands(kinect._KinectDevice);
+            
+           
 
         }
 
          
           public override void LoadContent()
         {
+            viewPort = ScreenManager.GraphicsDevice.Viewport;
+            content = ScreenManager.Game.Content;
+            spriteBatch = ScreenManager.SpriteBatch;
+          
+
+           
+            velocityBar = content.Load<Texture2D>("Textures/VBar");
+            vBarPosition = new Vector2((velocityBar.Width / 2) + 20, viewPort.Height - (velocityBar.Height / 2));
+            fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
+
             givens = content.Load<Texture2D>("Textures/screen");
-            rotationArrow = new CustomModel(content.Load<Model>("Model/Arrow"),arrowPosition,arrowRotation,arrowScale,ScreenManager.GraphicsDevice);
-            camera = new TargetCamera(cameraPosition, targetPosition, ScreenManager.GraphicsDevice);
+            givensPosition = new Vector2(viewPort.Width/2 , givens.Height/4);
+
+
+            arrow = content.Load<Texture2D>("Textures/arrow");
+            arrowScale = 0.3f;
+            arrowPosition = new Vector2(viewPort.Width - (float)((Math.Sqrt(arrowScale) * arrow.Width)), viewPort.Height / 2 + (float)((Math.Sqrt(arrowScale) * arrow.Height / 2)));
+            arrowAngle = 0;
+            
         }
 
         public override void UnloadContent()
@@ -59,15 +83,78 @@ namespace Mechanect.Classes
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            camera.Update();
+             TimeSpan elapsedTime = TimeSpan.Zero;
+            if (!voiceCommands.getHeared("go"))
+            {
+                if (Tools3.frameNumber != -1)
+                {
+                   
+                    Tools3.update_MeasuringVelocityAndAngle(user);
+                    Tools3.setVelocityRelativeToGivenMass(user);
+                    Vector2 velocityInMeters = Tools3.resolveUserVelocity(user);
+                    SkeletonPoint p = new SkeletonPoint();
+                    p.X = velocityInMeters.X;
+                    p.Z = velocityInMeters.Y;
+                    Vector2 velocityInPixels = Tools3.getPointsOnScreen(kinect, p, viewPort.Width, viewPort.Height);
+                    double velocity = Math.Sqrt(Math.Pow(velocityInPixels.X, 2) + Math.Pow(velocityInPixels.Y, 2));
+                    for (int i = fills.Count-1; i < velocity; i++)
+                    {
+                        fillsPositions.Add(fillPosition);
+                        fills.Add(content.Load<Texture2D>("Vfill"));
+                        fillPosition.Y -= 8;
+                    }
+                    arrowAngle = (float)user.Angle;
+                }
+                else
+                {
+                    if (hasNotWaited)
+                    {
+                        elapsedTime = gameTime.TotalGameTime;
+                        hasNotWaited = false;
+                    }
+                    if (elapsedTime.TotalSeconds - gameTime.TotalGameTime.TotalSeconds > 10)
+                    {
+                        Tools3.frameNumber = 0;
+                        hasNotWaited = true;
+                    }
+                }
+            }
+            else
+            {
+                Tools3.resetUserForShootingOrTryingAgain(user);
+                ExitScreen();
+            }
+
+
+       
             base.Update(gameTime, covered);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
+            spriteBatch.Begin();
+            spriteBatch.Draw(givens,givensPosition,null,Color.White,0,new Vector2(givens.Width/2,givens.Height/2),0.5f,SpriteEffects.None,0);
+            spriteBatch.End();
 
-            rotationArrow.Draw(camera);
+            spriteBatch.Begin();
+            spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
+            spriteBatch.End();
+
+
+            for (int i = 0; i < fills.Count; i++)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
+                    Color.White, 0, new Vector2(fills.ElementAt<Texture2D>(i).Width / 2,
+                        fills.ElementAt<Texture2D>(i).Height / 2), 1, SpriteEffects.None, 0);
+                spriteBatch.End();
+            }
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
+            spriteBatch.End();
+        
             
         }
 
