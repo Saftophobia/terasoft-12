@@ -20,6 +20,7 @@ namespace Mechanect.Classes
         private float friction;
         private bool hasCollidedWithBall, ballShot;
         private double ballMass, assumedLegMass;
+        private Vector2 tolerance;
 
         public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
         {
@@ -111,7 +112,32 @@ namespace Mechanect.Classes
             } while ((x = IsSolvable()) != Constants3.solvableExperiment);
         }
 
+        /// <author>
+        /// Ahmad Sanad
+        /// </author>
+        /// <summary>
+        /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, and calls methods to inform the user if he won or not.
+        /// </summary>
+        private void hasScored()
+        {
 
+            Vector3 hole = this.hole.Position;
+            Vector3 ballVelocity = ball.Velocity;
+            Vector3 InitialPosition = ball.Position;
+            float optimumVx = (float)Math.Sqrt((2 * (wind + friction)) * (hole.X - InitialPosition.X));
+            float optimumVy = (float)Math.Sqrt((2 * (wind + friction)) * (hole.Y - InitialPosition.Y));
+
+            if (ballVelocity.X <= (optimumVx + tolerance.X) && ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius)
+            && ballVelocity.X >= (optimumVx - tolerance.Y) && ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius))
+            {
+                //winningWord(); to be implemented by Hegazy, commented to remove error
+            }
+
+            else
+            {
+                //losingWord(); to be implemented by Hegazy, commented to remove error
+            }
+        }
         
         
         
