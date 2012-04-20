@@ -80,6 +80,14 @@ namespace Mechanect.Classes
             ball = content.Load<Texture2D>(@"Resources/Images/Ball");
         }
         /// <summary>
+        /// Updates the current position of the ball with the new position
+        /// </summary>
+        /// <param name="currentPos"></param>
+        public void Update(Vector2 currentPos)
+        {
+            this.currentPos = currentPos;
+        }
+        /// <summary>
         /// Draws the bar.
         /// </summary>
         public void Draw()
