@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
+using Microsoft.Xna.Framework;
+using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
@@ -12,6 +14,8 @@ namespace Mechanect.Classes
         //has to be updated in the pause screen after the measuring process finishes
 
         // try method which resets the boolean values
+
+
 
         public static void update_MeasuringVelocityAndAngle(User user)
         {
@@ -54,6 +58,27 @@ namespace Mechanect.Classes
                 }
             }
         }
+
+
+
+        public static Vector2 resolveUserVelocity(User user)
+        {
+            Vector2 velocity;
+            velocity.X = (float)(user.Velocity * Math.Cos(user.Angle));
+            velocity.Y = (float)(user.Velocity * Math.Sign(user.Angle));
+            return velocity;
+        }
+
+
+        public static Vector2 getPointsOnScreen(MKinect kinect, SkeletonPoint p, int screenWidth, int screenHeight)
+        {
+            Vector2 pointOnScreen;
+            Point point = kinect.mapMetersToPixels(p, screenWidth, screenHeight);
+            pointOnScreen.X = point.X;
+            pointOnScreen.Y = point.Y;
+            return pointOnScreen;
+        }
+
 
 
         /// <summary>
@@ -256,7 +281,7 @@ namespace Mechanect.Classes
         }
 
 
-        public static void setVelocityRelativeToGivenMass(float velocity,User user)
+        public static void setVelocityRelativeToGivenMass(User user)
         {
             user.Velocity = (float)(Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity;
         }
@@ -269,7 +294,7 @@ namespace Mechanect.Classes
 
 
 
-        public void resetUserForShootingOrTryingAgain(User user)
+        public static void resetUserForShootingOrTryingAgain(User user)
         {
 
             user.InitialLeftLegPositionX = 0;

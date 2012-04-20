@@ -27,6 +27,9 @@ namespace Mechanect
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+          
+           // Window.AllowUserResizing = true;
+            graphics.IsFullScreen = true;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
             
