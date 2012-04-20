@@ -16,7 +16,7 @@ using Mechanect.Common;
 
 namespace Mechanect
 {
-    class Environment2 : Microsoft.Xna.Framework.Game
+    public class Environment2 : Microsoft.Xna.Framework.Game
     {
 
 
@@ -251,43 +251,86 @@ namespace Mechanect
             //add model to array of models
             //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
             models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(35), MathHelper.ToRadians(-35), 0), new Vector3(0.007f), GraphicsDevice));
-            
+
             //create still camera
             camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), GraphicsDevice);
             //cameras constructor takes position vector and target vector(the point where the camera is looking) 
 
         }
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+        protected override void UnloadContent()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
 
 
+        /// <summary>
+        /// Allows the game to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Update(GameTime gameTime)
+        {
+            // Allows the game to exit
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                this.Exit();
+            camera.Update();
+
+            // TODO: Add your update logic here
+
+            base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// This is to be called when the game should draw itself.
+        /// Here all the GUI is drawn
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            if (!preyEaten)
+                spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, new Vector2(750f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.End();
+
+            //GraphicsDevice.BlendState = BlendState.Opaque;
+            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+
+            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
 
+            foreach (CustomModel model in models)
+            {
+                model.Draw(camera);
+                //takes the camera instance and draws the model 
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            base.Draw(gameTime);
+        }
 
 
         /// <summary>
