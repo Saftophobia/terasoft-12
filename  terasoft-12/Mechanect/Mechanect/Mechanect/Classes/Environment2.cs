@@ -18,8 +18,8 @@ namespace Mechanect
 {
     class Environment2 : Microsoft.Xna.Framework.Game
     {
-    
-       
+
+
         Prey prey;
 
         Predator predator;
@@ -71,7 +71,7 @@ namespace Mechanect
             Content.RootDirectory = "Content";
         }
 
-       
+
         /// <summary>
         /// generates random angle between 10 and 90
         /// </summary>
@@ -113,13 +113,13 @@ namespace Mechanect
             double yAquarium;
 
             xPredator = 0;
-            yPredator = rand.Next(0,70);
+            yPredator = rand.Next(0, 70);
             angleInDegree = getRandomAngle();
             angle = angleInDegree * (Math.PI / 180);
             velocity = getRandomVelocity();
-            
-            
-            
+
+
+
             double b = velocity * Math.Sin(angle);
 
             double a = 0.5 * -9.8;
@@ -132,46 +132,46 @@ namespace Mechanect
 
             if (Timeneeded > 0)
             {
-                TotalTime = Timeneeded;              
+                TotalTime = Timeneeded;
             }
             else
             {
                 TotalTime = Timeneeded2;
             }
 
-        
+
             Double TimeSlice = TotalTime / 3;
 
             int TimeSlice2 = (int)(TimeSlice * 10);
 
             int randomTimeForPrey = rand.Next(TimeSlice2, TimeSlice2 * 2);
 
-            int randomTimeforAquarium = rand.Next(randomTimeForPrey +(randomTimeForPrey * 10/100), TimeSlice2 * 3);
+            int randomTimeforAquarium = rand.Next(randomTimeForPrey + (randomTimeForPrey * 10 / 100), TimeSlice2 * 3);
 
-       
+
             Double TimePrey = (Double)randomTimeForPrey / 10;
 
             Double TimeAquarium = (Double)randomTimeforAquarium / 10;
 
             xPrey = getX(TimePrey);
-          
+
             yPrey = (velocity * Math.Sin(angle) * TimePrey) - (0.5 * 9.8 * Math.Pow(TimePrey, 2)) + yPredator;
- 
+
             xAquarium = getX(TimeAquarium);
-           
+
             yAquarium = (velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + yPredator;
 
             // Sorry had to change Point to System.Windows.Point to solve a conflict
 
-           setPredator(new Predator(new System.Windows.Point(xPredator,yPredator)));
+            setPredator(new Predator(new System.Windows.Point(xPredator, yPredator)));
 
-           setPrey(new Prey(new System.Windows.Point(xPrey, yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
+            setPrey(new Prey(new System.Windows.Point(xPrey, yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
 
-           setAquarium(new Aquarium(new System.Windows.Point(xAquarium, yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
+            setAquarium(new Aquarium(new System.Windows.Point(xAquarium, yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
 
 
-          
-      
+
+
         }
 
         /// <summary>
@@ -234,6 +234,29 @@ namespace Mechanect
             base.Initialize();
         }
 
+        /// <summary>
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// Loaded the Fish Model
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            //add model to array of models
+            //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
+            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(35), MathHelper.ToRadians(-35), 0), new Vector3(0.007f), GraphicsDevice));
+            
+            //create still camera
+            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), GraphicsDevice);
+            //cameras constructor takes position vector and target vector(the point where the camera is looking) 
+
+        }
 
 
 
@@ -285,23 +308,23 @@ namespace Mechanect
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <param name="predator"></param>
-         private  void setPredator(Predator predator)
+        private void setPredator(Predator predator)
         {
             this.predator = predator;
         }
         /// <summary>
-         /// set the instance variable of Aquarium to the Aquarium given as parameter
+        /// set the instance variable of Aquarium to the Aquarium given as parameter
         /// </summary>
-         /// <remarks>
-         /// <para>AUTHOR: Tamer Nabil </para>
-         /// </remarks>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <param name="aquarium"></param>
 
         private void setAquarium(Aquarium aquarium)
         {
             this.aquarium = aquarium;
         }
-    
-    
+
+
     }
 }
