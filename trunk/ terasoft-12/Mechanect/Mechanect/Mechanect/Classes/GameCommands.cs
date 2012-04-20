@@ -7,5 +7,15 @@ namespace Mechanect.Classes
 {
     class GameCommands
     {
+        private List<String> Commands;
+        public List<String> Commands {
+            get
+            {
+                return Commands;
+            }
+           
+        }
+
+
     }
 }
