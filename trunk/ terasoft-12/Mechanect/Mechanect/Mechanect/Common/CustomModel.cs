@@ -20,6 +20,12 @@ namespace Mechanect.Common
 
         private GraphicsDevice graphicsDevice;
 
+        public void setRotation(float x, float y, float z)
+        {
+            rotation = new Vector3(x, y, z);
+
+        }
+
         public CustomModel(Model model, Vector3 Position, Vector3 Rotation, Vector3 Scale, GraphicsDevice graphicsDevice)
         {
             this.position = Position;
