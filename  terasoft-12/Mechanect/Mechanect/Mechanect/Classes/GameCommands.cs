@@ -20,8 +20,38 @@ namespace Mechanect.Classes
             }
            
         }
-      
+
+        private String name;
+        public String Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        private int time;
+        public int Time
+        {
+            get
+            {
+                return time;
+            }
+            set
+            {
+                time = value;
+            }
+        }
 
 
+
+
+        internal string getName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
