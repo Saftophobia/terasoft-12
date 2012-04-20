@@ -16,7 +16,7 @@ using Mechanect.Common;
 
 namespace Mechanect
 {
-    class Environment2
+    class Environment2 : Microsoft.Xna.Framework.Game
     {
     
        
@@ -42,7 +42,6 @@ namespace Mechanect
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -57,7 +56,20 @@ namespace Mechanect
         private Boolean preyEaten = false;
         private Boolean grayScreen = false;
 
-        
+
+        /// <summary>
+        /// This is a constructor that will initialize the grphicsDeviceManager and define the content directory.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+        public Environment2()
+        {
+            graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+        }
 
        
         /// <summary>
@@ -196,6 +208,65 @@ namespace Mechanect
             else
                 return number * -1;
         }
+
+        /// <summary>
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        ///
+        /// Initializing the Background and x,y Axises
+        /// Changed the default resolution to 1024X720
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+
+        protected override void Initialize()
+        {
+
+            backgroundTexture = this.Content.Load<Texture2D>("Textures/background");
+            xyAxisTexture = this.Content.Load<Texture2D>("Textures/xyAxis");
+            preyTexture = this.Content.Load<Texture2D>("Textures/worm");
+            bowlTexture = this.Content.Load<Texture2D>("Textures/bowl2");
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
+            base.Initialize();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// sets the instance variable of prey to the prey given as parameter
         /// </summary>
