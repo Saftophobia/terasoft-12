@@ -20,6 +20,15 @@ namespace Mechanect.Classes
         Texture2D phototexture;
         Skeleton p1;
         Skeleton p2;
+
+        /// <summary>
+        /// it Initialize the avatarpicture and position on screen
+        /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Safty </para>
+        ///<para>DATE WRITTEN: 20/4/12 </para>
+        ///<para>DATE MODIFIED: 20/4/12 </para>
+        ///</remarks>
         public AvatarprogUI()
         {
             //kinect = new MKinect();
@@ -47,7 +56,7 @@ namespace Mechanect.Classes
             // base.Update(gameTime);
         }
 
-        protected void Draw(GameTime gameTime)
+        protected void Draw()
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
