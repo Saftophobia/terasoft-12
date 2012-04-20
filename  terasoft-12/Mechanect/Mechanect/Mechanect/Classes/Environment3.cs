@@ -133,7 +133,7 @@ namespace Mechanect.Classes
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
                     case Constants3.negativeFriction: friction *= -1; break;
                 }
-            } while ((x = IsSolvable()) != Constants3.solvableExperiment);
+            } while (x != Constants3.solvableExperiment);
         }
 
 
