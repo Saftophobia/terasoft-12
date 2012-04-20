@@ -18,30 +18,34 @@ namespace MechanectXNA
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
         SpriteFont Font1;
+        Vector2 origin;
         Vector2 positionInScreen;
         String instructions;
+
+
+
 
         public Game1(String instructions, Vector2 positionInScreen)
         {
 
-            setInsruction(instructions);
+            Window.AllowUserResizing = true;
+            this.instructions = instructions;
             this.positionInScreen = new Vector2(positionInScreen.X, positionInScreen.Y);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            int screenWidth = 800;
+            int screenHeight = 400;
+            origin = new Vector2(0f, 0f);
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            this.IsMouseVisible = true;
 
         }
 
-        /// <summary>
-        /// Setter for the instruction
-        /// </summary>
-        /// <author>Mohamed Raafat </author>
-        /// <param name="instruction"></param>
 
-        void setInsruction(String instruction)
-        {
-            this.instructions = instruction;
-        }
 
         /// <summary>
         /// Makes sure that text displayed will not exceeds screen boundries
@@ -80,14 +84,47 @@ namespace MechanectXNA
         }
 
         /// <summary>
-        /// This Method gets the Instructions that will be drawn later
+        /// LoadContent will be called once per game and is the place to load
+        /// all of your content.
+        /// </summary>
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Font1 = Content.Load<SpriteFont>("TimesNewRoman");
+
+            // TODO: use this.Content to load your game content here
+
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
         /// </summary>
         /// <para>Author: Mohamed Raafat</para>
-        /// <returns> Instructions </returns>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+
         String getInsructions()
         {
             String output = WrapText(Font1, this.instructions, this.GraphicsDevice.Viewport.Width);
             return output;
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.YellowGreen);
+            spriteBatch.Begin();
+            string output = WrapText(Font1, this.instructions, this.GraphicsDevice.Viewport.Width);
+            spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
+            spriteBatch.End();
+
+        }
+        static void Main(String[] args)
+        {
+            String text = "mohamed raafah ahmed aboelhassieb";
+            Vector2 position = new Vector2(12f, 43f);
+            Game1 game = new Game1(text, position);
+            game.Run();
+
         }
 
     }
