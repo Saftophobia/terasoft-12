@@ -28,10 +28,10 @@ namespace Mechanect
         Random rand = new Random();
 
         int tolerance = 10;
-        int velocity;
+        int velocity = 0;
 
         double angleInDegree;
-        double angle;
+        double angle = 0;
         double TotalTime;
 
         /// <summary>
@@ -44,12 +44,15 @@ namespace Mechanect
         /// </remarks>
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        SpriteFont spriteFont;
+        SpriteFont velAngleFont;
         private Texture2D backgroundTexture;
         private Texture2D xyAxisTexture;
         private Texture2D preyTexture;
         private Texture2D bowlTexture;
         private Texture2D grayTexture;
+        private Texture2D velocityTexture;
+        private Texture2D angleTexture;
         //list of models to be drawn
         private List<CustomModel> models = new List<CustomModel>();
         private Camera camera;
@@ -230,6 +233,8 @@ namespace Mechanect
             preyTexture = this.Content.Load<Texture2D>("Textures/worm");
             bowlTexture = this.Content.Load<Texture2D>("Textures/bowl2");
             grayTexture = this.Content.Load<Texture2D>("Textures/GrayScreen1");
+            velocityTexture = this.Content.Load<Texture2D>("Textures/VelocityGauge");
+            angleTexture = this.Content.Load<Texture2D>("Textures/AngleGauge");
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
@@ -252,12 +257,15 @@ namespace Mechanect
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //add model to array of models
             //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(-35), 0), new Vector3(0.007f), GraphicsDevice));
+            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), GraphicsDevice));
 
             //create still camera
             camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), GraphicsDevice);
             //cameras constructor takes position vector and target vector(the point where the camera is looking) 
 
+            spriteFont = Content.Load<SpriteFont>("Ariel");
+            velAngleFont = Content.Load<SpriteFont>("angleVelFont");
+             
         }
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -316,15 +324,31 @@ namespace Mechanect
             spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             if (!preyEaten)
                 spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
-            if(grayScreen)
-                spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);          
+            if (grayScreen)
+            {
+                spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
+
+                spriteBatch.DrawString(spriteFont, "Test angle and Velocity", new Vector2((graphics.GraphicsDevice.Viewport.Width / 4), 0), Color.Red);
+
+                spriteBatch.DrawString(spriteFont, "Say 'Ready' or press OK", new Vector2((graphics.GraphicsDevice.Viewport.Width / 4), 600), Color.Red);
+
+                spriteBatch.DrawString(velAngleFont, "Velocity = " + velocity, new Vector2(110f, 185f), Color.Red);
+
+                spriteBatch.DrawString(velAngleFont, "Angle = " + angle, new Vector2(820f, 185f), Color.Red);
+
+            }
+            else
+            {
+                spriteBatch.DrawString(velAngleFont, "Velocity = " + velocity, new Vector2(870f, 30f), Color.Red);
+
+                spriteBatch.DrawString(velAngleFont, "Angle = " + angle, new Vector2(780f, 30f), Color.Red);
+
+            }
             spriteBatch.Draw(bowlTexture, new Vector2(750f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.End();
 
-            //GraphicsDevice.BlendState = BlendState.Opaque;
-            //GraphicsDevice.DepthStencilState = DepthStencilState.Default;
-
-            //GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
 
 
             foreach (CustomModel model in models)
@@ -334,6 +358,10 @@ namespace Mechanect
             }
 
             base.Draw(gameTime);
+        }
+
+        void DrawText(String s, Vector2 Pos)
+        {
         }
 
 
