@@ -14,26 +14,26 @@ namespace Mechanect.Classes
         private User Winner;
         private List<String> CommandsTime;
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        List<float> positionsList = new List<float>();
-        int initialPosition;
-        int tolerance = 500;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private List<float> positionsList = new List<float>();
+        private int initialPosition;
+        private int tolerance;
 
-        List<GameCommands> currentCommands;
+        private List<GameCommands> currentCommands;
 
-        User user1;
-        User user2;
+        private User user1;
+        private User user2;
 
         /// <summary>
         /// a timer to check the number of seconds
         /// </summary>
-        int timer = 0;
+        private int timer = 0;
 
         /// <summary>
         /// the number of frames taken from the kinect
         /// </summary>
-        int frame = 0;
+        private int frame = 0;
 
         /// <summary>
         /// Text management
@@ -51,6 +51,11 @@ namespace Mechanect.Classes
         /// <summary>
         /// this method should be called on each update and it will do the check on both players to see if they followed the commands
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 19/4/12 </para>
+        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// </remarks>
         public void CheckEachSecond()
         {
             int second = timer % 60;
@@ -87,6 +92,11 @@ namespace Mechanect.Classes
         /// <summary>
         /// this method should be called at the beginning of the race to set the players' position
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 19/4/12 </para>
+        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// </remarks>
         public void SetPositions()
         {
             Skeleton sk1 = user1.USER;
@@ -131,12 +141,17 @@ namespace Mechanect.Classes
         /// this method checks whether the user is standing in about 4m or not(with certain tolerance)
         /// </summary>
         /// <param name="userPosition">the position that the user is currently standing at</param>
-        /// <returns></returns>
+        /// <returns>if the position sent is in the range or not</returns>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 19/4/12 </para>
+        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// </remarks>
         public bool CheckPosition(float userPosition)
         {
             //initiate the minimum distance from the Kinect which means
             //the maximum distance between the two players which is actually the tolerance on a scale from 0-10 mm
-            float min = 4.0f - (tolerance / 100);
+            float min = 4.0f - (tolerance / 1000);
             //check if the actual position of the player is within the range or not
             if (userPosition >= min && userPosition <= 4.0f)
                 //if it is within the range then it will be true
@@ -150,7 +165,12 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="command">which is the name of the command that should be satisfied</param>
         /// <param name="positions">a list containing the positions of the user</param>
-        /// <returns></returns>
+        /// <returns>if the command sent is satified then "true" else "false"</returns>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 19/4/12 </para>
+        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// </remarks>
         public bool CommandSatisfied(String command, List<float> positions)
         {
             bool result = true;
