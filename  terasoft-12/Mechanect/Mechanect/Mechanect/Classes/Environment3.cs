@@ -156,6 +156,7 @@ namespace Mechanect.Classes
             if (ballVelocity.X <= (optimumVx + tolerance.X) && ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius)
             && ballVelocity.X >= (optimumVx - tolerance.Y) && ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius))
             {
+                ballFallIntoHole();
                 //winningWord(); to be implemented by Hegazy, commented to remove error
             }
 
@@ -541,7 +542,19 @@ namespace Mechanect.Classes
             //Return a vector containing the ball's speed and direction.
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
+        public void ballFallIntoHole()
+        {
+            //Waiting for completed class Hole from Khaled Salah
 
+            //Get the balls Velocity.
+            Vector3 newVelocity = ball.Velocity;
+
+            //Set the balls velocity to the old velocity plus -10j (Downward Motion)
+            newVelocity = Vector3.Add(newVelocity, new Vector3(0, -10, 0));
+
+            //Update the balls velocity
+            ball.Velocity = newVelocity;
+        }
         #endregion
     }
 }
