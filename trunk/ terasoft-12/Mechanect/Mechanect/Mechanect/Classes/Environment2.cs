@@ -1,9 +1,18 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using Mechanect.Classes;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Mechanect.Cameras;
+using Mechanect.Common;
 
 namespace Mechanect
 {
@@ -24,6 +33,29 @@ namespace Mechanect
         double angleInDegree;
         double angle;
         double TotalTime;
+
+        /// <summary>
+        /// Defining the Textures that will contain the images and will represent the objects in the experiment
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 20  </para>
+        /// </remarks>
+
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+
+        Texture2D backgroundTexture;
+        Texture2D xyAxisTexture;
+        Texture2D preyTexture;
+        Texture2D bowlTexture;
+        //list of models to be drawn
+        List<CustomModel> models = new List<CustomModel>();
+        Camera camera;
+        //Variables that will change how the Gui will look
+        Boolean preyEaten = false;
+        Boolean grayScreen = false;
 
         
 
@@ -117,11 +149,13 @@ namespace Mechanect
            
             yAquarium = (velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + yPredator;
 
-           setPredator(new Predator(new Point(xPredator,yPredator)));
+            // Sorry had to change Point to System.Windows.Point to solve a conflict
 
-            setPrey(new Prey(new Point(xPrey,yPrey),(int)xPrey*(tolerance/100),(int)yPrey*(tolerance/100)));
+           setPredator(new Predator(new System.Windows.Point(xPredator,yPredator)));
 
-            setAquarium (new Aquarium(new Point(xAquarium,yAquarium),(int)xAquarium*(tolerance/100),(int)yAquarium*((tolerance/2)/100)));
+           setPrey(new Prey(new System.Windows.Point(xPrey, yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
+
+           setAquarium(new Aquarium(new System.Windows.Point(xAquarium, yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
 
 
           
