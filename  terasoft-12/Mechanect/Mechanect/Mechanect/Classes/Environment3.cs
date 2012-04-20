@@ -21,7 +21,31 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         private double ballMass, assumedLegMass;
         private Vector2 tolerance;
+        GraphicsDeviceManager graphics;
+        GraphicsDevice device;
 
+        Effect effect;
+        VertexPositionColorNormal[] vertices;
+        Matrix viewMatrix;
+        Matrix projectionMatrix;
+        int[] indices;
+
+        private float angle = 0f;
+        private int terrainWidth = 4;
+        private int terrainHeight = 3;
+        private float[,] heightData; //2D array
+        VertexBuffer myVertexBuffer;
+        IndexBuffer myIndexBuffer;
+
+        Vector3 cameraPosition = new Vector3(130, 30, -50);
+        float leftrightRot = MathHelper.PiOver2;
+        float updownRot = -MathHelper.Pi / 10.0f;
+        const float rotationSpeed = 0.3f;
+        const float moveSpeed = 30.0f;
+        MouseState originalMouseState;
+
+        Texture2D[] skyboxTextures;
+        Model skyboxModel;
         public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
         {
 
@@ -138,11 +162,311 @@ namespace Mechanect.Classes
                 //losingWord(); to be implemented by Hegazy, commented to remove error
             }
         }
+
+        #region Environment Generation Code
         
-        
-        
-        
-        
+        /*protected void InitializeEnvironment()
+        {
+            device = graphics.GraphicsDevice;
+            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferHeight = 700;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
+            Window.Title = "Environment";
+        }
+
+        protected void LoadEnvironmentContent()
+        {
+            effect = Content.Load<Effect>("effects");
+            SetUpCamera();
+
+
+            UpdateViewMatrix();
+            Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
+            originalMouseState = Mouse.GetState();
+
+            Texture2D heightMap = Content.Load<Texture2D>("heightmap");
+            LoadHeightData(heightMap);
+
+            skyboxModel = LoadModel("skybox2", out skyboxTextures);
+
+            SetUpVertices();
+            SetUpIndices();
+            CalculateNormals();
+            CopyToBuffers();
+        }
+
+
+        protected void UpdateEnvironment(GameTime gameTime)
+        {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.Delete))
+                angle += 0.05f;
+            if (keyState.IsKeyDown(Keys.PageDown))
+                angle -= 0.05f;
+            float timeDifference = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
+            ProcessInput(timeDifference);
+        }
+
+        protected void DrawEnvironment(GameTime gameTime)
+        {
+            device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+            DrawSkybox();
+            RasterizerState rs = new RasterizerState();
+            rs.CullMode = CullMode.None;
+            rs.FillMode = FillMode.Solid;
+            device.RasterizerState = rs;
+            Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
+            effect.CurrentTechnique = effect.Techniques["Colored"];
+            Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
+            lightDirection.Normalize();
+            effect.Parameters["xLightDirection"].SetValue(lightDirection);
+            effect.Parameters["xAmbient"].SetValue(0.1f);
+            effect.Parameters["xEnableLighting"].SetValue(true);
+            effect.Parameters["xView"].SetValue(viewMatrix);
+            effect.Parameters["xProjection"].SetValue(projectionMatrix);
+            effect.Parameters["xWorld"].SetValue(worldMatrix);
+
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                device.Indices = myIndexBuffer;
+                device.SetVertexBuffer(myVertexBuffer);
+
+                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
+            }
+        }
+
+        private void SetUpVertices()
+        {
+            float minHeight = float.MaxValue;
+            float maxHeight = float.MinValue;
+            for (int x = 0; x < terrainWidth; x++)
+            {
+                for (int y = 0; y < terrainHeight; y++)
+                {
+                    if (heightData[x, y] < minHeight)
+                        minHeight = heightData[x, y];
+                    if (heightData[x, y] > maxHeight)
+                        maxHeight = heightData[x, y];
+                }
+            }
+
+            vertices = new VertexPositionColorNormal[terrainWidth * terrainHeight];
+            for (int x = 0; x < terrainWidth; x++)
+            {
+                for (int y = 0; y < terrainHeight; y++)
+                {
+                    vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
+
+                    if (heightData[x, y] < minHeight + (maxHeight - minHeight) / 4)
+                        vertices[x + y * terrainWidth].Color = Color.Blue;
+                    else if (heightData[x, y] < minHeight + (maxHeight - minHeight) * 2 / 4)
+                        vertices[x + y * terrainWidth].Color = Color.Green;
+                    else if (heightData[x, y] < minHeight + (maxHeight - minHeight) * 3 / 4)
+                        vertices[x + y * terrainWidth].Color = Color.Brown;
+                    else
+                        vertices[x + y * terrainWidth].Color = Color.White;
+                }
+            }
+        }
+
+        private void SetUpIndices()
+        {
+            indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
+            int counter = 0;
+            for (int y = 0; y < terrainHeight - 1; y++)
+            {
+                for (int x = 0; x < terrainWidth - 1; x++)
+                {
+                    int lowerLeft = x + y * terrainWidth;
+                    int lowerRight = (x + 1) + y * terrainWidth;
+                    int topLeft = x + (y + 1) * terrainWidth;
+                    int topRight = (x + 1) + (y + 1) * terrainWidth;
+
+                    indices[counter++] = topLeft;
+                    indices[counter++] = lowerRight;
+                    indices[counter++] = lowerLeft;
+
+                    indices[counter++] = topLeft;
+                    indices[counter++] = topRight;
+                    indices[counter++] = lowerRight;
+                }
+            }
+        }
+
+        private void LoadHeightData(Texture2D heightMap)
+        {
+            terrainWidth = heightMap.Width;
+            terrainHeight = heightMap.Height;
+
+            Color[] heightMapColors = new Color[terrainWidth * terrainHeight];
+            heightMap.GetData(heightMapColors);
+
+            heightData = new float[terrainWidth, terrainHeight];
+            for (int x = 0; x < terrainWidth; x++)
+                for (int y = 0; y < terrainHeight; y++)
+                    heightData[x, y] = heightMapColors[x + y * terrainWidth].R / 5.0f;
+        }
+
+        private void CopyToBuffers()
+        {
+            myVertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
+            myVertexBuffer.SetData(vertices);
+            myIndexBuffer = new IndexBuffer(device, typeof(int), indices.Length, BufferUsage.WriteOnly);
+            myIndexBuffer.SetData(indices);
+        }
+
+        public struct VertexPositionColorNormal
+        {
+            public Vector3 Position;
+            public Color Color;
+            public Vector3 Normal;
+
+            public readonly static VertexDeclaration VertexDeclaration = new VertexDeclaration
+            (
+                new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
+                new VertexElement(sizeof(float) * 3, VertexElementFormat.Color, VertexElementUsage.Color, 0),
+                new VertexElement(sizeof(float) * 3 + 4, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0)
+            );
+        }
+
+        private void CalculateNormals()
+        {
+            for (int i = 0; i < vertices.Length; i++)
+                vertices[i].Normal = new Vector3(0, 0, 0);
+            for (int i = 0; i < indices.Length / 3; i++)
+            {
+                int index1 = indices[i * 3];
+                int index2 = indices[i * 3 + 1];
+                int index3 = indices[i * 3 + 2];
+
+                Vector3 side1 = vertices[index1].Position - vertices[index3].Position;
+                Vector3 side2 = vertices[index1].Position - vertices[index2].Position;
+                Vector3 normal = Vector3.Cross(side1, side2);
+
+                vertices[index1].Normal += normal;
+                vertices[index2].Normal += normal;
+                vertices[index3].Normal += normal;
+
+            }
+
+            for (int i = 0; i < vertices.Length; i++)
+                vertices[i].Normal.Normalize();
+        }
+
+        private void UpdateViewMatrix()
+        {
+            Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
+
+            Vector3 cameraOriginalTarget = new Vector3(0, 0, -1);
+            Vector3 cameraRotatedTarget = Vector3.Transform(cameraOriginalTarget, cameraRotation);
+            Vector3 cameraFinalTarget = cameraPosition + cameraRotatedTarget;
+
+            Vector3 cameraOriginalUpVector = new Vector3(0, 1, 0);
+            Vector3 cameraRotatedUpVector = Vector3.Transform(cameraOriginalUpVector, cameraRotation);
+
+            viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
+        }
+
+        private void ProcessInput(float amount)
+        {
+            MouseState currentMouseState = Mouse.GetState();
+            if (currentMouseState != originalMouseState)
+            {
+                float xDifference = currentMouseState.X - originalMouseState.X;
+                float yDifference = currentMouseState.Y - originalMouseState.Y;
+                leftrightRot -= rotationSpeed * xDifference * amount;
+                updownRot -= rotationSpeed * yDifference * amount;
+                Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
+                UpdateViewMatrix();
+            }
+            Vector3 moveVector = new Vector3(0, 0, 0);
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
+                moveVector += new Vector3(0, 0, -1);
+            if (keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S))
+                moveVector += new Vector3(0, 0, 1);
+            if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D))
+                moveVector += new Vector3(1, 0, 0);
+            if (keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A))
+                moveVector += new Vector3(-1, 0, 0);
+            if (keyState.IsKeyDown(Keys.Q))
+                moveVector += new Vector3(0, 1, 0);
+            if (keyState.IsKeyDown(Keys.Z))
+                moveVector += new Vector3(0, -1, 0);
+            AddToCameraPosition(moveVector * amount);
+        }
+
+        private void AddToCameraPosition(Vector3 vectorToAdd)
+        {
+            Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
+            Vector3 rotatedVector = Vector3.Transform(vectorToAdd, cameraRotation);
+            cameraPosition += moveSpeed * rotatedVector;
+            UpdateViewMatrix();
+        }
+
+        private Model LoadModel(string assetName, out Texture2D[] textures)
+        {
+
+            Model newModel = Content.Load<Model>(assetName);
+            textures = new Texture2D[newModel.Meshes.Count];
+            int i = 0;
+            foreach (ModelMesh mesh in newModel.Meshes)
+                foreach (BasicEffect currentEffect in mesh.Effects)
+                    textures[i++] = currentEffect.Texture;
+
+            foreach (ModelMesh mesh in newModel.Meshes)
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                    meshPart.Effect = effect.Clone();
+
+            return newModel;
+        }
+
+        private void DrawSkybox()
+        {
+            SamplerState ss = new SamplerState();
+            ss.AddressU = TextureAddressMode.Clamp;
+            ss.AddressV = TextureAddressMode.Clamp;
+            device.SamplerStates[0] = ss;
+
+            DepthStencilState dss = new DepthStencilState();
+            dss.DepthBufferEnable = false;
+            device.DepthStencilState = dss;
+
+            Matrix[] skyboxTransforms = new Matrix[skyboxModel.Bones.Count];
+            skyboxModel.CopyAbsoluteBoneTransformsTo(skyboxTransforms);
+            int i = 0;
+            foreach (ModelMesh mesh in skyboxModel.Meshes)
+            {
+                foreach (Effect currentEffect in mesh.Effects)
+                {
+                    Matrix worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(cameraPosition);
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
+                    currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
+                    currentEffect.Parameters["xView"].SetValue(viewMatrix);
+                    currentEffect.Parameters["xProjection"].SetValue(projectionMatrix);
+                    currentEffect.Parameters["xTexture"].SetValue(skyboxTextures[i++]);
+                }
+                mesh.Draw();
+            }
+
+            dss = new DepthStencilState();
+            dss.DepthBufferEnable = true;
+            device.DepthStencilState = dss;
+        }
+
+        private void SetUpCamera()
+        {
+            viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+            projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 1.0f, 300.0f);
+        }
+        */
+        #endregion
+
+
+
         #region Omar's Methods
 
 
