@@ -14,12 +14,12 @@ namespace Mechanect.Screens
         }
            public override void LoadContent()
         {
-            base.LoadContent();
+         
         }
 
         public override void UnloadContent()
         {
-            base.UnloadContent();
+           
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
