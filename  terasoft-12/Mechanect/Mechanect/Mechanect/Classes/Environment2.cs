@@ -49,12 +49,13 @@ namespace Mechanect
         private Texture2D xyAxisTexture;
         private Texture2D preyTexture;
         private Texture2D bowlTexture;
+        private Texture2D grayTexture;
         //list of models to be drawn
         private List<CustomModel> models = new List<CustomModel>();
         private Camera camera;
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
-        private Boolean grayScreen = false;
+        private Boolean grayScreen = true;
 
 
         /// <summary>
@@ -228,6 +229,7 @@ namespace Mechanect
             xyAxisTexture = this.Content.Load<Texture2D>("Textures/xyAxis");
             preyTexture = this.Content.Load<Texture2D>("Textures/worm");
             bowlTexture = this.Content.Load<Texture2D>("Textures/bowl2");
+            grayTexture = this.Content.Load<Texture2D>("Textures/GrayScreen1");
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
@@ -250,7 +252,7 @@ namespace Mechanect
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //add model to array of models
             //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(35), MathHelper.ToRadians(-35), 0), new Vector3(0.007f), GraphicsDevice));
+            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(-35), 0), new Vector3(0.007f), GraphicsDevice));
 
             //create still camera
             camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), GraphicsDevice);
@@ -314,6 +316,8 @@ namespace Mechanect
             spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             if (!preyEaten)
                 spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
+            if(grayScreen)
+                spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);          
             spriteBatch.Draw(bowlTexture, new Vector2(750f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.End();
 
