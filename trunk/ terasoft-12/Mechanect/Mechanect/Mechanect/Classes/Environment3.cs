@@ -21,6 +21,7 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         private double ballMass, assumedLegMass;
         private Vector2 tolerance;
+        /*
         GraphicsDeviceManager graphics;
         GraphicsDevice device;
 
@@ -45,7 +46,8 @@ namespace Mechanect.Classes
         MouseState originalMouseState;
 
         Texture2D[] skyboxTextures;
-        Model skyboxModel;
+        Model skyboxModel;*/
+
         public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
         {
 
