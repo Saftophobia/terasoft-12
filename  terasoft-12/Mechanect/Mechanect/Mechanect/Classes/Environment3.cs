@@ -129,7 +129,7 @@ namespace Mechanect.Classes
                             friction -= 0.1f;
                         break;
                     case Constants3.negativeRDifference: int tmp = ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
-                    case Constants3.negativeLMass: user.AssumedLegMass *= 1; break;
+                    case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
