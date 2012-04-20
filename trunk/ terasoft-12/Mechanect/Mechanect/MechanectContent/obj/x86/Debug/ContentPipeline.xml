@@ -2,19 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>ball.fbx</Source>
-      <Name>ball</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\ball.xnb</Output>
-      <Time>2012-04-20T16:58:47.3922+02:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\ball_0.xml</Key>
-        <Value>2012-04-20T17:05:26.0632+02:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
       <Source>Models\fish.fbx</Source>
       <Name>Models\fish</Name>
       <Importer>FbxImporter</Importer>
@@ -65,13 +52,6 @@
       <Time>2012-04-20T13:20:57.941+02:00</Time>
     </Item>
     <Item>
-      <Source>ball.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\ball_0.xml</Output>
-      <Time>2012-04-20T16:58:47.3922+02:00</Time>
-    </Item>
-    <Item>
       <Source>Models\fish.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
@@ -93,6 +73,55 @@
       <Options>None</Options>
       <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
       <Time>2012-04-20T13:21:01.595+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ball.fbx</Source>
+      <Name>Models\ball</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\ball_0.xml</Key>
+        <Value>2012-04-20T17:19:52.2782+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\Arrow.fbx</Source>
+      <Name>Models\Arrow</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
+        <Value>2012-04-20T17:19:52.8052+02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Textures\screen.png</Source>
+      <Name>Textures\screen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
+      <Time>2012-04-20T17:11:11.5682+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ball.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\ball_0.xml</Output>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Arrow.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

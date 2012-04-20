@@ -125,7 +125,6 @@
     <Compile Include="Classes\GameCommands.cs" />
     <Compile Include="Classes\Hole.cs" />
     <Compile Include="Classes\Instruction.cs" />
-    <Compile Include="Classes\PauseScreen.cs" />
     <Compile Include="Classes\PerformanceGraph.cs" />
     <Compile Include="Classes\PositionAdjustment.cs" />
     <Compile Include="Classes\Predator.cs" />
