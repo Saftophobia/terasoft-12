@@ -46,16 +46,16 @@ namespace Mechanect
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D backgroundTexture;
-        Texture2D xyAxisTexture;
-        Texture2D preyTexture;
-        Texture2D bowlTexture;
+        private Texture2D backgroundTexture;
+        private Texture2D xyAxisTexture;
+        private Texture2D preyTexture;
+        private Texture2D bowlTexture;
         //list of models to be drawn
-        List<CustomModel> models = new List<CustomModel>();
-        Camera camera;
+        private List<CustomModel> models = new List<CustomModel>();
+        private Camera camera;
         //Variables that will change how the Gui will look
-        Boolean preyEaten = false;
-        Boolean grayScreen = false;
+        private Boolean preyEaten = false;
+        private Boolean grayScreen = false;
 
         
 
