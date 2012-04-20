@@ -7,12 +7,9 @@ namespace Mechanect.Classes
 {
     class GameCommands
     {
-        private List<String> Commands;
-        public List<String> Commands {
-            get
-            {
-                return Commands;
-            }
+        private List<String> gCommands;
+        public List<String> gCommands {
+           
            
         }
 
