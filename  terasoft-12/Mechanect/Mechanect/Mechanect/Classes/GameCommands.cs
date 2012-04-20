@@ -7,11 +7,11 @@ namespace Mechanect.Classes
 {
     class GameCommands
     {
-        private List<String> gCommands;
-        public List<String> gCommands {
+       // private List<String> gCommands;
+        //public List<String> GCommands {
            
            
-        }
+        //}
 
 
     }
