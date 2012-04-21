@@ -71,13 +71,13 @@ namespace Mechanect.Classes
                 for (int i = 0; i < user1.ActiveCommand; i++)
                     pastSecondsFor2 += timeOfCommands[i];
 
-                List<float> user1Displacement = new List<float>();
-                List<float> user2Displacement = new List<float>();
+                List<int> user1Displacement = new List<int>();//change this back to float
+                List<int> user2Displacement = new List<int>();//change this back to float
                 for (int i = (pastSecondsFor1 - 1) * 30; i < user1.Positions.Count; i++)
-                    user1Displacement.Add(user1.Positions[i]);
+                    user1Displacement.Add((int) user1.Positions[i]);//remove the type-cast
 
                 for (int i = (pastSecondsFor2 - 1) * 30; i < user2.Positions.Count; i++)
-                    user2Displacement.Add(user2.Positions[i]);
+                    user2Displacement.Add((int) user2.Positions[i]);//remove the type-cast
 
                 if (!CommandSatisfied(currentCommands[user1.ActiveCommand].Name, user1Displacement))
                 {
@@ -182,7 +182,7 @@ namespace Mechanect.Classes
         /// <para>DATE WRITTEN: 19/4/12 </para>
         /// <para>DATE MODIFIED: 21/4/12 </para>
         /// </remarks>
-        public bool CommandSatisfied(String command, List<float> positions)
+        public bool CommandSatisfied(String command, List<int> positions)//change this back to float
         {
             bool result = true;
             float currentTolerance = tolerance / 100;
@@ -210,7 +210,7 @@ namespace Mechanect.Classes
             {
                 if (command.Equals("constantAcceleration"))
                 {
-                    List<float> velocities = PerformanceGraph.GetPlayerVelocity(positions);
+                    List<int> velocities = PerformanceGraph.GetPlayerVelocity(positions);//change this back to float
                     float firstVelocity = velocities[1] - velocities[0];
                     for (int i = 2; i < positions.Count; i++)
                     {
@@ -255,7 +255,7 @@ namespace Mechanect.Classes
                     {
                         if (command.Equals("increasingAcceleration"))
                         {
-                            List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);
+                            List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);//change this back to float
                             float firstAcceleration = accelerations[1] - accelerations[0];
                             for (int i = 2; i < positions.Count; i++)
                             {
@@ -278,7 +278,7 @@ namespace Mechanect.Classes
                         {
                             if (command.Equals("decreasingAcceleration"))
                             {
-                                List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);
+                                List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);//change this back to float
                                 float firstAcceleration = accelerations[1] - accelerations[0];
                                 for (int i = 2; i < positions.Count; i++)
                                 {
