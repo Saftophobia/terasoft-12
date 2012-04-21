@@ -19,20 +19,24 @@ namespace Mechanect.Screens
     class Experiment2 : Mechanect.Common.GameScreen
     {
         Environment2 env;
-        Game1 game;
+
         /// <summary>
         /// Defining the Textures that will contain the images and will represent the objects in the experiment
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
         /// </remarks>
-        
-        GraphicsDeviceManager graphics;
+
+        Viewport viewPort;
+        ContentManager content;
         SpriteBatch spriteBatch;
+
         SpriteFont spriteFont;
         SpriteFont velAngleFont;
+        GraphicsDevice graphicsDevice;
+
         private Texture2D backgroundTexture;
         private Texture2D xyAxisTexture;
         private Texture2D preyTexture;
@@ -41,13 +45,15 @@ namespace Mechanect.Screens
         private Texture2D velocityTexture;
         private Texture2D angleTexture;
         Texture2D lineConnector;
+
         //list of models to be drawn
         private List<CustomModel> models = new List<CustomModel>();
         private Camera camera;
+
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
         private Boolean grayScreen = true;
-        private Boolean fullScreen = true;
+        
         private int screenWidth;
         private int screenHeight;
         private Vector2 velGauge;
@@ -68,11 +74,9 @@ namespace Mechanect.Screens
         /// </remarks>
         public Experiment2()
         {
+
             env = new Environment2();
-            this.game = game;
-            
-            game.Content.RootDirectory = "Content";
-            
+            graphicsDevice = ScreenManager.GraphicsDevice;
 
         }
 
@@ -88,30 +92,19 @@ namespace Mechanect.Screens
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
 
-        public override void Initialize()
+        public void loadTextures()
         {
-
-            backgroundTexture = game.Content.Load<Texture2D>("Textures/background");
-            xyAxisTexture = game.Content.Load<Texture2D>("Textures/xyAxis");
-            preyTexture = game.Content.Load<Texture2D>("Textures/worm");
-            bowlTexture = game.Content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = game.Content.Load<Texture2D>("Textures/screen");
-            velocityTexture = game.Content.Load<Texture2D>("Textures/VelocityGauge");
-            angleTexture = game.Content.Load<Texture2D>("Textures/AngleGauge");
-            lineConnector = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            
+            backgroundTexture = content.Load<Texture2D>("Textures/background");
+            xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
+            preyTexture = content.Load<Texture2D>("Textures/worm");
+            bowlTexture = content.Load<Texture2D>("Textures/bowl2");
+            grayTexture = content.Load<Texture2D>("Textures/screen");
+            velocityTexture = content.Load<Texture2D>("Textures/VelocityGauge");
+            angleTexture = content.Load<Texture2D>("Textures/AngleGauge");
+            lineConnector = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             lineConnector.SetData(new[] { Color.Gray });
-            if (fullScreen)
-                game.Graphics.IsFullScreen = true;
-            else
-            {
-            game.Graphics.PreferredBackBufferWidth = 1024;
-            game.Graphics.PreferredBackBufferHeight = 720;
-            }
-            screenWidth = game.Graphics.PreferredBackBufferWidth;
-            screenHeight = game.Graphics.PreferredBackBufferHeight;
-
-
-            game.Graphics.ApplyChanges();
+            
             base.Initialize();
         }
 
@@ -123,24 +116,26 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
         /// </remarks>
 
         public override void LoadContent()
         {
            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            viewPort = ScreenManager.GraphicsDevice.Viewport;
+            content = ScreenManager.Game.Content;
+            spriteBatch = ScreenManager.SpriteBatch;
             //add model to array of models
             //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(game.Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), game.GraphicsDevice));
+            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), graphicsDevice));
            // predetorPosition = vect
 
             //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), game.GraphicsDevice);
+            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), graphicsDevice);
             //cameras constructor takes position vector and target vector(the point where the camera is looking) 
 
-            spriteFont = game.Content.Load<SpriteFont>("Ariel");
-            velAngleFont = game.Content.Load<SpriteFont>("angleVelFont");
+            spriteFont = content.Load<SpriteFont>("Ariel");
+            velAngleFont = content.Load<SpriteFont>("angleVelFont");
 
         }
         /// <summary>
@@ -169,9 +164,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                game.Exit();
+            
             camera.Update();
 
             base.Update(gameTime, covered);
@@ -189,7 +182,7 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            game.GraphicsDevice.Clear(Color.CornflowerBlue);
+            graphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
