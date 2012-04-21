@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Common.Classes
+namespace Mechanect.Common
 {
     class WorL
     {
@@ -32,7 +32,7 @@ namespace Common.Classes
         /// <param name="spriteBatch">to be able to draw</param>
         public void winningWord(SpriteBatch spriteBatch)
         {
-            Texture2D pic = content.Load<Texture2D>("winningWord");
+            Texture2D pic = content.Load<Texture2D>("WorL/winner");
             spriteBatch.Begin();
             spriteBatch.Draw(pic, position, Color.White);
             spriteBatch.End();
@@ -44,7 +44,7 @@ namespace Common.Classes
         /// <param name="spriteBatch">to be able to draw</param>
         public void losingWord(SpriteBatch spriteBatch)
         {
-            Texture2D pic = content.Load<Texture2D>("losingWord");
+            Texture2D pic = content.Load<Texture2D>("WorL/looser");
             spriteBatch.Begin();
             spriteBatch.Draw(pic, position, Color.White);
             spriteBatch.End();

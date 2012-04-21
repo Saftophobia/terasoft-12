@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 
-namespace Common.Classes
+namespace Mechanect.Common
 {
     public class Button
     {

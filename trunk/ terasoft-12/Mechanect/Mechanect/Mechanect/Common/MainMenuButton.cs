@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 
-namespace Common.Classes
+namespace Mechanect.Common
 {
     class MainMenuButton : Button
     {
@@ -22,8 +22,8 @@ namespace Common.Classes
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         public MainMenuButton(ContentManager c, Vector2 p, int sw, int sh)
-            : base(c.Load<GifAnimation.GifAnimation>("newGame-s"),
-            c.Load<GifAnimation.GifAnimation>("newGame-m"), p, sw, sh,
-            c.Load<Texture2D>("hand")) { }
+            : base(c.Load<GifAnimation.GifAnimation>("Buttons/button-s"),
+            c.Load<GifAnimation.GifAnimation>("Buttons/button-m"), p, sw, sh,
+            c.Load<Texture2D>("Buttons/hand")) { }
     }
 }
