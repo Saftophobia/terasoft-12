@@ -40,6 +40,10 @@ namespace Mechanect.Screens
         MKinect kinect;
         Boolean hasNotWaited;
         VoiceCommands voiceCommands;
+
+        SpriteFont font;
+        String st;
+      
            public PauseScreen(User user,MKinect kinect)
         {
 
@@ -47,6 +51,11 @@ namespace Mechanect.Screens
             this.kinect = kinect;
             hasNotWaited = true;
             voiceCommands = new VoiceCommands(kinect._KinectDevice);
+            fillsPositions = new List<Vector2>();
+            fills = new List<Texture2D>();
+
+            st = "";
+      
             
            
 
@@ -58,8 +67,8 @@ namespace Mechanect.Screens
             viewPort = ScreenManager.GraphicsDevice.Viewport;
             content = ScreenManager.Game.Content;
             spriteBatch = ScreenManager.SpriteBatch;
-          
 
+            font = content.Load<SpriteFont>("spriteFont1");
            
             velocityBar = content.Load<Texture2D>("Textures/VBar");
             vBarPosition = new Vector2((velocityBar.Width / 2) + 20, viewPort.Height - (velocityBar.Height / 2));
@@ -83,7 +92,7 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-             TimeSpan elapsedTime = TimeSpan.Zero;
+            int framesToWait = 0;
             if (!voiceCommands.getHeared("go"))
             {
                 if (Tools3.frameNumber != -1)
@@ -92,34 +101,34 @@ namespace Mechanect.Screens
                     Tools3.update_MeasuringVelocityAndAngle(user);
                     Tools3.setVelocityRelativeToGivenMass(user);
                     Vector2 velocityInMeters = Tools3.resolveUserVelocity(user);
-                    SkeletonPoint p = new SkeletonPoint();
-                    p.X = velocityInMeters.X;
-                    p.Z = velocityInMeters.Y;
-                    Vector2 velocityInPixels = Tools3.getPointsOnScreen(kinect, p, viewPort.Width, viewPort.Height);
-                    double velocity = Math.Sqrt(Math.Pow(velocityInPixels.X, 2) + Math.Pow(velocityInPixels.Y, 2));
-                    for (int i = fills.Count-1; i < velocity; i++)
+   
+                   
+                    for (int i = fills.Count()-1; i < user.Velocity; i++)
                     {
                         fillsPositions.Add(fillPosition);
-                        fills.Add(content.Load<Texture2D>("Vfill"));
+                        fills.Add(content.Load<Texture2D>("Textures/Vfill"));
                         fillPosition.Y -= 8;
                     }
                     arrowAngle = (float)user.Angle;
                 }
                 else
                 {
-                    if (hasNotWaited)
+                    st = "   "+user.Velocity+" m/s" ;
+
+                    if (framesToWait > 10)
                     {
-                        elapsedTime = gameTime.TotalGameTime;
-                        hasNotWaited = false;
-                    }
-                    if (elapsedTime.TotalSeconds - gameTime.TotalGameTime.TotalSeconds > 10)
-                    {
-                        Tools3.frameNumber = 0;
+
                         fillsPositions.Clear();
                         fills.Clear();
                         arrowAngle = 0;
-                        hasNotWaited = true;
+                        fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
+                        framesToWait = 0;
+                        Tools3.resetUserForShootingOrTryingAgain(user);
+                        
                     }
+                    else
+                        if(framesToWait < 60)
+                        framesToWait++;
                 }
             }
             else
@@ -157,6 +166,11 @@ namespace Mechanect.Screens
             spriteBatch.Begin();
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
             spriteBatch.End();
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, st, new Vector2(0, 0), Color.Red);
+            spriteBatch.End();
+           
         
             
         }
