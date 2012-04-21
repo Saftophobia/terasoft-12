@@ -60,6 +60,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// This method verifies wether a method is solvable or not
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Ahmed Badr </para>
+        ///</remarks>
         /// <returns>Retuns an int that represents the type of the problem with the experiment</returns>
         public int IsSolvable()
         {
@@ -97,6 +100,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Generates a solvable experiment
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Ahmed Badr </para>
+        ///</remarks>
         public void GenerateSolvable()
         {
             int x = Constants3.solvableExperiment;
