@@ -138,8 +138,32 @@ namespace Mechanect.Classes
         }
 
 
+
+
         /// <remarks>
-        ///<para>AUTHOR: NAME </para>
+        ///<para>AUTHOR: Ahmad Sanad </para>
+        ///</remarks>
+        /// <summary>
+        /// Takes the initial velocity of the ball and the friction and calculates it's final position
+        /// </summary>
+        /// <param name="velocity">
+        /// The initial velocity of the ball after being shot.
+        /// </param>
+        /// <returns>
+        /// Returns the position of the ball when its velocity reaches 0.
+        /// </returns>
+        private Vector2 ballFinalPosition(Vector2 velocity)
+        {
+
+            float vxsquared = (float)Math.Pow(velocity.X, 2);
+            float vysquared = (float)Math.Pow(velocity.Y, 2);
+            float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
+            float y = (vysquared / (2 * friction)) + ball.InitialBallPosition.Y;
+            return new Vector2(x, y);
+        }
+
+        /// <remarks>
+        ///<para>AUTHOR: Ahmad Sanad </para>
         ///</remarks>
         /// <summary>
         /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, and calls methods to inform the user if he won or not.
