@@ -11,7 +11,7 @@
       <Time>2012-04-20T13:20:46.131+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\fish_0.xml</Key>
-        <Value>2012-04-21T10:27:46.189+02:00</Value>
+        <Value>2012-04-21T17:26:59.4352+02:00</Value>
       </Dependency>
       <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
     </Item>
@@ -25,7 +25,7 @@
       <Time>2012-04-20T17:10:55.8442+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\ball_0.xml</Key>
-        <Value>2012-04-21T10:27:47.588+02:00</Value>
+        <Value>2012-04-21T17:27:00.808+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -38,7 +38,7 @@
       <Time>2012-04-20T17:11:04.1092+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
-        <Value>2012-04-21T10:27:48.094+02:00</Value>
+        <Value>2012-04-21T17:27:01.1356+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -132,6 +132,60 @@
       <Time>2012-04-21T01:17:34.976+02:00</Time>
     </Item>
     <Item>
+      <Source>Textures\Buttons\hand.png</Source>
+      <Name>Textures\Buttons\hand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
+      <Time>2012-04-21T16:56:37.4806+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\bar.png</Source>
+      <Name>Textures\Slider\bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
+      <Time>2012-04-21T16:56:33.2576+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\off.png</Source>
+      <Name>Textures\Slider\off</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
+      <Time>2012-04-21T16:56:33.2596+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\on.png</Source>
+      <Name>Textures\Slider\on</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
+      <Time>2012-04-21T16:56:33.2556+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\WorL\looser.png</Source>
+      <Name>Textures\WorL\looser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
+      <Time>2012-04-21T16:56:36.3736+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\WorL\winner.png</Source>
+      <Name>Textures\WorL\winner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
+      <Time>2012-04-21T16:56:36.3656+02:00</Time>
+    </Item>
+    <Item>
       <Source>Ariel.spritefont</Source>
       <Name>Ariel</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -148,6 +202,22 @@
       <Options>None</Options>
       <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb</Output>
       <Time>2012-04-21T01:17:34.972+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Buttons\button-m.gif</Source>
+      <Name>Textures\Buttons\button-m</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-m.xnb</Output>
+      <Time>2012-04-21T16:56:37.4786+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Buttons\button-s.gif</Source>
+      <Name>Textures\Buttons\button-s</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-s.xnb</Output>
+      <Time>2012-04-21T16:56:37.4766+02:00</Time>
     </Item>
     <Item>
       <Source>Models\fish.fbx</Source>
@@ -186,15 +256,6 @@
       <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
       <Time>2012-04-20T17:11:04.1092+02:00</Time>
     </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-04-21T11:17:20.0778+02:00</Time>
-    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
@@ -230,6 +291,10 @@
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll</Key>
+        <Value>2012-04-21T17:26:58.4584+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>

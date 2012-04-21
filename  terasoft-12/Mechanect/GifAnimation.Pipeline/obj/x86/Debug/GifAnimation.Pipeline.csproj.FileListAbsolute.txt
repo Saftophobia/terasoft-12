@@ -26,3 +26,10 @@ C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation.Pipel
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb

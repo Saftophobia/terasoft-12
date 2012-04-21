@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
+using Mechanect.Common;
 
 
 namespace Common.Classes
@@ -22,7 +23,7 @@ namespace Common.Classes
         int screenW, ScreenH;
         int value;
 
-        Kinect kinect;
+        MKinect kinect;
         Timer1 timer;
 
         ContentManager Content;
@@ -41,7 +42,7 @@ namespace Common.Classes
             ScreenH = sh;
             value = 1;
 
-            kinect = new Kinect();
+            kinect = new MKinect();
             Content = c;
             timer = new Timer1();
 
