@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Common;
 using Mechanect.Screens;
+using Mechanect.Classes;
 
 
 namespace Mechanect
@@ -29,7 +30,7 @@ namespace Mechanect
             Content.RootDirectory = "Content";
           
            // Window.AllowUserResizing = true;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
             
@@ -56,7 +57,7 @@ namespace Mechanect
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            screenManager.AddScreen(new PauseScreen());
+            screenManager.AddScreen(new PauseScreen(new User(0.01f)  ,new MKinect()));
             // TODO: use this.Content to load your game content here
         }
 
