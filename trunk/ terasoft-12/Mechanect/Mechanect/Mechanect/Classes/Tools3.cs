@@ -10,10 +10,7 @@ namespace Mechanect.Classes
 {
     class Tools3
     {
-        public static int frameNumber = 0;//  call the method resetUser to try again 
-        //has to be updated in the pause screen after the measuring process finishes
-
-        // try method which resets the boolean values
+        public static int frameNumber = 0;
 
 
 
@@ -43,13 +40,15 @@ namespace Mechanect.Classes
                                 if (isMovingForward(skeleton, user))
                                 {
                                     updateSpeed(user);
-                                    updatePosition(user);
                                     updateAngle(user);
+                                    updatePosition(user);
+                                   
 
                                 }
                                 else
-                                    if (user.MovedForward)
+                                    if (user.MovedForward)   
                                         frameNumber = -1;
+                                    
                             }
                         }
                     }
@@ -99,7 +98,7 @@ namespace Mechanect.Classes
                     initialZ = user.InitialRightLegPositionZ;
                 }
 
-                if (currentZ - initialZ < 0)
+                if (currentZ - initialZ < (-1*Constants3.legMovementTolerance))
                 {
                     user.MovedForward = true;
                     return true;
@@ -164,16 +163,10 @@ namespace Mechanect.Classes
 
         public static void updateAngle(User user)
         {
-            if (user.StoreZ2 < user.StoreZ1)
-
-                user.Angle = (Math.Atan((user.StoreX1 - user.StoreX2) / (Math.Abs(user.StoreZ2 - user.StoreZ1))));
+            if (user.storeZ2 != user.StoreZ1)
+                user.Angle = (Math.Atan((user.StoreX2 - user.StoreX1) / (Math.Abs(user.StoreZ2 - user.StoreZ1))));
             else
-                if (user.StoreZ2 > user.StoreZ1)
-                    user.Angle = Math.Atan((user.StoreX2 - user.StoreX1) / (Math.Abs(user.StoreZ2 - user.StoreZ1)));
-                else
-                    user.Angle = Math.PI / 2;
-
-
+                user.Angle = (Math.PI / 2);
         }
 
 
@@ -187,34 +180,33 @@ namespace Mechanect.Classes
 
         public static void storePosition(int i, User user)
         {
-            if (i == 0)
-            {
+            
                 if (user.RightLeg)
                 {
+                    if(user.MovedForward&&!user.HasSetInitialPositionForAngle)
+                    {
                     user.StoreX1 = user.InitialRightLegPositionX;
                     user.StoreZ1 = user.InitialRightLegPositionZ;
-                }
-                else
-                {
-                    user.StoreX1 = user.InitialLeftLegPositionX;
-                    user.StoreZ1 = user.InitialLeftLegPositionZ;
-                }
-            }
-            else
-            {
-                if (user.RightLeg)
-                {
+                    user.HasSetInitialPositionForAngle = true;
+                    }
                     user.StoreX2 = user.InitialRightLegPositionX;
                     user.StoreZ2 = user.InitialRightLegPositionZ;
+
                 }
                 else
                 {
+                     if(user.MovedForward&&!user.HasSetInitialPositionForAngle)
+                    {
+                    user.StoreX1 = user.InitialLeftLegPositionX;
+                    user.StoreZ1 = user.InitialLeftLegPositionZ;
+                    user.HasSetInitialPositionForAngle = true;
+                    }
                     user.StoreX2 = user.InitialLeftLegPositionX;
                     user.StoreZ2 = user.InitialLeftLegPositionZ;
                 }
-
             }
-        }
+         
+        
 
 
         public static double getVelocity(double acceleration, double velocityInitial, double totalTime)
@@ -317,6 +309,7 @@ namespace Mechanect.Classes
 
             user.MovedForward = false;
             user.Trying = true;
+            user.HasSetInitialPositionForAngle = false;
 
             frameNumber = 0;
         }
