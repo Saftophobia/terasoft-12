@@ -180,8 +180,8 @@ namespace Mechanect.Classes
                     counter++;
                 }
 
-                int disq1 = (int)(currentGame.GetPlayer1Disq() * 30);
-                int disq2 = (int)(currentGame.GetPlayer2Disq() * 30);
+                int disq1 = 0;//(int)(currentGame.GetPlayer1Disq() * 30);
+                int disq2 = 0;// (int)(currentGame.GetPlayer2Disq() * 30);
                 int end = start + counter;
 
                 if (CommandsList[i].Equals("constantVelocity"))
