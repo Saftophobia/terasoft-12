@@ -19,7 +19,7 @@ namespace Mechanect.Screens
     class Experiment2 : Mechanect.Common.GameScreen
     {
         Environment2 env;
-
+        Game1 game;
         /// <summary>
         /// Defining the Textures that will contain the images and will represent the objects in the experiment
         /// </summary>
@@ -47,7 +47,7 @@ namespace Mechanect.Screens
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
         private Boolean grayScreen = true;
-        private Boolean fullScreen = false;
+        private Boolean fullScreen = true;
         private int screenWidth;
         private int screenHeight;
         private Vector2 velGauge;
@@ -66,11 +66,12 @@ namespace Mechanect.Screens
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
-        public Experiment2()
+        public Experiment2(Game1 game)
         {
-            env = new Environment2();
-            graphics = new GraphicsDeviceManager(env);
-            env.Content.RootDirectory = "Content";
+            env = new Environment2(game);
+            this.game = game;
+            
+            game.Content.RootDirectory = "Content";
             
 
         }
@@ -90,24 +91,27 @@ namespace Mechanect.Screens
         public override void Initialize()
         {
 
-            backgroundTexture = env.Content.Load<Texture2D>("Textures/background");
-            xyAxisTexture = env.Content.Load<Texture2D>("Textures/xyAxis");
-            preyTexture = env.Content.Load<Texture2D>("Textures/worm");
-            bowlTexture = env.Content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = env.Content.Load<Texture2D>("Textures/GrayScreen1");
-            velocityTexture = env.Content.Load<Texture2D>("Textures/VelocityGauge");
-            angleTexture = env.Content.Load<Texture2D>("Textures/AngleGauge");
-            lineConnector = new Texture2D(env.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            backgroundTexture = game.Content.Load<Texture2D>("Textures/background");
+            xyAxisTexture = game.Content.Load<Texture2D>("Textures/xyAxis");
+            preyTexture = game.Content.Load<Texture2D>("Textures/worm");
+            bowlTexture = game.Content.Load<Texture2D>("Textures/bowl2");
+            grayTexture = game.Content.Load<Texture2D>("Textures/screen");
+            velocityTexture = game.Content.Load<Texture2D>("Textures/VelocityGauge");
+            angleTexture = game.Content.Load<Texture2D>("Textures/AngleGauge");
+            lineConnector = new Texture2D(game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             lineConnector.SetData(new[] { Color.Gray });
             if (fullScreen)
-                graphics.IsFullScreen = true;
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 720;
-            screenWidth = graphics.PreferredBackBufferWidth;
-            screenHeight = graphics.PreferredBackBufferHeight;
+                game.Graphics.IsFullScreen = true;
+            else
+            {
+            game.Graphics.PreferredBackBufferWidth = 1024;
+            game.Graphics.PreferredBackBufferHeight = 720;
+            }
+            screenWidth = game.Graphics.PreferredBackBufferWidth;
+            screenHeight = game.Graphics.PreferredBackBufferHeight;
 
 
-            graphics.ApplyChanges();
+            game.Graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -125,18 +129,18 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(env.GraphicsDevice);
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
             //add model to array of models
             //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(env.Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), env.GraphicsDevice));
+            models.Add(new CustomModel(game.Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), game.GraphicsDevice));
            // predetorPosition = vect
 
             //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), env.GraphicsDevice);
+            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), game.GraphicsDevice);
             //cameras constructor takes position vector and target vector(the point where the camera is looking) 
 
-            spriteFont = env.Content.Load<SpriteFont>("Ariel");
-            velAngleFont = env.Content.Load<SpriteFont>("angleVelFont");
+            spriteFont = game.Content.Load<SpriteFont>("Ariel");
+            velAngleFont = game.Content.Load<SpriteFont>("angleVelFont");
 
         }
         /// <summary>
@@ -167,7 +171,7 @@ namespace Mechanect.Screens
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                env.Exit();
+                game.Exit();
             camera.Update();
 
             base.Update(gameTime, covered);
@@ -185,7 +189,7 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            env.GraphicsDevice.Clear(Color.CornflowerBlue);
+            game.GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
@@ -197,7 +201,7 @@ namespace Mechanect.Screens
                 spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
             if (grayScreen)
             {
-                spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(grayTexture, Vector2.Zero, Color.White);
                 spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
                 spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
 
