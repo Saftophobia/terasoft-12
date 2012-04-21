@@ -80,21 +80,14 @@ namespace Mechanect.Classes
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
-            /*
-             * Enviornment e;
-             * e.getFinalPosition(e.getVelocityAfterCollision(new Vector2(Constants3.MAX_VELOCITYX, Constants3.MAX_VELOCITYY,
-             * ballMass,AssumedLegMass,wind));//implement with hasScored();
-            */
-
-            Vector3 finalPos = Vector3.Zero;//to be changed with the position returned from getFinalPostion();
+            Vector3 finalPos = Vector3.Zero;//to be changed with the position returned from getFinalPostion();            
+             //finalPos = getBallFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
+            
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
                 return Constants3.holeOutOfFarRange;
-            /*
-             * Enviornment e;
-             * e.getFinalPosition(e.getVelocityAfterCollision(new Vector2(Constants3.MIN_VELOCITYX, Constants3.MIN_VELOCITYY,
-             * ballMass, AssumedLegMass, wind, friction));
-            */
-
+            
+            //finalPos = getBallFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.mixVelocityX, 0, Constants3.mixVelocityZ)));
+            
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
