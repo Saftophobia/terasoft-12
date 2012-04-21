@@ -22,3 +22,9 @@ C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation\obj\x
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation\obj\x86\Debug\GifAnimation.dll
 C:\Users\ahmed\Documents\Visual Studio 2010\Projects\myButton\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
