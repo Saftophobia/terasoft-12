@@ -4,14 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Mechanect.Classes;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Mechanect.Cameras;
 using Mechanect.Common;
 
 namespace Mechanect
@@ -25,56 +17,31 @@ namespace Mechanect
         Predator predator;
 
         Aquarium aquarium;
+
         Random rand = new Random();
 
         int tolerance = 10;
         int velocity = 0;
-
+        public int Velocity
+        {
+            get { return velocity; }
+            set { velocity = value; }
+        }
         double angleInDegree;
         double angle = 0;
+        public double Angle
+        {
+            get { return angle; }
+            set { angle = value; }
+        }
         double TotalTime;
 
-        /// <summary>
-        /// Defining the Textures that will contain the images and will represent the objects in the experiment
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        SpriteFont spriteFont;
-        SpriteFont velAngleFont;
-        private Texture2D backgroundTexture;
-        private Texture2D xyAxisTexture;
-        private Texture2D preyTexture;
-        private Texture2D bowlTexture;
-        private Texture2D grayTexture;
-        private Texture2D velocityTexture;
-        private Texture2D angleTexture;
-        //list of models to be drawn
-        private List<CustomModel> models = new List<CustomModel>();
-        private Camera camera;
-        //Variables that will change how the Gui will look
-        private Boolean preyEaten = false;
-        private Boolean grayScreen = true;
 
-
-        /// <summary>
-        /// This is a constructor that will initialize the grphicsDeviceManager and define the content directory.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
         public Environment2()
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            
+            
         }
-
 
         /// <summary>
         /// generates random angle between 10 and 90
@@ -213,159 +180,6 @@ namespace Mechanect
                 return number * -1;
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        ///
-        /// Initializing the Background and x,y Axises
-        /// Changed the default resolution to 1024X720
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-
-        protected override void Initialize()
-        {
-
-            backgroundTexture = this.Content.Load<Texture2D>("Textures/background");
-            xyAxisTexture = this.Content.Load<Texture2D>("Textures/xyAxis");
-            preyTexture = this.Content.Load<Texture2D>("Textures/worm");
-            bowlTexture = this.Content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = this.Content.Load<Texture2D>("Textures/GrayScreen1");
-            velocityTexture = this.Content.Load<Texture2D>("Textures/VelocityGauge");
-            angleTexture = this.Content.Load<Texture2D>("Textures/AngleGauge");
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 720;
-            graphics.ApplyChanges();
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// Loaded the Fish Model
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            //add model to array of models
-            //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(Content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), GraphicsDevice));
-
-            //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), GraphicsDevice);
-            //cameras constructor takes position vector and target vector(the point where the camera is looking) 
-
-            spriteFont = Content.Load<SpriteFont>("Ariel");
-            velAngleFont = Content.Load<SpriteFont>("angleVelFont");
-             
-        }
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            camera.Update();
-
-            // TODO: Add your update logic here
-
-            base.Update(gameTime);
-        }
-
-        /// <summary>
-        /// This is to be called when the game should draw itself.
-        /// Here all the GUI is drawn
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-
-        protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
-            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
-            spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(0f, 0f), Color.Red);
-            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(900f, 680f), Color.Red);
-            
-            if (!preyEaten)
-                spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
-            if (grayScreen)
-            {
-                spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
-
-                spriteBatch.DrawString(spriteFont, "Test angle and Velocity", new Vector2((graphics.GraphicsDevice.Viewport.Width / 4), 0), Color.Red);
-
-                spriteBatch.DrawString(spriteFont, "Say 'Ready' or press OK", new Vector2((graphics.GraphicsDevice.Viewport.Width / 4), 600), Color.Red);
-
-                spriteBatch.DrawString(velAngleFont, "Velocity = " + velocity, new Vector2(110f, 185f), Color.Red);
-
-                spriteBatch.DrawString(velAngleFont, "Angle = " + angle, new Vector2(820f, 185f), Color.Red);
-
-            }
-            else
-            {
-                spriteBatch.DrawString(velAngleFont, "Velocity = " + velocity, new Vector2(870f, 30f), Color.Red);
-
-                spriteBatch.DrawString(velAngleFont, "Angle = " + angle, new Vector2(780f, 30f), Color.Red);
-
-            }
-            spriteBatch.Draw(bowlTexture, new Vector2(750f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.End();
-
-
-
-            foreach (CustomModel model in models)
-            {
-                model.Draw(camera);
-                //takes the camera instance and draws the model 
-            }
-
-            base.Draw(gameTime);
-        }
-
-        void DrawText(String s, Vector2 Pos)
-        {
-        }
 
 
         /// <summary>
