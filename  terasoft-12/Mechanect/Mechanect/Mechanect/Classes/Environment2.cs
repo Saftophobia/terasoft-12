@@ -8,7 +8,7 @@ using Mechanect.Common;
 
 namespace Mechanect
 {
-    public class Environment2 : Microsoft.Xna.Framework.DrawableGameComponent
+    public class Environment2 
     {
 
 
