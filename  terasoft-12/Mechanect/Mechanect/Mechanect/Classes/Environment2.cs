@@ -8,7 +8,7 @@ using Mechanect.Common;
 
 namespace Mechanect
 {
-    public class Environment2 : Microsoft.Xna.Framework.Game
+    public class Environment2 : Microsoft.Xna.Framework.DrawableGameComponent
     {
 
 
@@ -36,13 +36,9 @@ namespace Mechanect
         }
         double TotalTime;
 
+        public Environment2(Microsoft.Xna.Framework.Game game):base(game) { }
 
-        public Environment2()
-        {
-            
-            
-        }
-
+  
         /// <summary>
         /// generates random angle between 10 and 90
         /// </summary>
