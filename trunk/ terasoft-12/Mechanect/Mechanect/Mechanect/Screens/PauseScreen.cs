@@ -115,6 +115,9 @@ namespace Mechanect.Screens
                     if (elapsedTime.TotalSeconds - gameTime.TotalGameTime.TotalSeconds > 10)
                     {
                         Tools3.frameNumber = 0;
+                        fillsPositions.Clear();
+                        fills.Clear();
+                        arrowAngle = 0;
                         hasNotWaited = true;
                     }
                 }
