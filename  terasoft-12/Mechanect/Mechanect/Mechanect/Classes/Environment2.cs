@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using Mechanect.Classes;
 using Mechanect.Common;
+using Microsoft.Xna.Framework;
 
 namespace Mechanect
 {
@@ -163,7 +164,7 @@ namespace Mechanect
 
             // Sorry had to change Point to System.Windows.Point to solve a conflict
 
-            setPredator(new Predator(new System.Windows.Point(xPredator, yPredator)));
+            setPredator(new Predator(new Vector2((float)xPredator, (float)yPredator)));
 
             setPrey(new Prey(new System.Windows.Point(xPrey, yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
 

@@ -35,7 +35,7 @@ namespace Mechanect.Screens
 
         SpriteFont spriteFont;
         SpriteFont velAngleFont;
-        GraphicsDevice graphicsDevice;
+        //GraphicsDevice graphicsDevice;
 
         private Texture2D backgroundTexture;
         private Texture2D xyAxisTexture;
@@ -79,43 +79,15 @@ namespace Mechanect.Screens
         {
 
             env = new Environment2();
-            graphicsDevice = ScreenManager.GraphicsDevice;
+            //graphicsDevice = ScreenManager.GraphicsDevice;
             this.user = user;
-            
-
         }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        ///
-        /// Initializing the Background and x,y Axises
-        /// Changed the default resolution to 1024X720
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
-        /// </remarks>
-
-        public void loadTextures()
-        {
             
-            backgroundTexture = content.Load<Texture2D>("Textures/background");
-            xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
-            preyTexture = content.Load<Texture2D>("Textures/worm");
-            bowlTexture = content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = content.Load<Texture2D>("Textures/screen");
-            velocityTexture = content.Load<Texture2D>("Textures/VelocityGauge");
-            angleTexture = content.Load<Texture2D>("Textures/AngleGauge");
-            lineConnector = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            lineConnector.SetData(new[] { Color.Gray });
             
-            base.Initialize();
-        }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
+        /// all of the content.
         /// Loaded the Fish Model
         /// </summary>
         /// <remarks>
@@ -128,21 +100,64 @@ namespace Mechanect.Screens
         {
            // Create a new SpriteBatch, which can be used to draw textures.
             viewPort = ScreenManager.GraphicsDevice.Viewport;
+            screenWidth = viewPort.Width;
+            screenHeight = viewPort.Height;
             content = ScreenManager.Game.Content;
             spriteBatch = ScreenManager.SpriteBatch;
-            //add model to array of models
-            //models constructor takes the actual model, position vector, rotation vector(x, y, z rotation angels), scaling vector(x, y, z scales) and GraphicsDevice         
-            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), graphicsDevice));
-           // predetorPosition = vect
-
-            //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), graphicsDevice);
-            //cameras constructor takes position vector and target vector(the point where the camera is looking) 
-
+            LoadTextures();
+            LoadModels();
+           
             spriteFont = content.Load<SpriteFont>("Ariel");
             velAngleFont = content.Load<SpriteFont>("angleVelFont");
 
         }
+
+        /// <summary>
+        /// Allows the game to draw all the textures 
+        /// Initializing the Background and x,y Axises
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
+        /// </remarks>
+
+        public void LoadTextures()
+        {
+
+            backgroundTexture = content.Load<Texture2D>("Textures/background");
+            xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
+            preyTexture = content.Load<Texture2D>("Textures/worm");
+            bowlTexture = content.Load<Texture2D>("Textures/bowl2");
+            grayTexture = content.Load<Texture2D>("Textures/screen");
+            velocityTexture = content.Load<Texture2D>("Textures/VelocityGauge");
+            angleTexture = content.Load<Texture2D>("Textures/AngleGauge");
+            lineConnector = new Texture2D(ScreenManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            lineConnector.SetData(new[] { Color.Gray });
+
+            base.Initialize();
+        }
+        /// <summary>
+        /// LoadModels will be called once per game and is the place to load
+        /// all of the Models.
+        /// Loaded the Fish Model
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
+        /// </remarks>
+        private void LoadModels()
+        {
+            //add model to array of models
+            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), ScreenManager.GraphicsDevice));
+           
+            //create still camera
+            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), ScreenManager.GraphicsDevice);
+          
+        }
+
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -216,6 +231,7 @@ namespace Mechanect.Screens
 
             base.Update(gameTime, covered);
         }
+
         /// <summary>
         /// This is to be called when the game should draw itself.
         /// Here all the GUI is drawn
@@ -229,7 +245,7 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            graphicsDevice.Clear(Color.CornflowerBlue);
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
@@ -241,18 +257,7 @@ namespace Mechanect.Screens
                 spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
             if (grayScreen)
             {
-                spriteBatch.Draw(grayTexture, Vector2.Zero, Color.White);
-                spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
-
-                spriteBatch.DrawString(spriteFont, "Test angle and Velocity", new Vector2((screenWidth / 4), 0), Color.Red);
-
-                spriteBatch.DrawString(spriteFont, "Say 'GO' or press OK", new Vector2((screenWidth / 4), 600), Color.Red);
-
-                spriteBatch.DrawString(velAngleFont, "Velocity = " + env.Velocity, new Vector2(110f, 185f), Color.Red);
-
-                spriteBatch.DrawString(velAngleFont, "Angle = " + env.Angle, new Vector2(820f, 185f), Color.Red);
-
+                DrawGrayScreen();
             }
             else
             {
@@ -279,6 +284,23 @@ namespace Mechanect.Screens
                 //takes the camera instance and draws the model 
             }
 
+        }
+
+        private void DrawGrayScreen()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(grayTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
+
+            spriteBatch.DrawString(spriteFont, "Test angle and Velocity", new Vector2((screenWidth / 4), 0), Color.Red);
+
+            spriteBatch.DrawString(spriteFont, "Say 'GO' or press OK", new Vector2((screenWidth / 4), 600), Color.Red);
+
+            spriteBatch.DrawString(velAngleFont, "Velocity = " + env.Velocity, new Vector2(110f, 185f), Color.Red);
+
+            spriteBatch.DrawString(velAngleFont, "Angle = " + env.Angle, new Vector2(820f, 185f), Color.Red);
+            spriteBatch.End();
         }
 
 

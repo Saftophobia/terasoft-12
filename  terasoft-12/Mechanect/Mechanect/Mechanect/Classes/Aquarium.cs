@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace Mechanect.Classes
 {
-    class Aquarium
+    public class Aquarium
     {
     
         Point location;

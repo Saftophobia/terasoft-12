@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Mechanect.Classes
 {
-    class Predator
+    public class Predator
     {
 
         Vector2 location;
