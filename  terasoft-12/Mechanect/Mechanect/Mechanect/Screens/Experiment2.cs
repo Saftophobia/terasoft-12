@@ -66,9 +66,9 @@ namespace Mechanect.Screens
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
-        public Experiment2(Game1 game)
+        public Experiment2()
         {
-            env = new Environment2(game);
+            env = new Environment2();
             this.game = game;
             
             game.Content.RootDirectory = "Content";

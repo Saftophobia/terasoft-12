@@ -36,7 +36,7 @@ namespace Mechanect
         }
         double TotalTime;
 
-        public Environment2(Microsoft.Xna.Framework.Game game):base(game) { }
+        public Environment2() { }
 
   
         /// <summary>
