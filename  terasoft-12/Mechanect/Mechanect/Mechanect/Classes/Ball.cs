@@ -21,6 +21,13 @@ namespace Mechanect.Classes
             get { return velocity; }
             set { velocity = value; }
         }
+
+        private Vector3 initialVelocity;
+        public Vector3 InitialVelocity
+        {
+            get { return initialVelocity; }
+            set { initialVelocity = value; }
+        }
         private int radius;
         public int Radius {
             get 
@@ -44,8 +51,12 @@ namespace Mechanect.Classes
             }
         }
 
+        public float maxMass, minMass;
+
         public Ball(float minMass, float maxMass)
         {
+            this.maxMass = maxMass;
+            this.minMass = minMass;
             mass = generateBallMass(minMass,maxMass);
         }
 
