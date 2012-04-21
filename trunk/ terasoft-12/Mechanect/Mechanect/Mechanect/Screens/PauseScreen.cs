@@ -38,7 +38,7 @@ namespace Mechanect.Screens
     
         User user;
         MKinect kinect;
-        Boolean hasNotWaited;
+
         VoiceCommands voiceCommands;
 
         SpriteFont font;
@@ -49,7 +49,7 @@ namespace Mechanect.Screens
 
             this.user = user;
             this.kinect = kinect;
-            hasNotWaited = true;
+           
             voiceCommands = new VoiceCommands(kinect._KinectDevice);
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
@@ -67,7 +67,9 @@ namespace Mechanect.Screens
             viewPort = ScreenManager.GraphicsDevice.Viewport;
             content = ScreenManager.Game.Content;
             spriteBatch = ScreenManager.SpriteBatch;
+             
 
+          
             font = content.Load<SpriteFont>("spriteFont1");
            
             velocityBar = content.Load<Texture2D>("Textures/VBar");
