@@ -315,7 +315,9 @@ namespace Mechanect.Classes
             }
         }
 
-
+        /// <summary>
+        /// this is the index of the array of currentCommands in the class Game which defines what is the command active
+        /// </summary>
         private int activeCommand;
         public int ActiveCommand
         {

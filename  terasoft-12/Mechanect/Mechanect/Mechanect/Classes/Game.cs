@@ -21,6 +21,7 @@ namespace Mechanect.Classes
         private int tolerance;
 
         private List<GameCommands> currentCommands;
+        private List<int> timeOfCommands;
 
         private User user1;
         private User user2;
@@ -54,24 +55,34 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Michel Nader </para>
         /// <para>DATE WRITTEN: 19/4/12 </para>
-        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// <para>DATE MODIFIED: 21/4/12 </para>
         /// </remarks>
         public void CheckEachSecond()
         {
             int second = timer % 60;
+            int timeInSeconds = timer / 60;
             if (second == 0)
             {
-                List<float> user1Displacement = new List<float>(30);
-                List<float> user2Displacement = new List<float>(30);
-                for (int i = (timer / 2) - 30; i < timer / 2; i++)
-                {
+                int pastSecondsFor1 = 0;
+                for (int i = 0; i < user1.ActiveCommand; i++)
+                    pastSecondsFor1 += timeOfCommands[i];
+
+                int pastSecondsFor2 = 0;
+                for (int i = 0; i < user1.ActiveCommand; i++)
+                    pastSecondsFor2 += timeOfCommands[i];
+
+                List<float> user1Displacement = new List<float>();
+                List<float> user2Displacement = new List<float>();
+                for (int i = (pastSecondsFor1 - 1) * 30; i < user1.Positions.Count; i++)
                     user1Displacement.Add(user1.Positions[i]);
+
+                for (int i = (pastSecondsFor2 - 1) * 30; i < user2.Positions.Count; i++)
                     user2Displacement.Add(user2.Positions[i]);
-                }
+
                 if (!CommandSatisfied(currentCommands[user1.ActiveCommand].Name, user1Displacement))
                 {
                     user1.Disqualified = true;
-                    user1.DisqualificationTime = second;
+                    user1.DisqualificationTime = timeInSeconds;
                     spriteBatch.Begin();
                     spriteBatch.DrawString(spFont, "user 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
                     spriteBatch.End();
@@ -79,9 +90,9 @@ namespace Mechanect.Classes
                 if (!CommandSatisfied(currentCommands[user2.ActiveCommand].Name, user2Displacement))
                 {
                     user2.Disqualified = true;
-                    user2.DisqualificationTime = second;
+                    user2.DisqualificationTime = timeInSeconds;
                     spriteBatch.Begin();
-                    spriteBatch.DrawString(spFont, "user 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
+                    spriteBatch.DrawString(spFont, "user 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
                     spriteBatch.End();
                 }
             }
@@ -169,19 +180,125 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Michel Nader </para>
         /// <para>DATE WRITTEN: 19/4/12 </para>
-        /// <para>DATE MODIFIED: 20/4/12 </para>
+        /// <para>DATE MODIFIED: 21/4/12 </para>
         /// </remarks>
         public bool CommandSatisfied(String command, List<float> positions)
         {
             bool result = true;
-            if (command.Equals("Constant Speed"))
+            float currentTolerance = tolerance / 100;
+            if (command.Equals("constantVelocity"))
             {
-                float firstDistance = positions[1] - positions[0];
+                float firstVelocity = positions[0] - positions[1];
                 for (int i = 2; i < positions.Count; i++)
                 {
-                    float currentDisplacement = (positions[i] - positions[i - 1]);
-                    if (!(currentDisplacement >= (firstDistance - tolerance) && currentDisplacement <= (firstDistance + tolerance)))
+                    float currentDisplacement = (positions[i - 1] - positions[i]);
+                    if (!(currentDisplacement >= (firstVelocity - currentTolerance) && currentDisplacement <= (firstVelocity + currentTolerance)))
+                    {
                         result = false;
+                        break;
+                    }
+                    else
+                    {
+                        if (positions[positions.Count - 1] == 0)
+                        {
+                            result = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (command.Equals("constantAcceleration"))
+                {
+                    List<float> velocities = PerformanceGraph.GetPlayerVelocity(positions);
+                    float firstVelocity = velocities[1] - velocities[0];
+                    for (int i = 2; i < positions.Count; i++)
+                    {
+                        float currentVelocity = (velocities[i] - velocities[i - 1]);
+                        if (!(currentVelocity >= (firstVelocity - currentTolerance) && currentVelocity <= (firstVelocity + currentTolerance)))
+                        {
+                            result = false;
+                            break;
+                        }
+                        else
+                        {
+                            if (positions[positions.Count - 1] == 0)
+                            {
+                                result = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (command.Equals("constantDisplacement"))
+                    {
+                        float firstDisplacement = positions[0];
+                        for (int i = 1; i < positions.Count; i++)
+                        {
+                            float currentDisplacement = positions[i];
+                            if (!(currentDisplacement >= (firstDisplacement - currentTolerance) && currentDisplacement <= (firstDisplacement + currentTolerance)))
+                            {
+                                result = false;
+                                break;
+                            }
+                            else
+                            {
+                                if (positions[positions.Count - 1] == 0)
+                                {
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (command.Equals("increasingAcceleration"))
+                        {
+                            List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);
+                            float firstAcceleration = accelerations[1] - accelerations[0];
+                            for (int i = 2; i < positions.Count; i++)
+                            {
+                                float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
+                                if (!(currentAcceleration >= (firstAcceleration - currentTolerance)))
+                                {
+                                    result = false;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (positions[positions.Count - 1] == 0)
+                                    {
+                                        result = true;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (command.Equals("decreasingAcceleration"))
+                            {
+                                List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);
+                                float firstAcceleration = accelerations[1] - accelerations[0];
+                                for (int i = 2; i < positions.Count; i++)
+                                {
+                                    float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
+                                    if (!(currentAcceleration <= (firstAcceleration - currentTolerance)))
+                                    {
+                                        result = false;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (positions[positions.Count - 1] == 0)
+                                        {
+                                            result = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             return result;
