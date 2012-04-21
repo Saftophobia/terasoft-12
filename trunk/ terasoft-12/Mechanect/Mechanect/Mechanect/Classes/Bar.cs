@@ -8,6 +8,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Mechanect.Classes
 {
+    /// <summary>
+    ///  This class represents the Distance Bar Drawable Object
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Ahmed Badr </para>
+    /// </remarks>
     class Bar
     {
         private SpriteBatch spriteBatch;
@@ -55,6 +61,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Initializes the Bar
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr </para>
+        /// </remarks>
         /// <example>This sample shows how instaniate the Bar class.
         /// <code>
         ///  protected override void LoadContent()
@@ -82,6 +91,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Updates the current position of the ball with the new position
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr </para>
+        /// </remarks>
         /// <param name="currentPos"></param>
         public void Update(Vector2 currentPos)
         {
@@ -90,6 +102,19 @@ namespace Mechanect.Classes
         /// <summary>
         /// Draws the bar.
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr </para>
+        /// </remarks>
+        /// <example>This sample shows how instaniate the Bar class.
+        /// <code>
+        ///  protected override void Draw()
+        ///  {
+        ///     spriteBatch.Begin();
+        ///     bar.Draw();
+        ///     spriteBatch.End();
+        ///  }
+        /// </code>
+        /// </example>
         public void Draw()
         {
             offset = Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos);
