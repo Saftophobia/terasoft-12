@@ -11,6 +11,20 @@ namespace Mechanect.Classes
     class User
     {
 
+        private bool hasSetInitialPositionForAngle;
+        public bool HasSetInitialPositionForAngle
+        {
+            get
+            {
+                return hasSetInitialPositionForAngle;
+            }
+            set
+            {
+                hasSetInitialPositionForAngle = value;
+            }
+        }
+
+
         private Joint trackedJoint;
         public Joint TrackedJoint  //  the user's tracked joint
         {
@@ -69,7 +83,7 @@ namespace Mechanect.Classes
         {
             get
             {
-                return CurrentRightLegPositionX;
+                return currentRightLegPositionX;
             }
             set
             {
@@ -97,7 +111,7 @@ namespace Mechanect.Classes
         {
             get
             {
-                return CurrentRightLegPositionZ;
+                return currentRightLegPositionZ;
             }
             set
             {
@@ -182,7 +196,7 @@ namespace Mechanect.Classes
         {
             get
             {
-                return CurrentLeftLegPositionX;
+                return currentLeftLegPositionX;
             }
             set
             {
@@ -210,7 +224,7 @@ namespace Mechanect.Classes
         {
             get
             {
-                return CurrentLeftLegPositionZ;
+                return currentLeftLegPositionZ;
             }
             set
             {
@@ -394,6 +408,7 @@ namespace Mechanect.Classes
         
             movedForward = false;
             trying = true;
+            hasSetInitialPositionForAngle = false;
          
 
         }
