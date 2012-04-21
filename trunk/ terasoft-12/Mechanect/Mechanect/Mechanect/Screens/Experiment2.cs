@@ -64,6 +64,9 @@ namespace Mechanect.Screens
         private Vector2 destinationAquariumPosition;
 
 
+        VoiceCommands voiceCommand;
+        User2 user;
+        Boolean aquariumReached;
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the content directory.
         /// </summary>
@@ -72,11 +75,13 @@ namespace Mechanect.Screens
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
-        public Experiment2()
+        public Experiment2(User2 user)
         {
 
             env = new Environment2();
             graphicsDevice = ScreenManager.GraphicsDevice;
+            this.user = user;
+            
 
         }
 
@@ -152,20 +157,62 @@ namespace Mechanect.Screens
            
         }
 
+
+
+        private Boolean isPreyEaten()
+        {
+            Boolean isHit = false;
+            Vector2 position = env.Predator.getLocation();
+            Prey prey = env.Prey;
+            if (position.X >= prey.Location.X - prey.Width / 2
+                && position.X <= prey.Location.X + prey.Width / 2
+                && position.Y >= prey.Location.Y - prey.Length / 2
+                && position.Y <= prey.Location.Y + prey.Length / 2)
+                isHit = true;
+            return isHit;
+        }
+
+        private Boolean isAquariumReached()
+        {
+            Boolean isReached = false;
+            Vector2 position = env.Predator.getLocation();
+            Aquarium aquarium = env.Aquarium;
+            if (position.X >= aquarium.Location.X - aquarium.Width / 2
+                && position.X <= aquarium.Location.X + aquarium.Width / 2
+                && position.Y >= aquarium.Location.Y - aquarium.Length  / 2
+                && position.Y <= aquarium.Location.Y + aquarium.Length  / 2)
+                isReached = true;
+            return isReached;
+        }
+
+
         /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
+        /// Runs at every frame, Updates game parameters and checks for user's actions
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>AUTHOR: Mohamed AbdelAzim </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
             
             camera.Update();
+
+            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+            {
+                if (env.Predator.Velocity == null)
+                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                env.Predator.UpdatePosition(gameTime);
+                if (!preyEaten) preyEaten = isPreyEaten();
+                if (!aquariumReached) aquariumReached = isAquariumReached();
+            }
+            
+            else
+            {
+                user.MeasureVelocityAndAngle();
+            }
 
             base.Update(gameTime, covered);
         }

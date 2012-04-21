@@ -13,14 +13,47 @@ namespace Mechanect
 
 
         Prey prey;
+        public Prey Prey
+        {
+            get
+            {
+                return prey;
+            }
+            set
+            {
+                prey = value;
+            }
+        }
 
         Predator predator;
+        public Predator Predator
+        {
+            get
+            {
+                return predator;
+            }
+            set
+            {
+                predator = value;
+            }
+        }
 
         Aquarium aquarium;
+        public Aquarium Aquarium
+        {
+            get
+            {
+                return aquarium;
+            }
+            set
+            {
+                aquarium = value;
+            }
+        }
 
         Random rand = new Random();
 
-        int tolerance = 10;
+        
         int velocity = 0;
         public int Velocity
         {
@@ -68,7 +101,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        public void getSolvablePoints()
+        public void getSolvablePoints(int tolerance)
         {
             double xPredator;
             double yPredator;

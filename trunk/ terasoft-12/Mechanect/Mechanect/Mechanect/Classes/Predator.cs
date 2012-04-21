@@ -3,16 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Microsoft.Xna.Framework;
 
 namespace Mechanect.Classes
 {
     class Predator
     {
-    
-        Point location;
+
+        Vector2 location;
+        Vector2 Location
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                location = value;
+            }
+        }
+        
         int size;
 
-        public Predator(Point location)
+        Vector2 velocity;
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+            set
+            {
+                velocity = value;
+            }
+        }
+
+        
+        double Angle
+        {
+            get
+            {
+                return Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
+            }
+        }
+
+        public Predator(Vector2 location)
         {
             this.location = location;
 
@@ -25,11 +60,28 @@ namespace Mechanect.Classes
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
-       
 
-        public Point getLocation()
+
+        public Vector2 getLocation()
         {
             return location;
+        }
+
+
+
+        /// <summary>
+        /// UpdatePosition is called in each frame when the predator is moving
+        /// to update the location of the predator in each frame
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim </para>   
+        /// <para>DATE WRITTEN: April, 21 </para>
+        /// </remarks>
+        public void UpdatePosition(GameTime gameTime)
+        {
+            location.X += (float)(velocity.X * gameTime.ElapsedGameTime.TotalSeconds);
+            location.Y += (float)(velocity.Y * gameTime.ElapsedGameTime.TotalSeconds);
+            velocity.Y -= (float)(9.8 * gameTime.ElapsedGameTime.TotalSeconds);
         }
     
     }
