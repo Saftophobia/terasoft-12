@@ -502,9 +502,9 @@ namespace Mechanect.Classes
             if (hasCollidedWithBall && !ballShot)
             {
                 ballMass = ball.Mass; //get the mass of the ball
+                ballShot = true;
                 Vector3 velocityAfterCollision = getVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
                 ball.Velocity = velocityAfterCollision; // update the velocity of the ball
-                ballShot = true;
             }
         }
 
@@ -529,15 +529,20 @@ namespace Mechanect.Classes
 
             double acceleration = -(friction + wind); //Deceleration of the ball due to resistance.
 
-            //Get the velocity of the ball right before the collision.
-            initialVelocityBall = Math.Sqrt((ball.Velocity.LengthSquared() + (2 * acceleration * Math.Abs(Vector3.Distance(ball.Position, user.ShootingPosition)))));
+            //Get the velocity of the ball right before the collision. 
+            //If shooting the ball .. initial balls velocity is its current velocity.. else calculate it.
+            if (!ballShot)
+                initialVelocityBall = Math.Sqrt((ball.InitialVelocity.Length() + (2 * acceleration * Math.Abs(Vector3.Distance(ball.Position, user.ShootingPosition)))));
+            else
+                initialVelocityBall = ball.Velocity.Length();
+
             initialVelocityLeg = initialVelocity.Length();
 
             //Calculate the angle with which the user has shot the ball.
             angle = Math.Atan2(-initialVelocity.Z, initialVelocity.X);
 
             //Calculate what will the ball's speed be after collision using conservation of momentum equation.
-            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * initialVelocityLeg)) / ballMass;
+            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.maxMass)))) / ballMass;
 
             //Return a vector containing the ball's speed and direction.
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
