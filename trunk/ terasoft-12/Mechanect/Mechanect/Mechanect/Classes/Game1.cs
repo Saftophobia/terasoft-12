@@ -21,6 +21,12 @@ namespace Mechanect
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager Graphics
+        {
+            get { return graphics; }
+            set { ; }
+
+        }
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
 
@@ -28,12 +34,12 @@ namespace Mechanect
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-          
-           // Window.AllowUserResizing = true;
+
+            // Window.AllowUserResizing = true;
             graphics.IsFullScreen = false;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
-            
+
         }
 
         /// <summary>
@@ -57,7 +63,9 @@ namespace Mechanect
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            screenManager.AddScreen(new PauseScreen(new User(0.01f)  ,new MKinect()));
+            //screenManager.AddScreen(new PauseScreen(new User(0.01f), new MKinect()));
+            screenManager.AddScreen(new Experiment2(this));
+
             // TODO: use this.Content to load your game content here
         }
 
