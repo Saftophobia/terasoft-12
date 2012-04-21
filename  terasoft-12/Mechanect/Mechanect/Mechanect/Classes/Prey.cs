@@ -9,9 +9,42 @@ namespace Mechanect.Classes
     class Prey
     {
         Point location;
-        int length;
-        int width;
+        public Point Location
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                location = value;
+            }
+        }
 
+        int length;
+        public int Length
+        {
+            get
+            {
+                return length;
+            }
+            set
+            {
+                length = value;
+            }
+        }
+        int width;
+        public int Width
+        {
+            get
+            {
+                return width;
+            }
+            set
+            {
+                width = value;
+            }
+        }
 
         public Prey(Point location, int width, int length)
         {
