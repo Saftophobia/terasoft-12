@@ -28,6 +28,12 @@ namespace Mechanect.Classes
             get { return initialVelocity; }
             set { initialVelocity = value; }
         }
+        private Vector3 initialBallPosition;
+        public Vector3 InitialBallPosition
+        {
+            get { return initialBallPosition; }
+            set { initialBallPosition = value; }
+        }
         private int radius;
         public int Radius {
             get 
