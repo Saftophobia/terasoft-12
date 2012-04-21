@@ -8,11 +8,10 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Kinect;
 
 namespace Mechanect.Common
 {
-    class NewGameButton : Button
+    class OKButton : Button
     {
         /// <summary>
         /// calling the super constructor with requiered parameters
@@ -21,7 +20,7 @@ namespace Mechanect.Common
         /// <param name="p">position of the button</param>
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
-        public NewGameButton(ContentManager c, Vector2 p, int sw, int sh)
+        public OKButton(ContentManager c, Vector2 p, int sw, int sh)
             : base(c.Load<GifAnimation.GifAnimation>("Buttons/button-s"),
             c.Load<GifAnimation.GifAnimation>("Buttons/button-m"), p, sw, sh,
             c.Load<Texture2D>("Buttons/hand")) { }
