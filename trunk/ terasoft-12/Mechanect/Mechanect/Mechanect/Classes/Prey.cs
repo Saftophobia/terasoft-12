@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace Mechanect.Classes
 {
-    class Prey
+    public class Prey
     {
         Point location;
         public Point Location
