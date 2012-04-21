@@ -52,7 +52,7 @@ namespace Mechanect.Classes
 
         internal void MeasureVelocityAndAngle()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

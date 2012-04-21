@@ -117,13 +117,19 @@
   <ItemGroup>
     <Compile Include="Classes\Aquarium.cs" />
     <Compile Include="Classes\Avatar.cs" />
+    <Compile Include="Classes\AvatarprogUI.cs" />
     <Compile Include="Classes\Ball.cs" />
+    <Compile Include="Classes\Bar.cs" />
     <Compile Include="Classes\Constants1.cs" />
     <Compile Include="Classes\Constants2.cs" />
     <Compile Include="Classes\Constants3.cs" />
+    <Compile Include="Classes\CountDown.cs" />
     <Compile Include="Classes\Environment2.cs" />
     <Compile Include="Classes\Environment3.cs" />
     <Compile Include="Classes\Game.cs" />
+    <Compile Include="Classes\Game1b.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Classes\GameCommands.cs" />
     <Compile Include="Classes\Hole.cs" />
     <Compile Include="Classes\Instruction.cs" />
@@ -135,16 +141,19 @@
     <Compile Include="Classes\Tools2.cs" />
     <Compile Include="Classes\Tools3.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\User2.cs" />
     <Compile Include="Classes\VoiceCommands.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ChaseCamera.cs" />
     <Compile Include="Cameras\TargetCamera.cs" />
+    <Compile Include="Common\AnimationFrame.cs" />
     <Compile Include="Common\Button.cs" />
     <Compile Include="Common\CustomModel.cs" />
     <Compile Include="Common\GameScreen.cs" />
     <Compile Include="Common\Kinect.cs" />
     <Compile Include="Common\MainMenuButton.cs" />
     <Compile Include="Common\MKinect.cs" />
+    <Compile Include="Common\ModelFramedAnimation.cs" />
     <Compile Include="Common\ModelLinearAnimation.cs" />
     <Compile Include="Common\NewGameButton.cs" />
     <Compile Include="Common\OKButton.cs" />
