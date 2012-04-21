@@ -5,7 +5,6 @@ Content\Textures\background.xnb
 Content\Textures\bowl2.xnb
 Content\Textures\worm.xnb
 Content\Textures\xyAxis.xnb
-Content\Textures\screen.xnb
 Content\Textures\Vfill.xnb
 Content\Textures\VBar.xnb
 Content\Textures\arrow.xnb
@@ -22,3 +21,5 @@ Content\angleVelFont.xnb
 Content\Textures\Buttons\button-m.xnb
 Content\Textures\Buttons\button-s.xnb
 Content\TropicalFish12_0.xnb
+Content\Textures\screen.xnb
+Content\Textures\GrayScreen.xnb

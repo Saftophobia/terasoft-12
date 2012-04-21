@@ -141,7 +141,13 @@
       <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Textures\GrayScreen.png">
+      <Name>GrayScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\Buttons\button-m.gif">
       <Name>button-m</Name>

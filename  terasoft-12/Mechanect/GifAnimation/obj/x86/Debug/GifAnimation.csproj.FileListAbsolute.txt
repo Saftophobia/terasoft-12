@@ -28,3 +28,9 @@ C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb

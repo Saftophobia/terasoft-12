@@ -53,16 +53,24 @@ namespace Mechanect.Screens
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
         private Boolean grayScreen = true;
-        
+
         private int screenWidth;
         private int screenHeight;
         private Vector2 velGauge;
         private Vector2 angGauge;
-        private Vector3 predetorPosition;
-        private Vector2 preyPosition;
-        private Vector2 startAquariumPosition;
-        private Vector2 destinationAquariumPosition;
+        private Vector3 predetorPosition = new Vector3(50,50,0);
+        private Vector2 preyPosition = new Vector2(500f, 200f);
+        private Vector2 startAquariumPosition = new Vector2(40f, 430f);
+        private Vector2 destinationAquariumPosition = new Vector2(750f, 400f);
 
+        float backgroundTextureScaling;
+        float xyAxisTextureScaling;
+        float preyTextureScaling;
+        float bowlTextureScaling;
+        float grayTextureScaling;
+        float velocityTextureScaling;
+        float angleTextureScaling;
+        float fishModelScaling;
 
         VoiceCommands voiceCommand;
         User2 user;
@@ -82,8 +90,8 @@ namespace Mechanect.Screens
             //graphicsDevice = ScreenManager.GraphicsDevice;
             this.user = user;
         }
-            
-            
+
+
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
@@ -98,7 +106,7 @@ namespace Mechanect.Screens
 
         public override void LoadContent()
         {
-           // Create a new SpriteBatch, which can be used to draw textures.
+            // Create a new SpriteBatch, which can be used to draw textures.
             viewPort = ScreenManager.GraphicsDevice.Viewport;
             screenWidth = viewPort.Width;
             screenHeight = viewPort.Height;
@@ -106,7 +114,7 @@ namespace Mechanect.Screens
             spriteBatch = ScreenManager.SpriteBatch;
             LoadTextures();
             LoadModels();
-           
+
             spriteFont = content.Load<SpriteFont>("Ariel");
             velAngleFont = content.Load<SpriteFont>("angleVelFont");
 
@@ -124,12 +132,11 @@ namespace Mechanect.Screens
 
         public void LoadTextures()
         {
-
             backgroundTexture = content.Load<Texture2D>("Textures/background");
             xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
             preyTexture = content.Load<Texture2D>("Textures/worm");
             bowlTexture = content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = content.Load<Texture2D>("Textures/screen");
+            grayTexture = content.Load<Texture2D>("Textures/GrayScreen");
             velocityTexture = content.Load<Texture2D>("Textures/VelocityGauge");
             angleTexture = content.Load<Texture2D>("Textures/AngleGauge");
             lineConnector = new Texture2D(ScreenManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -150,11 +157,12 @@ namespace Mechanect.Screens
         private void LoadModels()
         {
             //add model to array of models
-            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(0.007f), ScreenManager.GraphicsDevice));
-           
+            fishModelScaling = 0.007f;
+            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(fishModelScaling), ScreenManager.GraphicsDevice));
+
             //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 100, 0), new Vector3(100, 100, 0), ScreenManager.GraphicsDevice);
-          
+            camera = new TargetCamera(new Vector3(-3000, 0, 0), new Vector3(0, 0, 0), ScreenManager.GraphicsDevice);
+
         }
 
 
@@ -169,7 +177,7 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void UnloadContent()
         {
-           
+
         }
 
 
@@ -194,8 +202,8 @@ namespace Mechanect.Screens
             Aquarium aquarium = env.Aquarium;
             if (position.X >= aquarium.Location.X - aquarium.Width / 2
                 && position.X <= aquarium.Location.X + aquarium.Width / 2
-                && position.Y >= aquarium.Location.Y - aquarium.Length  / 2
-                && position.Y <= aquarium.Location.Y + aquarium.Length  / 2)
+                && position.Y >= aquarium.Location.Y - aquarium.Length / 2
+                && position.Y <= aquarium.Location.Y + aquarium.Length / 2)
                 isReached = true;
             return isReached;
         }
@@ -212,7 +220,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            
+
             camera.Update();
 
             if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
@@ -223,7 +231,7 @@ namespace Mechanect.Screens
                 if (!preyEaten) preyEaten = isPreyEaten();
                 if (!aquariumReached) aquariumReached = isAquariumReached();
             }
-            
+
             else
             {
                 user.MeasureVelocityAndAngle();
@@ -246,34 +254,54 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+             backgroundTextureScaling =1;
+             xyAxisTextureScaling =1 ;
+             preyTextureScaling =0.1f;
+             bowlTextureScaling =1 ;
+             grayTextureScaling =1 ;
+             
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
-            spriteBatch.Draw(bowlTexture, new Vector2(40f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(0f, 0f), Color.Red);
-            spriteBatch.DrawString(velAngleFont, "meters", new Vector2(900f, 680f), Color.Red);
+            spriteBatch.Draw(bowlTexture, startAquariumPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            string meters = "meters";
+            spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
+            spriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 2, screenHeight - spriteFont.MeasureString(meters).Y / 2), Color.Red);
 
             if (!preyEaten)
-                spriteBatch.Draw(preyTexture, new Vector2(500f, 200f), null, Color.White, 0f, Vector2.Zero, 0.1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(preyTexture, preyPosition, null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
             if (grayScreen)
             {
+                spriteBatch.End();
                 DrawGrayScreen();
+                spriteBatch.Begin();
             }
             else
             {
-                spriteBatch.DrawString(velAngleFont, "Velocity = " + env.Velocity, new Vector2(870f, 30f), Color.Red);
+                String velString = "Velocity = ";
+                String angString = "Angle = ";
+                spriteBatch.DrawString(velAngleFont, velString + env.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
 
-                spriteBatch.DrawString(velAngleFont, "Angle = " + env.Angle, new Vector2(780f, 30f), Color.Red);
+                spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
 
             }
-            spriteBatch.Draw(bowlTexture, new Vector2(750f, 430f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(500f, 200f), new Vector2(0, 200f));
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(500f, 200f), new Vector2(500f, screenHeight));
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(80f, 450f), new Vector2(0, 450f));
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(80f, 450f), new Vector2(80f, screenHeight));
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.Gray, new Vector2(900f, 680f), new Vector2(0, 200f));
-            //DrawLine(spriteBatch, lineConnector, 2f, Color.Gray, new Vector2(900f, 680f), new Vector2(500f, screenHeight));
+            spriteBatch.Draw(bowlTexture, destinationAquariumPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(30, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2));
+            spriteBatch.DrawString(velAngleFont, startAquariumPosition.X + "", new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.X+"").X/4, screenHeight - 30), Color.Red);
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, screenHeight - 30));
+            spriteBatch.DrawString(velAngleFont, startAquariumPosition.Y + "", new Vector2(5,startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.Y + "").X / 4), Color.Red);
+            
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2), new Vector2(30, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2));
+            spriteBatch.DrawString(velAngleFont, preyPosition.X + "", new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.X + "").X / 4, screenHeight - 30), Color.Red);
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2), new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, screenHeight - 30));
+            spriteBatch.DrawString(velAngleFont, preyPosition.Y + "", new Vector2(5,preyPosition.Y + preyTexture.Height * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.Y + "").X / 4), Color.Red);
+            
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(30, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2));
+            spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.X + "", new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.X + "").X / 4, screenHeight - 30), Color.Red);
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, screenHeight - 30));
+            spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.Y + "", new Vector2(5, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.Y + "").X / 4), Color.Red);
+            
             spriteBatch.End();
 
 
@@ -288,18 +316,21 @@ namespace Mechanect.Screens
 
         private void DrawGrayScreen()
         {
+            velocityTextureScaling = 0.5f;
+            angleTextureScaling = 0.85f;
+            
             spriteBatch.Begin();
             spriteBatch.Draw(grayTexture, Vector2.Zero, Color.White);
-            spriteBatch.Draw(velocityTexture, new Vector2(55f, 50f), null, Color.White, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 0f);
-            spriteBatch.Draw(angleTexture, new Vector2(812f, 50f), null, Color.White, 0f, Vector2.Zero, 0.85f, SpriteEffects.None, 0f);
-
-            spriteBatch.DrawString(spriteFont, "Test angle and Velocity", new Vector2((screenWidth / 4), 0), Color.Red);
-
-            spriteBatch.DrawString(spriteFont, "Say 'GO' or press OK", new Vector2((screenWidth / 4), 600), Color.Red);
-
-            spriteBatch.DrawString(velAngleFont, "Velocity = " + env.Velocity, new Vector2(110f, 185f), Color.Red);
-
-            spriteBatch.DrawString(velAngleFont, "Angle = " + env.Angle, new Vector2(820f, 185f), Color.Red);
+            spriteBatch.Draw(velocityTexture, new Vector2(screenWidth / 16, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(angleTexture, new Vector2(screenWidth - screenWidth * 2 / 9, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
+            string testString = "Test angle and Velocity";
+            spriteBatch.DrawString(spriteFont, testString, new Vector2((screenWidth / 4), 0), Color.Red);
+            string sayString = "Say 'GO' or press OK";
+            spriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 4), screenHeight - 2*spriteFont.MeasureString(sayString).Y), Color.Red);
+            String velString = "Velocity = " + env.Velocity;
+            String angString = "Angle = " + env.Angle;
+            spriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 4)  +velocityTexture.Width*velocityTextureScaling/2  - spriteFont.MeasureString(velString).X, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+            spriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth*2 / 9) +angleTexture.Width* angleTextureScaling  - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
             spriteBatch.End();
         }
 
