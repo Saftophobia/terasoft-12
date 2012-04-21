@@ -7,13 +7,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
-      <Time>2012-04-20T10:58:01.9709999+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\fish_0.xml</Key>
-        <Value>2012-04-20T18:02:08.9401135+02:00</Value>
+        <Value>2012-04-21T10:27:46.189+02:00</Value>
       </Dependency>
-      <Request>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
@@ -21,11 +21,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
-      <Time>2012-04-20T17:52:41.6236649+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\ball_0.xml</Key>
-        <Value>2012-04-20T18:02:10.3551945+02:00</Value>
+        <Value>2012-04-21T10:27:47.588+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -34,11 +34,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
-      <Time>2012-04-20T17:52:44.3118186+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
-        <Value>2012-04-20T18:02:10.7722183+02:00</Value>
+        <Value>2012-04-21T10:27:48.094+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -47,8 +47,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\background.xnb</Output>
-      <Time>2012-04-20T10:58:14.5407188+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\background.xnb</Output>
+      <Time>2012-04-20T13:20:57.945+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\bowl2.png</Source>
@@ -56,8 +56,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\bowl2.xnb</Output>
-      <Time>2012-04-20T10:58:14.5317183+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\bowl2.xnb</Output>
+      <Time>2012-04-20T13:20:57.938+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\worm.png</Source>
@@ -65,8 +65,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\worm.xnb</Output>
-      <Time>2012-04-20T10:58:14.5347185+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\worm.xnb</Output>
+      <Time>2012-04-20T13:20:57.932+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\xyAxis.png</Source>
@@ -74,8 +74,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\xyAxis.xnb</Output>
-      <Time>2012-04-20T10:58:14.5367186+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\xyAxis.xnb</Output>
+      <Time>2012-04-20T13:20:57.941+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\screen.png</Source>
@@ -83,15 +83,78 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
-      <Time>2012-04-20T17:52:27.3568489+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
+      <Time>2012-04-21T13:07:30.9958+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Vfill.png</Source>
+      <Name>Textures\Vfill</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
+      <Time>2012-04-21T00:23:54.659+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\VBar.png</Source>
+      <Name>Textures\VBar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
+      <Time>2012-04-21T00:24:09.182+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\arrow.png</Source>
+      <Name>Textures\arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
+      <Time>2012-04-21T01:07:15.414+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\VelocityGauge.png</Source>
+      <Name>Textures\VelocityGauge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VelocityGauge.xnb</Output>
+      <Time>2012-04-21T01:17:34.996+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\AngleGauge.png</Source>
+      <Name>Textures\AngleGauge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\AngleGauge.xnb</Output>
+      <Time>2012-04-21T01:17:34.976+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Ariel.spritefont</Source>
+      <Name>Ariel</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
+      <Time>2012-04-21T01:17:47.479+02:00</Time>
+    </Item>
+    <Item>
+      <Source>angleVelFont.spritefont</Source>
+      <Name>angleVelFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb</Output>
+      <Time>2012-04-21T01:17:34.972+02:00</Time>
     </Item>
     <Item>
       <Source>Models\fish.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\fish_0.xml</Output>
-      <Time>2012-04-20T10:58:01.9709999+02:00</Time>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
     </Item>
     <Item>
       <Source>TropicalFish12.jpg</Source>
@@ -106,58 +169,31 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
-      <Time>2012-04-20T10:58:43.4433719+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
+      <Time>2012-04-20T13:21:01.595+02:00</Time>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\ball_0.xml</Output>
-      <Time>2012-04-20T17:52:41.6236649+02:00</Time>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
     </Item>
     <Item>
       <Source>Models\Arrow.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
-      <Time>2012-04-20T17:52:44.3118186+02:00</Time>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
     </Item>
     <Item>
-      <Source>Textures\VelocityGauge.png</Source>
-      <Name>Textures\VelocityGauge</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VelocityGauge.xnb</Output>
-      <Time>2012-04-20T21:43:46.5839271+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\AngleGauge.png</Source>
-      <Name>Textures\AngleGauge</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\AngleGauge.xnb</Output>
-      <Time>2012-04-20T20:38:15.2270663+02:00</Time>
-    </Item>
-    <Item>
-      <Source>angleVelFont.spritefont</Source>
-      <Name>angleVelFont</Name>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb</Output>
-      <Time>2012-04-20T21:04:55.3165862+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Ariel.spritefont</Source>
-      <Name>Ariel</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
-      <Time>2012-04-20T19:29:04.5716847+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-04-21T11:17:20.0778+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -165,39 +201,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\MechanectContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-03-19T15:05:02.9626013+02:00</Value>
+        <Value>2012-04-13T16:56:38.1824+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
