@@ -265,35 +265,26 @@ namespace Mechanect.Screens
              bowlTextureScaling =1 ;
              grayTextureScaling =1 ;
              predatorScaling = 0.2f;
-            spriteBatch.Begin();
-            spriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
-            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
-            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture,startAquariumPosition,bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
-            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture,predatorPosition2D,predatorScaling), null, Color.White, 0f, Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            string meters = "meters";
-            spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
-            spriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 2, screenHeight - spriteFont.MeasureString(meters).Y / 2), Color.Red);
-
-            if (!preyEaten)
-                spriteBatch.Draw(preyTexture, DrawAtRectangleMidPoint(preyTexture,preyPosition,preyTextureScaling), null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
+             DrawConnectors();
+            DrawEnvironment();
             if (grayScreen)
             {
-                spriteBatch.End();
+                
                 DrawGrayScreen();
-                spriteBatch.Begin();
+                
             }
             else
             {
+                spriteBatch.Begin();
                 String velString = "Velocity = ";
                 String angString = "Angle = ";
                 spriteBatch.DrawString(velAngleFont, velString + env.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
                 spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
-
+                spriteBatch.End();
             }
 
-            DrawConnectors();
-            spriteBatch.End();
+            
+           
 
 
             // Only Used If 3D Models are Used.
@@ -306,6 +297,30 @@ namespace Mechanect.Screens
 
         }
         /// <summary>
+        /// This Method is to be called whenDrawing The basic Environment.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 22 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        private void DrawEnvironment()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
+            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, startAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition2D, predatorScaling), null, Color.White, 0f, Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            string meters = "meters";
+            spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
+            spriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 2, screenHeight - spriteFont.MeasureString(meters).Y / 2), Color.Red);
+
+            if (!preyEaten)
+                spriteBatch.Draw(preyTexture, DrawAtRectangleMidPoint(preyTexture, preyPosition, preyTextureScaling), null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
+            spriteBatch.End();
+        }
+        /// <summary>
         /// This is to be called when the game needs drawing the  X,Y axis Connectors and position the values on the x,y Axises.
         /// </summary>
         /// <remarks>
@@ -315,7 +330,7 @@ namespace Mechanect.Screens
         /// </remarks>
         private void DrawConnectors()
         {
-
+            spriteBatch.Begin();
             DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling), new Vector2(30, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling).Y));
             spriteBatch.DrawString(velAngleFont, startAquariumPosition.Y + "", DrawAtAxisNaming(bowlTexture, startAquariumPosition, bowlTextureScaling, true), Color.Red);
             DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling), new Vector2(DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling).X, screenHeight - 30));
@@ -331,7 +346,7 @@ namespace Mechanect.Screens
             spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.Y + "", DrawAtAxisNaming(bowlTexture, destinationAquariumPosition, bowlTextureScaling, true), Color.Red);
             DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling), new Vector2(DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling).X, screenHeight - 30));
             spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.X + "", DrawAtAxisNaming(bowlTexture, destinationAquariumPosition, bowlTextureScaling, false), Color.Red);
-            
+            spriteBatch.End();
         }
         /// <summary>
         /// This method will draw a gray Screen 
@@ -344,9 +359,9 @@ namespace Mechanect.Screens
         /// </remarks>
         private void DrawGrayScreen()
         {
+            spriteBatch.Begin();
             velocityTextureScaling = 0.5f;
             angleTextureScaling = 0.85f;
-            
             spriteBatch.Begin();
             spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
             spriteBatch.Draw(velocityTexture, new Vector2(screenWidth / 16, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
