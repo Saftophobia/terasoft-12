@@ -25,8 +25,8 @@ namespace Mechanect.Classes
         public const int holeOutOfNearRange = 10;
         public const int solvableExperiment = 0;
         public const float normalLegMass = 0.01f;
-        //CHANGE NORMAL_LEG_MASS TO THE NAMING CONVENTIONS USED ABOVE!!
         public const double unitTime = 0.0333333333334; //seconds
         public const float legMovementTolerance = 0.09f; //meters
+        public const float velocityScale = 1; // mapping velocity in meters to pixels
     }
 }
