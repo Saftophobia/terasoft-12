@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
-using Mechanect.Cameras;
+using Mechanect.Common.Cameras;
 
 namespace Mechanect.Common
 {
