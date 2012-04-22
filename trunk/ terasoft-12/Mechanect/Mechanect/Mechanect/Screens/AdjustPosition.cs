@@ -19,22 +19,29 @@ namespace Mechanect.Screens
     {
 
         Skeleton skeleton;
-        int minDepth;
-        int maxDepth;
+        float minDepth;
+        float maxDepth;
         float minAngle;
         float maxAngle;
 
-        int depth;
+        float depth;
         float angle;
 
-        public int getDepth()
+        Boolean accepted;
+
+        public float getDepth()
         {
-            return 0;
+            return skeleton.Joints[JointType.HipCenter].Position.Z;
         }
 
         public float getAngle()
         {
-            return 0;
+            Vector2 rightHip = new Vector2(skeleton.Joints[JointType.HipRight].Position.X, skeleton.Joints[JointType.HipRight].Position.Z);
+            Vector2 leftHip = new Vector2(skeleton.Joints[JointType.HipLeft].Position.X, skeleton.Joints[JointType.HipLeft].Position.Z);
+            Vector2 point = new Vector2(rightHip.X - leftHip.X, rightHip.Y - leftHip.Y);
+            double angle = Math.Atan(point.Y / point.X);
+            angle *= (180 / Math.PI);
+            return (float)angle;
         }
 
         public AdjustPosition(Skeleton skeleton, int minDepth, int maxDepth, float minAngle, float maxAngle)
@@ -50,6 +57,8 @@ namespace Mechanect.Screens
         {
             depth = getDepth();
             angle = getAngle();
+
+            accepted = (depth <= maxDepth && depth >= minDepth && angle <= maxAngle && angle >= minAngle);
         }
 
         public override void Draw(GameTime gameTime)
