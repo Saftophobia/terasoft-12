@@ -54,16 +54,17 @@ namespace Mechanect.Screens
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
         private Boolean grayScreen = true;
-
+        private float translation;
         private int screenWidth;
         private int screenHeight;
-        private Vector2 velGauge;
-        private Vector2 angGauge;
+        //To be used in sprint 2
+        //private Vector2 velGauge;
+        //private Vector2 angGauge;
         private Vector2 predatorOrigin;
-        private Vector2 predatorPosition2D = new Vector2(150f, 630f);
-        private Vector2 preyPosition = new Vector2(500f, 200f);
-        private Vector2 startAquariumPosition = new Vector2(150f, 630f);
-        private Vector2 destinationAquariumPosition = new Vector2(870f, 630f);
+        private Vector2 predatorPosition2D ;
+        private Vector2 preyPosition;
+        private Vector2 startAquariumPosition;
+        private Vector2 destinationAquariumPosition;
         //private Vector3 predatorPosition = new Vector3(50, 50, 0);
         float backgroundTextureScaling;
         float xyAxisTextureScaling;
@@ -110,12 +111,12 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 21  </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
 
         public override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+             // Create a new SpriteBatch, which can be used to draw textures.
             viewPort = ScreenManager.GraphicsDevice.Viewport;
             screenWidth = viewPort.Width;
             screenHeight = viewPort.Height;
@@ -123,6 +124,10 @@ namespace Mechanect.Screens
             spriteBatch = ScreenManager.SpriteBatch;
             LoadTextures(2);
             LoadModels();
+            //give initial values
+            startAquariumPosition = env.Predator.Location;
+            LoadObjectsWithValues(env.Predator.Location, env.Prey.Location,env.Aquarium.Location);
+          
 
             spriteFont = content.Load<SpriteFont>("Ariel");
             velAngleFont = content.Load<SpriteFont>("angleVelFont");
@@ -130,8 +135,33 @@ namespace Mechanect.Screens
             // zayat you can edit the button place as you wish
             buttonPosition = new Vector2(450,10);
             button = new OKButton(content, buttonPosition, screenWidth, screenHeight);
+           //TBC
             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
+        }
+
+       
+        /// <summary>
+        /// This Method will get the Values(Givens) of the Game Setup at the beginning
+        /// Then it will be used to get the instantaneous values
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 22 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        /// <param name="predator">Takes the vector2 position of the predator</param>
+        /// <param name="prey">Takes the vector2 position of the prey</param>
+        /// <param name="destination">Takes the vector2 position of the destination aquarium</param>
+        private void LoadObjectsWithValues(Vector2 predator, Vector2 prey, Vector2 destination)
+        {
+            predatorPosition2D = (predator);
+            preyPosition = (prey);
+            destinationAquariumPosition = (destination);
+
+            //predatorPosition2D = MapPointsToScreen(predator);
+            //preyPosition = MapPointsToScreen(prey);
+            //destinationAquariumPosition = MapPointsToScreen(destination);
         }
 
         /// <summary>
@@ -148,16 +178,17 @@ namespace Mechanect.Screens
         public void LoadTextures(int setNumber)
         {
             switch(setNumber){
-                case '1': ImageSet1(); break;
+                case 1: ImageSet1(); break;
                 default: ImageSet2(); break;
             }
 
-            predatorOrigin = new Vector2(predatorTexture.Width*predatorScaling / 2, predatorTexture.Height*predatorScaling / 2);
+            predatorOrigin = (new Vector2(predatorTexture.Width*predatorScaling / 2, predatorTexture.Height*predatorScaling / 2));
             backgroundTextureScaling = ((float)viewPort.Height / (float)backgroundTexture.Height);
             xyAxisTextureScaling = ((float)viewPort.Height / (float)xyAxisTexture.Height);
             grayTextureScaling = ((float)viewPort.Height / (float)grayTexture.Height);
             screenWidth = Convert.ToInt32(backgroundTexture.Width * backgroundTextureScaling);
-            
+            screenHeight = Convert.ToInt32(backgroundTexture.Height * backgroundTextureScaling);
+            translation = 40 * xyAxisTextureScaling;
 
             //backgroundTextureScaling = ((float)viewPort.Width / viewPort.Height) / ((float)backgroundTexture.Width / backgroundTexture.Height);
             //xyAxisTextureScaling = ((float)viewPort.Width / viewPort.Height) / ((float)xyAxisTexture.Width / xyAxisTexture.Height);
@@ -268,81 +299,21 @@ namespace Mechanect.Screens
         {
 
         }
-
-
-
-        private Boolean isPreyEaten()
-        {
-            Boolean isHit = false;
-            Vector2 position = env.Predator.getLocation();
-            Prey prey = env.Prey;
-            if (position.X >= prey.Location.X - prey.Width / 2
-                && position.X <= prey.Location.X + prey.Width / 2
-                && position.Y >= prey.Location.Y - prey.Length / 2
-                && position.Y <= prey.Location.Y + prey.Length / 2)
-                isHit = true;
-            return isHit;
-        }
-
-        private Boolean isAquariumReached()
-        {
-            Boolean isReached = false;
-            Vector2 position = env.Predator.getLocation();
-            Aquarium aquarium = env.Aquarium;
-            if (position.X >= aquarium.Location.X - aquarium.Width / 2
-                && position.X <= aquarium.Location.X + aquarium.Width / 2
-                && position.Y >= aquarium.Location.Y - aquarium.Length / 2
-                && position.Y <= aquarium.Location.Y + aquarium.Length / 2)
-                isReached = true;
-            return isReached;
-        }
-
-
         /// <summary>
-        /// Runs at every frame, Updates game parameters and checks for user's actions
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed AbdelAzim </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 21  </para>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 22 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        Vector2 MapPointsToScreen(Vector2 position)
         {
+            return new Vector2(position.X+translation,screenHeight-(position.Y+translation));
+            
 
-            //camera.Update();
-
-            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-            {
-                if (env.Predator.Velocity == null)
-                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-                env.Predator.UpdatePosition(gameTime);
-                if (!preyEaten) preyEaten = isPreyEaten();
-                if (!aquariumReached) aquariumReached = isAquariumReached();
-                if (aquariumReached)
-                {
-                    env.Predator.Location = new Vector2(env.Aquarium.Location.X,env.Aquarium.Location.Y);
-                    env.Predator.Velocity = Vector2.Zero;
-                }
-            }
-
-            else if (button.clicked() || voiceCommand.getHeared("ok"))
-            {
-                grayScreen = false;
-                button = null;
-                voiceCommand = null;
-                user.MeasuredAngle = 0;
-                user.MeasuredVelocity = 0;
-            }
-
-            else
-            {
-                user.MeasureVelocityAndAngle();
-            }
-
-            base.Update(gameTime, covered);
         }
-
         /// <summary>
         /// This is to be called when the game should draw itself.
         /// Here all the GUI is drawn
@@ -356,14 +327,14 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);           
-            DrawEnvironment();            
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+            DrawEnvironment();
             if (grayScreen)
-            {              
-                DrawGrayScreen();              
-            }        
+            {
+                DrawGrayScreen();
+            }
             DrawAngVelLabels();
-            DrawConnectors();                    
+            DrawConnectors();
             // Only Used If 3D Models are Used.
 
             //foreach (CustomModel model in models)
@@ -374,7 +345,7 @@ namespace Mechanect.Screens
 
         }
         /// <summary>
-        /// This Method is to be called whenDrawing The X,Y axises Labels.
+        /// This Method is to be called whenDrawing The angle and velocity Labels.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
@@ -383,23 +354,21 @@ namespace Mechanect.Screens
         /// </remarks>
         private void DrawAngVelLabels()
         {
+            String velString = "Velocity = " + env.Velocity;
+            String angString = "Angle = " + env.Angle;
             spriteBatch.Begin();
+           
             if (grayScreen)
             {
-                String velString = "Velocity = " + env.Velocity;
-                String angString = "Angle = " + env.Angle;
-                spriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 4) + velocityTexture.Width * velocityTextureScaling / 2 - spriteFont.MeasureString(velString).X, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+                spriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 16) + velocityTexture.Width * velocityTextureScaling  - spriteFont.MeasureString(velString).X*3/5, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
                 spriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth * 2 / 9) + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
-            
             }
             else
             {
-                String velString = "Velocity = ";
-                String angString = "Angle = ";
                 spriteBatch.DrawString(velAngleFont, velString + env.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
                 spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
             }
-                spriteBatch.End();
+            spriteBatch.End();
         }
         /// <summary>
         /// This Method is to be called whenDrawing The basic environment elements.
@@ -416,8 +385,8 @@ namespace Mechanect.Screens
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, xyAxisTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, startAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
             //TBA >> degrees
-            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition2D, predatorScaling), null, Color.White, MathHelper.ToRadians(0), predatorOrigin, predatorScaling, SpriteEffects.None, 0f);
-            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition2D, predatorScaling), null, Color.White, MathHelper.ToRadians(0), Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
             string meters = "meters";
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 2, screenHeight - spriteFont.MeasureString(meters).Y / 2), Color.Red);
@@ -466,15 +435,15 @@ namespace Mechanect.Screens
         private void DrawGrayScreen()
         {
             spriteBatch.Begin();
-            
-            
+
+
             spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, grayTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(velocityTexture, new Vector2(screenWidth / 16, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(angleTexture, new Vector2(screenWidth - screenWidth * 2 / 9, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
             string testString = "Test angle and Velocity";
             spriteBatch.DrawString(spriteFont, testString, new Vector2((screenWidth / 4), 0), Color.Red);
             string sayString = "Say 'GO' or press OK";
-            spriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 4), screenHeight - 2*spriteFont.MeasureString(sayString).Y), Color.Red);
+            spriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 4), screenHeight - 2 * spriteFont.MeasureString(sayString).Y), Color.Red);
             spriteBatch.End();
         }
 
@@ -518,11 +487,11 @@ namespace Mechanect.Screens
         /// <param name="position">The position of the center of the texture</param>
         /// <param name="scale">Takes the scaling of the Texture2D</param>
         /// <returns>A Vector2 that will be used as a position for drawing</returns>
-        Vector2 DrawAtRectangleMidPoint(Texture2D texture,Vector2 position, float scale)
+        Vector2 DrawAtRectangleMidPoint(Texture2D texture, Vector2 position, float scale)
         {
 
             return new Vector2(position.X - (texture.Width * scale / 2), position.Y - (texture.Height * scale / 2));
-        
+
         }
 
         /// <summary>
@@ -544,9 +513,9 @@ namespace Mechanect.Screens
         {
             position = DrawAtRectangleMidPoint(texture, position, scale);
             if (y)
-               return  new Vector2(3, position.Y + texture.Height * scale / 2 - spriteFont.MeasureString(position.Y + "").X / 4);
+                return new Vector2(3, position.Y + texture.Height * scale / 2 - spriteFont.MeasureString(position.Y + "").X / 4);
             else
-               return  new Vector2(position.X + texture.Width * scale / 2 - spriteFont.MeasureString(position.X + "").Y / 4, screenHeight - 40);
+                return new Vector2(position.X + texture.Width * scale / 2 - spriteFont.MeasureString(position.X + "").Y / 4, screenHeight - 40);
         }
         /// <summary>
         /// Enables you to draw the X or Y Axis Connector with the object texture sent;.
@@ -569,6 +538,80 @@ namespace Mechanect.Screens
             return new Vector2(position.X + texture.Width * scale / 2, position.Y + texture.Height * scale / 2);
         }
 
+
+        private Boolean isPreyEaten()
+        {
+            Boolean isHit = false;
+            Vector2 position = env.Predator.getLocation();
+            Prey prey = env.Prey;
+            if (position.X >= prey.Location.X - prey.Width / 2
+                && position.X <= prey.Location.X + prey.Width / 2
+                && position.Y >= prey.Location.Y - prey.Length / 2
+                && position.Y <= prey.Location.Y + prey.Length / 2)
+                isHit = true;
+            return isHit;
+        }
+
+        private Boolean isAquariumReached()
+        {
+            Boolean isReached = false;
+            Vector2 position = env.Predator.getLocation();
+            Aquarium aquarium = env.Aquarium;
+            if (position.X >= aquarium.Location.X - aquarium.Width / 2
+                && position.X <= aquarium.Location.X + aquarium.Width / 2
+                && position.Y >= aquarium.Location.Y - aquarium.Length / 2
+                && position.Y <= aquarium.Location.Y + aquarium.Length / 2)
+                isReached = true;
+            return isReached;
+        }
+
+
+        /// <summary>
+        /// Runs at every frame, Updates game parameters and checks for user's actions
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 21  </para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        { //camera.Update();
+//TBC
+           
+
+            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+            {
+                if (env.Predator.Velocity == null)
+                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                env.Predator.UpdatePosition(gameTime);
+                if (!preyEaten) preyEaten = isPreyEaten();
+                if (!aquariumReached) aquariumReached = isAquariumReached();
+                if (aquariumReached)
+                {
+                    env.Predator.Location = new Vector2(env.Aquarium.Location.X,env.Aquarium.Location.Y);
+                    env.Predator.Velocity = Vector2.Zero;
+                }
+            }
+
+            else if (/*button.clicked() ||*/ voiceCommand.getHeared("ok"))
+            {
+                grayScreen = false;
+                button = null;
+                voiceCommand = null;
+                user.MeasuredAngle = 0;
+                user.MeasuredVelocity = 0;
+            }
+
+            else
+            {
+                user.MeasureVelocityAndAngle();
+            }
+
+            base.Update(gameTime, covered);
+        }
+
+        
         public override void Remove()
         {
             base.Remove();
