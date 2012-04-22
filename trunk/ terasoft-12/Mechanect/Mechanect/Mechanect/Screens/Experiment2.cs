@@ -44,6 +44,7 @@ namespace Mechanect.Screens
         private Texture2D grayTexture;
         private Texture2D velocityTexture;
         private Texture2D angleTexture;
+        private Texture2D predatorTexture;
         Texture2D lineConnector;
 
         //list of models to be drawn
@@ -58,11 +59,12 @@ namespace Mechanect.Screens
         private int screenHeight;
         private Vector2 velGauge;
         private Vector2 angGauge;
-        private Vector3 predetorPosition = new Vector3(50,50,0);
-        private Vector2 preyPosition = new Vector2(500f, 200f);
-        private Vector2 startAquariumPosition = new Vector2(40f, 430f);
-        private Vector2 destinationAquariumPosition = new Vector2(750f, 400f);
 
+        private Vector2 predatorPosition2D = new Vector2(140f, 630f);
+        private Vector2 preyPosition = new Vector2(500f, 200f);
+        private Vector2 startAquariumPosition = new Vector2(140f, 630f);
+        private Vector2 destinationAquariumPosition = new Vector2(870f, 630f);
+        private Vector3 predatorPosition = new Vector3(50, 50, 0);
         float backgroundTextureScaling;
         float xyAxisTextureScaling;
         float preyTextureScaling;
@@ -70,6 +72,7 @@ namespace Mechanect.Screens
         float grayTextureScaling;
         float velocityTextureScaling;
         float angleTextureScaling;
+        float predatorScaling;
         float fishModelScaling;
 
         VoiceCommands voiceCommand;
@@ -134,6 +137,7 @@ namespace Mechanect.Screens
         {
             backgroundTexture = content.Load<Texture2D>("Textures/background");
             xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
+            predatorTexture = content.Load<Texture2D>("Textures/fish");
             preyTexture = content.Load<Texture2D>("Textures/worm");
             bowlTexture = content.Load<Texture2D>("Textures/bowl2");
             grayTexture = content.Load<Texture2D>("Textures/GrayScreen");
@@ -157,11 +161,11 @@ namespace Mechanect.Screens
         private void LoadModels()
         {
             //add model to array of models
-            fishModelScaling = 0.007f;
-            models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(fishModelScaling), ScreenManager.GraphicsDevice));
+            //fishModelScaling = 0.007f;
+            //models.Add(new CustomModel(content.Load<Model>("Models/fish"), new Vector3(-500, -500, -1050), new Vector3(MathHelper.ToRadians(-35), MathHelper.ToRadians(0), 0), new Vector3(fishModelScaling), ScreenManager.GraphicsDevice));
 
-            //create still camera
-            camera = new TargetCamera(new Vector3(-3000, 0, 0), new Vector3(0, 0, 0), ScreenManager.GraphicsDevice);
+            ////create still camera
+            //camera = new TargetCamera(new Vector3(-3000, 0, 0), new Vector3(0, 0, 0), ScreenManager.GraphicsDevice);
 
         }
 
@@ -221,7 +225,7 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
 
-            camera.Update();
+            //camera.Update();
 
             if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
             {
@@ -247,7 +251,7 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
 
@@ -259,17 +263,19 @@ namespace Mechanect.Screens
              preyTextureScaling =0.1f;
              bowlTextureScaling =1 ;
              grayTextureScaling =1 ;
-             
+             predatorScaling = 0.2f;
             spriteBatch.Begin();
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
-            spriteBatch.Draw(bowlTexture, startAquariumPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture,startAquariumPosition,bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture,predatorPosition2D,predatorScaling), null, Color.White, 0f, Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
+            spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             string meters = "meters";
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 2, screenHeight - spriteFont.MeasureString(meters).Y / 2), Color.Red);
 
             if (!preyEaten)
-                spriteBatch.Draw(preyTexture, preyPosition, null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
+                spriteBatch.Draw(preyTexture, DrawAtRectangleMidPoint(preyTexture,preyPosition,preyTextureScaling), null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
             if (grayScreen)
             {
                 spriteBatch.End();
@@ -285,22 +291,23 @@ namespace Mechanect.Screens
                 spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
 
             }
-            spriteBatch.Draw(bowlTexture, destinationAquariumPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(30, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2));
-            spriteBatch.DrawString(velAngleFont, startAquariumPosition.X + "", new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.X+"").X/4, screenHeight - 30), Color.Red);
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, screenHeight - 30));
-            spriteBatch.DrawString(velAngleFont, startAquariumPosition.Y + "", new Vector2(5,startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.Y + "").X / 4), Color.Red);
-            
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2), new Vector2(30, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2));
-            spriteBatch.DrawString(velAngleFont, preyPosition.X + "", new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.X + "").X / 4, screenHeight - 30), Color.Red);
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2), new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2, screenHeight - 30));
-            spriteBatch.DrawString(velAngleFont, preyPosition.Y + "", new Vector2(5,preyPosition.Y + preyTexture.Height * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.Y + "").X / 4), Color.Red);
-            
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(30, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2));
-            spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.X + "", new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.X + "").X / 4, screenHeight - 30), Color.Red);
-            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2), new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2, screenHeight - 30));
-            spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.Y + "", new Vector2(5, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.Y + "").X / 4), Color.Red);
+
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling, false), new Vector2(30, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling, false).Y));
+            //spriteBatch.DrawString(velAngleFont, startAquariumPosition.X + "", new Vector2(startAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.X + "").X / 4, screenHeight - 30), Color.Red);
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling, false), new Vector2(DrawAxisConnector(bowlTexture, startAquariumPosition, bowlTextureScaling, false).X, screenHeight - 30));
+            //spriteBatch.DrawString(velAngleFont, startAquariumPosition.Y + "", new Vector2(5, startAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(startAquariumPosition.Y + "").X / 4), Color.Red);
+
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(preyTexture, preyPosition, preyTextureScaling, false), new Vector2(30, DrawAxisConnector(preyTexture, preyPosition, preyTextureScaling, false).Y));
+            spriteBatch.DrawString(velAngleFont, preyPosition.Y + "", new Vector2(5, preyPosition.Y + preyTexture.Height * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.Y + "").X / 4), Color.Red);
+
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(preyTexture, preyPosition, preyTextureScaling, false), new Vector2(DrawAxisConnector(preyTexture, preyPosition, preyTextureScaling, false).X, screenHeight - 30));
+            //spriteBatch.DrawString(velAngleFont, preyPosition.X + "", new Vector2(preyPosition.X + preyTexture.Width * preyTextureScaling / 2 - spriteFont.MeasureString(preyPosition.X + "").X / 4, screenHeight - 30), Color.Red);
+
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling, false), new Vector2(30, DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling, false).Y));
+            //spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.X + "", new Vector2(destinationAquariumPosition.X + bowlTexture.Width * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.X + "").X / 4, screenHeight - 30), Color.Red);
+            DrawLine(spriteBatch, lineConnector, 2f, Color.LightGray, DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling, false), new Vector2(DrawAxisConnector(bowlTexture, destinationAquariumPosition, bowlTextureScaling, false).X, screenHeight - 30));
+            //spriteBatch.DrawString(velAngleFont, destinationAquariumPosition.Y + "", new Vector2(5, destinationAquariumPosition.Y + bowlTexture.Height * bowlTextureScaling / 2 - spriteFont.MeasureString(destinationAquariumPosition.Y + "").X / 4), Color.Red);
             
             spriteBatch.End();
 
@@ -313,7 +320,15 @@ namespace Mechanect.Screens
             }
 
         }
-
+        /// <summary>
+        /// This method will draw a gray Screen 
+        /// That is the screen to be displayed when the user will be testing the velocity and angle
+        /// </summary>
+        ///  <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 21 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
         private void DrawGrayScreen()
         {
             velocityTextureScaling = 0.5f;
@@ -361,6 +376,65 @@ namespace Mechanect.Screens
                        SpriteEffects.None, 0);
         }
 
+        /// <summary>
+        /// Enables you to draw the Texture2D by specifiying the position vector of it's center
+        /// N.B: This Method doesn't draw, it just returns a position Vector2 that will be used in drawing.
+        /// </summary>
+        ///  <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 21 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        /// <param name="texture">Texture that needs to be drawn with the position at it's center</param>
+        /// <param name="position">The position of the center of the texture</param>
+        /// <param name="scale">Takes the scaling of the Texture2D</param>
+        /// <returns>A Vector2 that will be used as a position for drawing</returns>
+        Vector2 DrawAtRectangleMidPoint(Texture2D texture,Vector2 position, float scale)
+        {
+
+            return new Vector2(position.X - (texture.Width * scale / 2), position.Y - (texture.Height * scale / 2));
+        
+        }
+
+        /// <summary>
+        /// Enables you to draw the X or Y AxisNumbers by specifiying the position vector of the number to be drawn
+        /// N.B: This Method doesn't draw, it just returns a position Vector2 that will be used in drawing.
+        /// </summary>
+        ///  <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 21 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        /// <param name="texture">Texture that needs to be drawn with the position at it's center</param>
+        /// <param name="position">The position of the center of the texture</param>
+        /// <param name="scale">Takes the scaling of the Texture2D</param>
+        /// <param name="x">Gives a check to know if the axis used is x or y axis</param>
+        /// <returns>A Vector2 that will be used as a position for drawing</returns>
+        /// 
+        Vector2 DrawAtAxisNaming(Texture2D texture, Vector2 position, float scale, Boolean x)
+        {
+            return new Vector2(position.X - (texture.Width * scale / 2), position.Y - (texture.Height * scale / 2));
+        }
+        /// <summary>
+        /// Enables you to draw the X or Y Axis Connector with the object texture sent;.
+        /// N.B: This Method doesn't draw, it just returns a position Vector2 that will be used in drawing.
+        /// </summary>
+        ///  <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 21 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        /// <param name="texture">Texture that needs to be drawn with the position at it's center</param>
+        /// <param name="position">The position of the center of the texture</param>
+        /// <param name="scale">Takes the scaling of the Texture2D</param>
+        /// <param name="x">Gives a check to know if the axis used is x or y axis</param>
+        /// <returns>A Vector2 that will be used as a position for drawing</returns>
+        /// 
+        Vector2 DrawAxisConnector(Texture2D texture, Vector2 position, float scale, Boolean x)
+        {
+            position = DrawAtRectangleMidPoint(texture, position, scale);
+            return new Vector2(position.X + texture.Width * scale / 2, position.Y + texture.Height * scale / 2);
+        }
 
         public override void Remove()
         {
