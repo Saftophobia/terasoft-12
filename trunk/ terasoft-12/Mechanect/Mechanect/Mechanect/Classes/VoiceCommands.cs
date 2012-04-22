@@ -30,10 +30,10 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <param name="Kinect"></param>
    
-        public VoiceCommands(KinectSensor Kinect)
+        public VoiceCommands(KinectSensor Kinect,String Command)
         {
             this.Kinect = Kinect;
-            InitalizeKinectAudio();
+            InitalizeKinectAudio(Command);
 
         }
 
@@ -48,9 +48,9 @@ namespace Mechanect.Classes
         /// </remarks>
 
         
-        private void InitalizeKinectAudio()
+        private void InitalizeKinectAudio(String Command)
         {
-              
+            String [] ArrayOfCommand = Command.Split(',');
             KinectAudio = Kinect.AudioSource;
 
             RecognizerInfo ri = GetKinectRecognizer();
@@ -58,9 +58,10 @@ namespace Mechanect.Classes
             sre = new SpeechRecognitionEngine(ri.Id);
 
             var choices = new Choices();
-           
-            choices.Add("ready");
-            choices.Add("go");
+           for (int i = 0; i < ArrayOfCommand.Length; i++)
+            {
+                choices.Add(ArrayOfCommand[i]);
+            }
             
 
             GrammarBuilder gb = new GrammarBuilder();
