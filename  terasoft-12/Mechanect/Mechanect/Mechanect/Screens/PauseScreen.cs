@@ -1,4 +1,4 @@
-﻿using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,7 +50,7 @@ namespace Mechanect.Screens
             this.user = user;
             this.kinect = kinect;
            
-            voiceCommands = new VoiceCommands(kinect._KinectDevice);
+            voiceCommands = new VoiceCommands(kinect._KinectDevice,"ready,go");
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
 
