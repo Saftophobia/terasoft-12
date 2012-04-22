@@ -66,12 +66,17 @@ namespace Mechanect.Classes
             mass = generateBallMass(minMass,maxMass);
         }
 
+       ///<remarks>
+       ///<para>
+       ///Author: Cena
+       ///</para> 
+       /// </remarks>
         /// <summary>
-        /// generates a random mass for the ball within a certain range
+        /// generates a random mass for the ball within a certain given range
         /// </summary>
         /// <param name="min">minimum mass of the ball</param>
         /// <param name="max">maximum mass of the ball</param>
-        /// <returns></returns>
+        /// <returns> returns the generated mass</returns>
         public float generateBallMass(float min, float max)
         {
             Random random = new Random();
