@@ -66,7 +66,7 @@ namespace Mechanect.Classes
         public double calulateAngle()
         {
 
-            counter += 1;
+            counter += 1 ;
             if (counter % 3 == 0)
             {
                 counter = 0;
