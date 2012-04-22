@@ -190,8 +190,13 @@ namespace Mechanect.Classes
         }
 
         #region Environment Generation Code
-        
-        /*protected void InitializeEnvironment()
+
+        /*
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Inizializes the Environment
+        /// </summary>
+        protected void InitializeEnvironment()
         {
             device = graphics.GraphicsDevice;
             graphics.PreferredBackBufferWidth = 1000;
@@ -201,6 +206,10 @@ namespace Mechanect.Classes
             Window.Title = "Environment";
         }
 
+         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Loads the content of the environment. Similar to the LoadConent() method of XNA
+        /// </summary>
         protected void LoadEnvironmentContent()
         {
             effect = Content.Load<Effect>("effects");
@@ -222,7 +231,11 @@ namespace Mechanect.Classes
             CopyToBuffers();
         }
 
-
+         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Updates the environment. Similar to the Update() method of XNA, and to be called in it.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected void UpdateEnvironment(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
@@ -234,6 +247,12 @@ namespace Mechanect.Classes
             ProcessInput(timeDifference);
         }
 
+        
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+       /// <summary>
+       /// Draws the environment. Similar to the Draw() method of XNA
+       /// </summary>
+       ///<param name="gameTime">Provides a snapshot of timing values.</param>
         protected void DrawEnvironment(GameTime gameTime)
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
@@ -264,6 +283,10 @@ namespace Mechanect.Classes
             }
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Creates the vertices for the triangles used to generate the terrain, and sets their height and color according to the height map.
+        /// </summary>
         private void SetUpVertices()
         {
             float minHeight = float.MaxValue;
@@ -298,6 +321,13 @@ namespace Mechanect.Classes
             }
         }
 
+        
+        
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Creates the indices of the triangles used to generate the terrain. 
+        /// This data is used to connect the vertices previously created to make them into triangles.
+        /// </summary>
         private void SetUpIndices()
         {
             indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
@@ -322,6 +352,12 @@ namespace Mechanect.Classes
             }
         }
 
+        
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap
+        /// </summary>
+        /// <param name="heightMap">The grayscale picture that will be used to define the heightmap</param>
         private void LoadHeightData(Texture2D heightMap)
         {
             terrainWidth = heightMap.Width;
@@ -336,6 +372,12 @@ namespace Mechanect.Classes
                     heightData[x, y] = heightMapColors[x + y * terrainWidth].R / 5.0f;
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Copies the vertices and indeces to GPU buffers. 
+        /// This allow the data to be called from the GPU's memory directly without having to send it to the GPU everytime the Draw() method is called.
+        /// This should increase performance as the GPU memory is generally faster.
+        /// </summary>
         private void CopyToBuffers()
         {
             myVertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
@@ -344,6 +386,10 @@ namespace Mechanect.Classes
             myIndexBuffer.SetData(indices);
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Contains the position, color and normal of the vertices
+        /// </summary>
         public struct VertexPositionColorNormal
         {
             public Vector3 Position;
@@ -358,6 +404,11 @@ namespace Mechanect.Classes
             );
         }
 
+        
+         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Calculates the normal to the planes of the triangles and adds this info to the normal of vertices defined by VertexPositioColorNormal.
+        /// </summary>
         private void CalculateNormals()
         {
             for (int i = 0; i < vertices.Length; i++)
@@ -382,6 +433,11 @@ namespace Mechanect.Classes
                 vertices[i].Normal.Normalize();
         }
 
+         
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Updates the view matrix depending on the movement of the camera.
+        /// </summary> 
         private void UpdateViewMatrix()
         {
             Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
@@ -396,6 +452,12 @@ namespace Mechanect.Classes
             viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
         }
 
+        
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Processes the movement of the mouse, and the keys pressed on the keyboard.
+        /// </summary>
+        /// <param name="amount"></param>
         private void ProcessInput(float amount)
         {
             MouseState currentMouseState = Mouse.GetState();
@@ -425,6 +487,12 @@ namespace Mechanect.Classes
             AddToCameraPosition(moveVector * amount);
         }
 
+         
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Creates a matrix to be able to rotate the camera, and updates the view matrix correspondingly.
+        /// </summary>
+        /// <param name="vectorToAdd"></param>
         private void AddToCameraPosition(Vector3 vectorToAdd)
         {
             Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
@@ -433,6 +501,13 @@ namespace Mechanect.Classes
             UpdateViewMatrix();
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Loads a model and adds a texture to it.
+        /// </summary>
+        /// <param name="assetName">The name of the model to be loaded</param>
+        /// <param name="textures">The name of the texture to be mapped on the model</param>
+        /// <returns>Returns the model after adding the texture effect</returns>
         private Model LoadModel(string assetName, out Texture2D[] textures)
         {
 
@@ -450,6 +525,10 @@ namespace Mechanect.Classes
             return newModel;
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Creates, draws and adds effects to the skybox to display the sky all in all directions with a constant distance from the camera.
+        /// </summary>
         private void DrawSkybox()
         {
             SamplerState ss = new SamplerState();
@@ -483,6 +562,10 @@ namespace Mechanect.Classes
             device.DepthStencilState = dss;
         }
 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <summary>
+        /// Sets up the view matrix and projection matrix defining the camera.
+        /// </summary>
         private void SetUpCamera()
         {
             viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
