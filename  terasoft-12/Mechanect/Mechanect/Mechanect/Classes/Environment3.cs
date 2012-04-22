@@ -15,7 +15,7 @@ namespace Mechanect.Classes
     {
         private Hole hole;
         private Ball ball;
-        private User user;
+        private User3 user;
         private float wind;
         private float friction;
         private bool hasCollidedWithBall, ballShot;
@@ -48,7 +48,7 @@ namespace Mechanect.Classes
         Texture2D[] skyboxTextures;
         Model skyboxModel;*/
 
-        public Environment3(Microsoft.Xna.Framework.Game game, User user, float minBallMass, float maxBallMass) : base(game)
+        public Environment3(Microsoft.Xna.Framework.Game game, User3 user, float minBallMass, float maxBallMass) : base(game)
         {
 
             this.user = user;

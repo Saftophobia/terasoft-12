@@ -1,17 +1,10 @@
 Content\Models\fish.xnb
 Content\Models\ball.xnb
 Content\Models\Arrow.xnb
-Content\Textures\background.xnb
-Content\Textures\bowl2.xnb
-Content\Textures\worm.xnb
-Content\Textures\xyAxis.xnb
 Content\Textures\screen.xnb
 Content\Textures\Vfill.xnb
 Content\Textures\VBar.xnb
 Content\Textures\arrow.xnb
-Content\Textures\VelocityGauge.xnb
-Content\Textures\AngleGauge.xnb
-Content\Textures\GrayScreen.xnb
 Content\Textures\Buttons\hand.xnb
 Content\Textures\Slider\bar.xnb
 Content\Textures\Slider\off.xnb
@@ -20,6 +13,7 @@ Content\Textures\WorL\looser.xnb
 Content\Textures\WorL\winner.xnb
 Content\Ariel.xnb
 Content\angleVelFont.xnb
+Content\SpriteFont1.xnb
 Content\Textures\Buttons\button-m.xnb
 Content\Textures\Buttons\button-s.xnb
 Content\TropicalFish12_0.xnb

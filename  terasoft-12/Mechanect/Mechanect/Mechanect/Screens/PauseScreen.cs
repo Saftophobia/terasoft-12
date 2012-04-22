@@ -36,7 +36,7 @@ namespace Mechanect.Screens
         float arrowAngle;
         float arrowScale;
     
-        User user;
+        User3 user;
         MKinect kinect;
         VoiceCommands voiceCommands;
 
@@ -45,7 +45,7 @@ namespace Mechanect.Screens
         String st;
         int framesToWait;
         double velocity;
-           public PauseScreen(User user,MKinect kinect)
+           public PauseScreen(User3 user,MKinect kinect)
         {
 
             this.user = user;

@@ -127,8 +127,8 @@ namespace Mechanect.Classes
          /// this method should be called on each update and it will do the check on both players to see if they followed the commands
          /// </summary>
          /// <param name="timeInSeconds">the second the game is in</param>
-         /// <param name="user1">the first user</param>
-         /// <param name="user2">the second user</param>
+         /// <param name="User11">the first User1</param>
+         /// <param name="User12">the second User1</param>
          /// <param name="timeOfCommands">the time of each command throughout the whole race</param>
          /// <param name="CurrentCommands">the list of commands that should be satisfied for the whole race</param>
          /// <param name="tolerance">the tolerance level</param>
@@ -139,38 +139,38 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 21/4/12 </para>
          /// </remarks>
-         public static void CheckEachSecond(int timeInSeconds, User user1, User user2, List<int> timeOfCommands, List<GameCommands> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
+         public static void CheckEachSecond(int timeInSeconds, User1 User11, User1 User12, List<int> timeOfCommands, List<GameCommands> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
          {
              int pastSecondsFor1 = 5;
-             for (int i = 0; i < user1.ActiveCommand; i++)
+             for (int i = 0; i < User11.ActiveCommand; i++)
                  pastSecondsFor1 += timeOfCommands[i];
 
              int pastSecondsFor2 = 5;
-             for (int i = 0; i < user1.ActiveCommand; i++)
+             for (int i = 0; i < User11.ActiveCommand; i++)
                  pastSecondsFor2 += timeOfCommands[i];
 
-             List<int> user1Displacement = new List<int>();//change this back to float
-             List<int> user2Displacement = new List<int>();//change this back to float
-             for (int i = (pastSecondsFor1 - 1) * 24; i < user1.Positions.Count; i++)
-                 user1Displacement.Add((int)user1.Positions[i]);//remove the type-cast
+             List<int> User11Displacement = new List<int>();//change this back to float
+             List<int> User12Displacement = new List<int>();//change this back to float
+             for (int i = (pastSecondsFor1 - 1) * 24; i < User11.Positions.Count; i++)
+                 User11Displacement.Add((int)User11.Positions[i]);//remove the type-cast
 
-             for (int i = (pastSecondsFor2 - 1) * 24; i < user2.Positions.Count; i++)
-                 user2Displacement.Add((int)user2.Positions[i]);//remove the type-cast
+             for (int i = (pastSecondsFor2 - 1) * 24; i < User12.Positions.Count; i++)
+                 User12Displacement.Add((int)User12.Positions[i]);//remove the type-cast
 
-             if (!CommandSatisfied(currentCommands[user1.ActiveCommand].Name, user1Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[User11.ActiveCommand].Name, User11Displacement, tolerance))
              {
-                 user1.Disqualified = true;
-                 user1.DisqualificationTime = timeInSeconds;
+                 User11.Disqualified = true;
+                 User11.DisqualificationTime = timeInSeconds;
                  spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "user 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
+                 spriteBatch.DrawString(spFont, "User1 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.End();
              }
-             if (!CommandSatisfied(currentCommands[user2.ActiveCommand].Name, user2Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[User12.ActiveCommand].Name, User12Displacement, tolerance))
              {
-                 user2.Disqualified = true;
-                 user2.DisqualificationTime = timeInSeconds;
+                 User12.Disqualified = true;
+                 User12.DisqualificationTime = timeInSeconds;
                  spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "user 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
+                 spriteBatch.DrawString(spFont, "User1 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
              }
          }
@@ -178,8 +178,8 @@ namespace Mechanect.Classes
          /// <summary>
          /// this method should be called at the beginning of the race to set the players' position
          /// </summary>
-         /// <param name="user1">the first user</param>
-         /// <param name="user2">the second user</param>
+         /// <param name="User11">the first User1</param>
+         /// <param name="User12">the second User1</param>
          /// <param name="spriteBatch">the sprite batch to draw the string result</param>
          /// <param name="spFont">the font to draw the string with</param>
          /// <param name="tolerance">the tolerane level</param>
@@ -188,41 +188,41 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 20/4/12 </para>
          /// </remarks>
-         public static void SetPositions(User user1, User user2, SpriteBatch spriteBatch, SpriteFont spFont, float tolerance)
+         public static void SetPositions(User1 User1, User1 User2, SpriteBatch spriteBatch, SpriteFont spFont, float tolerance)
          {
-             Skeleton sk1 = user1.USER;
-             Skeleton sk2 = user2.USER;
+             Skeleton sk1 = User1.USER;
+             Skeleton sk2 = User1.USER;
 
                  float z;
                  float z2;
                  bool isThePositionRight;
                  bool isThePositionRight2;
-                 String user1State = "";
-                 String user2State = "";
+                 String User11State = "";
+                 String User12State = "";
                  if (sk1 != null)
                  {
                      z = (float)sk1.Position.Z;
                      isThePositionRight = CheckPosition(z, tolerance);
 
-                     user1State = "User 1: Your position is: " + z.ToString() + " this is " + isThePositionRight + ", it should be 4.0 m \n";
+                     User11State = "User1 1: Your position is: " + z.ToString() + " this is " + isThePositionRight + ", it should be 4.0 m \n";
                  }
                  if (sk2 != null)
                  {
                      z2 = (float)sk2.Position.Z;
                      isThePositionRight2 = CheckPosition(z2, tolerance);
 
-                     user2State = "User 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
+                     User12State = "User1 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
                  }
                  spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, user1State, new Vector2(50.0f, 50.0f), Color.Red);
-                 spriteBatch.DrawString(spFont, user2State, new Vector2(50.0f, 50.0f), Color.Blue);
+                 spriteBatch.DrawString(spFont, User11State, new Vector2(50.0f, 50.0f), Color.Red);
+                 spriteBatch.DrawString(spFont, User12State, new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
          }
 
          /// <summary>
-         /// this method checks whether the user is standing in about 4m or not(with certain tolerance)
+         /// this method checks whether the User1 is standing in about 4m or not(with certain tolerance)
          /// </summary>
-         /// <param name="userPosition">the position that the user is currently standing at</param>
+         /// <param name="User1Position">the position that the User1 is currently standing at</param>
          /// <param name="tolerance">the tolerance level</param>
          /// <returns>if the position sent is in the range or not</returns>
          /// <remarks>
@@ -230,13 +230,13 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 20/4/12 </para>
          /// </remarks>
-         public static bool CheckPosition(float userPosition, float tolerance)
+         public static bool CheckPosition(float User1Position, float tolerance)
          {
              //initiate the minimum distance from the Kinect which means
              //the maximum distance between the two players which is actually the tolerance on a scale from 0-10 mm
              float min = 4.0f - (tolerance / 1000);
              //check if the actual position of the player is within the range or not
-             if (userPosition >= min && userPosition <= 4.0f)
+             if (User1Position >= min && User1Position <= 4.0f)
                  //if it is within the range then it will be true
                  return true;
              //if it is out of this range and/or the kinect range it will be false
@@ -244,10 +244,10 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// this method checks whether the user satisfied the commands or not
+         /// this method checks whether the User1 satisfied the commands or not
          /// </summary>
          /// <param name="command">which is the name of the command that should be satisfied</param>
-         /// <param name="positions">a list containing the positions of the user</param>
+         /// <param name="positions">a list containing the positions of the User1</param>
          /// <param name="tolerance">the tolerance level</param>
          /// <returns>if the command sent is satified then "true" else "false"</returns>
          /// <remarks>
