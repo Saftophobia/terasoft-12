@@ -40,3 +40,10 @@ C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAni
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.dll
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.pdb
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb
