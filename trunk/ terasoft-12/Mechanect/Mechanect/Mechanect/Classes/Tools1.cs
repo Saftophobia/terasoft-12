@@ -126,6 +126,14 @@ namespace Mechanect.Classes
          /// <summary>
          /// this method should be called on each update and it will do the check on both players to see if they followed the commands
          /// </summary>
+         /// <param name="timeInSeconds">the second the game is in</param>
+         /// <param name="user1">the first user</param>
+         /// <param name="user2">the second user</param>
+         /// <param name="timeOfCommands">the time of each command throughout the whole race</param>
+         /// <param name="CurrentCommands">the list of commands that should be satisfied for the whole race</param>
+         /// <param name="tolerance">the tolerance level</param>
+         /// <param name="spriteBatch">the sprite batch to draw the string of state in</param>
+         /// <param name="spFont">the font to draw the string of state with</param>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
@@ -170,6 +178,11 @@ namespace Mechanect.Classes
          /// <summary>
          /// this method should be called at the beginning of the race to set the players' position
          /// </summary>
+         /// <param name="user1">the first user</param>
+         /// <param name="user2">the second user</param>
+         /// <param name="spriteBatch">the sprite batch to draw the string result</param>
+         /// <param name="spFont">the font to draw the string with</param>
+         /// <param name="tolerance">the tolerane level</param>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
@@ -210,6 +223,7 @@ namespace Mechanect.Classes
          /// this method checks whether the user is standing in about 4m or not(with certain tolerance)
          /// </summary>
          /// <param name="userPosition">the position that the user is currently standing at</param>
+         /// <param name="tolerance">the tolerance level</param>
          /// <returns>if the position sent is in the range or not</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
@@ -234,6 +248,7 @@ namespace Mechanect.Classes
          /// </summary>
          /// <param name="command">which is the name of the command that should be satisfied</param>
          /// <param name="positions">a list containing the positions of the user</param>
+         /// <param name="tolerance">the tolerance level</param>
          /// <returns>if the command sent is satified then "true" else "false"</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
