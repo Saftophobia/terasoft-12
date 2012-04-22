@@ -101,6 +101,20 @@ namespace Mechanect.Common
         /// <summary>
         /// The screen manager that controls the screen.
         /// </summary>
+        /// <summary>
+        /// Updates the Screen
+        /// </summary>
+        /// <example>This sample shows how use Update method in a class extending GameScreen if you want to have your screen
+        /// not covered by another screen
+        /// <code>
+        /// public override void Update(GameTime gameTime, bool covered)
+        /// {
+        ///     base.Update(gameTime, false);
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="gameTime"></param>
+        /// <param name="covered"></param>
         public ScreenManager ScreenManager
         {
             get { return screenManager; }
@@ -152,7 +166,7 @@ namespace Mechanect.Common
         #endregion
 
         #region Update and Draw
-        public virtual void Initialize() { }
+        public virtual void Initialize() { } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
             if (IsExiting)
@@ -225,6 +239,11 @@ namespace Mechanect.Common
             if (transitionOffTime == TimeSpan.Zero)
                 this.Remove();
         }
+
+        /// <summary>
+        /// Should be called when the screen should be frozen, note that this method does not automatically freeze the screen.
+        /// It only changes the ScreenState to Frozen, which should be checked as a condition later.
+        /// </summary>
         public void FreezeScreen()
         {
             //Screen will be drawn but not updated
