@@ -265,8 +265,9 @@ namespace Mechanect.Screens
              bowlTextureScaling =1 ;
              grayTextureScaling =1 ;
              predatorScaling = 0.2f;
-             DrawConnectors();
+             
             DrawEnvironment();
+            
             if (grayScreen)
             {
                 
@@ -282,6 +283,7 @@ namespace Mechanect.Screens
                 spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
                 spriteBatch.End();
             }
+            DrawConnectors();
 
             
            
@@ -362,7 +364,7 @@ namespace Mechanect.Screens
             spriteBatch.Begin();
             velocityTextureScaling = 0.5f;
             angleTextureScaling = 0.85f;
-            spriteBatch.Begin();
+            
             spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
             spriteBatch.Draw(velocityTexture, new Vector2(screenWidth / 16, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(angleTexture, new Vector2(screenWidth - screenWidth * 2 / 9, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
