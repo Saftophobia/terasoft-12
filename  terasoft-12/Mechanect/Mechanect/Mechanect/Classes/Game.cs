@@ -57,47 +57,40 @@ namespace Mechanect.Classes
         /// <para>DATE WRITTEN: 19/4/12 </para>
         /// <para>DATE MODIFIED: 21/4/12 </para>
         /// </remarks>
-        public void CheckEachSecond()
+        public void CheckEachSecond(int timeInSeconds, User user1, User user2, List<int> timeOfCommands, List<GameCommands> currentCommands, float tolerance, SpriteBatch spriteBatch)
         {
-            int second = timer % 60;
-            int timeInSeconds = timer / 60;
-            if (second == 0)
+            int pastSecondsFor1 = 5;
+            for (int i = 0; i < user1.ActiveCommand; i++)
+                pastSecondsFor1 += timeOfCommands[i];
+
+            int pastSecondsFor2 = 5;
+            for (int i = 0; i < user1.ActiveCommand; i++)
+                pastSecondsFor2 += timeOfCommands[i];
+
+            List<int> user1Displacement = new List<int>();//change this back to float
+            List<int> user2Displacement = new List<int>();//change this back to float
+            for (int i = (pastSecondsFor1 - 1) * 24; i < user1.Positions.Count; i++)
+                user1Displacement.Add((int) user1.Positions[i]);//remove the type-cast
+
+            for (int i = (pastSecondsFor2 - 1) * 24; i < user2.Positions.Count; i++)
+                user2Displacement.Add((int) user2.Positions[i]);//remove the type-cast
+
+            if (!CommandSatisfied(currentCommands[user1.ActiveCommand].Name, user1Displacement, tolerance))
             {
-                int pastSecondsFor1 = 0;
-                for (int i = 0; i < user1.ActiveCommand; i++)
-                    pastSecondsFor1 += timeOfCommands[i];
-
-                int pastSecondsFor2 = 0;
-                for (int i = 0; i < user1.ActiveCommand; i++)
-                    pastSecondsFor2 += timeOfCommands[i];
-
-                List<int> user1Displacement = new List<int>();//change this back to float
-                List<int> user2Displacement = new List<int>();//change this back to float
-                for (int i = (pastSecondsFor1 - 1) * 30; i < user1.Positions.Count; i++)
-                    user1Displacement.Add((int) user1.Positions[i]);//remove the type-cast
-
-                for (int i = (pastSecondsFor2 - 1) * 30; i < user2.Positions.Count; i++)
-                    user2Displacement.Add((int) user2.Positions[i]);//remove the type-cast
-
-                if (!CommandSatisfied(currentCommands[user1.ActiveCommand].Name, user1Displacement))
-                {
-                    user1.Disqualified = true;
-                    user1.DisqualificationTime = timeInSeconds;
-                    spriteBatch.Begin();
-                    spriteBatch.DrawString(spFont, "user 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
-                    spriteBatch.End();
-                }
-                if (!CommandSatisfied(currentCommands[user2.ActiveCommand].Name, user2Displacement))
-                {
-                    user2.Disqualified = true;
-                    user2.DisqualificationTime = timeInSeconds;
-                    spriteBatch.Begin();
-                    spriteBatch.DrawString(spFont, "user 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
-                    spriteBatch.End();
-                }
+                user1.Disqualified = true;
+                user1.DisqualificationTime = timeInSeconds;
+                spriteBatch.Begin();
+                spriteBatch.DrawString(spFont, "user 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
+                spriteBatch.End();
             }
-
-            timer++;
+            if (!CommandSatisfied(currentCommands[user2.ActiveCommand].Name, user2Displacement, tolerance))
+            {
+                user2.Disqualified = true;
+                user2.DisqualificationTime = timeInSeconds;
+                spriteBatch.Begin();
+                spriteBatch.DrawString(spFont, "user 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
+                spriteBatch.End();
+            }
         }
 
         /// <summary>
@@ -108,7 +101,7 @@ namespace Mechanect.Classes
         /// <para>DATE WRITTEN: 19/4/12 </para>
         /// <para>DATE MODIFIED: 20/4/12 </para>
         /// </remarks>
-        public void SetPositions()
+        public void SetPositions(User user1, User user2, SpriteBatch spriteBatch)
         {
             Skeleton sk1 = user1.USER;
             Skeleton sk2 = user2.USER;
@@ -182,7 +175,7 @@ namespace Mechanect.Classes
         /// <para>DATE WRITTEN: 19/4/12 </para>
         /// <para>DATE MODIFIED: 21/4/12 </para>
         /// </remarks>
-        public bool CommandSatisfied(String command, List<int> positions)//change this back to float
+        public bool CommandSatisfied(String command, List<int> positions, float tolerance)//change this back to float
         {
             bool result = true;
             float currentTolerance = tolerance / 100;
@@ -255,7 +248,7 @@ namespace Mechanect.Classes
                     {
                         if (command.Equals("increasingAcceleration"))
                         {
-                            List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);//change this back to float
+                            List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));//change this back to float
                             float firstAcceleration = accelerations[1] - accelerations[0];
                             for (int i = 2; i < positions.Count; i++)
                             {
@@ -278,7 +271,7 @@ namespace Mechanect.Classes
                         {
                             if (command.Equals("decreasingAcceleration"))
                             {
-                                List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(positions);//change this back to float
+                                List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));//change this back to float
                                 float firstAcceleration = accelerations[1] - accelerations[0];
                                 for (int i = 2; i < positions.Count; i++)
                                 {
