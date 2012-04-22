@@ -371,7 +371,7 @@ namespace Mechanect.Classes
         /// <returns>returns the scales velocity</returns>
         public static float setVelocityRelativeToGivenMass(User user)
         {
-            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity * Constants3.velocityScale);
+            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity);
         }
 
 
