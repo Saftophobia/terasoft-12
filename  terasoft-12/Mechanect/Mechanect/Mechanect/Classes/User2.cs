@@ -10,19 +10,6 @@ namespace Mechanect.Classes
     class User2 : Mechanect.Classes.User
     {
 
-        private Skeleton skeleton;
-        public Skeleton Skeleton
-        {
-            get
-            {
-                return skeleton;
-            }
-            set
-            {
-                skeleton = value;
-            }
-        }
-
         private double measuredAngle;
         public double MeasuredAngle
         {

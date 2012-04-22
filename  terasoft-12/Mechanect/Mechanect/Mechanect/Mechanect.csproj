@@ -141,7 +141,9 @@
     <Compile Include="Classes\Tools2.cs" />
     <Compile Include="Classes\Tools3.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\User1.cs" />
     <Compile Include="Classes\User2.cs" />
+    <Compile Include="Classes\User3.cs" />
     <Compile Include="Classes\VoiceCommands.cs" />
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ChaseCamera.cs" />
