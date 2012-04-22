@@ -11,7 +11,7 @@ namespace Mechanect.Classes
     {
 
         Vector2 location;
-        Vector2 Location
+        public Vector2 Location
         {
             get
             {

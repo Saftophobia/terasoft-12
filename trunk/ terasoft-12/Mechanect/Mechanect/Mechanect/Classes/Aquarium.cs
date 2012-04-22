@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using Microsoft.Xna.Framework;
 
 namespace Mechanect.Classes
 {
     public class Aquarium
     {
     
-        Point location;
-        public Point Location
+        Vector2 location;
+        public Vector2 Location
         {
             get
             {
@@ -46,7 +47,7 @@ namespace Mechanect.Classes
             }
         }
 
-        public Aquarium(Point location, int width, int length)
+        public Aquarium(Vector2 location, int width, int length)
         {
             this.location = location;
             this.length = length;
@@ -59,7 +60,7 @@ namespace Mechanect.Classes
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
-        public Point getLocation()
+        public Vector2 getLocation()
         {
             return location;
         }

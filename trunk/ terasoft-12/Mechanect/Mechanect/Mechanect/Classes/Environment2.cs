@@ -166,9 +166,9 @@ namespace Mechanect
 
             setPredator(new Predator(new Vector2((float)xPredator, (float)yPredator)));
 
-            setPrey(new Prey(new System.Windows.Point(xPrey, yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
+            setPrey(new Prey(new Vector2((float)xPrey, (float)yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
 
-            setAquarium(new Aquarium(new System.Windows.Point(xAquarium, yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
+            setAquarium(new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
 
 
 
