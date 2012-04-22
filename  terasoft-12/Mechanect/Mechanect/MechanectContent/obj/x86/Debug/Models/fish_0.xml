@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>TropicalFish12</Name>
     <Identity>
-      <SourceFilename>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\MechanectContent\Models\fish.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\fish.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>
@@ -31,7 +31,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>12 - Default</Name>
       <Identity>
-        <SourceFilename>C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\MechanectContent\Models\fish.fbx</SourceFilename>
+        <SourceFilename>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\fish.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
