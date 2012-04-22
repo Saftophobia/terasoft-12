@@ -149,14 +149,7 @@ namespace Mechanect.Common
             return new Point(point.X, point.Y);
         }
 
-        public Point mapMetersToPixels(SkeletonPoint p, int sw, int sh)
-        {
-            DepthImagePoint point = this.KinectDevice.MapSkeletonPointToDepth(p,
-                DepthImageFormat.Resolution640x480Fps30);
-            point.X = (int)(point.X * (sw * 2) / this.KinectDevice.DepthStream.FrameWidth);
-            point.Y = (int)(point.Y * sh / this.KinectDevice.DepthStream.FrameHeight);
-            return new Point(point.X, point.Y);
-        }
+    
 
     }
 }

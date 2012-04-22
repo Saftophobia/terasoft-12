@@ -11,8 +11,19 @@ namespace Mechanect.Classes
     class Tools3
     {
         public static int frameNumber = 0;
-
-
+       
+        
+        
+        
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>>
+        /// <summary>
+        ///  Updates the velocity, angle variables of the user after each captured skeleton frame.
+        /// </summary>
+        /// <param name="user">takes instance of class User as input, to update their velocity and angle </param>
 
         public static void update_MeasuringVelocityAndAngle(User user)
         {
@@ -25,15 +36,15 @@ namespace Mechanect.Classes
                 {
                     if (frameNumber % 2 == 0) //30 fps kinect, 60fps XNA 
                     {
-                        storePosition(frameNumber % 2,user);
+                        storePosition(user);
                         if (frameNumber == 0)
                         {
-                            initalizePlayerPosition(skeleton,user);
+                            initalizePlayerPosition(user);
 
                         }
                         else
                         {
-                            setCurrentPosition(skeleton,user);
+                            setCurrentPosition(user);
 
                             if (hasPlayerMovedHisAnkle(skeleton,user))
                             {
@@ -57,8 +68,16 @@ namespace Mechanect.Classes
                 }
             }
         }
-
-
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        ///  resolves the user's velocity into 2 components VelocityX, VelocityZ
+        /// </summary>
+        /// <param name="user">takes instance of class User to resolve their velocity</param>
+        /// <returns>returns Vector2: holding the velocity components of the user</returns>
 
         public static Vector2 resolveUserVelocity(User user)
         {
@@ -69,22 +88,18 @@ namespace Mechanect.Classes
         }
 
 
-        public static Vector2 getPointsOnScreen(MKinect kinect, SkeletonPoint p, int screenWidth, int screenHeight)
-        {
-            Vector2 pointOnScreen;
-            Point point = kinect.mapMetersToPixels(p, screenWidth, screenHeight);
-            pointOnScreen.X = point.X;
-            pointOnScreen.Y = point.Y;
-            return pointOnScreen;
-        }
 
 
-
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
         /// <summary>
-        /// 
+        /// Checks if the user is currently moving their leg forward or not
         /// </summary>
-        /// <param name="skeleton"></param>
-        /// <returns></returns>
+        /// <param name="skeleton">takes instance of class User to check if they are moving their leg forward</param>
+        /// <returns>returns true iff the user moved his leg forward</returns>
 
         public static bool isMovingForward(Skeleton skeleton,User user)
         {
@@ -113,9 +128,16 @@ namespace Mechanect.Classes
             return false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+       /// <summary>
+       /// Calculates the new value of the velocity and sets it the variable velocity of the user to it
+      /// </summary>
+      /// <param name="user">takes and instance of the class User to calculate their new velocity</param>
 
         public static void updateSpeed(User user)
         {
@@ -138,11 +160,15 @@ namespace Mechanect.Classes
 
 
 
-
-        /// <summary>
-        /// updates the initial x and z positions
-        /// </summary>
-
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+       /// <summary>
+       /// updates the current and previous positions of the user's moving leg
+       /// </summary>
+       /// <param name="user">takes instance of the user to update their position</param>
         public static void updatePosition(User user)
         {
             if (user.RightLeg)
@@ -157,9 +183,15 @@ namespace Mechanect.Classes
             }
         }
 
-        /// <summary>
-        /// updates the angle that player is moving his leg with
-        /// </summary>
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+    /// <summary>
+    /// Calculates the value of new the angle that the user is moving their leg with and sets the variable angle to it
+    /// </summary>
+    /// <param name="user">takes instance of class user to calculate their angle </param>
 
         public static void updateAngle(User user)
         {
@@ -170,15 +202,17 @@ namespace Mechanect.Classes
         }
 
 
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
         /// <summary>
-        /// stores the last two x,z positions of either the left or the right leg to be used in measuring the angle,
-        /// the variables are stored alternativley in store1 and store2 depending on the value of i.
+        /// stores the position where the user started moving their leg and the final position where they stopped moving their leg forward
         /// </summary>
-        /// <param name="i">if i is 0 the x,z positions are stored in store1
-        /// if i is 1 the x,z positions are stored in store2
-        /// </param>
+      /// <param name="user">takes an instance of class user to store their position</param>
 
-        public static void storePosition(int i, User user)
+        public static void storePosition(User user)
         {
             
                 if (user.RightLeg)
@@ -205,43 +239,96 @@ namespace Mechanect.Classes
                     user.StoreZ2 = user.InitialLeftLegPositionZ;
                 }
             }
-         
-        
 
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// calculates the final velocity using Vf = Vi + a*t
+        /// </summary>
+        /// <param name="acceleration">acceleration of the body</param>
+        /// <param name="velocityInitial">initial veloctiy of the body</param>
+        /// <param name="totalTime">the total time the body moved</param>
+        /// <returns></returns>
 
         public static double getVelocity(double acceleration, double velocityInitial, double totalTime)
         {
             return velocityInitial + (acceleration * totalTime);
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// calculate the acceleration using S = Vi*t + 0.5*a*t^2
+        /// </summary>
+        /// <param name="totalDistance"></param>
+        /// <param name="totalTime"></param>
+        /// <param name="velocityInitial"></param>
+        /// <returns></returns>
+
         public static double getAcceleration(double totalDistance, double totalTime, double velocityInitial)
         {
             return (((totalDistance - (velocityInitial * totalTime)) * 2) / Math.Pow(totalTime, 2));
         }
 
-        public static void setCurrentPosition(Skeleton player, User user)
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// sets the current leg positions of the user from the detected skeleton
+        /// </summary>
+        /// <param name="user">takes instance of class user to store their current leg positions</param>
+
+        public static void setCurrentPosition(User user)
         {
-            user.CurrentLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
-            user.CurrentLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
-            user.CurrentRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
-            user.CurrentRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
+            user.CurrentLeftLegPositionX = user.USER.Joints[JointType.AnkleLeft].Position.X;
+            user.CurrentLeftLegPositionZ = user.USER.Joints[JointType.AnkleLeft].Position.Z;
+            user.CurrentRightLegPositionX = user.USER.Joints[JointType.AnkleRight].Position.X;
+            user.CurrentRightLegPositionZ = user.USER.Joints[JointType.AnkleRight].Position.Z;
         }
 
-        public static void initalizePlayerPosition(Skeleton player, User user)
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// stores the initial position of the user
+        /// </summary>
+        /// <param name="user">takes an instance of the class user to store their initial position</param>
+        public static void initalizePlayerPosition(User user)
         {
 
-            user.InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
-            user.InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
-            user.InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
-           user.InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
+            user.InitialLeftLegPositionZ = user.USER.Joints[JointType.AnkleLeft].Position.Z;
+            user.InitialLeftLegPositionX = user.USER.Joints[JointType.AnkleLeft].Position.X;
+            user.InitialRightLegPositionZ = user.USER.Joints[JointType.AnkleRight].Position.Z;
+           user.InitialRightLegPositionX = user.USER.Joints[JointType.AnkleRight].Position.X;
 
         }
 
 
-        public static bool hasPlayerMovedHisAnkle(Skeleton player, User user)
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// checks if the user moved their leg from the position they were standing initially
+        /// </summary>
+        /// <param name="user">takes a instance of user class to check if they moved their leg</param>
+        /// <returns>returns true iff the user moved their leg</returns>
+        public static bool hasPlayerMovedHisAnkle(User user)
         {
             int movementState = 0;  // 0 has not moved, 1 moved one leg, 2 moved both legs
-
+            Skeleton player = user.USER;
 
             if (Math.Abs(user.CurrentLeftLegPositionZ - user.InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
             {
@@ -273,18 +360,30 @@ namespace Mechanect.Classes
         }
 
 
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// sets the velocity of the leg's user relative to the assumed mass of the user's leg
+        /// </summary>
+        /// <param name="user">takes an instance of class user to set their velocity relative to the assumed mass of their leg</param>
         public static void setVelocityRelativeToGivenMass(User user)
         {
             user.Velocity = (float)(Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity;
         }
 
-        public static bool hasAnkleCollidedWithTheBall()
-        {
 
-            return false;
-        }
-
-
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// initializes all the variables that stores the user's movement inorder to try shooting again
+        /// </summary>
+        /// <param name="user">takes an instance of class user to initialze the variables that store that user's movement</param>
 
         public static void resetUserForShootingOrTryingAgain(User user)
         {
