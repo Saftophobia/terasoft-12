@@ -39,10 +39,11 @@ namespace Mechanect.Classes
         }
 
         
-        double Angle
+        public double Angle
         {
             get
             {
+                if (velocity.X == 0) return 0;
                 return Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
             }
         }
