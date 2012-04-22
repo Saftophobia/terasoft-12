@@ -15,6 +15,13 @@ namespace Mechanect.Common
     {
         ContentManager content;
         Vector2 position;
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// constructor takes ContentManager to be able to load the pics and the position
         /// </summary>
@@ -26,6 +33,11 @@ namespace Mechanect.Common
             position = p;
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// displaying the wining word on the screen
         /// </summary>
@@ -38,6 +50,11 @@ namespace Mechanect.Common
             spriteBatch.End();
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// displaying the losing word on the screen
         /// </summary>

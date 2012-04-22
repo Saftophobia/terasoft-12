@@ -68,3 +68,6 @@ C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x8
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.pdb
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

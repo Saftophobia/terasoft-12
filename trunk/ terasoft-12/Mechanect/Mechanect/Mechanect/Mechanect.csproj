@@ -152,7 +152,6 @@
     <Compile Include="Common\Button.cs" />
     <Compile Include="Common\CustomModel.cs" />
     <Compile Include="Common\GameScreen.cs" />
-    <Compile Include="Common\Kinect.cs" />
     <Compile Include="Common\MainMenuButton.cs" />
     <Compile Include="Common\MKinect.cs" />
     <Compile Include="Common\ModelFramedAnimation.cs" />

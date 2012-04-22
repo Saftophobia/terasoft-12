@@ -14,6 +14,12 @@ namespace Mechanect.Common
 {
     class MainMenuButton : Button
     {
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// calling the super constructor with requiered parameters
         /// </summary>
@@ -22,8 +28,8 @@ namespace Mechanect.Common
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         public MainMenuButton(ContentManager c, Vector2 p, int sw, int sh)
-            : base(c.Load<GifAnimation.GifAnimation>("Buttons/button-s"),
-            c.Load<GifAnimation.GifAnimation>("Buttons/button-m"), p, sw, sh,
+            : base(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-s"),
+            c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-m"), p, sw, sh,
             c.Load<Texture2D>("Buttons/hand")) { }
     }
 }
