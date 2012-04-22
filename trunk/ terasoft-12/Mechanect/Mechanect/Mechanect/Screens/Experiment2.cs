@@ -261,8 +261,8 @@ namespace Mechanect.Screens
              grayTextureScaling =1 ;
              
             spriteBatch.Begin();
-            spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
-            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
+            spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
             spriteBatch.Draw(bowlTexture, startAquariumPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             string meters = "meters";
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
@@ -320,7 +320,7 @@ namespace Mechanect.Screens
             angleTextureScaling = 0.85f;
             
             spriteBatch.Begin();
-            spriteBatch.Draw(grayTexture, Vector2.Zero, Color.White);
+            spriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, (viewPort.Width / viewPort.Height) / (grayTexture.Width / grayTexture.Height), SpriteEffects.None, 0f);
             spriteBatch.Draw(velocityTexture, new Vector2(screenWidth / 16, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(angleTexture, new Vector2(screenWidth - screenWidth * 2 / 9, screenHeight / 14), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
             string testString = "Test angle and Velocity";
