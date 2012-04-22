@@ -80,6 +80,9 @@ namespace Mechanect.Screens
         VoiceCommands voiceCommand;
         User2 user;
         Boolean aquariumReached;
+        MKinect mKinect;
+        Button button;
+        Vector2 buttonPosition;
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the content directory.
         /// </summary>
@@ -88,12 +91,13 @@ namespace Mechanect.Screens
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 20  </para>
         /// </remarks>
-        public Experiment2(User2 user)
+        public Experiment2(User2 user, MKinect mKinect)
         {
 
             env = new Environment2();
             //graphicsDevice = ScreenManager.GraphicsDevice;
             this.user = user;
+            this.mKinect = mKinect;
         }
 
 
@@ -122,6 +126,11 @@ namespace Mechanect.Screens
 
             spriteFont = content.Load<SpriteFont>("Ariel");
             velAngleFont = content.Load<SpriteFont>("angleVelFont");
+
+            // zayat you can edit the button place as you wish
+            buttonPosition = new Vector2(450,10);
+            button = new OKButton(content, buttonPosition, screenWidth, screenHeight);
+            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
         }
 
@@ -310,6 +319,20 @@ namespace Mechanect.Screens
                 env.Predator.UpdatePosition(gameTime);
                 if (!preyEaten) preyEaten = isPreyEaten();
                 if (!aquariumReached) aquariumReached = isAquariumReached();
+                if (aquariumReached)
+                {
+                    env.Predator.Location = new Vector2(env.Aquarium.Location.X,env.Aquarium.Location.Y);
+                    env.Predator.Velocity = Vector2.Zero;
+                }
+            }
+
+            else if (button.clicked() || voiceCommand.getHeared("ok"))
+            {
+                grayScreen = false;
+                button = null;
+                voiceCommand = null;
+                user.MeasuredAngle = 0;
+                user.MeasuredVelocity = 0;
             }
 
             else
