@@ -79,7 +79,7 @@ namespace Mechanect.Screens
             }
             else
             {
-                rule2 = "Turn to your left at an angle " + (-1 * avgAngle) + "degrees fwithrom the kinect sensor.";
+                rule2 = "Turn to your left at an angle " + (-1 * avgAngle) + "degrees with the kinect sensor.";
             }
             int sw = ScreenManager.GraphicsDevice.Viewport.Width;
             int sh = ScreenManager.GraphicsDevice.Viewport.Height;
@@ -146,6 +146,7 @@ namespace Mechanect.Screens
         {
             for (int i = 0; i < users.Length; i++)
                 UpdateUser(i);
+            button.update(gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
