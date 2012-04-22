@@ -152,14 +152,14 @@ namespace Mechanect.Classes
         /// <returns>
         /// Returns the position of the ball when its velocity reaches 0.
         /// </returns>
-        private Vector2 ballFinalPosition(Vector2 velocity)
+        private Vector3 ballFinalPosition(Vector3 velocity)
         {
 
             float vxsquared = (float)Math.Pow(velocity.X, 2);
-            float vysquared = (float)Math.Pow(velocity.Y, 2);
+            float vzsquared = (float)Math.Pow(velocity.Z, 2);
             float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
-            float y = (vysquared / (2 * friction)) + ball.InitialBallPosition.Y;
-            return new Vector2(x, y);
+            float z = (vzsquared / (2 * friction)) + ball.InitialBallPosition.Z;
+            return new Vector3(x, 0, z);
         }
 
         /// <remarks>
