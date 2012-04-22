@@ -46,7 +46,7 @@ namespace Mechanect.Classes
                         {
                             setCurrentPosition(user);
 
-                            if (hasPlayerMovedHisAnkle(skeleton,user))
+                            if (hasPlayerMovedHisAnkle(user))
                             {
                                 if (isMovingForward(skeleton, user))
                                 {
@@ -156,6 +156,24 @@ namespace Mechanect.Classes
                 user.Velocity = Math.Max(user.Velocity, velocityFinal);
             else
                 user.Velocity = velocityFinal;
+        }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// scales the velocity of the user to do the mapping between meters and pixels
+        /// </summary>
+        /// <param name="user">takes an instance of the user class</param>
+      /// <returns>returns the scaled velocity</returns>
+
+        public static float scaleVelocity(User user)
+        {
+             return (float) user.Velocity * Constants3.velocityScale;
+
         }
 
 
@@ -366,12 +384,13 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// sets the velocity of the leg's user relative to the assumed mass of the user's leg
+        /// scales the velocity of the leg's user relative to the assumed mass of the user's leg
         /// </summary>
-        /// <param name="user">takes an instance of class user to set their velocity relative to the assumed mass of their leg</param>
-        public static void setVelocityRelativeToGivenMass(User user)
+        /// <param name="user">takes an instance of class user to scale their velocity relative to the assumed mass of their leg</param>
+        /// <returns>returns the scales velocity</returns>
+        public static float setVelocityRelativeToGivenMass(User user)
         {
-            user.Velocity = (float)(Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity;
+            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity);
         }
 
 
