@@ -164,11 +164,11 @@ namespace Mechanect
 
             // Sorry had to change Point to System.Windows.Point to solve a conflict
 
-            setPredator(new Predator(new Vector2((float)xPredator, (float)yPredator)));
+            Predator = new Predator(new Vector2((float)xPredator, (float)yPredator));
 
-            setPrey(new Prey(new Vector2((float)xPrey, (float)yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100)));
+            Prey = new Prey(new Vector2((float)xPrey, (float)yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100));
 
-            setAquarium(new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100)));
+            Aquarium = new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100));
 
 
 
