@@ -84,12 +84,12 @@ namespace Mechanect.Classes
                 return Constants3.negativeRDifference;
 
             Vector3 finalPos = Vector3.Zero;//to be changed with the position returned from getFinalPostion();            
-            //finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
+            finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
                 return Constants3.holeOutOfFarRange;
 
-            //finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.mixVelocityX, 0, Constants3.mixVelocityZ)));
+            finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
