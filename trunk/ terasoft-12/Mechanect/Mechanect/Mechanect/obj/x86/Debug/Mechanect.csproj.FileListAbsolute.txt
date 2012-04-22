@@ -22,7 +22,6 @@ C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x8
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\AngleGauge.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
@@ -56,3 +55,14 @@ C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechan
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\GrayScreen.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\GrayScreen.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-m.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-s.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.dll
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.pdb
