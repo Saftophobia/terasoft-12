@@ -21,11 +21,11 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>>
         /// <summary>
-        ///  Updates the velocity, angle variables of the user after each captured skeleton frame.
+        ///  Updates the velocity, angle variables of the User3 after each captured skeleton frame.
         /// </summary>
-        /// <param name="user">takes instance of class User as input, to update their velocity and angle </param>
+        /// <param name="User3">takes instance of class User3 as input, to update their velocity and angle </param>
 
-        public static void update_MeasuringVelocityAndAngle(User user)
+        public static void update_MeasuringVelocityAndAngle(User3 user)
         {
             user.setSkeleton();
             Skeleton skeleton = user.USER;
@@ -74,16 +74,16 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        ///  resolves the user's velocity into 2 components VelocityX, VelocityZ
+        ///  resolves the User3's velocity into 2 components VelocityX, VelocityZ
         /// </summary>
-        /// <param name="user">takes instance of class User to resolve their velocity</param>
-        /// <returns>returns Vector2: holding the velocity components of the user</returns>
+        /// <param name="User3">takes instance of class User3 to resolve their velocity</param>
+        /// <returns>returns Vector2: holding the velocity components of the User3</returns>
 
-        public static Vector2 resolveUserVelocity(User user)
+        public static Vector2 resolveUser3Velocity(User3 User3)
         {
             Vector2 velocity;
-            velocity.X = (float)(user.Velocity * Math.Cos(user.Angle));
-            velocity.Y = (float)(user.Velocity * Math.Sign(user.Angle));
+            velocity.X = (float)(User3.Velocity * Math.Cos(User3.Angle));
+            velocity.Y = (float)(User3.Velocity * Math.Sign(User3.Angle));
             return velocity;
         }
 
@@ -96,32 +96,32 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// Checks if the user is currently moving their leg forward or not
+        /// Checks if the User3 is currently moving their leg forward or not
         /// </summary>
-        /// <param name="skeleton">takes instance of class User to check if they are moving their leg forward</param>
-        /// <returns>returns true iff the user moved his leg forward</returns>
+        /// <param name="skeleton">takes instance of class User3 to check if they are moving their leg forward</param>
+        /// <returns>returns true iff the User3 moved his leg forward</returns>
 
-        public static bool isMovingForward(Skeleton skeleton,User user)
+        public static bool isMovingForward(Skeleton skeleton,User3 User3)
         {
             if (skeleton != null)
             {
-                double currentZ = user.CurrentLeftLegPositionZ;
-                double initialZ = user.InitialLeftLegPositionZ;
-                if (user.RightLeg)
+                double currentZ = User3.CurrentLeftLegPositionZ;
+                double initialZ = User3.InitialLeftLegPositionZ;
+                if (User3.RightLeg)
                 {
-                    currentZ = user.CurrentRightLegPositionZ;
-                    initialZ = user.InitialRightLegPositionZ;
+                    currentZ = User3.CurrentRightLegPositionZ;
+                    initialZ = User3.InitialRightLegPositionZ;
                 }
 
                 if (currentZ - initialZ < (-1*Constants3.legMovementTolerance))
                 {
-                    user.MovedForward = true;
+                    User3.MovedForward = true;
                     return true;
 
                 }
-                if (!user.MovedForward)
-                    if (user.RightLeg) user.InitialRightLegPositionZ = user.CurrentRightLegPositionZ;
-                    else user.InitialLeftLegPositionZ = user.CurrentLeftLegPositionZ;
+                if (!User3.MovedForward)
+                    if (User3.RightLeg) User3.InitialRightLegPositionZ = User3.CurrentRightLegPositionZ;
+                    else User3.InitialLeftLegPositionZ = User3.CurrentLeftLegPositionZ;
 
 
             }
@@ -135,27 +135,27 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
        /// <summary>
-       /// Calculates the new value of the velocity and sets it the variable velocity of the user to it
+       /// Calculates the new value of the velocity and sets it the variable velocity of the User3 to it
       /// </summary>
-      /// <param name="user">takes and instance of the class User to calculate their new velocity</param>
+      /// <param name="User3">takes and instance of the class User3 to calculate their new velocity</param>
 
-        public static void updateSpeed(User user)
+        public static void updateSpeed(User3 User3)
         {
-            double currentZ = user.CurrentLeftLegPositionZ;
-            double initialZ = user.InitialLeftLegPositionZ;
-            if (user.RightLeg)
+            double currentZ = User3.CurrentLeftLegPositionZ;
+            double initialZ = User3.InitialLeftLegPositionZ;
+            if (User3.RightLeg)
             {
-                currentZ = user.CurrentRightLegPositionZ;
-                initialZ = user.InitialRightLegPositionZ;
+                currentZ = User3.CurrentRightLegPositionZ;
+                initialZ = User3.InitialRightLegPositionZ;
             }
             double velocityFinal = 0;
             double deltaPosition = Math.Abs(currentZ - initialZ);
-            double acceleration = getAcceleration(deltaPosition, Constants3.unitTime, user.Velocity);
-            velocityFinal = getVelocity(acceleration, user.Velocity, Constants3.unitTime);
-            if (user.Trying)
-                user.Velocity = Math.Max(user.Velocity, velocityFinal);
+            double acceleration = getAcceleration(deltaPosition, Constants3.unitTime, User3.Velocity);
+            velocityFinal = getVelocity(acceleration, User3.Velocity, Constants3.unitTime);
+            if (User3.Trying)
+                User3.Velocity = Math.Max(User3.Velocity, velocityFinal);
             else
-                user.Velocity = velocityFinal;
+                User3.Velocity = velocityFinal;
         }
 
         ///<remarks>
@@ -164,20 +164,20 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
        /// <summary>
-       /// updates the current and previous positions of the user's moving leg
+       /// updates the current and previous positions of the User3's moving leg
        /// </summary>
-       /// <param name="user">takes instance of the user to update their position</param>
-        public static void updatePosition(User user)
+       /// <param name="User3">takes instance of the User3 to update their position</param>
+        public static void updatePosition(User3 User3)
         {
-            if (user.RightLeg)
+            if (User3.RightLeg)
             {
-                user.InitialRightLegPositionX = user.CurrentRightLegPositionX;
-                user.InitialRightLegPositionZ = user.CurrentRightLegPositionZ;
+                User3.InitialRightLegPositionX = User3.CurrentRightLegPositionX;
+                User3.InitialRightLegPositionZ = User3.CurrentRightLegPositionZ;
             }
             else
             {
-                user.InitialLeftLegPositionX = user.CurrentLeftLegPositionX;
-                user.InitialLeftLegPositionZ = user.CurrentLeftLegPositionZ;
+                User3.InitialLeftLegPositionX = User3.CurrentLeftLegPositionX;
+                User3.InitialLeftLegPositionZ = User3.CurrentLeftLegPositionZ;
             }
         }
 
@@ -187,16 +187,16 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
     /// <summary>
-    /// Calculates the value of new the angle that the user is moving their leg with and sets the variable angle to it
+    /// Calculates the value of new the angle that the User3 is moving their leg with and sets the variable angle to it
     /// </summary>
-    /// <param name="user">takes instance of class user to calculate their angle </param>
+    /// <param name="User3">takes instance of class User3 to calculate their angle </param>
 
-        public static void updateAngle(User user)
+        public static void updateAngle(User3 User3)
         {
-            if (user.storeZ2 != user.StoreZ1)
-                user.Angle = (Math.Atan((user.StoreX2 - user.StoreX1) / (Math.Abs(user.StoreZ2 - user.StoreZ1))));
+            if (User3.storeZ2 != User3.StoreZ1)
+                User3.Angle = (Math.Atan((User3.StoreX2 - User3.StoreX1) / (Math.Abs(User3.StoreZ2 - User3.StoreZ1))));
             else
-                user.Angle = (Math.PI / 2);
+                User3.Angle = (Math.PI / 2);
         }
 
 
@@ -206,35 +206,35 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// stores the position where the user started moving their leg and the final position where they stopped moving their leg forward
+        /// stores the position where the User3 started moving their leg and the final position where they stopped moving their leg forward
         /// </summary>
-      /// <param name="user">takes an instance of class user to store their position</param>
+      /// <param name="User3">takes an instance of class User3 to store their position</param>
 
-        public static void storePosition(User user)
+        public static void storePosition(User3 User3)
         {
             
-                if (user.RightLeg)
+                if (User3.RightLeg)
                 {
-                    if(user.MovedForward&&!user.HasSetInitialPositionForAngle)
+                    if(User3.MovedForward&&!User3.HasSetInitialPositionForAngle)
                     {
-                    user.StoreX1 = user.InitialRightLegPositionX;
-                    user.StoreZ1 = user.InitialRightLegPositionZ;
-                    user.HasSetInitialPositionForAngle = true;
+                    User3.StoreX1 = User3.InitialRightLegPositionX;
+                    User3.StoreZ1 = User3.InitialRightLegPositionZ;
+                    User3.HasSetInitialPositionForAngle = true;
                     }
-                    user.StoreX2 = user.InitialRightLegPositionX;
-                    user.StoreZ2 = user.InitialRightLegPositionZ;
+                    User3.StoreX2 = User3.InitialRightLegPositionX;
+                    User3.StoreZ2 = User3.InitialRightLegPositionZ;
 
                 }
                 else
                 {
-                     if(user.MovedForward&&!user.HasSetInitialPositionForAngle)
+                     if(User3.MovedForward&&!User3.HasSetInitialPositionForAngle)
                     {
-                    user.StoreX1 = user.InitialLeftLegPositionX;
-                    user.StoreZ1 = user.InitialLeftLegPositionZ;
-                    user.HasSetInitialPositionForAngle = true;
+                    User3.StoreX1 = User3.InitialLeftLegPositionX;
+                    User3.StoreZ1 = User3.InitialLeftLegPositionZ;
+                    User3.HasSetInitialPositionForAngle = true;
                     }
-                    user.StoreX2 = user.InitialLeftLegPositionX;
-                    user.StoreZ2 = user.InitialLeftLegPositionZ;
+                    User3.StoreX2 = User3.InitialLeftLegPositionX;
+                    User3.StoreZ2 = User3.InitialLeftLegPositionZ;
                 }
             }
 
@@ -281,16 +281,16 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// sets the current leg positions of the user from the detected skeleton
+        /// sets the current leg positions of the User3 from the detected skeleton
         /// </summary>
-        /// <param name="user">takes instance of class user to store their current leg positions</param>
+        /// <param name="User3">takes instance of class User3 to store their current leg positions</param>
 
-        public static void setCurrentPosition(User user)
+        public static void setCurrentPosition(User3 User3)
         {
-            user.CurrentLeftLegPositionX = user.USER.Joints[JointType.AnkleLeft].Position.X;
-            user.CurrentLeftLegPositionZ = user.USER.Joints[JointType.AnkleLeft].Position.Z;
-            user.CurrentRightLegPositionX = user.USER.Joints[JointType.AnkleRight].Position.X;
-            user.CurrentRightLegPositionZ = user.USER.Joints[JointType.AnkleRight].Position.Z;
+            User3.CurrentLeftLegPositionX = User3.USER.Joints[JointType.AnkleLeft].Position.X;
+            User3.CurrentLeftLegPositionZ = User3.USER.Joints[JointType.AnkleLeft].Position.Z;
+            User3.CurrentRightLegPositionX = User3.USER.Joints[JointType.AnkleRight].Position.X;
+            User3.CurrentRightLegPositionZ = User3.USER.Joints[JointType.AnkleRight].Position.Z;
         }
 
         ///<remarks>
@@ -299,16 +299,16 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// stores the initial position of the user
+        /// stores the initial position of the User3
         /// </summary>
-        /// <param name="user">takes an instance of the class user to store their initial position</param>
-        public static void initalizePlayerPosition(User user)
+        /// <param name="User3">takes an instance of the class User3 to store their initial position</param>
+        public static void initalizePlayerPosition(User3 User3)
         {
 
-            user.InitialLeftLegPositionZ = user.USER.Joints[JointType.AnkleLeft].Position.Z;
-            user.InitialLeftLegPositionX = user.USER.Joints[JointType.AnkleLeft].Position.X;
-            user.InitialRightLegPositionZ = user.USER.Joints[JointType.AnkleRight].Position.Z;
-           user.InitialRightLegPositionX = user.USER.Joints[JointType.AnkleRight].Position.X;
+            User3.InitialLeftLegPositionZ = User3.USER.Joints[JointType.AnkleLeft].Position.Z;
+            User3.InitialLeftLegPositionX = User3.USER.Joints[JointType.AnkleLeft].Position.X;
+            User3.InitialRightLegPositionZ = User3.USER.Joints[JointType.AnkleRight].Position.Z;
+           User3.InitialRightLegPositionX = User3.USER.Joints[JointType.AnkleRight].Position.X;
 
         }
 
@@ -319,37 +319,37 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// checks if the user moved their leg from the position they were standing initially
+        /// checks if the User3 moved their leg from the position they were standing initially
         /// </summary>
-        /// <param name="user">takes a instance of user class to check if they moved their leg</param>
-        /// <returns>returns true iff the user moved their leg</returns>
-        public static bool hasPlayerMovedHisAnkle(User user)
+        /// <param name="User3">takes a instance of User3 class to check if they moved their leg</param>
+        /// <returns>returns true iff the User3 moved their leg</returns>
+        public static bool hasPlayerMovedHisAnkle(User3 User3)
         {
             int movementState = 0;  // 0 has not moved, 1 moved one leg, 2 moved both legs
-            Skeleton player = user.USER;
+            Skeleton player = User3.USER;
 
-            if (Math.Abs(user.CurrentLeftLegPositionZ - user.InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
+            if (Math.Abs(User3.CurrentLeftLegPositionZ - User3.InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
             {
-                user.RightLeg = false;
-                user.TrackedJoint = player.Joints[JointType.AnkleLeft];
+                User3.RightLeg = false;
+                User3.TrackedJoint = player.Joints[JointType.AnkleLeft];
                 movementState++;
 
             }
 
-            if (Math.Abs(user.CurrentRightLegPositionZ - user.InitialRightLegPositionZ) > Constants3.legMovementTolerance)
+            if (Math.Abs(User3.CurrentRightLegPositionZ - User3.InitialRightLegPositionZ) > Constants3.legMovementTolerance)
             {
-                user.RightLeg = true;
-                user.TrackedJoint = player.Joints[JointType.AnkleRight];
+                User3.RightLeg = true;
+                User3.TrackedJoint = player.Joints[JointType.AnkleRight];
                 movementState++;
             }
             if (movementState == 1) return true;
             if (movementState == 2) // player has changed their position
             {
                 movementState = 0;
-                user.InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
-                user.InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
-                user.InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
-                user.InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
+                User3.InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
+                User3.InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
+                User3.InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
+                User3.InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
 
             }
 
@@ -364,14 +364,14 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// scales the velocity of the leg's user relative to the assumed mass of the user's leg and maps the velocity in meters to pixels
+        /// scales the velocity of the leg's User3 relative to the assumed mass of the User3's leg and maps the velocity in meters to pixels
         /// </summary>
-        /// <param name="user">takes an instance of class user to scale their velocity relative to the assumed mass
+        /// <param name="User3">takes an instance of class User3 to scale their velocity relative to the assumed mass
         /// of their leg and maps the velocity in meters to pixels</param>
         /// <returns>returns the scales velocity</returns>
-        public static float setVelocityRelativeToGivenMass(User user)
+        public static float setVelocityRelativeToGivenMass(User3 User3)
         {
-            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity);
+            return  (float)((Constants3.normalLegMass / User3.AssumedLegMass) * User3.Velocity);
         }
 
 
@@ -381,34 +381,34 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// initializes all the variables that stores the user's movement inorder to try shooting again
+        /// initializes all the variables that stores the User3's movement inorder to try shooting again
         /// </summary>
-        /// <param name="user">takes an instance of class user to initialze the variables that store that user's movement</param>
+        /// <param name="User3">takes an instance of class User3 to initialze the variables that store that User3's movement</param>
 
-        public static void resetUserForShootingOrTryingAgain(User user)
+        public static void resetUserForShootingOrTryingAgain(User3 User3)
         {
 
-            user.InitialLeftLegPositionX = 0;
-            user.CurrentLeftLegPositionX = 0;
-            user.InitialLeftLegPositionZ = 0;
-            user.CurrentLeftLegPositionZ = 0;
+            User3.InitialLeftLegPositionX = 0;
+            User3.CurrentLeftLegPositionX = 0;
+            User3.InitialLeftLegPositionZ = 0;
+            User3.CurrentLeftLegPositionZ = 0;
 
-            user.InitialRightLegPositionX = 0;
-            user.CurrentRightLegPositionX = 0;
-            user.InitialRightLegPositionZ = 0;
-            user.CurrentRightLegPositionZ = 0;
+            User3.InitialRightLegPositionX = 0;
+            User3.CurrentRightLegPositionX = 0;
+            User3.InitialRightLegPositionZ = 0;
+            User3.CurrentRightLegPositionZ = 0;
 
-            user.StoreX1 = 0;
-            user.StoreX2 = 0;
-            user.StoreZ1 = 0;
-            user.StoreZ2 = 0;
+            User3.StoreX1 = 0;
+            User3.StoreX2 = 0;
+            User3.StoreZ1 = 0;
+            User3.StoreZ2 = 0;
 
-            user.Velocity = 0;
-            user.Angle = 0;
+            User3.Velocity = 0;
+            User3.Angle = 0;
 
-            user.MovedForward = false;
-            user.Trying = true;
-            user.HasSetInitialPositionForAngle = false;
+            User3.MovedForward = false;
+            User3.Trying = true;
+            User3.HasSetInitialPositionForAngle = false;
 
             frameNumber = 0;
         }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>Models\fish.fbx</Source>
@@ -8,7 +8,12 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\fish_0.xml</Key>
+        <Value>2012-04-22T22:48:18.057+02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
@@ -17,7 +22,11 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\ball_0.xml</Key>
+        <Value>2012-04-22T22:48:19.496+02:00</Value>
+      </Dependency>
     </Item>
     <Item>
       <Source>Models\Arrow.fbx</Source>
@@ -26,9 +35,183 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
+        <Value>2012-04-22T22:48:20.014+02:00</Value>
+      </Dependency>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <Item>
+      <Source>Textures\screen.png</Source>
+      <Name>Textures\screen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
+      <Time>2012-04-21T13:07:30.9958+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Vfill.png</Source>
+      <Name>Textures\Vfill</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
+      <Time>2012-04-21T00:23:54.659+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\VBar.png</Source>
+      <Name>Textures\VBar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
+      <Time>2012-04-21T00:24:09.182+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\arrow.png</Source>
+      <Name>Textures\arrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
+      <Time>2012-04-21T01:07:15.414+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Buttons\hand.png</Source>
+      <Name>Textures\Buttons\hand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
+      <Time>2012-04-21T16:56:37.4806+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\bar.png</Source>
+      <Name>Textures\Slider\bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
+      <Time>2012-04-21T16:56:33.2576+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\off.png</Source>
+      <Name>Textures\Slider\off</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
+      <Time>2012-04-21T16:56:33.2596+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Slider\on.png</Source>
+      <Name>Textures\Slider\on</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
+      <Time>2012-04-21T16:56:33.2556+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\WorL\looser.png</Source>
+      <Name>Textures\WorL\looser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
+      <Time>2012-04-21T16:56:36.3736+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\WorL\winner.png</Source>
+      <Name>Textures\WorL\winner</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
+      <Time>2012-04-21T16:56:36.3656+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Ariel.spritefont</Source>
+      <Name>Ariel</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
+      <Time>2012-04-21T01:17:47.479+02:00</Time>
+    </Item>
+    <Item>
+      <Source>angleVelFont.spritefont</Source>
+      <Name>angleVelFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb</Output>
+      <Time>2012-04-21T01:17:34.972+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-04-22T18:09:35.2448001+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Buttons\button-m.gif</Source>
+      <Name>Textures\Buttons\button-m</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-m.xnb</Output>
+      <Time>2012-04-21T16:56:37.4786+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Buttons\button-s.gif</Source>
+      <Name>Textures\Buttons\button-s</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-s.xnb</Output>
+      <Time>2012-04-21T16:56:37.4766+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\fish.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\fish_0.xml</Output>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
+    </Item>
+    <Item>
+      <Source>TropicalFish12.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
+      <Time>2012-04-20T13:21:01.595+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ball.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\ball_0.xml</Output>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Arrow.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>HiDef</TargetProfile>
