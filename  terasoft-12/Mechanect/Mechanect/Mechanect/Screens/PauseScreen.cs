@@ -38,18 +38,20 @@ namespace Mechanect.Screens
     
         User user;
         MKinect kinect;
-
         VoiceCommands voiceCommands;
+
 
         SpriteFont font;
         String st;
-      
+        int framesToWait;
+        double velocity;
            public PauseScreen(User user,MKinect kinect)
         {
 
             this.user = user;
             this.kinect = kinect;
-           
+            framesToWait = 0;
+            velocity = 0;
             voiceCommands = new VoiceCommands(kinect._KinectDevice,"ready,go");
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
@@ -94,15 +96,16 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            int framesToWait = 0;
+           
+           
             if (!voiceCommands.getHeared("go"))
             {
                 if (Tools3.frameNumber != -1)
                 {
                    
                     Tools3.update_MeasuringVelocityAndAngle(user);
-                    Tools3.setVelocityRelativeToGivenMass(user);
-                    Vector2 velocityInMeters = Tools3.resolveUserVelocity(user);
+                    // truncate max velocity
+                    velocity = Tools3.setVelocityRelativeToGivenMass(user);
    
                    
                     for (int i = fills.Count()-1; i < user.Velocity; i++)
@@ -115,21 +118,21 @@ namespace Mechanect.Screens
                 }
                 else
                 {
-                    st = "   "+user.Velocity+" m/s" ;
+                    st = "   " + velocity + " m/s " +'\n' + user.Angle + " degrees";
+                    user.Velocity = velocity;
 
-                    if (framesToWait > 10)
+                    if (framesToWait > 300) // after 5 seconds
                     {
 
                         fillsPositions.Clear();
                         fills.Clear();
-                        arrowAngle = 0;
                         fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
+                        arrowAngle = 0;
                         framesToWait = 0;
                         Tools3.resetUserForShootingOrTryingAgain(user);
                         
                     }
                     else
-                        if(framesToWait < 60)
                         framesToWait++;
                 }
             }

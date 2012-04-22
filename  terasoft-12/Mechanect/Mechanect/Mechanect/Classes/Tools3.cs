@@ -158,26 +158,6 @@ namespace Mechanect.Classes
                 user.Velocity = velocityFinal;
         }
 
-
-        ///<remarks>
-        ///<para>
-        ///Author: Cena
-        ///</para>
-        ///</remarks>
-        /// <summary>
-        /// scales the velocity of the user to do the mapping between meters and pixels
-        /// </summary>
-        /// <param name="user">takes an instance of the user class</param>
-      /// <returns>returns the scaled velocity</returns>
-
-        public static float scaleVelocity(User user)
-        {
-             return (float) user.Velocity * Constants3.velocityScale;
-
-        }
-
-
-
         ///<remarks>
         ///<para>
         ///Author: Cena
@@ -384,13 +364,14 @@ namespace Mechanect.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// scales the velocity of the leg's user relative to the assumed mass of the user's leg
+        /// scales the velocity of the leg's user relative to the assumed mass of the user's leg and maps the velocity in meters to pixels
         /// </summary>
-        /// <param name="user">takes an instance of class user to scale their velocity relative to the assumed mass of their leg</param>
+        /// <param name="user">takes an instance of class user to scale their velocity relative to the assumed mass
+        /// of their leg and maps the velocity in meters to pixels</param>
         /// <returns>returns the scales velocity</returns>
         public static float setVelocityRelativeToGivenMass(User user)
         {
-            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity);
+            return  (float)((Constants3.normalLegMass / user.AssumedLegMass) * user.Velocity * Constants3.velocityScale);
         }
 
 

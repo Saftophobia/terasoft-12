@@ -168,6 +168,7 @@
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experiment2.cs" />
     <Compile Include="Screens\Experiment3.cs" />
+    <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
   </ItemGroup>
