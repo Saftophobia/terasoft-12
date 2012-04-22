@@ -28,8 +28,13 @@ namespace Common.Classes
 
         ContentManager Content;
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
-        /// The constructor used ti initialize the slider
+        /// The constructor used to initialize the slider
         /// </summary>
         /// <param name="p">the position of the slider </param>
         /// <param name="sw">screen width</param>
@@ -56,7 +61,11 @@ namespace Common.Classes
             positionPointer.Y = p.Y - ((texture.Height - barPic.Height) / 2);
         }
 
-
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// drawing the bar and the pointer
         /// </summary>
@@ -69,6 +78,11 @@ namespace Common.Classes
             spriteBatch.End();
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// checking if the hand of the user has been hovered on the pointer and starts
         /// the timer and activating the pointer to be moved.
@@ -97,6 +111,11 @@ namespace Common.Classes
             
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// tracking the movement of the hand to move the pointer to the right or the left. Incrementing
         /// or decrementing the value according to the movement.
@@ -121,6 +140,11 @@ namespace Common.Classes
             }
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// changing the pointer to the activated pointer picture
         /// </summary>
@@ -129,6 +153,11 @@ namespace Common.Classes
             texture = onPic;
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// changing the pointer to the disactivated pointer picture
         /// </summary>
@@ -137,10 +166,15 @@ namespace Common.Classes
             texture = offPic;
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
-        /// <returns></returns>
+        /// <returns>returns true if the user is hovering the button</returns>
         public bool checkColission()
         {
 
@@ -159,6 +193,20 @@ namespace Common.Classes
             return false;
         }
 
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// used to get the value that the user selected
+        /// </summary>
+        /// <returns>the value that the user selected</returns>
+        public int getValue()
+        {
+            return value;
+        }
 
     }
 }

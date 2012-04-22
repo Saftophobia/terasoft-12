@@ -40,3 +40,9 @@ C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAn
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb

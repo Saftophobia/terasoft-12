@@ -20,13 +20,19 @@ namespace Mechanect.Common
         protected GifAnimation.GifAnimation texture, animation, stopped;
         protected int screenW, ScreenH;
 
-        Kinect kinect;
+        MKinect kinect;
         Texture2D hand;
         Vector2 handPosition;
 
         Timer1 timer;
 
+        bool status;
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// The constructor used ti initialize the button
         /// </summary>
@@ -35,7 +41,7 @@ namespace Mechanect.Common
         /// <param name="p">the position of the slider</param>
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
-        /// <param name="h"></param>
+        /// <param name="h">the picture of the hand</param>
         public Button(GifAnimation.GifAnimation t, GifAnimation.GifAnimation tt, Vector2 p, int sw, int sh, Texture2D h)
         {
             position = p;
@@ -46,10 +52,15 @@ namespace Mechanect.Common
             ScreenH = sh;
 
             hand = h;
-            kinect = new Kinect();
+            kinect = new MKinect();
             timer = new Timer1();
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// drawing the bar and the pointer
         /// </summary>
@@ -62,10 +73,16 @@ namespace Mechanect.Common
             spriteBatch.End();
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// checking if the hand of the user has been hovered on the button and starts
         /// the timer and activating the pointer to be moved.
         /// </summary>
+        /// <param name="gameTime">takes the object gametime which tracks the time of the game</param>
         public void update(GameTime gameTime)
         {
             moveHand();
@@ -81,6 +98,7 @@ namespace Mechanect.Common
                     if (timer.getDuration() >= (1 * 1000))
                     {
                         animate();
+                        status = true;
                     }
 
                 }
@@ -94,6 +112,14 @@ namespace Mechanect.Common
 
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// used to track the user's hand
+        /// </summary>
         void moveHand()
         {
             Skeleton skeleton = kinect.requestSkeleton();
@@ -104,6 +130,11 @@ namespace Mechanect.Common
             }
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// changing the button to the animated picture
         /// </summary>
@@ -112,6 +143,11 @@ namespace Mechanect.Common
             texture = animation;
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// changing the button to the stopped picture
         /// </summary>
@@ -120,10 +156,15 @@ namespace Mechanect.Common
             texture = stopped;
         }
 
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
         /// <summary>
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
-        /// <returns></returns>
+        /// <returns>returns true if the user is hovering the button</returns>
         public bool checkColission()
         {
             Skeleton skeleton = kinect.requestSkeleton();
@@ -139,6 +180,20 @@ namespace Mechanect.Common
                     return false;
             }
             return false;
+        }
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// used to check if the button has been clicked or not
+        /// </summary>
+        /// <returns>returns true if the user clicked the button</returns>
+        public bool isClicked()
+        {
+            return status;
         }
     }
 }

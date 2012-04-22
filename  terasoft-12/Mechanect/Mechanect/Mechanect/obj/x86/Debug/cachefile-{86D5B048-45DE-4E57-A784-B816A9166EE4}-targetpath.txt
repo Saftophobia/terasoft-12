@@ -14,6 +14,10 @@ Content\Textures\WorL\winner.xnb
 Content\Ariel.xnb
 Content\angleVelFont.xnb
 Content\SpriteFont1.xnb
-Content\Textures\Buttons\button-m.xnb
-Content\Textures\Buttons\button-s.xnb
+Content\Textures\Buttons\newgame-m.xnb
+Content\Textures\Buttons\newgame-s.xnb
+Content\Textures\Buttons\menu-m.xnb
+Content\Textures\Buttons\menu-s.xnb
+Content\Textures\Buttons\ok-m.xnb
+Content\Textures\Buttons\ok-s.xnb
 Content\TropicalFish12_0.xnb

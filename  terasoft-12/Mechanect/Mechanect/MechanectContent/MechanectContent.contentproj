@@ -106,11 +106,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Buttons\button-m.gif">
-      <Name>button-m</Name>
+    <Compile Include="Textures\Buttons\newgame-m.gif">
+      <Name>newgame-m</Name>
     </Compile>
-    <Compile Include="Textures\Buttons\button-s.gif">
-      <Name>button-s</Name>
+    <Compile Include="Textures\Buttons\newgame-s.gif">
+      <Name>newgame-s</Name>
     </Compile>
     <Compile Include="Textures\Buttons\hand.png">
       <Name>hand</Name>
@@ -158,6 +158,28 @@
       <Name>SpriteFont1</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Buttons\menu-m.gif">
+      <Name>menu-m</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Buttons\menu-s.gif">
+      <Name>menu-s</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Buttons\ok-m.gif">
+      <Name>ok-m</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Buttons\ok-s.gif">
+      <Name>ok-s</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
