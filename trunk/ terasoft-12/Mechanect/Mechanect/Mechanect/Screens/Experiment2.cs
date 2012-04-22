@@ -26,7 +26,7 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 21  </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
 
         Viewport viewPort;
@@ -48,8 +48,8 @@ namespace Mechanect.Screens
         Texture2D lineConnector;
 
         //list of models to be drawn
-        private List<CustomModel> models = new List<CustomModel>();
-        private Camera camera;
+        //private List<CustomModel> models = new List<CustomModel>();
+        //private Camera camera;
 
         //Variables that will change how the Gui will look
         private Boolean preyEaten = false;
@@ -59,12 +59,12 @@ namespace Mechanect.Screens
         private int screenHeight;
         private Vector2 velGauge;
         private Vector2 angGauge;
-
-        private Vector2 predatorPosition2D = new Vector2(140f, 630f);
+        private Vector2 predatorOrigin;
+        private Vector2 predatorPosition2D = new Vector2(150f, 630f);
         private Vector2 preyPosition = new Vector2(500f, 200f);
-        private Vector2 startAquariumPosition = new Vector2(140f, 630f);
+        private Vector2 startAquariumPosition = new Vector2(150f, 630f);
         private Vector2 destinationAquariumPosition = new Vector2(870f, 630f);
-        private Vector3 predatorPosition = new Vector3(50, 50, 0);
+        //private Vector3 predatorPosition = new Vector3(50, 50, 0);
         float backgroundTextureScaling;
         float xyAxisTextureScaling;
         float preyTextureScaling;
@@ -73,6 +73,7 @@ namespace Mechanect.Screens
         float velocityTextureScaling;
         float angleTextureScaling;
         float predatorScaling;
+
         //Only if 3D is used
         //float fishModelScaling;
 
@@ -116,7 +117,7 @@ namespace Mechanect.Screens
             screenHeight = viewPort.Height;
             content = ScreenManager.Game.Content;
             spriteBatch = ScreenManager.SpriteBatch;
-            LoadTextures();
+            LoadTextures(2);
             LoadModels();
 
             spriteFont = content.Load<SpriteFont>("Ariel");
@@ -125,36 +126,24 @@ namespace Mechanect.Screens
         }
 
         /// <summary>
-        /// Allows the game to draw all the textures 
-        /// Initializing the Background and x,y Axises
+        /// Allows the game to initialize all the textures 
+        /// Initializing the Background and x,y Axises textures
+        /// And add initial scaling 
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 21  </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
 
-        public void LoadTextures()
+        public void LoadTextures(int setNumber)
         {
-            backgroundTexture = content.Load<Texture2D>("Textures/background");
-            xyAxisTexture = content.Load<Texture2D>("Textures/xyAxis");
-            predatorTexture = content.Load<Texture2D>("Textures/fish");
-            preyTexture = content.Load<Texture2D>("Textures/worm");
-            bowlTexture = content.Load<Texture2D>("Textures/bowl2");
-            grayTexture = content.Load<Texture2D>("Textures/GrayScreen");
-            velocityTexture = content.Load<Texture2D>("Textures/VelocityGauge");
-            angleTexture = content.Load<Texture2D>("Textures/AngleGauge");
-            lineConnector = new Texture2D(ScreenManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            lineConnector.SetData(new[] { Color.Gray });
+            switch(setNumber){
+                case '1': ImageSet1(); break;
+                default: ImageSet2(); break;
+            }
 
-            backgroundTextureScaling = 1;
-            xyAxisTextureScaling = 1;
-            preyTextureScaling = 0.1f;
-            bowlTextureScaling = 1;
-            
-            predatorScaling = 0.2f;
-            velocityTextureScaling = 0.5f;
-            angleTextureScaling = 0.85f;
+            predatorOrigin = new Vector2(predatorTexture.Width*predatorScaling / 2, predatorTexture.Height*predatorScaling / 2);
             backgroundTextureScaling = ((float)viewPort.Height / (float)backgroundTexture.Height);
             xyAxisTextureScaling = ((float)viewPort.Height / (float)xyAxisTexture.Height);
             grayTextureScaling = ((float)viewPort.Height / (float)grayTexture.Height);
@@ -166,6 +155,73 @@ namespace Mechanect.Screens
             //grayTextureScaling = ((float)viewPort.Width / viewPort.Height) / ((float)grayTexture.Width / grayTexture.Height);
 
             base.Initialize();
+        }
+        /// <summary>
+        /// Allows the game to initialize all the textures 
+        /// Initializing the Background and x,y Axises textures
+        /// Using a set of images called ImageSet1
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        private void ImageSet1()
+        {
+
+            backgroundTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
+            xyAxisTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/xyAxis");
+            predatorTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
+            preyTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/worm");
+            bowlTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/bowl2");
+            grayTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/GrayScreen");
+            velocityTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/VelocityGauge");
+            angleTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet1/AngleGauge");
+            lineConnector = new Texture2D(ScreenManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            lineConnector.SetData(new[] { Color.Gray });
+
+            backgroundTextureScaling = 1;
+            xyAxisTextureScaling = 1;
+            preyTextureScaling = 0.1f;
+            bowlTextureScaling = 1;
+
+            predatorScaling = 0.2f;
+            velocityTextureScaling = 0.5f;
+            angleTextureScaling = 0.85f;
+        }
+        /// <summary>
+        /// Allows the game to initialize all the textures 
+        /// Initializing the Background and x,y Axises textures
+        /// Using a set of images called ImageSet2
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 20 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        private void ImageSet2()
+        {
+
+
+            backgroundTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/sea1");
+            xyAxisTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/xyAxis");
+            predatorTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/fish");
+            preyTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/Worm");
+            bowlTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/bowl");
+            grayTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/GrayScreen");
+            velocityTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/VelocityGauge");
+            angleTexture = content.Load<Texture2D>("Textures/Experiment2/ImageSet2/AngleGauge");
+            lineConnector = new Texture2D(ScreenManager.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            lineConnector.SetData(new[] { Color.Gray });
+
+            backgroundTextureScaling = 1;
+            xyAxisTextureScaling = 1;
+            preyTextureScaling = 0.1f;
+            bowlTextureScaling = 0.12f;
+
+            predatorScaling = 0.5f;
+            velocityTextureScaling = 0.5f;
+            angleTextureScaling = 0.85f;
         }
         /// <summary>
         /// LoadModels will be called once per game and is the place to load
@@ -277,31 +333,14 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
-           
-            DrawEnvironment();
-            
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);           
+            DrawEnvironment();            
             if (grayScreen)
-            {
-                
-                DrawGrayScreen();
-                
-            }
-            else
-            {
-                spriteBatch.Begin();
-                String velString = "Velocity = ";
-                String angString = "Angle = ";
-                spriteBatch.DrawString(velAngleFont, velString + env.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
-                spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
-                spriteBatch.End();
-            }
-            DrawConnectors();
-
-            
-           
-
-
+            {              
+                DrawGrayScreen();              
+            }        
+            DrawAngVelLabels();
+            DrawConnectors();                    
             // Only Used If 3D Models are Used.
 
             //foreach (CustomModel model in models)
@@ -310,6 +349,34 @@ namespace Mechanect.Screens
             //    //takes the camera instance and draws the model 
             //}
 
+        }
+        /// <summary>
+        /// This Method is to be called whenDrawing The X,Y axises Labels.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: April, 22 </para>
+        /// <para>DATE MODIFIED: April, 22  </para>
+        /// </remarks>
+        private void DrawAngVelLabels()
+        {
+            spriteBatch.Begin();
+            if (grayScreen)
+            {
+                String velString = "Velocity = " + env.Velocity;
+                String angString = "Angle = " + env.Angle;
+                spriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 4) + velocityTexture.Width * velocityTextureScaling / 2 - spriteFont.MeasureString(velString).X, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+                spriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth * 2 / 9) + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+            
+            }
+            else
+            {
+                String velString = "Velocity = ";
+                String angString = "Angle = ";
+                spriteBatch.DrawString(velAngleFont, velString + env.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
+                spriteBatch.DrawString(velAngleFont, angString + env.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
+            }
+                spriteBatch.End();
         }
         /// <summary>
         /// This Method is to be called whenDrawing The basic environment elements.
@@ -325,7 +392,8 @@ namespace Mechanect.Screens
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, backgroundTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, xyAxisTextureScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, startAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
-            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition2D, predatorScaling), null, Color.White, 0f, Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
+            //TBA >> degrees
+            spriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition2D, predatorScaling), null, Color.White, MathHelper.ToRadians(0), predatorOrigin, predatorScaling, SpriteEffects.None, 0f);
             spriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             string meters = "meters";
             spriteBatch.DrawString(velAngleFont, meters, new Vector2(0f, 0f), Color.Red);
@@ -384,10 +452,6 @@ namespace Mechanect.Screens
             spriteBatch.DrawString(spriteFont, testString, new Vector2((screenWidth / 4), 0), Color.Red);
             string sayString = "Say 'GO' or press OK";
             spriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 4), screenHeight - 2*spriteFont.MeasureString(sayString).Y), Color.Red);
-            String velString = "Velocity = " + env.Velocity;
-            String angString = "Angle = " + env.Angle;
-            spriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 4)  +velocityTexture.Width*velocityTextureScaling/2  - spriteFont.MeasureString(velString).X, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
-            spriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth*2 / 9) +angleTexture.Width* angleTextureScaling  - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
             spriteBatch.End();
         }
 
