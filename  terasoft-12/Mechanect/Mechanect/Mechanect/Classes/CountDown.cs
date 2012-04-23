@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Storage;
 namespace Mechanect.Classes
 {
     class CountDown
-    {        
+    {
         Texture2D Texture;
         int StageWidth, StageHeight;
         Rectangle r;
@@ -24,6 +24,17 @@ namespace Mechanect.Classes
         int v3;
         int v4;
         int counter;
+        CountDown One;
+        CountDown two;
+        CountDown Three;
+        CountDown go;
+        CountDown background;
+        SoundEffect effect1;
+        SoundEffect effect2;
+        Boolean play1 = true;
+        Boolean play2 = true;
+        Boolean play3 = true;
+        Boolean play4 = true;    
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
@@ -44,10 +55,9 @@ namespace Mechanect.Classes
         /// <permission cref="System.Security.PermissionSet">
         /// This function is public
         /// </permission>
-        
+
         public CountDown(Texture2D tex, int a, int b, int v1, int v2, int v3, int v4)
         {
-            
             Texture = tex;
             StageWidth = a;
             StageHeight = b;
@@ -57,7 +67,21 @@ namespace Mechanect.Classes
             this.v4 = v4;
             r = new Rectangle(v1, v2, v3, v4);
             counter = r.Height;
-            
+        }
+
+        public CountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo,Texture2D Texback,
+                SoundEffect Seffect1, SoundEffect Seffect2,GraphicsDeviceManager graphics)
+        {
+            Three = new CountDown(Texthree, graphics.PreferredBackBufferWidth,
+                   graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            two = new CountDown(Textwo, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            One = new CountDown(Texone, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            go = new CountDown(Texgo, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 430, 200, 150, 150);            
+            effect1 = Seffect1;
+            effect2 = Seffect2;
         }
 
         /// <remarks>
@@ -80,9 +104,9 @@ namespace Mechanect.Classes
         {
 
 
-            counter=counter-4;
+            counter = counter - 4;
 
-               
+
         }
 
         /// <remarks>
@@ -123,10 +147,69 @@ namespace Mechanect.Classes
         /// </permission>
         /// <returns></returns>
         public void Draw(SpriteBatch spriteBatch)
-        {            
-                spriteBatch.Begin();
-                spriteBatch.Draw(Texture, r, Color.White);
-                spriteBatch.End();            
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(Texture, r, Color.White);
+            spriteBatch.End();
+        }
+
+        public void UpdateCountdownScreen() {
+            if (Three.GetCounter() > 0)
+            {
+                Three.Update();
+                if (play1)
+                {
+                    effect1.Play();
+                    play1 = false;
+                }
+            }
+            if (Three.GetCounter() == 0 && two.GetCounter() > 0)
+            {
+                two.Update();
+                if (play2)
+                {
+                    effect1.Play();
+                    play2 = false;
+                }
+            }
+            if (two.GetCounter() == 0 && Three.GetCounter() == 0 && One.GetCounter() > 0)
+            {
+                One.Update();
+                if (play3)
+                {
+                    effect1.Play();
+                    play3 = false;
+                }
+            }
+            if (One.GetCounter() == 0 && two.GetCounter() == 0 && Three.GetCounter() == 0 && go.GetCounter() > 0)
+            {
+                if (play4)
+                {
+                    effect2.Play();
+                    play4 = false;
+                }
+
+            }
+        }
+
+        public void DrawCountdownScreen(SpriteBatch spriteBatch)
+        {
+            if (Three.GetCounter() > 0)
+            {
+                Three.Draw(spriteBatch);
+            }
+            if (Three.GetCounter() == 0 && two.GetCounter() > 0)
+            {
+                two.Draw(spriteBatch);
+            }
+            if (two.GetCounter() == 0 && Three.GetCounter() == 0 && One.GetCounter() > 0)
+            {
+                One.Draw(spriteBatch);
+            }
+            if (One.GetCounter() == 0 && two.GetCounter() == 0 && Three.GetCounter() == 0 && go.GetCounter() > 0)
+            {
+                go.Draw(spriteBatch);
+            }
         }
 
     }
