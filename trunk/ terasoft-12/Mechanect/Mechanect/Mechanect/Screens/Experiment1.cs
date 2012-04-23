@@ -25,6 +25,7 @@ namespace Mechanect.Screens
         CountDown background;
         float timer = 0;
         int timecounter;
+        PerformanceGraph Graph;
         List<int> timeslice;
         List<String> gCommands = new List<string> { "constantDisplacement", "constantAcceleration", "increasingAcceleration", "decreasingAcceleration", "constantVelocity" };
         List<String> racecommands;
@@ -118,7 +119,52 @@ namespace Mechanect.Screens
             //----------------------------------------------------------------------
 
 
+            //------------------------graphs
+            background = new CountDown(Content.Load<Texture2D>("MechanectContent/Background2"), graphics.PreferredBackBufferWidth,
+                    graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
 
+            Graph = new PerformanceGraph();
+            List<string> Commands = new List<string>();
+            List<double> CommandsTime = new List<double>();
+            List<int> Player1Displacement = new List<int>();
+            List<int> Player2Displacement = new List<int>();
+            //initiating testing values 
+            Commands.Add("constantAcceleration");
+            CommandsTime.Add(4);
+            int intitial = 4000;
+            int stepping = 1;
+            for (int i = 0; i <= 119; i++)
+            {
+                if (intitial > 0)
+                {
+                    Player1Displacement.Add(intitial);
+                    intitial = intitial - stepping;
+                    stepping++;
+                }
+                else
+                {
+                    Player1Displacement.Add(0);
+                }
+            }
+            intitial = 4000;
+            stepping = 0;
+            for (int i = 0; i <= 119; i++)
+            {
+                if (intitial > 0)
+                {
+                    Player2Displacement.Add(intitial);
+                    stepping = stepping + 5;
+                    intitial = intitial - stepping;
+                }
+                else
+                {
+                    Player2Displacement.Add(0);
+                }
+            }
+            //main initializing method
+            //Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
+
+           // -----------------------------------
 
 
         }
@@ -210,7 +256,7 @@ namespace Mechanect.Screens
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
 
-
+               // Graph.updateCurve(SpriteBatch, GraphicsDevice);
 
                 //sprite2.End();
 
@@ -242,7 +288,18 @@ namespace Mechanect.Screens
 
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
-
+                background.Draw(SpriteBatch);
+                SpriteFont font = Content.Load<SpriteFont>("MechanectContent/MyFont1");
+                SpriteFont font2 = Content.Load<SpriteFont>("MechanectContent/MyFont2");
+                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
+                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlack");
+                SpriteBatch sprite2 = SpriteBatch;
+                sprite2.Begin();
+                //Graph.drawRange(SpriteBatch, GraphicsDevice);
+               // Graph.drawAxis(SpriteBatch, GraphicsDevice, font, font2);
+                sprite2.End();
+                Graph.drawConnectors();
+               // Graph.drawDisqualification(SpriteBatch, graphics, timer, P1Tex, P2Tex);
             }
 
 
