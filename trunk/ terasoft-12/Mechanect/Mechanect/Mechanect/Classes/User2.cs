@@ -132,8 +132,7 @@ namespace Mechanect.Classes
             //throw new NotImplementedException();
         }
 
-       
-
+     
 
         /// <summary>
         /// Gets the angle between two Vectors, from left hip to left shoulder and from left shoulder to left hand
@@ -146,8 +145,7 @@ namespace Mechanect.Classes
         public double measureAngle(GameTime gametime)
         {
 
-            if (hasStartedMoving(gametime))
-            {
+          
                 counter += 1;
 
                 if (counter % 3 == 0)
@@ -194,9 +192,7 @@ namespace Mechanect.Classes
                 }
                 else
                     return finalAngle;
-            }
-            else
-                return finalAngle;
+           
         }
 
 
