@@ -30,6 +30,6 @@ namespace Mechanect.Common
         public NewGameButton(ContentManager c, Vector2 p, int sw, int sh)
             : base(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-s"),
             c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), p, sw, sh,
-            c.Load<Texture2D>("Buttons/hand")) { }
+            c.Load<Texture2D>("Textures/Buttons/hand")) { }
     }
 }

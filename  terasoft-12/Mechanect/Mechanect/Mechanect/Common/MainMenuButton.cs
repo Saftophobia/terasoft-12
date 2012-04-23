@@ -30,6 +30,6 @@ namespace Mechanect.Common
         public MainMenuButton(ContentManager c, Vector2 p, int sw, int sh)
             : base(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-s"),
             c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-m"), p, sw, sh,
-            c.Load<Texture2D>("Buttons/hand")) { }
+            c.Load<Texture2D>("Textures/Buttons/hand")) { }
     }
 }
