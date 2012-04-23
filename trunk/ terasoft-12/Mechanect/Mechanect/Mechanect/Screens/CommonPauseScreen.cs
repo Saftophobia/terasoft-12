@@ -38,9 +38,9 @@ namespace Mechanect.Screens
         /// </summary>     
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            var position = new Vector2(100, 20);
-            var I = new Instruction("No Player Detected, Please stand in the correct position then press ok ", position);
-            I.Draw();
+            //var position = new Vector2(100, 20);
+         //   var I = new Instruction("No Player Detected, Please stand in the correct position then press ok ", position);
+           // I.Draw();
         }
 
         public override void Remove()
