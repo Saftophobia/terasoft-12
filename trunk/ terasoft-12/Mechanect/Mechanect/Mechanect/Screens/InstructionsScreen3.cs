@@ -41,8 +41,8 @@ namespace Mechanect.Screens
         {
             var position = new Vector2(100, 20);
             var instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
-            var I = new Instruction(instructions, position);
-            I.Draw();
+            //var I = new Instruction(instructions, position);
+            //I.Draw();
         }
     
         public override void Remove()
