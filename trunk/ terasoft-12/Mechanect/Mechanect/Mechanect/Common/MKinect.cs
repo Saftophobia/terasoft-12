@@ -19,6 +19,7 @@ namespace Mechanect.Common
         private Skeleton[] _FrameSkeletons;
 
         public Skeleton globalSkeleton;
+        public Skeleton globalSkeleton2;
         private int dropFrameRate;
         private int frameCounter;
 
@@ -116,6 +117,7 @@ namespace Mechanect.Common
                 if (frame != null)
                 {
                     Skeleton skeleton;
+                    Skeleton skeleton2;
                     frame.CopySkeletonDataTo(this._FrameSkeletons);
                     for (int i = 0; i < this._FrameSkeletons.Length; i++)
                     {
@@ -125,6 +127,15 @@ namespace Mechanect.Common
                             this.globalSkeleton = skeleton;
                         }
                     }
+                    for (int y = 0; y < this._FrameSkeletons.Length; y++)
+                    {
+                        skeleton2 = this._FrameSkeletons[y];
+                        if (skeleton2.TrackingState == SkeletonTrackingState.Tracked && skeleton2 != globalSkeleton)
+                        {
+                            this.globalSkeleton2 = skeleton2;
+                        }
+                    }
+
                     //skeleton = _FrameSkeletons.OrderBy(s => s.Position.Z)
                     //    .FirstOrDefault(s => s.TrackingState == SkeletonTrackingState.Tracked);
                 }
@@ -136,6 +147,11 @@ namespace Mechanect.Common
         public Skeleton requestSkeleton()
         {
             return globalSkeleton;
+        }
+
+        public Skeleton request2ndSkeleton()
+        {
+            return globalSkeleton2;
         }
 
 
