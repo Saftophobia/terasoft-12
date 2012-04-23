@@ -137,6 +137,7 @@
     <Compile Include="Classes\PositionAdjustment.cs" />
     <Compile Include="Classes\Predator.cs" />
     <Compile Include="Classes\Prey.cs" />
+    <Compile Include="Classes\ResultSimulation.cs" />
     <Compile Include="Classes\Tools1.cs" />
     <Compile Include="Classes\Tools2.cs" />
     <Compile Include="Classes\Tools3.cs" />
