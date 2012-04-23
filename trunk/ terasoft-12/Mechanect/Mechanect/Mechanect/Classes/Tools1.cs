@@ -137,27 +137,27 @@ namespace Mechanect.Classes
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
-         /// <para>DATE MODIFIED: 21/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
          /// </remarks>
-         public static void CheckEachSecond(int timeInSeconds, User1 User11, User1 User12, List<int> timeOfCommands, List<GameCommands> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
+         public static void CheckEachSecond(int timeInSeconds, User1 User11, User1 User12, List<int> timeOfCommands, List<String> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
          {
-             int pastSecondsFor1 = 5;
+             int pastSecondsFor1 = 4;
              for (int i = 0; i < User11.ActiveCommand; i++)
                  pastSecondsFor1 += timeOfCommands[i];
 
-             int pastSecondsFor2 = 5;
+             int pastSecondsFor2 = 4;
              for (int i = 0; i < User11.ActiveCommand; i++)
                  pastSecondsFor2 += timeOfCommands[i];
 
-             List<int> User11Displacement = new List<int>();//change this back to float
-             List<int> User12Displacement = new List<int>();//change this back to float
+             List<float> User11Displacement = new List<float>();
+             List<float> User12Displacement = new List<float>();
              for (int i = (pastSecondsFor1 - 1) * 24; i < User11.Positions.Count; i++)
-                 User11Displacement.Add((int)User11.Positions[i]);//remove the type-cast
+                 User11Displacement.Add(User11.Positions[i]);
 
              for (int i = (pastSecondsFor2 - 1) * 24; i < User12.Positions.Count; i++)
-                 User12Displacement.Add((int)User12.Positions[i]);//remove the type-cast
+                 User12Displacement.Add(User12.Positions[i]);
 
-             if (!CommandSatisfied(currentCommands[User11.ActiveCommand].Name, User11Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[User11.ActiveCommand], User11Displacement, tolerance))
              {
                  User11.Disqualified = true;
                  User11.DisqualificationTime = timeInSeconds;
@@ -165,7 +165,7 @@ namespace Mechanect.Classes
                  spriteBatch.DrawString(spFont, "User1 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.End();
              }
-             if (!CommandSatisfied(currentCommands[User12.ActiveCommand].Name, User12Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[User12.ActiveCommand], User12Displacement, tolerance))
              {
                  User12.Disqualified = true;
                  User12.DisqualificationTime = timeInSeconds;
@@ -222,7 +222,7 @@ namespace Mechanect.Classes
          /// <summary>
          /// this method checks whether the User1 is standing in about 4m or not(with certain tolerance)
          /// </summary>
-         /// <param name="User1Position">the position that the User1 is currently standing at</param>
+         /// <param name="UserPosition">the position that the User1 is currently standing at</param>
          /// <param name="tolerance">the tolerance level</param>
          /// <returns>if the position sent is in the range or not</returns>
          /// <remarks>
@@ -230,13 +230,13 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 20/4/12 </para>
          /// </remarks>
-         public static bool CheckPosition(float User1Position, float tolerance)
+         public static bool CheckPosition(float UserPosition, float tolerance)
          {
              //initiate the minimum distance from the Kinect which means
              //the maximum distance between the two players which is actually the tolerance on a scale from 0-10 mm
              float min = 4.0f - (tolerance / 1000);
              //check if the actual position of the player is within the range or not
-             if (User1Position >= min && User1Position <= 4.0f)
+             if (UserPosition >= min && UserPosition <= 4.0f)
                  //if it is within the range then it will be true
                  return true;
              //if it is out of this range and/or the kinect range it will be false
@@ -253,127 +253,251 @@ namespace Mechanect.Classes
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
-         /// <para>DATE MODIFIED: 21/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
          /// </remarks>
-         public static bool CommandSatisfied(String command, List<int> positions, float tolerance)//change this back to float
+         public static bool CommandSatisfied(String command, List<float> positions, float tolerance)//change this back to float
          {
              bool result = true;
-             float currentTolerance = tolerance / 100;
+             float currentTolerance = (10 - tolerance) / 100;
+
              if (command.Equals("constantVelocity"))
              {
-                 float firstVelocity = positions[0] - positions[1];
-                 for (int i = 2; i < positions.Count; i++)
-                 {
-                     float currentDisplacement = (positions[i - 1] - positions[i]);
-                     if (!(currentDisplacement >= (firstVelocity - currentTolerance) && currentDisplacement <= (firstVelocity + currentTolerance)))
-                     {
-                         result = false;
-                         break;
-                     }
-                     else
-                     {
-                         if (positions[positions.Count - 1] == 0)
-                         {
-                             result = true;
-                         }
-                     }
-                 }
+                 result = ConstantVelocity(positions, currentTolerance);
              }
              else
              {
                  if (command.Equals("constantAcceleration"))
                  {
-                     List<int> velocities = PerformanceGraph.GetPlayerVelocity(positions);//change this back to float
-                     float firstVelocity = velocities[1] - velocities[0];
-                     for (int i = 2; i < positions.Count; i++)
-                     {
-                         float currentVelocity = (velocities[i] - velocities[i - 1]);
-                         if (!(currentVelocity >= (firstVelocity - currentTolerance) && currentVelocity <= (firstVelocity + currentTolerance)))
-                         {
-                             result = false;
-                             break;
-                         }
-                         else
-                         {
-                             if (positions[positions.Count - 1] == 0)
-                             {
-                                 result = true;
-                             }
-                         }
-                     }
+                     result = ConstantAcceleration(positions, currentTolerance);
                  }
                  else
                  {
                      if (command.Equals("constantDisplacement"))
                      {
-                         float firstDisplacement = positions[0];
-                         for (int i = 1; i < positions.Count; i++)
-                         {
-                             float currentDisplacement = positions[i];
-                             if (!(currentDisplacement >= (firstDisplacement - currentTolerance) && currentDisplacement <= (firstDisplacement + currentTolerance)))
-                             {
-                                 result = false;
-                                 break;
-                             }
-                             else
-                             {
-                                 if (positions[positions.Count - 1] == 0)
-                                 {
-                                     result = true;
-                                 }
-                             }
-                         }
+                         result = ConstantDisplacement(positions, currentTolerance);
                      }
                      else
                      {
                          if (command.Equals("increasingAcceleration"))
                          {
-                             List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));//change this back to float
-                             float firstAcceleration = accelerations[1] - accelerations[0];
-                             for (int i = 2; i < positions.Count; i++)
-                             {
-                                 float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
-                                 if (!(currentAcceleration >= (firstAcceleration - currentTolerance)))
-                                 {
-                                     result = false;
-                                     break;
-                                 }
-                                 else
-                                 {
-                                     if (positions[positions.Count - 1] == 0)
-                                     {
-                                         result = true;
-                                     }
-                                 }
-                             }
+                             result = IncreasingAcceleration(positions, currentTolerance);
                          }
                          else
                          {
                              if (command.Equals("decreasingAcceleration"))
                              {
-                                 List<int> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));//change this back to float
-                                 float firstAcceleration = accelerations[1] - accelerations[0];
-                                 for (int i = 2; i < positions.Count; i++)
-                                 {
-                                     float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
-                                     if (!(currentAcceleration <= (firstAcceleration - currentTolerance)))
-                                     {
-                                         result = false;
-                                         break;
-                                     }
-                                     else
-                                     {
-                                         if (positions[positions.Count - 1] == 0)
-                                         {
-                                             result = true;
-                                         }
-                                     }
-                                 }
+                                 result = DecreasingAcceleration(positions, currentTolerance);
                              }
                          }
                      }
                  }
              }
+             return result;
+         }
+
+         /// <summary>
+         /// checks if the user applied the command of Constant Velocity or not
+         /// </summary>
+         /// <param name="positions">list of the user positions throughout the command</param>
+         /// <param name="currentTolerance">the tolerance of the game</param>
+         /// <returns>if the command sent is satified then "true" else "false"</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// </remarks>
+         public static bool ConstantVelocity(List<float> positions, float currentTolerance)
+         {
+             bool result = true;
+             float firstVelocity = positions[0] - positions[1];
+             for (int i = 2; i < positions.Count; i++)
+             {
+                 float currentDisplacement = (positions[i - 1] - positions[i]);
+                 if (!(currentDisplacement >= (firstVelocity - currentTolerance) && currentDisplacement <= (firstVelocity + currentTolerance)))
+                 {
+                     if (positions[positions.Count - 1] == 0.8)
+                     {
+                         result = true;
+                         break;
+                     }
+                     else
+                     {
+                         result = false;
+                         break;
+                     }
+                 }
+             }
+             return result;
+         }
+         
+         /// <summary>
+         /// checks if the user applied the command of Constant Acceleration or not
+         /// </summary>
+         /// <param name="positions">list of the user positions throughout the command</param>
+         /// <param name="currentTolerance">the tolerance of the game</param>
+         /// <returns>if the command sent is satified then "true" else "false"</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// </remarks>
+         public static bool ConstantAcceleration(List<float> positions, float currentTolerance)
+         {
+
+             List<int> intPositions = new List<int>();
+             List<float> velocities = new List<float>();
+             for (int i = 0; i < positions.Count; i++)
+                 intPositions.Add((int)(positions[i] * 10000));
+             intPositions = PerformanceGraph.GetPlayerVelocity(intPositions);
+
+             for (int i = 0; i < intPositions.Count; i++)
+                 velocities.Add(intPositions[i] / 10000);
+
+             bool result = true;
+             float firstVelocity = velocities[1] - velocities[0];
+             for (int i = 2; i < velocities.Count; i++)
+             {
+                 float currentVelocity = (velocities[i] - velocities[i - 1]);
+                 if (!(currentVelocity >= (firstVelocity - currentTolerance) && currentVelocity <= (firstVelocity + currentTolerance)))
+                 {
+                     if (positions[positions.Count - 1] == 0.8)
+                     {
+                         result = true;
+                         break;
+                     }
+                     else
+                     {
+                         result = false;
+                         break;
+                     }
+                 }
+             }
+             return result;
+         }
+
+         /// <summary>
+         /// checks if the user applied the command of Constant Displacement or not
+         /// </summary>
+         /// <param name="positions">list of the user positions throughout the command</param>
+         /// <param name="currentTolerance">the tolerance of the game</param>
+         /// <returns>if the command sent is satified then "true" else "false"</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// </remarks>
+         public static bool ConstantDisplacement(List<float> positions, float currentTolerance)
+         {
+             bool result = true;
+             float firstDisplacement = positions[0];
+             for (int i = 1; i < positions.Count; i++)
+             {
+                 float currentDisplacement = positions[i];
+                 if (!(currentDisplacement >= (firstDisplacement - currentTolerance) && currentDisplacement <= (firstDisplacement + currentTolerance)))
+                 {
+                     if (positions[positions.Count - 1] == 0.8)
+                     {
+                         result = true;
+                         break;
+                     }
+                     else
+                     {
+                         result = false;
+                         break;
+                     }
+                 }
+             }
+             return result;
+         }
+
+         /// <summary>
+         /// checks if the user applied the command of Increasing Acceleration or not
+         /// </summary>
+         /// <param name="positions">list of the user positions throughout the command</param>
+         /// <param name="currentTolerance">the tolerance of the game</param>
+         /// <returns>if the command sent is satified then "true" else "false"</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// </remarks>
+         public static bool IncreasingAcceleration(List<float> positions, float currentTolerance)
+         {
+
+             List<int> intPositions = new List<int>();
+             List<float> accelerations = new List<float>();
+             for (int i = 0; i < positions.Count; i++)
+                 intPositions.Add((int)(positions[i] * 10000));
+             intPositions = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(intPositions));
+
+             for (int i = 0; i < intPositions.Count; i++)
+                 accelerations.Add(intPositions[i] / 10000);
+
+             bool result = true;
+             float firstAcceleration = accelerations[1] - accelerations[0];
+             for (int i = 2; i < accelerations.Count; i++)
+             {
+                 float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
+                 if (!(currentAcceleration >= (firstAcceleration - currentTolerance)))
+                {
+                    if (positions[positions.Count - 1] == 0.8)
+                    {
+                        result = true;
+                        break;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                 }
+             }
+             return result;
+         }
+
+         /// <summary>
+         /// checks if the user applied the command of Decreasing Acceleration or not
+         /// </summary>
+         /// <param name="positions">list of the user positions throughout the command</param>
+         /// <param name="currentTolerance">the tolerance of the game</param>
+         /// <returns>if the command sent is satified then "true" else "false"</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// </remarks>
+         public static bool DecreasingAcceleration(List<float> positions, float currentTolerance)
+         {
+
+             List<int> intPositions = new List<int>();
+             List<float> accelerations = new List<float>();
+             for (int i = 0; i < positions.Count; i++)
+                 intPositions.Add((int)(positions[i] * 10000));
+             intPositions = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(intPositions));
+
+             for (int i = 0; i < intPositions.Count; i++)
+                 accelerations.Add(intPositions[i] / 10000);
+
+             bool result = true;
+             float firstAcceleration = accelerations[1] - accelerations[0];
+             for (int i = 2; i < accelerations.Count; i++)
+             {
+                 float currentAcceleration = (accelerations[i] - accelerations[i - 1]);
+                 if (!(currentAcceleration <= (firstAcceleration - currentTolerance)))
+                 {
+                     if (positions[positions.Count - 1] == 0.8)
+                     {
+                         result = true;
+                         break;
+                     }
+                     else
+                     {
+                         result = false;
+                         break;
+                     }
+                 }
+             }
+
              return result;
          }
 
