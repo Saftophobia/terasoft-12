@@ -578,7 +578,12 @@ namespace Mechanect.Classes
 
         #region Omar's Methods
 
-
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// XNA Update Method.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             Tools3.update_MeasuringVelocityAndAngle(user);
@@ -587,6 +592,12 @@ namespace Mechanect.Classes
             base.Update(gameTime);
         }
 
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// XNA Initialize Method.
+        /// </summary>
         public override void Initialize()
         {
             hasCollidedWithBall = false;
@@ -595,12 +606,22 @@ namespace Mechanect.Classes
             base.Initialize();
         }
 
-
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// XNA LoadContent Method.
+        /// </summary>
         protected override void LoadContent()
         {
             base.LoadContent();
         }
-
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Updates the balls velocity according to the speed and angle the user shot with.
+        /// </summary>
         public void shoot()
         {
             Vector3 initialLegVelocity; //This variable represents the velocity of the leg with which the user has shot the ball.
@@ -613,7 +634,12 @@ namespace Mechanect.Classes
                 ball.Velocity = velocityAfterCollision; // update the velocity of the ball
             }
         }
-
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Checks if the users leg has collided with the ball.
+        /// </summary>
         public void checkCollision()
         {
 
@@ -628,7 +654,14 @@ namespace Mechanect.Classes
             else
                 hasCollidedWithBall = false;
         }
-
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Calculates the balls velocity after collision using conservation of momentum.
+        /// </summary>
+        /// <param name="initialVelocity">Legs initial velocity prior to collision.</param>
+        /// <returns>Vector3 Ball velocity after collision.</returns>
         public Vector3 getVelocityAfterCollision(Vector3 initialVelocity)
         {
             double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
@@ -653,6 +686,14 @@ namespace Mechanect.Classes
             //Return a vector containing the ball's speed and direction.
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
+
+
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Simulates ball falling into a hole by updating its velocity when it reaches the hole.
+        /// </summary>
         public void ballFallIntoHole()
         {
             //Waiting for completed class Hole from Khaled Salah
