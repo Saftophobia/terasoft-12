@@ -325,13 +325,13 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// takes the minimum and maximum values possible for the mass of the foot and sets the foot mass to a random float number between these 2 numbers
+        /// Takes the minimum and maximum values possible for the mass of the foot and sets the foot mass to a random float number between these two numbers.
         /// </summary>
         /// <param name="minMass">
-        /// The minimum possible value for the foot mass
+        /// The minimum possible value for the foot mass.
         /// </param>
         /// /// <param name="maxMass">
-        /// The maximum possible value for the foot mass
+        /// The maximum possible value for the foot mass.
         /// </param>
      
          public void SetFootMassInThisRange(float minMass, float maxMass)
@@ -342,16 +342,16 @@ namespace Mechanect.Classes
          ///<para>AUTHOR: Khaled Salah </para>
          ///</remarks>
          /// <summary>
-         /// takes the minimum and maximum values possible for the mass of the foot and generates a random float between these 2 numbers
+         /// Takes the minimum and maximum values possible for the mass of the foot and generates a random float between these two numbers.
          /// </summary>
          /// <param name="minMass">
-         /// The minimum possible value for the foot mass
+         /// The minimum possible value for the foot mass.
          /// </param>
          /// /// <param name="maxMass">
-         /// The maximum possible value for the foot mass
+         /// The maximum possible value for the foot mass.
          /// </param>
          /// <returns>
-         /// float number which is the generated random value
+         /// Float number which is the generated random value.
          /// </returns>
          public float GenerateFootMass(float min, float max)
          {
