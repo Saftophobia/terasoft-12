@@ -34,7 +34,8 @@ namespace Mechanect.Common
         /// This method should be used to set the frame capturing rate for the kinect sensor.
         /// Note that this method will set any input bigger than 30 to 30, because the maximum kinect framerate is 30
         /// </summary>
-        /// <param name="dropFrameRate"></param>
+        /// <param name="dropFrameRate">
+        /// Specifies the drop rate for frames.</param>
         public void SetDropFrameRate(int dropFrameRate)
         {
             this.dropFrameRate = dropFrameRate-1;
