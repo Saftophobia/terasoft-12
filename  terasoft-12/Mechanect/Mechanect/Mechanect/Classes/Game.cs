@@ -78,8 +78,8 @@ namespace Mechanect.Classes
                 Graph = new PerformanceGraph();
                 List<string> Commands = new List<string>();
                 List<double> CommandsTime = new List<double>();
-                List<int> Player1Displacement = new List<int>();
-                List<int> Player2Displacement = new List<int>();
+                List<float> Player1Displacement = new List<float>();
+                List<float> Player2Displacement = new List<float>();
                 //initiating testing values 
                 Commands.Add("constantAcceleration");
                 CommandsTime.Add(4);
