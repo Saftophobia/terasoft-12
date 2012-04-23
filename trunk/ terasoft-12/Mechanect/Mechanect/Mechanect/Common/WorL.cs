@@ -44,7 +44,7 @@ namespace Mechanect.Common
         /// <param name="spriteBatch">to be able to draw</param>
         public void winningWord(SpriteBatch spriteBatch)
         {
-            Texture2D pic = content.Load<Texture2D>("WorL/winner");
+            Texture2D pic = content.Load<Texture2D>("Textures/WorL/winner");
             spriteBatch.Begin();
             spriteBatch.Draw(pic, position, Color.White);
             spriteBatch.End();
@@ -61,7 +61,7 @@ namespace Mechanect.Common
         /// <param name="spriteBatch">to be able to draw</param>
         public void losingWord(SpriteBatch spriteBatch)
         {
-            Texture2D pic = content.Load<Texture2D>("WorL/looser");
+            Texture2D pic = content.Load<Texture2D>("Textures/WorL/looser");
             spriteBatch.Begin();
             spriteBatch.Draw(pic, position, Color.White);
             spriteBatch.End();

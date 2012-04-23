@@ -29,6 +29,6 @@ namespace Mechanect.Common
         public OKButton(ContentManager c, Vector2 p, int sw, int sh)
             : base(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-s"),
             c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-m"), p, sw, sh,
-            c.Load<Texture2D>("Buttons/hand")) { }
+            c.Load<Texture2D>("Textures/Buttons/hand")) { }
     }
 }
