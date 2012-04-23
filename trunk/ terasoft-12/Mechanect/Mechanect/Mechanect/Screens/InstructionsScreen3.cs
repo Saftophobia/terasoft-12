@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mechanect.Common;
+using Mechanect.Classes;
 using Microsoft.Xna.Framework;
-
+using MechanectXNA;
 namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
@@ -37,12 +38,12 @@ namespace Mechanect.Screens
         /// <param name="gameTime">
         /// an instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package
         /// </param>
-        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             var position = new Vector2(100, 20);
             var instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
-            //var I = new Instruction(instructions, position);
-            //I.Draw();
+            var I = new Instruction(instructions, position);
+            I.Draw(gameTime);
         }
     
         public override void Remove()
