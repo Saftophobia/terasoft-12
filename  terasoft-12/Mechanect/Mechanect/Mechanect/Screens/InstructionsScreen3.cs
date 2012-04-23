@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mechanect.Common;
-using Mechanect.Classes;
+﻿using Mechanect.Common;
 using Microsoft.Xna.Framework;
 using MechanectXNA;
 namespace Mechanect.Screens
