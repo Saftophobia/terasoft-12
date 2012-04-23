@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-
 namespace Mechanect.Classes
 {
     class PerformanceGraph
@@ -26,24 +25,38 @@ namespace Mechanect.Classes
         Boolean sameDirection = false;
         Color curveColor;
         List<int> Player1Displacement;
-        List<int> Player2Displacement;        
+        List<int> Player2Displacement;
+        List<int> Player1Velocity;
+        List<int> Player2Velocity;
         List<String> CommandsList;
         //CommandsList is a list represening each command given during the race
         List<double> TimeSpaces;
-        //TimeSpaces is a List representing the number of seconds elapsed by each command        
+        //TimeSpaces is a List representing the number of seconds elapsed by each command
+        
         Game currentGame;
         double totalTime;//total race time
         int[] chosenTimings;
         int[] chosendisp1 = new int[9];//y-axis
         int[] chosendisp2 = new int[9];
+        int[] chosenVelocity1 = new int[9];
+        int[] chosenVelocity2 = new int[9];
         PerformanceGraph[] disp1 = new PerformanceGraph[8];
-        PerformanceGraph[] disp2 = new PerformanceGraph[8];      
+        PerformanceGraph[] disp2 = new PerformanceGraph[8];
+        PerformanceGraph[] velo1 = new PerformanceGraph[8];
+        PerformanceGraph[] velo2 = new PerformanceGraph[8];
+        int maxVelocity;
+        
         List<int> P1DispGraph = new List<int>();
         List<int> P2DispGraph = new List<int>();
+        List<int> P1VeloGraph = new List<int>();
+        List<int> P2VeloGraph = new List<int>();
         double[] xaxis = new double[5];
         double[] yaxisDisplacement = new double[5];
+        double[] yaxisVelocity = new double[5];
         CountDown xDP1;
         CountDown xDP2;
+        CountDown xVP1;
+        CountDown xVP2;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -213,6 +226,64 @@ namespace Mechanect.Classes
                        SpriteEffects.None, 0);
         }
 
+
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 18/4/2012</para>
+        /// <para>Date Modified 19/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The static method GetPlayerVelocity is used to generate
+        /// a List representing the player's velocity during the race.
+        /// 
+        /// The velocity is calculated using the following equation:
+        ///        
+        /// Velocity= (Displacement.Final-Displacement.Initial)/dt
+        ///
+        /// where dt is (1/30) since the kinect captures 30 frames per
+        /// second implying that the time space (dt) between each depth 
+        /// frame and its successor is (1/30) seconds.
+        /// The resulting velocity is multiplied by negative one to
+        /// get the Player's velocity relative to the Player not to the
+        /// kinect, since the List holding the Player's displacements
+        /// from the kinect is relative to the kinect not the player.
+        /// 
+        /// The try and catch statement is used to add a 0 at the begining 
+        /// of the List representing the player's velocity since the players
+        /// would be at a fixed distance from the kinect at the exact instant
+        /// when the race starts
+        /// </summary>
+        /// <param name="DisplacementList"> A List representing the
+        /// player's displacements during the race</param>        
+        /// <permission cref="System.Security.PermissionSet">
+        /// This function is public
+        /// </permission>
+        /// <returns>List: returns a list representing the player's
+        /// velocity</returns>
+
+        public static List<int> GetPlayerVelocity(List<int> DisplacementList)
+        {
+            int size = DisplacementList.Count;
+            List<int> result = new List<int>();
+            for (int i = 0; i <= size - 1; i++)
+            {
+                try
+                {
+                    double dt = 0.0333333333333333333; //equivalent to 1/30
+                    int currentVelocity = (int)((DisplacementList[i] - DisplacementList[i - 1]) / dt) * -1;
+                    result.Add(currentVelocity);
+                }
+                catch (Exception e)
+                {
+                    result.Add(0);
+                }
+            }
+            return result;
+        }
+
+        
+
         
 
         /// <remarks>
@@ -243,9 +314,11 @@ namespace Mechanect.Classes
             this.CommandsList = Commands;
             this.TimeSpaces = time;
             this.currentGame = g1;
-           
-            choose();
+            Player1Velocity = GetPlayerVelocity(Player1Displacement);
+            Player2Velocity = GetPlayerVelocity(Player2Displacement);
             
+            choose();
+            setMaximum();
             setDestinations(g1.getGraphicsDeviceManager());
             setAxis();
         }
@@ -286,11 +359,15 @@ namespace Mechanect.Classes
                 {
                     chosendisp1[i] = Player1Displacement[chosenTimings[i] - 1];
                     chosendisp2[i] = Player2Displacement[chosenTimings[i] - 1];
+                    chosenVelocity1[i] = Player1Velocity[chosenTimings[i] - 1];
+                    chosenVelocity2[i] = Player2Velocity[chosenTimings[i] - 1];
                 }
                 else
                 {
                     chosendisp1[i] = Player1Displacement[chosenTimings[i]];
                     chosendisp2[i] = Player2Displacement[chosenTimings[i]];
+                    chosenVelocity1[i] = Player1Velocity[chosenTimings[i]];
+                    chosenVelocity2[i] = Player2Velocity[chosenTimings[i]];
                 }
             }
         }
@@ -314,19 +391,53 @@ namespace Mechanect.Classes
         /// This function is public
         /// </permission>
         /// <returns></returns>
-        
+        public void setMaximum()
+        {
+            maxVelocity = 0;
+            for (int i = 0; i <= chosenVelocity1.Length - 1; i++)
+            {
+                int v1 = chosenVelocity1[i];
+                if (v1 < 0)
+                {
+                    v1 = v1 * -1;
+                }
+                if (v1 > maxVelocity)
+                {
+                    maxVelocity = v1;
+                }
+            }
+            for (int i = 0; i <= chosenVelocity2.Length - 1; i++)
+            {
+                int v2 = chosenVelocity2[i];
+                if (v2 < 0)
+                {
+                    v2 = v2 * -1;
+                }
+                if (v2 > maxVelocity)
+                {
+                    maxVelocity = v2;
+                }
+            }
+        }
 
 
         public void setDestinations(GraphicsDeviceManager graphics)
         {
             int counter1 = 0;
-            for (int j = 0; j <= 1; j++)
+            for (int j = 0; j <= 3; j++)
             {
                 if (j <= 1)
                 {
                     counter1 = 50;
                 }
-                
+                if (j > 1 && j <= 3)
+                {
+                    counter1 = 380;
+                }
+                if (j > 3)
+                {
+                    counter1 = 710;
+                }
                 for (int i = 0; i <= 7; i++)
                 {
                     int value = 0;
@@ -366,6 +477,61 @@ namespace Mechanect.Classes
                             P2DispGraph.Add(r5);
                         }
                     }
+                    if (j > 1 && j <= 3)
+                    {
+                        value = maxVelocity;
+                        r = (double)value / (double)232;
+                        if (j == 2)
+                        {
+                            int a1 = 118;
+                            int a2 = 118;
+                            if (chosenVelocity1[i] < 0)
+                            {
+                                a1 = 134;
+                            }
+                            if (chosenVelocity1[i + 1] < 0)
+                            {
+                                a2 = 134;
+                            }
+                            double r2 = (double)(maxVelocity - 2 - chosenVelocity1[i]) / (double)r;
+                            int r3 = a1 + (int)r2;
+                            double r4 = (double)(maxVelocity - 2 - chosenVelocity1[i + 1]) / (double)r;
+                            int r5 = a2 + (int)r4;
+                            velo1[i] = new PerformanceGraph(counter1, r3, counter1 + 30, r5, graphics.PreferredBackBufferWidth,
+                                graphics.PreferredBackBufferHeight, Color.Blue);
+                            counter1 = counter1 + 30;
+                            if (i == 0)
+                            {
+                                P1VeloGraph.Add(r3);
+                            }
+                            P1VeloGraph.Add(r5);
+                        }
+                        if (j == 3)
+                        {
+                            int a1 = 118;
+                            int a2 = 118;
+                            if (chosenVelocity2[i] < 0)
+                            {
+                                a1 = 134;
+                            }
+                            if (chosenVelocity2[i + 1] < 0)
+                            {
+                                a2 = 134;
+                            }
+                            double r2 = (double)(maxVelocity - 2 - chosenVelocity2[i]) / (double)r;
+                            int r3 = a1 + (int)r2;
+                            double r4 = (double)(maxVelocity - 2 - chosenVelocity2[i + 1]) / (double)r;
+                            int r5 = a2 + (int)r4;
+                            velo2[i] = new PerformanceGraph(counter1, r3, counter1 + 30, r5, graphics.PreferredBackBufferWidth,
+                                graphics.PreferredBackBufferHeight, Color.Black);
+                            counter1 = counter1 + 30;
+                            if (i == 0)
+                            {
+                                P2VeloGraph.Add(r3);
+                            }
+                            P2VeloGraph.Add(r5);
+                        }
+                    }
                 }
             }
         }
@@ -384,7 +550,12 @@ namespace Mechanect.Classes
                 yaxisDisplacement[i] = counter;
                 counter += 1000;
             }
-            
+            yaxisVelocity[0] = 0;
+            step = (double)maxVelocity / (double)4;
+            for (int i = 1; i <= yaxisVelocity.Length - 1; i++)
+            {
+                yaxisVelocity[i] = yaxisVelocity[i - 1] + step;
+            }
         }
 
 
@@ -408,6 +579,8 @@ namespace Mechanect.Classes
                     {
                         disp1[k].Draw(spriteBatch, GraphicsDevice);
                         disp2[k].Draw(spriteBatch, GraphicsDevice);
+                        velo1[k].Draw(spriteBatch, GraphicsDevice);
+                        velo2[k].Draw(spriteBatch, GraphicsDevice);
                     }
                 }
             }
@@ -417,6 +590,8 @@ namespace Mechanect.Classes
                 {
                     disp1[i].Draw(spriteBatch, GraphicsDevice);
                     disp2[i].Draw(spriteBatch, GraphicsDevice);
+                    velo1[i].Draw(spriteBatch, GraphicsDevice);
+                    velo2[i].Draw(spriteBatch, GraphicsDevice);
                 }
             }
         }
@@ -430,24 +605,27 @@ namespace Mechanect.Classes
             //yaxis
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(50, 100),
                 new Vector2(50, 620));
-           
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(380, 100),
+                new Vector2(380, 620));
 
             //xaxis
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(50, 350),
                 new Vector2(300, 350));
-            
-
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(380, 350),
+                new Vector2(630, 350));
             //labels  
             spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Red);
+            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 70), Color.Red);
 
             spriteBatch.DrawString(font, "Time", new Vector2(270, 380), Color.Red);
+            spriteBatch.DrawString(font, "Time", new Vector2(600, 380), Color.Red);
 
             int count = 35;
             int count2 = 300;
             int count3 = 290;
             int count4 = 40;
             int count5 = 45;
-            for (int j = 0; j <1; j++)
+            for (int j = 0; j <= 1; j++)
             {
                 for (int i = 0; i <= 4; i++)
                 {
@@ -468,6 +646,11 @@ namespace Mechanect.Classes
                     if (j == 0 && i > 0)
                     {
                         spriteBatch.DrawString(font2, yaxisDisplacement[i] + "", new Vector2(0, count3), Color.Red);
+                        count3 = count3 - 60;
+                    }
+                    if (j == 1 && i > 0)
+                    {
+                        spriteBatch.DrawString(font2, yaxisVelocity[i] + "", new Vector2(320, count3), Color.Red);
                         count3 = count3 - 60;
                     }
 
@@ -506,11 +689,12 @@ namespace Mechanect.Classes
             for (int i = 0; i <= 3; i++)
             {
                 negativeDisp[i] = yaxisDisplacement[n] * -1;
+                negativeVel[i] = yaxisVelocity[n] * -1;
                 n++;
             }
 
             count = 410;
-            for (int i = 0; i <1; i++)
+            for (int i = 0; i <= 1; i++)
             {
                 for (int j = 0; j <= 3; j++)
                 {
@@ -572,8 +756,8 @@ namespace Mechanect.Classes
         public void drawDisqualification(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, int timer
             , Texture2D P1Tex, Texture2D P2Tex)
         {
-            double player1DisqualificationTime = 1;
-            double player2DisqualificationTime = 1;
+            double player1DisqualificationTime = currentGame.GetPlayer1Disq();
+            double player2DisqualificationTime = currentGame.GetPlayer2Disq();
 
             if (player1DisqualificationTime > 0)
             {
@@ -611,7 +795,16 @@ namespace Mechanect.Classes
                 {
                     xDP1.Draw(spriteBatch);
                 }
-                
+                y = P1VeloGraph[index] - 10;
+                r1 = (double)totalTime / (double)240;
+                r2 = (double)(time) / (double)r1;
+                r3 = 370 + (int)r2;
+                xVP1 = new CountDown(P1Tex, graphics.PreferredBackBufferWidth,
+                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
+                if (timer >= 240)
+                {
+                    xVP1.Draw(spriteBatch);
+                }
 
             }
             if (player2DisqualificationTime > 0)
@@ -650,21 +843,31 @@ namespace Mechanect.Classes
                 {
                     xDP2.Draw(spriteBatch);
                 }
-                
+                y = P2VeloGraph[index] - 10;
+                r1 = (double)totalTime / (double)240;
+                r2 = (double)(time) / (double)r1;
+                r3 = 370 + (int)r2;
+                xVP2 = new CountDown(P2Tex, graphics.PreferredBackBufferWidth,
+                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
+                if (timer >= 260)
+                {
+                    xVP2.Draw(spriteBatch);
+                }
             }
         }
 
 
         public void updateCurve(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)// to be called in the update function
         {
-            for (int k = 0; k <= 1; k++)
+            for (int k = 0; k <= 3; k++)
             {
                 PerformanceGraph[] array = new PerformanceGraph[8];
-
                 switch (k)
                 {
                     case 0: array = disp1; break;
                     case 1: array = disp2; break;
+                    case 2: array = velo1; break;
+                    case 3: array = velo2; break;
                 }
                 for (int i = 0; i <= array.Length - 1; i++)
                 {
@@ -684,5 +887,13 @@ namespace Mechanect.Classes
             }
         }
 
+        public List<int> getPlayer1Vel()
+        {
+            return Player1Velocity;
+        }
+        public List<int> getPlayer2Vel()
+        {
+            return Player2Velocity;
         }
     }
+}
