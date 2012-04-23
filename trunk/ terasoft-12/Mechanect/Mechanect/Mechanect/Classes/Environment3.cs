@@ -83,7 +83,7 @@ namespace Mechanect.Classes
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
-            Vector3 finalPos = Vector3.Zero;//to be changed with the position returned from getFinalPostion();            
+            Vector3 finalPos = Vector3.Zero;          
             finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
@@ -94,11 +94,11 @@ namespace Mechanect.Classes
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
-            return Constants3.solvableExperiment;//means solvable
+            return Constants3.solvableExperiment;
         }
 
         /// <summary>
-        /// Generates a solvable experiment
+        /// Generates a solvable experiment by modifying the auto-generated givens.
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmed Badr </para>
