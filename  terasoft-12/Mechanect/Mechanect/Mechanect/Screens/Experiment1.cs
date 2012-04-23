@@ -19,13 +19,20 @@ namespace Mechanect.Screens
     class Experiment1:Mechanect.Common.GameScreen
     {
         GraphicsDeviceManager graphics;
+        MKinect kinect;
+        User1 player1, player2;
         CountDown countdown;
         CountDown background;
-        int timer = 0;
+        float timer = 0;
+        int timecounter;
         List<int> timeslice;
         List<String> gCommands = new List<string> { "constantDisplacement", "constantAcceleration", "increasingAcceleration", "decreasingAcceleration", "constantVelocity" };
         List<String> racecommands;
         List<String> racecommandsforDRAW;
+        AvatarprogUI avatarprogUI;
+        int player1disqualification;
+        int player2disqualification;
+        //drawstring drawString
         
 
         Viewport ViewPort
@@ -103,9 +110,12 @@ namespace Mechanect.Screens
             }
 
 
-            //------------------------------------------------------------------------
-           
+            //------------------------------Avatarprog----------------------------
+            avatarprogUI = new AvatarprogUI();
+            //SpriteBatch = new SpriteBatch(GraphicsDevice);
+           // drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
 
+            //----------------------------------------------------------------------
 
 
 
@@ -121,6 +131,91 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
 
+            //----------------------TIME----------------------------
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timecounter += (int)timer;
+            if (timer >= 1.0F)
+                timer = 0F;
+            
+            //--------------------keepsgettingskeletons----------------
+
+
+            //player1.skeleton = kinect.requestSkeleton();
+            //player2.skeleton = kinect.request2ndSkeleton();
+            if (timecounter < 4)
+            {
+                countdown.UpdateCountdownScreen();
+
+            }
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
+            {
+                //avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton);
+                //drawString.Update(racecommandsforDRAW[timecounter - 4] + "")
+                /*
+                if (player1.skeleton != null)
+                {
+                    player1.Depthfromkinect.Add(player1.skeleton.Position.Z);
+                }
+                else
+                {
+                    //  player1.Disqualified = true;
+                }
+                if (player2.skeleton != null)
+                {
+                    player2.Depthfromkinect.Add(player2.skeleton.Position.Z);
+                }
+                else
+                {
+                    //player2.Disqualified = true;
+                }
+                */
+
+                if (timer % 10 == 0)
+                 {
+                    //
+                    //Mechanect.Tools.Tools1.CheckEachSecond(timer, player1, player2, timeslice, racecommands, 5, spriteBatch,spfont);
+
+
+                    player1.DisqualificationTime = player1disqualification;
+                    player2.DisqualificationTime = player2disqualification;
+
+                 }
+
+              //  if (player1.skeleton != null & player2.skeleton != null)
+                //    {
+                //if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z > 0.9 /*& !player1.Disqualified*/)
+               // {
+                 //   player1.Winner = true;
+                //}
+
+
+               // if (player1.skeleton.Position.Z > 0.9 & player2.skeleton.Position.Z <= 0.9 /*& !player2.Disqualified*/)
+            //    {
+             //       player2.Winner = true;
+             //   }
+
+                /* if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
+                     {
+                         player1.Winner = true;
+                         player2.Winner = true;
+                     }*/
+
+
+
+
+            }
+
+        //    if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+        //    {
+
+
+
+            //sprite2.End();
+
+            
+
+
+
 
 
 
@@ -129,7 +224,25 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            throw new NotImplementedException();
+            if (timecounter < 4)
+            {
+                background.Draw(SpriteBatch);
+                countdown.DrawCountdownScreen(SpriteBatch);
+            }
+
+
+            //if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
+           // {
+           // avatarprogUI.Draw(SpriteBatch, Content.Load<Texture2D>("ball"));
+           // }
+
+
+           // if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+          //  {
+        //}
+
+
+           
         }
 
         public override void Remove()
