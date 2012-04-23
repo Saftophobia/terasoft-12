@@ -22,7 +22,6 @@ namespace Mechanect
         protected int screenW, ScreenH;
 
         public Vector2 Position { get { return position; } set { position = value; } }
-        public bool isActive;
         MKinect kinect;
         Texture2D hand;
         Vector2 handPosition;
@@ -53,7 +52,6 @@ namespace Mechanect
             animation = tt;
             screenW = sw;
             ScreenH = sh;
-            isActive = true;
             hand = h;
             kinect = new MKinect();
             timer = new Timer1();
@@ -92,7 +90,7 @@ namespace Mechanect
             checkColission();
             texture.Update(gameTime.ElapsedGameTime.Ticks);
 
-            if (isActive && checkColission())
+            if (checkColission())
             {
                 if (!timer.isRunning())
                     timer.start();
@@ -196,7 +194,7 @@ namespace Mechanect
         /// <returns>returns true if the user clicked the button</returns>
         public bool isClicked()
         {
-            return status && isActive;
+            return status;
         }
     }
 }

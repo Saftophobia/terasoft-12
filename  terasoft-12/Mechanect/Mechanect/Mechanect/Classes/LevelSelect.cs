@@ -30,6 +30,7 @@ namespace Mechanect
         public SpriteFont font;
         int counter;
         int[] values;
+        bool[] isActive;
         //MKinect kinect;
 
         public levelSelect(Game game, Vector2 position, SpriteBatch spriteBatch)
@@ -54,6 +55,11 @@ namespace Mechanect
             values[0] = 1;
             values[1] = 2;
             values[2] = 3;
+
+            //Initialize buttons isActive
+            isActive = new bool[5];
+            for (int i = 0; i < isActive.Length; i++)
+                isActive[i] = true;
 
             //List that Contains All Buttons in the level select part.
             Buttons = new List<Button>();
@@ -113,12 +119,12 @@ namespace Mechanect
             KeyboardState k = Keyboard.GetState();
             // If were at the leftmost frame.. Lock the left arrow Button.
             if (values[0] == 1)
-                leftArrow.isActive = false;
-            else leftArrow.isActive = true;
+                isActive[0] = false;
+            else isActive[0] = true;
 
             //If right arrow Button is pressed.. Move the textureStrip one frame to the right 
             //and increase the values of the Buttons to match the levels
-            if(rightArrow.isClicked()) 
+            if(rightArrow.isClicked() && isActive[4]) 
             {
                 frame++;
                 values[0]++; 
@@ -128,7 +134,7 @@ namespace Mechanect
 
             //Same as above but move the strip to the left by updating which frame to draw 
             //and decrease value of the Buttons.
-            if (leftArrow.isClicked())
+            if (leftArrow.isClicked() && isActive[0])
             {
                 frame--;
                 values[0]--;
@@ -146,9 +152,9 @@ namespace Mechanect
 
             //Lock the right arrow Button if were at the right most frame.
             if (values[3] == 5)
-                rightArrow.isActive = false;
+                isActive[4] = false;
             else
-                rightArrow.isActive = true;
+                isActive[4] = true;
 
             
             base.Update(gameTime);
