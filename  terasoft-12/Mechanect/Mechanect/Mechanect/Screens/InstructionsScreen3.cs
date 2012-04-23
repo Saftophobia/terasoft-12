@@ -40,7 +40,7 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             var position = new Vector2(100, 20);
-            string instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
+            var instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
             var I = new Instruction(instructions, position);
             I.Draw();
         }
