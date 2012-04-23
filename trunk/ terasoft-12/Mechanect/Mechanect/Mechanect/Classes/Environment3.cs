@@ -649,7 +649,6 @@ namespace Mechanect.Classes
             if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < 150f)
             {
                 hasCollidedWithBall = true;
-                user.ShootingPosition = legPosition;
             }
             else
                 hasCollidedWithBall = false;
