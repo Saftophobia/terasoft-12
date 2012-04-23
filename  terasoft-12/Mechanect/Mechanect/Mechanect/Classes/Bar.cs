@@ -13,8 +13,7 @@ namespace Mechanect.Classes
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: Ahmed Badr </para>
-    /// This class uses Vector2 instead of Vector3 because doing the calculations for the position
-    /// will be much faster using Vector2 rather than Vector3
+    /// This class uses Vector2 to do calculations for a 3D environment in order to speed up the calculations
     /// </remarks>
     class Bar
     {
@@ -66,7 +65,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
         /// </remarks>
-        /// <example>This sample shows how instaniate the Bar class.
+        /// <example>This sample shows how to instantiate the Bar class.
         /// <code>
         ///  protected override void LoadContent()
         ///  {
@@ -75,7 +74,7 @@ namespace Mechanect.Classes
         /// </code>
         /// </example>
         /// <param name="drawingPosition">
-        /// Specifies where will the bar get drawn</param>
+        /// Specifies where will the bar be on the screen</param>
         /// <param name="spriteBatch">
         /// The spriteBatch object that will be used to draw the bar</param>
         /// <param name="initialPos">
@@ -114,7 +113,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
         /// </remarks>
-        /// <example>This sample shows how instaniate the Bar class.
+        /// <example>This sample shows how to use the Draw() method for this class
         /// <code>
         ///  protected override void Draw()
         ///  {
