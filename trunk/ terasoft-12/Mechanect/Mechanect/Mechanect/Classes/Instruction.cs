@@ -119,10 +119,10 @@ namespace MechanectXNA
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the Instruction screen with an ok button beneathe the text
+        /// Draws the instruction screen with an ok button beneathe the text.
         /// </summary>
         /// <param name="gameTime">
-        /// an instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package
+        /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
         /// </param>
         public override void Draw(GameTime gameTime)
         {
