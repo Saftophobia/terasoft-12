@@ -336,7 +336,7 @@ namespace Mechanect.Classes
      
          public void SetFootMassInThisRange(float minMass, float maxMass)
          {
-             assumedLegMass = generateFootMass(minMass, maxMass);
+             assumedLegMass = GenerateFootMass(minMass, maxMass);
          }
          /// <remarks>
          ///<para>AUTHOR: Khaled Salah </para>
