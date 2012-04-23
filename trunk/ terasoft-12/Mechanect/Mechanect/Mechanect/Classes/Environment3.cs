@@ -83,7 +83,7 @@ namespace Mechanect.Classes
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
-            Vector3 finalPos = Vector3.Zero;          
+            var finalPos = Vector3.Zero;          
             finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
@@ -105,7 +105,7 @@ namespace Mechanect.Classes
         ///</remarks>
         public void GenerateSolvable()
         {
-            int x = Constants3.solvableExperiment;
+            var x = Constants3.solvableExperiment;
             do
             {
                 x = IsSolvable();
