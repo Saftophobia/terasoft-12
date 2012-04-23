@@ -325,7 +325,7 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Takes the minimum and maximum values possible for the mass of the foot and sets the foot mass to a random float number between these two numbers.
+        /// Takes the minimum and maximum possible values for the mass of the foot and sets it to a random float number between these two numbers.
         /// </summary>
         /// <param name="minMass">
         /// The minimum possible value for the foot mass.
@@ -342,7 +342,7 @@ namespace Mechanect.Classes
          ///<para>AUTHOR: Khaled Salah </para>
          ///</remarks>
          /// <summary>
-         /// Takes the minimum and maximum values possible for the mass of the foot and generates a random float between these two numbers.
+         /// Takes the minimum and maximum possible values for the mass of the foot and generates a random float between these two numbers.
          /// </summary>
          /// <param name="minMass">
          /// The minimum possible value for the foot mass.
