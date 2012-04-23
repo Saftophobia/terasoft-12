@@ -104,14 +104,12 @@ namespace Mechanect.Common
 
         private void KinectDevice_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            //to be tested if it works correctly on the kinect tomorrow
             if (frameCounter == dropFrameRate)
             {
                 frameCounter = 0;
                 return;
             }
-            else
-                frameCounter++;
+            frameCounter++;
             
             using (SkeletonFrame frame = e.OpenSkeletonFrame())
             {
