@@ -13,6 +13,8 @@ namespace Mechanect.Classes
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: Ahmed Badr </para>
+    /// This class uses Vector2 instead of Vector3 because doing the calculations for the position
+    /// will be much faster using Vector2 rather than Vector3
     /// </remarks>
     class Bar
     {
@@ -72,12 +74,18 @@ namespace Mechanect.Classes
         ///  }
         /// </code>
         /// </example>
-        /// <param name="drawingPosition"></param>
-        /// <param name="spriteBatch"></param>
-        /// <param name="initialPos"></param>
-        /// <param name="currentPos"></param>
-        /// <param name="shootingPos"></param>
-        /// <param name="content"></param>
+        /// <param name="drawingPosition">
+        /// Specifies where will the bar get drawn</param>
+        /// <param name="spriteBatch">
+        /// The spriteBatch object that will be used to draw the bar</param>
+        /// <param name="initialPos">
+        /// The initial position of the ball</param>
+        /// <param name="currentPos">
+        /// The current position of the ball</param>
+        /// <param name="shootingPos">
+        /// The final position of the ball</param>
+        /// <param name="content">
+        /// Specifies the content manager responsible for this object</param>
         public Bar(Vector2 drawingPosition, SpriteBatch spriteBatch, Vector2 initialPos, Vector2 currentPos, Vector2 shootingPos, ContentManager content)
         {
             this.drawingPosition = drawingPosition;
@@ -94,7 +102,8 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
         /// </remarks>
-        /// <param name="currentPos"></param>
+        /// <param name="currentPos">
+        /// Specifies the current position of the ball</param>
         public void Update(Vector2 currentPos)
         {
             this.currentPos = currentPos;
