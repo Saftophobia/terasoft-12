@@ -36,7 +36,7 @@ namespace Mechanect.Screens
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the pause screen which should be shown if the user is not detected by the kinect device
+        /// Draws the pause screen which should be shown if the user is not detected by the kinect device.
         /// </summary>     
         public override void Draw(GameTime gameTime)
         {
