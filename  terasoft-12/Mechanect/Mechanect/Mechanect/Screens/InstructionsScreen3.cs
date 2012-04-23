@@ -4,12 +4,6 @@ using System.Linq;
 using System.Text;
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace Mechanect.Screens
 {
@@ -45,8 +39,9 @@ namespace Mechanect.Screens
         /// </param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            Vector2 position = new Vector2(100, 20);
-            Instruction I = new Instruction("The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity", position);
+            var position = new Vector2(100, 20);
+            string instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
+            var I = new Instruction(instructions, position);
             I.Draw();
         }
     
