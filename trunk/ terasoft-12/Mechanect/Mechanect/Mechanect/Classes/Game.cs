@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Kinect;
+
 
 namespace Mechanect.Classes
 {
-     /// <summary>
+    /// <summary>
     /// This is the main type for your game
     /// </summary>
     public class Game : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;  
-        CountDown countdown;            
-        Boolean displayCountdown = true;
+        SpriteBatch spriteBatch;
+        double player1DisqualificationTime = 3.24; //Obtained by user story 3.7
+        double player2DisqualificationTime = 1.01; //Obtained by user story 3.7   
+        PerformanceGraph Graph;
+        CountDown countdown;
+        Boolean displayCountdown = false;
         CountDown background;
-        
+
         int timer = 0;
 
 
@@ -37,7 +39,7 @@ namespace Mechanect.Classes
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 650;
             graphics.ApplyChanges();
-        }        
+        }
 
 
         /// <remarks>
@@ -67,6 +69,54 @@ namespace Mechanect.Classes
                 background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
             }
+
+            if (!displayCountdown)
+            {
+                background = new CountDown(Content.Load<Texture2D>("MechanectContent/Background2"), graphics.PreferredBackBufferWidth,
+                    graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
+
+                Graph = new PerformanceGraph();
+                List<string> Commands = new List<string>();
+                List<double> CommandsTime = new List<double>();
+                List<int> Player1Displacement = new List<int>();
+                List<int> Player2Displacement = new List<int>();
+                //initiating testing values 
+                Commands.Add("constantAcceleration");
+                CommandsTime.Add(4);
+                int intitial = 4000;
+                int stepping = 1;
+                for (int i = 0; i <= 119; i++)
+                {
+                    if (intitial > 0)
+                    {
+                        Player1Displacement.Add(intitial);
+                        intitial = intitial - stepping;
+                        stepping++;
+                    }
+                    else
+                    {
+                        Player1Displacement.Add(0);
+                    }
+                }
+                intitial = 4000;
+                stepping = 0;
+                for (int i = 0; i <= 119; i++)
+                {
+                    if (intitial > 0)
+                    {
+                        Player2Displacement.Add(intitial);
+                        stepping = stepping + 5;
+                        intitial = intitial - stepping;
+                    }
+                    else
+                    {
+                        Player2Displacement.Add(0);
+                    }
+                }
+                //main initializing method
+                Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
+
+            }
             base.Initialize();
         }
 
@@ -75,8 +125,13 @@ namespace Mechanect.Classes
         /// <para>Date Created: 22-4-2012</para>
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
-        /// <summary>     
-        /// The Update function is used to call the Update function
+        /// <summary>
+        /// The Update function is used to call the Update function 
+        /// in the PerformanceGraph class in order to allow the line
+        /// to increment its x co-ordinates and increment/decrement its
+        /// y co-ordinates till it reaches the specified range.
+        /// 
+        /// The Update function is also used to call the Update function
         /// in the Countdown class in order to shrink the displayed number
         /// till a counter reaches 0 allowing the next number to appear
         /// </summary> 
@@ -90,12 +145,18 @@ namespace Mechanect.Classes
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
             SpriteBatch sprite2 = spriteBatch;
-            sprite2.Begin();    
+            sprite2.Begin();
 
-           
+
+            if (!displayCountdown)
+            {
+                timer++;
+                Graph.updateCurve(spriteBatch, GraphicsDevice);
+            }
+
 
             if (displayCountdown)
-            {                
+            {
                 countdown.UpdateCountdownScreen();
             }
             sprite2.End();
@@ -124,7 +185,21 @@ namespace Mechanect.Classes
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-           
+            if (!displayCountdown)
+            {
+                background.Draw(spriteBatch);
+                SpriteFont font = Content.Load<SpriteFont>("MechanectContent/MyFont1");
+                SpriteFont font2 = Content.Load<SpriteFont>("MechanectContent/MyFont2");
+                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
+                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlack");
+                SpriteBatch sprite2 = spriteBatch;
+                sprite2.Begin();
+                Graph.drawRange(spriteBatch, GraphicsDevice);
+                Graph.drawAxis(spriteBatch, GraphicsDevice, font, font2);
+                sprite2.End();
+                Graph.drawConnectors();
+                Graph.drawDisqualification(spriteBatch, graphics, timer, P1Tex, P2Tex);
+            }
 
             if (displayCountdown)
             {
@@ -150,7 +225,46 @@ namespace Mechanect.Classes
         {
 
         }
-       
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function GetPlayer1Disq is used to get the time where
+        /// player 1 was disqualified
+        /// </summary>
+        /// <param></param>        
+        /// <permission cref="System.Security.PermissionSet">
+        /// This function is public
+        /// </permission>
+        /// <returns>double: returns the time where player 1 was
+        /// disqualified</returns>
+        public double GetPlayer1Disq()
+        {
+            return player1DisqualificationTime;
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function GetPlayer2Disq is used to get the time where
+        /// player 2 was disqualified
+        /// </summary>
+        /// <param></param>        
+        /// <permission cref="System.Security.PermissionSet">
+        /// This function is public
+        /// </permission>
+        /// <returns>double: returns the time where player 2 was
+        /// disqualified</returns>
+        public double GetPlayer2Disq()
+        {
+            return player2DisqualificationTime;
+        }
+
         public GraphicsDeviceManager getGraphicsDeviceManager()
         {
             return graphics;
