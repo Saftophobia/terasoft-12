@@ -46,7 +46,7 @@ namespace Mechanect.Classes
                 disqualified = value;
             }
         }
-        private int disqualificationTime;
+        private int disqualificationTime = -1;
         public int DisqualificationTime
         {
             get
