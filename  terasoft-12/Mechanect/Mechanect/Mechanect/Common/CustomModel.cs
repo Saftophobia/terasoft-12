@@ -12,6 +12,9 @@ namespace Mechanect.Common
     /// <summary>
     /// represents a 3d model with its  position, orientation and scale
     /// </summary>
+    /// <remarks>
+    /// Auther : Bishoy Bassem
+    /// </remarks>
     public class CustomModel
     {
 
