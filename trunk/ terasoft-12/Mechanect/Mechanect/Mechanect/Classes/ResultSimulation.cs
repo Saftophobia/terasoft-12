@@ -5,13 +5,16 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
-using Mechanect.Common.Cameras;
+using Mechanect.Cameras;
 
 namespace Mechanect.Classes
 {
     /// <summary>
     /// represents the simulation of the result
     /// </summary>
+    /// <remarks>
+    /// Auther : Bishoy Bassem
+    /// </remarks>
     public class ResultSimulation
     {
         private GraphicsDevice graphics;
