@@ -137,7 +137,7 @@ namespace MechanectXNA
         //}
 
 
-        internal void Draw(GameTime gameTime)
+        internal void Draw2(GameTime gameTime)
         {
             Draw(gameTime);
         }
