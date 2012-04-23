@@ -128,39 +128,7 @@ namespace Mechanect.Screens
             List<double> CommandsTime = new List<double>();
             List<int> Player1Displacement = new List<int>();
             List<int> Player2Displacement = new List<int>();
-            //initiating testing values 
-            Commands.Add("constantAcceleration");
-            CommandsTime.Add(4);
-            int intitial = 4000;
-            int stepping = 1;
-            for (int i = 0; i <= 119; i++)
-            {
-                if (intitial > 0)
-                {
-                    Player1Displacement.Add(intitial);
-                    intitial = intitial - stepping;
-                    stepping++;
-                }
-                else
-                {
-                    Player1Displacement.Add(0);
-                }
-            }
-            intitial = 4000;
-            stepping = 0;
-            for (int i = 0; i <= 119; i++)
-            {
-                if (intitial > 0)
-                {
-                    Player2Displacement.Add(intitial);
-                    stepping = stepping + 5;
-                    intitial = intitial - stepping;
-                }
-                else
-                {
-                    Player2Displacement.Add(0);
-                }
-            }
+            
             //main initializing method
             //Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
 
