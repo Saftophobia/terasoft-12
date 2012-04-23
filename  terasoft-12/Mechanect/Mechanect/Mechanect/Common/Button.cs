@@ -53,7 +53,7 @@ namespace Mechanect
             animation = tt;
             screenW = sw;
             ScreenH = sh;
-
+            isActive = true;
             hand = h;
             kinect = new MKinect();
             timer = new Timer1();
