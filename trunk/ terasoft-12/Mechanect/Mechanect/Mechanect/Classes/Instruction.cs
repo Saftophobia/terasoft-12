@@ -1,15 +1,8 @@
 using System;
 using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Mechanect.Common;
 using Mechanect;
 
@@ -125,7 +118,7 @@ namespace MechanectXNA
         /// <param name="gameTime">
         /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
         /// </param>
-        public override void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.YellowGreen);
             spriteBatch.Begin();
@@ -133,7 +126,6 @@ namespace MechanectXNA
             b.draw(spriteBatch);
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
-
         }
                 //static void Main(String[] args)
         //{
@@ -144,6 +136,11 @@ namespace MechanectXNA
 
         //}
 
+
+        internal void Draw(GameTime gameTime)
+        {
+            Draw(gameTime);
+        }
     }
 
 }
