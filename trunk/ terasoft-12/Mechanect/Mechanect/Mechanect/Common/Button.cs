@@ -195,7 +195,7 @@ namespace Mechanect
         /// <returns>returns true if the user clicked the button</returns>
         public bool isClicked()
         {
-            return status;
+            return status && isActive;
         }
     }
 }
