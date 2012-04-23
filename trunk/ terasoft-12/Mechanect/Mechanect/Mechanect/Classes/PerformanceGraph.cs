@@ -24,34 +24,33 @@ namespace Mechanect.Classes
         Boolean directionUp = false;
         Boolean sameDirection = false;
         Color curveColor;
-        List<int> Player1Displacement;
-        List<int> Player2Displacement;
-        List<int> Player1Velocity;
-        List<int> Player2Velocity;
-        List<int> Player1Acceleration;
-        List<int> Player2Acceleration;
+        List<float> Player1Displacement;
+        List<float> Player2Displacement;
+        List<float> Player1Velocity;
+        List<float> Player2Velocity;
+        List<float> Player1Acceleration;
+        List<float> Player2Acceleration;
         List<String> CommandsList;
         //CommandsList is a list represening each command given during the race
         List<double> TimeSpaces;
         //TimeSpaces is a List representing the number of seconds elapsed by each command
-        
         Game currentGame;
         double totalTime;//total race time
         int[] chosenTimings;
-        int[] chosendisp1 = new int[9];//y-axis
-        int[] chosendisp2 = new int[9];
-        int[] chosenVelocity1 = new int[9];
-        int[] chosenVelocity2 = new int[9];
-        int[] chosenAcceleration1 = new int[9];
-        int[] chosenAcceleration2 = new int[9];
+        float[] chosendisp1 = new float[9];//y-axis
+        float[] chosendisp2 = new float[9];
+        float[] chosenVelocity1 = new float[9];
+        float[] chosenVelocity2 = new float[9];
+        float[] chosenAcceleration1 = new float[9];
+        float[] chosenAcceleration2 = new float[9];
         PerformanceGraph[] disp1 = new PerformanceGraph[8];
         PerformanceGraph[] disp2 = new PerformanceGraph[8];
         PerformanceGraph[] velo1 = new PerformanceGraph[8];
         PerformanceGraph[] velo2 = new PerformanceGraph[8];
         PerformanceGraph[] acc1 = new PerformanceGraph[8];
         PerformanceGraph[] acc2 = new PerformanceGraph[8];
-        int maxVelocity;
-        int maxAcceleration;
+        float maxVelocity;
+        float maxAcceleration;
         List<int> P1DispGraph = new List<int>();
         List<int> P2DispGraph = new List<int>();
         List<int> P1VeloGraph = new List<int>();
@@ -273,16 +272,16 @@ namespace Mechanect.Classes
         /// <returns>List: returns a list representing the player's
         /// velocity</returns>
 
-        public static List<int> GetPlayerVelocity(List<int> DisplacementList)
+        public static List<float> GetPlayerVelocity(List<float> DisplacementList)
         {
             int size = DisplacementList.Count;
-            List<int> result = new List<int>();
+            List<float> result = new List<float>();
             for (int i = 0; i <= size - 1; i++)
             {
                 try
                 {
                     double dt = 0.0333333333333333333; //equivalent to 1/30
-                    int currentVelocity = (int)((DisplacementList[i] - DisplacementList[i - 1]) / dt) * -1;
+                    float currentVelocity = (float)((DisplacementList[i] - DisplacementList[i - 1]) / dt) * -1;
                     result.Add(currentVelocity);
                 }
                 catch (Exception e)
@@ -326,16 +325,16 @@ namespace Mechanect.Classes
         /// <returns>List: returns a list representing the player's
         /// acceleration</returns>
 
-        public static List<int> GetPlayerAcceleration(List<int> VelocityList)
+        public static List<float> GetPlayerAcceleration(List<float> VelocityList)
         {
             int size = VelocityList.Count;
-            List<int> result = new List<int>();
+            List<float> result = new List<float>();
             for (int i = 0; i <= size - 1; i++)
             {
                 try
                 {
                     double dt = 0.0333333333333333333; //equivalent to 1/30
-                    int currentAcceleration = (int)((VelocityList[i] - VelocityList[i - 1]) / dt);
+                    float currentAcceleration = (float)((VelocityList[i] - VelocityList[i - 1]) / dt);
                     result.Add(currentAcceleration);
                 }
                 catch (Exception e)
@@ -345,6 +344,8 @@ namespace Mechanect.Classes
             }
             return result;
         }
+
+        
 
 
         /// <remarks>
@@ -367,7 +368,7 @@ namespace Mechanect.Classes
         /// This function is public
         /// </permission>
         /// <returns></returns>
-        public void drawGraphs(List<int> Player1Displacement, List<int> Player2Displacement,
+        public void drawGraphs(List<float> Player1Displacement, List<float> Player2Displacement,
            List<String> Commands, List<double> time, Game g1)
         {
             this.Player1Displacement = Player1Displacement;
@@ -378,7 +379,7 @@ namespace Mechanect.Classes
             Player1Velocity = GetPlayerVelocity(Player1Displacement);
             Player2Velocity = GetPlayerVelocity(Player2Displacement);
             Player1Acceleration = GetPlayerAcceleration(Player1Velocity);
-            Player2Acceleration = GetPlayerAcceleration(Player2Velocity);
+            Player2Acceleration = GetPlayerAcceleration(Player2Velocity);     
             choose();
             setMaximum();
             setDestinations(g1.getGraphicsDeviceManager());
@@ -463,8 +464,8 @@ namespace Mechanect.Classes
             maxAcceleration = 0;
             for (int i = 0; i <= chosenVelocity1.Length - 1; i++)
             {
-                int v1 = chosenVelocity1[i];
-                int a1 = chosenAcceleration1[i];
+                float v1 = chosenVelocity1[i];
+                float a1 = chosenAcceleration1[i];
                 if (v1 < 0)
                 {
                     v1 = v1 * -1;
@@ -484,8 +485,8 @@ namespace Mechanect.Classes
             }
             for (int i = 0; i <= chosenVelocity2.Length - 1; i++)
             {
-                int v2 = chosenVelocity2[i];
-                int a2 = chosenAcceleration2[i];
+                float v2 = chosenVelocity2[i];
+                float a2 = chosenAcceleration2[i];
                 if (v2 < 0)
                 {
                     v2 = v2 * -1;
@@ -525,7 +526,7 @@ namespace Mechanect.Classes
                 }
                 for (int i = 0; i <= 7; i++)
                 {
-                    int value = 0;
+                    float value = 0;
                     double r = 0;
                     if (j <= 1)
                     {
@@ -1073,19 +1074,19 @@ namespace Mechanect.Classes
             }
         }
 
-        public List<int> getPlayer1Vel()
+        public List<float> getPlayer1Vel()
         {
             return Player1Velocity;
         }
-        public List<int> getPlayer2Vel()
+        public List<float> getPlayer2Vel()
         {
             return Player2Velocity;
         }
-        public List<int> getPlayer1Acc()
+        public List<float> getPlayer1Acc()
         {
             return Player1Acceleration;
         }
-        public List<int> getPlayer2Acc()
+        public List<float> getPlayer2Acc()
         {
             return Player2Acceleration;
         }
