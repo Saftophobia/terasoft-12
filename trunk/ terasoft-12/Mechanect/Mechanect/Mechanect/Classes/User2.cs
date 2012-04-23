@@ -132,21 +132,7 @@ namespace Mechanect.Classes
             //throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Checks if user has started moving his hand from his initial position
-        /// </summary>
-        /// <returns>True if moved his hand, false if did not move his hand </returns>
-        public Boolean hasStartedMoving(GameTime gametime)
-        {
-            if ((USER.Joints[JointType.HandLeft].Position.Y) > startPosition)
-            {
-                startTime = gametime.TotalGameTime - gametime.ElapsedGameTime;
-                return true;
-            }
-            else
-                return false;
-
-        }
+       
 
 
         /// <summary>
@@ -207,10 +193,10 @@ namespace Mechanect.Classes
                     return radianToDegree;
                 }
                 else
-                    return 0;
+                    return finalAngle;
             }
             else
-                return 0;
+                return finalAngle;
         }
 
 
@@ -220,17 +206,14 @@ namespace Mechanect.Classes
         /// </summary>
         /// <Author>Mohamed Raafat</Author>
         /// <returns>Returns the linear velocity of the arm</returns>
-        public double measureVelocity()
+        public void measureVelocity()
         {
 
             double angularVelocity = this.finalAngle / currentTime.Seconds;
             double lengthHipToHand = Math.Sqrt((Math.Pow((finalHandPosition.X - USER.Joints[JointType.HipLeft].Position.X), 2))
                 + Math.Pow((finalHandPosition.Y - USER.Joints[JointType.HipLeft].Position.Y), 2));
             measuredVelocity = angularVelocity * lengthHipToHand;
-            return angularVelocity * lengthHipToHand;
-
-
-
+        
         }
 
     }
