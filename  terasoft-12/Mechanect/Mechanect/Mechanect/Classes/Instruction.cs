@@ -25,8 +25,8 @@ namespace MechanectXNA
         Vector2 positionInScreen;
         String instructions;
         Texture2D mytexture;
-        Vector2 sPos = Vector2.Zero;
-        Vector2 ButtonPosition = Vector2.Zero;
+        var sPos = Vector2.Zero;
+        var ButtonPosition = Vector2.Zero;
         Button b;
         
 
@@ -96,7 +96,7 @@ namespace MechanectXNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Font1 = Content.Load<SpriteFont>("TimesNewRoman");
-      //      mytexture = Content.Load<Texture2D>("MechanectContent/Textures/Screen");
+      //      mytexture = Content.Load<Texture2D>(@"MechanectContent/Textures/Screen");
             b = new OkButton(ContentManager, ButtonPosition, 960, 600);
             // TODO: use this.Content to load your game content here
 
