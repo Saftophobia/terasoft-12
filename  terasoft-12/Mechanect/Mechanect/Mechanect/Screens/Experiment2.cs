@@ -100,7 +100,7 @@ namespace Mechanect.Screens
         float grayTextureScaling;
         float velocityTextureScaling;
         float angleTextureScaling;
-        float predatorScaling;
+        float predatorTextureScaling;
         //Only if 3D is used
         //float fishModelScaling;
         //Mohamed Alzayat Variables end
@@ -160,7 +160,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(450, 10);
             button = new OKButton(Content, buttonPosition, screenWidth, screenHeight);
             //TBC
-            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
+           // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
         }
 
@@ -205,7 +205,7 @@ namespace Mechanect.Screens
                 default: ImageSet2(); break;
             }
 
-            predatorOrigin = (new Vector2(predatorTexture.Width * predatorScaling / 2, predatorTexture.Height * predatorScaling / 2));
+            predatorOrigin = (new Vector2(predatorTexture.Width * predatorTextureScaling / 2, predatorTexture.Height * predatorTextureScaling / 2));
 
             configureScreen();
 
@@ -257,6 +257,12 @@ namespace Mechanect.Screens
             velocityTextureScaling *= backgroundTextureScaling;
             angleTextureScaling *= backgroundTextureScaling;
 
+            predatorTextureScaling *= backgroundTextureScaling;
+            preyTextureScaling *= backgroundTextureScaling;
+            bowlTextureScaling *= backgroundTextureScaling;
+
+
+
         }
         /// <summary>
         /// Allows the game to initialize all the textures 
@@ -288,15 +294,15 @@ namespace Mechanect.Screens
             preyTextureScaling = 0.1f;
             bowlTextureScaling = 0.2f;
 
-            predatorScaling = 0.2f;
+            predatorTextureScaling = 0.2f;
             velocityTextureScaling = 0.7f;
             angleTextureScaling = 1.25f;
 
-            xAxisPercentage= 0.056f;
-            yAxisPercentage = 0.04f;
+            xAxisPercentage = 0.04f;
+            yAxisPercentage = 0.056f;
 
-            xDrawingPercentage = 0.8f;
-            yDrawingPercentage = 0.6f;
+            xDrawingPercentage = 0.75f;
+            yDrawingPercentage = 0.55f;
         }
         /// <summary>
         /// Allows the game to initialize all the textures 
@@ -328,15 +334,15 @@ namespace Mechanect.Screens
             preyTextureScaling = 0.1f;
             bowlTextureScaling = 0.12f;
 
-            predatorScaling = 0.5f;
+            predatorTextureScaling = 0.5f;
             velocityTextureScaling = 0.7f;
             angleTextureScaling = 1.25f;
 
-            xAxisPercentage = 0.056f;
-            yAxisPercentage = 0.04f;
+            xAxisPercentage = 0.04f;
+            yAxisPercentage = 0.056f;
 
-            xDrawingPercentage = 0.8f;
-            yDrawingPercentage = 0.6f;
+            xDrawingPercentage = 0.75f;
+            yDrawingPercentage = 0.55f;
         }
    
    
@@ -393,11 +399,11 @@ namespace Mechanect.Screens
             SpriteBatch.Begin();
             SpriteBatch.Draw(backgroundTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, backgroundTextureScaling, SpriteEffects.None, 0f);
             SpriteBatch.Draw(xyAxisTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, xyAxisTextureScaling, SpriteEffects.None, 0f);
-            //SpriteBatch.Draw(bowlTexture, MapPointsToScreen( DrawAtRectangleMidPoint(bowlTexture, startAquariumPosition, bowlTextureScaling)), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
+           
             //TBA >> degrees
 
             SpriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, startAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
-            SpriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition, predatorScaling), null, Color.White, MathHelper.ToRadians(0), Vector2.Zero, predatorScaling, SpriteEffects.None, 0f);
+            SpriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition, predatorTextureScaling), null, Color.White, MathHelper.ToRadians(0), Vector2.Zero, predatorTextureScaling, SpriteEffects.None, 0f);
 
             SpriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
             string meters = "meters";
@@ -424,14 +430,16 @@ namespace Mechanect.Screens
 
 
             SpriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, grayTextureScaling, SpriteEffects.None, 0f);
-            SpriteBatch.Draw(velocityTexture, new Vector2(screenWidth*xAxisPercentage,screenHeight*yAxisPercentage), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
-            SpriteBatch.Draw(angleTexture, new Vector2(screenWidth- screenWidth * xAxisPercentage- angleTexture.Width*angleTextureScaling, screenHeight * yAxisPercentage), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
+            SpriteBatch.Draw(velocityTexture, new Vector2(screenWidth*yAxisPercentage,screenHeight*xAxisPercentage), null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
+            SpriteBatch.Draw(angleTexture, new Vector2(screenWidth- screenWidth * yAxisPercentage- angleTexture.Width*angleTextureScaling, screenHeight * xAxisPercentage), null, Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
             string testString = "Test angle and Velocity";
             SpriteBatch.DrawString(spriteFont, testString, new Vector2((screenWidth / 2), 0), Color.Red, 0f, new Vector2((screenWidth / 4), 0), backgroundTextureScaling, SpriteEffects.None, 0f);
             string sayString = "Say 'GO' or press OK";
             SpriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 2), spriteFont.MeasureString(testString).Y /*+ spriteFont.MeasureString(sayString).Y*/), Color.Red, 0f, new Vector2((screenWidth / 4), 0), backgroundTextureScaling , SpriteEffects.None, 0f);
-
+            
             SpriteBatch.End();
+            // ask hegazy to make it scalable !
+            //button.draw(SpriteBatch);
         }
 
         /// <summary>
@@ -450,8 +458,10 @@ namespace Mechanect.Screens
 
             if (grayScreen)
             {
-                SpriteBatch.DrawString(velAngleFont, velString, new Vector2((screenWidth / 16) + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X, (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red,0f,new Vector2(((screenWidth / 16) + (velocityTexture.Width * velocityTextureScaling)/2),((screenHeight / 14) + (velocityTexture.Height * velocityTextureScaling )/2)),velocityTextureScaling,SpriteEffects.None,0f);
-                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth * 2 / 9) + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X * velocityTextureScaling / 2, screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling + spriteFont.MeasureString(velString).Y * velocityTextureScaling / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling * 2, SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling + spriteFont.MeasureString(angString).Y * velocityTextureScaling), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling * 2, SpriteEffects.None, 0f);
+                //SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - ((screenWidth * 2 / 9) + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X), (screenHeight / 14) + velocityTexture.Height * velocityTextureScaling - spriteFont.MeasureString(velString).Y), Color.Red);
+                //SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * xAxisPercentage + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X * velocityTextureScaling / 2, screenHeight * yAxisPercentage + velocityTexture.Height * velocityTextureScaling + spriteFont.MeasureString(velString).Y * velocityTextureScaling / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling * 2, SpriteEffects.None, 0f);
             }
             else
             {
@@ -545,7 +555,7 @@ namespace Mechanect.Screens
         /// <para>DATE WRITTEN: April, 22 </para>
         /// <para>DATE MODIFIED: April, 22  </para>
         /// </remarks>
-        /// <param name="texture">Texture that needs to be drawn with the position at it's center</param>
+        /// <param name="texture">Texture that needs its coordinate to be mapped on the x or y axis
         /// <param name="position">The position of the center of the texture</param>
         /// <param name="scale">Takes the scaling of the Texture2D</param>
         /// <param name="y">Gives a check to know if the axis used is x or y axis</param>
@@ -555,7 +565,7 @@ namespace Mechanect.Screens
         {
             position = DrawAtRectangleMidPoint(texture, position, scale);
             if (y)
-                return new Vector2(3, position.Y + texture.Height * scale / 2 - spriteFont.MeasureString(position.Y + "").X / 4);
+                return new Vector2(2, position.Y + texture.Height * scale / 2 - spriteFont.MeasureString(position.Y + "").Y/4);
             else
                 return new Vector2(position.X + texture.Width * scale / 2 - spriteFont.MeasureString(position.X + "").Y / 4, screenHeight - 40);
         }
@@ -621,35 +631,35 @@ namespace Mechanect.Screens
             //TBC
 
 
-            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-            {
-                if (env.Predator.Velocity == null)
-                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-                env.Predator.UpdatePosition(gameTime);
-                if (!preyEaten) preyEaten = isPreyEaten();
-                if (!aquariumReached) aquariumReached = isAquariumReached();
-                if (aquariumReached)
-                {
-                    env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
-                    env.Predator.Velocity = Vector2.Zero;
-                }
-            }
+        //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+        //    {
+        //        if (env.Predator.Velocity == null)
+        //            env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+        //        env.Predator.UpdatePosition(gameTime);
+        //        if (!preyEaten) preyEaten = isPreyEaten();
+        //        if (!aquariumReached) aquariumReached = isAquariumReached();
+        //        if (aquariumReached)
+        //        {
+        //            env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
+        //            env.Predator.Velocity = Vector2.Zero;
+        //        }
+        //    }
 
-            else if (button.isClicked() || voiceCommand.getHeared("ok"))
-            {
-                grayScreen = false;
-                button = null;
-                voiceCommand = null;
-                user.MeasuredAngle = 0;
-                user.MeasuredVelocity = 0;
-            }
+        //    else if (button.isClicked() || voiceCommand.getHeared("ok"))
+        //    {
+        //        grayScreen = false;
+        //        button = null;
+        //        voiceCommand = null;
+        //        user.MeasuredAngle = 0;
+        //        user.MeasuredVelocity = 0;
+        //    }
 
-            else
-            {
-                user.MeasureVelocityAndAngle();
-            }
+        //    else
+        //    {
+        //        user.MeasureVelocityAndAngle();
+        //    }
 
-            base.Update(gameTime, covered);
+        //    base.Update(gameTime, covered);
         }
 
 
