@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using Common.Classes;
 
-namespace Mechanect.Common
+namespace Mechanect
 {
     public class Button
     {
@@ -20,7 +20,9 @@ namespace Mechanect.Common
         protected GifAnimation.GifAnimation texture, animation, stopped;
         protected int screenW, ScreenH;
 
-        MKinect kinect;
+        public Vector2 Position { get { return position; } set { position = value; } }
+        public bool isActive;
+        Common.MKinect kinect;
         Texture2D hand;
         Vector2 handPosition;
 
@@ -89,7 +91,7 @@ namespace Mechanect.Common
             checkColission();
             texture.Update(gameTime.ElapsedGameTime.Ticks);
 
-            if (checkColission())
+            if (isActive && checkColission())
             {
                 if (!timer.isRunning())
                     timer.start();
