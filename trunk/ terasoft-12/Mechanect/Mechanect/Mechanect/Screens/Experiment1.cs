@@ -140,8 +140,8 @@ namespace Mechanect.Screens
             //--------------------keepsgettingskeletons----------------
 
 
-            //player1.skeleton = kinect.requestSkeleton();
-            //player2.skeleton = kinect.request2ndSkeleton();
+            player1.skeleton = kinect.requestSkeleton();
+            player2.skeleton = kinect.request2ndSkeleton();
             if (timecounter < 4)
             {
                 countdown.UpdateCountdownScreen();
@@ -149,26 +149,26 @@ namespace Mechanect.Screens
             }
             if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
             {
-                //avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton);
+                avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton);
                 //drawString.Update(racecommandsforDRAW[timecounter - 4] + "")
-                /*
+                
                 if (player1.skeleton != null)
                 {
-                    player1.Depthfromkinect.Add(player1.skeleton.Position.Z);
+                    player1.Positions.Add(player1.skeleton.Position.Z);
                 }
                 else
                 {
-                    //  player1.Disqualified = true;
+                      player1.Disqualified = true;
                 }
                 if (player2.skeleton != null)
                 {
-                    player2.Depthfromkinect.Add(player2.skeleton.Position.Z);
+                    player2.Positions.Add(player2.skeleton.Position.Z);
                 }
                 else
                 {
-                    //player2.Disqualified = true;
+                    player2.Disqualified = true;
                 }
-                */
+                
 
                 if (timer % 10 == 0)
                  {
@@ -181,46 +181,49 @@ namespace Mechanect.Screens
 
                  }
 
-              //  if (player1.skeleton != null & player2.skeleton != null)
-                //    {
-                //if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z > 0.9 /*& !player1.Disqualified*/)
-               // {
-                 //   player1.Winner = true;
-                //}
+                if (player1.skeleton != null & player2.skeleton != null)
+                   {
+                
+                if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z > 0.9 & !player1.Disqualified)
+                {
+                    player1.Winner = true;
+                }
 
 
-               // if (player1.skeleton.Position.Z > 0.9 & player2.skeleton.Position.Z <= 0.9 /*& !player2.Disqualified*/)
-            //    {
-             //       player2.Winner = true;
-             //   }
+                if (player1.skeleton.Position.Z > 0.9 & player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
+                {
+                    player2.Winner = true;
+                }
 
-                /* if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
+                 /*if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
                      {
                          player1.Winner = true;
                          player2.Winner = true;
-                     }*/
-
+                     }
+                   */
+                }
 
 
 
             }
 
-        //    if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
-        //    {
+            if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+            {
 
 
 
-            //sprite2.End();
-
-            
-
-
+                //sprite2.End();
 
 
 
 
+
+
+
+            }
             base.Update(gameTime, covered);
         }
+            
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
@@ -231,15 +234,16 @@ namespace Mechanect.Screens
             }
 
 
-            //if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
-           // {
-           // avatarprogUI.Draw(SpriteBatch, Content.Load<Texture2D>("ball"));
-           // }
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
+            {
+            avatarprogUI.Draw(SpriteBatch, Content.Load<Texture2D>("ball"));
+            }
 
 
-           // if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
-          //  {
-        //}
+            if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+            {
+
+            }
 
 
            
