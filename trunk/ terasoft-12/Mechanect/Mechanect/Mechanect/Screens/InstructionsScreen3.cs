@@ -33,10 +33,10 @@ namespace Mechanect.Screens
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the how to play instruction screen related to experiment3
+        /// Draws the how to play instruction screen related to experiment3.
         /// </summary>
         /// <param name="gameTime">
-        /// an instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package
+        /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
         /// </param>
         public override void Draw(GameTime gameTime)
         {
