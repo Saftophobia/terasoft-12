@@ -171,7 +171,7 @@ Mesh Unnamed_0 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "up.bmp";
+      "../Textures/up.bmp";
      }
      }
  }
@@ -217,7 +217,7 @@ Mesh Unnamed_1 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "right.bmp";
+      "../Textures/right.bmp";
      }
      }
  }
@@ -264,7 +264,7 @@ Mesh Unnamed_2 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "left.bmp";
+      "../Textures/left.bmp";
      }
      }
  }
@@ -311,7 +311,7 @@ Mesh Unnamed_3 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "front.bmp";
+      "../Textures/front.bmp";
      }
      }
  }
@@ -358,7 +358,7 @@ Mesh Unnamed_4 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "back.bmp";
+      "../Textures/back.bmp";
      }
      }
  }
@@ -405,7 +405,7 @@ Mesh Unnamed_5 {
      1.000000;1.000000;1.000000;;
        0.000000;0.000000;0.000000;;
           TextureFilename {
-      "down.bmp";
+      "../Textures/down.bmp";
      }
      }
  }
