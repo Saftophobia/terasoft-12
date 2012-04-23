@@ -12,14 +12,10 @@ namespace Mechanect.Classes
 {
     class AvatarprogUI
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        MKinect kinect;
+       
         Vector2 vectorp1;
         Vector2 vectorp2;
-        Texture2D phototexture;
-        Skeleton p1;
-        Skeleton p2;
+        
 
         /// <summary>
         /// it Initialize the avatarpicture and position on screen
@@ -39,12 +35,12 @@ namespace Mechanect.Classes
             vectorp2 = new Vector2(700, 200);
         }
 
-        protected void Update()
+        public void Update(MKinect kinect,Skeleton p1,Skeleton p2)
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             //  this.Exit();
             p1 = kinect.requestSkeleton();
-            p2 = kinect.requestSkeleton();
+            p2 = kinect.request2ndSkeleton();
             if (p1 != null)
             {
                 vectorp1.X = p1.Position.Z * 200;
@@ -56,13 +52,13 @@ namespace Mechanect.Classes
             // base.Update(gameTime);
         }
 
-        protected void Draw()
+        public void Draw(SpriteBatch spriteBatch, Texture2D phototexture)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(phototexture, vectorp1, new Rectangle(0, 0, 100, 100), Color.White);
             spriteBatch.Draw(phototexture, vectorp2, new Rectangle(0, 0, 100, 100), Color.White);
-            spriteBatch.End();
+           // spriteBatch.End();
             //base.Draw(gameTime);
         }
     }
