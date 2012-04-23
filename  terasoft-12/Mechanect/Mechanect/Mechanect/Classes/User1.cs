@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Kinect;
 
 namespace Mechanect.Classes
 {
     class User1:User
     {
+
+        public Skeleton skeleton;
+       
+        
+        
+        public Boolean Winner;
+
         /// <summary>
         /// this is the index of the array of currentCommands in the class Game which defines what is the command active
         /// </summary>
@@ -58,6 +66,14 @@ namespace Mechanect.Classes
                 disqualificationTime = value;
             }
         }
+
+       /* public User1() 
+        {
+ 
+        }*/
+
+
+        
         
 
     }
