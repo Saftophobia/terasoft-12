@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
-using Common.Classes;
+using Mechanect.Common;
 
 namespace Mechanect
 {
@@ -22,7 +22,7 @@ namespace Mechanect
 
         public Vector2 Position { get { return position; } set { position = value; } }
         public bool isActive;
-        Common.MKinect kinect;
+        MKinect kinect;
         Texture2D hand;
         Vector2 handPosition;
 
