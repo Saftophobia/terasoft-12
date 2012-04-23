@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +10,14 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Mechanect.Common;
 
 namespace MechanectXNA
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+     class Instruction :Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -25,14 +26,14 @@ namespace MechanectXNA
         Vector2 positionInScreen;
         String instructions;
         Texture2D mytexture;
-        var sPos = Vector2.Zero;
-        var ButtonPosition = Vector2.Zero;
+        Vector2 sPos = Vector2.Zero;
+        Vector2 ButtonPosition = Vector2.Zero;
         Button b;
-        
+        ContentManager cmanager;
 
 
 
-        public Game1(String instructions, Vector2 positionInScreen)
+        public Instruction(String instructions, Vector2 positionInScreen)
         {
 
             Window.AllowUserResizing = true;
@@ -97,7 +98,7 @@ namespace MechanectXNA
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Font1 = Content.Load<SpriteFont>("TimesNewRoman");
       //      mytexture = Content.Load<Texture2D>(@"MechanectContent/Textures/Screen");
-            b = new OkButton(ContentManager, ButtonPosition, 960, 600);
+            b = new OKButton(cmanager, ButtonPosition, 960, 600);
             // TODO: use this.Content to load your game content here
 
         }
@@ -123,12 +124,12 @@ namespace MechanectXNA
         /// <param name="gameTime">
         /// an instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package
         /// </param>
-        protected override void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.YellowGreen);
             spriteBatch.Begin();
             string output = WrapText(Font1, this.instructions, this.GraphicsDevice.Viewport.Width);
-            b.Draw();
+            b.draw(spriteBatch);
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
 
@@ -145,4 +146,3 @@ namespace MechanectXNA
     }
 
 }
-*/
