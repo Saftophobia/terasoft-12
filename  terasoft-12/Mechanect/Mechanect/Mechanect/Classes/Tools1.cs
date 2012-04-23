@@ -106,7 +106,7 @@ namespace Mechanect.Classes
         ///<para>DATE WRITTEN: 20/4/12 </para>
         ///<para>DATE MODIFIED: 20/4/12 </para>
         ///</remarks>
-         private List<int> generaterandomnumbers(int size){
+         public static List<int> generaterandomnumbers(int size){
                 Random rand = new Random();
                 List<int> result = new List<int>();
                 HashSet<int> check = new HashSet<int>();
