@@ -9,6 +9,9 @@ namespace Mechanect.Common
     /// <summary>
     /// represents 3d model linear animation with acceleration
     /// </summary>
+    /// <remarks>
+    /// Auther : Bishoy Bassem
+    /// </remarks>
     public class ModelLinearAnimation
     {
 
