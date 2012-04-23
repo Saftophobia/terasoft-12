@@ -334,7 +334,7 @@ namespace Mechanect.Classes
         /// The maximum possible value for the foot mass
         /// </param>
      
-         public void setFootMassInThisRange(float minMass, float maxMass)
+         public void SetFootMassInThisRange(float minMass, float maxMass)
          {
              assumedLegMass = generateFootMass(minMass, maxMass);
          }
@@ -353,10 +353,10 @@ namespace Mechanect.Classes
          /// <returns>
          /// float number which is the generated random value
          /// </returns>
-         public float generateFootMass(float min, float max)
+         public float GenerateFootMass(float min, float max)
          {
-             Random random = new Random();
-             float generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
+             var random = new Random();
+             var generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
              return generatedMass;
          }
        
