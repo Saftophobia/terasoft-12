@@ -12,9 +12,6 @@ using Mechanect.Common;
 
 namespace Mechanect
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class levelSelect 
     {
         //Position of the level select menu on the screen.
