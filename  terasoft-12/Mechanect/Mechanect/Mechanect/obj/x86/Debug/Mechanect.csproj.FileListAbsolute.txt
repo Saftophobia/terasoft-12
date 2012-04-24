@@ -71,3 +71,6 @@ C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mecha
 C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
 C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
+F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

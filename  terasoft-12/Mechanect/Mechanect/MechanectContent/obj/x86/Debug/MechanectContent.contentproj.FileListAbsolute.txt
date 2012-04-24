@@ -3,3 +3,4 @@ C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\Terasoft\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
