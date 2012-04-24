@@ -160,7 +160,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(450, 10);
             button = new OKButton(Content, buttonPosition, screenWidth, screenHeight);
             //TBC
-           // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
+            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
         }
 
@@ -673,35 +673,35 @@ namespace Mechanect.Screens
             //TBC
 
 
-        //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-        //    {
-        //        if (env.Predator.Velocity == null)
-        //            env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-        //        env.Predator.UpdatePosition(gameTime);
-        //        if (!preyEaten) preyEaten = isPreyEaten();
-        //        if (!aquariumReached) aquariumReached = isAquariumReached();
-        //        if (aquariumReached)
-        //        {
-        //            env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
-        //            env.Predator.Velocity = Vector2.Zero;
-        //        }
-        //    }
+            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+            {
+                if (env.Predator.Velocity == null)
+                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                env.Predator.UpdatePosition(gameTime);
+                if (!preyEaten) preyEaten = isPreyEaten();
+                if (!aquariumReached) aquariumReached = isAquariumReached();
+                if (aquariumReached)
+                {
+                    env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
+                    env.Predator.Velocity = Vector2.Zero;
+                }
+            }
 
-        //    else if (button.isClicked() || voiceCommand.getHeared("ok"))
-        //    {
-        //        grayScreen = false;
-        //        button = null;
-        //        voiceCommand = null;
-        //        user.MeasuredAngle = 0;
-        //        user.MeasuredVelocity = 0;
-        //    }
+            else if (button.isClicked() || voiceCommand.getHeared("ok"))
+            {
+                grayScreen = false;
+                button = null;
+                voiceCommand = null;
+                user.MeasuredAngle = 0;
+                user.MeasuredVelocity = 0;
+            }
 
-        //    else
-        //    {
-        //        user.MeasureVelocityAndAngle();
-        //    }
+            else
+            {
+                user.MeasureVelocityAndAngle();
+            }
 
-        //    base.Update(gameTime, covered);
+            base.Update(gameTime, covered);
         }
 
 
