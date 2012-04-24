@@ -188,10 +188,11 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 20/4/12 </para>
          /// </remarks>
-         public static void SetPositions(User1 User1, User1 User2, SpriteBatch spriteBatch, SpriteFont spFont, float tolerance)
+         public static bool SetPositions(User1 User1, User1 User2, SpriteBatch spriteBatch, SpriteFont spFont, float tolerance)
          {
              Skeleton sk1 = User1.USER;
              Skeleton sk2 = User1.USER;
+             bool result = true;
 
                  float z;
                  float z2;
@@ -205,6 +206,9 @@ namespace Mechanect.Classes
                      isThePositionRight = CheckPosition(z, tolerance);
 
                      User11State = "User1 1: Your position is: " + z.ToString() + " this is " + isThePositionRight + ", it should be 4.0 m \n";
+
+                     if (!isThePositionRight)
+                         result = false;
                  }
                  if (sk2 != null)
                  {
@@ -212,11 +216,15 @@ namespace Mechanect.Classes
                      isThePositionRight2 = CheckPosition(z2, tolerance);
 
                      User12State = "User1 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
+
+                     if (!isThePositionRight2)
+                         result = false;
                  }
                  spriteBatch.Begin();
                  spriteBatch.DrawString(spFont, User11State, new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.DrawString(spFont, User12State, new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
+                 return result;
          }
 
          /// <summary>
