@@ -15,7 +15,7 @@ namespace Mechanect
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class levelSelect : Microsoft.Xna.Framework.DrawableGameComponent
+    public class levelSelect 
     {
         //Position of the level select menu on the screen.
         public Vector2 position { get; set; }
@@ -34,7 +34,6 @@ namespace Mechanect
         //MKinect kinect;
 
         public levelSelect(Game game, Vector2 position, SpriteBatch spriteBatch)
-            : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.position = position;
@@ -48,7 +47,7 @@ namespace Mechanect
         /// <summary>
         /// Initializes Buttons and Values.
         /// </summary>
-        public new void Initialize()
+        public void Initialize(int screenw, int screenh)
         {
             //Initialize level values
             values = new int[3];
@@ -64,13 +63,12 @@ namespace Mechanect
             //List that Contains All Buttons in the level select part.
             Buttons = new List<Button>();
 
-            base.Initialize();
             //width and height of the textureStrip
             width = 425;
             height = 200;
 
-            int screenW = GraphicsDevice.Viewport.Width;
-            int screenH = GraphicsDevice.Viewport.Height;
+            int screenW = screenw;
+            int screenH = screenh;
 
             int ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width;
             //Create and Initialize all Buttons.
@@ -97,27 +95,16 @@ namespace Mechanect
             Buttons.Add(thirdButton);
             
         }
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Loads textures.
-        /// </summary>
-        public new void LoadContent()
-        {
-            base.LoadContent();
-        }
 
         
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// XNA Update Method.
+        /// Update Method.
         /// </summary>
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            KeyboardState k = Keyboard.GetState();
             // If were at the leftmost frame.. Lock the left arrow Button.
             if (values[0] == 1)
                 isActive[0] = false;
@@ -157,8 +144,6 @@ namespace Mechanect
             else
                 isActive[4] = true;
 
-            
-            base.Update(gameTime);
         }
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
@@ -166,7 +151,7 @@ namespace Mechanect
         /// <summary>
         /// XNA Draw Method.
         /// </summary>
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             //Draw the texture and textureStrip according to the frame
@@ -178,7 +163,6 @@ namespace Mechanect
             foreach (Button b in Buttons)
                 b.draw(spriteBatch);
 
-            base.Draw(gameTime);
         }
     }
 }
