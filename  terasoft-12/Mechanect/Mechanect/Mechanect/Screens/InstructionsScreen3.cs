@@ -3,12 +3,19 @@ using Microsoft.Xna.Framework;
 using MechanectXNA;
 namespace Mechanect.Screens
 {
-    class InstructionsScreen3 : GameScreen
+    class InstructionsScreen3 : Instruction
     {
+        Vector2 position = new Vector2(100, 20);
         private OKButton button;
-
+        string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
         public InstructionsScreen3()
+            : base()
         {
+        }
+        public InstructionsScreen3(string instructions)
+            : base(instructions)
+        {
+            this.instructions = instructions;
         }
 
         /// <summary>
@@ -19,12 +26,13 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void LoadContent()
         {
+            base.LoadContent();
             button = new OKButton(this.ScreenManager.Game.Content, new Vector2(300, 300), this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
         }
 
         public override void UnloadContent()
         {
-
+            base.UnloadContent();
         }
 
         /// <summary>
@@ -37,6 +45,7 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
+
             if (button.isClicked())
             {
                 this.Remove();
@@ -55,13 +64,11 @@ namespace Mechanect.Screens
         /// </param>
         public override void Draw(GameTime gameTime)
         {
-            var position = new Vector2(100, 20);
-            var instructions = "The goal of this game is to shoot the ball such that it reaches the hole with 0 velocity";
-            var I = new Instruction(instructions, position);
-            I.Draw(gameTime);
+            base.Draw(gameTime);
+
             button.draw(this.ScreenManager.SpriteBatch);
         }
-    
+
         public override void Remove()
         {
             base.Remove();
