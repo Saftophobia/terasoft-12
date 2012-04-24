@@ -83,9 +83,9 @@ namespace Mechanect.Common
         /// <summary>
         /// Holds the alpha value of the screen
         /// </summary>
-        public byte ScreenAlpha
+        public float ScreenAlpha
         {
-            get { return (byte)(transitionPercent * 255); }
+            get { return (float)(transitionPercent * 255); }
         }
 
         /// <summary>

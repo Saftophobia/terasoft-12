@@ -106,8 +106,7 @@ namespace Mechanect.Screens
                     Tools3.update_MeasuringVelocityAndAngle(user);
                     // truncate max velocity
                     velocity = Tools3.setVelocityRelativeToGivenMass(user);
-   
-                   
+
                     for (int i = fills.Count()-1; i < user.Velocity; i++)
                     {
                         fillsPositions.Add(fillPosition);
