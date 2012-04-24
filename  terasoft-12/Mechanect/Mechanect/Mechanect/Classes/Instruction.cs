@@ -118,6 +118,16 @@ namespace MechanectXNA
             return output;
         }
 
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        {
+
+            if (b.isClicked())
+            {
+                this.Remove();
+            }
+            base.Update(gameTime, covered);
+        }
+        
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -136,6 +146,11 @@ namespace MechanectXNA
             spriteBatch.Begin();
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
+        }
+
+        public override void Remove()
+        {
+            base.Remove();
         }
         //static void Main(String[] args)
         //{
