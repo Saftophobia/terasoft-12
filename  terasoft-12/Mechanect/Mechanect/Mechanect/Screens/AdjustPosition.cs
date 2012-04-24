@@ -41,6 +41,8 @@ namespace Mechanect.Screens
         Color accept;
         Color reject;
 
+        SpriteFont font;
+
         ContentManager ContentManager
         {
             get
@@ -95,6 +97,7 @@ namespace Mechanect.Screens
             depthBar = new Texture2D(ScreenManager.GraphicsDevice, depthBarWidth, depthBarHeight);
             accept = Color.GreenYellow;
             reject = Color.OrangeRed;
+            font = ContentManager.Load<SpriteFont>("Ariel");
         }
 
         public override void UnloadContent()
@@ -201,7 +204,24 @@ namespace Mechanect.Screens
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            throw new NotImplementedException();
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.DrawString(font, title, new Vector2(500, 20), Color.OrangeRed);
+            ScreenManager.SpriteBatch.End();
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.DrawString(font, rule1, new Vector2(100, 120), Color.OrangeRed);
+            ScreenManager.SpriteBatch.End();
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.DrawString(font, rule2, new Vector2(100, 220), Color.OrangeRed);
+            ScreenManager.SpriteBatch.End();
+            for (int i = 0; i < users.Length; i++)
+            {
+                ScreenManager.SpriteBatch.Begin();
+                ScreenManager.SpriteBatch.DrawString(font, command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
+                ScreenManager.SpriteBatch.End();
+            }
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.Draw(depthBar, new Vector2(100, 520), Color.White);
+            ScreenManager.SpriteBatch.End();
         }
 
 
