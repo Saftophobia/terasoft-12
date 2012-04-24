@@ -19,6 +19,17 @@ namespace Mechanect.Classes
     {
         private SpriteBatch spriteBatch;
         private Texture2D bar;
+        public Texture2D Bar
+        {
+            get
+            {
+                return bar;
+            }
+            set
+            {
+                bar = value;
+            }
+        }
         private Texture2D ball;
         private Vector2 shootingPos;
         public Vector2 ShootingPos
