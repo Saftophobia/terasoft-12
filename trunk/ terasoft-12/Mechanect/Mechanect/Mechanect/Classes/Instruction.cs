@@ -11,7 +11,7 @@ namespace MechanectXNA
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-     class Instruction :GameScreen
+    class Instruction : GameScreen
     {
         GraphicsDeviceManager graphics;
         GraphicsDevice graphicsdevice;
@@ -45,10 +45,10 @@ namespace MechanectXNA
 
 
 
+        /// <para>AUTHOR: Mohamed Raafat </para>
         /// <summary>
         /// Makes sure that text displayed will not exceeds screen boundries
         /// </summary>
-        /// <para>AUTHOR: Mohamed Raafat </para>
         /// <param name="spriteFont">contains properties of the font</param>
         /// <param name="text">text to be displayed on screen</param>
         /// <param name="maxLineWidth">max line width to be displayed</param>
@@ -81,6 +81,7 @@ namespace MechanectXNA
             return builder.ToString();
         }
 
+        /// <Authror>Mohamed Raafat & Khaled Saleh</Authror>
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
@@ -96,18 +97,8 @@ namespace MechanectXNA
 
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <para>Author: Mohamed Raafat</para>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
 
-        String getInsructions()
-        {
-            String output = WrapText(Font1, this.instructions, graphicsdevice.Viewport.Width);
-            return output;
-        }
-        
+
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -126,7 +117,7 @@ namespace MechanectXNA
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
-                //static void Main(String[] args)
+        //static void Main(String[] args)
         //{
         //    String text = "mohamed raafah ahmed aboelhassieb";
         //    Vector2 position = new Vector2(12f, 43f);
