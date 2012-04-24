@@ -19,7 +19,7 @@ namespace Mechanect.Classes
     {
         private SpriteBatch spriteBatch;
         private Texture2D bar;
-        public Texture2D Bar
+        public Texture2D BarProperty
         {
             get
             {

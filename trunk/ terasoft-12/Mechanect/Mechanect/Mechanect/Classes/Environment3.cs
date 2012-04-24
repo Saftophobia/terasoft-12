@@ -54,7 +54,7 @@ namespace Mechanect.Classes
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition; 
-            distanceBar = new Bar(new Vector2(device.Viewport.Width-distanceBar.Bar.Height-10,device.Viewport.Height-distanceBar.Bar.Height-10), spriteBatch, new Vector2(ballInitPos.X,ballInitPos.Z), new Vector2(ballPos.X,ballPos.Z), new Vector2(shootingPos.X,shootingPos.Z), Content);
+            distanceBar = new Bar(new Vector2(device.Viewport.Width-distanceBar.BarProperty.Height-10,device.Viewport.Height-distanceBar.BarProperty.Height-10), spriteBatch, new Vector2(ballInitPos.X,ballInitPos.Z), new Vector2(ballPos.X,ballPos.Z), new Vector2(shootingPos.X,shootingPos.Z), Content);
         }
 
 
