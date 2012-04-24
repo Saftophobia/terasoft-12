@@ -160,7 +160,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(450, 10);
             button = new OKButton(Content, buttonPosition, screenWidth, screenHeight);
             //TBC
-            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
+           // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
         }
 
@@ -205,11 +205,11 @@ namespace Mechanect.Screens
                 default: ImageSet2(); break;
             }
 
-            predatorOrigin = (new Vector2(predatorTexture.Width * predatorTextureScaling / 2, predatorTexture.Height * predatorTextureScaling / 2));
-
             configureScreen();
 
-
+            bowlTextureScaling *= env.Aquarium.getHeight() * pixelsPerMeterY / bowlTexture.Height;
+            predatorTextureScaling *= bowlTextureScaling;
+            preyTextureScaling *= env.Prey.getHeight() * pixelsPerMeterY / preyTexture.Height;
             base.Initialize();
         }
 
@@ -250,15 +250,15 @@ namespace Mechanect.Screens
 
 
             float maxDifferenceX = env.Aquarium.Location.X - env.Predator.Location.X;
-            float maxDifferenceY = (env.Prey.Location.Y) - Math.Min(env.Aquarium.Location.Y, env.Predator.Location.Y);
+            float maxDifferenceY = Math.Max(env.Prey.Location.Y, Math.Max(env.Aquarium.Location.Y, env.Predator.Location.Y)) - Math.Min(env.Prey.Location.Y, Math.Min(env.Aquarium.Location.Y, env.Predator.Location.Y));
 
             pixelsPerMeterX = (float)screenWidth * xDrawingPercentage / maxDifferenceX;
             pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
             //to make the same scaling
             pixelsPerMeterX = Math.Min(pixelsPerMeterX,pixelsPerMeterY);
             pixelsPerMeterY = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
-            translationX = screenWidth * xAxisPercentage;
-            translationY = screenHeight * yAxisPercentage;
+            translationX = screenWidth * yAxisPercentage;
+            translationY = screenHeight * xAxisPercentage;
 
             velocityTextureScaling *= backgroundTextureScaling;
             angleTextureScaling *= backgroundTextureScaling;
@@ -300,12 +300,12 @@ namespace Mechanect.Screens
             preyTextureScaling = 0.1f;
             bowlTextureScaling = 0.2f;
 
-            predatorTextureScaling = 0.2f;
+            predatorTextureScaling = 2f;
             velocityTextureScaling = 0.7f;
             angleTextureScaling = 1.25f;
 
-            xAxisPercentage = 0.04f;
-            yAxisPercentage = 0.056f;
+            xAxisPercentage = 0.05f;
+            yAxisPercentage = 0.05f;
 
             xDrawingPercentage = 0.75f;
             yDrawingPercentage = 0.55f;
@@ -673,35 +673,35 @@ namespace Mechanect.Screens
             //TBC
 
 
-            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-            {
-                if (env.Predator.Velocity == null)
-                    env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-                env.Predator.UpdatePosition(gameTime);
-                if (!preyEaten) preyEaten = isPreyEaten();
-                if (!aquariumReached) aquariumReached = isAquariumReached();
-                if (aquariumReached)
-                {
-                    env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
-                    env.Predator.Velocity = Vector2.Zero;
-                }
-            }
+        //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+        //    {
+        //        if (env.Predator.Velocity == null)
+        //            env.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+        //        env.Predator.UpdatePosition(gameTime);
+        //        if (!preyEaten) preyEaten = isPreyEaten();
+        //        if (!aquariumReached) aquariumReached = isAquariumReached();
+        //        if (aquariumReached)
+        //        {
+        //            env.Predator.Location = new Vector2(env.Aquarium.Location.X, env.Aquarium.Location.Y);
+        //            env.Predator.Velocity = Vector2.Zero;
+        //        }
+        //    }
 
-            else if (button.isClicked() || voiceCommand.getHeared("ok"))
-            {
-                grayScreen = false;
-                button = null;
-                voiceCommand = null;
-                user.MeasuredAngle = 0;
-                user.MeasuredVelocity = 0;
-            }
+        //    else if (button.isClicked() || voiceCommand.getHeared("ok"))
+        //    {
+        //        grayScreen = false;
+        //        button = null;
+        //        voiceCommand = null;
+        //        user.MeasuredAngle = 0;
+        //        user.MeasuredVelocity = 0;
+        //    }
 
-            else
-            {
-                user.MeasureVelocityAndAngle();
-            }
+        //    else
+        //    {
+        //        user.MeasureVelocityAndAngle();
+        //    }
 
-            base.Update(gameTime, covered);
+        //    base.Update(gameTime, covered);
         }
 
 
