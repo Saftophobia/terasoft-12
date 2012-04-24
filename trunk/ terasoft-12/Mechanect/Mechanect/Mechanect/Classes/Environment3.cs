@@ -696,8 +696,10 @@ namespace Mechanect.Classes
         /// </summary>
         private void Shoot()
         {
+            float relativeVelocity = Tools3.setVelocityRelativeToGivenMass(user);
             Vector3 initialLegVelocity; //This variable represents the velocity of the leg with which the user has shot the ball.
-            initialLegVelocity = new Vector3((float)(user.Velocity * Math.Cos(user.Angle)), 0, -(float)(user.Velocity * Math.Sin(user.Angle)));
+            initialLegVelocity = new Vector3((float)(relativeVelocity * Math.Cos(user.Angle)), 0, -(float)(relativeVelocity * Math.Sin(user.Angle)));
+            
             if (hasCollidedWithBall && !ballShot)
             {
                 ballMass = ball.Mass; //get the mass of the ball
