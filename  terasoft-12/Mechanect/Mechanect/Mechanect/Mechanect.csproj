@@ -175,6 +175,7 @@
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
+    <Compile Include="Screens\Settings3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
