@@ -77,7 +77,11 @@ namespace Mechanect.Common
             screensToUpdate.Clear();
 
             foreach (GameScreen screen in screens)
+            {
+                if(!screen.IsFrozen)
                 screensToUpdate.Add(screen);
+            }
+             
 
             bool screenIsCovered = false;
             bool firstScreen = true;
