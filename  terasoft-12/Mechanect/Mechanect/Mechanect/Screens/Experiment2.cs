@@ -19,12 +19,10 @@ namespace Mechanect.Screens
 {
 
     /// <summary>
-    /// This Class is responsible for fully generating the GUI of Experiment2
+    /// This Class is responsible for running Experiment2 and displaying it's GUI
     /// </summary>
     /// <remarks>
-    /// <para>AUTHOR: Mohamed Alzayat, Mohamed Abdelazim </para>   
-    /// <para>DATE WRITTEN: April, 20 </para>
-    /// <para>DATE MODIFIED: April, 24  </para>
+    /// <para>AUTHOR: Mohamed Alzayat, Mohamed Abdelazim </para>
     /// </remarks>
     class Experiment2 : Mechanect.Common.GameScreen
     {
@@ -182,7 +180,6 @@ namespace Mechanect.Screens
             spriteFont = Content.Load<SpriteFont>("Ariel");
             velAngleFont = Content.Load<SpriteFont>("angleVelFont");
 
-            // zayat you can edit the button place as you wish
             buttonPosition = new Vector2(screenWidth - screenWidth / 5, screenHeight -screenHeight / 5);
             button = new OKButton(Content, buttonPosition, screenWidth, screenHeight);
             //TBC
@@ -620,10 +617,18 @@ namespace Mechanect.Screens
 
         }
 
-     
-        
 
-  
+
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// <returns>determines whether the predator eats the prey or not</returns>
+        /// </summary>
         private Boolean isPreyEaten()
         {
             Boolean isHit = false;
@@ -637,6 +642,15 @@ namespace Mechanect.Screens
             return isHit;
         }
 
+
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// <returns>determines whether the predator reached the aquarium or not</returns>
+        /// </summary>
         private Boolean isAquariumReached()
         {
             Boolean isReached = false;
@@ -655,11 +669,10 @@ namespace Mechanect.Screens
         /// Runs at every frame, Updates game parameters and checks for user's actions
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed AbdelAzim </para>   
-        /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 21  </para>
+        /// <para>AUTHOR: Mohamed AbdelAzim </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="covered">determines whether there exist another screen covering this one or not.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         { //camera.Update();
             //TBC
