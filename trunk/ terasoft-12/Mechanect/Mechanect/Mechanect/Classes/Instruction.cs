@@ -11,9 +11,10 @@ namespace MechanectXNA
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-     class Instruction :Game
+     class Instruction :GameScreen
     {
         GraphicsDeviceManager graphics;
+        GraphicsDevice graphicsdevice;
         SpriteBatch spriteBatch;
         SpriteFont Font1;
         Vector2 origin;
@@ -24,24 +25,22 @@ namespace MechanectXNA
         Vector2 ButtonPosition = Vector2.Zero;
         Button b;
         ContentManager cmanager;
-
+        Game game;
 
 
         public Instruction(String instructions, Vector2 positionInScreen)
         {
-
-            Window.AllowUserResizing = true;
+            game.Window.AllowUserResizing = true;
             this.instructions = instructions;
             this.positionInScreen = new Vector2(positionInScreen.X, positionInScreen.Y);
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            this.graphics = new GraphicsDeviceManager(game);
+            cmanager.RootDirectory = "Content";
             int screenWidth = 800;
             int screenHeight = 400;
             origin = new Vector2(0f, 0f);
             graphics.PreferredBackBufferWidth = screenWidth;
             graphics.PreferredBackBufferHeight = screenHeight;
-            this.IsMouseVisible = true;
-
+            game.IsMouseVisible = true;
         }
 
 
@@ -86,12 +85,12 @@ namespace MechanectXNA
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent()
+        public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            Font1 = Content.Load<SpriteFont>("TimesNewRoman");
-      //      mytexture = Content.Load<Texture2D>(@"MechanectContent/Textures/Screen");
+            spriteBatch = new SpriteBatch(graphicsdevice);
+            Font1 = cmanager.Load<SpriteFont>("TimesNewRoman");
+            mytexture = cmanager.Load<Texture2D>(@"MechanectContent/Textures/Screen");
             b = new OKButton(cmanager, ButtonPosition, 960, 600);
             // TODO: use this.Content to load your game content here
 
@@ -105,7 +104,7 @@ namespace MechanectXNA
 
         String getInsructions()
         {
-            String output = WrapText(Font1, this.instructions, this.GraphicsDevice.Viewport.Width);
+            String output = WrapText(Font1, this.instructions, graphicsdevice.Viewport.Width);
             return output;
         }
         
@@ -118,11 +117,11 @@ namespace MechanectXNA
         /// <param name="gameTime">
         /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
         /// </param>
-        protected override void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.YellowGreen);
+            graphicsdevice.Clear(Color.YellowGreen);
             spriteBatch.Begin();
-            string output = WrapText(Font1, this.instructions, this.GraphicsDevice.Viewport.Width);
+            string output = WrapText(Font1, this.instructions, graphicsdevice.Viewport.Width);
             b.draw(spriteBatch);
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
@@ -137,10 +136,6 @@ namespace MechanectXNA
         //}
 
 
-        internal void Draw2(GameTime gameTime)
-        {
-            Draw(gameTime);
-        }
     }
 
 }
