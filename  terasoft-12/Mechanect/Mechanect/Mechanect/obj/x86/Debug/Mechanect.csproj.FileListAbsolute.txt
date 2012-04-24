@@ -1,76 +1,54 @@
-C:\Users\Tamerko-pc\Desktop\xs\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Tamerko-pc\Desktop\xs\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.exe
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.pdb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\background.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\bowl2.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\worm.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\xyAxis.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VelocityGauge.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\AngleGauge.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\background.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\bowl2.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\worm.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\xyAxis.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VelocityGauge.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\AngleGauge.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\angleVelFont.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-m.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-s.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.exe
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.pdb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.dll
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.pdb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb
-C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\GrayScreen.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\GrayScreen.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-m.xnb
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\button-s.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmap.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Ball.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Bar.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\texture.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\TimesNewRoman.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-m.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-s.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-m.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-s.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-m.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-s.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummy.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummySelected.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\leftArrow.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\rightArrow.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\skybox2.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\effects.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.exe
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.pdb
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.dll
 C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.pdb
-C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
-C:\Users\mohamed\Documents\Visual Studio 2010\Projects\Mechanect\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
-C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
-C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\ahmed\Desktop\New folder\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
-F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
-F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb

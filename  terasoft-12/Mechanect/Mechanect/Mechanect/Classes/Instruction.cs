@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
 using Mechanect;
 
-namespace MechanectXNA
+namespace Mechanect
 {
     /// <summary>
     /// This is the main type for your game
