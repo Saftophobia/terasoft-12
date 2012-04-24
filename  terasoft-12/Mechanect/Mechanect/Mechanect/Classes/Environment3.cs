@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Mechanect.Classes
 {
-    class Environment3 
+    class Environment3
     {
         private Hole hole;
         private Ball ball;
@@ -48,13 +48,19 @@ namespace Mechanect.Classes
         Texture2D[] skyboxTextures;
         Model skyboxModel;
         private ContentManager Content;
+        Model holeModel;
+        Vector3 holecameraposition;
+        Matrix holeviewmatrix;
+        Matrix holeprojectionmatrix;
+        float holeaspectratio;
+        Vector3 holeposition;
 
         public Environment3(SpriteBatch spriteBatch)
         {
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
-            Vector3 shootingPos = user.ShootingPosition; 
-            distanceBar = new Bar(new Vector2(device.Viewport.Width-distanceBar.BarProperty.Height-10,device.Viewport.Height-distanceBar.BarProperty.Height-10), spriteBatch, new Vector2(ballInitPos.X,ballInitPos.Z), new Vector2(ballPos.X,ballPos.Z), new Vector2(shootingPos.X,shootingPos.Z), Content);
+            Vector3 shootingPos = user.ShootingPosition;
+            distanceBar = new Bar(new Vector2(device.Viewport.Width - distanceBar.BarProperty.Height - 10, device.Viewport.Height - distanceBar.BarProperty.Height - 10), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
         }
 
 
@@ -84,14 +90,14 @@ namespace Mechanect.Classes
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
-            var finalPos = Vector3.Zero;          
+            var finalPos = Vector3.Zero;
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
-            
+
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
                 return Constants3.holeOutOfFarRange;
 
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
-            
+
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
@@ -192,7 +198,7 @@ namespace Mechanect.Classes
 
         #region Environment Generation Code
 
-        
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Inizializes the Environment
@@ -200,10 +206,11 @@ namespace Mechanect.Classes
         public void InitializeEnvironment(GraphicsDevice g)
         {
             device = g;
-           
+            //    InitializeHole();
+
         }
 
-         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Loads the content of the environment. Similar to the LoadConent() method of XNA
         /// </summary>
@@ -227,9 +234,10 @@ namespace Mechanect.Classes
             SetUpIndices();
             CalculateNormals();
             CopyToBuffers();
+
         }
 
-         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Updates the environment. Similar to the Update() method of XNA, and to be called in it.
         /// </summary>
@@ -245,12 +253,12 @@ namespace Mechanect.Classes
             ProcessInput(timeDifference);
         }
 
-        
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-       /// <summary>
-       /// Draws the environment. Similar to the Draw() method of XNA
-       /// </summary>
-       ///<param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <summary>
+        /// Draws the environment. Similar to the Draw() method of XNA
+        /// </summary>
+        ///<param name="gameTime">Provides a snapshot of timing values.</param>
         public void DrawEnvironment(GameTime gameTime)
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
@@ -279,6 +287,7 @@ namespace Mechanect.Classes
 
                 device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
             }
+            //DrawHole(gameTime);
         }
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -319,8 +328,8 @@ namespace Mechanect.Classes
             }
         }
 
-        
-        
+
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Creates the indices of the triangles used to generate the terrain. 
@@ -350,7 +359,7 @@ namespace Mechanect.Classes
             }
         }
 
-        
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap
@@ -402,8 +411,8 @@ namespace Mechanect.Classes
             );
         }
 
-        
-         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Calculates the normal to the planes of the triangles and adds this info to the normal of vertices defined by VertexPositioColorNormal.
         /// </summary>
@@ -431,7 +440,7 @@ namespace Mechanect.Classes
                 vertices[i].Normal.Normalize();
         }
 
-         
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Updates the view matrix depending on the movement of the camera.
@@ -450,7 +459,7 @@ namespace Mechanect.Classes
             viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
         }
 
-        
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Processes the movement of the mouse, and the keys pressed on the keyboard.
@@ -485,7 +494,7 @@ namespace Mechanect.Classes
             AddToCameraPosition(moveVector * amount);
         }
 
-         
+
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Creates a matrix to be able to rotate the camera, and updates the view matrix correspondingly.
@@ -511,6 +520,7 @@ namespace Mechanect.Classes
 
             Model newModel = Content.Load<Model>(assetName);
             textures = new Texture2D[newModel.Meshes.Count];
+            LoadHole();
             int i = 0;
             foreach (ModelMesh mesh in newModel.Meshes)
                 foreach (BasicEffect currentEffect in mesh.Effects)
@@ -554,6 +564,7 @@ namespace Mechanect.Classes
                 }
                 mesh.Draw();
             }
+            DrawHole();
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -569,10 +580,85 @@ namespace Mechanect.Classes
             viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
             projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 1.0f, 300.0f);
         }
-        
+
         #endregion
 
+        #region 3ammak 5o5a
 
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Initializes all variables needed to draw the hole.
+        /// </summary>
+
+        protected void InitializeHole()
+        {
+            // TODO: Add your initialization logic here
+            //hole = new Hole();
+            holecameraposition = new Vector3(500.0f, 50.0f, 5000.0f);
+            holeposition = hole.Position;
+            holeaspectratio = device.Viewport.AspectRatio;
+            holeviewmatrix = Matrix.CreateLookAt(holecameraposition, Vector3.Zero, Vector3.Up);
+            holeprojectionmatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(40.0f), holeaspectratio, 100.0f, 100000.0f);
+            //          base.Initialize();
+        }
+
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Loads the hole model.
+        /// </summary>
+
+        protected void LoadHole()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            //            spriteBatch = new SpriteBatch(GraphicsDevice);
+            holeModel = Content.Load<Model>(@"Models/holemodel");
+            // TODO: use this.Content to load your game content here
+        }
+
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// all content.
+        /// </summary>
+        protected void UnloadHole()
+        {
+            // TODO: Unload any non ContentManager content here
+        }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Draws the 3D hole by rendering each effect in each mesh in the hole model
+        /// </summary>
+        /// <param name="gameTime">
+        /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
+        /// </param>
+        protected void DrawHole()
+        {
+            //gdevice.Clear(Color.CornflowerBlue);
+            Matrix[] holetransforms = new Matrix[holeModel.Bones.Count];
+            holeModel.CopyAbsoluteBoneTransformsTo(holetransforms);
+
+            foreach (ModelMesh mesh in holeModel.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+                    effect.World = holetransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(holeposition);
+                    effect.View = holeviewmatrix;
+                    effect.Projection = holeprojectionmatrix;
+                }
+                mesh.Draw();
+            }
+            // TODO: Add your drawing code here
+
+            //base.Draw(gameTime);
+        }
+
+        #endregion
 
         #region Omar's Methods
 
