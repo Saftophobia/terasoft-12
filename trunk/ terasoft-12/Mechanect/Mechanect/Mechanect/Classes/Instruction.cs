@@ -13,42 +13,43 @@ namespace MechanectXNA
     /// </summary>
     class Instruction : GameScreen
     {
-        GraphicsDeviceManager graphics;
-        GraphicsDevice graphicsdevice;
         SpriteBatch spriteBatch;
         SpriteFont Font1;
         Vector2 origin;
-        Vector2 positionInScreen;
+        Vector2 positionInScreen = Vector2.Zero;
         String instructions;
-        Texture2D mytexture;
+        //Texture2D mytexture;
         Vector2 sPos = Vector2.Zero;
-        Vector2 ButtonPosition = Vector2.Zero;
+        Vector2 ButtonPosition = new Vector2(300, 300);
         Button b;
         ContentManager cmanager;
-        Game game;
-
-
-        public Instruction(String instructions, Vector2 positionInScreen)
+        Game1 game = new Game1();
+        int screenWidth = 800;
+        int screenHeight = 400;
+        public Instruction()
+        {
+            game.Window.AllowUserResizing = true;
+            origin = new Vector2(0f, 0f);
+            game.IsMouseVisible = true;
+            screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+            screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
+            spriteBatch = ScreenManager.SpriteBatch;
+            cmanager = ScreenManager.Game.Content;
+        }
+        public Instruction(String instructions)
         {
             game.Window.AllowUserResizing = true;
             this.instructions = instructions;
-            this.positionInScreen = new Vector2(positionInScreen.X, positionInScreen.Y);
-            this.graphics = new GraphicsDeviceManager(game);
-            cmanager.RootDirectory = "Content";
-            int screenWidth = 800;
-            int screenHeight = 400;
             origin = new Vector2(0f, 0f);
-            graphics.PreferredBackBufferWidth = screenWidth;
-            graphics.PreferredBackBufferHeight = screenHeight;
             game.IsMouseVisible = true;
         }
 
 
 
-        /// <para>AUTHOR: Mohamed Raafat </para>
         /// <summary>
         /// Makes sure that text displayed will not exceeds screen boundries
         /// </summary>
+        /// <para>AUTHOR: Mohamed Raafat </para>
         /// <param name="spriteFont">contains properties of the font</param>
         /// <param name="text">text to be displayed on screen</param>
         /// <param name="maxLineWidth">max line width to be displayed</param>
@@ -80,24 +81,42 @@ namespace MechanectXNA
             }
             return builder.ToString();
         }
+        public override void Initialize()
+        {
+            screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+            screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
+            spriteBatch = ScreenManager.SpriteBatch;
+            cmanager = ScreenManager.Game.Content;
+            Font1 = cmanager.Load<SpriteFont>("spriteFont1");
+            b = new OKButton(cmanager, ButtonPosition, 960, 600);
+        }
 
-        /// <Authror>Mohamed Raafat & Khaled Saleh</Authror>
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
-        /// </summary>
+        /// 
+
         public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(graphicsdevice);
-            Font1 = cmanager.Load<SpriteFont>("TimesNewRoman");
-            mytexture = cmanager.Load<Texture2D>(@"MechanectContent/Textures/Screen");
-            b = new OKButton(cmanager, ButtonPosition, 960, 600);
+
+            //mytexture = cmanager.Load<Texture2D>(@"Mechanect/Mechanect/MechanectContent/Textures/screen");
+
             // TODO: use this.Content to load your game content here
 
         }
 
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <para>Author: Mohamed Raafat</para>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
 
+        String getInsructions()
+        {
+            String output = WrapText(Font1, this.instructions, screenWidth);
+            return output;
+        }
 
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -110,10 +129,11 @@ namespace MechanectXNA
         /// </param>
         public override void Draw(GameTime gameTime)
         {
-            graphicsdevice.Clear(Color.YellowGreen);
-            spriteBatch.Begin();
-            string output = WrapText(Font1, this.instructions, graphicsdevice.Viewport.Width);
+            //graphicsdevice.Clear(Color.YellowGreen);
+            string output = WrapText(Font1, this.instructions, screenWidth);
+
             b.draw(spriteBatch);
+            spriteBatch.Begin();
             spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
