@@ -113,16 +113,19 @@ namespace Mechanect.Classes
                 measuredAngle = value;
             }
         }
-        private double initialLeftHand;
-        public double InitialLeftHand
+        
+
+        private bool start;
+        public bool Start
         {
             get
             {
-                return initialLeftHand;
+                return start;
+
             }
             set
             {
-                initialLeftHand = value;
+                start = false;
             }
         }
         // the constructor should initialize the initial left hand position to Zero
@@ -146,6 +149,7 @@ namespace Mechanect.Classes
         {
 
           
+
                 counter += 1;
 
                 if (counter % 3 == 0)
