@@ -79,34 +79,35 @@ namespace Mechanect.Screens
             graphics.PreferredBackBufferHeight = 650;
             graphics.ApplyChanges();
 
-
-            Texture2D Texthree = Content.Load<Texture2D>("MechanectContent/3");
+            
+            Texture2D Texthree = Content.Load<Texture2D>("MechanectContent/3");          
             Texture2D Textwo = Content.Load<Texture2D>("MechanectContent/2");
             Texture2D Texone = Content.Load<Texture2D>("MechanectContent/1");
             Texture2D Texgo = Content.Load<Texture2D>("MechanectContent/go");
             Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
             SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
             SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
+            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics); //initializes the Countdown 
             background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
-            graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
+            graphics.PreferredBackBufferHeight, 0, 0, 1024, 768); //initializes the background
 
             //-----------------------initializetimecountand commands--------------------------
             racecommands = gCommands;
             Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
-            racecommands = racecommands.Concat<string>(racecommands).ToList<string>();
+            racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
             // foreach (string s in racecommands)
             //   System.Console.WriteLine(s);
-            timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count);
+            timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
             // foreach (int s in timeslice)
             //  System.Console.WriteLine(s);
-            racecommandsforDRAW = new List<string>();
-
+            racecommandsforDRAW = new List<string>(); 
+            
             for (int time = 0; time < timeslice.Count; time++)
             {
                 for (int timeslot = 1; timeslot <= timeslice[time]; timeslot++)
                 {
                     racecommandsforDRAW.Add(racecommands[time]);
+                    //draw the command on screen for each second
                 }
             }
 
@@ -156,11 +157,14 @@ namespace Mechanect.Screens
 
             player1.skeleton = kinect.requestSkeleton();
             player2.skeleton = kinect.request2ndSkeleton();
+            //=======================================================
             if (timecounter < 4)
             {
                 countdown.UpdateCountdownScreen();
 
             }
+
+            //after countdown, Update the Race 
             if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
             {
                 avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton);
@@ -238,7 +242,10 @@ namespace Mechanect.Screens
             base.Update(gameTime, covered);
         }
             
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (timecounter < 4)
@@ -247,13 +254,14 @@ namespace Mechanect.Screens
                 countdown.DrawCountdownScreen(SpriteBatch);
             }
 
-
+            //After countdown,Draw the Avatar
             if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
             {
             avatarprogUI.Draw(SpriteBatch, Content.Load<Texture2D>("ball"));
             }
 
 
+            // after Race, Draw the Graphs
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
                 background.Draw(SpriteBatch);
