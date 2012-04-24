@@ -81,14 +81,22 @@ namespace MechanectXNA
             }
             return builder.ToString();
         }
+
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Initializes the screen variables needed
+        /// </summary>
+
         public override void Initialize()
         {
             screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
             screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
             spriteBatch = ScreenManager.SpriteBatch;
             cmanager = ScreenManager.Game.Content;
-            Font1 = cmanager.Load<SpriteFont>("spriteFont1");
             b = new OKButton(cmanager, ButtonPosition, 960, 600);
+            Font1 = cmanager.Load<SpriteFont>("spriteFont1");
         }
 
         /// <summary>
@@ -100,8 +108,7 @@ namespace MechanectXNA
         {
             // Create a new SpriteBatch, which can be used to draw textures.
 
-            //mytexture = cmanager.Load<Texture2D>(@"Mechanect/Mechanect/MechanectContent/Textures/screen");
-
+            //mytexture = cmanager.Load<Texture2D>(@"Textures/screen");
             // TODO: use this.Content to load your game content here
 
         }
@@ -127,12 +134,12 @@ namespace MechanectXNA
             }
             base.Update(gameTime, covered);
         }
-        
+
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the instruction screen with an ok button beneathe the text.
+        /// Draws the instruction screen and the text with an ok button down the screen.
         /// </summary>
         /// <param name="gameTime">
         /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
