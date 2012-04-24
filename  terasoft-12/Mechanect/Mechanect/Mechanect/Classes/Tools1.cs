@@ -343,15 +343,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool ConstantAcceleration(List<float> positions, float currentTolerance)
          {
-
-             List<int> intPositions = new List<int>();
-             List<float> velocities = new List<float>();
-             for (int i = 0; i < positions.Count; i++)
-                 intPositions.Add((int)(positions[i] * 10000));
-             intPositions = PerformanceGraph.GetPlayerVelocity(intPositions);
-
-             for (int i = 0; i < intPositions.Count; i++)
-                 velocities.Add(intPositions[i] / 10000);
+             List<float> velocities = PerformanceGraph.GetPlayerVelocity(positions);
 
              bool result = true;
              float firstVelocity = velocities[1] - velocities[0];
@@ -423,15 +415,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool IncreasingAcceleration(List<float> positions, float currentTolerance)
          {
-
-             List<int> intPositions = new List<int>();
-             List<float> accelerations = new List<float>();
-             for (int i = 0; i < positions.Count; i++)
-                 intPositions.Add((int)(positions[i] * 10000));
-             intPositions = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(intPositions));
-
-             for (int i = 0; i < intPositions.Count; i++)
-                 accelerations.Add(intPositions[i] / 10000);
+             List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
 
              bool result = true;
              float firstAcceleration = accelerations[1] - accelerations[0];
@@ -468,15 +452,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool DecreasingAcceleration(List<float> positions, float currentTolerance)
          {
-
-             List<int> intPositions = new List<int>();
-             List<float> accelerations = new List<float>();
-             for (int i = 0; i < positions.Count; i++)
-                 intPositions.Add((int)(positions[i] * 10000));
-             intPositions = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(intPositions));
-
-             for (int i = 0; i < intPositions.Count; i++)
-                 accelerations.Add(intPositions[i] / 10000);
+             List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
 
              bool result = true;
              float firstAcceleration = accelerations[1] - accelerations[0];
