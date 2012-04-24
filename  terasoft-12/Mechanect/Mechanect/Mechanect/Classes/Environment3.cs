@@ -21,7 +21,7 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         private double ballMass, assumedLegMass;
         private Vector2 tolerance;
-        /*
+        
         GraphicsDeviceManager graphics;
         GraphicsDevice device;
 
@@ -46,13 +46,13 @@ namespace Mechanect.Classes
         MouseState originalMouseState;
 
         Texture2D[] skyboxTextures;
-        Model skyboxModel;*/
+        Model skyboxModel;
+        private ContentManager Content;
 
-        public Environment3(User3 user, float minBallMass, float maxBallMass)
+        public Environment3()
         {
 
-            this.user = user;
-            ball = new Ball(minBallMass,maxBallMass);
+           
            
         }
 
@@ -191,28 +191,25 @@ namespace Mechanect.Classes
 
         #region Environment Generation Code
 
-        /*
+        
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Inizializes the Environment
         /// </summary>
-        protected void InitializeEnvironment()
+        public void InitializeEnvironment(GraphicsDevice g)
         {
-            device = graphics.GraphicsDevice;
-            graphics.PreferredBackBufferWidth = 1000;
-            graphics.PreferredBackBufferHeight = 700;
-            graphics.IsFullScreen = false;
-            graphics.ApplyChanges();
-            Window.Title = "Environment";
+            device = g;
+           
         }
 
          ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Loads the content of the environment. Similar to the LoadConent() method of XNA
         /// </summary>
-        protected void LoadEnvironmentContent()
+        public void LoadEnvironmentContent(ContentManager Content2)
         {
-            effect = Content.Load<Effect>("effects");
+            Content = Content2;
+            effect = Content.Load<Effect>("Textures/effects");
             SetUpCamera();
 
 
@@ -220,10 +217,10 @@ namespace Mechanect.Classes
             Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
             originalMouseState = Mouse.GetState();
 
-            Texture2D heightMap = Content.Load<Texture2D>("heightmap");
+            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
 
-            skyboxModel = LoadModel("skybox2", out skyboxTextures);
+            skyboxModel = LoadModel("Models/skybox2", out skyboxTextures);
 
             SetUpVertices();
             SetUpIndices();
@@ -236,7 +233,7 @@ namespace Mechanect.Classes
         /// Updates the environment. Similar to the Update() method of XNA, and to be called in it.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected void UpdateEnvironment(GameTime gameTime)
+        public void UpdateEnvironment(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Delete))
@@ -253,7 +250,7 @@ namespace Mechanect.Classes
        /// Draws the environment. Similar to the Draw() method of XNA
        /// </summary>
        ///<param name="gameTime">Provides a snapshot of timing values.</param>
-        protected void DrawEnvironment(GameTime gameTime)
+        public void DrawEnvironment(GameTime gameTime)
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
             DrawSkybox();
@@ -571,7 +568,7 @@ namespace Mechanect.Classes
             viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
             projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 1.0f, 300.0f);
         }
-        */
+        
         #endregion
 
 
