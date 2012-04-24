@@ -51,10 +51,10 @@ namespace Common.Classes
             Content = c;
             timer = new Timer1();
 
-            texture = Content.Load<Texture2D>("off");
-            onPic = Content.Load<Texture2D>("on");
-            offPic = Content.Load<Texture2D>("off");
-            barPic = Content.Load<Texture2D>("bar");
+            texture = Content.Load<Texture2D>("Textures/Slider/off");
+            onPic = Content.Load<Texture2D>("Textures/Slider/on");
+            offPic = Content.Load<Texture2D>("Textures/Slider/off");
+            barPic = Content.Load<Texture2D>("Textures/Slider/bar");
 
             positionBar = p;
             positionPointer.X = p.X;

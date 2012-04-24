@@ -96,9 +96,9 @@ namespace Mechanect
                     timer.start();
                 else
                 {
+                    animate();
                     if (timer.getDuration() >= (1 * 1000))
                     {
-                        animate();
                         status = true;
                     }
 
