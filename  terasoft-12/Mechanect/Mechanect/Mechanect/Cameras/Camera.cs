@@ -25,6 +25,11 @@ namespace Mechanect.Cameras
         /// </summary>
         public Matrix projection { get; set; }
 
+        /// <summary>
+        /// the position of the camera
+        /// </summary>
+        public Vector3 position { get; protected set; }
+
         protected GraphicsDevice graphicsDevice { get; set; }
 
         /// <summary>

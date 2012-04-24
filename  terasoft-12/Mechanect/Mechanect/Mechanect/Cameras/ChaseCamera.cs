@@ -15,7 +15,6 @@ namespace Mechanect.Cameras
     /// </remarks>
     public class ChaseCamera : Camera
     {
-        private Vector3 position;
         private Vector3 target;
 
         private Vector3 followTargetPosition;
