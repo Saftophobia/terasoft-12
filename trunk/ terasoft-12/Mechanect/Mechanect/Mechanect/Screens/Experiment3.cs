@@ -17,14 +17,14 @@ namespace Mechanect.Screens
         Environment3 environment;
         GraphicsDevice graphics;
 
-           public Experiment3(GraphicsDevice g)
+           public Experiment3()
         {
-            graphics = g;
-          environment.InitializeEnvironment(g);
+          
         }
            public override void LoadContent()
         {
             environment = new Environment3(ScreenManager.SpriteBatch);
+            environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent(ScreenManager.Game.Content);
            
 
