@@ -69,7 +69,7 @@ namespace Mechanect
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
-            //screenManager.AddScreen(new Experiment3(Graphics.GraphicsDevice));
+            //screenManager.AddScreen(new Experiment3());
             //screenManager.AddScreen(new Experiment2(new User2()));
 
             // TODO: use this.Content to load your game content here
