@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Mechanect.Classes
 {
-    class Environment3 : Microsoft.Xna.Framework.DrawableGameComponent
+    class Environment3 
     {
         private Hole hole;
         private Ball ball;
@@ -48,7 +48,7 @@ namespace Mechanect.Classes
         Texture2D[] skyboxTextures;
         Model skyboxModel;*/
 
-        public Environment3(Microsoft.Xna.Framework.Game game, User3 user, float minBallMass, float maxBallMass) : base(game)
+        public Environment3(User3 user, float minBallMass, float maxBallMass)
         {
 
             this.user = user;
@@ -84,12 +84,12 @@ namespace Mechanect.Classes
                 return Constants3.negativeRDifference;
 
             var finalPos = Vector3.Zero;          
-            finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
+            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
                 return Constants3.holeOutOfFarRange;
 
-            finalPos = ballFinalPosition(getVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
+            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
             
             if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
@@ -179,7 +179,7 @@ namespace Mechanect.Classes
             if (ballVelocity.X <= (optimumVx + tolerance.X) && ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius)
             && ballVelocity.X >= (optimumVx - tolerance.Y) && ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius))
             {
-                ballFallIntoHole();
+                BallFallIntoHole();
                 //winningWord(); to be implemented by Hegazy, commented to remove error
             }
 
@@ -582,47 +582,35 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// XNA Update Method.
+        /// Update Method.
         /// </summary>
-        public override void Update(GameTime gameTime)
+        public void Update()
         {
             Tools3.update_MeasuringVelocityAndAngle(user);
-            checkCollision();
-            shoot();
-            base.Update(gameTime);
+            CheckCollision();
+            Shoot();
         }
 
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// XNA Initialize Method.
+        /// Initialize Method.
         /// </summary>
-        public override void Initialize()
+        public void Initialize()
         {
             hasCollidedWithBall = false;
             ballShot = false;
             assumedLegMass = user.AssumedLegMass;
-            base.Initialize();
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// XNA LoadContent Method.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-        }
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
         /// Updates the balls velocity according to the speed and angle the user shot with.
         /// </summary>
-        public void shoot()
+        private void Shoot()
         {
             Vector3 initialLegVelocity; //This variable represents the velocity of the leg with which the user has shot the ball.
             initialLegVelocity = new Vector3((float)(user.Velocity * Math.Cos(user.Angle)), 0, -(float)(user.Velocity * Math.Sin(user.Angle)));
@@ -630,7 +618,7 @@ namespace Mechanect.Classes
             {
                 ballMass = ball.Mass; //get the mass of the ball
                 ballShot = true;
-                Vector3 velocityAfterCollision = getVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
+                Vector3 velocityAfterCollision = GetVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
                 ball.Velocity = velocityAfterCollision; // update the velocity of the ball
             }
         }
@@ -640,7 +628,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Checks if the users leg has collided with the ball.
         /// </summary>
-        public void checkCollision()
+        private void CheckCollision()
         {
 
             Vector3 legPosition; //Current position of leg.
@@ -661,7 +649,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="initialVelocity">Legs initial velocity prior to collision.</param>
         /// <returns>Vector3 Ball velocity after collision.</returns>
-        public Vector3 getVelocityAfterCollision(Vector3 initialVelocity)
+        private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
             double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
 
@@ -693,7 +681,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Simulates ball falling into a hole by updating its velocity when it reaches the hole.
         /// </summary>
-        public void ballFallIntoHole()
+        private void BallFallIntoHole()
         {
             //Waiting for completed class Hole from Khaled Salah
 
