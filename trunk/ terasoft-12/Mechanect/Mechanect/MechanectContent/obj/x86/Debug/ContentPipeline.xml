@@ -7,13 +7,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
-      <Time>2012-04-24T15:01:52.4904759+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\fish_0.xml</Key>
-        <Value>2012-04-24T15:26:33.9639628+02:00</Value>
+        <Value>2012-04-24T21:11:25.4898+02:00</Value>
       </Dependency>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
@@ -21,11 +21,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
-      <Time>2012-04-24T15:01:52.6932763+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\ball_0.xml</Key>
-        <Value>2012-04-24T15:26:34.9779646+02:00</Value>
+        <Value>2012-04-24T21:11:26.9868+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -34,11 +34,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
-      <Time>2012-04-24T15:01:52.7868764+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
-        <Value>2012-04-24T15:26:35.227565+02:00</Value>
+        <Value>2012-04-24T21:11:27.3838+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -47,8 +47,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
-      <Time>2012-04-24T15:01:55.5636813+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
+      <Time>2012-04-21T13:07:30.9958+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Vfill.png</Source>
@@ -56,8 +56,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
-      <Time>2012-04-24T15:01:53.9724785+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
+      <Time>2012-04-21T00:23:54.659+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\VBar.png</Source>
@@ -65,8 +65,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
-      <Time>2012-04-24T15:01:56.2500825+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
+      <Time>2012-04-21T00:24:09.182+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\arrow.png</Source>
@@ -74,8 +74,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
-      <Time>2012-04-24T15:01:56.1408823+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
+      <Time>2012-04-21T01:07:15.414+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\hand.png</Source>
@@ -83,8 +83,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
-      <Time>2012-04-24T15:01:53.8476783+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
+      <Time>2012-04-21T16:56:37.4806+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\bar.png</Source>
@@ -92,8 +92,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
-      <Time>2012-04-24T15:01:52.8648766+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
+      <Time>2012-04-21T16:56:33.2576+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\off.png</Source>
@@ -101,8 +101,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
-      <Time>2012-04-24T15:01:52.8960766+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
+      <Time>2012-04-21T16:56:33.2596+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\on.png</Source>
@@ -110,8 +110,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
-      <Time>2012-04-24T15:01:52.8492766+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
+      <Time>2012-04-21T16:56:33.2556+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\WorL\looser.png</Source>
@@ -119,8 +119,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
-      <Time>2012-04-24T15:01:53.0052768+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
+      <Time>2012-04-21T16:56:36.3736+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\WorL\winner.png</Source>
@@ -128,8 +128,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
-      <Time>2012-04-24T15:01:52.9272767+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
+      <Time>2012-04-21T16:56:36.3656+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\back.bmp</Source>
@@ -137,8 +137,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back.xnb</Output>
-      <Time>2012-04-24T15:01:56.2344825+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back.xnb</Output>
+      <Time>2012-04-21T01:17:35.037+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\down.bmp</Source>
@@ -146,8 +146,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down.xnb</Output>
-      <Time>2012-04-24T15:01:53.1924772+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down.xnb</Output>
+      <Time>2012-04-21T01:17:34.991+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\front.bmp</Source>
@@ -155,8 +155,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front.xnb</Output>
-      <Time>2012-04-24T15:01:55.7040816+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front.xnb</Output>
+      <Time>2012-04-21T01:17:35.022+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\heightmap.bmp</Source>
@@ -164,8 +164,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmap.xnb</Output>
-      <Time>2012-04-24T15:01:53.0364769+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmap.xnb</Output>
+      <Time>2012-04-21T01:17:34.98+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\left.bmp</Source>
@@ -173,8 +173,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left.xnb</Output>
-      <Time>2012-04-24T15:01:55.938082+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left.xnb</Output>
+      <Time>2012-04-21T01:17:35.029+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\right.bmp</Source>
@@ -182,8 +182,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right.xnb</Output>
-      <Time>2012-04-24T15:01:53.3016773+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right.xnb</Output>
+      <Time>2012-04-21T01:17:35.006+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\up.bmp</Source>
@@ -191,8 +191,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up.xnb</Output>
-      <Time>2012-04-24T15:01:54.1440788+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up.xnb</Output>
+      <Time>2012-04-24T08:30:25.2834+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Resources\Images\Ball.png</Source>
+      <Name>Resources\Images\Ball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Ball.xnb</Output>
+      <Time>2012-04-20T03:27:29.368+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Resources\Images\Bar.png</Source>
+      <Name>Resources\Images\Bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Bar.xnb</Output>
+      <Time>2012-04-20T03:27:29.365+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\texture.png</Source>
+      <Name>Textures\texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\texture.xnb</Output>
+      <Time>2012-04-24T13:46:21.7348+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\textureStrip.png</Source>
+      <Name>Textures\textureStrip</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip.xnb</Output>
+      <Time>2012-04-24T13:46:22.39+02:00</Time>
     </Item>
     <Item>
       <Source>Ariel.spritefont</Source>
@@ -200,8 +236,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
-      <Time>2012-04-24T15:01:56.515283+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
+      <Time>2012-04-21T01:17:47.479+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -209,24 +245,33 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-04-24T15:01:56.8584836+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-04-22T18:09:35.2448001+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Resources\TimesNewRoman.spritefont</Source>
+      <Name>Resources\TimesNewRoman</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\TimesNewRoman.xnb</Output>
+      <Time>2012-04-20T03:27:29.36+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\newgame-m.gif</Source>
       <Name>Textures\Buttons\newgame-m</Name>
       <Importer>GifAminationImporter</Importer>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-m.xnb</Output>
-      <Time>2012-04-24T15:01:53.5200777+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-m.xnb</Output>
+      <Time>2012-04-24T08:30:24.8484+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\newgame-s.gif</Source>
       <Name>Textures\Buttons\newgame-s</Name>
       <Importer>GifAminationImporter</Importer>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-s.xnb</Output>
-      <Time>2012-04-24T15:01:53.644878+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-s.xnb</Output>
+      <Time>2012-04-24T08:30:24.9414+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\menu-m.gif</Source>
@@ -234,8 +279,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-m.xnb</Output>
-      <Time>2012-04-24T15:01:53.5980779+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-m.xnb</Output>
+      <Time>2012-04-24T08:30:24.8524+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\menu-s.gif</Source>
@@ -243,8 +288,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-s.xnb</Output>
-      <Time>2012-04-24T15:01:53.8164783+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-s.xnb</Output>
+      <Time>2012-04-24T08:30:25.0584+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\ok-m.gif</Source>
@@ -252,8 +297,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-m.xnb</Output>
-      <Time>2012-04-24T15:01:53.676078+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-m.xnb</Output>
+      <Time>2012-04-24T08:30:24.9444+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\ok-s.gif</Source>
@@ -261,8 +306,44 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-s.xnb</Output>
-      <Time>2012-04-24T15:01:53.9568785+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-s.xnb</Output>
+      <Time>2012-04-24T08:30:25.0614+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\dummy.gif</Source>
+      <Name>Textures\dummy</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummy.xnb</Output>
+      <Time>2012-04-24T13:46:21.7504+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\dummySelected.gif</Source>
+      <Name>Textures\dummySelected</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummySelected.xnb</Output>
+      <Time>2012-04-24T13:46:22.4056+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\leftArrow.gif</Source>
+      <Name>Textures\leftArrow</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\leftArrow.xnb</Output>
+      <Time>2012-04-24T13:46:22.4056+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\rightArrow.gif</Source>
+      <Name>Textures\rightArrow</Name>
+      <Importer>GifAminationImporter</Importer>
+      <Processor>GifAnimationProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\rightArrow.xnb</Output>
+      <Time>2012-04-24T13:46:21.7504+02:00</Time>
     </Item>
     <Item>
       <Source>Models\skybox2.x</Source>
@@ -270,18 +351,18 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\skybox2.xnb</Output>
-      <Time>2012-04-24T15:01:52.506076+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\skybox2.xnb</Output>
+      <Time>2012-04-24T08:30:22.4294+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\skybox2_0.xml</Key>
-        <Value>2012-04-24T15:26:52.7735959+02:00</Value>
+        <Value>2012-04-24T21:11:33.7278+02:00</Value>
       </Dependency>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Request>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Request>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Request>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Request>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Request>
-      <Request>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Request>
+      <Request>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Request>
     </Item>
     <Item>
       <Source>Textures\effects.fx</Source>
@@ -289,15 +370,15 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\effects.xnb</Output>
-      <Time>2012-04-24T15:01:53.4420776+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\effects.xnb</Output>
+      <Time>2012-04-21T01:17:35.009+02:00</Time>
     </Item>
     <Item>
       <Source>Models\fish.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\fish_0.xml</Output>
-      <Time>2012-04-24T15:01:52.4904759+02:00</Time>
+      <Time>2012-04-20T13:20:46.131+02:00</Time>
     </Item>
     <Item>
       <Source>TropicalFish12.jpg</Source>
@@ -312,29 +393,29 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
-      <Time>2012-04-24T15:01:56.8272835+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
+      <Time>2012-04-20T13:21:01.595+02:00</Time>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\ball_0.xml</Output>
-      <Time>2012-04-24T15:01:52.6932763+02:00</Time>
+      <Time>2012-04-20T17:10:55.8442+02:00</Time>
     </Item>
     <Item>
       <Source>Models\Arrow.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
-      <Time>2012-04-24T15:01:52.7868764+02:00</Time>
+      <Time>2012-04-20T17:11:04.1092+02:00</Time>
     </Item>
     <Item>
       <Source>Models\skybox2.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\skybox2_0.xml</Output>
-      <Time>2012-04-24T15:01:52.506076+02:00</Time>
+      <Time>2012-04-24T08:30:22.4294+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\up.bmp</Source>
@@ -349,8 +430,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Output>
-      <Time>2012-04-24T15:01:54.1440788+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Output>
+      <Time>2012-04-24T08:30:25.2834+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\right.bmp</Source>
@@ -365,8 +446,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Output>
-      <Time>2012-04-24T15:01:53.3016773+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Output>
+      <Time>2012-04-21T01:17:35.006+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\left.bmp</Source>
@@ -381,8 +462,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Output>
-      <Time>2012-04-24T15:01:55.938082+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Output>
+      <Time>2012-04-21T01:17:35.029+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\front.bmp</Source>
@@ -397,8 +478,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Output>
-      <Time>2012-04-24T15:01:55.7040816+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Output>
+      <Time>2012-04-21T01:17:35.022+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\back.bmp</Source>
@@ -413,8 +494,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Output>
-      <Time>2012-04-24T15:01:56.2344825+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Output>
+      <Time>2012-04-21T01:17:35.037+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\down.bmp</Source>
@@ -429,8 +510,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Output>
-      <Time>2012-04-24T15:01:53.1924772+02:00</Time>
+      <Output>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Output>
+      <Time>2012-04-21T01:17:34.991+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -438,43 +519,43 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\</RootDirectory>
-      <LoggerRootDirectory>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
-      <IntermediateDirectory>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>F:\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll</Key>
-        <Value>2012-04-24T15:26:32.7683472+02:00</Value>
+        <Key>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll</Key>
+        <Value>2012-04-24T13:46:23.2792+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-03-19T16:11:44.5072876+02:00</Value>
+        <Value>2012-04-13T16:56:38.1824+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

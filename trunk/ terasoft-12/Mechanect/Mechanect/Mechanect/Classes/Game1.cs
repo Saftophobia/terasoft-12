@@ -37,8 +37,8 @@ namespace Mechanect
 
             
             // Window.AllowUserResizing = true;
-            Graphics.PreferredBackBufferWidth = 1024;
-                Graphics.PreferredBackBufferHeight = 768;
+            //Graphics.PreferredBackBufferWidth = 1024;
+              //  Graphics.PreferredBackBufferHeight = 768;
             if (fullScreen)
                Graphics.IsFullScreen = true;
            

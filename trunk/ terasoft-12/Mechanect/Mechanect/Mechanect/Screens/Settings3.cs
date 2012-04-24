@@ -43,7 +43,9 @@ namespace Mechanect.Screens
 
 
           level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch);
+
           level.Initialize(this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
+
         }
 
 

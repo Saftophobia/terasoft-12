@@ -39,17 +39,24 @@ namespace Mechanect.Screens
         User3 user;
         MKinect kinect;
         VoiceCommands voiceCommands;
+        double ballVelocity;
+        double ballMass;
+        double legMass;
+        String displayedGivens;
 
 
         SpriteFont font;
         String st;
         int framesToWait;
         double velocity;
-           public PauseScreen(User3 user,MKinect kinect)
+           public PauseScreen(User3 user,MKinect kinect,double ballVelocity, double ballMass, double legMass)
         {
 
             this.user = user;
             this.kinect = kinect;
+            this.ballVelocity = ballVelocity;
+            this.legMass = legMass;
+            this.ballMass = ballMass;
             framesToWait = 0;
             velocity = 0;
             voiceCommands = new VoiceCommands(kinect._KinectDevice,"ready,go");
@@ -57,6 +64,7 @@ namespace Mechanect.Screens
             fills = new List<Texture2D>();
 
             st = "";
+            displayedGivens = "";
       
             
            
@@ -86,7 +94,9 @@ namespace Mechanect.Screens
             arrowScale = 0.3f;
             arrowPosition = new Vector2(viewPort.Width - (float)((Math.Sqrt(arrowScale) * arrow.Width)), viewPort.Height / 2 + (float)((Math.Sqrt(arrowScale) * arrow.Height / 2)));
             arrowAngle = 0;
-            
+
+
+           
         }
 
         public override void UnloadContent()
@@ -150,8 +160,9 @@ namespace Mechanect.Screens
         {
 
             spriteBatch.Begin();
-            spriteBatch.Draw(givens,givensPosition,null,Color.White,0,new Vector2(givens.Width/2,givens.Height/2),0.5f,SpriteEffects.None,0);
+            spriteBatch.Draw(givens,givensPosition,null,Color.White,0,new Vector2(givens.Width/2,givens.Height/2),1f,SpriteEffects.None,0);
             spriteBatch.End();
+
 
             spriteBatch.Begin();
             spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
@@ -174,7 +185,11 @@ namespace Mechanect.Screens
             spriteBatch.Begin();
             spriteBatch.DrawString(font, st, new Vector2(0, 0), Color.Red);
             spriteBatch.End();
-           
+
+            spriteBatch.Begin();
+            displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " + legMass;
+            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width/2, givens.Height/4), Color.Salmon);
+            spriteBatch.End();
         
             
         }
