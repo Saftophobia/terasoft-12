@@ -168,7 +168,7 @@ namespace Mechanect
 
             Prey = new Prey(new Vector2((float)xPrey, (float)yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100));
 
-            Aquarium = new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * ((tolerance / 2) / 100));
+            Aquarium = new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * (tolerance / 100));
 
 
 
