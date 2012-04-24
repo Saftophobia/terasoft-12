@@ -8,12 +8,13 @@ using Microsoft.Xna.Framework.Content;
 using Mechanect.Classes;
 
 
+
 namespace Mechanect.Screens
 {
     class Experiment3 : Mechanect.Common.GameScreen
 
     {
-        Environment3 environment = new Environment3();
+        Environment3 environment;
         GraphicsDevice graphics;
 
            public Experiment3(GraphicsDevice g)
@@ -23,8 +24,10 @@ namespace Mechanect.Screens
         }
            public override void LoadContent()
         {
-            
+            environment = new Environment3(ScreenManager.SpriteBatch);
             environment.LoadEnvironmentContent(ScreenManager.Game.Content);
+           
+
 
         }
 
