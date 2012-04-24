@@ -16,7 +16,6 @@ namespace Mechanect.Cameras
     public class TargetCamera : Camera
     {
 
-        private Vector3 position;
         private Vector3 target;
 
         /// <summary>
