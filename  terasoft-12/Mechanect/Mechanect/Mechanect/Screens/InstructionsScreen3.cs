@@ -1,6 +1,4 @@
-﻿using Mechanect.Common;
-using Microsoft.Xna.Framework;
-using MechanectXNA;
+﻿using Microsoft.Xna.Framework;
 namespace Mechanect.Screens
 {
     class InstructionsScreen3 : Instruction
