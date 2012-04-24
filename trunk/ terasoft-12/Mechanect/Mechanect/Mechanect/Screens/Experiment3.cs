@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Mechanect.Classes;
 
 
 namespace Mechanect.Screens
@@ -12,15 +13,18 @@ namespace Mechanect.Screens
     class Experiment3 : Mechanect.Common.GameScreen
 
     {
+        Environment3 environment = new Environment3();
+        GraphicsDevice graphics;
 
-      
-
-           public Experiment3()
+           public Experiment3(GraphicsDevice g)
         {
-          
+            graphics = g;
+          environment.InitializeEnvironment(g);
         }
            public override void LoadContent()
         {
+            
+            environment.LoadEnvironmentContent(ScreenManager.Game.Content);
 
         }
 
@@ -33,11 +37,12 @@ namespace Mechanect.Screens
         {
          
             base.Update(gameTime, covered);
+            environment.UpdateEnvironment(gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-      
+            environment.DrawEnvironment(gameTime);
         }
 
 
