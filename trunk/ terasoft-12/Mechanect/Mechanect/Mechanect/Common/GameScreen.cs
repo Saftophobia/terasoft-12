@@ -31,6 +31,12 @@ namespace Mechanect.Common
             get { return isPopup; }
             set { isPopup = value; }
         }
+        public bool IsFrozen
+        {
+            get { return isFrozen; }
+            set { isFrozen = value; }
+        }
+        private bool isFrozen = false;
         private bool isPopup = false;
 
         /// <summary>
@@ -169,6 +175,9 @@ namespace Mechanect.Common
         public virtual void Initialize() { } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
+            if (IsFrozen)
+                return;
+            
             if (IsExiting)
             {
                 screenState = ScreenState.TransitionOff;
@@ -248,6 +257,7 @@ namespace Mechanect.Common
         {
             //Screen will be drawn but not updated
             screenState = ScreenState.Frozen;
+            IsFrozen = true;
         }
         #endregion
     }
