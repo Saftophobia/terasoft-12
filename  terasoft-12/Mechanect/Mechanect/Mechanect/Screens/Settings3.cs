@@ -43,8 +43,7 @@ namespace Mechanect.Screens
 
 
           level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch);
-          level.Initialize();
-          this.ScreenManager.Game.Components.Add(level);
+          level.Initialize(this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
         }
 
 
@@ -69,6 +68,7 @@ namespace Mechanect.Screens
             OKbutton.update(gameTime);
             velocity.update();
             angle.update();
+            level.Update(gameTime);
             base.Update(gameTime, covered);
         }
 
@@ -84,6 +84,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            level.Draw(gameTime);
             velocity.draw(this.ScreenManager.SpriteBatch);
             angle.draw(this.ScreenManager.SpriteBatch);
             OKbutton.draw(this.ScreenManager.SpriteBatch);
