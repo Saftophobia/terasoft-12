@@ -19,8 +19,8 @@ namespace Mechanect.Classes
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        double player1DisqualificationTime = 3.24; //Obtained by user story 3.7
-        double player2DisqualificationTime = 1.01; //Obtained by user story 3.7   
+        double player1DisqualificationTime = -1; //Obtained by user story 3.7
+        double player2DisqualificationTime = 1; //Obtained by user story 3.7   
         PerformanceGraph Graph;
         CountDown countdown;
         Boolean displayCountdown = false;
@@ -81,17 +81,17 @@ namespace Mechanect.Classes
                 List<float> Player1Displacement = new List<float>();
                 List<float> Player2Displacement = new List<float>();
                 //initiating testing values 
-                Commands.Add("constantAcceleration");
+                Commands.Add("increasingAcceleration");
                 CommandsTime.Add(4);
                 int intitial = 4000;
-                int stepping = 1;
-                for (int i = 0; i <= 119; i++)
+                int stepping = 2;
+                for (int i = 0; i <= 95; i++)
                 {
                     if (intitial > 0)
                     {
                         Player1Displacement.Add(intitial);
                         intitial = intitial - stepping;
-                        stepping++;
+                        stepping = stepping + 4;
                     }
                     else
                     {
@@ -100,12 +100,12 @@ namespace Mechanect.Classes
                 }
                 intitial = 4000;
                 stepping = 0;
-                for (int i = 0; i <= 119; i++)
+                for (int i = 0; i <= 95; i++)
                 {
                     if (intitial > 0)
                     {
                         Player2Displacement.Add(intitial);
-                        stepping = stepping + 5;
+                        stepping = stepping + 10;
                         intitial = intitial - stepping;
                     }
                     else
