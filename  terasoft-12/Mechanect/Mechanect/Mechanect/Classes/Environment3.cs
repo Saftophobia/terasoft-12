@@ -21,8 +21,8 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         private double ballMass, assumedLegMass;
         private Vector2 tolerance;
-        
-        GraphicsDeviceManager graphics;
+        private Bar distanceBar;
+        //GraphicsDeviceManager graphics;
         GraphicsDevice device;
 
         Effect effect;
@@ -49,11 +49,12 @@ namespace Mechanect.Classes
         Model skyboxModel;
         private ContentManager Content;
 
-        public Environment3()
+        public Environment3(SpriteBatch spriteBatch)
         {
-
-           
-           
+            Vector3 ballPos = ball.Position;
+            Vector3 ballInitPos = ball.InitialBallPosition;
+            Vector3 shootingPos = user.ShootingPosition; 
+            distanceBar = new Bar(new Vector2(device.Viewport.Width-distanceBar.Bar.Height-10,device.Viewport.Height-distanceBar.Bar.Height-10), spriteBatch, new Vector2(ballInitPos.X,ballInitPos.Z), new Vector2(ballPos.X,ballPos.Z), new Vector2(shootingPos.X,shootingPos.Z), Content);
         }
 
 
