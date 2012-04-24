@@ -716,9 +716,12 @@ namespace Mechanect.Classes
         {
 
             Vector3 legPosition; //Current position of leg.
-            legPosition = new Vector3((float)user.CurrentRightLegPositionX, 0, (float)user.CurrentRightLegPositionZ);
+            if (user.RightLeg)
+                legPosition = new Vector3((float)user.CurrentRightLegPositionX, 0, (float)user.CurrentRightLegPositionZ);
+            else
+                legPosition = new Vector3((float)user.CurrentLeftLegPositionX, 0, (float)user.CurrentLeftLegPositionZ);
 
-            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < 150f)
+            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < Constants3.legMovementTolerance)
             {
                 hasCollidedWithBall = true;
             }
