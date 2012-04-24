@@ -32,5 +32,49 @@ namespace Mechanect.Classes
                 position = value;
             }
         }
+        public Hole()
+        {
+            position = Vector3.Zero;
+            radius = 2;
+        }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// generates a random float value between two float numbers.
+        /// </summary>
+        /// <param name="min">
+        /// The minimum value. 
+        /// </param>
+        /// /// <param name="max">
+        /// The maximum value.
+        /// </param>
+
+        public float GenerateRandomValue(float min, float max)
+        {
+            var random = new Random();
+            var value = ((float)(random.NextDouble() * (max - min))) + min;
+            return value;
+        }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole and it's radius then initializes the hole with random values between these two numbers
+        /// </summary>
+        /// <param name="minMass">
+        /// The minimum possible value for the hole variables.
+        /// </param>
+        /// /// <param name="maxMass">
+        /// The maximum possible value for the hole variables.
+        /// </param>
+
+        public void SetHoleValues(float min, float max)
+        {
+            position.X = GenerateRandomValue(min, max);
+            position.Y = GenerateRandomValue(min, max);
+            position.Z = GenerateRandomValue(min, max);
+            radius = (int)GenerateRandomValue(min, max);
+        }
     }
 }
