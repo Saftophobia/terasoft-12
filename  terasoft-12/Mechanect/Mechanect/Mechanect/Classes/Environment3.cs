@@ -22,31 +22,31 @@ namespace Mechanect.Classes
         private double ballMass, assumedLegMass;
         private Vector2 tolerance;
         private Bar distanceBar;
-        //GraphicsDeviceManager graphics;
-        GraphicsDevice device;
+        private GraphicsDevice device;
 
-        Effect effect;
-        VertexPositionColorNormal[] vertices;
-        Matrix viewMatrix;
-        Matrix projectionMatrix;
-        int[] indices;
+        private Effect effect;
+        private VertexPositionColorNormal[] vertices;
+        private Matrix viewMatrix;
+        private Matrix projectionMatrix;
+        private int[] indices;
 
         private float angle = 0f;
         private int terrainWidth = 4;
         private int terrainHeight = 3;
+
         private float[,] heightData; //2D array
-        VertexBuffer myVertexBuffer;
-        IndexBuffer myIndexBuffer;
+        private VertexBuffer myVertexBuffer;
+        private IndexBuffer myIndexBuffer;
 
-        Vector3 cameraPosition = new Vector3(130, 30, -50);
-        float leftrightRot = MathHelper.PiOver2;
-        float updownRot = -MathHelper.Pi / 10.0f;
-        const float rotationSpeed = 0.3f;
-        const float moveSpeed = 30.0f;
-        MouseState originalMouseState;
+        private Vector3 cameraPosition = new Vector3(130, 30, -50);
+        private float leftrightRot = MathHelper.PiOver2;
+        private float updownRot = -MathHelper.Pi / 10.0f;
+        private const float rotationSpeed = 0.3f;
+        private const float moveSpeed = 30.0f;
+        private MouseState originalMouseState;
 
-        Texture2D[] skyboxTextures;
-        Model skyboxModel;
+        private Texture2D[] skyboxTextures;
+        private Model skyboxModel;
         private ContentManager Content;
         Model holeModel;
         Vector3 holecameraposition;
