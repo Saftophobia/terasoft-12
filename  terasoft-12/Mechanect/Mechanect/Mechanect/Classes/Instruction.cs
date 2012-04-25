@@ -107,14 +107,15 @@ namespace Mechanect
             }
             return builder.ToString();
         }
-
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Initializes the screen variables needed
+        /// Allows the screen to perform any initialization it needs to before starting to draw.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content. 
         /// </summary>
-
+         
         public override void Initialize()
         {
             screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
@@ -125,11 +126,14 @@ namespace Mechanect
             Font1 = cmanager.Load<SpriteFont>("spriteFont1");
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// 
 
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// LoadContent will be called only once before drawing and its the place to load
+        /// all of your content.
+        /// </summary>
         public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -165,11 +169,10 @@ namespace Mechanect
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the instruction screen and the text with an ok button down the screen.
+        /// This is called when the game screen should draw itself.
+        /// The method draws the instruction screen and the given text along with an ok button down the screen.
         /// </summary>
-        /// <param name="gameTime">
-        /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
-        /// </param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
             //graphicsdevice.Clear(Color.YellowGreen);
@@ -181,6 +184,23 @@ namespace Mechanect
             spriteBatch.End();
         }
 
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// UnloadContent will be called only once and its the place to unload
+        /// all content.
+        /// </summary>       
+        public override void UnloadContent()
+        {
+            base.UnloadContent();
+        }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Removes this screen from the screen manager.
+        /// </summary>
         public override void Remove()
         {
             base.Remove();
