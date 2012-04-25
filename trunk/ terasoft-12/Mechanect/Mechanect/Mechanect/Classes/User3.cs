@@ -355,12 +355,13 @@ namespace Mechanect.Classes
          /// </returns>
          public float GenerateFootMass(float min, float max)
          {
-             if ((min >= 0) && (max >= 0) && (max>min))
+             if ((min >= 0) && (max >= 0) && (max > min))
              {
                  var random = new Random();
                  var generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
                  return generatedMass;
              }
+             else throw new ArgumentException("parameters have to be non negative numbers and max value has to be greater than min value");
          }
        
     }
