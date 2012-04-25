@@ -85,7 +85,7 @@ namespace Mechanect.Classes
         /// </code>
         /// </example>
         /// <param name="drawingPosition">
-        /// Specifies where will the bar be on the screen</param>
+        /// Specifies where will the down-right corner of the bar be on the screen</param>
         /// <param name="spriteBatch">
         /// The spriteBatch object that will be used to draw the bar</param>
         /// <param name="initialPos">
@@ -98,13 +98,14 @@ namespace Mechanect.Classes
         /// Specifies the content manager responsible for this object</param>
         public Bar(Vector2 drawingPosition, SpriteBatch spriteBatch, Vector2 initialPos, Vector2 currentPos, Vector2 shootingPos, ContentManager content)
         {
-            this.drawingPosition = drawingPosition;
+            bar = content.Load<Texture2D>(@"Resources/Images/Bar");
+            ball = content.Load<Texture2D>(@"Resources/Images/Ball");
+            this.drawingPosition = Vector2.Subtract(drawingPosition, new Vector2(ball.Width,ball.Height));
             this.initialPos = initialPos;
             this.currentPos = currentPos;
             this.shootingPos = shootingPos;
             this.spriteBatch = spriteBatch;
-            bar = content.Load<Texture2D>(@"Resources/Images/Bar");
-            ball = content.Load<Texture2D>(@"Resources/Images/Ball");
+
         }
         /// <summary>
         /// Updates the current position of the ball with the new position
