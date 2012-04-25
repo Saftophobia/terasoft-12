@@ -124,6 +124,7 @@
     <Compile Include="Classes\Constants2.cs" />
     <Compile Include="Classes\Constants3.cs" />
     <Compile Include="Classes\CountDown.cs" />
+    <Compile Include="Classes\drawstring.cs" />
     <Compile Include="Classes\Environment2.cs" />
     <Compile Include="Classes\Environment3.cs" />
     <Compile Include="Classes\Game.cs" />
