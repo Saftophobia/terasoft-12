@@ -14,7 +14,7 @@ namespace Mechanect
     {
 
 
-        Prey prey;
+       private Prey prey;
         public Prey Prey
         {
             get
@@ -27,7 +27,7 @@ namespace Mechanect
             }
         }
 
-        Predator predator;
+        private Predator predator;
         public Predator Predator
         {
             get
@@ -40,7 +40,7 @@ namespace Mechanect
             }
         }
 
-        Aquarium aquarium;
+        private Aquarium aquarium;
         public Aquarium Aquarium
         {
             get
@@ -53,18 +53,28 @@ namespace Mechanect
             }
         }
 
-        Random rand;
+        private Random rand;
 
-        
-        int velocity;
-        public int Velocity
+
+        private double velocity;
+        public double Velocity
         {
             get { return velocity; }
             set { velocity = value; }
         }
-     
-        double angle;
-        int tolerance;
+
+        private double angle;
+        private int tolerance;
+        /// <summary>
+        /// getterMethod for tolerance
+        /// setterMethod for tolerance
+        /// </summary>
+        public int Tolerance
+        {
+            get { return tolerance; }
+            set { tolerance = value; }
+          
+        }
         
     /// <summary>
     /// get in Angle,returns the angle in degree.
@@ -74,7 +84,7 @@ namespace Mechanect
             
             
             get { return angle*(180/Math.PI); }
-            set { angle = value; }
+            
         }
        
 
@@ -83,7 +93,7 @@ namespace Mechanect
             this.tolerance = tolerance;
             velocity = 0;
             angle = 0;
-            GetSolvablePoints(tolerance);
+            GetSolvablePoints();
         }
 
   
@@ -107,9 +117,9 @@ namespace Mechanect
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns>returns random velocity "int"</returns>
-        private int GetRandomVelocity()
+        private double GetRandomVelocity()
         {
-            return rand.Next(10, 70);
+            return GetRandomNumber(10, 70);
         }
        
         /// <summary>
@@ -120,18 +130,18 @@ namespace Mechanect
         /// </remarks>
         /// <param name="tolerance"></param>
         
-        private void GetSolvablePoints(int tolerance)
+        private void GetSolvablePoints()
         {
             double TotalTime;
             double angleInDegree;
-            Vector2 PPrey = new Vector2();
-            Vector2 PPredator = new Vector2();
-            Vector2 Paquarium = new Vector2();
+            Vector2 preyLocation = new Vector2();
+            Vector2 predatorLocation = new Vector2();
+            Vector2 aquariumLocation = new Vector2();
 
 
 
-            PPredator.X = 0;
-            PPredator.Y = rand.Next(0, 70);
+            predatorLocation.X = 0;
+            predatorLocation.Y = rand.Next(0, 70);
             angleInDegree = GetRandomAngle();
             angle = angleInDegree * (Math.PI / 180);
             velocity = GetRandomVelocity();
@@ -142,7 +152,7 @@ namespace Mechanect
 
             double a = 0.5 * -9.8;
 
-            double c = PPredator.Y;
+            double c = predatorLocation.Y;
 
             TotalTime = (-b + Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
 
@@ -159,21 +169,21 @@ namespace Mechanect
 
             Double TimeAquarium = GetRandomNumber(TimePrey + (TimePrey * 10 / 100), TimeSlice * 3);
 
-            PPrey.X = (float)GetX(TimePrey);
+            preyLocation.X = (float)GetX(TimePrey);
 
-            PPrey.Y = (float)((velocity * Math.Sin(angle) * TimePrey) - (0.5 * 9.8 * Math.Pow(TimePrey, 2)) + PPredator.Y);
+            preyLocation.Y = (float)((velocity * Math.Sin(angle) * TimePrey) - (0.5 * 9.8 * Math.Pow(TimePrey, 2)) + predatorLocation.Y);
 
-            Paquarium.X = (float)GetX(TimeAquarium);
+            aquariumLocation.X = (float)GetX(TimeAquarium);
 
-            Paquarium.Y = (float)((velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + PPredator.Y);
+            aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + predatorLocation.Y);
 
            
 
-            Predator = new Predator(PPredator);
+            Predator = new Predator(predatorLocation);
 
-            Prey = new Prey(PPrey, (int)PPrey.X * (tolerance / 100), (int)PPrey.Y * (tolerance / 100));
+            Prey = new Prey(preyLocation, (int)preyLocation.X * (tolerance / 100), (int)preyLocation.Y * (tolerance / 100));
 
-            Aquarium = new Aquarium(Paquarium, (int)Paquarium.X* (tolerance / 100), (int)Paquarium.Y* (tolerance / 100));
+            Aquarium = new Aquarium(aquariumLocation, (int)aquariumLocation.X* (tolerance / 100), (int)aquariumLocation.Y* (tolerance / 100));
 
 
 
