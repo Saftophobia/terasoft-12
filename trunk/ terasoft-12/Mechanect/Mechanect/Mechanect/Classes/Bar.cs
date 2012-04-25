@@ -68,6 +68,7 @@ namespace Mechanect.Classes
         }
         private float offset;
         private Vector2 drawingPosition;
+        private bool isDone;
 
         /// <summary>
         /// Initializes the Bar.
@@ -104,6 +105,7 @@ namespace Mechanect.Classes
             this.currentPos = currentPos;
             this.shootingPos = shootingPos;
             this.spriteBatch = spriteBatch;
+            isDone = false;
 
         }
         /// <summary>
@@ -119,7 +121,7 @@ namespace Mechanect.Classes
             this.currentPos = currentPos;
         }
         /// <summary>
-        /// Draws the bar.
+        /// Draws a bar indicating how close the ball it to the user's feet.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
@@ -136,7 +138,11 @@ namespace Mechanect.Classes
         /// </example>
         public void Draw()
         {
+            if (isDone)
+                return;
+
             offset = Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos);
+            isDone = offset == 1 ? true : false;
             spriteBatch.Draw(bar,
             drawingPosition,
             null,
