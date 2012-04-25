@@ -65,7 +65,7 @@ namespace Mechanect.Classes
                 Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
                 SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
                 SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-                countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
+                //countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
                 background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
             }
