@@ -102,6 +102,16 @@ namespace Mechanect.Common
             }
         }
 
+        /// <summary>
+        /// This method will be automatically called with the maximum possible frame rate. If the requested 
+        /// frame rate is less than the maximum frame rate, then this method will just drop frames to
+        /// achieve the requested frame rate.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr</para>
+        /// </remarks>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void KinectDevice_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             if (frameCounter == dropFrameRate)
