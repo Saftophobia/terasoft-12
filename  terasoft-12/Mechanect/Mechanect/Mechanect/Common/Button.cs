@@ -197,5 +197,10 @@ namespace Mechanect
         {
             return status;
         }
+
+        public void reset()
+        {
+            status = false;
+        }
     }
 }
