@@ -184,7 +184,7 @@ namespace Mechanect.Classes
                 SpriteBatch sprite2 = spriteBatch;
                 sprite2.Begin();
                 Graph.drawRange(spriteBatch, GraphicsDevice);
-                Graph.drawAxis(spriteBatch, GraphicsDevice, font, font2);
+                Graph.drawEnvironment(spriteBatch, GraphicsDevice, font, font2);
                 Graph.drawDisqualification(spriteBatch, graphics, P1Tex, P2Tex);
                 sprite2.End();
             }
