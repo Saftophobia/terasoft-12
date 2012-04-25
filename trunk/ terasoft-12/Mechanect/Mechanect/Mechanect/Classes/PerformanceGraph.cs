@@ -326,7 +326,7 @@ namespace Mechanect.Classes
         /// </permission>
         /// <returns></returns>
         public void choose()
-        {            
+        {
             chosenTimings = new int[17];
             int timeCounter = 0;
             for (int i = 0; i <= chosenTimings.Length - 1; i++)
@@ -451,249 +451,77 @@ namespace Mechanect.Classes
         public void setDestinations(GraphicsDeviceManager graphics)
         {
             int counter1 = 0;
-            for (int j = 0; j <= 5; j++)
+            float value = 0;
+            double r = 0;
+            for (int j = 0; j <= 8; j++)
             {
-                if (j <= 1)
+                PerformanceGraph[] current = new PerformanceGraph[16];//change sampling from here                
+                float[] temporary = new float[17];
+                List<int> disqList = new List<int>();
+                Color color = new Color();
+                switch (j)
                 {
-                    counter1 = 50;
+                    case 0: counter1 = 50; value = 4000; current = disp1; color = Color.Red; temporary = chosendisp1; disqList = P1DispGraph; break;
+                    case 1: counter1 = 50; value = 4000; current = disp2; color = Color.Blue; temporary = chosendisp2; disqList = P2DispGraph; break;
+                    case 2: counter1 = 50; value = 4000; current = optD; color = Color.Yellow; temporary = chosenOptD; break;
+                    case 3: counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; temporary = chosenVelocity1; disqList = P1VeloGraph; break;
+                    case 4: counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; temporary = chosenVelocity2; disqList = P2VeloGraph; break;
+                    case 5: counter1 = 380; value = maxVelocity; current = optV; color = Color.Yellow; temporary = chosenOptV; break;
+                    case 6: counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; temporary = chosenAcceleration1; disqList = P1AccGraph; break;
+                    case 7: counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; temporary = chosenAcceleration2; disqList = P2AccGraph; break;
+                    case 8: counter1 = 710; value = maxAcceleration; current = optA; color = Color.Yellow; temporary = chosenOptA; break;
                 }
-                if (j > 1 && j <= 3)
-                {
-                    counter1 = 380;
-                }
-                if (j > 3)
-                {
-                    counter1 = 710;
-                }
-                for (int i = 0; i <= 15; i++)
-                {
-                    float value = 0;
-                    double r = 0;
-                    if (j <= 1)
-                    {
-                        value = 4000;
-                        r = (double)value / (double)232;
-                        if (j == 0)
-                        {
-                            double r2 = (double)(chosendisp1[i]) / (double)r;
-                            int r3 = 118 + (int)r2;
-                            double r4 = (double)(chosendisp1[i + 1]) / (double)r;
-                            int r5 = 118 + (int)r4;
-                            disp1[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Blue);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P1DispGraph.Add(r3);
-                            }
-                            P1DispGraph.Add(r5);
-                        }
-                        if (j == 1)
-                        {
-                            double r2 = (double)(chosendisp2[i]) / (double)r;
-                            int r3 = 118 + (int)r2;
-                            double r4 = (double)(chosendisp2[i + 1]) / (double)r;
-                            int r5 = 118 + (int)r4;
-                            disp2[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Black);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P2DispGraph.Add(r3);
-                            }
-                            P2DispGraph.Add(r5);
-                        }
-                    }
-                    if (j > 1 && j <= 3)
-                    {
-                        value = maxVelocity;
-                        r = (double)value / (double)232;
-                        if (j == 2)
-                        {
-                            int a1 = 118;
-                            int a2 = 118;
-                            if (chosenVelocity1[i] < 0)
-                            {
-                                a1 = 134;
-                            }
-                            if (chosenVelocity1[i + 1] < 0)
-                            {
-                                a2 = 134;
-                            }
-                            double r2 = (double)(maxVelocity - 2 - chosenVelocity1[i]) / (double)r;
-                            int r3 = a1 + (int)r2;
-                            double r4 = (double)(maxVelocity - 2 - chosenVelocity1[i + 1]) / (double)r;
-                            int r5 = a2 + (int)r4;
-                            velo1[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Blue);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P1VeloGraph.Add(r3);
-                            }
-                            P1VeloGraph.Add(r5);
-                        }
-                        if (j == 3)
-                        {
-                            int a1 = 118;
-                            int a2 = 118;
-                            if (chosenVelocity2[i] < 0)
-                            {
-                                a1 = 134;
-                            }
-                            if (chosenVelocity2[i + 1] < 0)
-                            {
-                                a2 = 134;
-                            }
-                            double r2 = (double)(maxVelocity - 2 - chosenVelocity2[i]) / (double)r;
-                            int r3 = a1 + (int)r2;
-                            double r4 = (double)(maxVelocity - 2 - chosenVelocity2[i + 1]) / (double)r;
-                            int r5 = a2 + (int)r4;
-                            velo2[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Black);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P2VeloGraph.Add(r3);
-                            }
-                            P2VeloGraph.Add(r5);
-                        }
-                    }
-                    if (j > 3)
-                    {
-                        value = maxAcceleration;
-                        r = (double)value / (double)232;
-                        if (j == 4)
-                        {
-                            int a1 = 118;
-                            int a2 = 118;
-                            if (chosenAcceleration1[i] < 0)
-                            {
-                                a1 = 134;
-                            }
-                            if (chosenAcceleration1[i + 1] < 0)
-                            {
-                                a2 = 134;
-                            }
-                            double r2 = (double)(maxAcceleration - 2 - chosenAcceleration1[i]) / (double)r;
-                            int r3 = a1 + (int)r2;
-                            double r4 = (double)(maxAcceleration - 2 - chosenAcceleration1[i + 1]) / (double)r;
-                            int r5 = a2 + (int)r4;
-                            acc1[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Blue);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P1AccGraph.Add(r3);
-                            }
-                            P1AccGraph.Add(r5);
-                        }
-                        if (j == 5)
-                        {
-                            int a1 = 118;
-                            int a2 = 118;
-                            if (chosenAcceleration2[i] < 0)
-                            {
-                                a1 = 134;
-                            }
-                            if (chosenAcceleration2[i + 1] < 0)
-                            {
-                                a2 = 134;
-                            }
-                            double r2 = (double)(maxAcceleration - 2 - chosenAcceleration2[i]) / (double)r;
-                            int r3 = a1 + (int)r2;
-                            double r4 = (double)(maxAcceleration - 2 - chosenAcceleration2[i + 1]) / (double)r;
-                            int r5 = a2 + (int)r4;
-                            acc2[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                                graphics.PreferredBackBufferHeight, Color.Black);
-                            counter1 = counter1 + 15;
-                            if (i == 0)
-                            {
-                                P2AccGraph.Add(r3);
-                            }
-                            P2AccGraph.Add(r5);
-                        }
-                    }
-                }
-            }
+                r = (double)value / (double)232;
 
-            for (int j = 0; j <= 2; j++)
-            {
-                if (j == 0)
-                {
-                    counter1 = 50;
-                }
-                if (j == 1)
-                {
-                    counter1 = 380;
-                }
-                if (j == 2)
-                {
-                    counter1 = 710;
-                }
                 for (int i = 0; i <= 15; i++)
                 {
-                    float value = 0;
-                    double r = 0;
-                    if (j == 0)
+                    int a1 = 118;
+                    int a2 = 118;
+                    if (j > 2)
                     {
-                        value = 4000;
-                        r = (double)value / (double)232;
-                        double r2 = (double)(chosenOptD[i]) / (double)r;
-                        int r3 = 118 + (int)r2;
-                        double r4 = (double)(chosenOptD[i + 1]) / (double)r;
-                        int r5 = 118 + (int)r4;
-                        optD[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                            graphics.PreferredBackBufferHeight, Color.Yellow);
-                        counter1 = counter1 + 15;
-                    }
-                    if (j == 1)
-                    {
-                        value = maxVelocity;
-                        r = (double)value / (double)232;
-                        int a1 = 118;
-                        int a2 = 118;
-                        if (chosenOptV[i] < 0)
+                        if (temporary[i] < 0)
                         {
                             a1 = 134;
                         }
-                        if (chosenOptV[i + 1] < 0)
+                        if (temporary[i + 1] < 0)
                         {
                             a2 = 134;
                         }
-                        double r2 = (double)(maxVelocity - 2 - chosenOptV[i]) / (double)r;
-                        int r3 = a1 + (int)r2;
-                        double r4 = (double)(maxVelocity - 2 - chosenOptV[i + 1]) / (double)r;
-                        int r5 = a2 + (int)r4;
-                        optV[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                            graphics.PreferredBackBufferHeight, Color.Yellow);
-                        counter1 = counter1 + 15;
                     }
-                    if (j == 2)
+                    double r2 = 0;
+                    double r4 = 0;
+                    if (j <= 2)
                     {
-                        value = maxAcceleration;
-                        r = (double)value / (double)232;
-                        int a1 = 118;
-                        int a2 = 118;
-                        if (chosenOptA[i] < 0)
-                        {
-                            a1 = 134;
-                        }
-                        if (chosenOptA[i + 1] < 0)
-                        {
-                            a2 = 134;
-                        }
-                        double r2 = (double)(maxAcceleration - 2 - chosenOptA[i]) / (double)r;
-                        int r3 = a1 + (int)r2;
-                        double r4 = (double)(maxAcceleration - 2 - chosenOptA[i + 1]) / (double)r;
-                        int r5 = a2 + (int)r4;
-                        optA[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
-                            graphics.PreferredBackBufferHeight, Color.Yellow);
-                        counter1 = counter1 + 15;
+                        r2 = (double)(temporary[i]) / (double)r;
+                        r4 = (double)(temporary[i + 1]) / (double)r;
                     }
-                }
+
+                    if (j > 2 && j <= 5)
+                    {
+                        r2 = (double)(maxVelocity - 2 - temporary[i]) / (double)r;
+                        r4 = (double)(maxVelocity - 2 - temporary[i + 1]) / (double)r; 
+                    }
+                    if (j > 5&&j<=8)
+                    {
+                        r2 = (double)(maxAcceleration - 2 - temporary[i]) / (double)r;
+                        r4 = (double)(maxAcceleration - 2 - temporary[i + 1]) / (double)r; 
+                    }
+                    int r3 = a1 + (int)r2;
+                    int r5 = a2 + (int)r4;
+                    current[i] = new PerformanceGraph(counter1, r3, counter1 + 15, r5, graphics.PreferredBackBufferWidth,
+                        graphics.PreferredBackBufferHeight, color);
+                    counter1 = counter1 + 15;
+                    if (j != 2 && j != 5 && j != 8)
+                    {
+                        if (i == 0)
+                        {
+                            disqList.Add(r3);
+                        }
+                        disqList.Add(r5);
+                    }
+                    }
+                }    
             }
-        }
 
         public void setAxis()
         {
@@ -749,29 +577,29 @@ namespace Mechanect.Classes
             blank.SetData(new[] { Color.White });
 
             //yaxis
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(50, 100),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 100),
                 new Vector2(50, 620));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(380, 100),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 100),
                 new Vector2(380, 620));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(710, 100),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 100),
                 new Vector2(710, 620));
 
             //xaxis
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(50, 350),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 350),
                 new Vector2(300, 350));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(380, 350),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 350),
                 new Vector2(630, 350));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(710, 350),
+            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 350),
                 new Vector2(960, 350));
 
             //labels  
-            spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Red);
-            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 70), Color.Red);
-            spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 70), Color.Red);
+            spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Black);
+            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 70), Color.Black);
+            spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 70), Color.Black);
 
-            spriteBatch.DrawString(font, "Time", new Vector2(270, 380), Color.Red);
-            spriteBatch.DrawString(font, "Time", new Vector2(600, 380), Color.Red);
-            spriteBatch.DrawString(font, "Time", new Vector2(930, 380), Color.Red);
+            spriteBatch.DrawString(font, "Time", new Vector2(270, 380), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(600, 380), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(930, 380), Color.Black);
 
             int count = 35;
             int count2 = 300;
@@ -784,44 +612,44 @@ namespace Mechanect.Classes
                 {
                     if (i == 0)
                     {
-                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count - 5, 355), Color.Red);
+                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count - 5, 355), Color.Black);
                         count = count + 60;
                     }
                     if (i > 0)
                     {
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count + 15, 345),
+                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count + 15, 345),
                         new Vector2(count + 15, 355));
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count5, count3 + 8),
+                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count5, count3 + 8),
                         new Vector2(count5 + 10, count3 + 8));
-                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count + 5, 355), Color.Red);
+                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count + 5, 355), Color.Black);
                         count = count + 60;
                     }
                     if (j == 0 && i > 0)
                     {
-                        spriteBatch.DrawString(font2, yaxisDisplacement[i] + "", new Vector2(0, count3), Color.Red);
+                        spriteBatch.DrawString(font2, yaxisDisplacement[i] + "", new Vector2(0, count3), Color.Black);
                         count3 = count3 - 60;
                     }
                     if (j == 1 && i > 0)
                     {
-                        spriteBatch.DrawString(font2, yaxisVelocity[i] + "", new Vector2(320, count3), Color.Red);
+                        spriteBatch.DrawString(font2, yaxisVelocity[i] + "", new Vector2(320, count3), Color.Black);
                         count3 = count3 - 60;
                     }
                     if (j == 2 && i > 0)
                     {
-                        spriteBatch.DrawString(font2, yaxisAcceleration[i] + "", new Vector2(650, count3), Color.Red);
+                        spriteBatch.DrawString(font2, yaxisAcceleration[i] + "", new Vector2(650, count3), Color.Black);
                         count3 = count3 - 60;
                     }
 
                 }
                 count3 = 290;
                 //arrows
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count2, 345),
+                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count2, 345),
                 new Vector2(count2 + 5, 350));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count2 - 1, 356),
+                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count2 - 1, 356),
                 new Vector2(count2 + 5, 350));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count4 + 2, 105),
+                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count4 + 2, 105),
                 new Vector2(count4 + 8, 99));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(count4 + 16, 105),
+                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count4 + 16, 105),
                 new Vector2(count4 + 9, 99));
                 if (j == 0)
                 {
@@ -859,43 +687,43 @@ namespace Mechanect.Classes
                 {
                     if (i == 0)
                     {
-                        spriteBatch.DrawString(font2, negativeDisp[j] + "", new Vector2(0, count), Color.Red);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(45, count + 8),
+                        spriteBatch.DrawString(font2, negativeDisp[j] + "", new Vector2(0, count), Color.Black);
+                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(45, count + 8),
                 new Vector2(55, count + 8));
                     }
                     if (i == 1)
                     {
-                        spriteBatch.DrawString(font2, negativeVel[j] + "", new Vector2(320, count), Color.Red);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(375, count + 8),
+                        spriteBatch.DrawString(font2, negativeVel[j] + "", new Vector2(320, count), Color.Black);
+                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(375, count + 8),
                 new Vector2(385, count + 8));
                     }
                     if (i == 2)
                     {
-                        spriteBatch.DrawString(font2, negativeAcc[j] + "", new Vector2(650, count), Color.Red);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(705, count + 8),
+                        spriteBatch.DrawString(font2, negativeAcc[j] + "", new Vector2(650, count), Color.Black);
+                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(705, count + 8),
                 new Vector2(715, count + 8));
                     }
                     count += 60;
                 }
                 if (i == 0)
                 {
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(42, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(42, 612),
                 new Vector2(50, 620));
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(58, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(58, 612),
                 new Vector2(50, 620));
                 }
                 if (i == 1)
                 {
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(372, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(372, 612),
                 new Vector2(380, 620));
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(388, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(388, 612),
                 new Vector2(380, 620));
                 }
                 if (i == 2)
                 {
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(702, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(702, 612),
                 new Vector2(710, 620));
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Red, new Vector2(718, 612),
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(718, 612),
                 new Vector2(710, 620));
                 }
                 count = 410;
@@ -1018,8 +846,8 @@ namespace Mechanect.Classes
 
             }
         }
-		
-		public Boolean checkWinner(int condition, List<float> Test1, List<float> Test2, int count)
+
+        public Boolean checkWinner(int condition, List<float> Test1, List<float> Test2, int count)
         {
             Boolean winner = false;
 
@@ -1035,7 +863,7 @@ namespace Mechanect.Classes
             }
             else
             {
-                List<float> secondary = Test1;                
+                List<float> secondary = Test1;
                 if (condition == 3)
                 {
                     secondary = Test2;
@@ -1050,9 +878,9 @@ namespace Mechanect.Classes
             }
             return winner;
         }
-		
-		
-		public List<float> fillList(int count, Boolean winner, double value)
+
+
+        public List<float> fillList(int count, Boolean winner, double value)
         {
             List<float> tempList = new List<float>();
             for (int k = 0; k <= count - 1; k++)
@@ -1079,7 +907,7 @@ namespace Mechanect.Classes
             Boolean winner = false;
             int condition = 0;
             if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {                
+            {
                 if (a >= b)
                 {
                     value = a; advantage = 1;
@@ -1106,8 +934,8 @@ namespace Mechanect.Classes
                 value = (double)((double)(a + b) / (double)2);
                 condition = 4;
             }
-            winner=checkWinner(condition, displacementTest1, displacementTest2, velocityTest1.Count);
-            tempList=fillList(velocityTest1.Count, winner, value);
+            winner = checkWinner(condition, displacementTest1, displacementTest2, velocityTest1.Count);
+            tempList = fillList(velocityTest1.Count, winner, value);
             List<float> disp = new List<float>();
             List<float> temp1 = Player1Displacement;
             if (advantage == 2)
@@ -1138,9 +966,9 @@ namespace Mechanect.Classes
             }
             this.previousDisp = OptimumDisplacement[tempList.Count - 1];
         }
-        
-      public void OptimumConstantAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2,
-         List<float> displacementTest1, List<float> displacementTest2, List<float> tempList, String currentCommand)
+
+        public void OptimumConstantAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2,
+           List<float> displacementTest1, List<float> displacementTest2, List<float> tempList, String currentCommand)
         {
             int advantage = 1;
             double a = GetAverageList(accelerationTest1);
@@ -1149,7 +977,7 @@ namespace Mechanect.Classes
             Boolean winner = false;
             int condition = 0;
             if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {    
+            {
                 if (a >= b)
                 {
                     value = a; advantage = 1;
@@ -1158,7 +986,7 @@ namespace Mechanect.Classes
                 {
                     value = b; advantage = 2;
                 }
-                condition = 1;                
+                condition = 1;
             }
             if (!LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
             {
@@ -1185,7 +1013,7 @@ namespace Mechanect.Classes
                 if (currentCommand.Equals("constantAcceleration"))
                 {
                     value = (double)((double)(a + b) / (double)2);
-                } 
+                }
             }
             winner = checkWinner(condition, displacementTest1, displacementTest2, accelerationTest1.Count);
             tempList = fillList(accelerationTest1.Count, winner, value);
@@ -1201,9 +1029,9 @@ namespace Mechanect.Classes
             float initial = 0;
             for (int k = 0; k <= tempList.Count - 1; k++)
             {
-                 vel.Add(temp1[start] + initial);
-                 disp.Add(temp2[start] - initial);
-                 initial += tempList[0];
+                vel.Add(temp1[start] + initial);
+                disp.Add(temp2[start] - initial);
+                initial += tempList[0];
             }
             for (int j = 0; j <= tempList.Count - 1; j++)
             {
@@ -1225,7 +1053,7 @@ namespace Mechanect.Classes
 
 
 
-        public void OptimumIncreasingAcceleration(int disq1,int disq2, int start, int end, List<float>accelerationTest1, List<float>accelerationTest2,
+        public void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2,
             List<float> displacementTest1, List<float> displacementTest2, List<float> tempList)
         {
             int advantage = 1;
