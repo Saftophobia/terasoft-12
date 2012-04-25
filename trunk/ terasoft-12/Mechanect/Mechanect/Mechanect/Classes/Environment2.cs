@@ -79,7 +79,7 @@ namespace Mechanect
         /// <summary>
         /// generates random angle between 10 and 90
         /// </summary>
-        /// <returns></returns>
+        /// <returns>return double</returns>
         private double getRandomAngle()
         {
             return rand.Next(10, 90);
@@ -90,7 +90,7 @@ namespace Mechanect
         /// <summary>
         /// generates random velocity between 10 and 70
         /// </summary>
-        /// <returns></returns>
+        /// <returns>return int</returns>
         private int getRandomVelocity()
         {
             return rand.Next(10, 70);
@@ -101,8 +101,8 @@ namespace Mechanect
         /// <summary>
         /// getSolve : Generate solvable enviroment by setting solvable points for predator,Prey and Aquarium 
         /// </summary>
-         /// <returns></returns>
-       
+        /// <param name="tolerance"></param>
+         
         public void getSolvablePoints(int tolerance)
         {
             double xPredator;
@@ -183,7 +183,7 @@ namespace Mechanect
         /// getX is method which return the horizontal displacment of a projectile at certain time. 
         /// </summary>
         /// <param name="time"></param>
-        /// <returns></returns>
+        /// <returns>returns x position in double</returns>
 
         public Double getX(Double time)
         {
@@ -200,7 +200,7 @@ namespace Mechanect
         /// it multiply it by -1 to be positive and return it.
         /// </summary>  
         /// <param name="number"></param>
-        /// <returns></returns>
+        /// <returns>return positive double number</returns>
         private double CheckPositive(Double number)
         {
             if (number >= 0)
