@@ -40,7 +40,7 @@ namespace Mechanect
             }
         }
 
-        public String Instruction
+        public String Instructions
         {
             get
             {
