@@ -149,22 +149,7 @@ namespace Mechanect.Classes
                 previousAngle = value;
             }
         }
-        
-
-        private bool start;
-        public bool Start
-        {
-            get
-            {
-                return start;
-
-            }
-            set
-            {
-                start = false;
-            }
-        }
-        // the constructor should initialize the initial left hand position to Zero
+       
 
         internal void MeasureVelocityAndAngle()
         {
@@ -176,10 +161,11 @@ namespace Mechanect.Classes
         /// <summary>
         /// Gets the angle between two Vectors, from left hip to left shoulder and from left shoulder to left hand
         /// and convert it to degrees.
-        /// <Author>Mohamed Raafat </Author>
         /// </summary>
-        /// <remarks>The counter variable ensure to unify difference in Fps of XNA and Kinect</remarks>
-        /// <returns> The angle in degrees</returns>
+        /// <remarks>
+        /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name ="gametime">Takes the gametime to make time calculations </param>
         int counter = 0;
         public void measureAngle(GameTime gametime)
         {
@@ -268,7 +254,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Calculate the angular velocity and then the linear velocity
         /// </summary>
-        /// <Author>Mohamed Raafat</Author>
+        /// <para>Author: Mohamed Raafat</para>
         /// <returns>Returns the linear velocity of the arm</returns>
         public void measureVelocity()
         {
