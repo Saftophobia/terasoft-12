@@ -62,10 +62,10 @@ namespace Mechanect.Classes
         /// <summary>
         /// Takes the minimum and maximum possible values for the x,y,z positions of the hole and it's radius then initializes the hole with random values between these two numbers
         /// </summary>
-        /// <param name="minMass">
+        /// <param name="min">
         /// The minimum possible value for the hole variables.
         /// </param>
-        /// /// <param name="maxMass">
+        /// /// <param name="max">
         /// The maximum possible value for the hole variables.
         /// </param>
 
