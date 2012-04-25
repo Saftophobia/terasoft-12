@@ -583,7 +583,7 @@ namespace Mechanect.Classes
 
         #endregion
 
-        #region 3ammak 5o5a
+        #region Hole methods
 
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -619,30 +619,20 @@ namespace Mechanect.Classes
             // TODO: use this.Content to load your game content here
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
-        protected void UnloadHole()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
+        
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
         /// Draws the 3D hole by rendering each effect in each mesh in the hole model
         /// </summary>
-        /// <param name="gameTime">
-        /// An instance variable of class GameTime in Microsoft.Xna.Framework.GameTime package.
-        /// </param>
         protected void DrawHole()
         {
             //gdevice.Clear(Color.CornflowerBlue);
             Matrix[] holetransforms = new Matrix[holeModel.Bones.Count];
             holeModel.CopyAbsoluteBoneTransformsTo(holetransforms);
 
-            foreach (ModelMesh mesh in holeModel.Meshes)
+            foreach (var mesh in holeModel.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
