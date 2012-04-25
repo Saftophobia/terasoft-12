@@ -310,9 +310,7 @@ namespace Mechanect.Screens
             int avgDepth = (minDepth + maxDepth) / 2;
             for (int i = 0; i < depthBarHeight; i++)
             {
-                if (2 * i + 50 <= getDepth(0) + 5 && 2 * i + 50 >= getDepth(0) - 5)
-                    data[i] = Color.DarkCyan;
-                else if (2 * i + 50 <= minDepth || 2 * i + 50 >= maxDepth)
+                if (2 * i + 50 <= minDepth || 2 * i + 50 >= maxDepth)
                     data[i] = reject;
                 else if (2 * i + 50 > (avgDepth + minDepth) / 2 && 2 * i + 50 < (avgDepth + maxDepth) / 2)
                     data[i] = accept;
@@ -321,7 +319,7 @@ namespace Mechanect.Screens
                 else if (2 * i + 50 > avgDepth)
                     data[i] = color((avgDepth + maxDepth) / 2, maxDepth, 2 * i + 50, accept, reject);
                 for (int j = 0; j < users.Length; i++)
-                    if (2 * i + 50 <= getDepth(j) + 5 && 2 * i + 50 >= getDepth(j) - 5)
+                    if (2 * i + 50 <= depth[j] + 5 && 2 * i + 50 >= depth[j] - 5)
                         data[i] = userColors[i];
             }
             Color[] finalData = new Color[depthBarHeight * depthBarWidth];
