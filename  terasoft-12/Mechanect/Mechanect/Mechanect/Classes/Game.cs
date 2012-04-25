@@ -19,11 +19,11 @@ namespace Mechanect.Classes
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        double player1DisqualificationTime = -1; //Obtained by user story 3.7
-        double player2DisqualificationTime = 1; //Obtained by user story 3.7   
+        double player1DisqualificationTime = 1; //Obtained by user story 3.7
+        double player2DisqualificationTime = -1; //Obtained by user story 3.7   
         PerformanceGraph Graph;
         CountDown countdown;
-        Boolean displayCountdown = true;
+        Boolean displayCountdown = false;
         CountDown background;
 
         public Game()
@@ -62,7 +62,7 @@ namespace Mechanect.Classes
                 Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
                 SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
                 SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-               // countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,graphics);
+                countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,graphics);
                 background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
             }
@@ -82,13 +82,13 @@ namespace Mechanect.Classes
                 CommandsTime.Add(4);
                 int intitial = 4000;
                 int stepping = 2;
-                for (int i = 0; i <= 95; i++)
+                for (int i = 0; i <= 23; i++)
                 {
                     if (intitial > 0)
                     {
                         Player1Displacement.Add(intitial);
                         intitial = intitial - stepping;
-                        stepping = stepping + 2;
+                        stepping = stepping + 12;
                     }
                     else
                     {
@@ -97,7 +97,7 @@ namespace Mechanect.Classes
                 }
                 intitial = 4000;
                 stepping = 1;
-                for (int i = 0; i <= 95; i++)
+                for (int i = 0; i <= 47; i++)
                 {
                     if (intitial > 0)
                     {
