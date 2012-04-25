@@ -19,6 +19,7 @@ namespace Mechanect.Screens
     class AdjustPosition : Mechanect.Common.GameScreen
     {
         User[] users;
+        Color[] userColors;
         int[] depth;
         float[] angle;
         Boolean[] accepted;
@@ -40,6 +41,14 @@ namespace Mechanect.Screens
         int depthBarHeight;
         Color accept;
         Color reject;
+
+        Texture2D angleBar;
+        int angleBarHeight = 200;
+        int angleBarWidth = 400;
+        int curveWidth = 30;
+
+        Texture2D arrow;
+        Vector2 arrowOrigin;
 
         SpriteFont font;
 
@@ -78,7 +87,9 @@ namespace Mechanect.Screens
         public AdjustPosition(User user, int minDepth, int maxDepth, float minAngle, float maxAngle)
         {
             users = new User[1];
+            userColors = new Color[1];
             this.users[0] = user;
+            this.userColors[0] = Color.Blue;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
             this.minAngle = minAngle;
@@ -103,8 +114,11 @@ namespace Mechanect.Screens
         public AdjustPosition(User user1,User user2 ,int minDepth, int maxDepth, float minAngle, float maxAngle)
         {
             users = new User[2];
+            userColors = new Color[2];
             this.users[0] = user1;
             this.users[1] = user2;
+            this.userColors[0] = Color.Blue;
+            this.userColors[1] = Color.Brown;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
             this.minAngle = minAngle;
@@ -138,8 +152,13 @@ namespace Mechanect.Screens
             depthBarHeight = 200;
             depthBarWidth = 30;
             depthBar = new Texture2D(ScreenManager.GraphicsDevice, depthBarWidth, depthBarHeight);
+            angleBarHeight = 200;
+            angleBarWidth = 400;
+            angleBar = new Texture2D(ScreenManager.GraphicsDevice, angleBarWidth, angleBarHeight);
             accept = Color.GreenYellow;
             reject = Color.OrangeRed;
+            //to be updated
+            arrow = ContentManager.Load<Texture2D>("arrow");
             font = ContentManager.Load<SpriteFont>("Ariel");
         }
 
@@ -187,6 +206,74 @@ namespace Mechanect.Screens
             else return 0;
         }
 
+
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// <returns>returns the color corresponding to the gradient respect to pixel's position within the angle ranges</returns>
+        /// </summary>
+        /// <param name="startAngle"> the start angle of the gradient</param>
+        /// <param name="endAngle"> the end angle of the gradient</param>
+        /// <param name="currentAngle"> the pixel's angle</param>
+        /// <param name="left"> the color at the start (left side) of the gradient</param>
+        /// <param name="right"> the color at the end (right side) of the gradient</param>
+        public Color curveColor(int startAngle, int endAngle, int currentAngle, Color left, Color right)
+        {
+            int R = (right.R * (currentAngle - startAngle) + left.R * (endAngle - currentAngle)) / (endAngle - startAngle);
+            int G = (right.G * (currentAngle - startAngle) + left.G * (endAngle - currentAngle)) / (endAngle - startAngle);
+            int B = (right.B * (currentAngle - startAngle) + left.B * (endAngle - currentAngle)) / (endAngle - startAngle);
+            return new Color(R, G, B);
+        }
+
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// <returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
+        /// </summary>
+        public Texture2D semiCircle()
+        {
+            float avgAngle = (minAngle + maxAngle) / 2;
+            Texture2D grad = new Texture2D(ScreenManager.GraphicsDevice, angleBarWidth, angleBarHeight);
+            Color[] data = new Color[angleBarHeight * angleBarWidth];
+            int x = 0;
+            int y = 0;
+            double r = 0;
+            double theta;
+            for (int i = 0; i < data.Length; i++)
+            {
+                x = (int)(i % angleBarWidth - angleBarWidth / 2);
+                y = angleBarHeight - i / angleBarWidth;
+                r = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
+                if (r <= angleBarWidth / 2 && r >= angleBarWidth / 2 - curveWidth)
+                {
+                    if (x == 0) theta = 0;
+                    else
+                    {
+                        theta = Math.Atan((double)y / x) * 180 / Math.PI;
+                        if (theta > 0) theta = 90 - theta;
+                        else theta = -90 - theta;
+                    }
+                    if (theta <= minAngle || theta >= maxAngle)
+                        data[i] = reject;
+                    else if (theta >= (minAngle + avgAngle) / 2 && theta <= (maxAngle + avgAngle) / 2)
+                        data[i] = accept;
+                    else if (theta < avgAngle)
+                        data[i] = curveColor((int)minAngle, (int)(minAngle + avgAngle) / 2, (int)theta, reject, accept);
+                    else if (theta > avgAngle)
+                        data[i] = curveColor((int)(maxAngle + avgAngle) / 2, (int)maxAngle, (int)theta, accept, reject);
+                }
+            }
+            grad.SetData(data);
+            return grad;
+        }
+
+
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
@@ -208,6 +295,7 @@ namespace Mechanect.Screens
             return new Color(R, G, B);
         }
 
+
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
@@ -223,8 +311,6 @@ namespace Mechanect.Screens
             for (int i = 0; i < depthBarHeight; i++)
             {
                 if (2 * i + 50 <= getDepth(0) + 5 && 2 * i + 50 >= getDepth(0) - 5)
-                    data[i] = Color.Blue;
-                else if (2 * i + 50 <= getDepth(0) + 5 && 2 * i + 50 >= getDepth(0) - 5)
                     data[i] = Color.DarkCyan;
                 else if (2 * i + 50 <= minDepth || 2 * i + 50 >= maxDepth)
                     data[i] = reject;
@@ -234,6 +320,9 @@ namespace Mechanect.Screens
                     data[i] = color(minDepth, (avgDepth + minDepth) / 2, 2 * i + 50, reject, accept);
                 else if (2 * i + 50 > avgDepth)
                     data[i] = color((avgDepth + maxDepth) / 2, maxDepth, 2 * i + 50, accept, reject);
+                for (int j = 0; j < users.Length; i++)
+                    if (2 * i + 50 <= getDepth(j) + 5 && 2 * i + 50 >= getDepth(j) - 5)
+                        data[i] = userColors[i];
             }
             Color[] finalData = new Color[depthBarHeight * depthBarWidth];
             for (int j = 0; j < finalData.Length; j++)
@@ -337,6 +426,15 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(depthBar, new Vector2(100, 520), Color.White);
             ScreenManager.SpriteBatch.End();
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.Draw(angleBar, new Vector2(300, 520), Color.White);
+            ScreenManager.SpriteBatch.End();
+            for (int i = 0; i < users.Length; i++)
+            {
+                ScreenManager.SpriteBatch.Begin();
+                ScreenManager.SpriteBatch.Draw(arrow, new Rectangle(angleBarWidth / 2 + 300, angleBarHeight + 520, 200, 20), null, userColors[i], (float)((angle[i] - 90) * Math.PI / 180), arrowOrigin, SpriteEffects.None, 0f);
+                ScreenManager.SpriteBatch.End();
+            }
         }
     }
 }
