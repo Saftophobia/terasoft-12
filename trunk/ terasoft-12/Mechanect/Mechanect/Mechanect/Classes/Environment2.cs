@@ -6,6 +6,7 @@ using System.Windows;
 using Mechanect.Classes;
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
+ 
 
 namespace Mechanect
 {
@@ -52,73 +53,88 @@ namespace Mechanect
             }
         }
 
-        Random rand = new Random();
+        Random rand;
 
         
-        int velocity = 0;
+        int velocity;
         public int Velocity
         {
             get { return velocity; }
             set { velocity = value; }
         }
-        double angleInDegree;
-        double angle = 0;
+     
+        double angle;
+        int tolerance;
+        
+    /// <summary>
+    /// get in Angle,returns the angle in degree.
+    /// </summary>
         public double Angle
         {
-            get { return angle; }
+            
+            
+            get { return angle*(180/Math.PI); }
             set { angle = value; }
         }
-        double TotalTime;
+       
 
-        public Environment2() { }
+        public Environment2(int tolerance) {
+            rand = new Random();
+            this.tolerance = tolerance;
+            velocity = 0;
+            angle = 0;
+            GetSolvablePoints(tolerance);
+        }
 
   
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+      
         /// <summary>
-        /// generates random angle between 10 and 90
+        /// generates random angle between 10 and 80
         /// </summary>
-        /// <returns>return double</returns>
-        private double getRandomAngle()
-        {
-            return rand.Next(10, 90);
-        }
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
+        /// <returns>return angle in form of double</returns>
+        private double GetRandomAngle()
+        {
+            return rand.Next(10, 80);
+        }
+       
         /// <summary>
         /// generates random velocity between 10 and 70
         /// </summary>
-        /// <returns>return int</returns>
-        private int getRandomVelocity()
-        {
-            return rand.Next(10, 70);
-        }
          /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
+        /// <returns>returns random velocity "int"</returns>
+        private int GetRandomVelocity()
+        {
+            return rand.Next(10, 70);
+        }
+       
         /// <summary>
         /// getSolve : Generate solvable enviroment by setting solvable points for predator,Prey and Aquarium 
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <param name="tolerance"></param>
-         
-        public void getSolvablePoints(int tolerance)
+        
+        private void GetSolvablePoints(int tolerance)
         {
-            double xPredator;
-            double yPredator;
+            double TotalTime;
+            double angleInDegree;
+            Vector2 PPrey = new Vector2();
+            Vector2 PPredator = new Vector2();
+            Vector2 Paquarium = new Vector2();
 
-            double xPrey;
-            double yPrey;
 
-            double xAquarium;
-            double yAquarium;
 
-            xPredator = 0;
-            yPredator = rand.Next(0, 70);
-            angleInDegree = getRandomAngle();
+            PPredator.X = 0;
+            PPredator.Y = rand.Next(0, 70);
+            angleInDegree = GetRandomAngle();
             angle = angleInDegree * (Math.PI / 180);
-            velocity = getRandomVelocity();
+            velocity = GetRandomVelocity();
 
 
 
@@ -126,81 +142,73 @@ namespace Mechanect
 
             double a = 0.5 * -9.8;
 
-            double c = yPredator;
+            double c = PPredator.Y;
 
-            double Timeneeded = (-b + Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
+            TotalTime = (-b + Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
 
-            double Timeneeded2 = (-b - Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
-
-            if (Timeneeded > 0)
+            if (TotalTime < 0)
             {
-                TotalTime = Timeneeded;
+                TotalTime  = (-b - Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
             }
-            else
-            {
-                TotalTime = Timeneeded2;
-            }
+            
 
 
             Double TimeSlice = TotalTime / 3;
 
-            int TimeSlice2 = (int)(TimeSlice * 10);
+            Double TimePrey = GetRandomNumber(TimeSlice, TimeSlice * 2);
 
-            int randomTimeForPrey = rand.Next(TimeSlice2, TimeSlice2 * 2);
+            Double TimeAquarium = GetRandomNumber(TimePrey + (TimePrey * 10 / 100), TimeSlice * 3);
 
-            int randomTimeforAquarium = rand.Next(randomTimeForPrey + (randomTimeForPrey * 10 / 100), TimeSlice2 * 3);
+            PPrey.X = (float)GetX(TimePrey);
+
+            PPrey.Y = (float)((velocity * Math.Sin(angle) * TimePrey) - (0.5 * 9.8 * Math.Pow(TimePrey, 2)) + PPredator.Y);
+
+            Paquarium.X = (float)GetX(TimeAquarium);
+
+            Paquarium.Y = (float)((velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + PPredator.Y);
+
+           
+
+            Predator = new Predator(PPredator);
+
+            Prey = new Prey(PPrey, (int)PPrey.X * (tolerance / 100), (int)PPrey.Y * (tolerance / 100));
+
+            Aquarium = new Aquarium(Paquarium, (int)Paquarium.X* (tolerance / 100), (int)Paquarium.Y* (tolerance / 100));
 
 
-            Double TimePrey = (Double)randomTimeForPrey / 10;
-
-            Double TimeAquarium = (Double)randomTimeforAquarium / 10;
-
-            xPrey = getX(TimePrey);
-
-            yPrey = (velocity * Math.Sin(angle) * TimePrey) - (0.5 * 9.8 * Math.Pow(TimePrey, 2)) + yPredator;
-
-            xAquarium = getX(TimeAquarium);
-
-            yAquarium = (velocity * Math.Sin(angle) * TimeAquarium) - (0.5 * 9.8 * Math.Pow(TimeAquarium, 2)) + yPredator;
-
-            // Sorry had to change Point to System.Windows.Point to solve a conflict
-
-            Predator = new Predator(new Vector2((float)xPredator, (float)yPredator));
-
-            Prey = new Prey(new Vector2((float)xPrey, (float)yPrey), (int)xPrey * (tolerance / 100), (int)yPrey * (tolerance / 100));
-
-            Aquarium = new Aquarium(new Vector2((float)xAquarium, (float)yAquarium), (int)xAquarium * (tolerance / 100), (int)yAquarium * (tolerance / 100));
 
 
 
 
         }
 
-         /// <remarks>
+        
+        /// <summary>
+        /// GetX is method which return the horizontal displacment of a projectile at certain time. 
+        /// </summary>
+        /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <summary>
-        /// getX is method which return the horizontal displacment of a projectile at certain time. 
-        /// </summary>
         /// <param name="time"></param>
-        /// <returns>returns x position in double</returns>
+        /// <returns>x position at certain time in double</returns>
 
-        public Double getX(Double time)
+        private Double GetX(Double time)
         {
 
             return CheckPositive(velocity * (Math.Cos(angle)) * time);
 
         }
 
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+       
         /// <summary>
         /// CheckPostive is a method which check if number is positive or not.If positive it return it and if negative 
         /// it multiply it by -1 to be positive and return it.
         /// </summary>  
+        ///   <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <param name="number"></param>
-        /// <returns>return positive double number</returns>
+        /// <returns>returns positive number</returns>
         private double CheckPositive(Double number)
         {
             if (number >= 0)
@@ -209,6 +217,21 @@ namespace Mechanect
                 return number * -1;
         }
 
+        /// <summary>
+        /// generate Random number between min and max
+        /// </summary>
+         ///   <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns>returns random number in double </returns>
+        private double GetRandomNumber(double min,double max)
+        {
+            return (max - min) * rand.NextDouble() + min;
+        }
+
 
     }
 }
+
