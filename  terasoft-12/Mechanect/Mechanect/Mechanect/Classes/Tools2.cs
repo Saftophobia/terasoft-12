@@ -1,4 +1,4 @@
- using System;
+  using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace Mechanect.Classes
       
         
         /// <summary>
-        /// Generate 2D vector point randomly through given range.
+        /// Generate 2D point randomly through given range.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
@@ -28,9 +28,9 @@ namespace Mechanect.Classes
         {
             Vector2 vec = new Vector2();
             Random rand = new Random();
-           
-             vec.X = rand.Next((int)minX,(int)maxX);
-            vec.Y = rand.Next((int)minY,(int)maxY);
+            vec.X =(float) ((maxX - minX) * rand.NextDouble() + minX);
+
+            vec.Y = (float)((maxY - minY) * rand.NextDouble() + minY);
             return vec;
 
         }
