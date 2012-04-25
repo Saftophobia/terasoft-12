@@ -62,9 +62,11 @@ namespace Mechanect.Screens
 
 
 
-        public Experiment1(User1 User,MKinect kinect)
+        public Experiment1(User1 player1,User1 player2,MKinect kinect)
         {
-            
+            this.player1 = player1;
+            this.player2 = player2;
+            this.kinect = kinect;
         }
 
 
@@ -75,22 +77,22 @@ namespace Mechanect.Screens
            // IntPtr ptr = this.Window.Handle;
         //    System.Windows.Forms.Form form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(ptr);
           //  form.Size = new System.Drawing.Size(1024, 768);
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 650;
-            graphics.ApplyChanges();
+           // graphics.PreferredBackBufferWidth = 1024;
+           // graphics.PreferredBackBufferHeight = 650;
+          //  graphics.ApplyChanges();
 
             
-            Texture2D Texthree = Content.Load<Texture2D>("MechanectContent/3");          
-            Texture2D Textwo = Content.Load<Texture2D>("MechanectContent/2");
-            Texture2D Texone = Content.Load<Texture2D>("MechanectContent/1");
-            Texture2D Texgo = Content.Load<Texture2D>("MechanectContent/go");
-            Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
-            SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
-            SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics); //initializes the Countdown 
-            background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
-            graphics.PreferredBackBufferHeight, 0, 0, 1024, 768); //initializes the background
-
+            Texture2D Texthree = Content.Load<Texture2D>("3");          
+            Texture2D Textwo = Content.Load<Texture2D>("2");
+            Texture2D Texone = Content.Load<Texture2D>("1");
+            Texture2D Texgo = Content.Load<Texture2D>("go");
+            Texture2D Texback = Content.Load<Texture2D>("track2");
+            SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
+            SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
+            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
+            background = new CountDown(Texback, ScreenManager.GraphicsDevice.Viewport.Width,
+            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, 1024, 768); //initializes the background
+            
             //-----------------------initializetimecountand commands--------------------------
             racecommands = gCommands;
             Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
@@ -121,8 +123,8 @@ namespace Mechanect.Screens
 
 
             //------------------------graphs
-            background = new CountDown(Content.Load<Texture2D>("MechanectContent/Background2"), graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
+            background = new CountDown(Content.Load<Texture2D>("Background2"),ScreenManager.GraphicsDevice.Viewport.Width,
+                    ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, 1024, 768);
 
             Graph = new PerformanceGraph();
             List<string> Commands = new List<string>();
@@ -265,10 +267,10 @@ namespace Mechanect.Screens
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
                 background.Draw(SpriteBatch);
-                SpriteFont font = Content.Load<SpriteFont>("MechanectContent/MyFont1");
-                SpriteFont font2 = Content.Load<SpriteFont>("MechanectContent/MyFont2");
-                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
-                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlack");
+                SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
+                SpriteFont font2 = Content.Load<SpriteFont>("SpriteFont1");
+                Texture2D P1Tex = Content.Load<Texture2D>("xBlue");
+                Texture2D P2Tex = Content.Load<Texture2D>("xBlack");
                 SpriteBatch sprite2 = SpriteBatch;
                 sprite2.Begin();
                 //Graph.drawRange(SpriteBatch, GraphicsDevice);
