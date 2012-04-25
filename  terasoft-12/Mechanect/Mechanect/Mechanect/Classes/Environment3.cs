@@ -62,18 +62,23 @@ namespace Mechanect.Classes
              * from the Z component of the velocity each time.  
              */
 
-            Ball dummyBall = new Ball(0.5f, 5f);
-            User3 dummyUser = new User3(4f);
-            Hole dummyHole = new Hole();
-            dummyBall.InitialBallPosition = new Vector3(5, 0, 5);
-            dummyUser.ShootingPosition = new Vector3(15, 0, 10.5f);
+            ball = new Ball(0.5f, 5f);
+            user = new User3(4f);
+            hole = new Hole();
+            ball.InitialBallPosition = new Vector3(5, 0, 5);
+            user.ShootingPosition = new Vector3(15, 0, 10.5f);
             friction = 0.1f;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
             ball.InitialVelocity = new Vector3(1, 0, 1);
+            ball.Radius = 1;
+            ball.Velocity = ball.InitialVelocity;
+            ball.Mass = 2;
+            hole.Position = new Vector3(20, 0, 5);
+            user.AssumedLegMass = 20;
             
             #endregion
-
+           
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
