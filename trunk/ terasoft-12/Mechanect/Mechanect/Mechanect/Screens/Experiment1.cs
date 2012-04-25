@@ -190,13 +190,16 @@ namespace Mechanect.Screens
             {
 
                 drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
+               // float rem = timer*10000000 / 12;
+               // if (((timer * 10000000) % 12) == 0)
 
-              //  if (NUMBEROFFRAMES % 3 == 0)
-                
-                   // drawString.Update(NUMBEROFFRAMES / timer + "");
+                //drawString.Update((NUMBEROFFRAMES / (timecounter + timer))+"");
                 
 
-                if (NUMBEROFFRAMES % 3 ==0)
+                 //drawString.Update(NUMBEROFFRAMES + "               " + timecounter + "           " + timer); 
+                //10000000
+
+                if (NUMBEROFFRAMES % 5 == 0)
                 {
                     if (player1.skeleton != null)
                     {
@@ -240,6 +243,7 @@ namespace Mechanect.Screens
                     player2.Winner = true;
                 }
 
+
                  /*if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
                      {
                          player1.Winner = true;
@@ -247,6 +251,26 @@ namespace Mechanect.Screens
                      }
                    */
                 }
+
+                if (player1.skeleton == null & player2.skeleton != null)
+                {
+                    if (player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
+                    {
+                        player2.Winner = false;
+                    }
+
+                }
+
+                if (player1.skeleton != null & player2.skeleton == null)
+                {
+                    if (player1.skeleton.Position.Z <= 0.9 & !player1.Disqualified)
+                    {
+                        player1.Winner = false;
+                    }
+
+                }
+
+
 
 
 
@@ -301,18 +325,7 @@ namespace Mechanect.Screens
             // after Race, Draw the Graphs
             if (timecounter >= racecommandsforDRAW.Count + 4 ||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
-                background2.Draw(SpriteBatch);
-                SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
-                SpriteFont font2 = Content.Load<SpriteFont>("SpriteFont1");
-                Texture2D P1Tex = Content.Load<Texture2D>("xBlue");
-                Texture2D P2Tex = Content.Load<Texture2D>("xBlack");
-                SpriteBatch sprite2 = SpriteBatch;
-                sprite2.Begin();
-                //Graph.drawRange(SpriteBatch, GraphicsDevice);
-               // Graph.drawAxis(SpriteBatch, GraphicsDevice, font, font2);
-                sprite2.End();
-                //Graph.drawConnectors();
-               // Graph.drawDisqualification(SpriteBatch, graphics, timer, P1Tex, P2Tex);
+                
             }
 
 
