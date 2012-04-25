@@ -56,6 +56,24 @@ namespace Mechanect.Classes
 
         public Environment3(SpriteBatch spriteBatch)
         {
+            #region dummyInitializations
+            /* the values used here should allow the ball to reach the user's feet.
+             * the velocity is added to the position. friction is reduced
+             * from the Z component of the velocity each time.  
+             */
+
+            Ball dummyBall = new Ball(0.5f, 5f);
+            User3 dummyUser = new User3(4f);
+            Hole dummyHole = new Hole();
+            dummyBall.InitialBallPosition = new Vector3(5, 0, 5);
+            dummyUser.ShootingPosition = new Vector3(15, 0, 10.5f);
+            friction = 0.1f;
+            wind = 0f;
+            ball.Position = ball.InitialBallPosition;
+            ball.InitialVelocity = new Vector3(1, 0, 1);
+            
+            #endregion
+
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
