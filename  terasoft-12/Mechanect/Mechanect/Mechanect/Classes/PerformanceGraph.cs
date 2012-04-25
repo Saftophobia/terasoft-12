@@ -90,8 +90,6 @@ namespace Mechanect.Classes
         {
         }
 
-
-
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Created: 22-4-2012</para>
@@ -193,7 +191,6 @@ namespace Mechanect.Classes
             }
             return result;
         }
-
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
@@ -483,8 +480,7 @@ namespace Mechanect.Classes
                             a2 = 134;
                         }
                     }
-                    double r2 = 0;
-                    double r4 = 0;
+                    double r2 = 0; double r4 = 0;
                     if (j <= 2)
                     {
                         r2 = (double)(temporary[i]) / (double)r;
@@ -494,12 +490,12 @@ namespace Mechanect.Classes
                     if (j > 2 && j <= 5)
                     {
                         r2 = (double)(maxVelocity - 2 - temporary[i]) / (double)r;
-                        r4 = (double)(maxVelocity - 2 - temporary[i + 1]) / (double)r; 
+                        r4 = (double)(maxVelocity - 2 - temporary[i + 1]) / (double)r;
                     }
-                    if (j > 5&&j<=8)
+                    if (j > 5 && j <= 8)
                     {
                         r2 = (double)(maxAcceleration - 2 - temporary[i]) / (double)r;
-                        r4 = (double)(maxAcceleration - 2 - temporary[i + 1]) / (double)r; 
+                        r4 = (double)(maxAcceleration - 2 - temporary[i + 1]) / (double)r;
                     }
                     int r3 = a1 + (int)r2;
                     int r5 = a2 + (int)r4;
@@ -514,9 +510,9 @@ namespace Mechanect.Classes
                         }
                         disqList.Add(r5);
                     }
-                    }
-                }    
+                }
             }
+        }
 
         public void setAxis()
         {
@@ -579,7 +575,6 @@ namespace Mechanect.Classes
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 100),
                 new Vector2(50, 620));
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 100),
@@ -587,34 +582,33 @@ namespace Mechanect.Classes
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 100),
                 new Vector2(710, 620));
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 350),
-                new Vector2(300, 350));
+                new Vector2(316, 350));
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 350),
-                new Vector2(630, 350));
+                new Vector2(646, 350));
             drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 350),
-                new Vector2(960, 350));
+                new Vector2(976, 350));
         }
 
         public void drawArrows(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-
-            int counter = 293;
+            int counter = 309;
             for (int i = 0; i <= 2; i++)
             {
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 343),
-                new Vector2(counter+7, 350));
+                new Vector2(counter + 7, 350));
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 357),
-                new Vector2(counter+7, 350));                
+                new Vector2(counter + 7, 350));
                 counter += 330;
             }
             counter = 40;
             for (int i = 0; i <= 2; i++)
             {
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 110),
-                new Vector2(counter+10, 100));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter+10+8, 110),
-                new Vector2(counter+8, 100));
+                new Vector2(counter + 10, 100));
+                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 110),
+                new Vector2(counter + 8, 100));
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 610),
                 new Vector2(counter + 10, 620));
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 610),
@@ -624,106 +618,111 @@ namespace Mechanect.Classes
             }
         }
 
+
+        public void drawXLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        {
+            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);            
+            int counter = 35;
+            for (int i = 0; i <= 2; i++)
+            {
+                switch (i)
+                {
+                    case 1: counter = 365; break;
+                    case 2: counter = 695; break;
+                    default: counter = 35; break;
+                }
+                for (int j = 0; j <= 4; j++)
+                {
+                    spriteBatch.DrawString(font2, xaxis[j] + "", new Vector2(counter - 5, 358), Color.Black);
+                    counter += 67;
+                }
+            }    
+        }
+
+        public void drawYLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        {
+            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            //+ve y
+            int y = 0;            
+            double[] current = yaxisDisplacement; ;
+            for (int i = 0; i <= 2; i++)
+            {
+                int counter = 110;
+                switch (i)
+                {
+                    case 1: y = 320; current = yaxisVelocity; break;
+                    case 2: y = 650; current = yaxisAcceleration; break;
+                    default: y = 0; current = yaxisDisplacement; break;
+                }
+                for (int j = 4; j >= 1; j--)
+                {
+                    spriteBatch.DrawString(font2, current[j] + "", new Vector2(y, counter), Color.Black);
+                    counter += 60;
+                }
+            }
+            //-ve y
+            for (int i = 0; i <= 2; i++)
+            {
+                int counter = 400;
+                switch (i)
+                {
+                    case 1: y = 320; current = yaxisVelocity; break;
+                    case 2: y = 650; current = yaxisAcceleration; break;
+                    default: y = 0; current = yaxisDisplacement; break;
+                }
+                for (int j = 1; j <= 4; j++)
+                {
+                    spriteBatch.DrawString(font2, -1*current[j] + "", new Vector2(y, counter), Color.Black);
+                    counter += 60;
+                }
+            }
+        }
+
         public void drawEnvironment(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            drawAxis(spriteBatch, GraphicsDevice, font, font2); 
+            drawAxis(spriteBatch, GraphicsDevice, font, font2);
             drawLabels(spriteBatch, GraphicsDevice, font, font2);
             drawArrows(spriteBatch, GraphicsDevice, font, font2);
-
-            int count = 35;            
-            int count3 = 290;
-            int count5 = 45;
-            for (int j = 0; j <= 2; j++)
-            {
-                for (int i = 0; i <= 4; i++)
-                {
-                    if (i == 0)
-                    {
-                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count - 5, 355), Color.Black);
-                        count = count + 60;
-                    }
-                    if (i > 0)
-                    {
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count + 15, 345),
-                        new Vector2(count + 15, 355));
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(count5, count3 + 8),
-                        new Vector2(count5 + 10, count3 + 8));
-                        spriteBatch.DrawString(font, xaxis[i] + "", new Vector2(count + 5, 355), Color.Black);
-                        count = count + 60;
-                    }
-                    if (j == 0 && i > 0)
-                    {
-                        spriteBatch.DrawString(font2, yaxisDisplacement[i] + "", new Vector2(0, count3), Color.Black);
-                        count3 = count3 - 60;
-                    }
-                    if (j == 1 && i > 0)
-                    {
-                        spriteBatch.DrawString(font2, yaxisVelocity[i] + "", new Vector2(320, count3), Color.Black);
-                        count3 = count3 - 60;
-                    }
-                    if (j == 2 && i > 0)
-                    {
-                        spriteBatch.DrawString(font2, yaxisAcceleration[i] + "", new Vector2(650, count3), Color.Black);
-                        count3 = count3 - 60;
-                    }
-
-                }
-                count3 = 290;
-                
-                if (j == 0)
-                {
-                    count = 365;  
-                    count5 = 375;
-                }
-                if (j == 1)
-                {
-                    count = 695;
-                    count5 = 705;
-                }
-            }
-
-            double[] negativeDisp = new double[4];
-            double[] negativeVel = new double[4];
-            double[] negativeAcc = new double[4];
-
-            int n = 1;
-            for (int i = 0; i <= 3; i++)
-            {
-                negativeDisp[i] = yaxisDisplacement[n] * -1;
-                negativeVel[i] = yaxisVelocity[n] * -1;
-                negativeAcc[i] = yaxisAcceleration[n] * -1;
-                n++;
-            }
-
-            count = 410;
+            drawXLabels(spriteBatch, GraphicsDevice, font, font2);
+            drawYLabels(spriteBatch, GraphicsDevice, font, font2);
+            //drawing the marks on the xaxis
+            int counter = 50;
             for (int i = 0; i <= 2; i++)
             {
-                for (int j = 0; j <= 3; j++)
+                switch (i)
                 {
-                    if (i == 0)
-                    {
-                        spriteBatch.DrawString(font2, negativeDisp[j] + "", new Vector2(0, count), Color.Black);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(45, count + 8),
-                new Vector2(55, count + 8));
-                    }
-                    if (i == 1)
-                    {
-                        spriteBatch.DrawString(font2, negativeVel[j] + "", new Vector2(320, count), Color.Black);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(375, count + 8),
-                new Vector2(385, count + 8));
-                    }
-                    if (i == 2)
-                    {
-                        spriteBatch.DrawString(font2, negativeAcc[j] + "", new Vector2(650, count), Color.Black);
-                        drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(705, count + 8),
-                new Vector2(715, count + 8));
-                    }
-                    count += 60;
-                }               
-                count = 410;
+                    case 1: counter = 380; break;
+                    case 2: counter = 710; break;
+                    default: counter = 50; break;
+                }
+                for (int j = 0; j <= 4; j++)
+                {
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 345),
+                        new Vector2(counter, 355));
+                    counter += 64;
+                }
             }
+            //drawing the marks on the yaxis
+            int y = 50;
+            for (int i = 0; i <= 2; i++)
+            {
+                int counter2 = 118;
+                switch (i)
+                {
+                    case 1: y = 380; break;
+                    case 2: y = 710; break;
+                    default: y = 50; break;
+                }
+                for (int j = 1; j <= 9; j++)
+                {
+                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
+                        new Vector2(y + 5, counter2));
+                    counter2 += 58;
+                }
+            }
+            
         }
 
 
