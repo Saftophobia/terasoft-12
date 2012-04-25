@@ -52,9 +52,12 @@ namespace Mechanect.Classes
 
         public float GenerateRandomValue(float min, float max)
         {
-            var random = new Random();
-            var value = ((float)(random.NextDouble() * (max - min))) + min;
-            return value;
+            if ((min >= 0) && (max >= 0) && (max > min))
+            {
+                var random = new Random();
+                var value = ((float)(random.NextDouble() * (max - min))) + min;
+                return value;
+            }
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
