@@ -1,4 +1,4 @@
-﻿using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -142,7 +142,7 @@ namespace Mechanect.Screens
         /// <param name="mKinect">takes an instance of mKinect</param>
         public Experiment2(User2 user, MKinect mKinect)
         {
-            env = new Environment2();
+            env = new Environment2(5);
 
             this.user = user;
             this.mKinect = mKinect;
