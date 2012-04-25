@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Cameras;
 using Mechanect.Common;
+using Mechanect.Classes;
 
 namespace Mechanect.Screens
 {
@@ -34,6 +35,8 @@ namespace Mechanect.Screens
         AvatarprogUI avatarprogUI;
         int player1disqualification;
         int player2disqualification;
+        drawstring drawString = new drawstring(new Vector2(400, 400));
+        
         //drawstring drawString
         
 
@@ -75,7 +78,7 @@ namespace Mechanect.Screens
             //-----------------------initializetimecountand commands--------------------------
             racecommands = gCommands;
             Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
-            racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
+            //racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
             // foreach (string s in racecommands)
             //   System.Console.WriteLine(s);
             timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
@@ -91,7 +94,8 @@ namespace Mechanect.Screens
                     //draw the command on screen for each second
                 }
             }
-
+            
+            
             //-----------============-----------------------==========================================-
 
 
@@ -116,7 +120,7 @@ namespace Mechanect.Screens
            // graphics.PreferredBackBufferWidth = 1024;
            // graphics.PreferredBackBufferHeight = 650;
           //  graphics.ApplyChanges();
-
+            drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
             avatarBall = Content.Load<Texture2D>("ball");
             Texture2D Texthree = Content.Load<Texture2D>("3");          
             Texture2D Textwo = Content.Load<Texture2D>("2");
@@ -181,8 +185,9 @@ namespace Mechanect.Screens
             //after countdown, Update the Race 
             if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
             {
+
+                drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
                
-               //drawString.Update(racecommandsforDRAW[timecounter - 4] + "")
                 
                 if (player1.skeleton != null)
                 {
@@ -274,16 +279,19 @@ namespace Mechanect.Screens
             //After countdown,Draw the Avatar
             if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner*/)
             {
+                
                 background2.Draw(SpriteBatch);
                 SpriteBatch.Begin();
+                drawString.Draw(SpriteBatch);
             avatarprogUI.Draw(SpriteBatch,avatarBall);
+            
             SpriteBatch.End();
            
             }
 
 
             // after Race, Draw the Graphs
-            if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+            if (timecounter >= racecommandsforDRAW.Count + 4 /*||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner*/)
             {
                 background2.Draw(SpriteBatch);
                 SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
