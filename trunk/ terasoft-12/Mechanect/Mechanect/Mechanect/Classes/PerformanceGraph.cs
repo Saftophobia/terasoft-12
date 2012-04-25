@@ -272,12 +272,30 @@ namespace Mechanect.Classes
         /// This function is public
         /// </permission>
         /// <returns></returns>
-        public void drawGraphs(List<float> Player1Displacement, List<float> Player2Displacement,
-           List<String> Commands, List<double> time, Game g1)
+        public void drawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, Game g1)
         {
-
-            this.Player1Displacement = Player1Displacement;
-            this.Player2Displacement = Player2Displacement;
+            Player1Displacement = new List<float>();
+            Player2Displacement = new List<float>();
+            double accumulator = 0;
+            for (int i = 0; i <= time.Count - 1; i++)
+            {
+                accumulator += time[i];
+            }
+            totalTime = accumulator;
+            int frames = (int)(totalTime * 24);
+            for (int i = 0; i <= frames - 1; i++)
+            {
+                Player1Displacement.Add(0);
+                Player2Displacement.Add(0);
+            }
+            for (int i = 0; i <= Player1Disp.Count - 1; i++)
+            {
+                Player1Displacement[i] = Player1Disp[i];
+            }
+            for (int i = 0; i <= Player2Disp.Count - 1; i++)
+            {
+                Player2Displacement[i] = Player2Disp[i];
+            }
             this.CommandsList = Commands;
             this.TimeSpaces = time;
             this.currentGame = g1;
@@ -290,7 +308,6 @@ namespace Mechanect.Classes
             setMaximum();
             setDestinations(g1.getGraphicsDeviceManager());
             setAxis();
-
         }
 
         /// <remarks>
@@ -309,13 +326,7 @@ namespace Mechanect.Classes
         /// </permission>
         /// <returns></returns>
         public void choose()
-        {
-            double acc = 0;
-            for (int i = 0; i <= TimeSpaces.Count - 1; i++)
-            {
-                acc += TimeSpaces[i];
-            }
-            totalTime = (int)acc;
+        {            
             chosenTimings = new int[17];
             int timeCounter = 0;
             for (int i = 0; i <= chosenTimings.Length - 1; i++)
