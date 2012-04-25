@@ -71,6 +71,7 @@ namespace Mechanect.Classes
         {
             this.Winner = false;
             this.disqualified = false;
+            this.positions = new List<float>();
             
             
         }
