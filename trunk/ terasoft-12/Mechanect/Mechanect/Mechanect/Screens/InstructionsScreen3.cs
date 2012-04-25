@@ -3,8 +3,6 @@ namespace Mechanect.Screens
 {
     class InstructionsScreen3 : Instruction
     {
-        Vector2 position = new Vector2(100, 20);
-
         string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
         public InstructionsScreen3()
         {
@@ -15,21 +13,6 @@ namespace Mechanect.Screens
             : base(instructions)
         {
             this.instructions = instructions;
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Allows the screen to perform any initialization it needs to before starting to draw.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-
-        public override void Initialize()
-        {
-            base.Initialize();
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -44,18 +27,7 @@ namespace Mechanect.Screens
             base.LoadContent();
            
         }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// UnloadContent will be called only once and its the place to unload
-        /// all content.
-        /// </summary>        
         
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-        }
 
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -82,17 +54,6 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Removes this screen from the screen manager.
-        /// </summary>
-        public override void Remove()
-        {
-            base.Remove();
         }
 
     }
