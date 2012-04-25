@@ -105,7 +105,7 @@ namespace Mechanect.Classes
         /// if equal  and false otherwise.
         /// </summary>
         /// <param name="ExpectedString"></param>
-        /// <returns></returns>
+        /// <returns>returns boolean ,true if he heared expectedString,false otherwise</returns>
 
         public Boolean getHeared(String ExpectedString)
         {
@@ -146,7 +146,7 @@ namespace Mechanect.Classes
         /// then uses RecognizerInfo.Id to create a SpeechRecognitionEngine object.
         /// </summary>
        
-        /// <returns></returns>
+        /// <returns>returns RecognizerInfo</returns>
         private static RecognizerInfo GetKinectRecognizer()
         {
             Func<RecognizerInfo, bool> matchingFunc = r =>
