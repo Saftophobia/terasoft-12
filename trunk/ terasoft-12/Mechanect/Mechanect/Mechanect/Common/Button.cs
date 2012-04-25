@@ -100,6 +100,7 @@ namespace Mechanect
                     if (timer.getDuration() >= (1 * 1000))
                     {
                         status = true;
+                        timer.stop();
                     }
 
                 }
