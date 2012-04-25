@@ -11,12 +11,13 @@ using System.IO;
 
 namespace Mechanect.Classes
 {
-    /// <remarks>
-    /// <para>AUTHOR: Tamer Nabil </para>
-    /// </remarks>
+   
     /// <summary>
     /// Voice Command Class allow you to check if certain word was said or not by user.
     /// </summary>
+     /// <remarks>
+    /// <para>AUTHOR: Tamer Nabil </para>
+    /// </remarks>
     class VoiceCommands
     {
     
@@ -27,14 +28,15 @@ namespace Mechanect.Classes
         KinectSensor Kinect;
         String HearedString= " ";
         
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+       
         /// <summary>
         /// Constructor takes as input Kinect Sensor and use it to initialize the instance variable 
         ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and String Command contains commands.
         ///Seperated By "," if acceptable commands.
         /// </summary>
+         /// <remarks>
+          /// <para>AUTHOR: Tamer Nabil </para>
+         /// </remarks>
         /// <param name="Kinect"></param>
         /// <param name="Command"></param>
    
@@ -45,15 +47,16 @@ namespace Mechanect.Classes
 
         }
 
-       /// <remarks>
-       /// <para>AUTHOR: Tamer Nabil </para>
-       /// </remarks>
+       
        /// <summary>
        /// 
        /// InitalizeKinectAudio()   Get called by the constructor to initialize current Kinect audio Souce and 
        /// add grammers which can be accepted.
        /// 
        /// </summary>
+        /// <remarks>
+       /// <para>AUTHOR: Tamer Nabil </para>
+       /// </remarks>
        /// <param name="Command"></param>
          
 
@@ -97,13 +100,14 @@ namespace Mechanect.Classes
 
         }
 
-         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+         
         /// <summary>
         /// getHeared take ExpectedString as input and compare it with the Heared String from kinect and returns true
         /// if equal  and false otherwise.
         /// </summary>
+         /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <param name="ExpectedString"></param>
         /// <returns>returns boolean ,true if he heared expectedString,false otherwise</returns>
 
@@ -118,13 +122,14 @@ namespace Mechanect.Classes
             }
           
         }
-         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+         
         /// <summary>
         /// This method store value of what said to kinect in the instance variable 
         /// "HearedString"
         /// </summary>
+         /// <remarks>
+           /// <para>AUTHOR: Tamer Nabil </para>
+           /// </remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SreSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -136,16 +141,16 @@ namespace Mechanect.Classes
             }
             
         }
-         /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+        
         /// <summary>
         /// a static method that returns a list of speech recognition engines on the system. 
         /// Speech uses a Language-Integrated Query (LINQ) to obtain the ID of the first recognizer in the list and 
         /// returns the results as a RecognizerInfo object. Speech 
         /// then uses RecognizerInfo.Id to create a SpeechRecognitionEngine object.
         /// </summary>
-       
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <returns>returns RecognizerInfo</returns>
         private static RecognizerInfo GetKinectRecognizer()
         {
