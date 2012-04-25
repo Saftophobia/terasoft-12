@@ -22,7 +22,7 @@ namespace Mechanect.Screens
         ///</para>
         ///</remarks>
         /// <summary>
-        /// Initializing the OK button and the two sliders of the velocity and angle
+        /// Initializing the OK button and the two sliders of the velocity and angle and the levels slider
         /// </summary>
         public override void LoadContent()
         {
@@ -55,7 +55,7 @@ namespace Mechanect.Screens
         ///</para>
         ///</remarks>
         /// <summary>
-        /// updating the button and the two sliders. It's requiered to make them run correctly
+        /// updating the button, the two sliders and the levels slider. It's requiered to make them run correctly
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="covered"></param>
@@ -81,7 +81,7 @@ namespace Mechanect.Screens
         ///</para>
         ///</remarks>
         /// <summary>
-        /// drwing the OK button and the two slider on the screen
+        /// drwing the OK button, the two slider on the screen and the levels slider
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
