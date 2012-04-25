@@ -58,6 +58,7 @@ namespace Mechanect.Classes
                 var value = ((float)(random.NextDouble() * (max - min))) + min;
                 return value;
             }
+            else throw new ArgumentException("parameters have to be non negative numbers and max value has to be greater than min value");
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
