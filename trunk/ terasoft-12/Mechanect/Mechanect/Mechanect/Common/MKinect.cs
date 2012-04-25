@@ -83,11 +83,11 @@ namespace Mechanect.Common
                         {
                             var parameters = new TransformSmoothParameters
                             {
-                                Smoothing = 0.0f,
-                                Correction = 0.0f,
-                                Prediction = 0.0f,
-                                JitterRadius = 0.0f,
-                                MaxDeviationRadius = 0.0f
+                                Smoothing = 0.1f,
+                                Correction = 0.1f,
+                                Prediction = 0.1f,
+                                JitterRadius = 0.5f,
+                                MaxDeviationRadius = 0.1f
                             };
 
                             this._KinectDevice.SkeletonStream.Enable(parameters);
