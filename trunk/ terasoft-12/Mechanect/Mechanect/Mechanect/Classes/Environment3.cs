@@ -19,7 +19,6 @@ namespace Mechanect.Classes
         private float wind;
         private float friction;
         private bool hasCollidedWithBall, ballShot;
-        private double ballMass, assumedLegMass;
         private Vector2 tolerance;
         private Bar distanceBar;
         private GraphicsDevice device;
@@ -681,7 +680,6 @@ namespace Mechanect.Classes
         {
             hasCollidedWithBall = false;
             ballShot = false;
-            assumedLegMass = user.AssumedLegMass;
         }
 
         /// <remarks>
@@ -698,7 +696,6 @@ namespace Mechanect.Classes
             
             if (hasCollidedWithBall && !ballShot)
             {
-                ballMass = ball.Mass; //get the mass of the ball
                 ballShot = true;
                 Vector3 velocityAfterCollision = GetVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
                 ball.Velocity = velocityAfterCollision; // update the velocity of the ball
@@ -737,6 +734,12 @@ namespace Mechanect.Classes
         private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
             double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
+
+            //Get the mass of the leg.
+            double assumedLegMass = user.AssumedLegMass;
+
+            //Get the mass of the ball.
+            double ballMass = ball.Mass;
 
             double acceleration = -(friction + wind); //Deceleration of the ball due to resistance.
 
