@@ -23,10 +23,11 @@ namespace Mechanect.Common
         ///</para>
         ///</remarks>
         /// <summary>
-        /// constructor takes ContentManager to be able to load the pics and the position
+        /// constructor takes ContentManager to be able to load the pictures and the position of the word
+        /// to display in the screen
         /// </summary>
         /// <param name="c">content manager</param>
-        /// <param name="p">poistion</param>
+        /// <param name="p">desired poistion of the word</param>
         public WorL(ContentManager c, Vector2 p)
         {
             content = c;
@@ -41,7 +42,7 @@ namespace Mechanect.Common
         /// <summary>
         /// displaying the wining word on the screen
         /// </summary>
-        /// <param name="spriteBatch">to be able to draw</param>
+        /// <param name="spriteBatch">used to draw the picture</param>
         public void winningWord(SpriteBatch spriteBatch)
         {
             Texture2D pic = content.Load<Texture2D>("Textures/WorL/winner");
@@ -58,7 +59,7 @@ namespace Mechanect.Common
         /// <summary>
         /// displaying the losing word on the screen
         /// </summary>
-        /// <param name="spriteBatch">to be able to draw</param>
+        /// <param name="spriteBatch">used to draw the picture</param>
         public void losingWord(SpriteBatch spriteBatch)
         {
             Texture2D pic = content.Load<Texture2D>("Textures/WorL/looser");
