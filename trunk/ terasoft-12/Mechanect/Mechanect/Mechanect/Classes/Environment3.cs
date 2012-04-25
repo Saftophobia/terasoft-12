@@ -269,13 +269,13 @@ namespace Mechanect.Classes
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
             DrawSkybox();
-            RasterizerState rs = new RasterizerState();
+            var rs = new RasterizerState();
             rs.CullMode = CullMode.None;
             rs.FillMode = FillMode.Solid;
             device.RasterizerState = rs;
-            Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
+            var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
             effect.CurrentTechnique = effect.Techniques["Colored"];
-            Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
+            var lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
             lightDirection.Normalize();
             effect.Parameters["xLightDirection"].SetValue(lightDirection);
             effect.Parameters["xAmbient"].SetValue(0.1f);
@@ -302,11 +302,11 @@ namespace Mechanect.Classes
         /// </summary>
         private void SetUpVertices()
         {
-            float minHeight = float.MaxValue;
-            float maxHeight = float.MinValue;
-            for (int x = 0; x < terrainWidth; x++)
+            var minHeight = float.MaxValue;
+            var maxHeight = float.MinValue;
+            for (var x = 0; x < terrainWidth; x++)
             {
-                for (int y = 0; y < terrainHeight; y++)
+                for (var y = 0; y < terrainHeight; y++)
                 {
                     if (heightData[x, y] < minHeight)
                         minHeight = heightData[x, y];
@@ -316,17 +316,17 @@ namespace Mechanect.Classes
             }
 
             vertices = new VertexPositionColorNormal[terrainWidth * terrainHeight];
-            for (int x = 0; x < terrainWidth; x++)
+            for (var x = 0; x < terrainWidth; x++)
             {
-                for (int y = 0; y < terrainHeight; y++)
+                for (var y = 0; y < terrainHeight; y++)
                 {
                     vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
 
-                    if (heightData[x, y] < minHeight + (maxHeight - minHeight) / 4)
+                    if (heightData[x, y] < (minHeight + (maxHeight - minHeight) / 4))
                         vertices[x + y * terrainWidth].Color = Color.Blue;
-                    else if (heightData[x, y] < minHeight + (maxHeight - minHeight) * 2 / 4)
+                    else if (heightData[x, y] < (minHeight + (maxHeight - minHeight) * 2 / 4))
                         vertices[x + y * terrainWidth].Color = Color.Green;
-                    else if (heightData[x, y] < minHeight + (maxHeight - minHeight) * 3 / 4)
+                    else if (heightData[x, y] < (minHeight + (maxHeight - minHeight) * 3 / 4))
                         vertices[x + y * terrainWidth].Color = Color.Brown;
                     else
                         vertices[x + y * terrainWidth].Color = Color.White;
@@ -344,15 +344,15 @@ namespace Mechanect.Classes
         private void SetUpIndices()
         {
             indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
-            int counter = 0;
-            for (int y = 0; y < terrainHeight - 1; y++)
+            var counter = 0;
+            for (var y = 0; y < terrainHeight - 1; y++)
             {
-                for (int x = 0; x < terrainWidth - 1; x++)
+                for (var x = 0; x < terrainWidth - 1; x++)
                 {
-                    int lowerLeft = x + y * terrainWidth;
-                    int lowerRight = (x + 1) + y * terrainWidth;
-                    int topLeft = x + (y + 1) * terrainWidth;
-                    int topRight = (x + 1) + (y + 1) * terrainWidth;
+                    var lowerLeft = x + y * terrainWidth;
+                    var lowerRight = (x + 1) + y * terrainWidth;
+                    var topLeft = x + (y + 1) * terrainWidth;
+                    var topRight = (x + 1) + (y + 1) * terrainWidth;
 
                     indices[counter++] = topLeft;
                     indices[counter++] = lowerRight;
@@ -380,8 +380,8 @@ namespace Mechanect.Classes
             heightMap.GetData(heightMapColors);
 
             heightData = new float[terrainWidth, terrainHeight];
-            for (int x = 0; x < terrainWidth; x++)
-                for (int y = 0; y < terrainHeight; y++)
+            for (var x = 0; x < terrainWidth; x++)
+                for (var y = 0; y < terrainHeight; y++)
                     heightData[x, y] = heightMapColors[x + y * terrainWidth].R / 5.0f;
         }
 
@@ -424,13 +424,13 @@ namespace Mechanect.Classes
         /// </summary>
         private void CalculateNormals()
         {
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
                 vertices[i].Normal = new Vector3(0, 0, 0);
-            for (int i = 0; i < indices.Length / 3; i++)
+            for (var i = 0; i < indices.Length / 3; i++)
             {
-                int index1 = indices[i * 3];
-                int index2 = indices[i * 3 + 1];
-                int index3 = indices[i * 3 + 2];
+                var index1 = indices[i * 3];
+                var index2 = indices[i * 3 + 1];
+                var index3 = indices[i * 3 + 2];
 
                 Vector3 side1 = vertices[index1].Position - vertices[index3].Position;
                 Vector3 side2 = vertices[index1].Position - vertices[index2].Position;
@@ -442,7 +442,7 @@ namespace Mechanect.Classes
 
             }
 
-            for (int i = 0; i < vertices.Length; i++)
+            for (var i = 0; i < vertices.Length; i++)
                 vertices[i].Normal.Normalize();
         }
 
@@ -453,14 +453,14 @@ namespace Mechanect.Classes
         /// </summary> 
         private void UpdateViewMatrix()
         {
-            Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
+            var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
 
-            Vector3 cameraOriginalTarget = new Vector3(0, 0, -1);
-            Vector3 cameraRotatedTarget = Vector3.Transform(cameraOriginalTarget, cameraRotation);
-            Vector3 cameraFinalTarget = cameraPosition + cameraRotatedTarget;
+            var cameraOriginalTarget = new Vector3(0, 0, -1);
+            var cameraRotatedTarget = Vector3.Transform(cameraOriginalTarget, cameraRotation);
+            var cameraFinalTarget = cameraPosition + cameraRotatedTarget;
 
-            Vector3 cameraOriginalUpVector = new Vector3(0, 1, 0);
-            Vector3 cameraRotatedUpVector = Vector3.Transform(cameraOriginalUpVector, cameraRotation);
+            var cameraOriginalUpVector = new Vector3(0, 1, 0);
+            var cameraRotatedUpVector = Vector3.Transform(cameraOriginalUpVector, cameraRotation);
 
             viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
         }
@@ -476,14 +476,14 @@ namespace Mechanect.Classes
             MouseState currentMouseState = Mouse.GetState();
             if (currentMouseState != originalMouseState)
             {
-                float xDifference = currentMouseState.X - originalMouseState.X;
-                float yDifference = currentMouseState.Y - originalMouseState.Y;
+                var xDifference = currentMouseState.X - originalMouseState.X;
+                var yDifference = currentMouseState.Y - originalMouseState.Y;
                 leftrightRot -= rotationSpeed * xDifference * amount;
                 updownRot -= rotationSpeed * yDifference * amount;
                 Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
                 UpdateViewMatrix();
             }
-            Vector3 moveVector = new Vector3(0, 0, 0);
+            var moveVector = new Vector3(0, 0, 0);
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
                 moveVector += new Vector3(0, 0, -1);
@@ -508,7 +508,7 @@ namespace Mechanect.Classes
         /// <param name="vectorToAdd"></param>
         private void AddToCameraPosition(Vector3 vectorToAdd)
         {
-            Matrix cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
+            var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
             Vector3 rotatedVector = Vector3.Transform(vectorToAdd, cameraRotation);
             cameraPosition += moveSpeed * rotatedVector;
             UpdateViewMatrix();
@@ -545,12 +545,12 @@ namespace Mechanect.Classes
         /// </summary>
         private void DrawSkybox()
         {
-            SamplerState ss = new SamplerState();
+            var ss = new SamplerState();
             ss.AddressU = TextureAddressMode.Clamp;
             ss.AddressV = TextureAddressMode.Clamp;
             device.SamplerStates[0] = ss;
 
-            DepthStencilState dss = new DepthStencilState();
+            var dss = new DepthStencilState();
             dss.DepthBufferEnable = false;
             device.DepthStencilState = dss;
 
@@ -561,7 +561,7 @@ namespace Mechanect.Classes
             {
                 foreach (Effect currentEffect in mesh.Effects)
                 {
-                    Matrix worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(cameraPosition);
+                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(cameraPosition);
                     currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
                     currentEffect.Parameters["xView"].SetValue(viewMatrix);
