@@ -13,7 +13,6 @@ namespace Mechanect.Classes
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: Ahmed Badr </para>
-    /// This class uses Vector2 to do calculations for a 3D environment in order to speed up the calculations
     /// </remarks>
     class Bar
     {
@@ -71,7 +70,7 @@ namespace Mechanect.Classes
         private Vector2 drawingPosition;
 
         /// <summary>
-        /// Initializes the Bar
+        /// Initializes the Bar.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
@@ -85,17 +84,17 @@ namespace Mechanect.Classes
         /// </code>
         /// </example>
         /// <param name="drawingPosition">
-        /// Specifies where will the down-right corner of the bar be on the screen</param>
+        /// Specifies where will the down-right corner of the bar be on the screen.</param>
         /// <param name="spriteBatch">
-        /// The spriteBatch object that will be used to draw the bar</param>
+        /// The spriteBatch object that will be used to draw the bar.</param>
         /// <param name="initialPos">
-        /// The initial position of the ball</param>
+        /// The initial position of the ball.</param>
         /// <param name="currentPos">
-        /// The current position of the ball</param>
+        /// The current position of the ball.</param>
         /// <param name="shootingPos">
-        /// The final position of the ball</param>
+        /// The final position of the ball.</param>
         /// <param name="content">
-        /// Specifies the content manager responsible for this object</param>
+        /// Specifies the content manager responsible for this object.</param>
         public Bar(Vector2 drawingPosition, SpriteBatch spriteBatch, Vector2 initialPos, Vector2 currentPos, Vector2 shootingPos, ContentManager content)
         {
             bar = content.Load<Texture2D>(@"Resources/Images/Bar");
@@ -108,13 +107,13 @@ namespace Mechanect.Classes
 
         }
         /// <summary>
-        /// Updates the current position of the ball with the new position
+        /// Updates the current position of the ball.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
         /// </remarks>
         /// <param name="currentPos">
-        /// Specifies the current position of the ball</param>
+        /// Specifies the current position of the ball.</param>
         public void Update(Vector2 currentPos)
         {
             this.currentPos = currentPos;
@@ -125,7 +124,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr </para>
         /// </remarks>
-        /// <example>This sample shows how to use the Draw() method for this class
+        /// <example>This sample shows how to use the Draw() method for this class.
         /// <code>
         ///  protected override void Draw()
         ///  {
