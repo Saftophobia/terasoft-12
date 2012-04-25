@@ -70,7 +70,7 @@ namespace Mechanect.Classes
 
 
         /// <summary>
-        /// This method verifies wether a method is solvable or not
+        /// This method verifies whether a method is solvable.
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmed Badr </para>
@@ -110,7 +110,7 @@ namespace Mechanect.Classes
         }
 
         /// <summary>
-        /// Generates a solvable experiment by modifying the auto-generated givens.
+        /// Generates a solvable experiment.
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmed Badr </para>
