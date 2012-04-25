@@ -5,7 +5,6 @@ namespace Mechanect.Screens
 {
     class CommonPauseScreen : Instruction
     {
-        Vector2 position = new Vector2(100, 20);
         string instructions = "User is not detected by kinect device please stand in correct position then press ok";
         public CommonPauseScreen()
         {
@@ -17,20 +16,7 @@ namespace Mechanect.Screens
         {
             this.instructions = instructions;
         }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Allows the screen to perform any initialization it needs to before starting to draw.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-         
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
+        
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -41,17 +27,6 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             base.LoadContent();
-        }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// UnloadContent will be called only once and its the place to unload
-        /// all content.
-        /// </summary>        
-         public override void UnloadContent()
-        {
-            base.UnloadContent();
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -79,16 +54,6 @@ namespace Mechanect.Screens
             base.Draw(gameTime);
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Removes this screen from the screen manager.
-        /// </summary>
-        public override void Remove()
-        {
-            base.Remove();
-        }
-
+        
     }
 }
