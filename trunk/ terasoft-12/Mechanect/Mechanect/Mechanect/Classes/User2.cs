@@ -7,11 +7,35 @@ using Microsoft.Xna.Framework;
 
 namespace Mechanect.Classes
 {
+    /// <summary>
+    /// This Class responsible for functionalities that User will do
+    /// <remarks>
+    /// <para>Author: Mohamed Raafat</para>
+    /// </remarks>
+    /// </summary>
     class User2 : Mechanect.Classes.User
     {
 
+       /// <summary>
+       /// Instance Variables
+       /// <remarks>
+       /// <para>Author: Mohamed Raafat</para>
+       /// </remarks>
+       /// </summary>
         private Vector3 finalHandPosition;
+        private double currentAngle;
+        private double startPosition;
+        private TimeSpan currentTime;
+        private TimeSpan startTime;
+        private Skeleton skeleton;
+        private bool shooting;
+        private bool beforeHip;
+        private double previousAngle;
+        private double angleBeingMeasured;
+        private double measuredVelocity;
+
         public Vector3 FinalHandPosition
+
         {
             get
             {
@@ -23,7 +47,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private double currentAngle;
+        
         private double CurrentAngle
         {
             get
@@ -36,7 +60,8 @@ namespace Mechanect.Classes
             }
         }
 
-        private double startPosition;
+        
+       
         public double StartPosition
         {
             get
@@ -49,7 +74,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private TimeSpan currentTime;
+        
         public TimeSpan CurrentTime
         {
             get
@@ -62,7 +87,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private TimeSpan startTime;
+       
         public TimeSpan StartTime
         {
             get
@@ -74,7 +99,8 @@ namespace Mechanect.Classes
                 startTime = value;
             }
         }
-        private Skeleton skeleton;
+       
+
         public Skeleton Skeleton
         {
             get
@@ -87,7 +113,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private bool shooting;
+        
         public bool Shooting
         {
             get
@@ -99,7 +125,8 @@ namespace Mechanect.Classes
                 shooting = false;
             }
         }
-        private bool beforeHip;
+        
+
         public bool BeforeHip
         {
             get
@@ -112,7 +139,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private double previousAngle;
+        
         public double PreviousAngle
         {
             get
@@ -124,7 +151,8 @@ namespace Mechanect.Classes
                 previousAngle = value;
             }
         }
-        private double angleBeingMeasured;
+       
+
         public double AngleBeingMeasured
         {
             get
@@ -137,7 +165,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private double measuredVelocity;
+       
         public double MeasuredVelocity
         {
             get
@@ -245,8 +273,6 @@ namespace Mechanect.Classes
                     }
                 }
 
-              
-
             }
 
         }
@@ -254,7 +280,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Calculate the angular velocity and then the linear velocity
         /// </summary>
+        /// <remarks>
         /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
         /// <returns>Returns the linear velocity of the arm</returns>
         public void measureVelocity()
         {
