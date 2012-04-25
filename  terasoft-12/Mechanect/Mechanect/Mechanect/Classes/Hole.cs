@@ -41,7 +41,7 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// generates a random float value between two float numbers.
+        /// Generates a random float value between two float numbers.
         /// </summary>
         /// <param name="min">
         /// The minimum value. 
@@ -64,7 +64,7 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole and it's radius then initializes the hole with random values between these two numbers
+        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole and it's radius then initializes the hole with random values between these two numbers.
         /// </summary>
         /// <param name="min">
         /// The minimum possible value for the hole variables.
