@@ -9,12 +9,12 @@ namespace Mechanect.Classes
     class Tools2
     {
     
+       /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
        /// <summary>
         /// Generate 2D point randomly through given range.
         /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
