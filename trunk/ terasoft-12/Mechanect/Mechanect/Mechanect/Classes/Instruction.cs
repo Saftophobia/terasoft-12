@@ -155,7 +155,7 @@ namespace Mechanect
             return output;
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime, bool covered)
         {
 
             if (b.isClicked())
