@@ -355,9 +355,12 @@ namespace Mechanect.Classes
          /// </returns>
          public float GenerateFootMass(float min, float max)
          {
-             var random = new Random();
-             var generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
-             return generatedMass;
+             if ((min >= 0) && (max >= 0) && (max>min))
+             {
+                 var random = new Random();
+                 var generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
+                 return generatedMass;
+             }
          }
        
     }
