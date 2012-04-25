@@ -19,7 +19,7 @@ namespace Mechanect.Classes
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        double player1DisqualificationTime = 1; //Obtained by user story 3.7
+        double player1DisqualificationTime = 0.5; //Obtained by user story 3.7
         double player2DisqualificationTime = -1; //Obtained by user story 3.7   
         PerformanceGraph Graph;
         CountDown countdown;
@@ -62,7 +62,7 @@ namespace Mechanect.Classes
                 Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
                 SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
                 SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-                countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,graphics);
+                countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
                 background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
             }
@@ -179,12 +179,13 @@ namespace Mechanect.Classes
                 background.Draw(spriteBatch);
                 SpriteFont font = Content.Load<SpriteFont>("MechanectContent/MyFont1");
                 SpriteFont font2 = Content.Load<SpriteFont>("MechanectContent/MyFont2");
-                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
-                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlack");
+                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xRed");
+                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
                 SpriteBatch sprite2 = spriteBatch;
                 sprite2.Begin();
                 Graph.drawRange(spriteBatch, GraphicsDevice);
                 Graph.drawAxis(spriteBatch, GraphicsDevice, font, font2);
+                Graph.drawDisqualification(spriteBatch, graphics, P1Tex, P2Tex);
                 sprite2.End();
             }
 
