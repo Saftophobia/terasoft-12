@@ -168,8 +168,8 @@ namespace Mechanect.Classes
         private Vector3 ballFinalPosition(Vector3 velocity)
         {
 
-            float vxsquared = (float)Math.Pow(velocity.X, 2);
-            float vzsquared = (float)Math.Pow(velocity.Z, 2);
+            var vxsquared = (float)Math.Pow(velocity.X, 2);
+            var vzsquared = (float)Math.Pow(velocity.Z, 2);
             float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
             float z = (vzsquared / (2 * friction)) + ball.InitialBallPosition.Z;
             return new Vector3(x, 0, z);
@@ -186,8 +186,8 @@ namespace Mechanect.Classes
             Vector3 hole = this.hole.Position;
             Vector3 ballVelocity = ball.Velocity;
             Vector3 InitialPosition = ball.Position;
-            float optimumVx = (float)Math.Sqrt((2 * (wind + friction)) * (hole.X - InitialPosition.X));
-            float optimumVy = (float)Math.Sqrt((2 * (wind + friction)) * (hole.Y - InitialPosition.Y));
+            var optimumVx = (float)Math.Sqrt((2 * (wind + friction)) * (hole.X - InitialPosition.X));
+            var optimumVy = (float)Math.Sqrt((2 * (wind + friction)) * (hole.Y - InitialPosition.Y));
 
             if ((ballVelocity.X <= (optimumVx + tolerance.X)) && (ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius))
             && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
