@@ -32,8 +32,7 @@ namespace Mechanect.Common
             frameCounter = 0;
         }
         /// <summary>
-        /// This method should be used to set the frame capturing rate for the kinect sensor.
-        /// Note that this method will set any input bigger than 30 to 30, because the maximum kinect framerate is 30
+        /// Sets the drop frame rate.
         /// </summary>
         /// <param name="dropFrameRate">
         /// Specifies the drop rate for frames.</param>
