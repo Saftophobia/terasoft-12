@@ -67,10 +67,13 @@ namespace Mechanect.Classes
             }
         }
 
-       /* public User1() 
+        public User1() 
         {
- 
-        }*/
+            this.Winner = false;
+            this.disqualified = false;
+            
+            
+        }
 
 
         
