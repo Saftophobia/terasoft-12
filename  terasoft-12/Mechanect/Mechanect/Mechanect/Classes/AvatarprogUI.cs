@@ -55,10 +55,10 @@ namespace Mechanect.Classes
         public void Draw(SpriteBatch spriteBatch, Texture2D phototexture)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
-            //spriteBatch.Begin();
+            
             spriteBatch.Draw(phototexture, vectorp1, new Rectangle(0, 0, 100, 100), Color.White);
             spriteBatch.Draw(phototexture, vectorp2, new Rectangle(0, 0, 100, 100), Color.White);
-           // spriteBatch.End();
+            
             //base.Draw(gameTime);
         }
     }
