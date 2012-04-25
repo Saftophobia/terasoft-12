@@ -16,7 +16,7 @@ namespace Mechanect
         SpriteBatch spriteBatch;
         SpriteFont Font1;
         Vector2 origin;
-        Vector2 positionInScreen = Vector2.Zero;
+        Vector2 positionInScreen;
         String instructions;
         //Texture2D mytexture;
         Vector2 sPos = Vector2.Zero;
@@ -26,6 +26,32 @@ namespace Mechanect
         Game1 game = new Game1();
         int screenWidth = 800;
         int screenHeight = 400;
+
+        public Vector2 PositionInScreen
+        {
+            get
+            {
+                return positionInScreen;
+            }
+            set
+            {
+                positionInScreen = value;
+
+            }
+        }
+
+        public String Instruction
+        {
+            get
+            {
+                return instructions;
+            }
+            set
+            {
+                instructions = value;
+            }
+        }
+        
         public Instruction()
         {
             game.Window.AllowUserResizing = true;
