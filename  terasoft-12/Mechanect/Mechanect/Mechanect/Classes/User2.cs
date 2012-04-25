@@ -165,6 +165,20 @@ namespace Mechanect.Classes
             }
         }
 
+
+        private double measuredAngle;
+        public double MeasuredAngle
+        {
+            get
+            {
+                return measuredAngle;
+            }
+            set
+            {
+                measuredAngle = value;
+            }
+        }
+        
        
         public double MeasuredVelocity
         {
