@@ -30,17 +30,17 @@ namespace Mechanect.Classes
         private Matrix projectionMatrix;
         private int[] indices;
 
-        private float angle = 0f;
-        private int terrainWidth = 4;
-        private int terrainHeight = 3;
+        private float angle;
+        private int terrainWidth;
+        private int terrainHeight;
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
         private IndexBuffer myIndexBuffer;
 
-        private Vector3 cameraPosition = new Vector3(130, 30, -50);
-        private float leftrightRot = MathHelper.PiOver2;
-        private float updownRot = -MathHelper.Pi / 10.0f;
+        private Vector3 cameraPosition;
+        private float leftrightRot;
+        private float updownRot;
         private const float rotationSpeed = 0.3f;
         private const float moveSpeed = 30.0f;
         private MouseState originalMouseState;
@@ -61,6 +61,12 @@ namespace Mechanect.Classes
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.90f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
+            leftrightRot = MathHelper.PiOver2;
+            updownRot = -MathHelper.Pi / 10.0f;
+            terrainWidth = 4;
+            terrainHeight = 3;
+            angle = 0f;
+
         }
 
 
