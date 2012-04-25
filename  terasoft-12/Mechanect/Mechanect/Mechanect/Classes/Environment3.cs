@@ -618,7 +618,7 @@ namespace Mechanect.Classes
         protected void InitializeHole()
         {
             // TODO: Add your initialization logic here
-            //hole = new Hole();
+            hole = new Hole();
             holecameraposition = new Vector3(500.0f, 50.0f, 5000.0f);
             holeposition = hole.Position;
             holeaspectratio = device.Viewport.AspectRatio;
@@ -638,7 +638,7 @@ namespace Mechanect.Classes
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             //            spriteBatch = new SpriteBatch(GraphicsDevice);
-           // holeModel = Content.Load<Model>(@"Models/holemodel");
+            holeModel = Content.Load<Model>(@"Models/holemodel");
             // TODO: use this.Content to load your game content here
         }
 
