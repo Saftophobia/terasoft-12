@@ -158,9 +158,9 @@ namespace Mechanect.Classes
         ///        
         /// Velocity= (Displacement.Final-Displacement.Initial)/dt
         ///
-        /// where dt is (1/30) since the kinect captures 30 frames per
+        /// where dt is (1/12) since the kinect captures 12 frames per
         /// second implying that the time space (dt) between each depth 
-        /// frame and its successor is (1/30) seconds.
+        /// frame and its successor is (1/12) seconds.
         /// The resulting velocity is multiplied by negative one to
         /// get the Player's velocity relative to the Player not to the
         /// kinect, since the List holding the Player's displacements
@@ -187,7 +187,7 @@ namespace Mechanect.Classes
             {
                 try
                 {
-                    double dt = ((double)1 / (double)24);
+                    double dt = ((double)1 / (double)12);
                     float currentVelocity = (float)((DisplacementList[i] - DisplacementList[i - 1]) / dt) * -1;
                     result.Add(currentVelocity);
                 }
@@ -213,9 +213,9 @@ namespace Mechanect.Classes
         ///               
         /// Acceleration= (Velocity.Final-Velocity.Initial)/dt
         /// 
-        /// where dt is (1/30) since the kinect captures 30 frames per
+        /// where dt is (1/12) since the kinect captures 12 frames per
         /// second implying that the time space (dt) between each depth 
-        /// frame and its successor is (1/30) seconds.
+        /// frame and its successor is (1/12) seconds.
         /// The resulting acceleration is not multiplied by -1 since the
         /// incoming velocities represent the player's velocity relative
         /// to the player not the kinect.
@@ -240,7 +240,7 @@ namespace Mechanect.Classes
             {
                 try
                 {
-                    double dt = ((double)1 / (double)24);
+                    double dt = ((double)1 / (double)12);
                     float currentAcceleration = (float)((VelocityList[i] - VelocityList[i - 1]) / dt);
                     result.Add(currentAcceleration);
                 }
@@ -282,7 +282,7 @@ namespace Mechanect.Classes
                 accumulator += time[i];
             }
             totalTime = accumulator;
-            int frames = (int)(totalTime * 24);
+            int frames = (int)(totalTime * 12);
             for (int i = 0; i <= frames - 1; i++)
             {
                 Player1Displacement.Add(0);
@@ -331,7 +331,7 @@ namespace Mechanect.Classes
             int timeCounter = 0;
             for (int i = 0; i <= chosenTimings.Length - 1; i++)
             {
-                chosenTimings[i] = (int)(24 * totalTime * ((double)timeCounter / (double)16));
+                chosenTimings[i] = (int)(12 * totalTime * ((double)timeCounter / (double)16));
                 timeCounter++;
             }
             int u = 0;
@@ -916,19 +916,19 @@ namespace Mechanect.Classes
                 {
                     if (i < chosenTimings.Length - 1)
                     {
-                        double d1 = ((double)chosenTimings[i] / (double)24);
-                        double d2 = ((double)chosenTimings[i + 1] / (double)24);
+                        double d1 = ((double)chosenTimings[i] / (double)12);
+                        double d2 = ((double)chosenTimings[i + 1] / (double)12);
                         if (player1DisqualificationTime >= d1 && player1DisqualificationTime < d2)
                         {
                             double x = d1 + ((double)(d2 - d1) / (double)2);
                             if (player1DisqualificationTime < x)
                             {
-                                time = (double)chosenTimings[i] / (double)24;
+                                time = (double)chosenTimings[i] / (double)12;
                                 index = i;
                             }
                             else
                             {
-                                time = (double)chosenTimings[i + 1] / (double)24;
+                                time = (double)chosenTimings[i + 1] / (double)12;
                                 index = i + 1;
                             }
                         }
@@ -971,19 +971,19 @@ namespace Mechanect.Classes
                 {
                     if (i < chosenTimings.Length - 1)
                     {
-                        double d1 = ((double)chosenTimings[i] / (double)24);
-                        double d2 = ((double)chosenTimings[i + 1] / (double)24);
+                        double d1 = ((double)chosenTimings[i] / (double)12);
+                        double d2 = ((double)chosenTimings[i + 1] / (double)12);
                         if (player2DisqualificationTime >= d1 && player2DisqualificationTime < d2)
                         {
                             double x = d1 + ((double)(d2 - d1) / (double)2);
                             if (player2DisqualificationTime < x)
                             {
-                                time = (double)chosenTimings[i] / (double)24;
+                                time = (double)chosenTimings[i] / (double)12;
                                 index = i;
                             }
                             else
                             {
-                                time = (double)chosenTimings[i + 1] / (double)24;
+                                time = (double)chosenTimings[i + 1] / (double)12;
                                 index = i + 1;
                             }
                         }
@@ -1558,15 +1558,15 @@ namespace Mechanect.Classes
         /// <returns></returns>
         public void GetOptimum()
         {
-            int disq1 = (int)(currentGame.GetPlayer1Disq() * 24);//index of disq frame
-            int disq2 = (int)(currentGame.GetPlayer2Disq() * 24);//index of disq frame
+            int disq1 = (int)(currentGame.GetPlayer1Disq() * 12);//index of disq frame
+            int disq2 = (int)(currentGame.GetPlayer2Disq() * 12);//index of disq frame
             int start = 0;
             int end = 0;
             previousDisp = 4000;
             for (int i = 0; i <= TimeSpaces.Count - 1; i++)
             {
                 List<float> tempList = new List<float>();
-                end = start + (int)(TimeSpaces[i] * 24);
+                end = start + (int)(TimeSpaces[i] * 12);
                 List<float> displacementTest1 = new List<float>();
                 List<float> displacementTest2 = new List<float>();
                 List<float> velocityTest1 = new List<float>();
