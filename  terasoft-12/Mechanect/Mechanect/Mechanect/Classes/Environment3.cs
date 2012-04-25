@@ -629,7 +629,7 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Draws the 3D hole by rendering each effect in each mesh in the hole model
+        /// Draws the 3D hole by rendering each effect in each mesh in the hole model.
         /// </summary>
         protected void DrawHole()
         {
