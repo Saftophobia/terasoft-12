@@ -26,9 +26,6 @@ namespace Mechanect.Classes
         Boolean displayCountdown = false;
         CountDown background;
 
-        int timer = 0;
-
-
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -91,7 +88,7 @@ namespace Mechanect.Classes
                     {
                         Player1Displacement.Add(intitial);
                         intitial = intitial - stepping;
-                        stepping = stepping + 4;
+                        stepping = stepping + 2;
                     }
                     else
                     {
@@ -99,13 +96,13 @@ namespace Mechanect.Classes
                     }
                 }
                 intitial = 4000;
-                stepping = 0;
+                stepping = 1;
                 for (int i = 0; i <= 95; i++)
                 {
                     if (intitial > 0)
                     {
                         Player2Displacement.Add(intitial);
-                        stepping = stepping + 10;
+                        stepping = stepping + 4;
                         intitial = intitial - stepping;
                     }
                     else
@@ -146,14 +143,6 @@ namespace Mechanect.Classes
                 this.Exit();
             SpriteBatch sprite2 = spriteBatch;
             sprite2.Begin();
-
-
-            if (!displayCountdown)
-            {
-                timer++;
-                Graph.updateCurve(spriteBatch, GraphicsDevice);
-            }
-
 
             if (displayCountdown)
             {
@@ -197,8 +186,6 @@ namespace Mechanect.Classes
                 Graph.drawRange(spriteBatch, GraphicsDevice);
                 Graph.drawAxis(spriteBatch, GraphicsDevice, font, font2);
                 sprite2.End();
-                Graph.drawConnectors();
-                Graph.drawDisqualification(spriteBatch, graphics, timer, P1Tex, P2Tex);
             }
 
             if (displayCountdown)
