@@ -620,7 +620,7 @@ namespace Mechanect.Classes
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             //            spriteBatch = new SpriteBatch(GraphicsDevice);
-            holeModel = Content.Load<Model>(@"Models/holemodel");
+           // holeModel = Content.Load<Model>(@"Models/holemodel");
             // TODO: use this.Content to load your game content here
         }
 
