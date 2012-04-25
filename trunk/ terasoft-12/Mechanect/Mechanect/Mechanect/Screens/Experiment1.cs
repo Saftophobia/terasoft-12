@@ -311,7 +311,7 @@ namespace Mechanect.Screens
                 //Graph.drawRange(SpriteBatch, GraphicsDevice);
                // Graph.drawAxis(SpriteBatch, GraphicsDevice, font, font2);
                 sprite2.End();
-                Graph.drawConnectors();
+                //Graph.drawConnectors();
                // Graph.drawDisqualification(SpriteBatch, graphics, timer, P1Tex, P2Tex);
             }
 
