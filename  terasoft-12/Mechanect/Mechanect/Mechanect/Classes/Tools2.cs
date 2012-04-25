@@ -17,7 +17,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        /// <returns></returns>
+        /// <returns>returns Point </returns>
         public Point generate2Dpoint(int x,int y)
         {
             Random rand = new Random();
