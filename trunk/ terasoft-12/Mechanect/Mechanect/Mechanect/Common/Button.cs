@@ -36,11 +36,11 @@ namespace Mechanect
         ///</para>
         ///</remarks>
         /// <summary>
-        /// The constructor used ti initialize the button
+        /// The constructor used to initialize the button
         /// </summary>
         /// <param name="t">the gif texture of the button not moving</param>
-        /// <param name="tt">the gif texture of the button not moving</param>
-        /// <param name="p">the position of the slider</param>
+        /// <param name="tt">the gif texture of the button moving</param>
+        /// <param name="p">the position of the button, where the center is top left corner</param>
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         /// <param name="h">the picture of the hand</param>
@@ -63,7 +63,7 @@ namespace Mechanect
         ///</para>
         ///</remarks>
         /// <summary>
-        /// drawing the bar and the pointer
+        /// drawing the button and the hand
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
         public void draw(SpriteBatch spriteBatch)
@@ -80,7 +80,7 @@ namespace Mechanect
         ///</para>
         ///</remarks>
         /// <summary>
-        /// checking if the hand of the user has been hovered on the button and starts
+        /// checks if the hand of the user has been hovered on the button and starts
         /// the timer and activating the pointer to be moved.
         /// </summary>
         /// <param name="gameTime">takes the object gametime which tracks the time of the game</param>
@@ -163,7 +163,7 @@ namespace Mechanect
         ///</para>
         ///</remarks>
         /// <summary>
-        /// checks if the hand of the user is over the pointer or not
+        /// checks if the hand of the user is over the button or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
         public bool checkColission()
