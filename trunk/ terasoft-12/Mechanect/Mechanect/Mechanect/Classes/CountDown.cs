@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using Mechanect;
+using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
@@ -70,16 +72,16 @@ namespace Mechanect.Classes
         }
 
         public CountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo,Texture2D Texback,
-                SoundEffect Seffect1, SoundEffect Seffect2,GraphicsDeviceManager graphics)
+                SoundEffect Seffect1, SoundEffect Seffect2,int Width,int Height)
         {
-            Three = new CountDown(Texthree, 1024,
-                   /*graphics.PreferredBackBufferHeight*/650, 400, 200, 200, 200);
-            two = new CountDown(Textwo, 1024,
-                650, 400, 200, 200, 200);
-            One = new CountDown(Texone, 1024,
-                650, 400, 200, 200, 200);
-            go = new CountDown(Texgo, 1024,
-                650, 430, 200, 150, 150);            
+            Three = new CountDown(Texthree, Width,
+                   Height, 400, 200, 200, 200);
+            two = new CountDown(Textwo, Width,
+                Height, 400, 200, 200, 200);
+            One = new CountDown(Texone,Width,
+                Height, 400, 200, 200, 200);
+            go = new CountDown(Texgo, Width,
+                Height, 430, 200, 150, 150);            
             effect1 = Seffect1;
             effect2 = Seffect2;
         }
