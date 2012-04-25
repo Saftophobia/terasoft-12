@@ -527,7 +527,7 @@ namespace Mechanect.Classes
             Model newModel = Content.Load<Model>(assetName);
             textures = new Texture2D[newModel.Meshes.Count];
             LoadHole();
-            int i = 0;
+            var i = 0;
             foreach (ModelMesh mesh in newModel.Meshes)
                 foreach (BasicEffect currentEffect in mesh.Effects)
                     textures[i++] = currentEffect.Texture;
@@ -556,7 +556,7 @@ namespace Mechanect.Classes
 
             Matrix[] skyboxTransforms = new Matrix[skyboxModel.Bones.Count];
             skyboxModel.CopyAbsoluteBoneTransformsTo(skyboxTransforms);
-            int i = 0;
+            var i = 0;
             foreach (ModelMesh mesh in skyboxModel.Meshes)
             {
                 foreach (Effect currentEffect in mesh.Effects)
