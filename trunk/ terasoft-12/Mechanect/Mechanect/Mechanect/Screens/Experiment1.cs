@@ -20,9 +20,10 @@ namespace Mechanect.Screens
     {
         GraphicsDeviceManager graphics;
         MKinect kinect;
+        Texture2D avatarBall;
         User1 player1, player2;
         CountDown countdown;
-        CountDown background;
+        CountDown background1,background2;
         float timer = 0;
         int timecounter;
         PerformanceGraph Graph;
@@ -69,7 +70,42 @@ namespace Mechanect.Screens
             this.kinect = kinect;
         }
 
+        public override void Initialize()
+        {
+            //-----------------------initializetimecountand commands--------------------------
+            racecommands = gCommands;
+            Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
+            racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
+            // foreach (string s in racecommands)
+            //   System.Console.WriteLine(s);
+            timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
+            // foreach (int s in timeslice)
+            //  System.Console.WriteLine(s);
+            racecommandsforDRAW = new List<string>();
 
+            for (int time = 0; time < timeslice.Count; time++)
+            {
+                for (int timeslot = 1; timeslot <= timeslice[time]; timeslot++)
+                {
+                    racecommandsforDRAW.Add(racecommands[time]);
+                    //draw the command on screen for each second
+                }
+            }
+
+            //-----------============-----------------------==========================================-
+
+
+            //------------------------------Avatarprog----------------------------
+            avatarprogUI = new AvatarprogUI();
+             //SpriteBatch = new SpriteBatch(GraphicsDevice);
+            // drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
+
+            //----------------------------------------------------------------------
+
+
+
+            base.Initialize();
+        }
         public override void LoadContent()
         {
            // graphics = new GraphicsDeviceManager(this);
@@ -81,7 +117,7 @@ namespace Mechanect.Screens
            // graphics.PreferredBackBufferHeight = 650;
           //  graphics.ApplyChanges();
 
-            
+            avatarBall = Content.Load<Texture2D>("ball");
             Texture2D Texthree = Content.Load<Texture2D>("3");          
             Texture2D Textwo = Content.Load<Texture2D>("2");
             Texture2D Texone = Content.Load<Texture2D>("1");
@@ -90,42 +126,17 @@ namespace Mechanect.Screens
             SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
             SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
             countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
-            background = new CountDown(Texback, ScreenManager.GraphicsDevice.Viewport.Width,
-            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, 1024, 768); //initializes the background
+            background1 = new CountDown(Content.Load<Texture2D>("track2"), ScreenManager.GraphicsDevice.Viewport.Width,
+            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/,ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
+            background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,
+            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height); //initializes the background
             
-            //-----------------------initializetimecountand commands--------------------------
-            racecommands = gCommands;
-            Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
-            racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
-            // foreach (string s in racecommands)
-            //   System.Console.WriteLine(s);
-            timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
-            // foreach (int s in timeslice)
-            //  System.Console.WriteLine(s);
-            racecommandsforDRAW = new List<string>(); 
-            
-            for (int time = 0; time < timeslice.Count; time++)
-            {
-                for (int timeslot = 1; timeslot <= timeslice[time]; timeslot++)
-                {
-                    racecommandsforDRAW.Add(racecommands[time]);
-                    //draw the command on screen for each second
-                }
-            }
 
 
-            //------------------------------Avatarprog----------------------------
-            avatarprogUI = new AvatarprogUI();
-            //SpriteBatch = new SpriteBatch(GraphicsDevice);
-           // drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
-
-            //----------------------------------------------------------------------
-
+         
 
             //------------------------graphs
-            background = new CountDown(Content.Load<Texture2D>("Background2"),ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, 1024, 768);
-
+            
             Graph = new PerformanceGraph();
             List<string> Commands = new List<string>();
             List<double> CommandsTime = new List<double>();
@@ -147,12 +158,13 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-
+            
             //----------------------TIME----------------------------
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             timecounter += (int)timer;
             if (timer >= 1.0F)
                 timer = 0F;
+
             
             //--------------------keepsgettingskeletons----------------
 
@@ -167,10 +179,10 @@ namespace Mechanect.Screens
             }
 
             //after countdown, Update the Race 
-            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
             {
-                avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton);
-                //drawString.Update(racecommandsforDRAW[timecounter - 4] + "")
+               
+               //drawString.Update(racecommandsforDRAW[timecounter - 4] + "")
                 
                 if (player1.skeleton != null)
                 {
@@ -250,23 +262,30 @@ namespace Mechanect.Screens
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            
             if (timecounter < 4)
             {
-                background.Draw(SpriteBatch);
+               // SpriteBatch.Begin();
+                background1.Draw(SpriteBatch);
                 countdown.DrawCountdownScreen(SpriteBatch);
+              //  SpriteBatch.End();
             }
 
             //After countdown,Draw the Avatar
-            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner*/)
             {
-            avatarprogUI.Draw(SpriteBatch, Content.Load<Texture2D>("ball"));
+                background2.Draw(SpriteBatch);
+                SpriteBatch.Begin();
+            avatarprogUI.Draw(SpriteBatch,avatarBall);
+            SpriteBatch.End();
+           
             }
 
 
             // after Race, Draw the Graphs
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
-                background.Draw(SpriteBatch);
+                background2.Draw(SpriteBatch);
                 SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
                 SpriteFont font2 = Content.Load<SpriteFont>("SpriteFont1");
                 Texture2D P1Tex = Content.Load<Texture2D>("xBlue");
