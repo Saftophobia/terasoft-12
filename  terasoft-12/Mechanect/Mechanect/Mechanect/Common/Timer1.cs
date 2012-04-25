@@ -17,7 +17,8 @@ namespace Common.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// constructo to intitialize the variables
+        /// used to start the timer by marking the time and changing the status of the timer
+        /// to runnig
         /// </summary>
         public void start()
         {
@@ -27,7 +28,7 @@ namespace Common.Classes
 
 
         /// <summary>
-        /// used to get the time since the timer has started
+        /// used to get the time since the timer has started, to the time this method is called
         /// </summary>
         /// <returns>the duration that the timer has spent since it's started</returns>
         public double getDuration()
@@ -45,7 +46,7 @@ namespace Common.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// stops the timer from keeping tracking of time
+        /// changing the status of the timer to not running
         /// </summary>
         public void stop()
         {
@@ -58,9 +59,9 @@ namespace Common.Classes
         ///</para>
         ///</remarks>
         /// <summary>
-        /// checks if the timer is running or not
+        /// used to checks if the timer is running or not
         /// </summary>
-        /// <returns>true if the timer is runnimg and tracking the time</returns>
+        /// <returns>true if the timer is running and tracking the time</returns>
         public bool isRunning()
         {
             return running;

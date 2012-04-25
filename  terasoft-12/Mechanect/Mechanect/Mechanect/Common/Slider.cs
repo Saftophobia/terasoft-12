@@ -36,7 +36,7 @@ namespace Common.Classes
         /// <summary>
         /// The constructor used to initialize the slider
         /// </summary>
-        /// <param name="p">the position of the slider </param>
+        /// <param name="p">the position of the slider, where the center is the top left corner </param>
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         /// <param name="c">the content manager to draw the textures</param>
