@@ -189,8 +189,8 @@ namespace Mechanect.Classes
             float optimumVx = (float)Math.Sqrt((2 * (wind + friction)) * (hole.X - InitialPosition.X));
             float optimumVy = (float)Math.Sqrt((2 * (wind + friction)) * (hole.Y - InitialPosition.Y));
 
-            if (ballVelocity.X <= (optimumVx + tolerance.X) && ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius)
-            && ballVelocity.X >= (optimumVx - tolerance.Y) && ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius))
+            if ((ballVelocity.X <= (optimumVx + tolerance.X)) && (ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius))
+            && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
             {
                 BallFallIntoHole();
                 //winningWord(); to be implemented by Hegazy, commented to remove error
