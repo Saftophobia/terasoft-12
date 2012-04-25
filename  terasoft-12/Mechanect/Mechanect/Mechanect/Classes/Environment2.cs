@@ -73,35 +73,36 @@ namespace Mechanect
         public Environment2() { }
 
   
-        /// <summary>
-        /// generates random angle between 10 and 90
-        /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
+        /// <summary>
+        /// generates random angle between 10 and 90
+        /// </summary>
         /// <returns></returns>
         private double getRandomAngle()
         {
             return rand.Next(10, 90);
         }
-        /// <summary>
-        /// generates random velocity between 10 and 90
-        /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
+        /// <summary>
+        /// generates random velocity between 10 and 70
+        /// </summary>
         /// <returns></returns>
         private int getRandomVelocity()
         {
             return rand.Next(10, 70);
         }
-
+         /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <summary>
         /// getSolve : Generate solvable enviroment by setting solvable points for predator,Prey and Aquarium 
         /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
+         /// <returns></returns>
+       
         public void getSolvablePoints(int tolerance)
         {
             double xPredator;
@@ -175,13 +176,12 @@ namespace Mechanect
 
         }
 
+         /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         /// <summary>
         /// getX is method which return the horizontal displacment of a projectile at certain time. 
         /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <param name="caseH"></param>
         /// <param name="time"></param>
         /// <returns></returns>
 
@@ -192,14 +192,13 @@ namespace Mechanect
 
         }
 
-
-        /// <summary>
-        /// CheckPostive is a method which check if number is positive or not.If positive it return it and if negative 
-        /// it multiply it by -1 to be positive and return it.
-        /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
+        /// <summary>
+        /// CheckPostive is a method which check if number is positive or not.If positive it return it and if negative 
+        /// it multiply it by -1 to be positive and return it.
+        /// </summary>  
         /// <param name="number"></param>
         /// <returns></returns>
         private double CheckPositive(Double number)
@@ -208,43 +207,6 @@ namespace Mechanect
                 return number;
             else
                 return number * -1;
-        }
-
-
-
-        /// <summary>
-        /// sets the instance variable of prey to the prey given as parameter
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <param name="prey"></param>
-        private void setPrey(Prey prey)
-        {
-            this.prey = prey;
-        }
-        /// <summary>
-        /// sets the instance variable of Predator to the predator given as parameter
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <param name="predator"></param>
-        private void setPredator(Predator predator)
-        {
-            this.predator = predator;
-        }
-        /// <summary>
-        /// set the instance variable of Aquarium to the Aquarium given as parameter
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <param name="aquarium"></param>
-
-        private void setAquarium(Aquarium aquarium)
-        {
-            this.aquarium = aquarium;
         }
 
 
