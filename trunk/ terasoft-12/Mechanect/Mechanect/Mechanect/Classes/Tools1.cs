@@ -151,10 +151,10 @@ namespace Mechanect.Classes
 
              List<float> User11Displacement = new List<float>();
              List<float> User12Displacement = new List<float>();
-             for (int i = (pastSecondsFor1 - 1) * 24; i < User11.Positions.Count; i++)
+             for (int i = (pastSecondsFor1 - 1) * 12; i < User11.Positions.Count; i++)
                  User11Displacement.Add(User11.Positions[i]);
 
-             for (int i = (pastSecondsFor2 - 1) * 24; i < User12.Positions.Count; i++)
+             for (int i = (pastSecondsFor2 - 1) * 12; i < User12.Positions.Count; i++)
                  User12Displacement.Add(User12.Positions[i]);
 
              if (!CommandSatisfied(currentCommands[User11.ActiveCommand], User11Displacement, tolerance))

@@ -26,6 +26,7 @@ namespace Mechanect.Screens
         CountDown countdown;
         CountDown background1,background2;
         float timer = 0;
+        SpriteFont spritefont;
         int timecounter;
         PerformanceGraph Graph;
         List<int> timeslice;
@@ -35,8 +36,9 @@ namespace Mechanect.Screens
         AvatarprogUI avatarprogUI;
         int player1disqualification;
         int player2disqualification;
-        drawstring drawString = new drawstring(new Vector2(400, 400));
         
+        drawstring drawString = new drawstring(new Vector2(400, 400));
+        int NUMBEROFFRAMES = 0;
         //drawstring drawString
         
 
@@ -120,6 +122,7 @@ namespace Mechanect.Screens
            // graphics.PreferredBackBufferWidth = 1024;
            // graphics.PreferredBackBufferHeight = 650;
           //  graphics.ApplyChanges();
+            spritefont = Content.Load<SpriteFont>("SpriteFont1");
             drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
             avatarBall = Content.Load<Texture2D>("ball");
             Texture2D Texthree = Content.Load<Texture2D>("3");          
@@ -162,7 +165,7 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            
+            NUMBEROFFRAMES++;
             //----------------------TIME----------------------------
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             timecounter += (int)timer;
@@ -183,35 +186,40 @@ namespace Mechanect.Screens
             }
 
             //after countdown, Update the Race 
-            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) /*& /*!player1.Winner & !player2.Winner*/)
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
             {
 
                 drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
-               
+
+              //  if (NUMBEROFFRAMES % 3 == 0)
                 
-                if (player1.skeleton != null)
-                {
-                    player1.Positions.Add(player1.skeleton.Position.Z);
-                }
-                else
-                {
-                      player1.Disqualified = true;
-                }
-                if (player2.skeleton != null)
-                {
-                    player2.Positions.Add(player2.skeleton.Position.Z);
-                }
-                else
-                {
-                    player2.Disqualified = true;
-                }
+                   // drawString.Update(NUMBEROFFRAMES / timer + "");
                 
 
-                if (timer % 10 == 0)
+                if (NUMBEROFFRAMES % 3 ==0)
+                {
+                    if (player1.skeleton != null)
+                    {
+                        player1.Positions.Add(player1.skeleton.Position.Z);
+                    }
+                    else
+                    {
+                        //player1.Disqualified = true;
+                    }
+                    if (player2.skeleton != null)
+                    {
+                        player2.Positions.Add(player2.skeleton.Position.Z);
+                    }
+                    else
+                    {
+                        //player2.Disqualified = true;
+                    }
+
+                }
+                if (timer % 10 == 0 /*& timecounter >=5*/)
                  {
-                    //
-                    //Mechanect.Tools.Tools1.CheckEachSecond(timer, player1, player2, timeslice, racecommands, 5, spriteBatch,spfont);
-
+                    // Tools1.CheckEachSecond(timecounter, player1, player2, timeslice, racecommands, 5, SpriteBatch, spritefont);
+                   
 
                     player1.DisqualificationTime = player1disqualification;
                     player2.DisqualificationTime = player2disqualification;
@@ -277,7 +285,7 @@ namespace Mechanect.Screens
             }
 
             //After countdown,Draw the Avatar
-            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) /*& !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner*/)
+            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
             {
                 
                 background2.Draw(SpriteBatch);
@@ -291,7 +299,7 @@ namespace Mechanect.Screens
 
 
             // after Race, Draw the Graphs
-            if (timecounter >= racecommandsforDRAW.Count + 4 /*||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner*/)
+            if (timecounter >= racecommandsforDRAW.Count + 4 ||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
                 background2.Draw(SpriteBatch);
                 SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
