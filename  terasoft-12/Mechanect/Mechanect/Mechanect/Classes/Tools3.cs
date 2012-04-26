@@ -504,33 +504,5 @@ namespace Mechanect.Classes
            c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), p, sw, sh,
            c.Load<Texture2D>("Textures/Buttons/hand"), u);
         }
-
-
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
-        /// <summary>
-        /// Used to display the hand on the screen. It should be called inside a Draw() method
-        /// </summary>
-        /// <param name="c">content managaer to load pictures</param>
-        /// <param name="p">position of the button</param>
-        /// <param name="sw">screen width</param>
-        /// <param name="sh">screen height</param>
-        /// <param name="user">instance of user<param>
-        /// <param name="spriteBatch">used to draw the picture</param>
-        public static void DisplayHand(ContentManager c, int sw, int sh, SpriteBatch spriteBatch, User user)
-        {
-            if (user.USER != null)
-            {
-                Texture2D pic = c.Load<Texture2D>("Textures/Buttons/hand");
-                Vector2 handPosition = new Vector2(user.Kinect.GetJointPoint(user.USER.Joints[JointType.HandRight], sw, sh).X,
-                    user.Kinect.GetJointPoint(user.USER.Joints[JointType.HandRight], sw, sh).Y);
-                spriteBatch.Begin();
-                spriteBatch.Draw(pic, handPosition, Color.White);
-                spriteBatch.End();
-            }
-        }
     }
 }
