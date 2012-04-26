@@ -11,8 +11,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
-using Mechanect;
-using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
@@ -36,27 +34,7 @@ namespace Mechanect.Classes
         Boolean play1 = true;
         Boolean play2 = true;
         Boolean play3 = true;
-        Boolean play4 = true;    
-
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 20/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The constructor CountDown takes 8 parameters to create an instance 
-        /// of the Countdown object
-        /// </summary>
-        /// <param name="tex">Represents the Texture2D of object</param>       
-        /// <param name="a">Represents the back buffer width</param>
-        /// <param name="b">Represents the back buffer height</param>
-        /// <param name="v1">Represents the x co-ordinate of the object</param>
-        /// <param name="v2">Represents the y co-ordinate of the object</param>
-        /// <param name="v3">Represents width of the object</param>
-        /// <param name="v4">Represents height of the object</param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        Boolean play4 = true;        
 
         public CountDown(Texture2D tex, int a, int b, int v1, int v2, int v3, int v4)
         {
@@ -70,18 +48,18 @@ namespace Mechanect.Classes
             r = new Rectangle(v1, v2, v3, v4);
             counter = r.Height;
         }
-
+                
         public CountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo,Texture2D Texback,
-                SoundEffect Seffect1, SoundEffect Seffect2,int Width,int Height)
+                SoundEffect Seffect1, SoundEffect Seffect2,GraphicsDeviceManager graphics)
         {
-            Three = new CountDown(Texthree, Width,
-                   Height, 400, 200, 200, 200);
-            two = new CountDown(Textwo, Width,
-                Height, 400, 200, 200, 200);
-            One = new CountDown(Texone,Width,
-                Height, 400, 200, 200, 200);
-            go = new CountDown(Texgo, Width,
-                Height, 430, 200, 150, 150);            
+            Three = new CountDown(Texthree, graphics.PreferredBackBufferWidth,
+                   graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            two = new CountDown(Textwo, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            One = new CountDown(Texone, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
+            go = new CountDown(Texgo, graphics.PreferredBackBufferWidth,
+                graphics.PreferredBackBufferHeight, 430, 200, 150, 150);            
             effect1 = Seffect1;
             effect2 = Seffect2;
         }
@@ -94,21 +72,14 @@ namespace Mechanect.Classes
         /// <summary>
         /// The function Update is used to decrement the counter in
         /// order to allow the next number to appearon the screen 
-        /// when the counter reaches 0
+        /// when the counter reaches 0.
         /// </summary>
-        /// <param></param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param></param> 
+        /// <returns>void</returns>
 
         public void Update()
         {
-
-
             counter = counter - 4;
-
-
         }
 
         /// <remarks>
@@ -119,13 +90,10 @@ namespace Mechanect.Classes
         /// <summary>
         /// The function GetCounter is used to get the counter
         /// in order to decide whether the next number should
-        /// appear on the screen or not yet
+        /// appear on the screen or not yet.
         /// </summary>
-        /// <param name></param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns>int: returns the counter</returns>
+        /// <param name></param>  
+        /// <returns>int: The counter.</returns>
 
         public int GetCounter()
         {
@@ -138,23 +106,40 @@ namespace Mechanect.Classes
         /// <para>Date Modified 20/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function Draw is used to draw to Texture given
+        /// The function Draw is used to draw a Texture2D given
         /// the co-ordinates of the rectangle in which the texture
         /// will be drawn.
         /// </summary>
-        /// <param name="spriteBatch"> An instance of the spriteBatch
-        /// responsible for drawing the Texture</param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="spriteBatch"> An instance of the spriteBatch class.</param>       
+        /// <returns>void</returns>
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(Texture, r, Color.White);
-            spriteBatch.End();
+            try
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(Texture, r, Color.White);
+                spriteBatch.End();
+            }
+            catch (Exception e)
+            {
+                try
+                {
+                    spriteBatch.Draw(Texture, r, Color.White);
+                }
+                catch (Exception e1)
+                {
+                }
+            }
         }
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// Used to check whether the current number should disappear from the screen or not yet.
+        /// </summary>
+        /// <returns>void</returns>
         public void UpdateCountdownScreen() {
             if (Three.GetCounter() > 0)
             {
@@ -194,6 +179,16 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function DrawCountdownScreen draws the current countdown number on the screen only if its counter is greater than 0.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>  
+		/// <returns>void</returns>		
         public void DrawCountdownScreen(SpriteBatch spriteBatch)
         {
             if (Three.GetCounter() > 0)
@@ -213,6 +208,5 @@ namespace Mechanect.Classes
                 go.Draw(spriteBatch);
             }
         }
-
     }
 }
