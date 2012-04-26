@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-
 namespace Mechanect.Classes
 {
     class Hole
@@ -32,6 +28,7 @@ namespace Mechanect.Classes
                 position = value;
             }
         }
+        Environment3 environment;
         public Hole()
         {
             position = Vector3.Zero;
@@ -64,34 +61,14 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole then initializes the hole with random values between these two numbers.
+        /// Sets the X,Y,Z values for the hole position which are related to the enviroment's terrain width and height.
         /// </summary>
-        /// <param name="min">
-        /// The minimum possible value for the hole variables.
-        /// </param>
-        /// /// <param name="max">
-        /// The maximum possible value for the hole variables.
-        /// </param>
 
-        public void SetHoleValues(float min, float max)
-        {
-            position.X = GenerateRandomValue(min, max);
-            position.Y = GenerateRandomValue(min, max);
-            position.Z = GenerateRandomValue(min, max);
-        }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Takes an integer and sets it to be the radius of the hole.
-        /// </summary>
-        /// <param name="radius">
-        /// The radius of the hole
-        /// </param>
-
-        public void SetRadius(int radius)
-        {
-            this.radius = radius;
+        public void SetHoleValues()
+        {   
+            position.X = GenerateRandomValue(0, environment.terrainWidth);
+            position.Y = 0;
+            position.Z = GenerateRandomValue(0, environment.terrainHeight);
         }
     }
 }
