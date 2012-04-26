@@ -83,6 +83,15 @@ namespace Mechanect.Classes
             float generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
             return generatedMass;
         }
+        /// <summary>
+        /// Updates the ball position.
+        /// </summary>
+        /// <param name="friction"> the environment's friction</param>
+        public void Update(float friction)
+        {
+            Position = Vector3.Add(Position,Velocity);
+            Velocity = new Vector3(Velocity.X, Velocity.Y, Velocity.Z - friction);
+        }
 
 
 
