@@ -66,9 +66,9 @@ namespace Mechanect.Classes
 
         public void SetHoleValues()
         {   
-            position.X = GenerateRandomValue(0, environment.terrainWidth);
+            position.X = GenerateRandomValue(0, environment.terrainWidth-radius);
             position.Y = 0;
-            position.Z = GenerateRandomValue(0, environment.terrainHeight);
+            position.Z = GenerateRandomValue(0, environment.terrainHeight/2);
         }
     }
 }
