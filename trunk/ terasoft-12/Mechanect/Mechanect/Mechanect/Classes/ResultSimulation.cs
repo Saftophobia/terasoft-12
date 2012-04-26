@@ -21,7 +21,7 @@ namespace Mechanect.Classes
         private SpriteBatch spriteBatch;
         private Vector3 shootVelocity;
         private Vector3 optimalVelocity;
-        private Vector3 friction;
+        private float friction;
         private Vector3 initialPosition;
         private CustomModel ball;
         private SpriteFont font;
@@ -47,7 +47,7 @@ namespace Mechanect.Classes
         /// <param name="graphics"></param>
         /// <param name="spriteBatch"></param>
         /// <param name="font"></param>
-        public ResultSimulation(GraphicsDevice graphics, SpriteBatch spriteBatch, SpriteFont font, Color fontColor, CustomModel ball, Vector3 shootVelocity, Vector3 optimalVelocity, Vector3 friction)
+        public ResultSimulation(GraphicsDevice graphics, SpriteBatch spriteBatch, SpriteFont font, Color fontColor, CustomModel ball, Vector3 shootVelocity, Vector3 optimalVelocity, float friction)
         {
             this.graphics = graphics;
             this.spriteBatch = spriteBatch;
@@ -58,8 +58,8 @@ namespace Mechanect.Classes
             this.optimalVelocity = optimalVelocity;
             this.friction = friction;
             initialPosition = ball.position;
-            animation = new ModelLinearAnimation(ball, shootVelocity, friction, TimeSpan.FromSeconds(10), true);
-            camera = new ChaseCamera(new Vector3(0, 400, 800), Vector3.Zero, Vector3.Zero, graphics);
+            animation = new ModelLinearAnimation(ball, shootVelocity, Tools3.calculateFriction(shootVelocity, friction), TimeSpan.FromSeconds(10), true);
+            camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
             velocity1 = shootVelocity.ToString();
             velocity2 = optimalVelocity.ToString();
         }
@@ -76,8 +76,8 @@ namespace Mechanect.Classes
                 {
                     currentAnimation = true;
                     ball.position = initialPosition;
-                    animation = new ModelLinearAnimation(ball, optimalVelocity, friction, TimeSpan.FromSeconds(10), true);
-                    camera = new ChaseCamera(new Vector3(0, 400, 800), Vector3.Zero, Vector3.Zero, graphics);
+                    animation = new ModelLinearAnimation(ball, optimalVelocity, Tools3.calculateFriction(optimalVelocity, friction), TimeSpan.FromSeconds(10), true);
+                    camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
                 }
                 return;
 
