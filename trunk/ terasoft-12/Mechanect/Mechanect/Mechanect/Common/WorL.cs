@@ -13,9 +13,10 @@ namespace Mechanect.Common
 {
     class WorL
     {
-        ContentManager content;
-        Vector2 position;
-
+        private ContentManager content;
+        private Vector2 position;
+        private Texture2D winningPicture;
+        private Texture2D losingPicture;
 
         ///<remarks>
         ///<para>
@@ -32,6 +33,8 @@ namespace Mechanect.Common
         {
             content = c;
             position = p;
+            winningPicture = content.Load<Texture2D>("Textures/WorL/winner");
+            losingPicture = content.Load<Texture2D>("Textures/WorL/looser");
         }
 
         ///<remarks>
@@ -43,28 +46,13 @@ namespace Mechanect.Common
         /// displaying the wining word on the screen
         /// </summary>
         /// <param name="spriteBatch">used to draw the picture</param>
-        public void winningWord(SpriteBatch spriteBatch)
+        public void DislayIsWin(SpriteBatch spriteBatch, bool status)
         {
-            Texture2D pic = content.Load<Texture2D>("Textures/WorL/winner");
             spriteBatch.Begin();
-            spriteBatch.Draw(pic, position, Color.White);
-            spriteBatch.End();
-        }
-
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
-        /// <summary>
-        /// displaying the losing word on the screen
-        /// </summary>
-        /// <param name="spriteBatch">used to draw the picture</param>
-        public void losingWord(SpriteBatch spriteBatch)
-        {
-            Texture2D pic = content.Load<Texture2D>("Textures/WorL/looser");
-            spriteBatch.Begin();
-            spriteBatch.Draw(pic, position, Color.White);
+            if (status)
+                spriteBatch.Draw(winningPicture, position, Color.White);
+            else
+                spriteBatch.Draw(winningPicture, position, Color.White);
             spriteBatch.End();
         }
     }
