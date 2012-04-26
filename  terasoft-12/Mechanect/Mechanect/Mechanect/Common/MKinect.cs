@@ -13,7 +13,7 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Common
 {
-    class MKinect
+    public class MKinect
     {
         public KinectSensor _KinectDevice;
         private Skeleton[] _FrameSkeletons;
