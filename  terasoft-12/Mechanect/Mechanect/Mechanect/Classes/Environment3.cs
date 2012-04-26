@@ -48,13 +48,6 @@ namespace Mechanect.Classes
         private Texture2D[] skyboxTextures;
         private Model skyboxModel;
         private ContentManager Content;
-        Model holeModel;
-        Vector3 holecameraposition;
-        Matrix holeviewmatrix;
-        Matrix holeprojectionmatrix;
-        float holeaspectratio;
-        Vector3 holeposition;
-
 
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device)
         {
@@ -67,7 +60,7 @@ namespace Mechanect.Classes
             device = this.device;
             ball = new Ball(0.5f, 5f,device,Content);
             user = new User3(4f);
-            hole = new Hole();
+            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4);
             ball.InitialBallPosition = new Vector3(50, 35, 50);
             user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
             friction = 2f;
@@ -326,7 +319,7 @@ namespace Mechanect.Classes
 
                 device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
             }
-            //DrawHole(gameTime);
+            DrawHole(c);
         }
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -562,7 +555,6 @@ namespace Mechanect.Classes
 
             Model newModel = Content.Load<Model>(assetName);
             textures = new Texture2D[newModel.Meshes.Count];
-            LoadHole();
             var i = 0;
             foreach (ModelMesh mesh in newModel.Meshes)
                 foreach (BasicEffect currentEffect in mesh.Effects)
@@ -637,29 +629,9 @@ namespace Mechanect.Classes
         protected void InitializeHole()
         {
             // TODO: Add your initialization logic here
-            hole = new Hole();
-            holecameraposition = new Vector3(500.0f, 50.0f, 5000.0f);
-            holeposition = hole.Position;
-            holeaspectratio = device.Viewport.AspectRatio;
-            holeviewmatrix = Matrix.CreateLookAt(holecameraposition, Vector3.Zero, Vector3.Up);
-            holeprojectionmatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(40.0f), holeaspectratio, 100.0f, 100000.0f);
-            //          base.Initialize();
+            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4 );
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Loads the hole model.
-        /// </summary>
-
-        protected void LoadHole()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            //            spriteBatch = new SpriteBatch(GraphicsDevice);
-            //holeModel = Content.Load<Model>(@"Models/holemodel");
-            // TODO: use this.Content to load your game content here
-        }
 
         
         /// <remarks>
@@ -668,27 +640,13 @@ namespace Mechanect.Classes
         /// <summary>
         /// Draws the 3D hole by rendering each effect in each mesh in the hole model.
         /// </summary>
-        /*protected void DrawHole()
+        protected void DrawHole(Camera cam)
         {
-            //gdevice.Clear(Color.CornflowerBlue);
-            Matrix[] holetransforms = new Matrix[holeModel.Bones.Count];
-            holeModel.CopyAbsoluteBoneTransformsTo(holetransforms);
-
-            foreach (var mesh in holeModel.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
-                    effect.World = holetransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(holeposition);
-                    effect.View = holeviewmatrix;
-                    effect.Projection = holeprojectionmatrix;
-                }
-                mesh.Draw();
-            }
+            hole.DrawHole(cam);
             // TODO: Add your drawing code here
 
             //base.Draw(gameTime);
-        }*/
+        }
 
         #endregion
 
