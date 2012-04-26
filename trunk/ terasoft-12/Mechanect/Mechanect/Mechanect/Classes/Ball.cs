@@ -9,7 +9,6 @@ namespace Mechanect.Classes
     class Ball
     {
         private Vector3 position;
-        public bool NegVel;
         public Vector3 Position
         {
             get { return position; }
