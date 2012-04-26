@@ -4,28 +4,54 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
-using Mechanect;
 
 namespace Mechanect
 {
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    class Instruction : GameScreen
+    class Instruction
     {
         SpriteBatch spriteBatch;
-        SpriteFont Font1;
+        SpriteFont font1;
+        public SpriteFont Font1
+        {
+            get
+            {
+                return font1;
+            }
+            set
+            {
+                font1 = value;
+            }
+        }
         Vector2 origin;
         Vector2 positionInScreen;
         String instructions;
         Texture2D mytexture;
+        public Texture2D MyTexture
+        {
+            get
+            {
+                return mytexture;
+            }
+            set
+            {
+                mytexture = value;
+            }
+        }
         Vector2 sPos = Vector2.Zero;
         Vector2 ButtonPosition = new Vector2(300, 300);
         Button b;
+        public Button Button
+        {
+            get { return b; }
+            set { b = value; }
+        }
         ContentManager cmanager;
-        Game1 game = new Game1();
         int screenWidth = 800;
         int screenHeight = 400;
+        GraphicsDevice device;
 
         public Vector2 PositionInScreen
         {
@@ -53,13 +79,13 @@ namespace Mechanect
         }
      
   
-      //  public Instruction()
-       // {
-        //    game.Window.AllowUserResizing = true;
-        //    instructions = "";
-         //   origin = new Vector2(0f, 0f);
-         //   game.IsMouseVisible = true;
-       // }
+        public Instruction()
+        {
+           // game.Window.AllowUserResizing = true;
+            instructions = "";
+            origin = new Vector2(0f, 0f);
+        //    game.IsMouseVisible = true;
+        }
        
         /// <summary>
         /// Set the origin Vector to be the left top corner of the screen.
@@ -68,12 +94,16 @@ namespace Mechanect
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(String instructions)
+        public Instruction(String instructions, ContentManager content, SpriteBatch batch, GraphicsDevice device)
         {
-            game.Window.AllowUserResizing = true;
+
+
             this.instructions = instructions;
             origin = new Vector2(0f, 0f);
-            game.IsMouseVisible = true;
+            cmanager = content;
+            spriteBatch = batch;
+            this.device = device;
+            b = new OKButton(cmanager, ButtonPosition, screenWidth, screenHeight);
         }
 
 
@@ -86,31 +116,18 @@ namespace Mechanect
         /// LoadContent will be called only once before drawing and its the place to load
         /// all of your content.
         /// </summary>
-        public override void LoadContent()
+        public  void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
-            screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
-            spriteBatch = ScreenManager.SpriteBatch;
-            cmanager = ScreenManager.Game.Content;
-            b = new OKButton(cmanager,new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width / 2, this.ScreenManager.GraphicsDevice.Viewport.Height-400),
+            screenWidth = device.Viewport.Width;
+            screenHeight = device.Viewport.Height;
+            b = new OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
            screenWidth , screenHeight );
-            Font1 = cmanager.Load<SpriteFont>("spriteFont1");
-            mytexture = cmanager.Load<Texture2D>(@"Textures/screen");
+           
             // TODO: use this.Content to load your game content here
         }
 
-        public override void Update(GameTime gameTime, bool covered)
-        {
-
-            if (b.isClicked())
-            {
-                this.Remove();
-            }
-            b.update(gameTime);
-            base.Update(gameTime, covered);
-        }
-
+       
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -119,14 +136,13 @@ namespace Mechanect
         /// The method draws the instruction screen and the given text along with an ok button down the screen.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
             //graphicsdevice.Clear(Color.YellowGreen);
             string output = WrapText(Font1, this.instructions, screenWidth);
-
             b.draw(spriteBatch);
             spriteBatch.Begin();
-            spriteBatch.DrawString(Font1, output, positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
+            spriteBatch.DrawString(Font1, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
         /// <summary>
