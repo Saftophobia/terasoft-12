@@ -23,7 +23,6 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         public static int angleTolerance { get; set; }
         public static int velocityTolerance { get; set; }
-        private Vector2 tolerance;
         public Bar distanceBar;
         private GraphicsDevice device;
 
@@ -212,6 +211,9 @@ namespace Mechanect.Classes
             Vector3 hole = this.hole.Position;
             Vector3 ballVelocity = ball.Velocity;
             Vector3 InitialPosition = ball.Position;
+            float xComp = (float)(velocityTolerance * Math.Cos(angleTolerance));
+            float yComp = (float)(velocityTolerance * Math.Sin(angleTolerance));
+            Vector2 tolerance = new Vector2(xComp, yComp);
             var optimumVx = (float)Math.Sqrt((2 * (wind + friction)) * (hole.X - InitialPosition.X));
             var optimumVy = (float)Math.Sqrt((2 * (wind + friction)) * (hole.Y - InitialPosition.Y));
 
