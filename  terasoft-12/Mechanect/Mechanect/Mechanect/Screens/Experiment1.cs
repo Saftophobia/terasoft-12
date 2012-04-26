@@ -20,7 +20,7 @@ namespace Mechanect.Screens
     class Experiment1:Mechanect.Common.GameScreen
     {
         Boolean graphmutex = false;
-        GraphicsDeviceManager graphics;
+        GraphicsDevice graphics; 
         MKinect kinect;
         Texture2D avatarBall;
         User1 player1, player2;
@@ -79,6 +79,7 @@ namespace Mechanect.Screens
 
         public override void Initialize()
         {
+            graphics = ScreenManager.GraphicsDevice;
             //-----------------------initializetimecountand commands--------------------------
             racecommands = gCommands;
             Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
@@ -344,8 +345,8 @@ namespace Mechanect.Screens
             {
                // SpriteBatch sprite2 = SpriteBatch;
               //  sprite2.Begin();
-             //  Graph.drawRange(SpriteBatch, GraphicsDevice);
-             //   Graph.drawEnvironment(SpriteBatch, GraphicsDevice, font1, font2);
+               Graph.drawRange(SpriteBatch, graphics);
+                Graph.drawEnvironment(SpriteBatch, graphics, font1, font2);
                 Graph.drawDisqualification(SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
                // sprite2.End();
                 
