@@ -1,22 +1,20 @@
 ﻿using Microsoft.Xna.Framework;
-
-
+using Mechanect.Common;
+using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
-    class CommonPauseScreen : Instruction
+    class CommonPauseScreen : GameScreen
     {
-        string instructions = "User is not detected by kinect device please stand in correct position then press ok";
+        string instructions = "User not detected by kinect device please stand in correct position";
+        Instruction instruction;
+
         public CommonPauseScreen()
         {
-            new Instruction(instructions);
         }
-
         public CommonPauseScreen(string instructions)
-            : base(instructions)
         {
             this.instructions = instructions;
         }
-        
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -24,10 +22,16 @@ namespace Mechanect.Screens
         /// LoadContent will be called only once before drawing and its the place to load
         /// all of your content.
         /// </summary>
+
         public override void LoadContent()
         {
-            base.LoadContent();
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice);
+            instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
+            instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
+
         }
+
+
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -37,9 +41,15 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
+
         public override void Update(GameTime gameTime, bool covered)
         {
-            base.Update(gameTime, covered);
+            if (instruction.Button.isClicked())
+            {
+                ExitScreen();
+            }
+            instruction.Button.update(gameTime);
+            base.Update(gameTime, false);
         }
 
         /// <remarks>
@@ -51,9 +61,13 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            instruction.Draw(gameTime);
+        }
+        public override void Remove()
+        {
+            base.Remove();
+
         }
 
-        
     }
 }
