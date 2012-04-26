@@ -8,8 +8,8 @@ namespace Common.Classes
 {
     class Timer1
     {
-        DateTime startTime;
-        bool running;
+        private DateTime startTime;
+        private bool running;
 
         ///<remarks>
         ///<para>
@@ -20,7 +20,7 @@ namespace Common.Classes
         /// used to start the timer by marking the time and changing the status of the timer
         /// to runnig
         /// </summary>
-        public void start()
+        public void Start()
         {
             running = true;
             startTime = DateTime.Now;
@@ -31,7 +31,7 @@ namespace Common.Classes
         /// used to get the time since the timer has started, to the time this method is called
         /// </summary>
         /// <returns>the duration that the timer has spent since it's started</returns>
-        public double getDuration()
+        public double GetDuration()
         {
             if (running)
             {
@@ -48,7 +48,7 @@ namespace Common.Classes
         /// <summary>
         /// changing the status of the timer to not running
         /// </summary>
-        public void stop()
+        public void Stop()
         {
             running = false;
         }
@@ -62,7 +62,7 @@ namespace Common.Classes
         /// used to checks if the timer is running or not
         /// </summary>
         /// <returns>true if the timer is running and tracking the time</returns>
-        public bool isRunning()
+        public bool IsRunning()
         {
             return running;
         }
