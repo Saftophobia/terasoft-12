@@ -30,16 +30,30 @@ namespace Mechanect.Common
         /// <param name="acceleration">the object's acceleration vector</param>
         /// <param name="enableRotation">enables object rotation</param>
         /// <param name="duration">animation duration</param>
-        public ModelLinearAnimation(CustomModel model, Vector3 velocity, Vector3 acceleration, TimeSpan duration, Boolean enableRotation)
+        public ModelLinearAnimation(CustomModel model, Vector3 velocity, float acceleration, TimeSpan duration, Boolean enableRotation)
         {
             this.model = model;
             this.velocity = velocity;
-            this.acceleration = acceleration;
+            this.acceleration = Vector3.Zero;
+            
+            if (velocity.X > 0)
+            {
+                this.acceleration.X = acceleration;
+            }
+            if (velocity.Y != 0)
+            {
+                this.acceleration.Y = acceleration;
+            }
+            if (velocity.Z != 0)
+            {
+                this.acceleration.Z = acceleration;
+            }
+            
             this.enableRotation = enableRotation;
             elapsedTime = TimeSpan.FromSeconds(0);
-            if (Vector3.Add(velocity, acceleration).Length() < velocity.Length())
+            if (Vector3.Add(velocity, this.acceleration).Length() < velocity.Length())
             {
-                this.duration = TimeSpan.FromSeconds(velocity.Length() / acceleration.Length() / 2f);
+                this.duration = TimeSpan.FromSeconds(velocity.Length() / this.acceleration.Length() / 2f);
             }
             else
             {
@@ -59,12 +73,39 @@ namespace Mechanect.Common
             if (elapsedTime.TotalSeconds < duration.TotalSeconds)
             {
                 float ms = ((float)elapsedTime.TotalMilliseconds);
-                model.position = startPosition + (velocity * ms / 1000f) + (acceleration * ms * ms / 1000000f);
-                if (enableRotation)
+                Vector3 v = (velocity * ms / 1000f) + (acceleration * ms * ms / 1000000f);
+                if (v.Z < 0)
                 {
-                    Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / 180;
-                    model.rotation = startAngle + new Vector3(delta.Z, delta.Y, -1 * delta.X);
+                    model.position = new Vector3(model.position.X,model.position.Y,startPosition.Z + v.Z);
+                    if (enableRotation)
+                    {
+                        Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / 180;
+                        model.rotation = startAngle + new Vector3(delta.Z, 0, 0) * 100;
+                    }
                 }
+                if ((velocity.X > 0 && v.X > 0))
+                {
+
+                    model.position = new Vector3(startPosition.X - v.X, model.position.Y, model.position.Z);
+                   
+                    if (enableRotation)
+                    {
+                        Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / 180;
+                        model.rotation = startAngle + new Vector3(0, 0, -1 * delta.X) * 100;
+                    }
+                }
+                if ((velocity.X < 0 && v.X < 0))
+                {
+                    model.position = new Vector3(startPosition.X + v.X, model.position.Y, model.position.Z);
+
+                    if (enableRotation)
+                    {
+                        Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / 180;
+                        model.rotation = startAngle + new Vector3(0, 0, -1 * delta.X) * 100;
+                    }
+
+                }
+                
             }
             else
             {
