@@ -8,13 +8,14 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Mechanect.Cameras;
 
 namespace Mechanect.Classes
 {
     class Environment3
     {
         private Hole hole;
-        private Ball ball;
+        public Ball ball;
         private User3 user;
         private float wind;
         private float friction;
@@ -54,15 +55,17 @@ namespace Mechanect.Classes
         float holeaspectratio;
         Vector3 holeposition;
 
-        public Environment3(SpriteBatch spriteBatch)
+
+        public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device)
         {
             #region dummyInitializations
             /* the values used here should allow the ball to reach the user's feet.
              * the velocity is added to the position. friction is reduced
              * from the Z component of the velocity each time.  
              */
-
-            ball = new Ball(0.5f, 5f);
+            Content = Content2;
+            device = this.device;
+            ball = new Ball(0.5f, 5f,device,Content);
             user = new User3(4f);
             hole = new Hole();
             ball.InitialBallPosition = new Vector3(5, 0, 5);
@@ -142,7 +145,11 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
+<<<<<<< .mine
+            hole.SetHoleValues( );
+=======
             hole.SetHoleValues();
+>>>>>>> .r561
             var x = Constants3.solvableExperiment;
             do
             {
@@ -246,9 +253,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Loads the content of the environment. Similar to the LoadConent() method of XNA
         /// </summary>
-        public void LoadEnvironmentContent(ContentManager Content2)
+        public void LoadEnvironmentContent()
         {
-            Content = Content2;
+            
             effect = Content.Load<Effect>("Textures/effects");
             SetUpCamera();
 

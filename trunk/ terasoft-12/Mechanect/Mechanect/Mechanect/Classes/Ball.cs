@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Mechanect.Common;
+using Mechanect.Cameras;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Classes
 {
     class Ball
     {
+        public CustomModel ballModel;
+
+        ContentManager content;
+        GraphicsDevice device;
         private Vector3 position;
         public Vector3 Position
         {
@@ -59,11 +67,21 @@ namespace Mechanect.Classes
 
         public float maxMass, minMass;
 
-        public Ball(float minMass, float maxMass)
+        public Ball(float minMass, float maxMass, GraphicsDevice device, ContentManager content)
         {
             this.maxMass = maxMass;
             this.minMass = minMass;
             mass = generateBallMass(minMass,maxMass);
+            this.device = device;
+            this.device = device;
+            
+       
+
+        }
+
+        public void LoadContent()
+        {
+            ballModel = new CustomModel(content.Load<Model>("ball"), initialBallPosition, Vector3.Zero, new Vector3(1, 1, 1), device);
         }
 
        ///<remarks>
@@ -104,8 +122,16 @@ namespace Mechanect.Classes
             else if(InitialVelocity.Z <0)
                 Velocity = new Vector3(Velocity.X + friction, Velocity.Y, Velocity.Z - friction);
 
+
+
         }
 
+        
+    
+        public void Draw(GameTime gameTime, Camera camera)
+        {
+            ballModel.Draw(camera);
+        }
 
 
     }
