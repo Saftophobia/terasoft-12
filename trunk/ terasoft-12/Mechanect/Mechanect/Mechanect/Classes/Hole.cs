@@ -45,7 +45,7 @@ namespace Mechanect.Classes
             this.terrainWidth = terrainWidth;
             this.terrainHeight = terrainHeight;
             SetHoleValues();
-            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, Vector3.One, d);
+            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3(0.1f), d);
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -80,8 +80,9 @@ namespace Mechanect.Classes
             if (max > min)
             {
                 var random = new Random();
-                var value = ((float)(random.NextDouble() * (max - min))) + min;
+               var value = ((float)(random.NextDouble() * (max - min))) + min;
                 return value;
+             
             }
             else throw new ArgumentException("max value has to be greater than min value");
         }
@@ -94,9 +95,11 @@ namespace Mechanect.Classes
 
         public void SetHoleValues()
         {
-            position.X = GenerateRandomValue(0, terrainWidth);
+
+
+            position.X = GenerateRandomValue(-terrainWidth / 4, terrainWidth / 4);
             position.Y = 0;
-            position.Z = GenerateRandomValue(0, terrainHeight / 2);
+            position.Z = GenerateRandomValue(-(terrainHeight- radius)/2, (terrainHeight - radius)/2);
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Mechanect.Screens
         public InstructionsScreen3()
         {
         }
-        public InstructionsScreen3(string instructions)
+        public InstructionsScreen3(string instructions, User3 user)
             
         {
             this.instructions = instructions;
-            user3 = new User3();
+            user3 = user;
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -52,6 +52,7 @@ namespace Mechanect.Screens
             if (instruction.Button.IsClicked())
                     {
                         ExitScreen();
+              ScreenManager.AddScreen(new Settings3(user3));
                    }
             instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
@@ -66,6 +67,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
+
             instruction.Draw(gameTime);
         }
         public override void Remove()

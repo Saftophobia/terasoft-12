@@ -40,12 +40,12 @@ namespace Mechanect.Screens
           velocity = new Slider(new Vector2(20, 200),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
             this.ScreenManager.GraphicsDevice.Viewport.Height,
-            this.ScreenManager.Game.Content);
+            this.ScreenManager.Game.Content,user);
 
           angle = new Slider(new Vector2(20, 400),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
             this.ScreenManager.GraphicsDevice.Viewport.Height,
-            this.ScreenManager.Game.Content);
+            this.ScreenManager.Game.Content,user);
 
 
           level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch, user);

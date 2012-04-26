@@ -20,7 +20,7 @@ namespace Mechanect.Screens
         GraphicsDevice graphics;
         Camera c;
         User user;
-        ResultSimulation sim;
+        //ResultSimulation sim;
 
            public Experiment3(User user)
         {
@@ -33,14 +33,14 @@ namespace Mechanect.Screens
 
             graphics = this.ScreenManager.GraphicsDevice;
 
-            c = new TargetCamera(new Vector3(0, 100, 100), Vector3.Zero, graphics);
+            c = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, graphics);
             
-            environment = new Environment3(ScreenManager.SpriteBatch,ScreenManager.Game.Content,ScreenManager.GraphicsDevice);
+            environment = new Environment3(ScreenManager.SpriteBatch,ScreenManager.Game.Content,ScreenManager.GraphicsDevice,(User3)user);
 
             environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent();
 
-            sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, new Vector3(5, 0 ,0 ), new Vector3(3, 0, 0), new Vector3(-1, 0, 0));
+            //sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, new Vector3(5, 0 ,0 ), new Vector3(3, 0, 0), new Vector3(-1, 0, 0));
 
         }
 
@@ -52,16 +52,16 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
             c.Update();
-            //environment.ball.Update(environment.friction);
-            sim.Update(gameTime);
+            environment.ball.Update(environment.friction);
+            //sim.Update(gameTime);
             base.Update(gameTime, covered);
             //environment.UpdateEnvironment(gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            environment.DrawEnvironment(sim.camera, gameTime);
-            environment.ball.Draw(gameTime, sim.camera);
+            environment.DrawEnvironment(c, gameTime);
+            environment.ball.Draw(gameTime, c);
         }
 
 

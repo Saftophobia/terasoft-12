@@ -49,18 +49,18 @@ namespace Mechanect.Classes
         private Model skyboxModel;
         private ContentManager Content;
 
-        public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device)
+        public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
             #region dummyInitializations
             /* the values used here should allow the ball to reach the user's feet.
              * the velocity is added to the position. friction is reduced
              * from the Z component of the velocity each time.  
              */
+            this.user = user;
             Content = Content2;
             device = this.device;
             ball = new Ball(0.5f, 5f,device,Content);
-            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4);
-            ball.InitialBallPosition = new Vector3(50, 35, 50);
+            ball.InitialBallPosition = new Vector3(50, 3, 50);
             user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
             friction = 2f/3600;
             wind = 0f;
@@ -69,7 +69,6 @@ namespace Mechanect.Classes
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
-            hole.Position = new Vector3(20, 0, 5);
             user.AssumedLegMass = 20;
             
             #endregion
@@ -80,8 +79,6 @@ namespace Mechanect.Classes
             //distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.90f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
-            terrainWidth = 4;
-            terrainHeight = 3;
             angle = 0f;
 
         }
@@ -348,15 +345,8 @@ namespace Mechanect.Classes
                 for (var y = 0; y < terrainHeight; y++)
                 {
                     vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
+                    vertices[x + y * terrainWidth].Color = Color.Green;
 
-                    if (heightData[x, y] < (minHeight + (maxHeight - minHeight) / 4))
-                        vertices[x + y * terrainWidth].Color = Color.Blue;
-                    else if (heightData[x, y] < (minHeight + (maxHeight - minHeight) * 2 / 4))
-                        vertices[x + y * terrainWidth].Color = Color.Green;
-                    else if (heightData[x, y] < (minHeight + (maxHeight - minHeight) * 3 / 4))
-                        vertices[x + y * terrainWidth].Color = Color.Brown;
-                    else
-                        vertices[x + y * terrainWidth].Color = Color.White;
                 }
             }
             
@@ -412,7 +402,7 @@ namespace Mechanect.Classes
             heightData = new float[terrainWidth, terrainHeight];
             for (var x = 0; x < terrainWidth; x++)
                 for (var y = 0; y < terrainHeight; y++)
-                    heightData[x, y] = heightMapColors[x + y * terrainWidth].R / 5.0f;
+                    heightData[x, y] = (heightMapColors[x + y * terrainWidth].R / 5.0f) - 20;
 
         }
 
