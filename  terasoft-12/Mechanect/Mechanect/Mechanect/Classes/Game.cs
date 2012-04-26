@@ -61,7 +61,7 @@ namespace Mechanect.Classes
                 Texture2D Texback = Content.Load<Texture2D>("MechanectContent/track2");
                 SoundEffect Seffect1 = Content.Load<SoundEffect>("MechanectContent/BEEP1B");
                 SoundEffect Seffect2 = Content.Load<SoundEffect>("MechanectContent/StartBeep");
-                countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
+               // countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2, graphics);
                 background = new CountDown(Texback, graphics.PreferredBackBufferWidth,
                 graphics.PreferredBackBufferHeight, 0, 0, 1024, 768);
             }
@@ -116,7 +116,7 @@ namespace Mechanect.Classes
                     }
                 }
                 //main initializing method
-                Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
+                //Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
 
             }
             base.Initialize();
@@ -169,15 +169,15 @@ namespace Mechanect.Classes
             if (!displayCountdown)
             {
                 background.Draw(spriteBatch);
-                SpriteFont font = Content.Load<SpriteFont>("MechanectContent/MyFont1");
-                SpriteFont font2 = Content.Load<SpriteFont>("MechanectContent/MyFont2");
-                Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xRed");
-                Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
+                SpriteFont font = Content.Load<SpriteFont>("MyFont1");
+                SpriteFont font2 = Content.Load<SpriteFont>("MyFont2");
+                Texture2D P1Tex = Content.Load<Texture2D>("xRed");
+                Texture2D P2Tex = Content.Load<Texture2D>("xBlue");
                 SpriteBatch sprite2 = spriteBatch;
                 sprite2.Begin();
                 Graph.drawRange(spriteBatch, GraphicsDevice);
                 Graph.drawEnvironment(spriteBatch, GraphicsDevice, font, font2);
-                Graph.drawDisqualification(spriteBatch, graphics, P1Tex, P2Tex);
+                //Graph.drawDisqualification(spriteBatch, graphics, P1Tex, P2Tex);
                 sprite2.End();
             }
 

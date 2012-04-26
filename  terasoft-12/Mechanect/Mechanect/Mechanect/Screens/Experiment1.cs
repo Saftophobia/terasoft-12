@@ -19,6 +19,7 @@ namespace Mechanect.Screens
 {
     class Experiment1:Mechanect.Common.GameScreen
     {
+        Boolean graphmutex = false;
         GraphicsDeviceManager graphics;
         MKinect kinect;
         Texture2D avatarBall;
@@ -36,7 +37,8 @@ namespace Mechanect.Screens
         AvatarprogUI avatarprogUI;
         int player1disqualification;
         int player2disqualification;
-        
+        SpriteFont font1, font2;
+        Texture2D P1Tex, P2Tex;
         drawstring drawString = new drawstring(new Vector2(400, 400));
         int NUMBEROFFRAMES = 0;
         //drawstring drawString
@@ -108,6 +110,11 @@ namespace Mechanect.Screens
 
             //----------------------------------------------------------------------
 
+            // initialize the graph
+           
+
+            Graph = new PerformanceGraph();
+            //----================
 
 
             base.Initialize();
@@ -137,8 +144,11 @@ namespace Mechanect.Screens
             ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/,ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
             background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,
             ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height); //initializes the background
-            
 
+            font1 = Content.Load<SpriteFont>("MyFont1");
+            font2 = Content.Load<SpriteFont>("MyFont2");
+             P1Tex = Content.Load<Texture2D>("xRed");
+             P2Tex = Content.Load<Texture2D>("xBlue");
 
          
 
@@ -279,11 +289,18 @@ namespace Mechanect.Screens
             if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
 
-               // Graph.updateCurve(SpriteBatch, GraphicsDevice);
+                if (!graphmutex)
+                {
+                    List<double> timeslicedouble = new List<double>();
+                    foreach (int s in timeslice)
+                    {
+                        timeslicedouble.Add((double)s);
+                    }
+                    Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble, (double)player1disqualification,(double)player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                    graphmutex = true;
+                }
 
-                //sprite2.End();
-
-
+               
 
 
 
@@ -325,6 +342,12 @@ namespace Mechanect.Screens
             // after Race, Draw the Graphs
             if (timecounter >= racecommandsforDRAW.Count + 4 ||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
+               // SpriteBatch sprite2 = SpriteBatch;
+              //  sprite2.Begin();
+             //  Graph.drawRange(SpriteBatch, GraphicsDevice);
+             //   Graph.drawEnvironment(SpriteBatch, GraphicsDevice, font1, font2);
+                Graph.drawDisqualification(SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
+               // sprite2.End();
                 
             }
 

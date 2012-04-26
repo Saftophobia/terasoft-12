@@ -50,16 +50,16 @@ namespace Mechanect.Classes
         }
                 
         public CountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo,Texture2D Texback,
-                SoundEffect Seffect1, SoundEffect Seffect2,GraphicsDeviceManager graphics)
+                SoundEffect Seffect1, SoundEffect Seffect2,int width, int height)
         {
-            Three = new CountDown(Texthree, graphics.PreferredBackBufferWidth,
-                   graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
-            two = new CountDown(Textwo, graphics.PreferredBackBufferWidth,
-                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
-            One = new CountDown(Texone, graphics.PreferredBackBufferWidth,
-                graphics.PreferredBackBufferHeight, 400, 200, 200, 200);
-            go = new CountDown(Texgo, graphics.PreferredBackBufferWidth,
-                graphics.PreferredBackBufferHeight, 430, 200, 150, 150);            
+            Three = new CountDown(Texthree, width,
+                   height, 400, 200, 200, 200);
+            two = new CountDown(Textwo, width,
+                height, 400, 200, 200, 200);
+            One = new CountDown(Texone, width,
+                height, 400, 200, 200, 200);
+            go = new CountDown(Texgo, width,
+                height, 430, 200, 150, 150);            
             effect1 = Seffect1;
             effect2 = Seffect2;
         }

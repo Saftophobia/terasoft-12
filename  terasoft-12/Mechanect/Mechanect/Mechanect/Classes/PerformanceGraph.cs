@@ -32,7 +32,7 @@ namespace Mechanect.Classes
         List<float> OptimumAcceleration = new List<float>();
         List<String> CommandsList;
         List<double> TimeSpaces;
-        Game currentGame;
+        
         double totalTime;
         int[] chosenTimings;
         float[] chosendisp1 = new float[17];
@@ -249,7 +249,7 @@ namespace Mechanect.Classes
         /// <param name="time">A list holding the time elapsed by each command.</param>
         /// <param name="g1">An instance of the game class.</param>       
         /// <returns>void</returns>
-        public void drawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, Game g1)
+        public void drawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time,double player1disqtime,double player2disqtime,int gwidth,int gheight)
         {
             Player1Displacement = new List<float>();
             Player2Displacement = new List<float>();
@@ -275,15 +275,15 @@ namespace Mechanect.Classes
             }
             this.CommandsList = Commands;
             this.TimeSpaces = time;
-            this.currentGame = g1;
+            //this.currentGame = g1;
             Player1Velocity = GetPlayerVelocity(Player1Displacement);
             Player2Velocity = GetPlayerVelocity(Player2Displacement);
             Player1Acceleration = GetPlayerAcceleration(Player1Velocity);
             Player2Acceleration = GetPlayerAcceleration(Player2Velocity);
-            GetOptimum();
+            GetOptimum((double)player1disqtime,(double)player2disqtime);
             choose();
             setMaximum();
-            setDestinations(g1.getGraphicsDeviceManager());
+            setDestinations(gwidth,gheight);
             setAxis();
         }
 
@@ -391,7 +391,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="graphics">An instance of the GraphicsDeviceManger class.</param>
         /// <returns>void</returns>
-        public void setDestinations(GraphicsDeviceManager graphics)
+        public void setDestinations(int Width, int Height)
         {
             int counter1 = 0;
             float value = 0;
@@ -450,8 +450,8 @@ namespace Mechanect.Classes
                     }
                     int r3 = a1 + (int)r2;
                     int r5 = a2 + (int)r4;
-                    current[i] = new PerformanceGraph(counter1, r3, counter1 + 16, r5, graphics.PreferredBackBufferWidth,
-                        graphics.PreferredBackBufferHeight, color);
+                    current[i] = new PerformanceGraph(counter1, r3, counter1 + 16, r5, Width,
+                        Height, color);
                     counter1 = counter1 + 16;
                     if (j != 2 && j != 5 && j != 8)
                     {
@@ -783,9 +783,9 @@ namespace Mechanect.Classes
         /// <param name="P1Tex">A Texture2D representing the image "xRed.png".</param>
         /// <param name="P2Tex">A Texture2D representing the image "xBlue.png".</param>
         /// <returns>void</returns>
-        public void drawDisqualification(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, Texture2D P1Tex, Texture2D P2Tex)
+        public void drawDisqualification(SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime,double player2disqtime)
         {
-            if (currentGame.GetPlayer1Disq() > 0||currentGame.GetPlayer2Disq()>0)
+            if (player1disqtime > 0 || player2disqtime > 0)
             {
                 for (int j = 0; j <= 1; j++)
                 {
@@ -793,8 +793,8 @@ namespace Mechanect.Classes
                     double n = 0;
                     switch (j)
                     {
-                        case 0: n = currentGame.GetPlayer1Disq(); if (n >= 0) { t = true; }; break;
-                        case 1: n = currentGame.GetPlayer2Disq(); if (n >= 0) { t = true; }; break;
+                        case 0: n = player1disqtime; if (n >= 0) { t = true; }; break;
+                        case 1: n = player2disqtime; if (n >= 0) { t = true; }; break;
                     }
                     if (t)
                     {
@@ -832,13 +832,13 @@ namespace Mechanect.Classes
                             case 0: y1 = P1DispGraph[index] - 10; y2 = P1VeloGraph[index] - 10; y3 = P1AccGraph[index] - 10; texture = P1Tex; break;
                             case 1: y1 = P2DispGraph[index] - 10; y2 = P2VeloGraph[index] - 10; y3 = P2AccGraph[index] - 10; texture = P2Tex; break;
                         }
-                        xDP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y1, 20, 20);
+                        xDP1 = new CountDown(texture, dwidth,dheight, r3, y1, 20, 20);
                         xDP1.Draw(spriteBatch);
                         r3 = 370 + (int)r2;
-                        xVP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y2, 20, 20);
+                        xVP1 = new CountDown(texture, dwidth, dheight, r3, y2, 20, 20);
                         xVP1.Draw(spriteBatch);
                         r3 = 700 + (int)r2;
-                        xAP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y3, 20, 20);
+                        xAP1 = new CountDown(texture, dwidth, dheight, r3, y3, 20, 20);
                         xAP1.Draw(spriteBatch);
                     }
                 }
@@ -1182,10 +1182,10 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param></param>
         /// <returns>void</returns>
-        public void GetOptimum()
+        public void GetOptimum(double player1disq,double player2disq)
         {
-            int disq1 = (int)(currentGame.GetPlayer1Disq() * 12);//index of disq frame
-            int disq2 = (int)(currentGame.GetPlayer2Disq() * 12);//index of disq frame
+            int disq1 = (int)(player1disq * 12);//index of disq frame
+            int disq2 = (int)(player2disq * 12);//index of disq frame
             int start = 0;
             int end = 0;
             previousVelo = 0;
