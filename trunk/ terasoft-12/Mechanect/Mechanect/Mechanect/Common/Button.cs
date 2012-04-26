@@ -11,24 +11,25 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using Mechanect.Common;
 using Common.Classes;
+using Mechanect.Classes;
 
 namespace Mechanect
 {
     public class Button
     {
 
-        protected Vector2 position;
-        protected GifAnimation.GifAnimation texture, animation, stopped;
-        protected int screenW, ScreenH;
+        private Vector2 position;
+        private GifAnimation.GifAnimation texture, animation, stopped;
+        private int screenW, ScreenH;
 
-        public Vector2 Position { get { return position; } set { position = value; } }
-        MKinect kinect;
-        Texture2D hand;
-        Vector2 handPosition;
+        private Vector2 Position;
+        private User user;
+        private Texture2D hand;
+        private Vector2 handPosition;
 
-        Timer1 timer;
+        private Timer1 timer;
 
-        bool status;
+        private bool status;
 
         ///<remarks>
         ///<para>
@@ -44,7 +45,8 @@ namespace Mechanect
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         /// <param name="h">the picture of the hand</param>
-        public Button(GifAnimation.GifAnimation t, GifAnimation.GifAnimation tt, Vector2 p, int sw, int sh, Texture2D h)
+        /// <param name="u">the user instance</param>
+        public Button(GifAnimation.GifAnimation t, GifAnimation.GifAnimation tt, Vector2 p, int sw, int sh, Texture2D h, User u)
         {
             position = p;
             texture = t;
@@ -53,7 +55,7 @@ namespace Mechanect
             screenW = sw;
             ScreenH = sh;
             hand = h;
-            kinect = new MKinect();
+            user = u;
             timer = new Timer1();
         }
 
@@ -66,7 +68,7 @@ namespace Mechanect
         /// drawing the button and the hand
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
@@ -84,31 +86,30 @@ namespace Mechanect
         /// the timer and activating the pointer to be moved.
         /// </summary>
         /// <param name="gameTime">takes the object gametime which tracks the time of the game</param>
-        public void update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            moveHand();
-            checkColission();
+            MoveHand();
             texture.Update(gameTime.ElapsedGameTime.Ticks);
 
-            if (checkColission())
+            if (CheckColission())
             {
-                if (!timer.isRunning())
-                    timer.start();
+                if (!timer.IsRunning())
+                    timer.Start();
                 else
                 {
-                    animate();
-                    if (timer.getDuration() >= (1 * 1000))
+                    Animate();
+                    if (timer.GetDuration() >= (2000))
                     {
                         status = true;
-                        timer.stop();
+                        timer.Stop();
                     }
 
                 }
             }
             else
             {
-                timer.stop();
-                stop();
+                timer.Stop();
+                Stop();
             }
 
 
@@ -122,13 +123,13 @@ namespace Mechanect
         /// <summary>
         /// used to track the user's hand
         /// </summary>
-        void moveHand()
+        void MoveHand()
         {
-            Skeleton skeleton = kinect.requestSkeleton();
+            Skeleton skeleton = user.USER;
             if (skeleton != null)
             {
-                handPosition.X = kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).X;
-                handPosition.Y = kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).Y;
+                handPosition.X = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).X;
+                handPosition.Y = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).Y;
             }
         }
 
@@ -140,7 +141,7 @@ namespace Mechanect
         /// <summary>
         /// changing the button to the animated picture
         /// </summary>
-        public void animate()
+        public void Animate()
         {
             texture = animation;
         }
@@ -153,7 +154,7 @@ namespace Mechanect
         /// <summary>
         /// changing the button to the stopped picture
         /// </summary>
-        public void stop()
+        public void Stop()
         {
             texture = stopped;
         }
@@ -167,19 +168,16 @@ namespace Mechanect
         /// checks if the hand of the user is over the button or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        public bool checkColission()
+        public bool CheckColission()
         {
-            Skeleton skeleton = kinect.requestSkeleton();
+            Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
             {
-                Point hand = kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
+                Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 50, 50);
                 Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, texture.GetTexture().Width, texture.GetTexture().Height);
 
-                if (r1.Intersects(r2))
-                    return true;
-                else
-                    return false;
+                return r1.Intersects(r2);
             }
             return false;
         }
@@ -193,12 +191,21 @@ namespace Mechanect
         /// used to check if the button has been clicked or not
         /// </summary>
         /// <returns>returns true if the user clicked the button</returns>
-        public bool isClicked()
+        public bool IsClicked()
         {
             return status;
         }
 
-        public void reset()
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// used to reset the status variable to false, which means the button is not clicked
+        /// </summary>
+        public void Reset()
         {
             status = false;
         }

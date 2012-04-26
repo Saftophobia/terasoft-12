@@ -10,11 +10,11 @@ namespace Mechanect.Screens
 {
     class Settings3 : GameScreen
     {
-        Button OKbutton;
-        Slider velocity;
-        Slider angle;
+        private Button OKbutton;
+        private Slider velocity;
+        private Slider angle;
 
-        levelSelect level;
+        private levelSelect level;
 
         ///<remarks>
         ///<para>
@@ -61,15 +61,15 @@ namespace Mechanect.Screens
         /// <param name="covered"></param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-            if (OKbutton.isClicked())
+            if (OKbutton.IsClicked())
             {
                 //setToleranceOfAngle(angle.getValue());
                 //setToleranceOfVelocity(velcoity.getValue());
                 this.Remove();
             }
-            OKbutton.update(gameTime);
-            velocity.update();
-            angle.update();
+            OKbutton.Update(gameTime);
+            velocity.Update();
+            angle.Update();
             level.Update(gameTime);
             base.Update(gameTime, covered);
         }
@@ -87,9 +87,9 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             level.Draw(gameTime);
-            velocity.draw(this.ScreenManager.SpriteBatch);
-            angle.draw(this.ScreenManager.SpriteBatch);
-            OKbutton.draw(this.ScreenManager.SpriteBatch);
+            velocity.Draw(this.ScreenManager.SpriteBatch);
+            angle.Draw(this.ScreenManager.SpriteBatch);
+            OKbutton.Draw(this.ScreenManager.SpriteBatch);
         }
 
     }
