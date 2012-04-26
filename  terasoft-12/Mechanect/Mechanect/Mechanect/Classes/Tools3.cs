@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 using Mechanect.Common;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Classes
 {
@@ -411,6 +413,98 @@ namespace Mechanect.Classes
             User3.HasSetInitialPositionForAngle = false;
 
             frameNumber = 0;
+        }
+
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// Used to get the customized button with OKButton
+        /// </summary>
+        /// <param name="c">content managaer to load pictures</param>
+        /// <param name="p">position of the button</param>
+        /// <param name="sw">screen width</param>
+        /// <param name="sh">screen height</param>
+        /// <returns>returns OK button</returns>
+        public static Button OKButton(ContentManager c, Vector2 p, int sw, int sh)
+        {
+            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-s"),
+           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-m"), p, sw, sh,
+           c.Load<Texture2D>("Textures/Buttons/hand"));
+        }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// Used to get the customized button with MainMenu
+        /// </summary>
+        /// <param name="c">content managaer to load pictures</param>
+        /// <param name="p">position of the button</param>
+        /// <param name="sw">screen width</param>
+        /// <param name="sh">screen height</param>
+        /// <returns>returns MainMenu button</returns>
+        public static Button MainMenuButton(ContentManager c, Vector2 p, int sw, int sh)
+        {
+            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-s"),
+           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-m"), p, sw, sh,
+           c.Load<Texture2D>("Textures/Buttons/hand"));
+        }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// Used to get the customized button with NewGame
+        /// </summary>
+        /// <param name="c">content managaer to load pictures</param>
+        /// <param name="p">position of the button</param>
+        /// <param name="sw">screen width</param>
+        /// <param name="sh">screen height</param>
+        /// <returns>returns NewGame button</returns>
+        public static Button NewGameButton(ContentManager c, Vector2 p, int sw, int sh)
+        {
+            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-s"),
+           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), p, sw, sh,
+           c.Load<Texture2D>("Textures/Buttons/hand"));
+        }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// Used to display the hand on the screen
+        /// </summary>
+        /// <param name="c">content managaer to load pictures</param>
+        /// <param name="p">position of the button</param>
+        /// <param name="sw">screen width</param>
+        /// <param name="sh">screen height</param>
+        /// <param name="spriteBatch">used to draw the picture</param>
+        public static void DisplayHand(ContentManager c, int sw, int sh, SpriteBatch spriteBatch)
+        {
+            User user = new User();
+            if (user.USER != null)
+            {
+                Texture2D pic = c.Load<Texture2D>("Textures/Buttons/hand");
+                Vector2 handPosition = new Vector2(user.Kinect.GetJointPoint(user.USER.Joints[JointType.HandRight], sw, sh).X,
+                    user.Kinect.GetJointPoint(user.USER.Joints[JointType.HandRight], sw, sh).Y);
+                spriteBatch.Begin();
+                spriteBatch.Draw(pic, handPosition, Color.White);
+                spriteBatch.End();
+            }
         }
     }
 }
