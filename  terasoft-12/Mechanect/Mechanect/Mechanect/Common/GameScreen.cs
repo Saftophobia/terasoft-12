@@ -272,6 +272,13 @@ namespace Mechanect.Common
             screenState = ScreenState.Frozen;
             IsFrozen = true;
         }
+
+        public void UnfreezeScreen()
+        {
+            //Screen will be drawn but not updated
+            screenState = ScreenState.Active;
+            IsFrozen = false;
+        }
         #endregion
     }
 }

@@ -29,7 +29,7 @@ namespace Mechanect
         }
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
-         Boolean fullScreen = false;
+         Boolean fullScreen = true;
 
         public Game1()
         {

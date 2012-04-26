@@ -33,11 +33,11 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
           OKbutton =  Tools3.OKButton(this.ScreenManager.Game.Content,
-            new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width / 2, this.ScreenManager.GraphicsDevice.Viewport.Height-400),
+            new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width-200 , this.ScreenManager.GraphicsDevice.Viewport.Height-250),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
             this.ScreenManager.GraphicsDevice.Viewport.Height,user);
 
-          velocity = new Slider(new Vector2(20, 200),
+          velocity = new Slider(new Vector2(20, 300),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
             this.ScreenManager.GraphicsDevice.Viewport.Height,
             this.ScreenManager.Game.Content,user);
@@ -48,7 +48,7 @@ namespace Mechanect.Screens
             this.ScreenManager.Game.Content,user);
 
 
-          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch, user);
+          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), this.ScreenManager.SpriteBatch, user);
 
           level.Initialize(this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
 
@@ -69,6 +69,9 @@ namespace Mechanect.Screens
         {
             if (OKbutton.IsClicked())
             {
+
+                ExitScreen();
+                ScreenManager.AddScreen(new Experiment3(user));
                 Environment3.angleTolerance = angle.GetValue();
                 Environment3.velocityTolerance = velocity.GetValue();
                 this.Remove();

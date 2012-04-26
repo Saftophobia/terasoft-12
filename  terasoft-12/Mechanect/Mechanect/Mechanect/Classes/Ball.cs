@@ -108,8 +108,10 @@ namespace Mechanect.Classes
         /// <param name="friction"> the environment's friction</param>
         public void Update(float friction)
         {
-            if (Velocity.Z >= 0)
-                Velocity = new Vector3(Velocity.X, Velocity.Y, 0);
+            
+            
+            //if (Velocity.Z >= 0)
+            //    Velocity = new Vector3(Velocity.X, Velocity.Y, 0);
             if((InitialVelocity.X>0) && (Velocity.X<=0))
                 Velocity = new Vector3(0, Velocity.Y, Velocity.Z);
             if ((InitialVelocity.X < 0) && (Velocity.X >= 0))
@@ -117,11 +119,11 @@ namespace Mechanect.Classes
 
 
             Position = Vector3.Add(Position,Velocity);
-            Velocity = new Vector3(Velocity.X , Velocity.Y, Velocity.Z + friction);
+            Velocity = new Vector3(Velocity.X , Velocity.Y, Velocity.Z/* + friction*/);
             if(InitialVelocity.X>0)
-                Velocity = new Vector3(Velocity.X - friction, Velocity.Y, Velocity.Z);
+                Velocity = new Vector3(Velocity.X/* - friction*/, Velocity.Y, Velocity.Z);
             else if(InitialVelocity.Z <0)
-                Velocity = new Vector3(Velocity.X + friction, Velocity.Y, Velocity.Z);
+                Velocity = new Vector3(Velocity.X/* + friction*/, Velocity.Y, Velocity.Z);
 
 
             ballModel.position = Position;

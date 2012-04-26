@@ -33,17 +33,19 @@ namespace Mechanect.Classes
                 position = value;
             }
         }
+        private Vector3 shootingPosition;
         //Environment3 environment;
 
         CustomModel hole;
         int terrainWidth;
         int terrainHeight;
 
-        public Hole(ContentManager c, GraphicsDevice d, int terrainWidth, int terrainHeight, int radius)
+        public Hole(ContentManager c, GraphicsDevice d, int terrainWidth, int terrainHeight, int radius, Vector3 shootingPos)
         {
             this.radius = radius;
             this.terrainWidth = terrainWidth;
             this.terrainHeight = terrainHeight;
+            this.shootingPosition = shootingPosition;
             SetHoleValues();
             hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3(0.1f), d);
         }
@@ -98,8 +100,8 @@ namespace Mechanect.Classes
 
 
             position.X = GenerateRandomValue(-terrainWidth / 4, terrainWidth / 4);
-            position.Y = 0;
-            position.Z = GenerateRandomValue(-(terrainHeight- radius)/2, (terrainHeight - radius)/2);
+            position.Y = 3;
+            position.Z = GenerateRandomValue(-(terrainHeight- radius)/2, (shootingPosition.Z - radius));
         }
     }
 }
