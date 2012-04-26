@@ -52,19 +52,19 @@ namespace Mechanect.Classes
 
         public float GenerateRandomValue(float min, float max)
         {
-            if ((min >= 0) && (max >= 0) && (max > min))
+            if (max > min)
             {
                 var random = new Random();
                 var value = ((float)(random.NextDouble() * (max - min))) + min;
                 return value;
             }
-            else throw new ArgumentException("parameters have to be non negative numbers and max value has to be greater than min value");
+            else throw new ArgumentException("max value has to be greater than min value");
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <summary>
-        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole and it's radius then initializes the hole with random values between these two numbers.
+        /// Takes the minimum and maximum possible values for the x,y,z positions of the hole then initializes the hole with random values between these two numbers.
         /// </summary>
         /// <param name="min">
         /// The minimum possible value for the hole variables.
@@ -78,7 +78,20 @@ namespace Mechanect.Classes
             position.X = GenerateRandomValue(min, max);
             position.Y = GenerateRandomValue(min, max);
             position.Z = GenerateRandomValue(min, max);
-            radius = (int)GenerateRandomValue(min, max);
+        }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Takes an integer and sets it to be the radius of the hole.
+        /// </summary>
+        /// <param name="radius">
+        /// The radius of the hole
+        /// </param>
+
+        public void SetRadius(int radius)
+        {
+            this.radius = radius;
         }
     }
 }
