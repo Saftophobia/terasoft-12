@@ -1,5 +1,10 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Mechanect.Common;
+using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Cameras;
+
 namespace Mechanect.Classes
 {
     class Hole
@@ -28,12 +33,35 @@ namespace Mechanect.Classes
                 position = value;
             }
         }
-        Environment3 environment;
-        public Hole()
+        //Environment3 environment;
+
+        CustomModel hole;
+        int terrainWidth;
+        int terrainHeight;
+
+        public Hole(ContentManager c, GraphicsDevice d, int terrainWidth, int terrainHeight, int radius)
         {
-            position = Vector3.Zero;
-            radius = 2;
+            this.radius = radius;
+            this.terrainWidth = terrainWidth;
+            this.terrainHeight = terrainHeight;
+            SetHoleValues();
+            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, Vector3.One, d);
         }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// Draws the 3d model of the hole given a camera.
+        /// </summary>
+        /// <param name="cam">
+        /// The camera needed to draw the 3d model
+        /// </param>
+
+        public void DrawHole(Camera cam)
+        {
+            hole.Draw(cam);
+        }
+
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
@@ -65,10 +93,10 @@ namespace Mechanect.Classes
         /// </summary>
 
         public void SetHoleValues()
-        {   
-            position.X = GenerateRandomValue(0, environment.terrainWidth-radius);
+        {
+            position.X = GenerateRandomValue(0, terrainWidth - radius);
             position.Y = 0;
-            position.Z = GenerateRandomValue(0, environment.terrainHeight/2);
+            position.Z = GenerateRandomValue(0, terrainHeight / 2);
         }
     }
 }
