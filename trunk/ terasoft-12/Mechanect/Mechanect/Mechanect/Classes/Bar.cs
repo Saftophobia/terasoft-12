@@ -47,11 +47,11 @@ namespace Mechanect.Classes
         {
             get
             {
-                return CurrentPos;
+                return currentPos;
             }
             set
             {
-                CurrentPos = value;
+                currentPos = value;
             }
         }
         private Vector2 initialPos;
@@ -59,11 +59,11 @@ namespace Mechanect.Classes
         {
             get
             {
-                return InitialPos;
+                return initialPos;
             }
             set
             {
-                InitialPos = value;
+                initialPos = value;
             }
         }
         private float offset;
@@ -138,11 +138,10 @@ namespace Mechanect.Classes
         /// </example>
         public void Draw()
         {
-            if (isDone)
-                return;
 
-            offset = Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos);
-            isDone = offset == 1 ? true : false;
+            offset = (Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos)) > 1 ? 1 : Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos);
+
+          
             spriteBatch.Draw(bar,
             drawingPosition,
             null,

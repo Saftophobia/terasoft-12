@@ -19,12 +19,16 @@ namespace Mechanect.Screens
         Environment3 environment;
         GraphicsDevice graphics;
         Camera c;
-        User user;
+        User3 user;
+        bool freezeLock;
+    
         //ResultSimulation sim;
 
            public Experiment3(User user)
         {
-            this.user = user;
+            this.user = (User3)user;
+          
+            freezeLock = false;
           
         }
            public override void LoadContent()
@@ -51,17 +55,41 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
+            Vector3 position = environment.ball.Position;
             c.Update();
+            if (environment.ball.Position.X >= environment.user.ShootingPosition.X && environment.ball.Position.Z >= environment.user.ShootingPosition.Z)
+            {
+                environment.Update();
+
+            }
             environment.ball.Update(environment.friction);
+            
+            environment.distanceBar.Update(new Vector2(position.X,position.Z));
             //sim.Update(gameTime);
+            Bar bar = environment.distanceBar;
+            if ((Vector2.Distance(bar.InitialPos, bar.CurrentPos) / Vector2.Distance(bar.InitialPos, bar.ShootingPos)) > 0.5 && !freezeLock)
+            {
+                freezeLock = true;
+                this.FreezeScreen();
+                ScreenManager.AddScreen(new PauseScreen(user, user.Kinect, environment.ball.Velocity.Length(), environment.ball.Mass, ((User3)user).AssumedLegMass));
+            }
+
+            //if (environment.ball.Position.X >= user.ShootingPosition.X && environment.ball.Position.Z >= user.ShootingPosition.Z)
+            //{
+            //    environment.Update();
+
+            //}
+            
             base.Update(gameTime, covered);
             //environment.UpdateEnvironment(gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            ScreenManager.SpriteBatch.Begin();
             environment.DrawEnvironment(c, gameTime);
             environment.ball.Draw(gameTime, c);
+            ScreenManager.SpriteBatch.End();
         }
 
 

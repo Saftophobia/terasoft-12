@@ -16,14 +16,14 @@ namespace Mechanect.Classes
     {
         private Hole hole;
         public Ball ball;
-        private User3 user;
+        public User3 user;
         private float wind;
         public float friction;
         private bool hasCollidedWithBall, ballShot;
         public static int angleTolerance { get; set; }
         public static int velocityTolerance { get; set; }
         private Vector2 tolerance;
-        private Bar distanceBar;
+        public Bar distanceBar;
         private GraphicsDevice device;
 
         private Effect effect;
@@ -60,14 +60,15 @@ namespace Mechanect.Classes
              */
             this.user = user;
             Content = Content2;
-            device = this.device;
+            this.device = device;
             ball = new Ball(0.5f, 5f,device,Content);
-            ball.InitialBallPosition = new Vector3(50, 3, 50);
-            user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
-            friction = 2f/3600;
+            ball.InitialBallPosition = new Vector3(-60, 3, 2);//-60,3,30
+            user.ShootingPosition = new Vector3(0f, 3, 62f);
+            //friction = 2f/3600;
+            friction = 0f;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
-            ball.InitialVelocity = new Vector3(-10, 0, -20)/60;
+            ball.InitialVelocity = new Vector3(10, 0, 10)/60;//30x
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
@@ -78,7 +79,7 @@ namespace Mechanect.Classes
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
-            //distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.90f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
+            distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
             angle = 0f;
@@ -320,6 +321,7 @@ namespace Mechanect.Classes
                 device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
             }
             DrawHole(c);
+            distanceBar.Draw();
         }
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -623,7 +625,7 @@ namespace Mechanect.Classes
         protected void InitializeHole()
         {
             // TODO: Add your initialization logic here
-            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4 );
+            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4 ,user.ShootingPosition);
         }
 
 
@@ -688,6 +690,8 @@ namespace Mechanect.Classes
                 ballShot = true;
                 Vector3 velocityAfterCollision = GetVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
                 ball.Velocity = velocityAfterCollision; // update the velocity of the ball
+
+                this.ball.Velocity = velocityAfterCollision;
             }
         }
         /// <remarks>
@@ -705,9 +709,10 @@ namespace Mechanect.Classes
             else
                 legPosition = new Vector3((float)user.CurrentLeftLegPositionX, 0, (float)user.CurrentLeftLegPositionZ);
 
-            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < Constants3.legMovementTolerance)
+            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < 5)
             {
                 hasCollidedWithBall = true;
+                
             }
             else
                 hasCollidedWithBall = false;

@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Mechanect.Screens;
 
 namespace Mechanect.Common
 {
@@ -75,13 +76,20 @@ namespace Mechanect.Common
             //clear out the screensToUpdate list to copy the screens list
             //this allows us to add or remove screens without complaining.
             screensToUpdate.Clear();
-
+          
+            
             foreach (GameScreen screen in screens)
             {
                 if(!screen.IsFrozen)
                 screensToUpdate.Add(screen);
             }
-             
+
+            if (screensToUpdate.Count == 0)
+                foreach (GameScreen screen in screens)
+                {
+                    screen.UnfreezeScreen();
+                    screensToUpdate.Add(screen);
+                }
 
             bool screenIsCovered = false;
             bool firstScreen = true;

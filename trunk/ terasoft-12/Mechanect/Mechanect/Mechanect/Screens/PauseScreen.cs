@@ -49,9 +49,9 @@ namespace Mechanect.Screens
         String st;
         int framesToWait;
         double velocity;
-           public PauseScreen(User3 user,MKinect kinect,double ballVelocity, double ballMass, double legMass)
-        {
 
+           public PauseScreen( User3 user,MKinect kinect,double ballVelocity, double ballMass, double legMass)
+        {
             this.user = user;
             this.kinect = kinect;
             this.ballVelocity = ballVelocity;
@@ -147,6 +147,7 @@ namespace Mechanect.Screens
             }
             else
             {
+             
                 Tools3.resetUserForShootingOrTryingAgain(user);
                 ExitScreen();
             }
