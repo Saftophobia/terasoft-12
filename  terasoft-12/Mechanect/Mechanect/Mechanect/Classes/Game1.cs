@@ -73,7 +73,7 @@ namespace Mechanect
             //screenManager.AddScreen(new InstructionsScreen3());
             //screenManager.AddScreen(new AllExperiments());
             //screenManager.AddScreen(new Experiment2(new User2()));
-            screenManager.AddScreen(new Experiment3(new User3()));
+            screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
 
             // TODO: use this.Content to load your game content here
         }

@@ -106,3 +106,4 @@ F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Mechanect.p
 F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.dll
 F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\GifAnimation.pdb
 F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
+C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\holemodel.xnb

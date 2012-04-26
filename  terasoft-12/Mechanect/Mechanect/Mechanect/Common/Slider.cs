@@ -41,13 +41,13 @@ namespace Common.Classes
         /// <param name="sh">screen height</param>
         /// <param name="c">the content manager to draw the textures</param>
 
-        public Slider(Vector2 p, int sw, int sh, ContentManager c)
+        public Slider(Vector2 p, int sw, int sh, ContentManager c, User u)
         {
             screenW = sw;
             ScreenH = sh;
             value = 1;
 
-            user = new User();
+            user = u;
             Content = c;
             timer = new Timer1();
 

@@ -88,6 +88,7 @@ namespace Mechanect
         /// <param name="gameTime">takes the object gametime which tracks the time of the game</param>
         public void Update(GameTime gameTime)
         {
+            user.setSkeleton();
             MoveHand();
             texture.Update(gameTime.ElapsedGameTime.Ticks);
 
