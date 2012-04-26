@@ -95,7 +95,7 @@ namespace Common.Classes
                     timer.Start();
                 else
                 {
-                    if (timer.GetDuration() >= (1 * 1000))
+                    if (timer.GetDuration() >= (2000))
                     {
                         On();
                         Move();
