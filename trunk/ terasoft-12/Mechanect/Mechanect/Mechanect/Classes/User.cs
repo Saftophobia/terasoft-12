@@ -29,6 +29,17 @@ namespace Mechanect.Classes
             user = kinect.requestSkeleton();
         }
 
+        public void setSkeleton(int id)
+        {
+            switch (id)
+            {
+                case 0: user = kinect.requestSkeleton(); break;
+                case 1: user = kinect.request2ndSkeleton(); break;
+            }
+        }
+
+
+
         private MKinect kinect;
         public MKinect Kinect
         {
