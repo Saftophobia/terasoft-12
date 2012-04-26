@@ -72,7 +72,7 @@ namespace Mechanect.Classes
         CountDown xAP1;
         CountDown xAP2;
         float previousDisp;
-		float previousVelo;
+        float previousVelo;
         float previousAcc;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
@@ -98,14 +98,11 @@ namespace Mechanect.Classes
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The Draw function is used to draw a line connecing the points (a1,a2) and (b1,b2) when called
+        /// The Draw function is used to draw a line connecing the points (a1,a2) and (b1,b2). 
         /// </summary>
-        /// <param name="spriteBatch">An instance of the spriteBatch class</param>
-        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class</param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>       
+        /// <returns>void</returns>
         public void Draw(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -119,19 +116,15 @@ namespace Mechanect.Classes
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The drawLine function is used to draw a straight line connecting
-        /// an initial point with a final point
+        /// The drawLine function is used to draw a straight line connecting an initial point (point1) with a final point (point2).
         /// </summary>
-        /// <param name="batch">An instance of the spriteBatch class</param>
-        /// <param name="blank">An instance of the Texture2D class</param>
-        /// <param name="width">The width of the line</param>
-        /// <param name="color">The color of the line</param>
-        /// <param name="point1">The initial point</param>
-        /// <param name="point2">The final point</param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="batch">An instance of the spriteBatch class.</param>
+        /// <param name="blank">An instance of the Texture2D class.</param>
+        /// <param name="width">The width of the line.</param>
+        /// <param name="color">The color of the line.</param>
+        /// <param name="point1">The initial point.</param>
+        /// <param name="point2">The final point.</param>        
+        /// <returns>void</returns>
         public void drawLine(SpriteBatch batch, Texture2D blank,
               float width, Microsoft.Xna.Framework.Color color, Vector2 point1, Vector2 point2)
         {
@@ -153,9 +146,9 @@ namespace Mechanect.Classes
         ///        
         /// Velocity= (Displacement.Final-Displacement.Initial)/dt
         ///
-        /// where dt is (1/12) since the kinect captures 12 frames per
-        /// second implying that the time space (dt) between each depth 
-        /// frame and its successor is (1/12) seconds.
+        /// where dt is (1/12) since the kinect is programmed to capture 
+        /// 12 frames per second implying that the time space (dt) between 
+        /// each depth frame and its successor is (1/12) seconds.
         /// The resulting velocity is multiplied by negative one to
         /// get the Player's velocity relative to the Player not to the
         /// kinect, since the List holding the Player's displacements
@@ -164,15 +157,12 @@ namespace Mechanect.Classes
         /// The try and catch statement is used to add a 0 at the begining 
         /// of the List representing the player's velocity since the players
         /// would be at a fixed distance from the kinect at the exact instant
-        /// when the race starts
+        /// when the race starts.
         /// </summary>
         /// <param name="DisplacementList"> A List representing the
-        /// player's displacements during the race</param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// player's displacements during the race.</param>      
         /// <returns>List: returns a list representing the player's
-        /// velocity</returns>
+        /// velocity.</returns>
 
         public static List<float> GetPlayerVelocity(List<float> DisplacementList)
         {
@@ -207,9 +197,9 @@ namespace Mechanect.Classes
         ///               
         /// Acceleration= (Velocity.Final-Velocity.Initial)/dt
         /// 
-        /// where dt is (1/12) since the kinect captures 12 frames per
-        /// second implying that the time space (dt) between each depth 
-        /// frame and its successor is (1/12) seconds.
+        /// where dt is (1/12) since the kinect is programmed to capture 12 
+        /// frames per second implying that the time space (dt) between each  
+        /// depth frame and its successor is (1/12) seconds.
         /// The resulting acceleration is not multiplied by -1 since the
         /// incoming velocities represent the player's velocity relative
         /// to the player not the kinect.
@@ -219,12 +209,9 @@ namespace Mechanect.Classes
         /// would have 0 velocity at the exact instant when the race starts. 
         /// </summary>
         /// <param name="VelocityList">A list representing the player's
-        /// velocities during the race</param>         
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// velocities during the race.</param>    
         /// <returns>List: returns a list representing the player's
-        /// acceleration</returns>
+        /// acceleration.</returns>
 
         public static List<float> GetPlayerAcceleration(List<float> VelocityList)
         {
@@ -252,20 +239,16 @@ namespace Mechanect.Classes
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawGraphs calls the methods GetPlayerVelocity, GetPlayerAcceleration
-        /// GetOptimum in order to derive each player's velocity, acceleration and the optimum
-        /// values, then calls the choose, setMaximum, setDestinations, setAxis functions in 
-        /// order to display the graph on the screen
+        /// The function drawGraphs calls the necessary functions to derive each player's velocity 
+        /// and acceleration as well as the optimum values, in addition, the function also calls
+        /// the necessary functions required to draw the curve.
         /// </summary>
-        /// <param name="Player1Displacement">A list holding Player 1's displacements</param>
-        /// <param name="Player2Displacement">A list holding Player 2's displacements</param>
-        /// <param name="Commands">A list holding each command initiated during the race</param>
-        /// <param name="time">A list holding the time elapsed by each command</param>
-        /// <param name="g1">An instance of the game class</param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="Player1Displacement">A list holding Player 1's displacements.</param>
+        /// <param name="Player2Displacement">A list holding Player 2's displacements.</param>
+        /// <param name="Commands">A list holding each command initiated during the race.</param>
+        /// <param name="time">A list holding the time elapsed by each command.</param>
+        /// <param name="g1">An instance of the game class.</param>       
+        /// <returns>void</returns>
         public void drawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, Game g1)
         {
             Player1Displacement = new List<float>();
@@ -310,15 +293,11 @@ namespace Mechanect.Classes
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function choose is used to choose certain times according to the race time and
-        /// chooses the values of displacement, velocity and acceleration for each player at the
-        /// chosen times in order to represent them on the graph
+        /// The function choose is used to pick only 17 evenly distributed seconds among the total race time
+        /// in order to represent each graph's range versus the chosen seconds.
         /// </summary>
-        /// <param></param> 
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param></param>         
+        /// <returns>void</returns>
         public void choose()
         {
             chosenTimings = new int[17];
@@ -348,13 +327,8 @@ namespace Mechanect.Classes
                 chosenOptD[i] = OptimumDisplacement[u];
                 chosenOptV[i] = OptimumVelocity[u];
                 chosenOptA[i] = OptimumAcceleration[u];
-
             }
         }
-
-
-
-
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
@@ -363,85 +337,60 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The function setMaximum is used to derive the maximum velocity and the maximum acceleration
-        /// of both players during the race in order to set the maximum point on each graph's y-axis according
-        /// to these values
+        /// of both players and the optimum player during the race in order to set the maximum point on 
+        /// each graph's y-axis according to these values.
         /// </summary>
-        /// <param></param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param></param>        
+        /// <returns>void</returns>
         public void setMaximum()
         {
             maxVelocity = 0;
             maxAcceleration = 0;
-
+            List<float> temporaryList1 = new List<float>();
+            List<float> temporaryList2 = new List<float>();
             for (int i = 0; i <= chosenOptD.Length - 1; i++)
             {
-                float v = chosenOptV[i];
-                float a = chosenOptA[i];
-                if (v < 0)
+                temporaryList1.Clear();
+                temporaryList2.Clear();
+                temporaryList1.Add(chosenOptV[i]);
+                temporaryList2.Add(chosenOptA[i]);
+                temporaryList1.Add(chosenVelocity1[i]);
+                temporaryList2.Add(chosenAcceleration1[i]);
+                temporaryList1.Add(chosenVelocity2[i]);
+                temporaryList2.Add(chosenAcceleration2[i]);
+                for (int j = 0; j <= temporaryList1.Count - 1; j++)
                 {
-                    v *= -1;
+                    if (temporaryList1[j] < 0)//to get maximum negative value
+                    {
+                        temporaryList1[j] *= -1;
+                    }
+                    if (temporaryList2[j] < 0)
+                    {
+                        temporaryList2[j] *= -1;
+                    }
+                    if (temporaryList1[j] > maxVelocity)
+                    {
+                        maxVelocity = temporaryList1[j];
+                    }
+                    if (temporaryList2[j] > maxAcceleration)
+                    {
+                        maxAcceleration = temporaryList2[j];
+                    }
                 }
-                if (a < 0)
-                {
-                    a *= -1;
-                }
-                if (v > maxVelocity)
-                {
-                    maxVelocity = v;
-                }
-                if (a > maxAcceleration)
-                {
-                    maxAcceleration = a;
-                }
-            }
-            for (int i = 0; i <= chosenVelocity1.Length - 1; i++)
-            {
-                float v1 = chosenVelocity1[i];
-                float a1 = chosenAcceleration1[i];
-                if (v1 < 0)
-                {
-                    v1 = v1 * -1;
-                }
-                if (a1 < 0)
-                {
-                    a1 = a1 * -1;
-                }
-                if (v1 > maxVelocity)
-                {
-                    maxVelocity = v1;
-                }
-                if (a1 > maxAcceleration)
-                {
-                    maxAcceleration = a1;
-                }
-            }
-            for (int i = 0; i <= chosenVelocity2.Length - 1; i++)
-            {
-                float v2 = chosenVelocity2[i];
-                float a2 = chosenAcceleration2[i];
-                if (v2 < 0)
-                {
-                    v2 = v2 * -1;
-                }
-                if (a2 < 0)
-                {
-                    a2 = a2 * -1;
-                }
-                if (v2 > maxVelocity)
-                {
-                    maxVelocity = v2;
-                }
-                if (a2 > maxAcceleration)
-                {
-                    maxAcceleration = a2;
-                }
-            }
+            }            
         }
 
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/4/2012</para>
+        /// <para>Date Modified 23/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function setDestinations is used to create 16 instances of the PerformanceGraph class for each graph giving
+        /// it the initial and final points to be connected in order to represent each graph by 16 connected lines.
+        /// </summary>
+        /// <param name="graphics">An instance of the GraphicsDeviceManger class.</param>
+        /// <returns>void</returns>
         public void setDestinations(GraphicsDeviceManager graphics)
         {
             int counter1 = 0;
@@ -449,7 +398,7 @@ namespace Mechanect.Classes
             double r = 0;
             for (int j = 0; j <= 8; j++)
             {
-                PerformanceGraph[] current = new PerformanceGraph[16];//change sampling from here                
+                PerformanceGraph[] current = new PerformanceGraph[16];               
                 float[] temporary = new float[17];
                 List<int> disqList = new List<int>();
                 Color color = new Color();
@@ -515,7 +464,17 @@ namespace Mechanect.Classes
                 }
             }
         }
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/4/2012</para>
+        /// <para>Date Modified 23/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function setAxis chooses 5 evenly distributed values among the total time to be represented on the x-axis
+        /// as well as 5 evenly distributed values among the total displacement/velocity/acceleration to be represented on
+        /// each graph's y-axis.
+        /// </summary>
+        /// <returns>void</returns>
         public void setAxis()
         {
             xaxis[0] = 0;
@@ -544,9 +503,18 @@ namespace Mechanect.Classes
             }
         }
 
-
-
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/4/2012</para>
+        /// <para>Date Modified 23/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawRange loops over each instance of the PerformanceGraph class initialized in the function
+        /// setDestinations and connects each initial point with each final point.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <returns>void</returns>
         public void drawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) //to be called in the draw function
         {
             for (int i = 0; i <= disp1.Length - 1; i++)
@@ -562,7 +530,19 @@ namespace Mechanect.Classes
                 optA[i].Draw(spriteBatch, GraphicsDevice);
             }
         }
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawLabels is used to add a label for each axis indicating whether each graph represents displacement or velocity or acceleration.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Black);
@@ -573,6 +553,19 @@ namespace Mechanect.Classes
             spriteBatch.DrawString(font, "Time", new Vector2(930, 380), Color.Black);
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawAxis is used to draw the X and Y axis for each graph.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawAxis(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -591,6 +584,19 @@ namespace Mechanect.Classes
                 new Vector2(976, 350));
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawArrows is used to add an arrow at the end of each axis for each graph.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawArrows(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -615,12 +621,23 @@ namespace Mechanect.Classes
                 new Vector2(counter + 10, 620));
                 drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 610),
                 new Vector2(counter + 8, 620));
-
                 counter += 330;
             }
         }
 
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawXLabels is used to add the values to be displayed on the X-axis.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawXLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -641,10 +658,23 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawYLabels is used to add the values to be displayed on the Y-axis.
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawYLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            //+ve y
+            //+ve part of the y-axis
             int y = 0;
             double[] current = yaxisDisplacement; ;
             for (int i = 0; i <= 2; i++)
@@ -662,7 +692,7 @@ namespace Mechanect.Classes
                     counter += 60;
                 }
             }
-            //-ve y
+            //-ve part of the y-axis
             for (int i = 0; i <= 2; i++)
             {
                 int counter = 400;
@@ -680,6 +710,19 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 25/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawEnvironment calls the necessary functions to draw the X and Y axis with their labels for each graph on the screen
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
+        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <returns>void</returns>
         public void drawEnvironment(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -689,7 +732,7 @@ namespace Mechanect.Classes
             drawArrows(spriteBatch, GraphicsDevice, font, font2);
             drawXLabels(spriteBatch, GraphicsDevice, font, font2);
             drawYLabels(spriteBatch, GraphicsDevice, font, font2);
-            //drawing the marks on the xaxis
+            //drawing the marks on the X-axis
             int counter = 50;
             for (int i = 0; i <= 2; i++)
             {
@@ -706,7 +749,7 @@ namespace Mechanect.Classes
                     counter += 64;
                 }
             }
-            //drawing the marks on the yaxis
+            //drawing the marks on the Y-axis
             int y = 50;
             for (int i = 0; i <= 2; i++)
             {
@@ -724,146 +767,120 @@ namespace Mechanect.Classes
                     counter2 += 58;
                 }
             }
-
         }
 
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/4/2012</para>
+        /// <para>Date Modified 22/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function drawDisqualification is used to add a mark on the point where a disqualified player was disqualified, the function
+        /// first decides the mark's X-coordinate then uses it to derive its Y-coordinate before representing it on each graph. 
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
+        /// <param name="graphics">An instance of the GraphicsDeviceManager class.</param>
+        /// <param name="P1Tex">A Texture2D representing the image "xRed.png".</param>
+        /// <param name="P2Tex">A Texture2D representing the image "xBlue.png".</param>
+        /// <returns>void</returns>
         public void drawDisqualification(SpriteBatch spriteBatch, GraphicsDeviceManager graphics, Texture2D P1Tex, Texture2D P2Tex)
         {
-            double player1DisqualificationTime = currentGame.GetPlayer1Disq();
-            double player2DisqualificationTime = currentGame.GetPlayer2Disq();
-
-            if (player1DisqualificationTime > 0)
+            if (currentGame.GetPlayer1Disq() > 0||currentGame.GetPlayer2Disq()>0)
             {
-                double time = totalTime;
-                int index = 8;
-                for (int i = 0; i <= chosenTimings.Length - 1; i++)
+                for (int j = 0; j <= 1; j++)
                 {
-                    if (i < chosenTimings.Length - 1)
+                    Boolean t = false;
+                    double n = 0;
+                    switch (j)
                     {
-                        double d1 = ((double)chosenTimings[i] / (double)12);
-                        double d2 = ((double)chosenTimings[i + 1] / (double)12);
-                        if (player1DisqualificationTime >= d1 && player1DisqualificationTime < d2)
+                        case 0: n = currentGame.GetPlayer1Disq(); if (n >= 0) { t = true; }; break;
+                        case 1: n = currentGame.GetPlayer2Disq(); if (n >= 0) { t = true; }; break;
+                    }
+                    if (t)
+                    {
+                        double time = totalTime;
+                        int index = 8;
+                        for (int i = 0; i <= chosenTimings.Length - 1; i++)
                         {
-                            double x = d1 + ((double)(d2 - d1) / (double)2);
-                            if (player1DisqualificationTime < x)
+                            if (i < chosenTimings.Length - 1)
                             {
-                                time = (double)chosenTimings[i] / (double)12;
-                                index = i;
-                            }
-                            else
-                            {
-                                time = (double)chosenTimings[i + 1] / (double)12;
-                                index = i + 1;
+                                double d1 = ((double)chosenTimings[i] / (double)12);
+                                double d2 = ((double)chosenTimings[i + 1] / (double)12);
+                                if (n >= d1 && n < d2)
+                                {
+                                    double x = d1 + ((double)(d2 - d1) / (double)2);
+                                    if (n < x)
+                                    {
+                                        time = (double)chosenTimings[i] / (double)12;
+                                        index = i;
+                                    }
+                                    else
+                                    {
+                                        time = (double)chosenTimings[i + 1] / (double)12;
+                                        index = i + 1;
+                                    }
+                                }
                             }
                         }
-                    }
-                }
-                int y = P1DispGraph[index] - 10;
-                double r1 = (double)totalTime / (double)240;
-                double r2 = (double)(time) / (double)r1;
-                int r3 = 40 + (int)r2;
-                xDP1 = new CountDown(P1Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xDP1.Draw(spriteBatch);
-
-                y = P1VeloGraph[index] - 10;
-                r1 = (double)totalTime / (double)240;
-                r2 = (double)(time) / (double)r1;
-                r3 = 370 + (int)r2;
-                xVP1 = new CountDown(P1Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xVP1.Draw(spriteBatch);
-
-                y = P1AccGraph[index] - 10;
-                r1 = (double)totalTime / (double)240;
-                r2 = (double)(time) / (double)r1;
-                r3 = 700 + (int)r2;
-                xAP1 = new CountDown(P1Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xAP1.Draw(spriteBatch);
-
-
-            }
-            if (player2DisqualificationTime > 0)
-            {
-                double time = totalTime;
-                int index = 8;
-                for (int i = 0; i <= chosenTimings.Length - 1; i++)
-                {
-                    if (i < chosenTimings.Length - 1)
-                    {
-                        double d1 = ((double)chosenTimings[i] / (double)12);
-                        double d2 = ((double)chosenTimings[i + 1] / (double)12);
-                        if (player2DisqualificationTime >= d1 && player2DisqualificationTime < d2)
+                        int y1 = 0; int y2 = 0; int y3 = 0;
+                        double r1 = (double)totalTime / (double)256;
+                        double r2 = (double)(time) / (double)r1;
+                        int r3 = 40 + (int)r2;
+                        Texture2D texture = null;
+                        switch (j)
                         {
-                            double x = d1 + ((double)(d2 - d1) / (double)2);
-                            if (player2DisqualificationTime < x)
-                            {
-                                time = (double)chosenTimings[i] / (double)12;
-                                index = i;
-                            }
-                            else
-                            {
-                                time = (double)chosenTimings[i + 1] / (double)12;
-                                index = i + 1;
-                            }
+                            case 0: y1 = P1DispGraph[index] - 10; y2 = P1VeloGraph[index] - 10; y3 = P1AccGraph[index] - 10; texture = P1Tex; break;
+                            case 1: y1 = P2DispGraph[index] - 10; y2 = P2VeloGraph[index] - 10; y3 = P2AccGraph[index] - 10; texture = P2Tex; break;
                         }
+                        xDP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y1, 20, 20);
+                        xDP1.Draw(spriteBatch);
+                        r3 = 370 + (int)r2;
+                        xVP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y2, 20, 20);
+                        xVP1.Draw(spriteBatch);
+                        r3 = 700 + (int)r2;
+                        xAP1 = new CountDown(texture, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, r3, y3, 20, 20);
+                        xAP1.Draw(spriteBatch);
                     }
                 }
-                int y = P2DispGraph[index] - 10;
-                double r1 = (double)totalTime / (double)240;
-                double r2 = (double)(time) / (double)r1;
-                int r3 = 40 + (int)r2;
-                xDP2 = new CountDown(P2Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xDP2.Draw(spriteBatch);
-
-                y = P2VeloGraph[index] - 10;
-                r1 = (double)totalTime / (double)240;
-                r2 = (double)(time) / (double)r1;
-                r3 = 370 + (int)r2;
-                xVP2 = new CountDown(P2Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xVP2.Draw(spriteBatch);
-
-                y = P2AccGraph[index] - 10;
-                r1 = (double)totalTime / (double)240;
-                r2 = (double)(time) / (double)r1;
-                r3 = 700 + (int)r2;
-                xAP2 = new CountDown(P2Tex, graphics.PreferredBackBufferWidth,
-                    graphics.PreferredBackBufferHeight, r3, y, 20, 20);
-
-                xAP2.Draw(spriteBatch);
-
             }
-        }	
-		
-        public void OptimumConstantVelocity(int disq1, int disq2, int start, int end, List<float> velocityTest1, List<float> velocityTest2,
-            List<float> displacementTest1, List<float> displacementTest2, List<float> tempList)
-        {            
+        }
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function OptimumConstantVelocity derives the optimum values for the "constantVelocity" command, by comparing the
+        /// avarages of each player's velocity and choosing the higher average value as an optimum value, or taking a player's 
+        /// average velocity if the other player was disqualified during the command's time slice or the average of both players'
+        /// average velocities if both have been disqualified during the command's time slice.
+        /// </summary>
+        /// <param name="disq1">Player 1's disqualification time.</param>
+        /// <param name="disq2">Player 2's disqualification time.</param>
+        /// <param name="start">The command's initial frame number.</param>
+        /// <param name="end">The command's final frame number.</param>
+        /// <param name="velocityTest1">A list representing Player 1's velocity during the race.</param>
+        /// <param name="velocityTest2">A list representing Player 2's velocity during the race.</param>
+        /// <returns>void</returns>
+        public void OptimumConstantVelocity(int disq1, int disq2, int start, int end, List<float> velocityTest1, List<float> velocityTest2)
+        {
             double a = GetAverageList(velocityTest1);
-            double b = GetAverageList(velocityTest2);            
+            double b = GetAverageList(velocityTest2);
             double value = 0;
             if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
             {
                 if (a >= b)
                 {
-                    value = a; 
+                    value = a;
                 }
                 else
                 {
                     value = b;
-                }                
+                }
             }
             if (!LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
             {
-                value = a;                
+                value = a;
             }
             if (LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
             {
@@ -886,7 +903,7 @@ namespace Mechanect.Classes
                 {
                     displacementTrial.Add(0);
                 }
-                z = accumulator - (float)value;                
+                z = accumulator - (float)value;
                 accumulator = z;
             }
             for (int i = 0; i <= velocityTest1.Count - 1; i++)
@@ -902,14 +919,31 @@ namespace Mechanect.Classes
                     OptimumDisplacement.Add(0);
                 }
                 OptimumAcceleration.Add(0);
-            }            
+            }
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
-            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];       
+            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
         }
 
-        
-        public void OptimumConstantAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2,
-            List<float> displacementTest1, List<float> displacementTest2, List<float> tempList, String currentCommand)
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" and "constantDeceleration" 
+        /// commands, by comparing the avarages of each player's acceleration and choosing the higher average value as an optimum value, or 
+        /// taking a player's average acceleration if the other player was disqualified during the command's time slice or the average of both players'
+        /// accelerations if both have been disqualified during the command's time slice.
+        /// </summary>
+        /// <param name="disq1">Player 1's disqualification time.</param>
+        /// <param name="disq2">Player 2's disqualification time.</param>
+        /// <param name="start">The command's initial frame number.</param>
+        /// <param name="end">The command's final frame number.</param>
+        /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
+        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
+        /// <param name="currentCommand">A string representing the current command.</param>
+        /// <returns>void</returns>
+        public void OptimumConstantAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, String currentCommand)
         {
             double a = GetAverageList(accelerationTest1);
             double b = GetAverageList(accelerationTest2);
@@ -978,25 +1012,41 @@ namespace Mechanect.Classes
                     OptimumDisplacement.Add(0);
                     OptimumVelocity.Add(0);
                 }
-                accumulator = z;                
+                accumulator = z;
             }
             this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
             this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
         }
 
-
-
-        public void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2,
-            List<float> displacementTest1, List<float> displacementTest2, List<float> tempList)
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command,
+        /// by comparing between the average acceleration differences for each player during the race and choosing the higher 
+        /// average value as an optimum value, or taking a player's average acceleration difference if the other player was disqualified 
+        /// during the command's time slice or assigning fixed values as optimum values if both have been disqualified during the command's 
+        /// time slice.
+        /// </summary>
+        /// <param name="disq1">Player 1's disqualification time.</param>
+        /// <param name="disq2">Player 2's disqualification time.</param>
+        /// <param name="start">The command's initial frame number.</param>
+        /// <param name="end">The command's final frame number.</param>
+        /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
+        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race/</param>
+        /// <returns>void</returns>
+        public void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
         {
             float totalStep1 = getTotalStep(accelerationTest1);
-            float totalStep2 = getTotalStep(accelerationTest2);  
+            float totalStep2 = getTotalStep(accelerationTest2);
             double a = (double)((double)totalStep1 / (double)accelerationTest1.Count);
             double b = (double)((double)totalStep2 / (double)accelerationTest2.Count);
-            double value = 0;            
+            double value = 0;
             if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {                
+            {
                 if (a > b)
                 {
                     value = a;
@@ -1026,7 +1076,7 @@ namespace Mechanect.Classes
             float accumulator = 0;
             for (int i = 0; i <= accelerationTest1.Count - 1; i++)
             {
-                float z = accumulator+(float)value;
+                float z = accumulator + (float)value;
                 accelerationTrial.Add(z);
                 accumulator = z;
             }
@@ -1037,7 +1087,7 @@ namespace Mechanect.Classes
                 float z = accumulator + accelerationTrial[i];
                 velocityTest.Add(z);
                 accumulator = z;
-            }             
+            }
             accumulator = previousDisp;
             float adder = (float)value;
             for (int i = 0; i <= accelerationTest1.Count - 1; i++)
@@ -1063,6 +1113,18 @@ namespace Mechanect.Classes
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function OptimumConstantDisplacement derives the optimum values for the "constantDisplacement" command, by adding
+        /// 0 as an optimum acceleration and velocity value and fixing the displacement from the kinect considering the fixed displacement
+        /// as an optimum displacement.
+        /// </summary>
+        /// <param name="size">The number of frames corresponding to the current command</param>
+        /// <returns>void</returns>
         public void OptimumConstantDisplacement(int size)
         {
             for (int k = 0; k <= size - 1; k++)
@@ -1074,7 +1136,17 @@ namespace Mechanect.Classes
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
         }
 
-		public float getTotalStep(List<float> l1)
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function getTotalStep calculates the cummulative acceleration difference for the given acceleration list.
+        /// </summary>
+        /// <param name="l1">A list holding a player's acceleration values</param>
+        /// <returns>float: The total calculated step</returns>
+        public float getTotalStep(List<float> l1)
         {
             float totalStep = 0;
             for (int k = 0; k <= l1.Count - 1; k++)
@@ -1085,7 +1157,7 @@ namespace Mechanect.Classes
                     if (l1[k] > 0 && l1[k + 1] > 0)//to avoid 0
                     {
                         step = l1[k + 1] - l1[k];
-                    }                    
+                    }
                 }
                 catch (Exception e)
                 {
@@ -1106,37 +1178,28 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements
-        /// during the race by checking the current command and comparing each player's displacement/velocity/
-        /// acceleration 's values in order to choose which list holds the best values to add it to the optimum
-        /// list
+        /// during the race by calling the necessary functions.
         /// </summary>
-        /// <param></param>        
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param></param>
+        /// <returns>void</returns>
         public void GetOptimum()
         {
             int disq1 = (int)(currentGame.GetPlayer1Disq() * 12);//index of disq frame
             int disq2 = (int)(currentGame.GetPlayer2Disq() * 12);//index of disq frame
             int start = 0;
             int end = 0;
-			previousVelo = 0;
+            previousVelo = 0;
             previousAcc = 0;
             previousDisp = 4000;
             for (int i = 0; i <= TimeSpaces.Count - 1; i++)
-            {
-                List<float> tempList = new List<float>();
-                end = start + (int)(TimeSpaces[i] * 12);
-                List<float> displacementTest1 = new List<float>();
-                List<float> displacementTest2 = new List<float>();
+            {                
+                end = start + (int)(TimeSpaces[i] * 12);                
                 List<float> velocityTest1 = new List<float>();
                 List<float> velocityTest2 = new List<float>();
                 List<float> accelerationTest1 = new List<float>();
                 List<float> accelerationTest2 = new List<float>();
                 for (int j = start; j <= end - 1; j++)
                 {
-                    displacementTest1.Add(Player1Displacement[j]);
-                    displacementTest2.Add(Player2Displacement[j]);
                     velocityTest1.Add(Player1Velocity[j]);
                     velocityTest2.Add(Player2Velocity[j]);
                     accelerationTest1.Add(Player1Acceleration[j]);
@@ -1144,30 +1207,27 @@ namespace Mechanect.Classes
                 }
                 if (CommandsList[i].Equals("constantVelocity"))
                 {
-                    OptimumConstantVelocity(disq1, disq2, start, end, velocityTest1, velocityTest2, displacementTest1, displacementTest2, tempList);
+                    OptimumConstantVelocity(disq1, disq2, start, end, velocityTest1, velocityTest2);
                 }
                 if (CommandsList[i].Equals("constantAcceleration") || CommandsList[i].Equals("constantDeceleration"))
                 {
                     String currentCommand = CommandsList[i];
-                    OptimumConstantAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, displacementTest1, displacementTest2, tempList, currentCommand);
+                    OptimumConstantAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, currentCommand);
                 }
                 if (CommandsList[i].Equals("increasingAcceleration"))
                 {
-                    OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, displacementTest1, displacementTest2, tempList);
+                    OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
                 if (CommandsList[i].Equals("constantDisplacement"))
                 {
                     int size = accelerationTest1.Count;
                     OptimumConstantDisplacement(size);
                 }
-                displacementTest1.Clear();
-                displacementTest2.Clear();
                 velocityTest1.Clear();
                 velocityTest2.Clear();
                 accelerationTest1.Clear();
                 accelerationTest2.Clear();
                 start = end;
-                tempList.Clear();
             }
         }
 
@@ -1178,16 +1238,13 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The function LiesInBetween checks whether a given number
-        /// lies between another two given values or not
+        /// lies between another two given values or not.
         /// </summary>
-        /// <param name="value">The number to be checked</param> 
-        /// <param name="start">The lower bound</param> 
-        /// <param name="end">The upper bound</param> 
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// <param name="value">The number to be checked.</param> 
+        /// <param name="start">The lower bound.</param> 
+        /// <param name="end">The upper bound.</param> 
         /// <returns>Boolean: true if the given number lies between
-        /// the other two values</returns>
+        /// the other two values.</returns>
         public Boolean LiesInBetween(int value, int start, int end)
         {
             Boolean t = false;
@@ -1208,13 +1265,10 @@ namespace Mechanect.Classes
         /// <para>Date Modified 24/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function getMax checks the largest number in a list
+        /// The function getMax checks the largest number in a list.
         /// </summary>
-        /// <param name="x">The List to be checked</param>       
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns>float: the maximum of the list</returns>
+        /// <param name="x">The List to be checked.</param>   
+        /// <returns>float: the maximum of the list.</returns>
         public float getMax(List<float> x)
         {
             float max = 0;
@@ -1234,14 +1288,11 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The function GetAverageList is used to get the average value
-        /// from a set of values in a list
+        /// from a set of values in a list.
         /// </summary>
-        /// <param name="list">A list holding a set of values</param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// <param name="list">A list holding a set of values.</param
         /// <returns>int: returns an integer representing the average 
-        /// value of the list</returns>
+        /// value of the list.</returns>
         public double GetAverageList(List<float> list)
         {
             double x = 0;
