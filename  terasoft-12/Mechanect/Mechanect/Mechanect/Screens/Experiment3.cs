@@ -18,11 +18,9 @@ namespace Mechanect.Screens
     {
         Environment3 environment;
         GraphicsDevice graphics;
-
-        ModelLinearAnimation animation;
-
         Camera c;
 
+        ResultSimulation sim;
 
            public Experiment3()
         {
@@ -40,8 +38,8 @@ namespace Mechanect.Screens
 
             environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent();
-            animation = new ModelLinearAnimation(environment.ball.ballModel, environment.ball.InitialVelocity, environment.friction, TimeSpan.FromSeconds(10),  true);
 
+            sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, new Vector3(5, 0 ,0 ), new Vector3(3, 0, 0), new Vector3(-1, 0, 0));
 
         }
 
@@ -53,16 +51,16 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
             c.Update();
-            environment.ball.Update(environment.friction);
-            animation.Update(gameTime.ElapsedGameTime);
+            //environment.ball.Update(environment.friction);
+            sim.Update(gameTime);
             base.Update(gameTime, covered);
             //environment.UpdateEnvironment(gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            environment.DrawEnvironment(c, gameTime);
-            environment.ball.Draw(gameTime, c);
+            environment.DrawEnvironment(sim.camera, gameTime);
+            environment.ball.Draw(gameTime, sim.camera);
         }
 
 

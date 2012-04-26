@@ -63,10 +63,10 @@ namespace Mechanect.Classes
             hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4);
             ball.InitialBallPosition = new Vector3(50, 35, 50);
             user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
-            friction = 2f;
+            friction = 2f/3600;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
-            ball.InitialVelocity = new Vector3(10, 0, -6);
+            ball.InitialVelocity = new Vector3(-10, 0, -20)/60;
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
