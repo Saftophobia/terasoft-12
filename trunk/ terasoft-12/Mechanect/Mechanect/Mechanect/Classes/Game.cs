@@ -19,8 +19,8 @@ namespace Mechanect.Classes
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        double player1DisqualificationTime = 0.5; //Obtained by user story 3.7
-        double player2DisqualificationTime = -1; //Obtained by user story 3.7   
+        double player1DisqualificationTime = -1; //Obtained by user story 3.7
+        double player2DisqualificationTime = 1; //Obtained by user story 3.7   
         PerformanceGraph Graph;
         CountDown countdown;
         Boolean displayCountdown = false;
@@ -44,13 +44,12 @@ namespace Mechanect.Classes
         /// <para>Date Created: 22-4-2012</para>
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
-        /// <summary>        
+        /// <summary>   
+        /// The function initialize creates instances of the Countdown class or the PerformanceGraph class according to 
+        /// the field displayCountdown.
         /// </summary>
-        /// <param></param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param></param>        
+        /// <returns>void</returns>
         protected override void Initialize()
         {
             if (displayCountdown)
@@ -129,20 +128,12 @@ namespace Mechanect.Classes
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The Update function is used to call the Update function 
-        /// in the PerformanceGraph class in order to allow the line
-        /// to increment its x co-ordinates and increment/decrement its
-        /// y co-ordinates till it reaches the specified range.
-        /// 
-        /// The Update function is also used to call the Update function
-        /// in the Countdown class in order to shrink the displayed number
-        /// till a counter reaches 0 allowing the next number to appear
+        /// The Update function is used to call the Update function in the 
+        /// Countdown class in order to shrink the displayed number till 
+        /// the field "counter" reaches 0 allowing the next number to appear.
         /// </summary> 
-        /// <param></param>
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="gameTime">An instance of the GameTime class.</param>
+        /// <returns>void</returns>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -165,17 +156,12 @@ namespace Mechanect.Classes
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The Draw function is used to draw the x-axis, the y-axis of the
-        /// displacement, velocity and acceleration graphs, as well as drawing
-        /// the lines connecting the ranges on the graphs, the Draw function is
-        /// also used to draw the current countdown's number on the screen when
-        /// the previous number's counter reaches zero
+        /// The Draw function is used to call the necessary functions to 
+        /// display the countdown or draw the graphs on the screen according
+        /// to the field displayCountdown.
         /// </summary>
-        /// <param name="gameTime">An instance of the GameTime class</param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
-        /// <returns></returns>
+        /// <param name="gameTime">An instance of the GameTime class.</param>   
+        /// <returns>void</returns>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -200,25 +186,37 @@ namespace Mechanect.Classes
                 background.Draw(spriteBatch);
                 countdown.DrawCountdownScreen(spriteBatch);
             }
-
             base.Draw(gameTime);
         }
 
 
-
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The LoadContent function.
+        /// </summary>
+        /// <returns>void</returns>
         protected override void LoadContent()
         {
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
         }
 
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The UnLoadContent function.
+        /// </summary>
+        /// <returns>void</returns>
         protected override void UnloadContent()
         {
-
         }
+
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 20/4/2012</para>
@@ -226,14 +224,11 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The function GetPlayer1Disq is used to get the time where
-        /// player 1 was disqualified
+        /// player 1 was disqualified.
         /// </summary>
-        /// <param></param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// <param></param>    
         /// <returns>double: returns the time where player 1 was
-        /// disqualified</returns>
+        /// disqualified.</returns>
         public double GetPlayer1Disq()
         {
             return player1DisqualificationTime;
@@ -246,19 +241,25 @@ namespace Mechanect.Classes
         /// </remarks>
         /// <summary>
         /// The function GetPlayer2Disq is used to get the time where
-        /// player 2 was disqualified
+        /// player 2 was disqualified.
         /// </summary>
-        /// <param></param>        
-        /// <permission cref="System.Security.PermissionSet">
-        /// This function is public
-        /// </permission>
+        /// <param></param>   
         /// <returns>double: returns the time where player 2 was
-        /// disqualified</returns>
+        /// disqualified.</returns>
         public double GetPlayer2Disq()
         {
             return player2DisqualificationTime;
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 20/4/2012</para>
+        /// <para>Date Modified 20/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function getGraphicsDeviceManager returns the current Graphics Device Manager.
+        /// </summary>
+        /// <returns>GraphicsDeviceManager: The current GraphicsDeviceManager.</returns>
         public GraphicsDeviceManager getGraphicsDeviceManager()
         {
             return graphics;
