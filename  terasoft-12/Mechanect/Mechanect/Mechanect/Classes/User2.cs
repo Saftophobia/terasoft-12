@@ -85,8 +85,11 @@ namespace Mechanect.Classes
             MeasureVelocity();
         }
 
-
-        public void reset()
+        /// <summary>
+        /// Resets all instance variables to their intitial values
+        /// </summary>
+     
+        public void Reset()
         {
             shooting = false;
             beforeHip = false;
@@ -171,6 +174,8 @@ namespace Mechanect.Classes
             measuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
         }
 
-
+       
+    
     }
+
 }
