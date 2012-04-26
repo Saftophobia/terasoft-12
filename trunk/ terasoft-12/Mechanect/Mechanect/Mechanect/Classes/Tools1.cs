@@ -124,7 +124,7 @@ namespace Mechanect.Classes
 
 
          /// <summary>
-         /// this method should be called on each update and it will do the check on both players to see if they followed the commands
+         /// this method should be called on each second, and it will do the check on both players to see if they followed the commands.
          /// </summary>
          /// <param name="timeInSeconds">the second the game is in</param>
          /// <param name="user11">the first User1</param>
@@ -176,7 +176,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// this method should be called at the beginning of the race to set the players' position
+         /// this method should be called at the beginning of the race to set the players' positions.
          /// </summary>
          /// <param name="User11">the first User1</param>
          /// <param name="User12">the second User1</param>
@@ -190,12 +190,11 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool SetPositions(Skeleton sk1, Skeleton sk2, SpriteBatch spriteBatch, SpriteFont spFont, float tolerance)
          {
-             bool result = true;
 
                  float z;
                  float z2;
-                 bool isThePositionRight;
-                 bool isThePositionRight2;
+                 bool isThePositionRight = false;
+                 bool isThePositionRight2 = false;
                  String User11State = "";
                  String User12State = "";
                  if (sk1 != null)
@@ -203,30 +202,25 @@ namespace Mechanect.Classes
                      z = (float)sk1.Position.Z;
                      isThePositionRight = CheckPosition(z, tolerance);
 
-                     User11State = "User1 1: Your position is: " + z.ToString() + " this is " + isThePositionRight + ", it should be 4.0 m \n";
-
-                     if (!isThePositionRight)
-                         result = false;
+                     User11State = "User 1: Your position is: " + z.ToString() + " this is " + isThePositionRight + ", it should be 4.0 m \n";
                  }
                  if (sk2 != null)
                  {
                      z2 = (float)sk2.Position.Z;
                      isThePositionRight2 = CheckPosition(z2, tolerance);
 
-                     User12State = "User1 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
-
-                     if (!isThePositionRight2)
-                         result = false;
+                     User12State = "User 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
                  }
                  spriteBatch.Begin();
                  spriteBatch.DrawString(spFont, User11State, new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.DrawString(spFont, User12State, new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
-                 return result;
+
+                 return isThePositionRight && isThePositionRight2;
          }
 
          /// <summary>
-         /// this method checks whether the User1 is standing in about 4m or not(with certain tolerance)
+         /// this method checks whether the user is standing in about 4m or not (with certain tolerance).
          /// </summary>
          /// <param name="userPosition">the position that the User1 is currently standing at</param>
          /// <param name="tolerance">the tolerance level</param>
@@ -250,7 +244,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// this method checks whether the User1 satisfied the commands or not
+         /// this method checks whether the user satisfied the commands or not.
          /// </summary>
          /// <param name="command">which is the name of the command that should be satisfied</param>
          /// <param name="positions">a list containing the positions of the User1</param>
@@ -302,7 +296,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// checks if the user applied the command of Constant Velocity or not
+         /// checks if the user applied the command of Constant Velocity or not.
          /// </summary>
          /// <param name="positions">list of the user positions throughout the command</param>
          /// <param name="currentTolerance">the tolerance of the game</param>
@@ -337,7 +331,7 @@ namespace Mechanect.Classes
          }
          
          /// <summary>
-         /// checks if the user applied the command of Constant Acceleration or not
+         /// checks if the user applied the command of Constant Acceleration or not.
          /// </summary>
          /// <param name="positions">list of the user positions throughout the command</param>
          /// <param name="currentTolerance">the tolerance of the game</param>
@@ -375,7 +369,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// checks if the user applied the command of Constant Displacement or not
+         /// checks if the user applied the command of Constant Displacement or not.
          /// </summary>
          /// <param name="positions">list of the user positions throughout the command</param>
          /// <param name="currentTolerance">the tolerance of the game</param>
@@ -410,7 +404,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// checks if the user applied the command of Increasing Acceleration or not
+         /// checks if the user applied the command of Increasing Acceleration or not.
          /// </summary>
          /// <param name="positions">list of the user positions throughout the command</param>
          /// <param name="currentTolerance">the tolerance of the game</param>
@@ -447,7 +441,7 @@ namespace Mechanect.Classes
          }
 
          /// <summary>
-         /// checks if the user applied the command of Decreasing Acceleration or not
+         /// checks if the user applied the command of Decreasing Acceleration or not.
          /// </summary>
          /// <param name="positions">list of the user positions throughout the command</param>
          /// <param name="currentTolerance">the tolerance of the game</param>
