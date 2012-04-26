@@ -5,6 +5,7 @@ using System.Text;
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
 using Common.Classes;
+using Mechanect.Classes;
 
 namespace Mechanect.Screens
 {
@@ -13,8 +14,13 @@ namespace Mechanect.Screens
         private Button OKbutton;
         private Slider velocity;
         private Slider angle;
-
+        User user;
         private levelSelect level;
+
+        public Settings3(User user)
+        {
+            this.user = user;
+        }
 
         ///<remarks>
         ///<para>
@@ -26,10 +32,10 @@ namespace Mechanect.Screens
         /// </summary>
         public override void LoadContent()
         {
-          OKbutton = new OKButton(this.ScreenManager.Game.Content,
+          OKbutton =  Tools3.OKButton(this.ScreenManager.Game.Content,
             new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width / 2, this.ScreenManager.GraphicsDevice.Viewport.Height-400),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
-            this.ScreenManager.GraphicsDevice.Viewport.Height);
+            this.ScreenManager.GraphicsDevice.Viewport.Height,user);
 
           velocity = new Slider(new Vector2(20, 200),
             this.ScreenManager.GraphicsDevice.Viewport.Width,
@@ -42,7 +48,7 @@ namespace Mechanect.Screens
             this.ScreenManager.Game.Content);
 
 
-          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch);
+          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 500), this.ScreenManager.SpriteBatch, user);
 
           level.Initialize(this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
 

@@ -1,12 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Classes;
 namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
         string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
         Instruction instruction;
+        User3 user3;
 
         public InstructionsScreen3()
         {
@@ -15,6 +17,7 @@ namespace Mechanect.Screens
             
         {
             this.instructions = instructions;
+            user3 = new User3();
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -27,7 +30,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
 
         {
-            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user3);
             instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
            
@@ -46,11 +49,11 @@ namespace Mechanect.Screens
         
         public override void Update(GameTime gameTime, bool covered)
         {
-            if (instruction.Button.isClicked())
+            if (instruction.Button.IsClicked())
                     {
                         ExitScreen();
                    }
-            instruction.Button.update(gameTime);
+            instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
         }
 

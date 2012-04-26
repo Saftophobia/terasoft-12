@@ -94,7 +94,7 @@ namespace Mechanect.Classes
 
         public void SetHoleValues()
         {
-            position.X = GenerateRandomValue(0, terrainWidth - radius);
+            position.X = GenerateRandomValue(0, terrainWidth);
             position.Y = 0;
             position.Z = GenerateRandomValue(0, terrainHeight / 2);
         }

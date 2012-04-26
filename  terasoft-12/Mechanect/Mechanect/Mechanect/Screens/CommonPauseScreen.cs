@@ -1,19 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Classes;
 namespace Mechanect.Screens
 {
     class CommonPauseScreen : GameScreen
     {
         string instructions = "User not detected by kinect device please stand in correct position";
         Instruction instruction;
+        User user;
 
         public CommonPauseScreen()
         {
         }
-        public CommonPauseScreen(string instructions)
+        public CommonPauseScreen(string instructions, User user)
         {
             this.instructions = instructions;
+            this.user = user;
         }
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
@@ -25,7 +28,7 @@ namespace Mechanect.Screens
 
         public override void LoadContent()
         {
-            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user);
             instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
 
@@ -44,11 +47,11 @@ namespace Mechanect.Screens
 
         public override void Update(GameTime gameTime, bool covered)
         {
-            if (instruction.Button.isClicked())
+            if (instruction.Button.IsClicked())
             {
                 ExitScreen();
             }
-            instruction.Button.update(gameTime);
+            instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
         }
 

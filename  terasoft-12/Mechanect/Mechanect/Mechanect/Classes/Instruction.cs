@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
+using Mechanect.Classes;
 
 namespace Mechanect
 {
@@ -77,6 +78,8 @@ namespace Mechanect
                 instructions = value;
             }
         }
+
+        User user;
      
   
         public Instruction()
@@ -94,7 +97,7 @@ namespace Mechanect
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(String instructions, ContentManager content, SpriteBatch batch, GraphicsDevice device)
+        public Instruction(String instructions, ContentManager content, SpriteBatch batch, GraphicsDevice device, User u)
         {
 
 
@@ -103,7 +106,8 @@ namespace Mechanect
             cmanager = content;
             spriteBatch = batch;
             this.device = device;
-            b = new OKButton(cmanager, ButtonPosition, screenWidth, screenHeight);
+            this.user = u;
+            b =  Tools3.OKButton(cmanager, ButtonPosition, screenWidth, screenHeight,u);
         }
 
 
@@ -121,8 +125,8 @@ namespace Mechanect
             // Create a new SpriteBatch, which can be used to draw textures.
             screenWidth = device.Viewport.Width;
             screenHeight = device.Viewport.Height;
-            b = new OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
-           screenWidth , screenHeight );
+            b =  Tools3.OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
+           screenWidth , screenHeight,user );
            
             // TODO: use this.Content to load your game content here
         }
@@ -140,7 +144,7 @@ namespace Mechanect
         {
             //graphicsdevice.Clear(Color.YellowGreen);
             string output = WrapText(Font1, this.instructions, screenWidth);
-            b.draw(spriteBatch);
+            b.Draw(spriteBatch);
             spriteBatch.Begin();
             spriteBatch.DrawString(Font1, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
