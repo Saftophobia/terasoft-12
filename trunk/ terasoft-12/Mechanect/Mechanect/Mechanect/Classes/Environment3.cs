@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Cameras;
+using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
@@ -50,6 +51,8 @@ namespace Mechanect.Classes
         private Texture2D[] skyboxTextures;
         private Model skyboxModel;
         private ContentManager Content;
+        private WorL winner;
+        private SpriteBatch sprite;
 
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
@@ -75,7 +78,7 @@ namespace Mechanect.Classes
             user.AssumedLegMass = 20;
             
             #endregion
-           
+            sprite = spriteBatch;
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
@@ -83,7 +86,7 @@ namespace Mechanect.Classes
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
             angle = 0f;
-
+            winner = new WorL(Content2, Vector2.Zero);
         }
 
 
@@ -216,12 +219,12 @@ namespace Mechanect.Classes
             && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
             {
                 BallFallIntoHole();
-                //winningWord(); to be implemented by Hegazy, commented to remove error
+                winner.DislayIsWin(sprite, true);
             }
 
             else
             {
-                //losingWord(); to be implemented by Hegazy, commented to remove error
+                winner.DislayIsWin(sprite, false);
             }
         }
 
