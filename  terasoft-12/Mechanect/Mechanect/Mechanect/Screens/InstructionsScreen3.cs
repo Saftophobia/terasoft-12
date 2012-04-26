@@ -10,8 +10,9 @@ namespace Mechanect.Screens
         Instruction instruction;
         User3 user3;
 
-        public InstructionsScreen3()
+        public InstructionsScreen3(User3 user3)
         {
+            this.user3 = user3;
         }
         public InstructionsScreen3(string instructions, User3 user)
             
