@@ -66,7 +66,7 @@ namespace Mechanect.Classes
             user = new User3(4f);
             hole = new Hole();
             ball.InitialBallPosition = new Vector3(5, 0, 5);
-            user.ShootingPosition = new Vector3(15, 0, 10.5f);
+            user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
             friction = 0.1f;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
