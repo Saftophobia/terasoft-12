@@ -142,7 +142,7 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
-            hole.SetHoleValues(0f, user.ShootingPosition.Z);
+            hole.SetHoleValues();
             var x = Constants3.solvableExperiment;
             do
             {
