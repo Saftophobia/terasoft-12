@@ -78,17 +78,23 @@ namespace Mechanect.Classes
                 List<float> Player1Displacement = new List<float>();
                 List<float> Player2Displacement = new List<float>();
                 //initiating testing values 
+                Commands.Add("constantDisplacement");
+                Commands.Add("constantDisplacement");
                 Commands.Add("increasingAcceleration");
-                CommandsTime.Add(4);
+                Commands.Add("constantDisplacement");                
+                CommandsTime.Add(1);
+                CommandsTime.Add(1);
+                CommandsTime.Add(1);
+                CommandsTime.Add(1);
                 int intitial = 4000;
-                int stepping = 2;
-                for (int i = 0; i <= 23; i++)
+                int stepping = 1;
+                for (int i = 0; i <= 47; i++)
                 {
                     if (intitial > 0)
                     {
                         Player1Displacement.Add(intitial);
-                        intitial = intitial - stepping;
-                        stepping = stepping + 12;
+                        stepping = stepping + 5;
+                        intitial = intitial - stepping;                        
                     }
                     else
                     {
@@ -102,7 +108,7 @@ namespace Mechanect.Classes
                     if (intitial > 0)
                     {
                         Player2Displacement.Add(intitial);
-                        stepping = stepping + 4;
+                        stepping = stepping + 54;
                         intitial = intitial - stepping;
                     }
                     else
