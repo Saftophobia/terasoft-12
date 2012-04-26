@@ -46,14 +46,35 @@ namespace Mechanect
         Button b;
         public Button Button
         {
-            get { return b; }
+           get { return b; }
             set { b = value; }
         }
         ContentManager cmanager;
+        public ContentManager Cmanager
+        {
+            get
+            {
+                return cmanager;
+            }
+            set
+            {
+                cmanager = value;
+            }
+        }
         int screenWidth = 800;
         int screenHeight = 400;
         GraphicsDevice device;
-
+        public GraphicsDevice Device
+        {
+            get
+            {
+                return device;
+            }
+            set
+            {
+                device = value;
+            }
+        }
         public Vector2 PositionInScreen
         {
             get
@@ -99,8 +120,6 @@ namespace Mechanect
         /// </summary>
         public Instruction(String instructions, ContentManager content, SpriteBatch batch, GraphicsDevice device, User u)
         {
-
-
             this.instructions = instructions;
             origin = new Vector2(0f, 0f);
             cmanager = content;
@@ -142,7 +161,7 @@ namespace Mechanect
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public void Draw(GameTime gameTime)
         {
-            //graphicsdevice.Clear(Color.YellowGreen);
+           // device.Clear(Color.YellowGreen);
             string output = WrapText(Font1, this.instructions, screenWidth);
             b.Draw(spriteBatch);
             spriteBatch.Begin();
