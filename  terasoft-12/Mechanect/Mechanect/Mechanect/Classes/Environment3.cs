@@ -18,7 +18,7 @@ namespace Mechanect.Classes
         public Ball ball;
         private User3 user;
         private float wind;
-        private float friction;
+        public float friction;
         private bool hasCollidedWithBall, ballShot;
         private Vector2 tolerance;
         private Bar distanceBar;
@@ -28,11 +28,11 @@ namespace Mechanect.Classes
         private VertexPositionColorNormal[] vertices;
         //private Matrix viewMatrix;
         //private Matrix projectionMatrix;
-        private int[] indices;
+        private short[] indices;
 
         private float angle;
-        public int terrainWidth {get; private set;}
-        public int terrainHeight { get; private set; }
+        public short terrainWidth {get; private set;}
+        public short terrainHeight { get; private set; }
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
@@ -68,12 +68,12 @@ namespace Mechanect.Classes
             ball = new Ball(0.5f, 5f,device,Content);
             user = new User3(4f);
             hole = new Hole();
-            ball.InitialBallPosition = new Vector3(5, 0, 5);
+            ball.InitialBallPosition = new Vector3(50, 35, 50);
             user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
-            friction = 0.1f;
+            friction = 2f;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
-            ball.InitialVelocity = new Vector3(1, 0, 1);
+            ball.InitialVelocity = new Vector3(10, 0, -6);
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
@@ -145,8 +145,6 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
-
-            hole.SetHoleValues( );
 
             hole.SetHoleValues();
 
@@ -274,6 +272,8 @@ namespace Mechanect.Classes
             CalculateNormals();
             CopyToBuffers();
 
+            ball.LoadContent();
+
         }
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -379,7 +379,7 @@ namespace Mechanect.Classes
         /// </summary>
         private void SetUpIndices()
         {
-            indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
+            indices = new short[(terrainWidth - 1) * (terrainHeight - 1) * 6];
             var counter = 0;
             for (var y = 0; y < terrainHeight - 1; y++)
             {
@@ -390,13 +390,13 @@ namespace Mechanect.Classes
                     var topLeft = x + (y + 1) * terrainWidth;
                     var topRight = (x + 1) + (y + 1) * terrainWidth;
 
-                    indices[counter++] = topLeft;
-                    indices[counter++] = lowerRight;
-                    indices[counter++] = lowerLeft;
+                    indices[counter++] = (short)topLeft;
+                    indices[counter++] = (short)lowerRight;
+                    indices[counter++] = (short)lowerLeft;
 
-                    indices[counter++] = topLeft;
-                    indices[counter++] = topRight;
-                    indices[counter++] = lowerRight;
+                    indices[counter++] = (short)topLeft;
+                    indices[counter++] = (short)topRight;
+                    indices[counter++] = (short)lowerRight;
                 }
             }
         }
@@ -409,8 +409,8 @@ namespace Mechanect.Classes
         /// <param name="heightMap">The grayscale picture that will be used to define the heightmap</param>
         private void LoadHeightData(Texture2D heightMap)
         {
-            terrainWidth = heightMap.Width;
-            terrainHeight = heightMap.Height;
+            terrainWidth = (short)heightMap.Width;
+            terrainHeight = (short)heightMap.Height;
 
             Color[] heightMapColors = new Color[terrainWidth * terrainHeight];
             heightMap.GetData(heightMapColors);
@@ -431,7 +431,7 @@ namespace Mechanect.Classes
         {
             myVertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
             myVertexBuffer.SetData(vertices);
-            myIndexBuffer = new IndexBuffer(device, typeof(int), indices.Length, BufferUsage.WriteOnly);
+            myIndexBuffer = new IndexBuffer(device, typeof(short), indices.Length, BufferUsage.WriteOnly);
             myIndexBuffer.SetData(indices);
         }
 
