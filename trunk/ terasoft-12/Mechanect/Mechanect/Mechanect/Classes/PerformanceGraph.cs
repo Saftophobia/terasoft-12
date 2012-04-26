@@ -908,6 +908,10 @@ namespace Mechanect.Classes
         public void OptimumConstantAcceleration(int size)
         {
             float acceleration = previousAcc;
+            if (acceleration == 0)
+            {
+                acceleration = 41;
+            }
             float accumulator = previousVelo;
             float z = previousVelo + acceleration;
             float x = previousDisp - z;
@@ -915,7 +919,7 @@ namespace Mechanect.Classes
             {
                 if (x >= 0)
                 {
-                    OptimumAcceleration.Add(previousAcc);
+                    OptimumAcceleration.Add(acceleration);
                     OptimumVelocity.Add(z);
                     OptimumDisplacement.Add(x);
                 }
