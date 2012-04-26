@@ -20,6 +20,8 @@ namespace Mechanect.Classes
         private float wind;
         public float friction;
         private bool hasCollidedWithBall, ballShot;
+        public static int angleTolerance { get; set; }
+        public static int velocityTolerance { get; set; }
         private Vector2 tolerance;
         private Bar distanceBar;
         private GraphicsDevice device;
