@@ -10,8 +10,9 @@ namespace Mechanect.Screens
         Instruction instruction;
         User user;
 
-        public CommonPauseScreen()
+        public CommonPauseScreen(User user)
         {
+            this.user = user;
         }
         public CommonPauseScreen(string instructions, User user)
         {
