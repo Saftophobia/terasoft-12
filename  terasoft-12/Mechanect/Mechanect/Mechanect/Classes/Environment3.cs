@@ -26,8 +26,8 @@ namespace Mechanect.Classes
 
         private Effect effect;
         private VertexPositionColorNormal[] vertices;
-        private Matrix viewMatrix;
-        private Matrix projectionMatrix;
+        //private Matrix viewMatrix;
+        //private Matrix projectionMatrix;
         private int[] indices;
 
         private float angle;
@@ -85,7 +85,7 @@ namespace Mechanect.Classes
             Vector3 ballPos = ball.Position;
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
-            distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.90f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
+            //distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.90f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
             terrainWidth = 4;
@@ -145,11 +145,11 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
-<<<<<<< .mine
+
             hole.SetHoleValues( );
-=======
+
             hole.SetHoleValues();
->>>>>>> .r561
+
             var x = Constants3.solvableExperiment;
             do
             {
@@ -257,10 +257,10 @@ namespace Mechanect.Classes
         {
             
             effect = Content.Load<Effect>("Textures/effects");
-            SetUpCamera();
+            //SetUpCamera();
 
 
-            UpdateViewMatrix();
+            //UpdateViewMatrix();
             Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
             originalMouseState = Mouse.GetState();
 
@@ -281,7 +281,7 @@ namespace Mechanect.Classes
         /// Updates the environment. Similar to the Update() method of XNA, and to be called in it.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void UpdateEnvironment(GameTime gameTime)
+        /*public void UpdateEnvironment(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Delete))
@@ -290,7 +290,7 @@ namespace Mechanect.Classes
                 angle -= 0.05f;
             float timeDifference = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
             ProcessInput(timeDifference);
-        }
+        }*/
 
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -298,10 +298,10 @@ namespace Mechanect.Classes
         /// Draws the environment. Similar to the Draw() method of XNA
         /// </summary>
         ///<param name="gameTime">Provides a snapshot of timing values.</param>
-        public void DrawEnvironment(GameTime gameTime)
+        public void DrawEnvironment(Camera c, GameTime gameTime)
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
-            DrawSkybox();
+            DrawSkybox(c);
             var rs = new RasterizerState();
             rs.CullMode = CullMode.None;
             rs.FillMode = FillMode.Solid;
@@ -313,8 +313,8 @@ namespace Mechanect.Classes
             effect.Parameters["xLightDirection"].SetValue(lightDirection);
             effect.Parameters["xAmbient"].SetValue(0.1f);
             effect.Parameters["xEnableLighting"].SetValue(true);
-            effect.Parameters["xView"].SetValue(viewMatrix);
-            effect.Parameters["xProjection"].SetValue(projectionMatrix);
+            effect.Parameters["xView"].SetValue(c.view);
+            effect.Parameters["xProjection"].SetValue(c.projection);
             effect.Parameters["xWorld"].SetValue(worldMatrix);
 
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
@@ -365,7 +365,10 @@ namespace Mechanect.Classes
                         vertices[x + y * terrainWidth].Color = Color.White;
                 }
             }
+            
+
         }
+
 
 
 
@@ -484,7 +487,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Updates the view matrix depending on the movement of the camera.
         /// </summary> 
-        private void UpdateViewMatrix()
+        /*private void UpdateViewMatrix()
         {
             var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
 
@@ -496,7 +499,7 @@ namespace Mechanect.Classes
             var cameraRotatedUpVector = Vector3.Transform(cameraOriginalUpVector, cameraRotation);
 
             viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
-        }
+        }*/
 
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -504,7 +507,7 @@ namespace Mechanect.Classes
         /// Processes the movement of the mouse, and the keys pressed on the keyboard.
         /// </summary>
         /// <param name="amount"></param>
-        private void ProcessInput(float amount)
+        /*private void ProcessInput(float amount)
         {
             MouseState currentMouseState = Mouse.GetState();
             if (currentMouseState != originalMouseState)
@@ -531,7 +534,7 @@ namespace Mechanect.Classes
             if (keyState.IsKeyDown(Keys.Z))
                 moveVector += new Vector3(0, -1, 0);
             AddToCameraPosition(moveVector * amount);
-        }
+        }*/
 
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -539,13 +542,13 @@ namespace Mechanect.Classes
         /// Creates a matrix to be able to rotate the camera, and updates the view matrix correspondingly.
         /// </summary>
         /// <param name="vectorToAdd"></param>
-        private void AddToCameraPosition(Vector3 vectorToAdd)
+        /*private void AddToCameraPosition(Vector3 vectorToAdd)
         {
             var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
             Vector3 rotatedVector = Vector3.Transform(vectorToAdd, cameraRotation);
             cameraPosition += moveSpeed * rotatedVector;
             UpdateViewMatrix();
-        }
+        }*/
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
@@ -576,7 +579,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Creates, draws and adds effects to the skybox to display the sky all in all directions with a constant distance from the camera.
         /// </summary>
-        private void DrawSkybox()
+        private void DrawSkybox(Camera c)
         {
             var ss = new SamplerState();
             ss.AddressU = TextureAddressMode.Clamp;
@@ -594,16 +597,16 @@ namespace Mechanect.Classes
             {
                 foreach (Effect currentEffect in mesh.Effects)
                 {
-                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(cameraPosition);
+                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(c.position);
                     currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
-                    currentEffect.Parameters["xView"].SetValue(viewMatrix);
-                    currentEffect.Parameters["xProjection"].SetValue(projectionMatrix);
+                    currentEffect.Parameters["xView"].SetValue(c.view);
+                    currentEffect.Parameters["xProjection"].SetValue(c.projection);
                     currentEffect.Parameters["xTexture"].SetValue(skyboxTextures[i++]);
                 }
                 mesh.Draw();
             }
-            DrawHole();
+            //DrawHole();
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -614,11 +617,11 @@ namespace Mechanect.Classes
         /// <summary>
         /// Sets up the view matrix and projection matrix defining the camera.
         /// </summary>
-        private void SetUpCamera()
+        /*private void SetUpCamera()
         {
             viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
             projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 1.0f, 300.0f);
-        }
+        }*/
 
         #endregion
 
@@ -654,7 +657,7 @@ namespace Mechanect.Classes
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             //            spriteBatch = new SpriteBatch(GraphicsDevice);
-            holeModel = Content.Load<Model>(@"Models/holemodel");
+            //holeModel = Content.Load<Model>(@"Models/holemodel");
             // TODO: use this.Content to load your game content here
         }
 
@@ -665,7 +668,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// Draws the 3D hole by rendering each effect in each mesh in the hole model.
         /// </summary>
-        protected void DrawHole()
+        /*protected void DrawHole()
         {
             //gdevice.Clear(Color.CornflowerBlue);
             Matrix[] holetransforms = new Matrix[holeModel.Bones.Count];
@@ -685,7 +688,7 @@ namespace Mechanect.Classes
             // TODO: Add your drawing code here
 
             //base.Draw(gameTime);
-        }
+        }*/
 
         #endregion
 
