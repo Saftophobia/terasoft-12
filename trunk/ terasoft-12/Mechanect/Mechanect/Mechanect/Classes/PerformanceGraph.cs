@@ -862,56 +862,16 @@ namespace Mechanect.Classes
         /// <param name="velocityTest1">A list representing Player 1's velocity during the race.</param>
         /// <param name="velocityTest2">A list representing Player 2's velocity during the race.</param>
         /// <returns>void</returns>
-        public void OptimumConstantVelocity(int disq1, int disq2, int start, int end, List<float> velocityTest1, List<float> velocityTest2)
+        public void OptimumConstantVelocity(int size)
         {
-            double a = GetAverageList(velocityTest1);
-            double b = GetAverageList(velocityTest2);
-            double value = 0;
-            if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
+            float velocity = previousVelo;
+            float x = previousDisp - velocity;
+            for (int i = 0; i <= size - 1; i++)
             {
-                if (a >= b)
+                if (x >= 0)
                 {
-                    value = a;
-                }
-                else
-                {
-                    value = b;
-                }
-            }
-            if (!LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
-            {
-                value = a;
-            }
-            if (LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {
-                value = b;
-            }
-            if (LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
-            {
-                value = (double)((double)(a + b) / (double)2);
-            }
-            List<float> displacementTrial = new List<float>();
-            float accumulator = previousDisp;
-            float z = accumulator - 0; ;
-            for (int i = 0; i <= velocityTest1.Count - 1; i++)
-            {
-                if (z >= 0)
-                {
-                    displacementTrial.Add(z);
-                }
-                else
-                {
-                    displacementTrial.Add(0);
-                }
-                z = accumulator - (float)value;
-                accumulator = z;
-            }
-            for (int i = 0; i <= velocityTest1.Count - 1; i++)
-            {
-                if (displacementTrial[i] > 0)
-                {
-                    OptimumVelocity.Add((float)value);
-                    OptimumDisplacement.Add(displacementTrial[i]);
+                    OptimumVelocity.Add(velocity);
+                    OptimumDisplacement.Add(x);
                 }
                 else
                 {
@@ -919,9 +879,11 @@ namespace Mechanect.Classes
                     OptimumDisplacement.Add(0);
                 }
                 OptimumAcceleration.Add(0);
+                x = x - velocity;
             }
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
             this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
+            this.previousAcc = 0;
         }
 
         /// <remarks>
@@ -943,76 +905,28 @@ namespace Mechanect.Classes
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <param name="currentCommand">A string representing the current command.</param>
         /// <returns>void</returns>
-        public void OptimumConstantAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, String currentCommand)
+        public void OptimumConstantAcceleration(int size)
         {
-            double a = GetAverageList(accelerationTest1);
-            double b = GetAverageList(accelerationTest2);
-            double value = 0;
-            if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {
-                if (a >= b)
-                {
-                    value = a;
-                }
-                else
-                {
-                    value = b;
-                }
-            }
-            if (!LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
-            {
-                value = getMax(accelerationTest1);
-                if (currentCommand.Equals("constantAcceleration"))
-                {
-                    value = a;
-                }
-            }
-            if (LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
-            {
-                value = getMax(accelerationTest2);
-                if (currentCommand.Equals("constantAcceleration"))
-                {
-                    value = b;
-                }
-            }
-
-            if (LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
-            {
-                value = -41;
-                if (currentCommand.Equals("constantAcceleration"))
-                {
-                    value = (double)((double)(a + b) / (double)2);
-                }
-            }
-            if (value == 0)
-            {
-                value = 41;
-            }
-            List<float> velocityTest = new List<float>();
+            float acceleration = previousAcc;
             float accumulator = previousVelo;
-            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            float z = previousVelo + acceleration;
+            float x = previousDisp - z;
+            for (int i = 0; i <= size - 1; i++)
             {
-                float z = accumulator + (float)value;
-                velocityTest.Add(z);
-                accumulator = z;
-            }
-            accumulator = previousDisp;
-            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
-            {
-                float z = accumulator - (float)velocityTest[i];
-                if (z >= 0)
+                if (x >= 0)
                 {
-                    OptimumAcceleration.Add((float)value);
-                    OptimumDisplacement.Add(z);
-                    OptimumVelocity.Add(velocityTest[i]);
+                    OptimumAcceleration.Add(previousAcc);
+                    OptimumVelocity.Add(z);
+                    OptimumDisplacement.Add(x);
                 }
                 else
                 {
                     OptimumAcceleration.Add(0);
-                    OptimumDisplacement.Add(0);
                     OptimumVelocity.Add(0);
+                    OptimumDisplacement.Add(0);
                 }
-                accumulator = z;
+                z = z + acceleration;
+                x = x - z;
             }
             this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
             this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
@@ -1073,7 +987,7 @@ namespace Mechanect.Classes
                 value = 41;
             }
             List<float> accelerationTrial = new List<float>();
-            float accumulator = 0;
+            float accumulator = previousAcc;
             for (int i = 0; i <= accelerationTest1.Count - 1; i++)
             {
                 float z = accumulator + (float)value;
@@ -1113,6 +1027,88 @@ namespace Mechanect.Classes
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
         }
 
+
+        public void OptimumDecreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
+        {
+            float totalStep1 = getTotalStep(accelerationTest1);
+            float totalStep2 = getTotalStep(accelerationTest2);
+            double a = (double)((double)totalStep1 / (double)accelerationTest1.Count);
+            double b = (double)((double)totalStep2 / (double)accelerationTest2.Count);
+            double value = 0;
+            if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
+            {
+                if (a > b)
+                {
+                    value = a;
+                }
+                else
+                {
+                    value = b;
+                }
+            }
+            if (!LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
+            {
+                value = a;
+            }
+            if (LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
+            {
+                value = b;
+            }
+            if (LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
+            {
+                value = 41;
+            }
+            if (value == 0)
+            {
+                value = 41;
+            }
+            List<float> accelerationTrial = new List<float>();
+            float accumulator = previousAcc;
+            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            {
+                float z = accumulator - (float)value;
+                if (z >= 0)
+                {
+                    accelerationTrial.Add(z);
+                }
+                else
+                {
+                    accelerationTrial.Add(0);
+                }
+                accumulator = z;
+            }
+            List<float> velocityTest = new List<float>();
+            accumulator = previousVelo;
+            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            {
+                float z = accumulator + accelerationTrial[i];
+                velocityTest.Add(z);
+                accumulator = z;
+            }
+            accumulator = previousDisp;
+            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            {
+                float z = accumulator - (float)velocityTest[i];
+                if (z >= 0)
+                {
+                    OptimumAcceleration.Add(accelerationTrial[i]);
+                    OptimumDisplacement.Add(z);
+                    OptimumVelocity.Add(velocityTest[i]);
+                }
+                else
+                {
+                    OptimumAcceleration.Add(0);
+                    OptimumDisplacement.Add(0);
+                    OptimumVelocity.Add(0);
+                }
+
+                accumulator = z;
+            }
+            this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
+            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
+            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+        }
+
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
@@ -1129,11 +1125,13 @@ namespace Mechanect.Classes
         {
             for (int k = 0; k <= size - 1; k++)
             {
-                OptimumDisplacement.Add(previousDisp);
+                OptimumDisplacement.Add(this.previousDisp);
                 OptimumVelocity.Add(0);
                 OptimumAcceleration.Add(0);
             }
             this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+            this.previousVelo = 0;
+            this.previousAcc = 0;
         }
 
         /// <remarks>
@@ -1188,12 +1186,13 @@ namespace Mechanect.Classes
             int disq2 = (int)(player2disq * 12);//index of disq frame
             int start = 0;
             int end = 0;
+            previousDisp = 4000;
             previousVelo = 0;
             previousAcc = 0;
-            previousDisp = 4000;
             for (int i = 0; i <= TimeSpaces.Count - 1; i++)
-            {                
-                end = start + (int)(TimeSpaces[i] * 12);                
+            {
+                List<float> tempList = new List<float>();
+                end = start + (int)(TimeSpaces[i] * 12);
                 List<float> velocityTest1 = new List<float>();
                 List<float> velocityTest2 = new List<float>();
                 List<float> accelerationTest1 = new List<float>();
@@ -1207,20 +1206,25 @@ namespace Mechanect.Classes
                 }
                 if (CommandsList[i].Equals("constantVelocity"))
                 {
-                    OptimumConstantVelocity(disq1, disq2, start, end, velocityTest1, velocityTest2);
+                    int x = end - start;
+                    OptimumConstantVelocity(x);
                 }
-                if (CommandsList[i].Equals("constantAcceleration") || CommandsList[i].Equals("constantDeceleration"))
+                if (CommandsList[i].Equals("constantAcceleration"))
                 {
-                    String currentCommand = CommandsList[i];
-                    OptimumConstantAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, currentCommand);
+                    int x = end - start;
+                    OptimumConstantAcceleration(x);
                 }
                 if (CommandsList[i].Equals("increasingAcceleration"))
                 {
                     OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
+                if (CommandsList[i].Equals("constantDeceleration"))
+                {
+                    OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
+                }
                 if (CommandsList[i].Equals("constantDisplacement"))
                 {
-                    int size = accelerationTest1.Count;
+                    int size = end - start;
                     OptimumConstantDisplacement(size);
                 }
                 velocityTest1.Clear();
@@ -1228,6 +1232,7 @@ namespace Mechanect.Classes
                 accelerationTest1.Clear();
                 accelerationTest2.Clear();
                 start = end;
+                tempList.Clear();
             }
         }
 
