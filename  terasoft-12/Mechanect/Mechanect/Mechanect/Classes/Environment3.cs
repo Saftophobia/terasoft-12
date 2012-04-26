@@ -168,6 +168,7 @@ namespace Mechanect.Classes
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
                     case Constants3.negativeFriction: friction *= -1; break;
+                    case Constants3.negativeHPosZ: hole.Position = Vector3.Subtract(hole.Position, new Vector3(1, 0, 0)); break;
                 }
             } while (x != Constants3.solvableExperiment);
         }
