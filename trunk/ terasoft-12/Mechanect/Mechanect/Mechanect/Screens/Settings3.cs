@@ -69,8 +69,8 @@ namespace Mechanect.Screens
         {
             if (OKbutton.IsClicked())
             {
-                //setToleranceOfAngle(angle.getValue());
-                //setToleranceOfVelocity(velcoity.getValue());
+                Environment3.angleTolerance = angle.GetValue();
+                Environment3.velocityTolerance = velocity.GetValue();
                 this.Remove();
             }
             OKbutton.Update(gameTime);
