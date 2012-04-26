@@ -30,8 +30,8 @@ namespace Mechanect.Classes
         private int[] indices;
 
         private float angle;
-        private int terrainWidth;
-        private int terrainHeight;
+        public int terrainWidth {get; private set;}
+        public int terrainHeight { get; private set; }
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
