@@ -10,21 +10,21 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using Mechanect.Common;
-
+using Mechanect.Classes;
 
 namespace Common.Classes
 {
 
     class Slider
     {
-        Vector2 positionBar;
-        Vector2 positionPointer;
-        Texture2D texture, onPic, offPic, barPic;
-        int screenW, ScreenH;
-        int value;
+        private Vector2 positionBar;
+        private Vector2 positionPointer;
+        private Texture2D texture, onPic, offPic, barPic;
+        private int screenW, ScreenH;
+        private int value;
 
-        MKinect kinect;
-        Timer1 timer;
+        private User user;
+        private Timer1 timer;
 
         ContentManager Content;
 
@@ -47,7 +47,7 @@ namespace Common.Classes
             ScreenH = sh;
             value = 1;
 
-            kinect = new MKinect();
+            user = new User();
             Content = c;
             timer = new Timer1();
 
@@ -70,7 +70,7 @@ namespace Common.Classes
         /// drawing the bar and the pointer
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(barPic, positionBar, Color.White);
@@ -87,26 +87,26 @@ namespace Common.Classes
         /// checking if the hand of the user has been hovered on the pointer and starts
         /// the timer and activating the pointer to be moved.
         /// </summary>
-        public void update() 
+        public void Update() 
         {
-            if (checkColission())
+            if (CheckColission())
             {
-                if (!timer.isRunning())
-                    timer.start();
+                if (!timer.IsRunning())
+                    timer.Start();
                 else
                 {
-                    if (timer.getDuration() >= (1 * 1000))
+                    if (timer.GetDuration() >= (1 * 1000))
                     {
-                        on();
-                        move();
+                        On();
+                        Move();
                     }
                     
                 }
             }
             else
             {
-                timer.stop();
-                off();
+                timer.Stop();
+                Off();
             }
             
         }
@@ -120,12 +120,12 @@ namespace Common.Classes
         /// tracking the movement of the hand to move the pointer to the right or the left. Incrementing
         /// or decrementing the value according to the movement.
         /// </summary>
-        void move()
+        void Move()
         {
-            Skeleton skeleton = kinect.requestSkeleton();
+            Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
             {
-                Point hand = kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
+                Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
                 
                 if ((hand.X - positionPointer.X) >= 40 && !(value == 5))
                 {
@@ -148,7 +148,7 @@ namespace Common.Classes
         /// <summary>
         /// changing the pointer to the activated pointer picture
         /// </summary>
-        void on()
+        void On()
         {
             texture = onPic;
         }
@@ -161,7 +161,7 @@ namespace Common.Classes
         /// <summary>
         /// changing the pointer to the disactivated pointer picture
         /// </summary>
-        void off()
+        void Off()
         {
             texture = offPic;
         }
@@ -175,20 +175,17 @@ namespace Common.Classes
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        public bool checkColission()
+        public bool CheckColission()
         {
 
-            Skeleton skeleton = kinect.requestSkeleton();
+            Skeleton skeleton = user.USER;
             if (skeleton != null)
             {
-                Point hand = kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
+                Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 50, 50);
                 Rectangle r2 = new Rectangle((int)positionPointer.X, (int)positionPointer.Y, offPic.Width, offPic.Height);
 
-                if (r1.Intersects(r2))
-                    return true;
-                else
-                    return false;
+                return r1.Intersects(r2);
             }
             return false;
         }
@@ -203,7 +200,7 @@ namespace Common.Classes
         /// used to get the value that the user selected
         /// </summary>
         /// <returns>the value that the user selected</returns>
-        public int getValue()
+        public int GetValue()
         {
             return value;
         }
