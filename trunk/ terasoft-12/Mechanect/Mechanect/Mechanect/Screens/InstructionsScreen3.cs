@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Mechanect.Common;
+using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
-    class InstructionsScreen3 : Instruction
+    class InstructionsScreen3 : GameScreen
     {
         string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
+        Instruction instruction;
+
         public InstructionsScreen3()
         {
-            new Instruction(instructions);
         }
-
         public InstructionsScreen3(string instructions)
-            : base(instructions)
+            
         {
             this.instructions = instructions;
         }
@@ -23,8 +25,11 @@ namespace Mechanect.Screens
         /// </summary>
         
         public override void LoadContent()
+
         {
-            base.LoadContent();
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice);
+            instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
+            instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
            
         }
         
@@ -41,7 +46,12 @@ namespace Mechanect.Screens
         
         public override void Update(GameTime gameTime, bool covered)
         {
-            base.Update(gameTime, covered);
+            if (instruction.Button.isClicked())
+                    {
+                        ExitScreen();
+                   }
+            instruction.Button.update(gameTime);
+            base.Update(gameTime, false);
         }
 
         /// <remarks>
@@ -53,7 +63,12 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
+            instruction.Draw(gameTime);
+        }
+        public override void Remove()
+        {
+            base.Remove();
+            
         }
 
     }
