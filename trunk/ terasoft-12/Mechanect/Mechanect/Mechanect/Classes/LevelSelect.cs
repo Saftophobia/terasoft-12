@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Mechanect.Classes;
 
 namespace Mechanect
 {
@@ -10,17 +11,20 @@ namespace Mechanect
     {
         //Position of the level select menu on the screen.
         public Vector2 position { get; set; }
-        
-        public Texture2D textureStrip, texture;
-        public int frame, width, height, level; 
+
+        private User user;
+        private Texture2D textureStrip, texture;
+        private int frame, width, height;
+        public int level;
         SpriteBatch spriteBatch;
         ContentManager Content;
         Button rightArrow, leftArrow, firstButton, secondButton, thirdButton;
         List<Button> Buttons;
         int[] values;
 
-        public levelSelect(Game game, Vector2 position, SpriteBatch spriteBatch)
+        public levelSelect(Microsoft.Xna.Framework.Game game, Vector2 position, SpriteBatch spriteBatch, User u)
         {
+            this.user = u;
             this.spriteBatch = spriteBatch;
             this.position = position;
             this.frame = 0;
@@ -55,19 +59,24 @@ namespace Mechanect
 
             int ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width;
             //Create and Initialize all Buttons.
+
+            Vector2 leftArrowPos = new Vector2(position.X, position.Y + 15);
+            Vector2 firstButtonPos = new Vector2(leftArrowPos.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 73, position.Y + 33);
+            Vector2 secondButtonPos = new Vector2(firstButtonPos.X + ButtonWidth + 8, position.Y + 33);
+            Vector2 thirdButtonPos = new Vector2(secondButtonPos.X + ButtonWidth + 8, position.Y + 33);
+
             rightArrow = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"), Content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-                new Vector2(position.X + ButtonWidth + 65 + width, position.Y + 15), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"));
+                new Vector2(position.X + ButtonWidth + 65 + width, position.Y + 15), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             leftArrow = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"), Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
-                new Vector2(position.X, position.Y + 15), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"));
+                leftArrowPos, screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             firstButton = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/dummy"), Content.Load<GifAnimation.GifAnimation>("Textures/dummySelected"),
-                new Vector2(leftArrow.Position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 73, position.Y + 33),
-                screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"));
+                firstButtonPos, screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             secondButton = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/dummy"), Content.Load<GifAnimation.GifAnimation>("Textures/dummySelected"),
-                new Vector2(firstButton.Position.X + ButtonWidth + 8, position.Y + 33), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"));
+                secondButtonPos, screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             thirdButton = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/dummy"), Content.Load<GifAnimation.GifAnimation>("Textures/dummySelected"),
-                new Vector2(secondButton.Position.X + ButtonWidth + 8, position.Y + 33), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"));
+                thirdButtonPos, screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
 
-
+            //Load Textures
             texture = Content.Load<Texture2D>("Textures/texture");
             textureStrip = Content.Load<Texture2D>("Textures/textureStrip");
 
@@ -92,35 +101,35 @@ namespace Mechanect
 
             //If right arrow Button is pressed.. Move the textureStrip one frame to the right 
             //and increase the values of the Buttons to match the levels
-            if (rightArrow.isClicked() && frame != 2)
+            if (rightArrow.IsClicked() && frame != 2)
             {
                 frame++;
                 values[0]++;
                 values[1]++;
                 values[2]++;
-                rightArrow.reset();
+                rightArrow.Reset();
             }
             //Same as above but move the strip to the left by updating which frame to draw 
             //and decrease value of the Buttons.
-            if (leftArrow.isClicked() && frame != 0)
+            if (leftArrow.IsClicked() && frame != 0)
             {
                  frame--;
                  values[0]--;
                  values[1]--;
                  values[2]--;
-                 leftArrow.reset();
+                 leftArrow.Reset();
             }
             //If any of the level Buttons is pressed.. set the level to the value of that Button.
-            if (firstButton.isClicked())
+            if (firstButton.IsClicked())
                 level = values[0];
-            if (secondButton.isClicked())
+            if (secondButton.IsClicked())
                 level = values[1];
-            if (thirdButton.isClicked())
+            if (thirdButton.IsClicked())
                 level = values[2];
 
 
             foreach (Button b in Buttons)
-                b.update(gameTime);
+                b.Update(gameTime);
 
         }
         /// <remarks>
@@ -138,7 +147,7 @@ namespace Mechanect
             spriteBatch.End();
             //Draw each Button in the list
             foreach (Button b in Buttons)
-                b.draw(spriteBatch);
+                b.Draw(spriteBatch);
 
         }
     }
