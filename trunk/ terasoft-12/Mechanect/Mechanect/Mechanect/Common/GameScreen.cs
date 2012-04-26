@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
+using Mechanect.Classes;
+using Mechanect.Screens;
 namespace Mechanect.Common
 {
     /// <summary>
@@ -31,6 +32,8 @@ namespace Mechanect.Common
             get { return isPopup; }
             set { isPopup = value; }
         }
+        User user;
+        bool pausescreenappeared = false;
         public bool IsFrozen
         {
             get { return isFrozen; }
@@ -166,7 +169,9 @@ namespace Mechanect.Common
         #endregion
 
         #region Initialization
-        public virtual void LoadContent() { }
+        public virtual void LoadContent() {
+           user = new User();
+        }
 
         public virtual void UnloadContent() { }
         #endregion
@@ -175,6 +180,14 @@ namespace Mechanect.Common
         public virtual void Initialize() { } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
+            user = new User();
+            user.setSkeleton();
+            if (user.USER == null)
+                if (pausescreenappeared == false)
+                {
+                    screenManager.AddScreen(new CommonPauseScreen(user));
+                    pausescreenappeared = true;
+                }
             if (IsFrozen)
                 return;
             
