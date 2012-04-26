@@ -128,6 +128,7 @@ namespace Mechanect.Screens
         private Vector2 startAquariumPosition;
         private Vector2 destinationAquariumPosition;
 
+        
 
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the Content directory.
@@ -142,7 +143,7 @@ namespace Mechanect.Screens
         /// <param name="mKinect">takes an instance of mKinect</param>
         public Experiment2(User2 user, MKinect mKinect)
         {
-            environment = new Environment2();
+            environment = new Environment2(5);
 
             this.user = user;
             this.mKinect = mKinect;
@@ -186,7 +187,7 @@ namespace Mechanect.Screens
             velAngleFont = Content.Load<SpriteFont>("angleVelFont");
 
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
-            button = new OKButton(Content, buttonPosition, screenWidth, screenHeight);
+            button =  Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight,user);
             //TBC
             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
 
@@ -469,7 +470,7 @@ namespace Mechanect.Screens
 
             SpriteBatch.End();
             // ask hegazy to make it scalable !
-            button.draw(SpriteBatch);
+            button.Draw(SpriteBatch);
         }
 
         /// <summary>
@@ -704,7 +705,7 @@ namespace Mechanect.Screens
                 }
             }
 
-            else if (button.isClicked() || voiceCommand.getHeared("ok"))
+            else if (button.IsClicked() || voiceCommand.getHeared("ok"))
             {
                 grayScreen = false;
                 button = null;

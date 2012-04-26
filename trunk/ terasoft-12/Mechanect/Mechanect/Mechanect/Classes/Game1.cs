@@ -30,6 +30,7 @@ namespace Mechanect
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
          Boolean fullScreen = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -69,8 +70,10 @@ namespace Mechanect
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
-            screenManager.AddScreen(new Experiment3());
+            //screenManager.AddScreen(new InstructionsScreen3());
+            //screenManager.AddScreen(new AllExperiments());
             //screenManager.AddScreen(new Experiment2(new User2()));
+            screenManager.AddScreen(new Experiment3(new User3()));
 
             // TODO: use this.Content to load your game content here
         }

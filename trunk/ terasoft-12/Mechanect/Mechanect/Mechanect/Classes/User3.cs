@@ -292,10 +292,10 @@ namespace Mechanect.Classes
                 shootingPosition = value;
             }
         }
-         public User3(float assumedLegMass)
+         public User3()
         {
            
-            this.assumedLegMass = assumedLegMass;
+         
 
             initialLeftLegPositionX = 0;
             currentLeftLegPositionX = 0;
@@ -318,6 +318,7 @@ namespace Mechanect.Classes
             movedForward = false;
             trying = true;
             hasSetInitialPositionForAngle = false;
+            assumedLegMass = GenerateFootMass(Constants3.normalLegMass, 0.04f);
          
 
         }

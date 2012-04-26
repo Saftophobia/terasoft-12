@@ -19,11 +19,12 @@ namespace Mechanect.Screens
         Environment3 environment;
         GraphicsDevice graphics;
         Camera c;
-
+        User user;
         ResultSimulation sim;
 
-           public Experiment3()
+           public Experiment3(User user)
         {
+            this.user = user;
           
         }
            public override void LoadContent()

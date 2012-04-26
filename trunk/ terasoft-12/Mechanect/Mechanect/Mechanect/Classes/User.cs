@@ -8,7 +8,7 @@ using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
-    class User
+    public class User
     {
 
         private Skeleton user;

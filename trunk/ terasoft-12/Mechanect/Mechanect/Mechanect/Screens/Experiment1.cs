@@ -140,7 +140,7 @@ namespace Mechanect.Screens
             Texture2D Texback = Content.Load<Texture2D>("track2");
             SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
             SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
-            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
+            //countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
             background1 = new CountDown(Content.Load<Texture2D>("track2"), ScreenManager.GraphicsDevice.Viewport.Width,
             ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/,ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
             background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,

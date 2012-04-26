@@ -59,7 +59,6 @@ namespace Mechanect.Classes
             Content = Content2;
             device = this.device;
             ball = new Ball(0.5f, 5f,device,Content);
-            user = new User3(4f);
             hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4);
             ball.InitialBallPosition = new Vector3(50, 35, 50);
             user.ShootingPosition = new Vector3(10.5f, 0, 10.5f);
@@ -236,7 +235,7 @@ namespace Mechanect.Classes
         public void InitializeEnvironment(GraphicsDevice g)
         {
             device = g;
-            //    InitializeHole();
+               
 
         }
 
@@ -257,14 +256,16 @@ namespace Mechanect.Classes
 
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
-
+           
+            InitializeHole();
+            
             skyboxModel = LoadModel("Models/skybox2", out skyboxTextures);
 
             SetUpVertices();
             SetUpIndices();
             CalculateNormals();
             CopyToBuffers();
-
+           
             ball.LoadContent();
 
         }
@@ -412,6 +413,7 @@ namespace Mechanect.Classes
             for (var x = 0; x < terrainWidth; x++)
                 for (var y = 0; y < terrainHeight; y++)
                     heightData[x, y] = heightMapColors[x + y * terrainWidth].R / 5.0f;
+
         }
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
@@ -620,7 +622,7 @@ namespace Mechanect.Classes
         #region Hole methods
 
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
+        ///<para>AUTHOR: Khaled Salah </pfzara>
         ///</remarks>
         /// <summary>
         /// Initializes all variables needed to draw the hole.
