@@ -51,14 +51,23 @@ namespace Mechanect
                 instructions = value;
             }
         }
-        
-        public Instruction()
-        {
-            game.Window.AllowUserResizing = true;
-            instructions = "";
-            origin = new Vector2(0f, 0f);
-            game.IsMouseVisible = true;
-        }
+     
+  
+      //  public Instruction()
+       // {
+        //    game.Window.AllowUserResizing = true;
+        //    instructions = "";
+         //   origin = new Vector2(0f, 0f);
+         //   game.IsMouseVisible = true;
+       // }
+       
+        /// <summary>
+        /// Set the origin Vector to be the left top corner of the screen.
+        /// Allow the User to resize the screen, and make the mouse visible in the screen
+        /// <remarks>
+        /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
+        /// </summary>
         public Instruction(String instructions)
         {
             game.Window.AllowUserResizing = true;
