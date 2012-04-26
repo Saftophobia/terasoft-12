@@ -140,6 +140,9 @@ namespace Mechanect.Classes
         ///</remarks>
         public void GenerateSolvable()
         {
+            hole.Radius =3;
+            ball.Radius = 1;
+            hole.SetHoleValues(0f, user.ShootingPosition.Z);
             var x = Constants3.solvableExperiment;
             do
             {
