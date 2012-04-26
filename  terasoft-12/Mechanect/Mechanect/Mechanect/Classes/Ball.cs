@@ -9,6 +9,7 @@ namespace Mechanect.Classes
     class Ball
     {
         private Vector3 position;
+        public bool NegVel;
         public Vector3 Position
         {
             get { return position; }
@@ -89,8 +90,21 @@ namespace Mechanect.Classes
         /// <param name="friction"> the environment's friction</param>
         public void Update(float friction)
         {
+            if (Velocity.Z <= 0)
+                Velocity = new Vector3(Velocity.X, Velocity.Y, 0);
+            if((InitialVelocity.X>0) && (Velocity.X<=0))
+                Velocity = new Vector3(0, Velocity.Y, Velocity.Z);
+            if ((InitialVelocity.X < 0) && (Velocity.X >= 0))
+                Velocity = new Vector3(0, Velocity.Y, Velocity.Z);
+
+
             Position = Vector3.Add(Position,Velocity);
-            Velocity = new Vector3(Velocity.X, Velocity.Y, Velocity.Z - friction);
+            Velocity = new Vector3(Velocity.X , Velocity.Y, Velocity.Z - friction);
+            if(InitialVelocity.X>0)
+                Velocity = new Vector3(Velocity.X - friction, Velocity.Y, Velocity.Z - friction);
+            else if(InitialVelocity.Z <0)
+                Velocity = new Vector3(Velocity.X + friction, Velocity.Y, Velocity.Z - friction);
+
         }
 
 
