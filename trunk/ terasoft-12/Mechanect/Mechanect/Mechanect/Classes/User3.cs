@@ -465,25 +465,24 @@ namespace Mechanect.Classes
          /// <summary>
          /// Calculates the new value of the velocity and sets it the variable velocity of the User3 to it
          /// </summary>
-         /// <param name="User3">takes and instance of the class User3 to calculate their new velocity</param>
 
-         public static void updateSpeed(User3 User3)
+         public void updateSpeed()
          {
-             double currentZ = User3.CurrentLeftLegPositionZ;
-             double initialZ = User3.InitialLeftLegPositionZ;
-             if (User3.RightLeg)
+             double currentZ = CurrentLeftLegPositionZ;
+             double initialZ = InitialLeftLegPositionZ;
+             if (RightLeg)
              {
-                 currentZ = User3.CurrentRightLegPositionZ;
-                 initialZ = User3.InitialRightLegPositionZ;
+                 currentZ = CurrentRightLegPositionZ;
+                 initialZ = InitialRightLegPositionZ;
              }
              double velocityFinal = 0;
              double deltaPosition = Math.Abs(currentZ - initialZ);
-             double acceleration = getAcceleration(deltaPosition, Constants3.unitTime, User3.Velocity);
-             velocityFinal = getVelocity(acceleration, User3.Velocity, Constants3.unitTime);
-             if (User3.Trying)
-                 User3.Velocity = Math.Max(User3.Velocity, velocityFinal);
+             double acceleration = getAcceleration(deltaPosition, Constants3.unitTime, Velocity);
+             velocityFinal = getVelocity(acceleration, Velocity, Constants3.unitTime);
+             if (Trying)
+                 Velocity = Math.Max(Velocity, velocityFinal);
              else
-                 User3.Velocity = velocityFinal;
+                 Velocity = velocityFinal;
          }
 
          ///<remarks>
