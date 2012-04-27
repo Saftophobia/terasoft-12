@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+ using Microsoft.Xna.Framework;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Classes;
@@ -23,7 +23,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user2);
-            instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
+            instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
 
         }
