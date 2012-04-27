@@ -33,23 +33,14 @@ namespace Mechanect.Screens
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
         }
-
+        /// <summary>
+        /// LoadContent will be called only once before drawing and its the place to load
+        /// all of your content.
+        /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
-        /// <summary>
-        /// LoadContent will be called only once before drawing and its the place to load
-        /// all of your content.
-        /// </summary>
-
-            /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// LoadContent will be called only once before drawing and its the place to load
-        /// all of your content.
-        /// </summary>
-        public override void LoadContent()
+      public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
@@ -68,18 +59,17 @@ namespace Mechanect.Screens
            //screenWidth, screenHeight, user);
             //button3 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2)-800, device.Viewport.Height - 400),
            //screenWidth, screenHeight, user);
-        
 
 
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <summary>
-        /// Allows the game screen to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
+      /// <summary>
+      /// Allows the game screen to run logic such as updating the world,
+      /// checking for collisions, gathering input, and playing audio.
+      /// </summary>
+      /// <remarks>
+      ///<para>AUTHOR: Khaled Salah </para>
+      ///</remarks>
+      /// <param name="gameTime">Provides a snapshot of timing values.</param>
+      /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
 
         public override void Update(GameTime gameTime, bool covered)
         {
