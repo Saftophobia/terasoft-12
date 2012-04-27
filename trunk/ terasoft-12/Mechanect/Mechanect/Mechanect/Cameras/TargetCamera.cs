@@ -27,7 +27,7 @@ namespace Mechanect.Cameras
         public TargetCamera(Vector3 position, Vector3 target, GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
         {
-            this.position = position;
+            this.Position = position;
             this.target = target;
         }
 
@@ -36,7 +36,7 @@ namespace Mechanect.Cameras
         /// </summary>
         public override void Update()
         {
-            this.view = Matrix.CreateLookAt(position, target, Vector3.Up);
+            this.View = Matrix.CreateLookAt(Position, target, Vector3.Up);
         }
 
     }

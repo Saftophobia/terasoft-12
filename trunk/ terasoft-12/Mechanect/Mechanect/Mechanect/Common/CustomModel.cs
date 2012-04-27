@@ -70,8 +70,8 @@ namespace Mechanect.Common
                 {
                     BasicEffect e = (BasicEffect)part.Effect;
                     e.World = localWorld;
-                    e.View = camera.view;
-                    e.Projection = camera.projection;
+                    e.View = camera.View;
+                    e.Projection = camera.Projection;
                     e.EnableDefaultLighting();
                 }
                 mesh.Draw();

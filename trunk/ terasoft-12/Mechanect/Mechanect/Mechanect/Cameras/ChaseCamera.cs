@@ -64,9 +64,9 @@ namespace Mechanect.Cameras
         {
             Matrix rotation = Matrix.CreateFromYawPitchRoll(relativeCameraRotation.Y, relativeCameraRotation.X, relativeCameraRotation.Z);
             Vector3 desiredPosition = followTargetPosition + Vector3.Transform(positionOffset, rotation);
-            position = Vector3.Lerp(position, desiredPosition, .15f);
+            Position = Vector3.Lerp(Position, desiredPosition, .15f);
             target = followTargetPosition + Vector3.Transform(targetOffset, rotation);
-            view = Matrix.CreateLookAt(position, target, Vector3.Transform(Vector3.Up, rotation));
+            View = Matrix.CreateLookAt(Position, target, Vector3.Transform(Vector3.Up, rotation));
         }
     }
 }

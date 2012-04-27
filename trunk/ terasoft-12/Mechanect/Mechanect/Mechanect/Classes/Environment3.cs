@@ -310,8 +310,8 @@ namespace Mechanect.Classes
             effect.Parameters["xLightDirection"].SetValue(lightDirection);
             effect.Parameters["xAmbient"].SetValue(0.1f);
             effect.Parameters["xEnableLighting"].SetValue(true);
-            effect.Parameters["xView"].SetValue(c.view);
-            effect.Parameters["xProjection"].SetValue(c.projection);
+            effect.Parameters["xView"].SetValue(c.View);
+            effect.Parameters["xProjection"].SetValue(c.Projection);
             effect.Parameters["xWorld"].SetValue(worldMatrix);
 
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
@@ -588,11 +588,11 @@ namespace Mechanect.Classes
             {
                 foreach (Effect currentEffect in mesh.Effects)
                 {
-                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(c.position);
+                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(c.Position);
                     currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
-                    currentEffect.Parameters["xView"].SetValue(c.view);
-                    currentEffect.Parameters["xProjection"].SetValue(c.projection);
+                    currentEffect.Parameters["xView"].SetValue(c.View);
+                    currentEffect.Parameters["xProjection"].SetValue(c.Projection);
                     currentEffect.Parameters["xTexture"].SetValue(skyboxTextures[i++]);
                 }
                 mesh.Draw();
