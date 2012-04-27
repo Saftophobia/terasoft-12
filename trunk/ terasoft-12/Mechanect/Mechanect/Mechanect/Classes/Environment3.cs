@@ -651,14 +651,13 @@ namespace Mechanect.Classes
         #endregion
 
         #region Hole methods
-
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </pfzara>
-        ///</remarks>
         /// <summary>
         /// Initializes all variables needed to draw the hole.
         /// </summary>
-
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </pfzara>
+        ///</remarks>
+        
         protected void InitializeHole()
         {
             // TODO: Add your initialization logic here
@@ -666,13 +665,13 @@ namespace Mechanect.Classes
         }
 
 
-        
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// Draws the 3D hole by rendering each effect in each mesh in the hole model.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        
         protected void DrawHole(Camera cam)
         {
             hole.DrawHole(cam);
