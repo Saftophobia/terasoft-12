@@ -8,3 +8,13 @@ c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\b
 c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\mine.xnb
 c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\player.xnb
 c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\gameFont.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\laser.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\mine.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\player.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\gameFont.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\XNA Task.exe
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\XNA Task.pdb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\obj\x86\Debug\XNA Task.exe
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\obj\x86\Debug\XNA Task.pdb

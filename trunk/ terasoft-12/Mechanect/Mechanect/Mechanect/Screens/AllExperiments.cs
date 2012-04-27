@@ -93,12 +93,12 @@ namespace Mechanect.Screens
             if (keyState.IsKeyDown(Keys.B))
             {
                 ExitScreen();
-                ScreenManager.AddScreen(new Experiment2(new User2()));
+                ScreenManager.AddScreen(new InstructionsScreen2(new User2()));
             }
             if (keyState.IsKeyDown(Keys.C))
             {
                 ExitScreen();
-                ScreenManager.AddScreen(new InstructionsScreen2(new User2()));
+                ScreenManager.AddScreen(new Experiment3(new User3()));
             }
           //  instruction.Button.Update(gameTime);
             //button1.Update(gameTime);

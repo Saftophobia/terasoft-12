@@ -7,19 +7,19 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\images\lol.xnb</Output>
-      <Time>2012-04-14T00:02:06.1297386+02:00</Time>
+      <Output>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\images\lol.xnb</Output>
+      <Time>2012-04-14T17:14:06.6205784+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBall\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -48,7 +48,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-04-12T13:36:47.1395071+02:00</Value>
+        <Value>2012-04-14T01:24:23.6566161+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

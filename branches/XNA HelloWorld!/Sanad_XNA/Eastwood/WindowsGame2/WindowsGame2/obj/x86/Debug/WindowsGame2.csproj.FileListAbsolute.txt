@@ -19,3 +19,10 @@ C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAss
 C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
 C:\Users\AMS\Desktop\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\Content\eastwood.xnb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.exe
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\bin\x86\Debug\WindowsGame2.pdb
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.exe
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Sanad_XNA\Eastwood\WindowsGame2\WindowsGame2\obj\x86\Debug\WindowsGame2.pdb

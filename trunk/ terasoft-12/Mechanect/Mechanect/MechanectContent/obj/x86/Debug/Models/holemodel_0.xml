@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Tube001</Name>
     <Identity>
-      <SourceFilename>C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\holemodel.FBX</SourceFilename>
+      <SourceFilename>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\holemodel.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>

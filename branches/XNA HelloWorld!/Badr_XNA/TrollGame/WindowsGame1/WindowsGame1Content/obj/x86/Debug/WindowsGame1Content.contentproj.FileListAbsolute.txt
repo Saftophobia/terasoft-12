@@ -1,2 +1,2 @@
 C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\WindowsGame1\WindowsGame1\WindowsGame1Content\obj\x86\Debug\ResolveAssemblyReference.cache
-F:\SE\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Badr_XNA\TrollGame\WindowsGame1\WindowsGame1Content\obj\x86\Debug\ResolveAssemblyReference.cache

@@ -1,1 +1,2 @@
 c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA TaskContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA TaskContent\obj\x86\Debug\ResolveAssemblyReference.cache

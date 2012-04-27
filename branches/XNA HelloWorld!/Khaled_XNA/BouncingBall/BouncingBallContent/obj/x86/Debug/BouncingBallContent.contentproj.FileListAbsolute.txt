@@ -1,2 +1,3 @@
 c:\users\user\documents\visual studio 2010\Projects\WindowsGame1\BouncingBall\BouncingBallContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\user\Desktop\Terasoft-new\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Khaled_XNA\BouncingBall\BouncingBallContent\obj\x86\Debug\ResolveAssemblyReference.cache
