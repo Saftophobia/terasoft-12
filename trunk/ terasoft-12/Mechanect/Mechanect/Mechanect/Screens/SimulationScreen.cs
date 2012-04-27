@@ -63,8 +63,9 @@ namespace Mechanect.Screens
              sim.Update(gameTime);
              if (sim.SimulationFinished)
              {
-                 ScreenManager.AddScreen(new LastScreen(environment.user, 3));
                  ExitScreen();
+                 ScreenManager.AddScreen(new LastScreen(environment.user, 3));
+                 Remove();
              }
              base.Update(gameTime, covered);
 
