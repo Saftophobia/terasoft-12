@@ -168,9 +168,7 @@ namespace Mechanect
                 try
                 {
                     double dt = ((double)1 / (double)12);
-                    float a = DisplacementList[i];
-                    float b = DisplacementList[i - 1];
-                    float currentVelocity = (float)((DisplacementList[i - 1] - DisplacementList[i]) / dt);
+                    float currentVelocity = ((float)(DisplacementList[i] - DisplacementList[i - 1]) / (float)(dt)) * -1;
                     result.Add(currentVelocity);
                 }
                 catch (Exception e)
@@ -219,7 +217,7 @@ namespace Mechanect
                 try
                 {
                     double dt = ((double)1 / (double)12);
-                    float currentAcceleration = (float)((VelocityList[i - 1] - VelocityList[i]) / dt);
+                    float currentAcceleration = (float)((VelocityList[i] - VelocityList[i - 1]) / dt);
                     result.Add(currentAcceleration);
                 }
                 catch (Exception e)
