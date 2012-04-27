@@ -38,27 +38,27 @@ namespace Mechanect.Common
         {
 
             this.elapsedTime += elapsed;
-            TimeSpan endTime = frames[frames.Count - 1].time;
+            TimeSpan endTime = frames[frames.Count - 1].Time;
 
             if (elapsedTime > endTime)
                 return;
 
             int i = 0;
 
-            while (frames[i + 1].time < elapsedTime)
+            while (frames[i + 1].Time < elapsedTime)
                 i++;
 
-            TimeSpan frameElapsedTime = elapsedTime - frames[i].time;
-            float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].time - frames[i].time).TotalSeconds);
+            TimeSpan frameElapsedTime = elapsedTime - frames[i].Time;
+            float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
 
             model.position = Vector3.CatmullRom(
-               frames[wrap(i - 1, frames.Count - 1)].position,
-               frames[wrap(i, frames.Count - 1)].position,
-               frames[wrap(i + 1, frames.Count - 1)].position,
-               frames[wrap(i + 2, frames.Count - 1)].position,
+               frames[Wrap(i - 1, frames.Count - 1)].Position,
+               frames[Wrap(i, frames.Count - 1)].Position,
+               frames[Wrap(i + 1, frames.Count - 1)].Position,
+               frames[Wrap(i + 2, frames.Count - 1)].Position,
                amt);
 
-            model.rotation = Vector3.Lerp(frames[i].rotation, frames[i + 1].rotation, amt);
+            model.rotation = Vector3.Lerp(frames[i].Rotation, frames[i + 1].Rotation, amt);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Mechanect.Common
         /// </summary>
         /// <param name="max">the maximum number the value can reach </param>
         /// <param name="value">number to be wraped</param>
-        private int wrap(int value, int max)
+        private int Wrap(int value, int max)
         {
             while (value > max)
                 value -= max;
