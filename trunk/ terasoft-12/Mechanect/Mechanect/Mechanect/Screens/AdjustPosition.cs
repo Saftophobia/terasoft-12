@@ -73,14 +73,14 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// creates object "AdjustPosition" that makes sure that the user is standing correctly. Works for one user.
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns object "AdjustPosition"</returns>
-        /// </summary>
         /// <param name="user"> the object User which tracks the skeleton of the player</param>
         /// <param name="minDepth"> an integer representing the minimum distance in centimeters the player should stand at.</param>
         /// <param name="maxDepth"> an integer representing the maximum distance in centimeters the player should stand at.</param>
@@ -104,14 +104,14 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// Creates object "AdjustPosition" that makes sure that users are standing correctly. works for 2 users.
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns object "AdjustPosition"</returns>
-        /// </summary>
         /// <param name="user1"> the object User which tracks the skeleton of the first player</param>
         /// <param name="user2"> the object User which tracks the skeleton of the second player</param>
         /// <param name="minDepth"> an integer representing the minimum distance in centimeters players should stand at.</param>
@@ -195,18 +195,19 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// measures the orientation of the user with respect to the kinect sensor
+        /// <example>a player standing facing the kinect sensor will have zero angle, </example>
+        /// <example>a player turned to his right with respect to the kinect sensor will a positive angle, </example>
+        /// <example>a player turned to his left with respect to the kinect sensor will a negative angle. </example>
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns the angle users[ID] makes with the kinect sensor. </returns>
-        /// <example>a player standing facing the kinect sensor will have zero angle, </example>
-        /// <example>a player turned to his right with respect to the kinect sensor will a positive angle, </example>
-        /// <example>a player turned to his left with respect to the kinect sensor will a negative angle, </example>
-        /// </summary>
         /// <param name="ID"> the index of the User in the users array</param>
+        /// <returns>returns the angle users[ID] makes with the kinect sensor. </returns>
         public float getAngle(int ID)
         {
             if (ID < users.Length)
@@ -222,19 +223,20 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// gets the suitable color that fits in the gradient in the semicircle
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns the color corresponding to the gradient respect to pixel's position within the angle ranges</returns>
-        /// </summary>
         /// <param name="startAngle"> the start angle of the gradient</param>
         /// <param name="endAngle"> the end angle of the gradient</param>
         /// <param name="currentAngle"> the pixel's angle</param>
         /// <param name="left"> the color at the start (left side) of the gradient</param>
         /// <param name="right"> the color at the end (right side) of the gradient</param>
+        /// <returns>returns the color corresponding to the gradient respect to pixel's position within the angle ranges</returns>
         public Color curveColor(int startAngle, int endAngle, int currentAngle, Color left, Color right)
         {
             int R = (right.R * (currentAngle - startAngle) + left.R * (endAngle - currentAngle)) / (endAngle - startAngle);
@@ -243,14 +245,15 @@ namespace Mechanect.Screens
             return new Color(R, G, B);
         }
 
+        /// <summary>
+        /// creates the texture2D representing the angle bar
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
-        /// </summary>
+        ///<returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
         public Texture2D semiCircle()
         {
             float avgAngle = (minAngle + maxAngle) / 2;
@@ -289,19 +292,20 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// The method gets the suitable color to fit in the gradient.
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>returns a color according to the location with respect to the start and end points of the gradient. </returns>
-        /// </summary>
         /// <param name="start"> the start position of the gradient</param>
         /// <param name="end"> the end position of the gradient</param>
         /// <param name="index"> the pixel's position</param>
         /// <param name="top"> the color at the top of the gradient</param>
         /// <param name="bot"> the color at the bottom of the gradient</param>
+        /// <returns>returns a color according to the location with respect to the start and end points of the gradient. </returns>
         public Color color(int start, int end, int index, Color top, Color bot)
         {
             int R = (bot.R * (index - start) + top.R * (end - index)) / (end - start);
@@ -311,14 +315,14 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// updates the gradient in the Depth bar to represent the players
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// updates the gradient in the Depth bar to represent the players
-        /// </summary>
         public void updateDepthBar()
         {
             Color[] data = new Color[depthBarHeight];
@@ -346,58 +350,18 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// Updates the User's depth and angle, and updates the command the user shall see
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// Updates the User's depth and angle, and updates the command the user shall see
-        /// </summary>
         /// <param name="ID"> The ID of the user in users[]</param>
         public void UpdateUser(int ID)
         {
-            users[ID].setSkeleton(ID);
-            try
-            {
-                if (users[ID].USER != null)
-                {
-                    depth[ID] = getDepth(ID);
-                    angle[ID] = getAngle(ID);
-                }
-                if (depth[ID] == 0)
-                {
-                    command[ID] = "No player detected";
-                    depth[ID] = 0;
-                    angle[ID] = 0;
-                    accepted[ID] = false;
-                    return;
-                }
-
-                accepted[ID] = (depth[ID] <= maxDepth && depth[ID] >= minDepth && angle[ID] <= maxAngle && angle[ID] >= minAngle);
-
-                if (accepted[ID])
-                {
-                    command[ID] = "You are ready to start the game";
-                }
-                else if (depth[ID] < minDepth && depth[ID] != 0)
-                {
-                    command[ID] = "Move backwards away from the kinect sensor";
-                }
-                else if (depth[ID] > maxDepth && depth[ID] != 0)
-                {
-                    command[ID] = "Move forward towards the kinect sensor";
-                }
-                else if (angle[ID] > maxAngle && depth[ID] != 0)
-                {
-                    command[ID] = "Turn a little to your left";
-                }
-                else if (angle[ID] < minAngle && depth[ID] != 0)
-                {
-                    command[ID] = "Turn a little to your right";
-                }
-            }
-            catch (Exception)
+            if (users[ID].USER == null || users[ID].USER.Position.Z == 0)
             {
                 command[ID] = "No player detected";
                 depth[ID] = 0;
@@ -405,16 +369,41 @@ namespace Mechanect.Screens
                 accepted[ID] = false;
                 return;
             }
+            depth[ID] = getDepth(ID);
+            angle[ID] = getAngle(ID);
+
+            accepted[ID] = (depth[ID] <= maxDepth && depth[ID] >= minDepth && angle[ID] <= maxAngle && angle[ID] >= minAngle);
+
+            if (accepted[ID])
+            {
+                command[ID] = "You are ready to start the game";
+            }
+            else if (depth[ID] < minDepth)
+            {
+                command[ID] = "Move backwards away from the kinect sensor";
+            }
+            else if (depth[ID] > maxDepth)
+            {
+                command[ID] = "Move forward towards the kinect sensor";
+            }
+            else if (angle[ID] > maxAngle)
+            {
+                command[ID] = "Turn a little to your left";
+            }
+            else if (angle[ID] < minAngle)
+            {
+                command[ID] = "Turn a little to your right";
+            }
         }
 
+        /// <summary>
+        /// Runs every frame gathering players' data and updating screen parameters.
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// Runs every frame gathering players' data and updating screen parameters.
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">determines whether the screen is covered by another screen or not.</param>
         public override void Update(GameTime gameTime, Boolean covered)
@@ -442,14 +431,14 @@ namespace Mechanect.Screens
             updateDepthBar();
         }
 
+        /// <summary>
+        /// This is called when the screen should draw itself. displays depth bar and user's rules and commands that allow him to stand correctly
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// This is called when the screen should draw itself. displays depth bar and user's rules and commands that allow him to stand correctly
-        /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
