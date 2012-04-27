@@ -107,7 +107,7 @@ namespace Mechanect
         /// <returns>return angle in form of double</returns>
         private double GetRandomAngle()
         {
-            return rand.Next(10, 80);
+            return (int)(10*GetRandomNumber(20, 70)) / 10f;
         }
        
         /// <summary>
@@ -119,7 +119,7 @@ namespace Mechanect
         /// <returns>returns random velocity "int"</returns>
         private double GetRandomVelocity()
         {
-            return GetRandomNumber(10, 70);
+            return (int)(10 * GetRandomNumber(5, 25)) / 10f;
         }
        
         /// <summary>
@@ -141,7 +141,7 @@ namespace Mechanect
 
 
             predatorLocation.X = 0;
-            predatorLocation.Y = rand.Next(0, 70);
+            predatorLocation.Y = rand.Next(0, 20);
             angleInDegree = GetRandomAngle();
             angle = angleInDegree * (Math.PI / 180);
             velocity = GetRandomVelocity();
@@ -161,7 +161,6 @@ namespace Mechanect
                 TotalTime  = (-b - Math.Sqrt(Math.Pow(b, 2) - (4 * a * c))) / (2 * a);
             }
             
-
 
             Double TimeSlice = TotalTime / 3;
 
