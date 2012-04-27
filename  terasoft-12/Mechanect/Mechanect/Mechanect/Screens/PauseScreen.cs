@@ -48,7 +48,6 @@ namespace Mechanect.Screens
 
 
         SpriteFont font;
-        String st;
         int framesToWait;
         double velocity;
 
@@ -65,7 +64,7 @@ namespace Mechanect.Screens
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
 
-            st = "";
+       
             displayedGivens = "";
       
             
@@ -119,7 +118,7 @@ namespace Mechanect.Screens
                     // truncate max velocity
                     velocity = user.SetVelocityRelativeToGivenMass();
 
-                    for (int i = fills.Count()-1; i < user.Velocity; i++)
+                    for (int i = fills.Count()-1; i <velocity; i++)
                     {
                         fillsPositions.Add(fillPosition);
                         fills.Add(content.Load<Texture2D>("Textures/Vfill"));
@@ -129,8 +128,9 @@ namespace Mechanect.Screens
                 }
                 else
                 {
-                    st = "   " + velocity + " m/s " +'\n' + user.Angle + " degrees";
+                 
                     user.Velocity = velocity;
+                    displayedGivens +='\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: "+ user.Angle + " rad";
 
                     if (framesToWait > 300) // after 5 seconds
                     {
@@ -185,13 +185,11 @@ namespace Mechanect.Screens
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
             spriteBatch.End();
 
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, st, new Vector2(0, 0), Color.Red);
-            spriteBatch.End();
+    
 
             spriteBatch.Begin();
             displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " + legMass;
-            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width/2, givens.Height/4), Color.Salmon);
+            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width/3, givens.Height/4), Color.Red);
             spriteBatch.End();
         
             
