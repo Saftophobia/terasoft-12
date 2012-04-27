@@ -13,6 +13,12 @@ using Mechanect.Cameras;
 
 namespace Mechanect.Screens
 {
+    /// <remarks>
+    /// Author : Bishoy Bassem
+    /// </remarks>
+    /// <summary>
+    /// displays the ball simulation
+    /// </summary>
      class SimulationScreen : Mechanect.Common.GameScreen
      {
 
@@ -25,6 +31,10 @@ namespace Mechanect.Screens
          {
              this.environment = environment;
          }
+
+         /// <summary>
+         /// loads the screens content
+         /// </summary>
          public override void LoadContent()
          {
 
@@ -42,6 +52,11 @@ namespace Mechanect.Screens
 
          }
 
+         /// <summary>
+         /// updates the simulation screen 
+         /// </summary>
+         /// <param name="gameTime"></param>
+         /// <param name="covered"></param>
          public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
          {
 
@@ -55,6 +70,10 @@ namespace Mechanect.Screens
 
          }
 
+         /// <summary>
+         /// draws the simulation screen
+         /// </summary>
+         /// <param name="gameTime"></param>
          public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
          {
              environment.DrawEnvironment(sim.Camera, gameTime);
