@@ -168,7 +168,9 @@ namespace Mechanect
                 try
                 {
                     double dt = ((double)1 / (double)12);
-                    float currentVelocity = (float)((DisplacementList[i] - DisplacementList[i - 1]) / dt) * -1;
+                    float a = DisplacementList[i];
+                    float b = DisplacementList[i - 1];
+                    float currentVelocity = (float)((DisplacementList[i-1] - DisplacementList[i]) / dt) ;
                     result.Add(currentVelocity);
                 }
                 catch (Exception e)
@@ -217,7 +219,7 @@ namespace Mechanect
                 try
                 {
                     double dt = ((double)1 / (double)12);
-                    float currentAcceleration = (float)((VelocityList[i] - VelocityList[i - 1]) / dt);
+                    float currentAcceleration = (float)((VelocityList[i-1] - VelocityList[i]) / dt);
                     result.Add(currentAcceleration);
                 }
                 catch (Exception e)
@@ -520,7 +522,7 @@ namespace Mechanect
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
         /// <returns>void</returns>
-        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) 
+        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
         {
             for (int i = 0; i <= disp1.Length - 1; i++)
             {
