@@ -289,13 +289,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="arrow.png">
-      <Name>arrow</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\Experiment2\ImageSet1\AngleGauge.png">
       <Name>AngleGauge</Name>
       <Importer>TextureImporter</Importer>
