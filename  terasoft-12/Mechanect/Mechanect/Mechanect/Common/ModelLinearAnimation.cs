@@ -62,7 +62,7 @@ namespace Mechanect.Common
                 model.position = startPosition + (velocity * ms / 1000f) + (acceleration * ms * ms / 1000000f);
                 if (enableRotation)
                 {
-                    Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / 3;
+                    Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / (float) Math.PI;
                     model.rotation = startAngle + new Vector3(delta.Z, delta.Y, -delta.X);
                 }
             }
