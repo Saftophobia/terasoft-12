@@ -52,7 +52,7 @@ namespace Mechanect.Common
             if (status)
                 spriteBatch.Draw(winningPicture, position, Color.White);
             else
-                spriteBatch.Draw(winningPicture, position, Color.White);
+                spriteBatch.Draw(losingPicture, position, Color.White);
             spriteBatch.End();
         }
     }
