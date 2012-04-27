@@ -14,16 +14,16 @@ namespace Mechanect
     class Instruction
     {
         SpriteBatch spriteBatch;
-        SpriteFont font1;
-        public SpriteFont Font1
+        SpriteFont spriteFont;
+        public SpriteFont SpriteFont
         {
             get
             {
-                return font1;
+                return spriteFont;
             }
             set
             {
-                font1 = value;
+                spriteFont = value;
             }
         }
         Vector2 origin;
@@ -41,24 +41,24 @@ namespace Mechanect
                 mytexture = value;
             }
         }
-        Vector2 sPos = Vector2.Zero;
+        Vector2 startPosition = Vector2.Zero;
         Vector2 ButtonPosition = new Vector2(300, 300);
-        Button b;
+        Button button;
         public Button Button
         {
-           get { return b; }
-            set { b = value; }
+           get { return button; }
+            set { button = value; }
         }
-        ContentManager cmanager;
-        public ContentManager Cmanager
+        ContentManager contentManager;
+        public ContentManager ContentManager
         {
             get
             {
-                return cmanager;
+                return contentManager;
             }
             set
             {
-                cmanager = value;
+                contentManager = value;
             }
         }
         int screenWidth = 800;
@@ -118,15 +118,15 @@ namespace Mechanect
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(String instructions, ContentManager content, SpriteBatch batch, GraphicsDevice device, User u)
+        public Instruction(String instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
         {
             this.instructions = instructions;
-            origin = new Vector2(0f, 0f);
-            cmanager = content;
-            spriteBatch = batch;
+            this.origin = new Vector2(0f, 0f);
+            this.contentManager = contentManager;
+            this.spriteBatch = spritebatch;
             this.device = device;
-            this.user = u;
-            b =  Tools3.OKButton(cmanager, ButtonPosition, screenWidth, screenHeight,u);
+            this.user = user;
+            this.button =  Tools3.OKButton(contentManager, ButtonPosition, screenWidth, screenHeight,user);
         }
 
 
@@ -144,7 +144,7 @@ namespace Mechanect
             // Create a new SpriteBatch, which can be used to draw textures.
             screenWidth = device.Viewport.Width;
             screenHeight = device.Viewport.Height;
-            b =  Tools3.OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
+            button =  Tools3.OKButton(contentManager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
            screenWidth , screenHeight,user );
            
             // TODO: use this.Content to load your game content here
@@ -161,10 +161,10 @@ namespace Mechanect
         public void Draw(GameTime gameTime)
         {
            // device.Clear(Color.YellowGreen);
-            string output = WrapText(Font1, this.instructions, screenWidth);
-            b.Draw(spriteBatch);
+            string output = WrapText(spriteFont, this.instructions, screenWidth);
+            button.Draw(spriteBatch);
             spriteBatch.Begin();
-            spriteBatch.DrawString(Font1, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
+            spriteBatch.DrawString(spriteFont, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
         /// <summary>
@@ -175,7 +175,7 @@ namespace Mechanect
 
         String getInsructions()
         {
-            String output = WrapText(Font1, this.instructions, screenWidth);
+            String output = WrapText(SpriteFont, this.instructions, screenWidth);
             return output;
         }
 
