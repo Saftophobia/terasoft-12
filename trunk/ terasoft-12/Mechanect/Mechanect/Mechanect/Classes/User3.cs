@@ -515,14 +515,13 @@ namespace Mechanect.Classes
          /// <summary>
          /// Calculates the value of new the angle that the User3 is moving their leg with and sets the variable angle to it
          /// </summary>
-         /// <param name="User3">takes instance of class User3 to calculate their angle </param>
 
-         public static void updateAngle(User3 User3)
+         public  void UpdateAngle()
          {
-             if (User3.storeZ2 != User3.StoreZ1)
-                 User3.Angle = (Math.Atan((User3.StoreX2 - User3.StoreX1) / (Math.Abs(User3.StoreZ2 - User3.StoreZ1))));
+             if (storeZ2 != StoreZ1)
+                 Angle = (Math.Atan((StoreX2 - StoreX1) / (Math.Abs(StoreZ2 - StoreZ1))));
              else
-                 User3.Angle = (Math.PI / 2);
+                 Angle = (Math.PI / 2);
          }
 
 
