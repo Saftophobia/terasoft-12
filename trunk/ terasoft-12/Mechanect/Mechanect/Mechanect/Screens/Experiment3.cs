@@ -88,11 +88,17 @@ namespace Mechanect.Screens
         {
             ScreenManager.SpriteBatch.Begin();
             environment.DrawEnvironment(c, gameTime);
-            environment.distanceBar.Draw();
+            environment.DistanceBar.Draw();
             environment.ball.Draw(gameTime, c);
             ScreenManager.SpriteBatch.End();
         }
 
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
+        /// <summary>
+        /// starts the ball simulation
+        /// </summary>
         private void StartSimulation()
         {
             ScreenManager.AddScreen(new SimulationScreen(environment));
