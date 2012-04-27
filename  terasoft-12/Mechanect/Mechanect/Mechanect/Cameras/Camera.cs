@@ -18,19 +18,19 @@ namespace Mechanect.Cameras
         /// <summary>
         /// the view matrix
         /// </summary>
-        public Matrix view { get; set; }
+        public Matrix View { get; set; }
         
         /// <summary>
         /// the projection matrix
         /// </summary>
-        public Matrix projection { get; set; }
+        public Matrix Projection { get; set; }
 
         /// <summary>
         /// the position of the camera
         /// </summary>
-        public Vector3 position { get; protected set; }
+        public Vector3 Position { get; protected set; }
 
-        protected GraphicsDevice graphicsDevice { get; set; }
+        protected GraphicsDevice GraphicsDevice { get; set; }
 
         /// <summary>
         /// takes a GraphicsDevice as a parameter
@@ -38,8 +38,8 @@ namespace Mechanect.Cameras
         /// <param name="graphicsDevice"></param>
         public Camera(GraphicsDevice graphicsDevice)
         {
-            this.graphicsDevice = graphicsDevice;
-            this.projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
+            this.GraphicsDevice = graphicsDevice;
+            this.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
         }
 
         /// <summary>
