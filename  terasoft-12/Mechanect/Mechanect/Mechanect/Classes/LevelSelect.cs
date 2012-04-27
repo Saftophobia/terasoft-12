@@ -130,15 +130,24 @@ namespace Mechanect
             }
             //If any of the level Buttons is pressed.. set the level to the value of that Button.
             if (firstButton.IsClicked())
+            {
                 level = values[0];
+                firstButton.Reset();
+            }
             else
             {
                 if (secondButton.IsClicked())
+                {
                     level = values[1];
+                    secondButton.Reset();
+                }
                 else
                 {
                     if (thirdButton.IsClicked())
+                    {
                         level = values[2];
+                        thirdButton.Reset();
+                    }
                 }
             }
 
@@ -175,7 +184,7 @@ namespace Mechanect
         {
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             //Draw the texture and textureStrip according to the frame
-            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("leftArrow").GetTexture().Width + 70, position.Y + 30), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 70, position.Y + 30), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.Draw(texture, position, Color.White);
             spriteBatch.End();
             //Draw each Button in the list
