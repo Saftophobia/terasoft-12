@@ -182,7 +182,7 @@ namespace Mechanect.Common
         } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
-            user.setSkeleton();
+         /*   user.setSkeleton();
             if (user.USER == null)
             {
                 if (pausescreenappeared == false)
@@ -197,7 +197,7 @@ namespace Mechanect.Common
                 Remove();
                 pausescreenappeared = false;
                 UnfreezeScreen();
-            }
+            }*/
              
             if (IsFrozen)
                 return;
