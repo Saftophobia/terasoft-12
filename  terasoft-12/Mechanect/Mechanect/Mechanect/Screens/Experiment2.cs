@@ -716,8 +716,7 @@ namespace Mechanect.Screens
                         grayScreen = false;
                         button = null;
                         voiceCommand = null;
-                        user.MeasuredAngle = 0;
-                        user.MeasuredVelocity = 0;
+                        user.Reset();
                     }
                 }
                 user.setSkeleton();
