@@ -521,7 +521,11 @@ namespace Mechanect.Classes
              if (storeZ2 != StoreZ1)
                  Angle = (Math.Atan((StoreX2 - StoreX1) / (Math.Abs(StoreZ2 - StoreZ1))));
              else
-                 Angle = (Math.PI / 2);
+                 if (StoreX1 < StoreX2)
+                     Angle = (Math.PI / 2);
+                 else
+                     Angle = -(Math.PI / 2);
+
          }
 
 
