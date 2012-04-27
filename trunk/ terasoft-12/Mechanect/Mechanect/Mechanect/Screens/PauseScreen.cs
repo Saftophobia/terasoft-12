@@ -118,7 +118,13 @@ namespace Mechanect.Screens
                     // truncate max velocity
                     velocity = user.SetVelocityRelativeToGivenMass();
 
-                    for (int i = fills.Count()-1; i <velocity; i++)
+                    int draw;
+                    if (velocity > 31)
+                        draw = 31;
+                    else 
+                        draw = (int)velocity;
+
+                    for (int i = fills.Count()-1; i <draw; i++)
                     {
                         fillsPositions.Add(fillPosition);
                         fills.Add(content.Load<Texture2D>("Textures/Vfill"));
