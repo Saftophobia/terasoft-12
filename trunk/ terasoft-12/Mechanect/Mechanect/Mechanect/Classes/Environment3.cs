@@ -51,24 +51,13 @@ namespace Mechanect.Classes
 
         private Effect effect;
         private VertexPositionColorNormal[] vertices;
-        //private Matrix viewMatrix;
-        //private Matrix projectionMatrix;
         private short[] indices;
-
-        private float angle;
         public short terrainWidth {get; private set;}
         public short terrainHeight { get; private set; }
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
         private IndexBuffer myIndexBuffer;
-
-        private Vector3 cameraPosition;
-        private float leftrightRot;
-        private float updownRot;
-        private const float rotationSpeed = 0.3f;
-        private const float moveSpeed = 30.0f;
-        private MouseState originalMouseState;
 
         private Texture2D[] skyboxTextures;
         private Model skyboxModel;
@@ -85,7 +74,7 @@ namespace Mechanect.Classes
             this.user = user;
             Content = Content2;
             this.device = device;
-            ball = new Ball(0.0005f, 0.001f, device, Content);
+            ball = new Ball(10000.0f, 10001.0f, device, Content);
             ball.InitialBallPosition = new Vector3(-60, 3, 2);//-60,3,30
             user.ShootingPosition = new Vector3(0f, 3, 62f);
             //friction = 0.5f/3600;
@@ -107,6 +96,7 @@ namespace Mechanect.Classes
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
             angle = 0f;
+            friction = 1.0f;
         }
 
 
@@ -138,7 +128,8 @@ namespace Mechanect.Classes
 
             var finalPos = Vector3.Zero;
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
-
+            System.Diagnostics.Debug.WriteLine("finalPosX = " + finalPos.X);
+            System.Diagnostics.Debug.WriteLine("finalPosY = " + finalPos.Y);
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
@@ -186,6 +177,13 @@ namespace Mechanect.Classes
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Subtract(hole.Position, new Vector3(1, 0, 0)); break;
                 }
             } while (x != Constants3.solvableExperiment);
+            System.Diagnostics.Debug.WriteLine("ball radius = " + ball.Radius);
+            System.Diagnostics.Debug.WriteLine("hole radius =  " + hole.Radius);
+            System.Diagnostics.Debug.WriteLine("leg mass = " + user.AssumedLegMass);
+            System.Diagnostics.Debug.WriteLine("ball mass = " + ball.Mass);
+            System.Diagnostics.Debug.WriteLine("friction = " + friction);
+            System.Diagnostics.Debug.WriteLine("hole position = " + hole.Position);
+
         }
 
 
@@ -206,7 +204,7 @@ namespace Mechanect.Classes
         /// </returns>
         private Vector3 ballFinalPosition(Vector3 velocity)
         {
-
+            System.Diagnostics.Debug.WriteLine("input velocity = " + velocity);
             var vxsquared = (float)Math.Pow(velocity.X, 2);
             var vzsquared = (float)Math.Pow(velocity.Z, 2);
             float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
@@ -270,12 +268,6 @@ namespace Mechanect.Classes
         {
             
             effect = Content.Load<Effect>("Textures/effects");
-            //SetUpCamera();
-
-
-            //UpdateViewMatrix();
-            Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
-            originalMouseState = Mouse.GetState();
 
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
@@ -293,21 +285,6 @@ namespace Mechanect.Classes
 
         }
 
-        /// <summary>
-        /// Updates the environment. Similar to the Update() method of XNA, and should be called in it.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /*public void UpdateEnvironment(GameTime gameTime)
-        {
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Delete))
-                angle += 0.05f;
-            if (keyState.IsKeyDown(Keys.PageDown))
-                angle -= 0.05f;
-            float timeDifference = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 1000.0f;
-            ProcessInput(timeDifference);
-        }*/
 
 
 
@@ -324,7 +301,7 @@ namespace Mechanect.Classes
             rs.CullMode = CullMode.None;
             rs.FillMode = FillMode.Solid;
             device.RasterizerState = rs;
-            var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
+            var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
             effect.CurrentTechnique = effect.Techniques["Colored"];
             var lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
             lightDirection.Normalize();
@@ -501,75 +478,6 @@ namespace Mechanect.Classes
 
 
 
-        /// <summary>
-        /// Updates the view matrix depending on the movement of the camera.
-        /// </summary> 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /*private void UpdateViewMatrix()
-        {
-            var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
-
-            var cameraOriginalTarget = new Vector3(0, 0, -1);
-            var cameraRotatedTarget = Vector3.Transform(cameraOriginalTarget, cameraRotation);
-            var cameraFinalTarget = cameraPosition + cameraRotatedTarget;
-
-            var cameraOriginalUpVector = new Vector3(0, 1, 0);
-            var cameraRotatedUpVector = Vector3.Transform(cameraOriginalUpVector, cameraRotation);
-
-            viewMatrix = Matrix.CreateLookAt(cameraPosition, cameraFinalTarget, cameraRotatedUpVector);
-        }*/
-
-
-
-        /// <summary>
-        /// Processes the movement of the mouse, and the keys pressed on the keyboard.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <param name="amount"></param>
-        /*private void ProcessInput(float amount)
-        {
-            MouseState currentMouseState = Mouse.GetState();
-            if (currentMouseState != originalMouseState)
-            {
-                var xDifference = currentMouseState.X - originalMouseState.X;
-                var yDifference = currentMouseState.Y - originalMouseState.Y;
-                leftrightRot -= rotationSpeed * xDifference * amount;
-                updownRot -= rotationSpeed * yDifference * amount;
-                Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
-                UpdateViewMatrix();
-            }
-            var moveVector = new Vector3(0, 0, 0);
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Up) || keyState.IsKeyDown(Keys.W))
-                moveVector += new Vector3(0, 0, -1);
-            if (keyState.IsKeyDown(Keys.Down) || keyState.IsKeyDown(Keys.S))
-                moveVector += new Vector3(0, 0, 1);
-            if (keyState.IsKeyDown(Keys.Right) || keyState.IsKeyDown(Keys.D))
-                moveVector += new Vector3(1, 0, 0);
-            if (keyState.IsKeyDown(Keys.Left) || keyState.IsKeyDown(Keys.A))
-                moveVector += new Vector3(-1, 0, 0);
-            if (keyState.IsKeyDown(Keys.Q))
-                moveVector += new Vector3(0, 1, 0);
-            if (keyState.IsKeyDown(Keys.Z))
-                moveVector += new Vector3(0, -1, 0);
-            AddToCameraPosition(moveVector * amount);
-        }*/
-
-
-
-        /// <summary>
-        /// Creates a matrix to be able to rotate the camera, and updates the view matrix correspondingly.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <param name="vectorToAdd"></param>
-        /*private void AddToCameraPosition(Vector3 vectorToAdd)
-        {
-            var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
-            Vector3 rotatedVector = Vector3.Transform(vectorToAdd, cameraRotation);
-            cameraPosition += moveSpeed * rotatedVector;
-            UpdateViewMatrix();
-        }*/
-
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Loads a model and adds a texture to it.
@@ -633,15 +541,7 @@ namespace Mechanect.Classes
             device.DepthStencilState = dss;
         }
 
-        /// <summary>
-        /// Sets up the view matrix and projection matrix defining the camera.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /*private void SetUpCamera()
-        {
-            viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
-            projectionMatrix = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 1.0f, 300.0f);
-        }*/
+
 
         #endregion
 
@@ -758,6 +658,7 @@ namespace Mechanect.Classes
         /// <returns>Vector3 Ball velocity after collision.</returns>
         private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
+            System.Diagnostics.Debug.WriteLine("7elba input velocity" + initialVelocity);
             double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
 
             //Get the mass of the leg.
@@ -784,6 +685,7 @@ namespace Mechanect.Classes
             finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.MaxMass)))) / ballMass;
 
             //Return a vector containing the ball's speed and direction.
+            System.Diagnostics.Debug.WriteLine("7elba output" + new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle))));
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
 
