@@ -13,8 +13,8 @@ namespace Mechanect.Screens
     {
         private Button mainMenu;
         private Button newGame;
-        int experemintNumber;
-        User user;
+        private int experemintNumber;
+        private User user;
 
 
         /// <summary>
