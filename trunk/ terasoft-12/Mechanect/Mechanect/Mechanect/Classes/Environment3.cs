@@ -176,12 +176,13 @@ namespace Mechanect.Classes
 
 
 
+
+        /// <summary>
+        /// Takes the initial velocity of the ball and the friction and calculates its final position.
+        /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmad Sanad </para>
         ///</remarks>
-        /// <summary>
-        /// Takes the initial velocity of the ball and the friction and calculates it's final position
-        /// </summary>
         /// <param name="velocity">
         /// The initial velocity of the ball after being shot.
         /// </param>
@@ -198,12 +199,13 @@ namespace Mechanect.Classes
             return new Vector3(x, 0, z);
         }
 
+       
+        /// <summary>
+        /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, then calls methods to inform the user if he won or not.
+        /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmad Sanad </para>
         ///</remarks>
-        /// <summary>
-        /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, and calls methods to inform the user if he won or not.
-        /// </summary>
         private void hasScored()
         {
             Vector3 hole = this.hole.Position;
@@ -231,10 +233,12 @@ namespace Mechanect.Classes
         #region Environment Generation Code
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        
         /// <summary>
-        /// Inizializes the Environment
+        /// Initializes the Environment.
         /// </summary>
+        /// <param name="g">The graphics device used to display graphics on the screen.</param>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void InitializeEnvironment(GraphicsDevice g)
         {
             device = g;
@@ -242,10 +246,11 @@ namespace Mechanect.Classes
 
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+       
         /// <summary>
-        /// Loads the content of the environment. Similar to the LoadConent() method of XNA
+        /// Loads the content of the environment.
         /// </summary>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadEnvironmentContent()
         {
             
@@ -273,10 +278,10 @@ namespace Mechanect.Classes
 
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
-        /// Updates the environment. Similar to the Update() method of XNA, and to be called in it.
+        /// Updates the environment. Similar to the Update() method of XNA, and should be called in it.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /*public void UpdateEnvironment(GameTime gameTime)
         {
@@ -290,11 +295,12 @@ namespace Mechanect.Classes
         }*/
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
-        /// Draws the environment. Similar to the Draw() method of XNA
+        /// Draws the environment. Similar to the Draw() method of XNA and should be called in it.
         /// </summary>
-        ///<param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        ///<param name="gameTime">Provides a snapshot of timing values.</param
         public void DrawEnvironment(Camera c, GameTime gameTime)
         {
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
@@ -327,10 +333,11 @@ namespace Mechanect.Classes
             distanceBar.Draw();
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        
         /// <summary>
-        /// Creates the vertices for the triangles used to generate the terrain, and sets their height and color according to the height map.
+        /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
         /// </summary>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpVertices()
         {
             var minHeight = float.MaxValue;
@@ -363,11 +370,12 @@ namespace Mechanect.Classes
 
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Creates the indices of the triangles used to generate the terrain. 
         /// This data is used to connect the vertices previously created to make them into triangles.
         /// </summary>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpIndices()
         {
             indices = new short[(terrainWidth - 1) * (terrainHeight - 1) * 6];
@@ -393,10 +401,11 @@ namespace Mechanect.Classes
         }
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
-        /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap
+        /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="heightMap">The grayscale picture that will be used to define the heightmap</param>
         private void LoadHeightData(Texture2D heightMap)
         {
@@ -413,12 +422,13 @@ namespace Mechanect.Classes
 
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        
         /// <summary>
-        /// Copies the vertices and indeces to GPU buffers. 
+        /// Copies the vertices and indices to GPU buffers. 
         /// This allow the data to be called from the GPU's memory directly without having to send it to the GPU everytime the Draw() method is called.
         /// This should increase performance as the GPU memory is generally faster.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CopyToBuffers()
         {
             myVertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
@@ -427,10 +437,10 @@ namespace Mechanect.Classes
             myIndexBuffer.SetData(indices);
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
-        /// Contains the position, color and normal of the vertices
+        /// Contains the position, color and normal of the vertices.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public struct VertexPositionColorNormal
         {
             public Vector3 Position;
@@ -446,10 +456,11 @@ namespace Mechanect.Classes
         }
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Calculates the normal to the planes of the triangles and adds this info to the normal of vertices defined by VertexPositioColorNormal.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CalculateNormals()
         {
             for (var i = 0; i < vertices.Length; i++)
@@ -475,10 +486,11 @@ namespace Mechanect.Classes
         }
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Updates the view matrix depending on the movement of the camera.
         /// </summary> 
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /*private void UpdateViewMatrix()
         {
             var cameraRotation = Matrix.CreateRotationX(updownRot) * Matrix.CreateRotationY(leftrightRot);
@@ -494,10 +506,11 @@ namespace Mechanect.Classes
         }*/
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Processes the movement of the mouse, and the keys pressed on the keyboard.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="amount"></param>
         /*private void ProcessInput(float amount)
         {
@@ -529,10 +542,11 @@ namespace Mechanect.Classes
         }*/
 
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Creates a matrix to be able to rotate the camera, and updates the view matrix correspondingly.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="vectorToAdd"></param>
         /*private void AddToCameraPosition(Vector3 vectorToAdd)
         {
@@ -566,10 +580,11 @@ namespace Mechanect.Classes
             return newModel;
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+
         /// <summary>
         /// Creates, draws and adds effects to the skybox to display the sky all in all directions with a constant distance from the camera.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void DrawSkybox(Camera c)
         {
             var ss = new SamplerState();
@@ -604,10 +619,10 @@ namespace Mechanect.Classes
             device.DepthStencilState = dss;
         }
 
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <summary>
         /// Sets up the view matrix and projection matrix defining the camera.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /*private void SetUpCamera()
         {
             viewMatrix = Matrix.CreateLookAt(new Vector3(60, 80, -80), new Vector3(0, 0, 0), new Vector3(0, 1, 0));
