@@ -335,7 +335,6 @@ namespace Mechanect.Classes
                 device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
             }
             DrawHole(c);
-            distanceBar.Draw();
         }
 
         

@@ -88,6 +88,7 @@ namespace Mechanect.Screens
         {
             ScreenManager.SpriteBatch.Begin();
             environment.DrawEnvironment(c, gameTime);
+            environment.distanceBar.Draw();
             environment.ball.Draw(gameTime, c);
             ScreenManager.SpriteBatch.End();
         }
