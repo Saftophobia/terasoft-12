@@ -45,8 +45,8 @@ namespace Mechanect.Common
             {
                 this.duration = duration;
             }
-            startPosition = model.position;
-            startAngle = model.rotation;
+            startPosition = model.Position;
+            startAngle = model.Rotation;
         }
 
         /// <summary>
@@ -59,11 +59,11 @@ namespace Mechanect.Common
             if (elapsedTime.TotalSeconds < duration.TotalSeconds)
             {
                 float ms = ((float)elapsedTime.TotalMilliseconds);
-                model.position = startPosition + (velocity * ms / 1000f) + (acceleration * ms * ms / 1000000f);
+                model.Position = startPosition + (velocity * ms / 1000f) + (acceleration * ms * ms / 1000000f);
                 if (enableRotation)
                 {
                     Vector3 delta = (velocity * ms / 1000f + acceleration * ms * ms / 1000000f) / (float) Math.PI;
-                    model.rotation = startAngle + new Vector3(delta.Z, delta.Y, -delta.X);
+                    model.Rotation = startAngle + new Vector3(delta.Z, delta.Y, -delta.X);
                 }
             }
             else

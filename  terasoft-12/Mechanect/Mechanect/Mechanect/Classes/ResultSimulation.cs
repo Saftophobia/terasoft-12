@@ -57,7 +57,7 @@ namespace Mechanect.Classes
             this.shootVelocity = shootVelocity;
             this.optimalVelocity = optimalVelocity;
             this.friction = friction;
-            initialPosition = ball.position;
+            initialPosition = ball.Position;
             animation = new ModelLinearAnimation(ball, shootVelocity, Tools3.calculateFriction(shootVelocity, friction), TimeSpan.FromSeconds(10), true);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
             velocity1 = shootVelocity.ToString();
@@ -75,7 +75,7 @@ namespace Mechanect.Classes
                 if (!currentAnimation)
                 {
                     currentAnimation = true;
-                    ball.position = initialPosition;
+                    ball.Position = initialPosition;
                     animation = new ModelLinearAnimation(ball, optimalVelocity, Tools3.calculateFriction(optimalVelocity, friction), TimeSpan.FromSeconds(10), true);
                     Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
                 }
@@ -83,7 +83,7 @@ namespace Mechanect.Classes
 
             }
             animation.Update(gameTime.ElapsedGameTime);
-            Camera.Move(ball.position);
+            Camera.Move(ball.Position);
             Camera.Rotate(new Vector3(0, 0.005f, 0));
             Camera.Update();
         }
