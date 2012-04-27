@@ -38,6 +38,7 @@ namespace Mechanect.Screens
         int tolerance;
         Boolean ended;
         int milliSeconds;
+        Boolean isCopied;
 
         
         /// <summary>
@@ -152,6 +153,7 @@ namespace Mechanect.Screens
 
             this.user = user;
             this.mKinect = user.Kinect;
+            isCopied = false;
         }
 
 
@@ -711,8 +713,11 @@ namespace Mechanect.Screens
             {
                 if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
                 {
-                    if (environment.Predator.Velocity == null)
-                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                    if (!isCopied)
+                    {
+                        isCopied = true;
+                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
+                    }
                     environment.Predator.UpdatePosition(gameTime);
                     if (!preyEaten) preyEaten = isPreyEaten();
                     if (!aquariumReached) aquariumReached = isAquariumReached();
