@@ -183,3 +183,7 @@ C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trun
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\VelocityGauge.xnb
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Worm.xnb
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\xyAxis.xnb
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
