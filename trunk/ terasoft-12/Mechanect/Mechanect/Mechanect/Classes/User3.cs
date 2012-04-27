@@ -611,7 +611,6 @@ namespace Mechanect.Classes
          /// <summary>
          /// checks if the User3 moved their leg from the position they were standing initially
          /// </summary>
-         /// <param name="User3">takes a instance of User3 class to check if they moved their leg</param>
          public  bool HasPlayerMovedHisAnkle()
          {
              int movementState = 0;  // 0 has not moved, 1 moved one leg, 2 moved both legs
