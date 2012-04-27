@@ -141,6 +141,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static void CheckEachSecond(int timeInSeconds, User1 user11, User1 user12, List<int> timeOfCommands, List<String> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
          {
+             //this part is to check to define the start of the positions to check the command on them
              int pastSecondsFor1 = 0;
              for (int i = 0; i < user11.ActiveCommand; i++)
                  pastSecondsFor1 += timeOfCommands[i];
@@ -148,6 +149,12 @@ namespace Mechanect.Classes
              int pastSecondsFor2 = 0;
              for (int i = 0; i < user12.ActiveCommand; i++)
                  pastSecondsFor2 += timeOfCommands[i];
+
+             if ((pastSecondsFor1 - 1) * 12 >= user11.Positions.Count)
+             {
+                 pastSecondsFor1 = timeInSeconds;
+                 pastSecondsFor2 = timeInSeconds;
+             }
 
              List<float> user11Displacement = new List<float>();
              List<float> user12Displacement = new List<float>();
@@ -157,6 +164,7 @@ namespace Mechanect.Classes
              for (int i = (pastSecondsFor2 - 1) * 12; i < user12.Positions.Count; i++)
                  user12Displacement.Add(user12.Positions[i]);
 
+             //here the command is checked pver the two players to see if any of them got disqualified
              if (!CommandSatisfied(currentCommands[user11.ActiveCommand], user11Displacement, tolerance))
              {
                  user11.Disqualified = true;
