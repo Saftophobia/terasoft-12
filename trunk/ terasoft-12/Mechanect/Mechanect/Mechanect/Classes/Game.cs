@@ -178,8 +178,8 @@ namespace Mechanect.Classes
                 Texture2D P2Tex = Content.Load<Texture2D>("xBlue");
                 SpriteBatch sprite2 = spriteBatch;
                 sprite2.Begin();
-                Graph.drawRange(spriteBatch, GraphicsDevice);
-                Graph.drawEnvironment(spriteBatch, GraphicsDevice, font, font2);
+                Graph.DrawRange(spriteBatch, GraphicsDevice);
+                Graph.DrawEnvironment(spriteBatch, GraphicsDevice, font, font2);
                 //Graph.drawDisqualification(spriteBatch, graphics, P1Tex, P2Tex);
                 sprite2.End();
             }

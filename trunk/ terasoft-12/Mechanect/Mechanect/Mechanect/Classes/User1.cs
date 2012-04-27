@@ -10,7 +10,7 @@ namespace Mechanect.Classes
     {
 
         public Skeleton skeleton;
-       
+        
         
         
         public Boolean Winner;

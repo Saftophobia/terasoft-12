@@ -8,31 +8,33 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Mechanect.Classes;
 
-namespace Mechanect.Classes
+
+
+namespace Mechanect
 {
     class PerformanceGraph
     {
-        int stagewidth, stageheight;
+        int stageWidth, stageHeight;
         int a1;
         int a2;
         int a3;
         int a4;
-        int finishx;
-        int finishy;
+        int finishX;
+        int finishY;
         Color curveColor;
-        List<float> Player1Displacement;
-        List<float> Player2Displacement;
-        List<float> Player1Velocity;
-        List<float> Player2Velocity;
-        List<float> Player1Acceleration;
-        List<float> Player2Acceleration;
-        List<float> OptimumDisplacement = new List<float>();
-        List<float> OptimumVelocity = new List<float>();
-        List<float> OptimumAcceleration = new List<float>();
+        List<float> player1Displacement;
+        List<float> player2Displacement;
+        List<float> player1Velocity;
+        List<float> player2Velocity;
+        List<float> player1Acceleration;
+        List<float> player2Acceleration;
+        List<float> optimumDisplacement = new List<float>();
+        List<float> optimumVelocity = new List<float>();
+        List<float> optimumAcceleration = new List<float>();
         List<String> CommandsList;
         List<double> TimeSpaces;
-        
         double totalTime;
         int[] chosenTimings;
         float[] chosendisp1 = new float[17];
@@ -66,11 +68,8 @@ namespace Mechanect.Classes
         double[] yaxisVelocity = new double[5];
         double[] yaxisAcceleration = new double[5];
         CountDown xDP1;
-        CountDown xDP2;
         CountDown xVP1;
-        CountDown xVP2;
         CountDown xAP1;
-        CountDown xAP2;
         float previousDisp;
         float previousVelo;
         float previousAcc;
@@ -82,10 +81,10 @@ namespace Mechanect.Classes
             a3 = finishx;
             a4 = finishy;
             curveColor = col;
-            this.finishx = finishx;
-            this.finishy = finishy;
-            stagewidth = a;
-            stageheight = b;
+            this.finishX = finishx;
+            this.finishY = finishy;
+            stageWidth = a;
+            stageHeight = b;
         }
 
         public PerformanceGraph()
@@ -107,7 +106,7 @@ namespace Mechanect.Classes
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            drawLine(spriteBatch, blank, 2, curveColor, new Vector2(a1, a2), new Vector2(a3, a4));
+            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(a1, a2), new Vector2(a3, a4));
         }
 
         /// <remarks>
@@ -125,7 +124,7 @@ namespace Mechanect.Classes
         /// <param name="point1">The initial point.</param>
         /// <param name="point2">The final point.</param>        
         /// <returns>void</returns>
-        public void drawLine(SpriteBatch batch, Texture2D blank,
+        public void DrawLine(SpriteBatch batch, Texture2D blank,
               float width, Microsoft.Xna.Framework.Color color, Vector2 point1, Vector2 point2)
         {
             float angle = (float)Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
@@ -249,10 +248,10 @@ namespace Mechanect.Classes
         /// <param name="time">A list holding the time elapsed by each command.</param>
         /// <param name="g1">An instance of the game class.</param>       
         /// <returns>void</returns>
-        public void drawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time,double player1disqtime,double player2disqtime,int gwidth,int gheight)
+        public void DrawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight)
         {
-            Player1Displacement = new List<float>();
-            Player2Displacement = new List<float>();
+            player1Displacement = new List<float>();
+            player2Displacement = new List<float>();
             double accumulator = 0;
             for (int i = 0; i <= time.Count - 1; i++)
             {
@@ -262,29 +261,35 @@ namespace Mechanect.Classes
             int frames = (int)(totalTime * 12);
             for (int i = 0; i <= frames - 1; i++)
             {
-                Player1Displacement.Add(0);
-                Player2Displacement.Add(0);
+                player1Displacement.Add(0);
+                player2Displacement.Add(0);
             }
             for (int i = 0; i <= Player1Disp.Count - 1; i++)
             {
-                Player1Displacement[i] = Player1Disp[i];
+                player1Displacement[i] = Player1Disp[i];
             }
             for (int i = 0; i <= Player2Disp.Count - 1; i++)
             {
-                Player2Displacement[i] = Player2Disp[i];
+                player2Displacement[i] = Player2Disp[i];
+            }
+            for (int i = 0; i <= player1Displacement.Count - 1; i++)
+            {
+                float a = player1Displacement[i] * 1000;
+                float b = player2Displacement[i] * 1000;
+                player1Displacement[i] = a;
+                player2Displacement[i] = b;
             }
             this.CommandsList = Commands;
             this.TimeSpaces = time;
-            //this.currentGame = g1;
-            Player1Velocity = GetPlayerVelocity(Player1Displacement);
-            Player2Velocity = GetPlayerVelocity(Player2Displacement);
-            Player1Acceleration = GetPlayerAcceleration(Player1Velocity);
-            Player2Acceleration = GetPlayerAcceleration(Player2Velocity);
-            GetOptimum((double)player1disqtime,(double)player2disqtime);
-            choose();
-            setMaximum();
-            setDestinations(gwidth,gheight);
-            setAxis();
+            player1Velocity = GetPlayerVelocity(player1Displacement);
+            player2Velocity = GetPlayerVelocity(player2Displacement);
+            player1Acceleration = GetPlayerAcceleration(player1Velocity);
+            player2Acceleration = GetPlayerAcceleration(player2Velocity);
+            GetOptimum((double)player1disqtime, (double)player2disqtime);
+            Choose();
+            SetMaximum();
+            SetDestinations(gwidth, gheight);
+            SetAxis();
         }
 
         /// <remarks>
@@ -298,7 +303,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param></param>         
         /// <returns>void</returns>
-        public void choose()
+        public void Choose()
         {
             chosenTimings = new int[17];
             int timeCounter = 0;
@@ -318,15 +323,15 @@ namespace Mechanect.Classes
                 {
                     u = chosenTimings[i];
                 }
-                chosendisp1[i] = Player1Displacement[u];
-                chosendisp2[i] = Player2Displacement[u];
-                chosenVelocity1[i] = Player1Velocity[u];
-                chosenVelocity2[i] = Player2Velocity[u];
-                chosenAcceleration1[i] = Player1Acceleration[u];
-                chosenAcceleration2[i] = Player2Acceleration[u];
-                chosenOptD[i] = OptimumDisplacement[u];
-                chosenOptV[i] = OptimumVelocity[u];
-                chosenOptA[i] = OptimumAcceleration[u];
+                chosendisp1[i] = player1Displacement[u];
+                chosendisp2[i] = player2Displacement[u];
+                chosenVelocity1[i] = player1Velocity[u];
+                chosenVelocity2[i] = player2Velocity[u];
+                chosenAcceleration1[i] = player1Acceleration[u];
+                chosenAcceleration2[i] = player2Acceleration[u];
+                chosenOptD[i] = optimumDisplacement[u];
+                chosenOptV[i] = optimumVelocity[u];
+                chosenOptA[i] = optimumAcceleration[u];
             }
         }
 
@@ -342,7 +347,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param></param>        
         /// <returns>void</returns>
-        public void setMaximum()
+        public void SetMaximum()
         {
             maxVelocity = 0;
             maxAcceleration = 0;
@@ -377,7 +382,7 @@ namespace Mechanect.Classes
                         maxAcceleration = temporaryList2[j];
                     }
                 }
-            }            
+            }
         }
 
         /// <remarks>
@@ -391,14 +396,14 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="graphics">An instance of the GraphicsDeviceManger class.</param>
         /// <returns>void</returns>
-        public void setDestinations(int Width, int Height)
+        public void SetDestinations(int Width, int Height)
         {
             int counter1 = 0;
             float value = 0;
             double r = 0;
             for (int j = 0; j <= 8; j++)
             {
-                PerformanceGraph[] current = new PerformanceGraph[16];               
+                PerformanceGraph[] current = new PerformanceGraph[16];
                 float[] temporary = new float[17];
                 List<int> disqList = new List<int>();
                 Color color = new Color();
@@ -475,7 +480,7 @@ namespace Mechanect.Classes
         /// each graph's y-axis.
         /// </summary>
         /// <returns>void</returns>
-        public void setAxis()
+        public void SetAxis()
         {
             xaxis[0] = 0;
             double step = (double)totalTime / (double)4;
@@ -515,7 +520,7 @@ namespace Mechanect.Classes
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
         /// <returns>void</returns>
-        public void drawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) //to be called in the draw function
+        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) //to be called in the draw function
         {
             for (int i = 0; i <= disp1.Length - 1; i++)
             {
@@ -543,7 +548,7 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Black);
             spriteBatch.DrawString(font, "Velocity", new Vector2(340, 70), Color.Black);
@@ -566,21 +571,21 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawAxis(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawAxis(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 100),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 100),
                 new Vector2(50, 620));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 100),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 100),
                 new Vector2(380, 620));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 100),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 100),
                 new Vector2(710, 620));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 350),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 350),
                 new Vector2(316, 350));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 350),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 350),
                 new Vector2(646, 350));
-            drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 350),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 350),
                 new Vector2(976, 350));
         }
 
@@ -597,29 +602,29 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawArrows(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawArrows(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
             int counter = 309;
             for (int i = 0; i <= 2; i++)
             {
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 343),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 343),
                 new Vector2(counter + 7, 350));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 357),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 357),
                 new Vector2(counter + 7, 350));
                 counter += 330;
             }
             counter = 40;
             for (int i = 0; i <= 2; i++)
             {
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 110),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 110),
                 new Vector2(counter + 10, 100));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 110),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 110),
                 new Vector2(counter + 8, 100));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 610),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 610),
                 new Vector2(counter + 10, 620));
-                drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 610),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 610),
                 new Vector2(counter + 8, 620));
                 counter += 330;
             }
@@ -638,7 +643,7 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawXLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawXLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             int counter = 35;
@@ -671,7 +676,7 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawYLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawYLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             //+ve part of the y-axis
@@ -688,7 +693,7 @@ namespace Mechanect.Classes
                 }
                 for (int j = 4; j >= 1; j--)
                 {
-                    spriteBatch.DrawString(font2, current[j] + "", new Vector2(y, counter), Color.Black);
+                    spriteBatch.DrawString(font2, (int)current[j] + "", new Vector2(y, counter), Color.Black);
                     counter += 60;
                 }
             }
@@ -704,7 +709,7 @@ namespace Mechanect.Classes
                 }
                 for (int j = 1; j <= 4; j++)
                 {
-                    spriteBatch.DrawString(font2, -1 * current[j] + "", new Vector2(y, counter), Color.Black);
+                    spriteBatch.DrawString(font2, -1 * (int)current[j] + "", new Vector2(y, counter), Color.Black);
                     counter += 60;
                 }
             }
@@ -723,15 +728,15 @@ namespace Mechanect.Classes
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void drawEnvironment(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawEnvironment(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            drawAxis(spriteBatch, GraphicsDevice, font, font2);
-            drawLabels(spriteBatch, GraphicsDevice, font, font2);
-            drawArrows(spriteBatch, GraphicsDevice, font, font2);
-            drawXLabels(spriteBatch, GraphicsDevice, font, font2);
-            drawYLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawAxis(spriteBatch, GraphicsDevice, font, font2);
+            DrawLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawArrows(spriteBatch, GraphicsDevice, font, font2);
+            DrawXLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawYLabels(spriteBatch, GraphicsDevice, font, font2);
             //drawing the marks on the X-axis
             int counter = 50;
             for (int i = 0; i <= 2; i++)
@@ -744,7 +749,7 @@ namespace Mechanect.Classes
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 345),
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 345),
                         new Vector2(counter, 355));
                     counter += 64;
                 }
@@ -762,7 +767,7 @@ namespace Mechanect.Classes
                 }
                 for (int j = 1; j <= 9; j++)
                 {
-                    drawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
                         new Vector2(y + 5, counter2));
                     counter2 += 58;
                 }
@@ -783,7 +788,7 @@ namespace Mechanect.Classes
         /// <param name="P1Tex">A Texture2D representing the image "xRed.png".</param>
         /// <param name="P2Tex">A Texture2D representing the image "xBlue.png".</param>
         /// <returns>void</returns>
-        public void drawDisqualification(SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime,double player2disqtime)
+        public void DrawDisqualification(SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
         {
             if (player1disqtime > 0 || player2disqtime > 0)
             {
@@ -832,7 +837,7 @@ namespace Mechanect.Classes
                             case 0: y1 = P1DispGraph[index] - 10; y2 = P1VeloGraph[index] - 10; y3 = P1AccGraph[index] - 10; texture = P1Tex; break;
                             case 1: y1 = P2DispGraph[index] - 10; y2 = P2VeloGraph[index] - 10; y3 = P2AccGraph[index] - 10; texture = P2Tex; break;
                         }
-                        xDP1 = new CountDown(texture, dwidth,dheight, r3, y1, 20, 20);
+                        xDP1 = new CountDown(texture, dwidth, dheight, r3, y1, 20, 20);
                         xDP1.Draw(spriteBatch);
                         r3 = 370 + (int)r2;
                         xVP1 = new CountDown(texture, dwidth, dheight, r3, y2, 20, 20);
@@ -870,19 +875,19 @@ namespace Mechanect.Classes
             {
                 if (x >= 0)
                 {
-                    OptimumVelocity.Add(velocity);
-                    OptimumDisplacement.Add(x);
+                    optimumVelocity.Add(velocity);
+                    optimumDisplacement.Add(x);
                 }
                 else
                 {
-                    OptimumVelocity.Add(0);
-                    OptimumDisplacement.Add(0);
+                    optimumVelocity.Add(0);
+                    optimumDisplacement.Add(0);
                 }
-                OptimumAcceleration.Add(0);
+                optimumAcceleration.Add(0);
                 x = x - velocity;
             }
-            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
-            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
+            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
+            this.previousVelo = optimumVelocity[optimumVelocity.Count - 1];
             this.previousAcc = 0;
         }
 
@@ -910,7 +915,7 @@ namespace Mechanect.Classes
             float acceleration = previousAcc;
             if (acceleration == 0)
             {
-                acceleration = 41;
+                acceleration = 160;
             }
             float accumulator = previousVelo;
             float z = previousVelo + acceleration;
@@ -919,22 +924,22 @@ namespace Mechanect.Classes
             {
                 if (x >= 0)
                 {
-                    OptimumAcceleration.Add(acceleration);
-                    OptimumVelocity.Add(z);
-                    OptimumDisplacement.Add(x);
+                    optimumAcceleration.Add(acceleration);
+                    optimumVelocity.Add(z);
+                    optimumDisplacement.Add(x);
                 }
                 else
                 {
-                    OptimumAcceleration.Add(0);
-                    OptimumVelocity.Add(0);
-                    OptimumDisplacement.Add(0);
+                    optimumAcceleration.Add(0);
+                    optimumVelocity.Add(0);
+                    optimumDisplacement.Add(0);
                 }
                 z = z + acceleration;
                 x = x - z;
             }
-            this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
-            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
-            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+            this.previousAcc = optimumAcceleration[optimumAcceleration.Count - 1];
+            this.previousVelo = optimumVelocity[optimumVelocity.Count - 1];
+            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
         }
 
         /// <remarks>
@@ -958,8 +963,8 @@ namespace Mechanect.Classes
         /// <returns>void</returns>
         public void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
         {
-            float totalStep1 = getTotalStep(accelerationTest1);
-            float totalStep2 = getTotalStep(accelerationTest2);
+            float totalStep1 = GetTotalStep(accelerationTest1);
+            float totalStep2 = GetTotalStep(accelerationTest2);
             double a = (double)((double)totalStep1 / (double)accelerationTest1.Count);
             double b = (double)((double)totalStep2 / (double)accelerationTest2.Count);
             double value = 0;
@@ -984,11 +989,11 @@ namespace Mechanect.Classes
             }
             if (LiesInBetween(disq1, start, end - 1) && LiesInBetween(disq2, start, end - 1))
             {
-                value = 41;
+                value = 160;
             }
             if (value == 0)
             {
-                value = 41;
+                value = 160;
             }
             List<float> accelerationTrial = new List<float>();
             float accumulator = previousAcc;
@@ -1013,29 +1018,29 @@ namespace Mechanect.Classes
                 float z = accumulator - (float)velocityTest[i];
                 if (z >= 0)
                 {
-                    OptimumAcceleration.Add((float)adder);
-                    OptimumDisplacement.Add(z);
-                    OptimumVelocity.Add(velocityTest[i]);
+                    optimumAcceleration.Add((float)adder);
+                    optimumDisplacement.Add(z);
+                    optimumVelocity.Add(velocityTest[i]);
                 }
                 else
                 {
-                    OptimumAcceleration.Add(0);
-                    OptimumDisplacement.Add(0);
-                    OptimumVelocity.Add(0);
+                    optimumAcceleration.Add(0);
+                    optimumDisplacement.Add(0);
+                    optimumVelocity.Add(0);
                 }
                 adder += (float)value;
                 accumulator = z;
             }
-            this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
-            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
-            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+            this.previousAcc = optimumAcceleration[optimumAcceleration.Count - 1];
+            this.previousVelo = optimumVelocity[optimumVelocity.Count - 1];
+            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
         }
 
 
         public void OptimumDecreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
         {
-            float totalStep1 = getTotalStep(accelerationTest1);
-            float totalStep2 = getTotalStep(accelerationTest2);
+            float totalStep1 = GetTotalStep(accelerationTest1);
+            float totalStep2 = GetTotalStep(accelerationTest2);
             double a = (double)((double)totalStep1 / (double)accelerationTest1.Count);
             double b = (double)((double)totalStep2 / (double)accelerationTest2.Count);
             double value = 0;
@@ -1095,22 +1100,22 @@ namespace Mechanect.Classes
                 float z = accumulator - (float)velocityTest[i];
                 if (z >= 0)
                 {
-                    OptimumAcceleration.Add(accelerationTrial[i]);
-                    OptimumDisplacement.Add(z);
-                    OptimumVelocity.Add(velocityTest[i]);
+                    optimumAcceleration.Add(accelerationTrial[i]);
+                    optimumDisplacement.Add(z);
+                    optimumVelocity.Add(velocityTest[i]);
                 }
                 else
                 {
-                    OptimumAcceleration.Add(0);
-                    OptimumDisplacement.Add(0);
-                    OptimumVelocity.Add(0);
+                    optimumAcceleration.Add(0);
+                    optimumDisplacement.Add(0);
+                    optimumVelocity.Add(0);
                 }
 
                 accumulator = z;
             }
-            this.previousAcc = OptimumAcceleration[OptimumAcceleration.Count - 1];
-            this.previousVelo = OptimumVelocity[OptimumVelocity.Count - 1];
-            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+            this.previousAcc = optimumAcceleration[optimumAcceleration.Count - 1];
+            this.previousVelo = optimumVelocity[optimumVelocity.Count - 1];
+            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
         }
 
         /// <remarks>
@@ -1129,11 +1134,11 @@ namespace Mechanect.Classes
         {
             for (int k = 0; k <= size - 1; k++)
             {
-                OptimumDisplacement.Add(this.previousDisp);
-                OptimumVelocity.Add(0);
-                OptimumAcceleration.Add(0);
+                optimumDisplacement.Add(this.previousDisp);
+                optimumVelocity.Add(0);
+                optimumAcceleration.Add(0);
             }
-            this.previousDisp = OptimumDisplacement[OptimumDisplacement.Count - 1];
+            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
             this.previousVelo = 0;
             this.previousAcc = 0;
         }
@@ -1148,7 +1153,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="l1">A list holding a player's acceleration values</param>
         /// <returns>float: The total calculated step</returns>
-        public float getTotalStep(List<float> l1)
+        public float GetTotalStep(List<float> l1)
         {
             float totalStep = 0;
             for (int k = 0; k <= l1.Count - 1; k++)
@@ -1184,7 +1189,7 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param></param>
         /// <returns>void</returns>
-        public void GetOptimum(double player1disq,double player2disq)
+        public void GetOptimum(double player1disq, double player2disq)
         {
             int disq1 = (int)(player1disq * 12);//index of disq frame
             int disq2 = (int)(player2disq * 12);//index of disq frame
@@ -1203,10 +1208,10 @@ namespace Mechanect.Classes
                 List<float> accelerationTest2 = new List<float>();
                 for (int j = start; j <= end - 1; j++)
                 {
-                    velocityTest1.Add(Player1Velocity[j]);
-                    velocityTest2.Add(Player2Velocity[j]);
-                    accelerationTest1.Add(Player1Acceleration[j]);
-                    accelerationTest2.Add(Player2Acceleration[j]);
+                    velocityTest1.Add(player1Velocity[j]);
+                    velocityTest2.Add(player2Velocity[j]);
+                    accelerationTest1.Add(player1Acceleration[j]);
+                    accelerationTest2.Add(player2Acceleration[j]);
                 }
                 if (CommandsList[i].Equals("constantVelocity"))
                 {
@@ -1222,7 +1227,7 @@ namespace Mechanect.Classes
                 {
                     OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
-                if (CommandsList[i].Equals("constantDeceleration"))
+                if (CommandsList[i].Equals("decreasingAcceleration"))
                 {
                     OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
@@ -1268,28 +1273,6 @@ namespace Mechanect.Classes
             return t;
         }
 
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 24/4/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function getMax checks the largest number in a list.
-        /// </summary>
-        /// <param name="x">The List to be checked.</param>   
-        /// <returns>float: the maximum of the list.</returns>
-        public float getMax(List<float> x)
-        {
-            float max = 0;
-            for (int i = 0; i <= x.Count - 1; i++)
-            {
-                if (x[i] > max)
-                {
-                    max = x[i];
-                }
-            }
-            return max;
-        }
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>

@@ -29,7 +29,7 @@ namespace Mechanect
         }
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
-         Boolean fullScreen = true;
+         Boolean fullScreen = false; //this one is false
 
         public Game1()
         {
@@ -37,7 +37,7 @@ namespace Mechanect
             Content.RootDirectory = "Content";
 
             
-            // Window.AllowUserResizing = true;
+             Window.AllowUserResizing = true;
             //Graphics.PreferredBackBufferWidth = 1024;
               //  Graphics.PreferredBackBufferHeight = 768;
             if (fullScreen)
@@ -71,9 +71,11 @@ namespace Mechanect
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
             //screenManager.AddScreen(new InstructionsScreen3());
-            screenManager.AddScreen(new AllExperiments());
+            //screenManager.AddScreen(new AllExperiments());
             //screenManager.AddScreen(new Experiment2(new User2()));
             //screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
+            screenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
+
 
             // TODO: use this.Content to load your game content here
         }
