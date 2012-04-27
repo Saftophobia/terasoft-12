@@ -329,8 +329,16 @@ namespace Mechanect.Screens
                // if (timer % 10 == 0 /*& timecounter >=5*/)
                 if (NUMBEROFFRAMES%60 == 0 && NUMBEROFFRAMES > 300) 
                 {
+                    for (int z = 0; z < cumulativetime.Count; z++)
+                    {
+                        if (cumulativetimeint[z] != timecounter)
+                        {
+                            Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 100, SpriteBatch, spritefont);
+                            break;
+                        }
+                    }
 
-                    Tools1.CheckEachSecond(timecounter - 5, player1, player2,cumulativetimeint , racecommands, 100, SpriteBatch, spritefont);
+                   // Tools1.CheckEachSecond(timecounter - 5, player1, player2,timeslice , racecommands, 100, SpriteBatch, spritefont);
                      
                       
                     //  Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 10000, SpriteBatch, spritefont);
@@ -402,8 +410,9 @@ namespace Mechanect.Screens
             {
 
                 List<double> timeofrace = new List<double>(); // time of the race
+                timeofrace.Add(timeslice[0]);
 
-                for (int i = 0; i < cumulativetime.Count; i++)
+                for (int i = 1; i < cumulativetime.Count; i++)
                 {
                     if (cumulativetime[i] <= timecounter)
                     {
