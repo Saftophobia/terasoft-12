@@ -133,8 +133,8 @@ namespace Mechanect.Classes
 
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
-
-            return Constants3.solvableExperiment;
+            else
+                return Constants3.solvableExperiment;
         }
 
         /// <summary>
@@ -145,8 +145,7 @@ namespace Mechanect.Classes
         ///</remarks>
         public void GenerateSolvable()
         {
-            hole.Radius =3;
-            ball.Radius = 1;
+
             if (hole.Position.Z > Constants3.maxHolePosZ)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ);
             if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX)
