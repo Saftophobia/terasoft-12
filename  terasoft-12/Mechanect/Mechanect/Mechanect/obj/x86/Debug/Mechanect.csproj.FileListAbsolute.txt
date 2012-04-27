@@ -187,3 +187,6 @@ C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect
 C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
 C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.pdb
+C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\Mechanect\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\Mechanect\obj\x86\Debug\Mechanect.exe
