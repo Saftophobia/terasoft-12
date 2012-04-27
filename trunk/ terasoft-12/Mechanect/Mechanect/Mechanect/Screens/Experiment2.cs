@@ -106,7 +106,7 @@ namespace Mechanect.Screens
         // Variables that will change how the Gui will look
 
         // Variables defining the appearence of some objects
-        private Boolean grayScreen = false;
+        private Boolean grayScreen = true;
         private Boolean preyEaten = false;
         private float pixelsPerMeterX;
         private float pixelsPerMeterY;
@@ -179,7 +179,14 @@ namespace Mechanect.Screens
             //    MessageBox.Show("Sorry these Variables are not representable",
             //        "Wrong Points Representation Error",
             //         MessageBoxButtons.OK);
+            configureScreen();
 
+
+            // modifying the textures scalings (final modification)
+            bowlTextureScaling *= (float)environment.Aquarium.getHeight() * (float)pixelsPerMeterY / (float)bowlTexture.Height;
+            predatorTextureScaling *= (float)bowlTextureScaling;
+            preyTextureScaling *= (float)environment.Prey.getHeight() * (float)pixelsPerMeterY / (float)preyTexture.Height;
+           
             startAquariumPosition = MapPointsToScreen(environment.Predator.Location);
             preyPosition = MapPointsToScreen(environment.Prey.Location);
             destinationAquariumPosition = MapPointsToScreen(environment.Aquarium.Location);
@@ -233,14 +240,7 @@ namespace Mechanect.Screens
                 default: ImageSet2(); break;
             }
 
-            configureScreen();
-
-
-            // modifying the textures scalings (final modification)
-            bowlTextureScaling *= (float)environment.Aquarium.getHeight() * (float)pixelsPerMeterY / (float)bowlTexture.Height;
-            predatorTextureScaling *= (float)bowlTextureScaling;
-            preyTextureScaling *= (float)environment.Prey.getHeight() * (float)pixelsPerMeterY / (float)preyTexture.Height;
-            //base.Initialize();
+             //base.Initialize();
         }
 
 
@@ -491,8 +491,8 @@ namespace Mechanect.Screens
         /// </remarks>
         private void DrawAngVelLabels()
         {
-            String velString = "Velocity = " + user.MeasuredVelocity;
-            String angString = "Angle = " + user.MeasuredAngle;
+            String velString = "Velocity = " + Math.Round(user.MeasuredVelocity,2);
+            String angString = "Angle = " + Math.Round(user.MeasuredAngle,2);
             SpriteBatch.Begin();
 
             if (grayScreen)
@@ -502,8 +502,8 @@ namespace Mechanect.Screens
             }
             else
             {
-                SpriteBatch.DrawString(velAngleFont, velString + environment.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity+"                    ").X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
-                SpriteBatch.DrawString(velAngleFont, angString + environment.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity,2), new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity+"                    ").X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle,2), new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
             }
             SpriteBatch.End();
         }
@@ -542,9 +542,9 @@ namespace Mechanect.Screens
                 Vector2 valuePositionX = DrawValueOnAxis(((Texture2D)objects[i][1]), ((Vector2)objects[i][2]), ((float)objects[i][3]), false);
                 Vector2 valuePositionY = DrawValueOnAxis(((Texture2D)objects[i][1]), ((Vector2)objects[i][2]), ((float)objects[i][3]), true);
                 DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position , new Vector2(screenWidth * xAxisPercentage - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y*backgroundTextureScaling, position.Y));
-                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).X + "", valuePositionX, Color.Red, 0f, Vector2.Zero, velocityTextureScaling , SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, (Math.Round(((Vector2)objects[i][0]).X,2) + ""), valuePositionX, Color.Red, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
                 DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position, new Vector2(position.X, screenHeight - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y*backgroundTextureScaling ));
-                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).Y + "", valuePositionY, Color.Red, 0f, Vector2.Zero, velocityTextureScaling , SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, (Math.Round(((Vector2)objects[i][0]).Y,2) + ""), valuePositionY, Color.Red, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
             }
 
             SpriteBatch.End();
