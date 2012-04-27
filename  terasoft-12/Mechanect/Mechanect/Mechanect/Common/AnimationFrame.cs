@@ -14,9 +14,9 @@ namespace Mechanect.Common
     /// </remarks>
     public class AnimationFrame
     {
-        public Vector3 position;
-        public Vector3 rotation;
-        public TimeSpan time;
+        public Vector3 Position;
+        public Vector3 Rotation;
+        public TimeSpan Time;
 
         /// <summary>
         /// constructs an AnimationFrame instance
@@ -26,9 +26,9 @@ namespace Mechanect.Common
         /// <param name="time">frame's time offset from the start of the animation</param>
         public AnimationFrame(Vector3 position, Vector3 rotation, TimeSpan time)
         {
-            this.position = position;
-            this.rotation = rotation;
-            this.time = time;
+            this.Position = position;
+            this.Rotation = rotation;
+            this.Time = time;
         }
     }
 }
