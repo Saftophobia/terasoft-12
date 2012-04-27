@@ -562,41 +562,8 @@ namespace Mechanect.Classes
              }
          }
 
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// calculates the final velocity using Vf = Vi + a*t
-         /// </summary>
-         /// <param name="acceleration">acceleration of the body</param>
-         /// <param name="velocityInitial">initial veloctiy of the body</param>
-         /// <param name="totalTime">the total time the body moved</param>
-         /// <returns></returns>
-
-         public static double getVelocity(double acceleration, double velocityInitial, double totalTime)
-         {
-             return velocityInitial + (acceleration * totalTime);
-         }
-
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// calculate the acceleration using S = Vi*t + 0.5*a*t^2
-         /// </summary>
-         /// <param name="totalDistance"></param>
-         /// <param name="totalTime"></param>
-         /// <param name="velocityInitial"></param>
-         /// <returns></returns>
-
-         public static double getAcceleration(double totalDistance, double totalTime, double velocityInitial)
-         {
-             return (((totalDistance - (velocityInitial * totalTime)) * 2) / Math.Pow(totalTime, 2));
-         }
+      
+      
 
 
          ///<remarks>
@@ -607,14 +574,14 @@ namespace Mechanect.Classes
          /// <summary>
          /// sets the current leg positions of the User3 from the detected skeleton
          /// </summary>
-         /// <param name="User3">takes instance of class User3 to store their current leg positions</param>
+        
 
-         public static void setCurrentPosition(User3 User3)
+         public void SetCurrentPosition()
          {
-             User3.CurrentLeftLegPositionX = User3.USER.Joints[JointType.AnkleLeft].Position.X;
-             User3.CurrentLeftLegPositionZ = User3.USER.Joints[JointType.AnkleLeft].Position.Z;
-             User3.CurrentRightLegPositionX = User3.USER.Joints[JointType.AnkleRight].Position.X;
-             User3.CurrentRightLegPositionZ = User3.USER.Joints[JointType.AnkleRight].Position.Z;
+             CurrentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             CurrentLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             CurrentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+             CurrentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
          ///<remarks>
