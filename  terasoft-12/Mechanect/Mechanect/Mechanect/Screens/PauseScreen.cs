@@ -130,7 +130,8 @@ namespace Mechanect.Screens
                 {
                  
                     user.Velocity = velocity;
-                    displayedGivens +='\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: "+ user.Angle + " rad";
+                    displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " 
+                        + legMass + '\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: " + user.Angle + " rad";
 
                     if (framesToWait > 300) // after 5 seconds
                     {
@@ -188,7 +189,6 @@ namespace Mechanect.Screens
     
 
             spriteBatch.Begin();
-            displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " + legMass;
             spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width/3, givens.Height/4), Color.Red);
             spriteBatch.End();
         
