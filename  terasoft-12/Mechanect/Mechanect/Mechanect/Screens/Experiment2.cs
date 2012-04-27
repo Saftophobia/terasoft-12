@@ -106,7 +106,7 @@ namespace Mechanect.Screens
         // Variables that will change how the Gui will look
 
         // Variables defining the appearence of some objects
-        private Boolean grayScreen = true;
+        private Boolean grayScreen = false;
         private Boolean preyEaten = false;
         private float pixelsPerMeterX;
         private float pixelsPerMeterY;
@@ -175,10 +175,10 @@ namespace Mechanect.Screens
             //Load the theme by spesifying an image set
             LoadTextures(1);
             //These are variables that won't change during the game will not be u
-            if ((environment.Predator.Location.X < Vector2.Zero.X || environment.Prey.Location.X < Vector2.Zero.X || environment.Aquarium.Location.X < Vector2.Zero.X) || (environment.Predator.Location.Y < Vector2.Zero.Y || environment.Prey.Location.Y < Vector2.Zero.Y || environment.Aquarium.Location.Y < Vector2.Zero.Y))
-                MessageBox.Show("Sorry these Variables are not representable",
-                    "Wrong Points Representation Error",
-                     MessageBoxButtons.OK);
+            //if ((environment.Predator.Location.X < Vector2.Zero.X || environment.Prey.Location.X < Vector2.Zero.X || environment.Aquarium.Location.X < Vector2.Zero.X) || (environment.Predator.Location.Y < Vector2.Zero.Y || environment.Prey.Location.Y < Vector2.Zero.Y || environment.Aquarium.Location.Y < Vector2.Zero.Y))
+            //    MessageBox.Show("Sorry these Variables are not representable",
+            //        "Wrong Points Representation Error",
+            //         MessageBoxButtons.OK);
 
             startAquariumPosition = MapPointsToScreen(environment.Predator.Location);
             preyPosition = MapPointsToScreen(environment.Prey.Location);
@@ -194,7 +194,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
             button = Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight, user);
             //TBC
-            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
+            //voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
 
         }
 
@@ -237,10 +237,10 @@ namespace Mechanect.Screens
 
 
             // modifying the textures scalings (final modification)
-            bowlTextureScaling *= environment.Aquarium.getHeight() * pixelsPerMeterY / bowlTexture.Height;
-            predatorTextureScaling *= bowlTextureScaling;
-            preyTextureScaling *= environment.Prey.getHeight() * pixelsPerMeterY / preyTexture.Height;
-            base.Initialize();
+            bowlTextureScaling *= (float)environment.Aquarium.getHeight() * (float)pixelsPerMeterY / (float)bowlTexture.Height;
+            predatorTextureScaling *= (float)bowlTextureScaling;
+            preyTextureScaling *= (float)environment.Prey.getHeight() * (float)pixelsPerMeterY / (float)preyTexture.Height;
+            //base.Initialize();
         }
 
 
@@ -256,13 +256,13 @@ namespace Mechanect.Screens
         private void configureScreen()
         {
 
-            if (Math.Abs(((float)ViewPort.Width / (float)ViewPort.Height) - ((float)4 / 3)) >= 0.01 || screenWidth < 800)
-            {
-                DialogResult result1 = MessageBox.Show("The current Resolution is not acceptable! However, we will do our best!",
-                    "Resolution Error",
-                     MessageBoxButtons.OK);
+            //if (Math.Abs(((float)ViewPort.Width / (float)ViewPort.Height) - ((float)4 / 3)) >= 0.01 || screenWidth < 800)
+            //{
+            //    DialogResult result1 = MessageBox.Show("The current Resolution is not acceptable! However, we will do our best!",
+            //        "Resolution Error",
+            //         MessageBoxButtons.OK);
 
-            }
+            //}
 
             if (ViewPort.Width > ViewPort.Height)
             {
@@ -293,8 +293,9 @@ namespace Mechanect.Screens
             float maxDifferenceX = environment.Aquarium.Location.X - environment.Predator.Location.X;
             float maxDifferenceY = Math.Max(environment.Prey.Location.Y, Math.Max(environment.Aquarium.Location.Y, environment.Predator.Location.Y)) - Math.Min(environment.Prey.Location.Y, Math.Min(environment.Aquarium.Location.Y, environment.Predator.Location.Y));
             // Mapping the meters to pixels to configure how will the real world be mapped to the screen
-            pixelsPerMeterX = (float)screenWidth * xDrawingPercentage / maxDifferenceX;
             pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
+            pixelsPerMeterX = (float)screenWidth * xDrawingPercentage / maxDifferenceX;
+           // pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
             //To make the x and y axis have the same scaling
             pixelsPerMeterX = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
             pixelsPerMeterY = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
@@ -342,10 +343,10 @@ namespace Mechanect.Screens
             // Initial scalings
             backgroundTextureScaling = 1;
             xyAxisTextureScaling = 1;
-            preyTextureScaling = 1f;
+            preyTextureScaling = 0.75f;
             bowlTextureScaling = 3f;
 
-            predatorTextureScaling = 2f;
+            predatorTextureScaling = 1.5f;
             velocityTextureScaling = 0.7f;
             angleTextureScaling = 1.25f;
 
@@ -353,7 +354,7 @@ namespace Mechanect.Screens
             yAxisPercentage = 0.05f;
 
             xDrawingPercentage = 0.75f;
-            yDrawingPercentage = 0.55f;
+            yDrawingPercentage = 0.3f;
         }
         /// <summary>
         /// Allows the game to initialize all the textures 
@@ -447,8 +448,8 @@ namespace Mechanect.Screens
             SpriteBatch.Draw(predatorTexture, DrawAtRectangleMidPoint(predatorTexture, predatorPosition, predatorTextureScaling), null, Color.White, MathHelper.ToRadians((float)environment.Predator.Angle), Vector2.Zero, predatorTextureScaling, SpriteEffects.None, 0f);
             SpriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
             string meters = "meters";
-            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth * yAxisPercentage - 0.75f * spriteFont.MeasureString(meters).Y, 2 * spriteFont.MeasureString(meters).X * backgroundTextureScaling), Color.Red, MathHelper.ToRadians(-90), Vector2.Zero, 2 * backgroundTextureScaling, SpriteEffects.None, 0f);
-            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 1.75f, screenHeight - spriteFont.MeasureString(meters).Y / 1.5f), Color.Red, 0f, Vector2.Zero, 2 * backgroundTextureScaling, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth * yAxisPercentage - 0.75f * spriteFont.MeasureString(meters).Y, 2 * spriteFont.MeasureString(meters).X * backgroundTextureScaling), Color.Red, MathHelper.ToRadians(-90), Vector2.Zero, backgroundTextureScaling, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 1.75f, screenHeight - spriteFont.MeasureString(meters).Y / 1.5f), Color.Red, 0f, Vector2.Zero,  backgroundTextureScaling, SpriteEffects.None, 0f);
             if (!preyEaten)
                 SpriteBatch.Draw(preyTexture, DrawAtRectangleMidPoint(preyTexture, preyPosition, preyTextureScaling), null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
             SpriteBatch.End();
@@ -496,13 +497,13 @@ namespace Mechanect.Screens
 
             if (grayScreen)
             {
-                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X * velocityTextureScaling / 2, screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling + spriteFont.MeasureString(velString).Y * velocityTextureScaling / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling * 2, SpriteEffects.None, 0f);
-                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling + spriteFont.MeasureString(angString).Y * velocityTextureScaling), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling * 2, SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X * velocityTextureScaling / 2, screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling + spriteFont.MeasureString(velString).Y * velocityTextureScaling / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling + spriteFont.MeasureString(angString).Y * velocityTextureScaling), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
             }
             else
             {
-                SpriteBatch.DrawString(velAngleFont, velString + environment.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red);
-                SpriteBatch.DrawString(velAngleFont, angString + environment.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red);
+                SpriteBatch.DrawString(velAngleFont, velString + environment.Velocity, new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity+"                    ").X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, angString + environment.Angle, new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
             }
             SpriteBatch.End();
         }
@@ -540,10 +541,10 @@ namespace Mechanect.Screens
                 Vector2 position = DrawAxisConnector(((Texture2D)objects[i][1]), ((Vector2)objects[i][2]), ((float)objects[i][3]));
                 Vector2 valuePositionX = DrawValueOnAxis(((Texture2D)objects[i][1]), ((Vector2)objects[i][2]), ((float)objects[i][3]), false);
                 Vector2 valuePositionY = DrawValueOnAxis(((Texture2D)objects[i][1]), ((Vector2)objects[i][2]), ((float)objects[i][3]), true);
-                DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position , new Vector2(screenWidth * xAxisPercentage - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y / 2 * backgroundTextureScaling, position.Y));
-                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).X + "", valuePositionX, Color.Red, 0f, Vector2.Zero, velocityTextureScaling * 2, SpriteEffects.None, 0f);
-                DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position, new Vector2(position.X, screenHeight - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y / 2 * backgroundTextureScaling));
-                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).Y + "", valuePositionY, Color.Red, 0f, Vector2.Zero, velocityTextureScaling * 2, SpriteEffects.None, 0f);
+                DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position , new Vector2(screenWidth * xAxisPercentage - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y*backgroundTextureScaling, position.Y));
+                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).X + "", valuePositionX, Color.Red, 0f, Vector2.Zero, velocityTextureScaling , SpriteEffects.None, 0f);
+                DrawLine(SpriteBatch, lineConnector, 2f, Color.LightGray,position, new Vector2(position.X, screenHeight - spriteFont.MeasureString(((Vector2)objects[i][0]).X + "").Y*backgroundTextureScaling ));
+                SpriteBatch.DrawString(velAngleFont, ((Vector2)objects[i][0]).Y + "", valuePositionY, Color.Red, 0f, Vector2.Zero, velocityTextureScaling , SpriteEffects.None, 0f);
             }
 
             SpriteBatch.End();
@@ -696,65 +697,65 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         { //camera.Update();
             //TBC
-            if (ended)
-            {
-                milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (milliSeconds > 3000)
-                {
-                    milliSeconds = 0;
-                    ended = false;
-                    tolerance -= 1;
-                    preyEaten = false;
-                    aquariumReached = false;
-                    user.Reset();
-                    grayScreen = true;
-                    LoadContent();
-                }
-            }
-            else
-            {
-                if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-                {
-                    if (environment.Predator.Velocity == null)
-                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-                    environment.Predator.UpdatePosition(gameTime);
-                    if (!preyEaten) preyEaten = isPreyEaten();
-                    if (!aquariumReached) aquariumReached = isAquariumReached();
-                    if (aquariumReached)
-                    {
-                        environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
-                        environment.Predator.Velocity = Vector2.Zero;
-                        ended = true;
-                    }
-                    else if (environment.Predator.Location.Y <= 0)
-                    {
-                        environment.Predator.Velocity = Vector2.Zero;
-                        ended = true;
-                    }
+            //if (ended)
+            //{
+            //    milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+            //    if (milliSeconds > 3000)
+            //    {
+            //        milliSeconds = 0;
+            //        ended = false;
+            //        tolerance -= 1;
+            //        preyEaten = false;
+            //        aquariumReached = false;
+            //        user.Reset();
+            //        grayScreen = true;
+            //        LoadContent();
+            //    }
+            //}
+            //else
+            //{
+            //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+            //    {
+            //        if (environment.Predator.Velocity == null)
+            //            environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+            //        environment.Predator.UpdatePosition(gameTime);
+            //        if (!preyEaten) preyEaten = isPreyEaten();
+            //        if (!aquariumReached) aquariumReached = isAquariumReached();
+            //        if (aquariumReached)
+            //        {
+            //            environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
+            //            environment.Predator.Velocity = Vector2.Zero;
+            //            ended = true;
+            //        }
+            //        else if (environment.Predator.Location.Y <= 0)
+            //        {
+            //            environment.Predator.Velocity = Vector2.Zero;
+            //            ended = true;
+            //        }
 
-                }
+            //    }
 
-                else
-                {
-                    if (button != null)
-                    {
-                        button.Update(gameTime);
-                        if (button.IsClicked())
-                        {
-                            grayScreen = false;
-                            button = null;
-                            voiceCommand = null;
-                            user.Reset();
-                        }
-                    }
-                    user.setSkeleton();
-                    if (user.USER != null)
-                        user.MeasureVelocityAndAngle(gameTime);
+            //    else
+            //    {
+            //        if (button != null)
+            //        {
+            //            button.Update(gameTime);
+            //            if (button.IsClicked())
+            //            {
+            //                grayScreen = false;
+            //                button = null;
+            //                voiceCommand = null;
+            //                user.Reset();
+            //            }
+            //        }
+            //        user.setSkeleton();
+            //        if (user.USER != null)
+            //            user.MeasureVelocityAndAngle(gameTime);
 
-                }
-                base.Update(gameTime, covered);
+            //    }
+            //    base.Update(gameTime, covered);
 
-            }
+           // }
 
         }
 
