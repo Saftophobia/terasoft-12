@@ -93,7 +93,11 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.End();
         }
 
-
+        private void StartSimulation()
+        {
+            ScreenManager.AddScreen(new SimulationScreen(environment));
+            ExitScreen();
+        }
        
 
         public override void Remove()
