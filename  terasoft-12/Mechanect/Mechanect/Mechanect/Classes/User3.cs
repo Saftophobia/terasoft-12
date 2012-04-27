@@ -386,23 +386,23 @@ namespace Mechanect.Classes
                  {
                      if (PauseScreen.frameNumber % 2 == 0) //30 fps kinect, 60fps XNA 
                      {
-                         storePosition(this);
+                         StorePosition();
                          if (PauseScreen.frameNumber == 0)
                          {
-                             InitalizePlayerPosition(this);
+                             InitalizePlayerPosition();
 
                          }
                          else
                          {
-                             setCurrentPosition(this);
+                             SetCurrentPosition();
 
-                             if (hasPlayerMovedHisAnkle(this))
+                             if (HasPlayerMovedHisAnkle())
                              {
                                  if (IsMovingForward())
                                  {
-                                     updateSpeed(this);
-                                     updateAngle(this);
-                                     updatePosition(this);
+                                     UpdateSpeed();
+                                     UpdateAngle();
+                                     UpdatePosition();
 
 
                                  }
@@ -477,8 +477,8 @@ namespace Mechanect.Classes
              }
              double velocityFinal = 0;
              double deltaPosition = Math.Abs(currentZ - initialZ);
-             double acceleration = getAcceleration(deltaPosition, Constants3.unitTime, Velocity);
-             velocityFinal = getVelocity(acceleration, Velocity, Constants3.unitTime);
+             double acceleration = Tools3.getAcceleration(deltaPosition, Constants3.unitTime, Velocity);
+             velocityFinal = Tools3.getVelocity(acceleration, Velocity, Constants3.unitTime);
              if (Trying)
                  Velocity = Math.Max(Velocity, velocityFinal);
              else
