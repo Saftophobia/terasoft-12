@@ -702,14 +702,9 @@ namespace Mechanect.Screens
                 milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (milliSeconds > 3000)
                 {
-                    milliSeconds = 0;
-                    ended = false;
-                    tolerance -= 1;
-                    preyEaten = false;
-                    aquariumReached = false;
-                    user.Reset();
-                    grayScreen = true;
-                    LoadContent();
+                    this.ExitScreen();
+                    ScreenManager.AddScreen(new LastScreen(user, 2));
+                    this.Remove();
                 }
             }
             else
@@ -749,7 +744,7 @@ namespace Mechanect.Screens
                         }
                     }
                     user.setSkeleton();
-                    if (user.USER != null)
+                    if (user.USER != null && user.USER.Position.Z != 0)
                         user.MeasureVelocityAndAngle(gameTime);
 
                 }
