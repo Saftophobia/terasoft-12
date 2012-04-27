@@ -32,6 +32,14 @@ namespace Mechanect.Classes
         /// the chase camera instance
         /// </summary>
         public ChaseCamera Camera { get; private set; }
+        public Boolean SimulationFinished
+        {
+            get
+            {
+                return currentAnimation && animation.AnimationStoped;
+            }
+
+        }
         private String velocity1;
         private String velocity2;
         private Boolean currentAnimation;
