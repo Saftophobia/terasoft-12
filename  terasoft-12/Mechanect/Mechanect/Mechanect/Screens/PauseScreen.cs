@@ -133,7 +133,7 @@ namespace Mechanect.Screens
                  
                     user.Velocity = velocity;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " 
-                        + legMass + '\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: " + user.Angle + " rad";
+                        + legMass + '\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: " + (user.Angle*180/Math.PI) + " degrees";
 
                     if (framesToWait > 300) // after 5 seconds
                     {
