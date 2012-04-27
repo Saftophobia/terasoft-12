@@ -124,12 +124,12 @@ namespace Mechanect.Classes
                 return Constants3.negativeRDifference;
 
             var finalPos = Vector3.Zero;
-            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
+            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
             
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
-            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
+            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
 
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
@@ -192,7 +192,7 @@ namespace Mechanect.Classes
         /// <returns>
         /// Returns the position of the ball when its velocity reaches 0.
         /// </returns>
-        private Vector3 ballFinalPosition(Vector3 velocity)
+        private Vector3 BallFinalPosition(Vector3 velocity)
         {
             var vxsquared = (float)Math.Pow(velocity.X, 2);
             var vzsquared = (float)Math.Pow(velocity.Z, 2);
@@ -208,7 +208,7 @@ namespace Mechanect.Classes
         /// <remarks>
         ///<para>AUTHOR: Ahmad Sanad </para>
         ///</remarks>
-        private void hasScored()
+        private void HasScored()
         {
             Vector3 hole = this.hole.Position;
             Vector3 ballVelocity = ball.InitialVelocity;
