@@ -40,10 +40,10 @@ namespace Mechanect.Screens
             c = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, graphics);
             
             environment = new Environment3(ScreenManager.SpriteBatch,ScreenManager.Game.Content,ScreenManager.GraphicsDevice,(User3)user);
-            environment.GenerateSolvable();
             environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent();
-
+            environment.GenerateSolvable();
+           
             //sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, new Vector3(5, 0 ,0 ), new Vector3(3, 0, 0), new Vector3(-1, 0, 0));
 
         }
