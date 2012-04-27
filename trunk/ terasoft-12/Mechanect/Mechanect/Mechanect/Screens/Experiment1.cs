@@ -19,6 +19,7 @@ namespace Mechanect.Screens
 {
     class Experiment1:Mechanect.Common.GameScreen
     {
+        Boolean positionmutex = false;
         Boolean graphmutex = false;
         GraphicsDevice graphics;
         List<double> cumulativetime;
@@ -152,7 +153,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             // graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+          //  Content.RootDirectory = "Content";
             // IntPtr ptr = this.Window.Handle;
             //    System.Windows.Forms.Form form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(ptr);
             //  form.Size = new System.Drawing.Size(1024, 768);
@@ -219,305 +220,328 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
 
+            player1.skeleton = kinect.requestSkeleton();
+            player2.skeleton = kinect.request2ndSkeleton();
 
-            NUMBEROFFRAMES++;
-            //----------------------TIME----------------------------
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timecounter += (int)timer;
-            if (timer >= 1.0F)
-                timer = 0F;
-
-            
-
-
-           
-            //--------------------keepsgettingskeletons----------------
-
-
-
-
-
-
-
-           player1.skeleton = kinect.requestSkeleton();
-           player2.skeleton = kinect.request2ndSkeleton();
-            
-            //=======================================================
-            if (timecounter < 4)
-            {
-                countdown.UpdateCountdownScreen();
+            if (!positionmutex)
+            {   
+                if (Tools1.SetPositions(player1.skeleton, player2.skeleton, SpriteBatch, spritefont, 500))
+                {
+                    positionmutex = true;
+                }
 
             }
 
-            //after countdown, Update the Race 
-            if ((timecounter >= 5 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
+
+            if (positionmutex)
             {
 
-                
-                drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
-                avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton); //update position of avatars on screen
 
-                
-                // float rem = timer*10000000 / 12;
-               // if (((timer * 10000000) % 12) == 0)
+                NUMBEROFFRAMES++;
+                //----------------------TIME----------------------------
+                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                timecounter += (int)timer;
+                if (timer >= 1.0F)
+                    timer = 0F;
 
-                //drawString.Update((NUMBEROFFRAMES / (timecounter + timer))+"");
-                
 
-                 //drawString.Update(NUMBEROFFRAMES + "               " + timecounter + "           " + timer); 
-                //10000000
 
-                if (NUMBEROFFRAMES % 5 == 0)
+
+
+                //--------------------keepsgettingskeletons----------------
+
+
+
+
+
+
+
+
+
+                //=======================================================
+                if (timecounter < 4)
+                {
+                    countdown.UpdateCountdownScreen();
+
+                }
+
+                //after countdown, Update the Race 
+                if ((timecounter >= 5 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
                 {
 
-                    if (player1.skeleton != null & player2.skeleton != null)
+
+                    drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
+                    avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton); //update position of avatars on screen
+
+
+                    // float rem = timer*10000000 / 12;
+                    // if (((timer * 10000000) % 12) == 0)
+
+                    //drawString.Update((NUMBEROFFRAMES / (timecounter + timer))+"");
+
+
+                    //drawString.Update(NUMBEROFFRAMES + "               " + timecounter + "           " + timer); 
+                    //10000000
+
+                    if (NUMBEROFFRAMES % 5 == 0)
                     {
-                        if (player1.skeleton.Position.X > player2.skeleton.Position.X)
+
+                        if (player1.skeleton != null & player2.skeleton != null)
+                        {
+                            if (player1.skeleton.Position.X > player2.skeleton.Position.X)
+                            {
+                                player1.Positions.Add(player1.skeleton.Position.Z);
+                                player2.Positions.Add(player2.skeleton.Position.Z);
+                            }
+                            else
+                            {
+                                player2.Positions.Add(player1.skeleton.Position.Z);
+                                player1.Positions.Add(player2.skeleton.Position.Z);
+                            }
+                        }
+
+
+
+
+
+
+
+                        /*if (player1.skeleton != null)
                         {
                             player1.Positions.Add(player1.skeleton.Position.Z);
+                        }
+                        else
+                        {
+
+                        
+                                player1.Disqualified = true;
+                        
+                        }
+                        if (player2.skeleton != null)
+                        {
                             player2.Positions.Add(player2.skeleton.Position.Z);
                         }
                         else
                         {
-                            player2.Positions.Add(player1.skeleton.Position.Z);
-                            player1.Positions.Add(player2.skeleton.Position.Z);
-                        }
-                    }
-
-
-
-
-
-
-
-                    /*if (player1.skeleton != null)
-                    {
-                        player1.Positions.Add(player1.skeleton.Position.Z);
-                    }
-                    else
-                    {
-
-                        
-                            player1.Disqualified = true;
-                        
-                    }
-                    if (player2.skeleton != null)
-                    {
-                        player2.Positions.Add(player2.skeleton.Position.Z);
-                    }
-                    else
-                    {
                        
-                            player2.Disqualified = true;
+                                player2.Disqualified = true;
                         
-                    }*/
-                }
-                
-                     //-----------------which command i m in-----------------------
-                   string s = racecommandsforDRAW[timecounter - 5];
-                    for (int i = 0; i < racecommands.Count;i++)
+                        }*/
+                    }
+
+                    //-----------------which command i m in-----------------------
+                    string s = racecommandsforDRAW[timecounter - 5];
+                    for (int i = 0; i < racecommands.Count; i++)
                         if (racecommands[i] == s)
                         {
-                           player1.ActiveCommand = i;
+                            player1.ActiveCommand = i;
                             player2.ActiveCommand = i;
                         }
-                    
-            //-----------------------------------------------------------
-            
 
-                
-               // if (timer % 10 == 0 /*& timecounter >=5*/)
-                if (NUMBEROFFRAMES%60 == 0 && NUMBEROFFRAMES > 300) 
-                {
-                    for (int z = 0; z < cumulativetime.Count; z++)
+                    //-----------------------------------------------------------
+
+
+
+                    // if (timer % 10 == 0 /*& timecounter >=5*/)
+                    if (NUMBEROFFRAMES % 60 == 0 && NUMBEROFFRAMES > 300)
                     {
-                        if (cumulativetimeint[z] != timecounter)
+                        for (int z = 0; z < cumulativetime.Count; z++)
                         {
-                            Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 100, SpriteBatch, spritefont);
-                            break;
+                            if (cumulativetimeint[z] != timecounter)
+                            {
+                                Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 100, SpriteBatch, spritefont);
+                                break;
+                            }
+                        }
+
+                        // Tools1.CheckEachSecond(timecounter - 5, player1, player2,timeslice , racecommands, 100, SpriteBatch, spritefont);
+
+
+                        //  Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 10000, SpriteBatch, spritefont);
+
+
+                        player1.DisqualificationTime = player1disqualification;
+                        player2.DisqualificationTime = player2disqualification;
+                        if (player1.Disqualified)
+                        {
+                            player1disqstring.Update("player 1 is disqualified");
+                        }
+                        if (player2.Disqualified)
+                        {
+                            player2disqstring.Update("player 2 is disqualified");
+                        }
+
+
+
+                    }
+
+                    if (player1.skeleton != null & player2.skeleton != null)
+                    {
+
+                        if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z > 0.9 & !player1.Disqualified)
+                        {
+                            player1.Winner = true;
+                        }
+
+
+                        if (player1.skeleton.Position.Z > 0.9 & player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
+                        {
+                            player2.Winner = true;
+                        }
+
+
+                        /*if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
+                            {
+                                player1.Winner = true;
+                                player2.Winner = true;
+                            }
+                          */
+                    }
+                    /*
+                    if (player1.skeleton == null & player2.skeleton != null)
+                    {
+                        if (player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
+                        {
+                            player2.Winner = false;
+                        }
+
+                    }
+
+                    if (player1.skeleton != null & player2.skeleton == null)
+                    {
+                        if (player1.skeleton.Position.Z <= 0.9 & !player1.Disqualified)
+                        {
+                            player1.Winner = false;
+                        }
+
+                    }
+                    */
+
+
+
+
+
+                }
+                if (timecounter >= racecommandsforDRAW.Count + 4 || player2.Disqualified || player1.Disqualified || player2.Winner || player1.Winner/* || player1.skeleton == null || player2.skeleton == null*/)
+                {
+
+                    List<double> timeofrace = new List<double>(); // time of the race
+                    timeofrace.Add(timeslice[0]);
+
+                    for (int i = 1; i < cumulativetime.Count; i++)
+                    {
+                        if (cumulativetime[i] <= timecounter)
+                        {
+                            timeofrace.Add(timeslice[i]);
                         }
                     }
 
-                   // Tools1.CheckEachSecond(timecounter - 5, player1, player2,timeslice , racecommands, 100, SpriteBatch, spritefont);
-                     
-                      
-                    //  Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 10000, SpriteBatch, spritefont);
-                     
 
-                    player1.DisqualificationTime = player1disqualification;
-                    player2.DisqualificationTime = player2disqualification;
-                    if (player1.Disqualified)
+
+                    if (!graphmutex)
                     {
-                        player1disqstring.Update("player 1 is disqualified");
-                    }
-                    if (player2.Disqualified)
-                    {
-                        player2disqstring.Update("player 2 is disqualified");
-                    }
-
-
-
-                 }
-
-                if (player1.skeleton != null & player2.skeleton != null)
-                   {
-                
-                if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z > 0.9 & !player1.Disqualified)
-                {
-                    player1.Winner = true;
-                }
-
-
-                if (player1.skeleton.Position.Z > 0.9 & player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
-                {
-                    player2.Winner = true;
-                }
-
-
-                 /*if (player1.skeleton.Position.Z <= 0.9 & player2.skeleton.Position.Z <= 0.9 & !player1.Disqualified &!player2.Disqualified)
-                     {
-                         player1.Winner = true;
-                         player2.Winner = true;
-                     }
-                   */
-                }
-                /*
-                if (player1.skeleton == null & player2.skeleton != null)
-                {
-                    if (player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
-                    {
-                        player2.Winner = false;
-                    }
-
-                }
-
-                if (player1.skeleton != null & player2.skeleton == null)
-                {
-                    if (player1.skeleton.Position.Z <= 0.9 & !player1.Disqualified)
-                    {
-                        player1.Winner = false;
-                    }
-
-                }
-                */
-
-
-
-
-            
-        }
-            if (timecounter >= racecommandsforDRAW.Count + 4 || player2.Disqualified || player1.Disqualified || player2.Winner || player1.Winner/* || player1.skeleton == null || player2.skeleton == null*/)
-            {
-
-                List<double> timeofrace = new List<double>(); // time of the race
-                timeofrace.Add(timeslice[0]);
-
-                for (int i = 1; i < cumulativetime.Count; i++)
-                {
-                    if (cumulativetime[i] <= timecounter)
-                    {
-                        timeofrace.Add(timeslice[i]);
-                    }
-                }
-
-
-
-                if (!graphmutex)
-                {
-                    List<double> timeslicedouble = new List<double>();
-                    foreach (int s in timeslice)
-                    {
-                        timeslicedouble.Add((double)s);
-                    }
-                    
-
-
-                   /* List<string> Commands = new List<string>();
-                    List<double> CommandsTime = new List<double>();
-                    List<float> Player1Displacement = new List<float>();
-                    List<float> Player2Displacement = new List<float>();
-                    //initiating testing values 
-                    Commands.Add("constantDisplacement");
-                    Commands.Add("constantDisplacement");
-                    Commands.Add("increasingAcceleration");
-                    Commands.Add("constantDisplacement");
-                    CommandsTime.Add(1);
-                    CommandsTime.Add(1);
-                    CommandsTime.Add(1);
-                    CommandsTime.Add(1);
-                    int intitial = 4000;
-                    int stepping = 1;
-                    for (int i = 0; i <= 47; i++)
-                    {
-                        if (intitial > 0)
+                        List<double> timeslicedouble = new List<double>();
+                        foreach (int s in timeslice)
                         {
-                            Player1Displacement.Add(intitial);
-                            stepping = stepping + 5;
-                            intitial = intitial - stepping;
+                            timeslicedouble.Add((double)s);
                         }
-                        else
-                        {
-                            Player1Displacement.Add(0);
-                        }
+
+
+
+                        /* List<string> Commands = new List<string>();
+                         List<double> CommandsTime = new List<double>();
+                         List<float> Player1Displacement = new List<float>();
+                         List<float> Player2Displacement = new List<float>();
+                         //initiating testing values 
+                         Commands.Add("constantDisplacement");
+                         Commands.Add("constantDisplacement");
+                         Commands.Add("increasingAcceleration");
+                         Commands.Add("constantDisplacement");
+                         CommandsTime.Add(1);
+                         CommandsTime.Add(1);
+                         CommandsTime.Add(1);
+                         CommandsTime.Add(1);
+                         int intitial = 4000;
+                         int stepping = 1;
+                         for (int i = 0; i <= 47; i++)
+                         {
+                             if (intitial > 0)
+                             {
+                                 Player1Displacement.Add(intitial);
+                                 stepping = stepping + 5;
+                                 intitial = intitial - stepping;
+                             }
+                             else
+                             {
+                                 Player1Displacement.Add(0);
+                             }
+                         }
+                         intitial = 4000;
+                         stepping = 1;
+                         for (int i = 0; i <= 47; i++)
+                         {
+                             if (intitial > 0)
+                             {
+                                 Player2Displacement.Add(intitial);
+                                 stepping = stepping + 54;
+                                 intitial = intitial - stepping;
+                             }
+                             else
+                             {
+                                 Player2Displacement.Add(0);
+                             }
+                         }
+                         //main initializing method*/
+
+                        //  Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+
+                        /* List<float> positions1times1k = new List<float>();
+                         List<float> positions2times1k = new List<float>();
+                         foreach (float s in player1.Positions)
+                         {
+                             positions1times1k.Add(s * 1000);
+                         }
+
+                         foreach (float o in player2.Positions)
+                         {
+                             positions2times1k.Add(o * 1000);
+                         }*/
+
+
+
+
+                        // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                        Graph.DrawGraphs(player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+
+
+                        graphmutex = true;
                     }
-                    intitial = 4000;
-                    stepping = 1;
-                    for (int i = 0; i <= 47; i++)
-                    {
-                        if (intitial > 0)
-                        {
-                            Player2Displacement.Add(intitial);
-                            stepping = stepping + 54;
-                            intitial = intitial - stepping;
-                        }
-                        else
-                        {
-                            Player2Displacement.Add(0);
-                        }
-                    }
-                    //main initializing method*/
-
-                  //  Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-
-                   /* List<float> positions1times1k = new List<float>();
-                    List<float> positions2times1k = new List<float>();
-                    foreach (float s in player1.Positions)
-                    {
-                        positions1times1k.Add(s * 1000);
-                    }
-
-                    foreach (float o in player2.Positions)
-                    {
-                        positions2times1k.Add(o * 1000);
-                    }*/
 
 
 
-                                  
-                   // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                    Graph.DrawGraphs(player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                    
-                    
-                  graphmutex = true;
+
+
+
+
                 }
-
-               
-
-
-
-
-
+                base.Update(gameTime, covered);
             }
-            base.Update(gameTime, covered);
-        }
 
-            
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+
+            if(!positionmutex){
+                if (Tools1.SetPositions(player1.skeleton, player2.skeleton, SpriteBatch, spritefont, 500))
+                {
+                    positionmutex = true;
+                }
+            }else{
+
             
             if (timecounter < 4)
             {
@@ -566,7 +590,7 @@ namespace Mechanect.Screens
 
 
            
-        }
+        }}
 
         public override void Remove()
         {

@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Platonic</Name>
     <Identity>
-      <SourceFilename>C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\MechanectContent\Models\ball.fbx</SourceFilename>
+      <SourceFilename>D:\my workspace\Mechanect\Mechanect\MechanectContent\Models\ball.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -26,7 +26,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>Platonic</Name>
       <Identity>
-        <SourceFilename>C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\MechanectContent\Models\ball.fbx</SourceFilename>
+        <SourceFilename>D:\my workspace\Mechanect\Mechanect\MechanectContent\Models\ball.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
