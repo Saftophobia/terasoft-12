@@ -72,8 +72,14 @@ namespace Mechanect.Screens
                 freezeLock = true;
                 this.FreezeScreen();
                 ScreenManager.AddScreen(new PauseScreen(user, user.Kinect, environment.ball.Velocity.Length(), environment.ball.Mass, ((User3)user).AssumedLegMass));
+                
             }
 
+            if ((Vector2.Distance(bar.InitialPos, bar.CurrentPos) / Vector2.Distance(bar.InitialPos, bar.ShootingPos)) > 0.8)
+            {
+                StartSimulation();
+            }
+            
             //if (environment.ball.Position.X >= user.ShootingPosition.X && environment.ball.Position.Z >= user.ShootingPosition.Z)
             //{
             //    environment.Update();
@@ -101,8 +107,8 @@ namespace Mechanect.Screens
         /// </summary>
         private void StartSimulation()
         {
-            ScreenManager.AddScreen(new SimulationScreen(environment));
             ExitScreen();
+            ScreenManager.AddScreen(new SimulationScreen(environment));
         }
        
 
