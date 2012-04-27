@@ -54,11 +54,11 @@ namespace Mechanect.Screens
         public override void Update(GameTime gameTime, bool covered)
         {
             if (instruction.Button.IsClicked())
-                    {
-        
-              ScreenManager.AddScreen(new Settings3(user3));
-              ExitScreen();
-                   }
+            {
+                ExitScreen();
+                ScreenManager.AddScreen(new Settings3(user3));
+                Remove();
+            }
             instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
         }
