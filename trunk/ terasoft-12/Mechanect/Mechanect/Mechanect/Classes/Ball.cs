@@ -126,7 +126,7 @@ namespace Mechanect.Classes
                 Velocity = new Vector3(Velocity.X/* + friction*/, Velocity.Y, Velocity.Z);
 
 
-            ballModel.position = Position;
+            ballModel.Position = Position;
 
 
 

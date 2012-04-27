@@ -21,17 +21,17 @@ namespace Mechanect.Common
         /// <summary>
         /// the model's position
         /// </summary>
-        public Vector3 position { get; set; }
+        public Vector3 Position { get; set; }
         
         /// <summary>
         /// the model's orientation
         /// </summary>
-        public Vector3 rotation { get; set; }
+        public Vector3 Rotation { get; set; }
         
         /// <summary>
         /// the model's scale
         /// </summary>
-        public Vector3 scale { get; set; }
+        public Vector3 Scale { get; set; }
 
         private Model model;
         private Matrix[] modelTransforms;
@@ -47,9 +47,9 @@ namespace Mechanect.Common
         /// <param name="scale">the model's scale</param>
         /// <param name="graphicsDevice"></param>
         public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale, GraphicsDevice graphicsDevice){
-            this.position = position;
-            this.rotation = rotation;
-            this.scale = scale;
+            this.Position = position;
+            this.Rotation = rotation;
+            this.Scale = scale;
             this.graphicsDevice = graphicsDevice;
             this.model = model;
             modelTransforms = new Matrix[model.Bones.Count];
@@ -62,7 +62,7 @@ namespace Mechanect.Common
         /// <param name="camera">a camera instance</param>
         public void Draw(Camera camera)
         {
-            Matrix world = Matrix.CreateScale(scale) * Matrix.CreateFromYawPitchRoll(rotation.Y, rotation.X, rotation.Z) * Matrix.CreateTranslation(position);
+            Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
             foreach (ModelMesh mesh in model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index] * world;

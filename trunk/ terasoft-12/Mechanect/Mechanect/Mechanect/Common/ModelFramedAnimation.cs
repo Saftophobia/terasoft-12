@@ -26,7 +26,7 @@ namespace Mechanect.Common
         {
             this.model = model;
             this.frames = new List<AnimationFrame>(); ;
-            AddFrame(model.position, model.rotation, TimeSpan.FromSeconds(0));
+            AddFrame(model.Position, model.Rotation, TimeSpan.FromSeconds(0));
             elapsedTime = TimeSpan.FromSeconds(0);
         }
 
@@ -51,14 +51,14 @@ namespace Mechanect.Common
             TimeSpan frameElapsedTime = elapsedTime - frames[i].Time;
             float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
 
-            model.position = Vector3.CatmullRom(
+            model.Position = Vector3.CatmullRom(
                frames[Wrap(i - 1, frames.Count - 1)].Position,
                frames[Wrap(i, frames.Count - 1)].Position,
                frames[Wrap(i + 1, frames.Count - 1)].Position,
                frames[Wrap(i + 2, frames.Count - 1)].Position,
                amt);
 
-            model.rotation = Vector3.Lerp(frames[i].Rotation, frames[i + 1].Rotation, amt);
+            model.Rotation = Vector3.Lerp(frames[i].Rotation, frames[i + 1].Rotation, amt);
         }
 
         /// <summary>
