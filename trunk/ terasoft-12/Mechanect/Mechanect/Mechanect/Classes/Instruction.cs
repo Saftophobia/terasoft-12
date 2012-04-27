@@ -192,7 +192,7 @@ namespace Mechanect
         {
             string[] words = text.Split(' ');
             StringBuilder builder = new StringBuilder();
-            float lineWidth = positionInScreen.X;
+            float lineWidth = PositionInScreen.X;
             float spaceWidth = spriteFont.MeasureString(" ").X;
 
             foreach (String word in words)
@@ -200,7 +200,7 @@ namespace Mechanect
                 Vector2 width = spriteFont.MeasureString(word);
 
 
-                if (lineWidth + width.X < maxLineWidth)
+                if (lineWidth + width.X < maxLineWidth || lineWidth + width.X < GraphicsDevice.PresentationParameters.BackBufferWidth - 5)
                 {
                     builder.Append(word + " ");
                     lineWidth += width.X + spaceWidth;
@@ -208,6 +208,7 @@ namespace Mechanect
                 }
                 else
                 {
+
                     builder.Append("\n" + word + " ");
                     lineWidth = 0;
 
