@@ -177,10 +177,11 @@ namespace Mechanect.Common
         #endregion
 
         #region Update and Draw
-        public virtual void Initialize() { } 
+        public virtual void Initialize() {
+            user = new User();
+        } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
-            user = new User();
             user.setSkeleton();
             if (user.USER == null)
             {
