@@ -62,7 +62,7 @@ namespace Mechanect.Screens
                 environment.Update();
 
             }
-            environment.ball.Update(environment.friction);
+            environment.ball.Update(environment.Friction);
             
             environment.distanceBar.Update(new Vector2(position.X,position.Z));
             //sim.Update(gameTime);
