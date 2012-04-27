@@ -137,12 +137,12 @@ namespace Mechanect.Classes
                 return Constants3.negativeRDifference;
 
             var finalPos = Vector3.Zero;
-            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
+            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
 
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
-            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
+            finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
 
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
@@ -160,6 +160,10 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
+            if (hole.Position.Z > Constants3.maxHolePosZ)
+                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ);
+            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX)
+                hole.Position = new Vector3(Constants3.maxHolePosZ, hole.Position.Y, 0);
             var x = Constants3.solvableExperiment;
             do
             {
