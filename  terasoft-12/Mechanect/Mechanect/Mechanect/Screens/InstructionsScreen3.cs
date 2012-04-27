@@ -6,9 +6,9 @@ namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-        string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
-        Instruction instruction;
-        User3 user3;
+        private string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
+        private Instruction instruction;
+        private User3 user3;
 
         public InstructionsScreen3(User3 user3)
         {
@@ -32,7 +32,8 @@ namespace Mechanect.Screens
         public override void LoadContent()
 
         {
-            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user3);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
+                ScreenManager.GraphicsDevice, user3);
             instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
            
@@ -80,7 +81,7 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>  
-        public override void Remove()
+        public void Remove()
         {
             base.Remove();
             
