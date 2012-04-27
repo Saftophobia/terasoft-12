@@ -201,7 +201,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
             button = Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight, user);
             //TBC
-            //voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
+            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
 
         }
 
@@ -291,11 +291,11 @@ namespace Mechanect.Screens
 
             // Getting the maximum possible difference between the experiment objects
             float maxDifferenceX = environment.Aquarium.Location.X - environment.Predator.Location.X;
-            float maxDifferenceY = Math.Max(environment.Prey.Location.Y, Math.Max(environment.Aquarium.Location.Y, environment.Predator.Location.Y)) - Math.Min(environment.Prey.Location.Y, Math.Min(environment.Aquarium.Location.Y, environment.Predator.Location.Y));
+            float maxDifferenceY = Math.Max(environment.Prey.Location.Y, Math.Max(environment.Aquarium.Location.Y, environment.Predator.Location.Y));// - Math.Min(environment.Prey.Location.Y, Math.Min(environment.Aquarium.Location.Y, environment.Predator.Location.Y));
             // Mapping the meters to pixels to configure how will the real world be mapped to the screen
             pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
             pixelsPerMeterX = (float)screenWidth * xDrawingPercentage / maxDifferenceX;
-           // pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
+            // pixelsPerMeterY = (float)screenHeight * yDrawingPercentage / maxDifferenceY;
             //To make the x and y axis have the same scaling
             pixelsPerMeterX = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
             pixelsPerMeterY = Math.Min(pixelsPerMeterX, pixelsPerMeterY);
@@ -308,9 +308,9 @@ namespace Mechanect.Screens
             velocityTextureScaling *= backgroundTextureScaling;
             angleTextureScaling *= backgroundTextureScaling;
 
-            predatorTextureScaling *= backgroundTextureScaling;
-            preyTextureScaling *= backgroundTextureScaling;
-            bowlTextureScaling *= backgroundTextureScaling;
+            //predatorTextureScaling *= backgroundTextureScaling;
+            //preyTextureScaling *= backgroundTextureScaling;
+            //bowlTextureScaling *= backgroundTextureScaling;
 
 
 
@@ -354,7 +354,7 @@ namespace Mechanect.Screens
             yAxisPercentage = 0.05f;
 
             xDrawingPercentage = 0.75f;
-            yDrawingPercentage = 0.3f;
+            yDrawingPercentage = 0.5f;
         }
         /// <summary>
         /// Allows the game to initialize all the textures 
@@ -697,65 +697,65 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         { //camera.Update();
             //TBC
-            //if (ended)
-            //{
-            //    milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            //    if (milliSeconds > 3000)
-            //    {
-            //        milliSeconds = 0;
-            //        ended = false;
-            //        tolerance -= 1;
-            //        preyEaten = false;
-            //        aquariumReached = false;
-            //        user.Reset();
-            //        grayScreen = true;
-            //        LoadContent();
-            //    }
-            //}
-            //else
-            //{
-            //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-            //    {
-            //        if (environment.Predator.Velocity == null)
-            //            environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-            //        environment.Predator.UpdatePosition(gameTime);
-            //        if (!preyEaten) preyEaten = isPreyEaten();
-            //        if (!aquariumReached) aquariumReached = isAquariumReached();
-            //        if (aquariumReached)
-            //        {
-            //            environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
-            //            environment.Predator.Velocity = Vector2.Zero;
-            //            ended = true;
-            //        }
-            //        else if (environment.Predator.Location.Y <= 0)
-            //        {
-            //            environment.Predator.Velocity = Vector2.Zero;
-            //            ended = true;
-            //        }
+            if (ended)
+            {
+                milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (milliSeconds > 3000)
+                {
+                    milliSeconds = 0;
+                    ended = false;
+                    tolerance -= 1;
+                    preyEaten = false;
+                    aquariumReached = false;
+                    user.Reset();
+                    grayScreen = true;
+                    LoadContent();
+                }
+            }
+            else
+            {
+                if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+                {
+                    if (environment.Predator.Velocity == null)
+                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                    environment.Predator.UpdatePosition(gameTime);
+                    if (!preyEaten) preyEaten = isPreyEaten();
+                    if (!aquariumReached) aquariumReached = isAquariumReached();
+                    if (aquariumReached)
+                    {
+                        environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
+                        environment.Predator.Velocity = Vector2.Zero;
+                        ended = true;
+                    }
+                    else if (environment.Predator.Location.Y <= 0)
+                    {
+                        environment.Predator.Velocity = Vector2.Zero;
+                        ended = true;
+                    }
 
-            //    }
+                }
 
-            //    else
-            //    {
-            //        if (button != null)
-            //        {
-            //            button.Update(gameTime);
-            //            if (button.IsClicked())
-            //            {
-            //                grayScreen = false;
-            //                button = null;
-            //                voiceCommand = null;
-            //                user.Reset();
-            //            }
-            //        }
-            //        user.setSkeleton();
-            //        if (user.USER != null)
-            //            user.MeasureVelocityAndAngle(gameTime);
+                else
+                {
+                    if (button != null)
+                    {
+                        button.Update(gameTime);
+                        if (button.IsClicked())
+                        {
+                            grayScreen = false;
+                            button = null;
+                            voiceCommand = null;
+                            user.Reset();
+                        }
+                    }
+                    user.setSkeleton();
+                    if (user.USER != null)
+                        user.MeasureVelocityAndAngle(gameTime);
 
-            //    }
-            //    base.Update(gameTime, covered);
+                }
+                base.Update(gameTime, covered);
 
-           // }
+            }
 
         }
 
