@@ -35,7 +35,18 @@ namespace Mechanect.Classes
         private bool hasCollidedWithBall, ballShot;
         public static int angleTolerance { get; set; }
         public static int velocityTolerance { get; set; }
-        public Bar distanceBar;
+        private Bar distanceBar;
+        public Bar DistanceBar
+        {
+            set
+            {
+                distanceBar = value;
+            }
+            get
+            {
+                return distanceBar;
+            }
+        }
         private GraphicsDevice device;
 
         private Effect effect;
