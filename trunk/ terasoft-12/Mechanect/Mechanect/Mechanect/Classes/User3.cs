@@ -466,7 +466,7 @@ namespace Mechanect.Classes
          /// Calculates the new value of the velocity and sets it the variable velocity of the User3 to it
          /// </summary>
 
-         public void updateSpeed()
+         public void UpdateSpeed()
          {
              double currentZ = CurrentLeftLegPositionZ;
              double initialZ = InitialLeftLegPositionZ;
@@ -493,18 +493,17 @@ namespace Mechanect.Classes
          /// <summary>
          /// updates the current and previous positions of the User3's moving leg
          /// </summary>
-         /// <param name="User3">takes instance of the User3 to update their position</param>
-         public static void updatePosition(User3 User3)
+         public void UpdatePosition()
          {
-             if (User3.RightLeg)
+             if (RightLeg)
              {
-                 User3.InitialRightLegPositionX = User3.CurrentRightLegPositionX;
-                 User3.InitialRightLegPositionZ = User3.CurrentRightLegPositionZ;
+                 InitialRightLegPositionX = CurrentRightLegPositionX;
+                 InitialRightLegPositionZ = CurrentRightLegPositionZ;
              }
              else
              {
-                 User3.InitialLeftLegPositionX = User3.CurrentLeftLegPositionX;
-                 User3.InitialLeftLegPositionZ = User3.CurrentLeftLegPositionZ;
+                 InitialLeftLegPositionX = CurrentLeftLegPositionX;
+                 InitialLeftLegPositionZ = CurrentLeftLegPositionZ;
              }
          }
 
