@@ -52,8 +52,8 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            screenWidth = device.Viewport.Width;
-            screenHeight = device.Viewport.Height;
+            screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+            screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
          //   b =  Tools3.OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
           // screenWidth , screenHeight,user );
            Font1 = ScreenManager.Game.Content.Load<SpriteFont>(@"SpriteFont1");
@@ -93,12 +93,12 @@ namespace Mechanect.Screens
             if (keyState.IsKeyDown(Keys.B))
             {
                 ExitScreen();
-                ScreenManager.AddScreen(new Experiment2(new User2(), new MKinect()));
+                ScreenManager.AddScreen(new Experiment2(new User2()));
             }
             if (keyState.IsKeyDown(Keys.C))
             {
                 ExitScreen();
-                ScreenManager.AddScreen(new Experiment3(new User3()));
+                ScreenManager.AddScreen(new InstructionsScreen2(new User2()));
             }
           //  instruction.Button.Update(gameTime);
             //button1.Update(gameTime);
@@ -116,11 +116,11 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
-            device.Clear(Color.YellowGreen);
+            ScreenManager.GraphicsDevice.Clear(Color.YellowGreen);
             // b.Draw(spriteBatch);
-            batch.Begin();
-            batch.DrawString(Font1,instructions, new Vector2(), Color.Black, 0, new Vector2(), 1f, SpriteEffects.None, 0.0f);
-            batch.End();
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.DrawString(Font1, instructions, new Vector2(), Color.Black, 0, new Vector2(), 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.End();
             //instruction.Draw(gameTime);
           //  button1.Draw(batch);
            // button2.Draw(batch);
