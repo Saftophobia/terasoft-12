@@ -93,9 +93,6 @@ namespace Mechanect.Classes
             Vector3 ballInitPos = ball.InitialBallPosition;
             Vector3 shootingPos = user.ShootingPosition;
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
-            leftrightRot = MathHelper.PiOver2;
-            updownRot = -MathHelper.Pi / 10.0f;
-            angle = 0f;
             friction = 1.0f;
         }
 
