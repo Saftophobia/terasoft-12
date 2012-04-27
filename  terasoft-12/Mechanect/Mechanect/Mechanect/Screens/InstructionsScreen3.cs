@@ -44,7 +44,7 @@ namespace Mechanect.Screens
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Khaled Salah </para>
+        /// <para>AUTHOR: Khaled Salah, Bishoy Bassem </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
@@ -53,8 +53,9 @@ namespace Mechanect.Screens
         {
             if (instruction.Button.IsClicked())
                     {
-                        ExitScreen();
+        
               ScreenManager.AddScreen(new Settings3(user3));
+              ExitScreen();
                    }
             instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
