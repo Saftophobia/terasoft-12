@@ -374,9 +374,8 @@ namespace Mechanect.Classes
          /// <summary>
          ///  Updates the velocity, angle variables of the User3 after each captured skeleton frame.
          /// </summary>
-         /// <param name="User3">takes instance of class User3 as input, to update their velocity and angle </param>
 
-         public void update_MeasuringVelocityAndAngle()
+         public void Update_MeasuringVelocityAndAngle()
          {
              setSkeleton();
              Skeleton skeleton = USER;
@@ -717,10 +716,8 @@ namespace Mechanect.Classes
          /// <summary>
          /// scales the velocity of the leg's User3 relative to the assumed mass of the User3's leg and maps the velocity in meters to pixels
          /// </summary>
-         /// <param name="User3">takes an instance of class User3 to scale their velocity relative to the assumed mass
-         /// of their leg and maps the velocity in meters to pixels</param>
          /// <returns>returns the scales velocity</returns>
-         public float setVelocityRelativeToGivenMass()
+         public float SetVelocityRelativeToGivenMass()
          {
              return (float)((Constants3.normalLegMass / AssumedLegMass) * Velocity);
          }
@@ -734,9 +731,8 @@ namespace Mechanect.Classes
          /// <summary>
          /// initializes all the variables that stores the User3's movement inorder to try shooting again
          /// </summary>
-         /// <param name="User3">takes an instance of class User3 to initialze the variables that store that User3's movement</param>
 
-         public void resetUserForShootingOrTryingAgain()
+         public void ResetUserForShootingOrTryingAgain()
          {
 
              InitialLeftLegPositionX = 0;
