@@ -149,7 +149,7 @@ namespace Mechanect.Classes
             if (hole.Position.Z > Constants3.maxHolePosZ)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ);
             if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX)
-                hole.Position = new Vector3(Constants3.maxHolePosZ, hole.Position.Y, 0);
+                hole.Position = new Vector3(Constants3.maxHolePosX, hole.Position.Y, hole.Position.Z);
             var x = Constants3.solvableExperiment;
             do
             {
