@@ -14,67 +14,61 @@ using Mechanect.Cameras;
 namespace Mechanect.Screens
 {
      class SimulationScreen : Mechanect.Common.GameScreen
+     {
 
-    {
-        Environment3 environment;
-        GraphicsDevice graphics;
+         private Environment3 environment;
+         private GraphicsDevice graphics;
 
-        ResultSimulation sim;
+         private ResultSimulation sim;
 
-        Vector3 shootVelocity = new Vector3(-20, 0, -10);
-        Vector3 optimalVelocity = new Vector3(-15, 0, -20);
-        float friction = 1f;
+         public SimulationScreen(Environment3 environment)
+         {
+             this.environment = environment;
+         }
+         public override void LoadContent()
+         {
 
-        public SimulationScreen(Environment3 environment)
-        {
+             graphics = this.ScreenManager.GraphicsDevice;
 
-        }
-           public override void LoadContent()
-        {
+             Vector3 optimalVelocity = environment.ball.InitialVelocity;
+             Vector3 shootVelocity = environment.ball.InitialVelocity;
+             float friction = environment.Friction;
+             environment.ball.ballModel.Position = environment.user.ShootingPosition;
+             sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, shootVelocity, optimalVelocity, friction);
+         }
 
-            graphics = this.ScreenManager.GraphicsDevice;
-            environment = new Environment3(ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, new User3());
+         public override void UnloadContent()
+         {
 
-            environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
-            environment.LoadEnvironmentContent();
+         }
 
-           
-            environment.ball.ballModel.Position = new Vector3(50, 10, 50);
-            sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, shootVelocity, optimalVelocity, friction);
-        }
+         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+         {
 
-        public override void UnloadContent()
-        {
-           
-        }
+             sim.Update(gameTime);
+             if (sim.SimulationFinished)
+             {
+                 ScreenManager.AddScreen(new LastScreen(environment.user, 3));
+                 ExitScreen();
+             }
+             base.Update(gameTime, covered);
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
-        {
-            
-            sim.Update(gameTime);
-            if (sim.SimulationFinished)
-            {
-                ScreenManager.AddScreen(new LastScreen(environment.user, 3));
-                ExitScreen();
-            }
-            base.Update(gameTime, covered);
+         }
 
-        }
-
-        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-            environment.DrawEnvironment(sim.Camera, gameTime);
-            environment.ball.Draw(gameTime, sim.Camera);
-        }
+         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+         {
+             environment.DrawEnvironment(sim.Camera, gameTime);
+             environment.ball.Draw(gameTime, sim.Camera);
+         }
 
 
-       
 
-        public override void Remove()
-        {
-            
-            base.Remove();
-        }
+
+         public override void Remove()
+         {
+
+             base.Remove();
+         }
     }
         
     
