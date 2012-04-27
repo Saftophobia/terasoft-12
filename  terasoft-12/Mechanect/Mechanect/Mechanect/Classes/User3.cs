@@ -533,33 +533,32 @@ namespace Mechanect.Classes
          /// <summary>
          /// stores the position where the User3 started moving their leg and the final position where they stopped moving their leg forward
          /// </summary>
-         /// <param name="User3">takes an instance of class User3 to store their position</param>
-
-         public static void storePosition(User3 User3)
+       
+         public  void StorePosition()
          {
 
-             if (User3.RightLeg)
+             if (RightLeg)
              {
-                 if (User3.MovedForward && !User3.HasSetInitialPositionForAngle)
+                 if (MovedForward && !HasSetInitialPositionForAngle)
                  {
-                     User3.StoreX1 = User3.InitialRightLegPositionX;
-                     User3.StoreZ1 = User3.InitialRightLegPositionZ;
-                     User3.HasSetInitialPositionForAngle = true;
+                     StoreX1 = InitialRightLegPositionX;
+                     StoreZ1 = InitialRightLegPositionZ;
+                     HasSetInitialPositionForAngle = true;
                  }
-                 User3.StoreX2 = User3.InitialRightLegPositionX;
-                 User3.StoreZ2 = User3.InitialRightLegPositionZ;
+                 StoreX2 = InitialRightLegPositionX;
+                 StoreZ2 = InitialRightLegPositionZ;
 
              }
              else
              {
-                 if (User3.MovedForward && !User3.HasSetInitialPositionForAngle)
+                 if (MovedForward && !HasSetInitialPositionForAngle)
                  {
-                     User3.StoreX1 = User3.InitialLeftLegPositionX;
-                     User3.StoreZ1 = User3.InitialLeftLegPositionZ;
-                     User3.HasSetInitialPositionForAngle = true;
+                     StoreX1 = InitialLeftLegPositionX;
+                     StoreZ1 = InitialLeftLegPositionZ;
+                     HasSetInitialPositionForAngle = true;
                  }
-                 User3.StoreX2 = User3.InitialLeftLegPositionX;
-                 User3.StoreZ2 = User3.InitialLeftLegPositionZ;
+                 StoreX2 = InitialLeftLegPositionX;
+                 StoreZ2 = InitialLeftLegPositionZ;
              }
          }
 
