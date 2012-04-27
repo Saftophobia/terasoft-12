@@ -337,8 +337,8 @@ namespace Mechanect.Classes
             {
                 for (var y = 0; y < terrainHeight; y++)
                 {
-                    vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
-                    vertices[x + y * terrainWidth].Color = Color.Green;
+                    vertices[x + (y * terrainWidth)].Position = new Vector3(x, heightData[x, y], -y);
+                    vertices[x + (y * terrainWidth)].Color = Color.Green;
 
                 }
             }
@@ -363,10 +363,10 @@ namespace Mechanect.Classes
             {
                 for (var x = 0; x < terrainWidth - 1; x++)
                 {
-                    var lowerLeft = x + y * terrainWidth;
-                    var lowerRight = (x + 1) + y * terrainWidth;
-                    var topLeft = x + (y + 1) * terrainWidth;
-                    var topRight = (x + 1) + (y + 1) * terrainWidth;
+                    var lowerLeft = x + (y * terrainWidth);
+                    var lowerRight = (x + 1) + (y * terrainWidth);
+                    var topLeft = x + ((y + 1) * terrainWidth);
+                    var topRight = (x + 1) + ((y + 1) * terrainWidth);
 
                     indices[counter++] = (short)topLeft;
                     indices[counter++] = (short)lowerRight;
@@ -397,7 +397,7 @@ namespace Mechanect.Classes
             heightData = new float[terrainWidth, terrainHeight];
             for (var x = 0; x < terrainWidth; x++)
                 for (var y = 0; y < terrainHeight; y++)
-                    heightData[x, y] = (heightMapColors[x + y * terrainWidth].R / 5.0f) - 20;
+                    heightData[x, y] = (heightMapColors[x + (y * terrainWidth)].R / 5.0f) - 20;
 
         }
 
@@ -447,8 +447,8 @@ namespace Mechanect.Classes
             for (var i = 0; i < indices.Length / 3; i++)
             {
                 var index1 = indices[i * 3];
-                var index2 = indices[i * 3 + 1];
-                var index3 = indices[i * 3 + 2];
+                var index2 = indices[(i * 3) + 1];
+                var index3 = indices[(i * 3) + 2];
 
                 Vector3 side1 = vertices[index1].Position - vertices[index3].Position;
                 Vector3 side2 = vertices[index1].Position - vertices[index2].Position;
