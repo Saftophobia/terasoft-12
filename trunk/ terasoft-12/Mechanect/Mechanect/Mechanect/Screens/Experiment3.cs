@@ -40,7 +40,7 @@ namespace Mechanect.Screens
             c = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, graphics);
             
             environment = new Environment3(ScreenManager.SpriteBatch,ScreenManager.Game.Content,ScreenManager.GraphicsDevice,(User3)user);
-
+            environment.GenerateSolvable();
             environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent();
 
@@ -64,9 +64,9 @@ namespace Mechanect.Screens
             }
             environment.ball.Update(environment.Friction);
             
-            environment.distanceBar.Update(new Vector2(position.X,position.Z));
+            environment.DistanceBar.Update(new Vector2(position.X,position.Z));
             //sim.Update(gameTime);
-            Bar bar = environment.distanceBar;
+            Bar bar = environment.DistanceBar;
             if ((Vector2.Distance(bar.InitialPos, bar.CurrentPos) / Vector2.Distance(bar.InitialPos, bar.ShootingPos)) > 0.5 && !freezeLock)
             {
                 freezeLock = true;
