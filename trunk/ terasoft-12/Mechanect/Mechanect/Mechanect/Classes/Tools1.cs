@@ -249,7 +249,7 @@ namespace Mechanect.Classes
              //the maximum distance between the two players which is actually the tolerance on a scale from 0-10 mm
              float min = 4.0f - (tolerance / 1000);
              //check if the actual position of the player is within the range or not
-             if (userPosition >= min && userPosition <= 4.0f)
+             if ((userPosition >= min) && (userPosition <= 4.0f))
                  //if it is within the range then it will be true
                  return true;
              //if it is out of this range and/or the kinect range it will be false
@@ -326,7 +326,7 @@ namespace Mechanect.Classes
              for (int i = 2; i < positions.Count; i++)
              {
                  float currentDisplacement = (positions[i - 1] - positions[i]);
-                 if (!(currentDisplacement >= (firstVelocity - currentTolerance) && currentDisplacement <= (firstVelocity + currentTolerance)))
+                 if (!((currentDisplacement >= (firstVelocity - currentTolerance)) && (currentDisplacement <= (firstVelocity + currentTolerance))))
                  {
                      if (positions[positions.Count - 1] == 0.8)
                      {
@@ -364,7 +364,7 @@ namespace Mechanect.Classes
              for (int i = 2; i < velocities.Count; i++)
              {
                  float currentVelocity = (velocities[i] - velocities[i - 1]);
-                 if (!(currentVelocity >= (firstVelocity - currentTolerance) && currentVelocity <= (firstVelocity + currentTolerance)))
+                 if (!((currentVelocity >= (firstVelocity - currentTolerance)) && (currentVelocity <= (firstVelocity + currentTolerance))))
                  {
                      if (positions[positions.Count - 1] == 0.8)
                      {
@@ -399,7 +399,7 @@ namespace Mechanect.Classes
              for (int i = 1; i < positions.Count; i++)
              {
                  float currentDisplacement = positions[i];
-                 if (!(currentDisplacement >= (firstDisplacement - currentTolerance) && currentDisplacement <= (firstDisplacement + currentTolerance)))
+                 if (!((currentDisplacement >= (firstDisplacement - currentTolerance)) && (currentDisplacement <= (firstDisplacement + currentTolerance))))
                  {
                      if (positions[positions.Count - 1] == 0.8)
                      {
