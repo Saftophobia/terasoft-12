@@ -203,7 +203,7 @@ namespace Mechanect.Screens
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
             button = Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight, user);
             //TBC
-            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
+            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
 
         }
 
@@ -644,14 +644,15 @@ namespace Mechanect.Screens
 
 
 
+        /// <summary>
+        /// determines whether the predator eats the prey or not
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>determines whether the predator eats the prey or not</returns>
-        /// </summary>
+        ///<returns>a boolean flag which is true if the prey is eating and false otherwise</returns>
         private Boolean isPreyEaten()
         {
             Boolean isHit = false;
@@ -666,14 +667,15 @@ namespace Mechanect.Screens
         }
 
 
+        /// <summary>
+        /// determines whether the predator reached the aquarium or not
+        /// </summary>
         ///<remarks>
         ///<para>
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <summary>
-        /// <returns>determines whether the predator reached the aquarium or not</returns>
-        /// </summary>
+        ///<returns>returns true if the predator reached the aquarium</returns>
         private Boolean isAquariumReached()
         {
             Boolean isReached = false;
@@ -697,8 +699,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">determines whether there exist another screen covering this one or not.</param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
-        { //camera.Update();
-            //TBC
+        { 
             if (ended)
             {
                 milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -740,7 +741,7 @@ namespace Mechanect.Screens
                     if (button != null)
                     {
                         button.Update(gameTime);
-                        if (button.IsClicked())
+                        if (button.IsClicked() || voiceCommand.getHeared("go"))
                         {
                             grayScreen = false;
                             button = null;
