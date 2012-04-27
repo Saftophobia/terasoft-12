@@ -170,16 +170,18 @@ namespace Mechanect.Classes
                  user11.Disqualified = true;
                  user11.DisqualificationTime = timeInSeconds;
                  spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "User1 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
+                 spriteBatch.DrawString(spFont, "User 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.End();
+                 Console.Write("User1 1 got Disqualified");
              }
              if (!CommandSatisfied(currentCommands[user12.ActiveCommand], user12Displacement, tolerance))
              {
                  user12.Disqualified = true;
                  user12.DisqualificationTime = timeInSeconds;
                  spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "User1 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
+                 spriteBatch.DrawString(spFont, "User 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
+                 Console.Write("User 2 got Disqualified");
              }
          }
 
@@ -220,11 +222,12 @@ namespace Mechanect.Classes
 
                      user12State = "User 2: Your position is: " + z2.ToString() + " this is " + isThePositionRight2 + ", it should be 4.0 m \n";
                  }
+             
                  spriteBatch.Begin();
                  spriteBatch.DrawString(spFont, user11State, new Vector2(50.0f, 50.0f), Color.Red);
                  spriteBatch.DrawString(spFont, user12State, new Vector2(50.0f, 50.0f), Color.Blue);
                  spriteBatch.End();
-
+                 Console.Write(user11State + "\n" + user12State);
                  return isThePositionRight && isThePositionRight2;
          }
 
