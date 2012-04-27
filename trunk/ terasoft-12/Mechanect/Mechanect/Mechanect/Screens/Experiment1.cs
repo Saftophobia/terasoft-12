@@ -20,7 +20,9 @@ namespace Mechanect.Screens
     class Experiment1:Mechanect.Common.GameScreen
     {
         Boolean graphmutex = false;
-        GraphicsDevice graphics; 
+        GraphicsDevice graphics;
+        List<double> cumulativetime;
+        List<int> cumulativetimeint;
         MKinect kinect;
         Texture2D avatarBall;
         User1 player1, player2;
@@ -40,6 +42,8 @@ namespace Mechanect.Screens
         SpriteFont font1, font2;
         Texture2D P1Tex, P2Tex;
         drawstring drawString = new drawstring(new Vector2(400, 400));
+        drawstring player1disqstring = new drawstring(new Vector2(400, 550));
+        drawstring player2disqstring = new drawstring(new Vector2(400,220));
         int NUMBEROFFRAMES = 0;
         //drawstring drawString
         
@@ -99,6 +103,28 @@ namespace Mechanect.Screens
                     //draw the command on screen for each second
                 }
             }
+
+           cumulativetime = new List<double>();
+            for (int i = 0; i < timeslice.Count; i++)
+            {
+                int cumutime = 0;
+                for (int z = 0; z <= i; z++)
+                {
+                    cumutime = cumutime +  timeslice[z];
+                }
+                cumulativetime.Add(cumutime);
+            }
+
+            cumulativetimeint = new List<int>();
+            for (int i = 0; i < timeslice.Count; i++)
+            {
+                int cumutime = 0;
+                for (int z = 0; z <= i; z++)
+                {
+                    cumutime = cumutime + timeslice[z];
+                }
+                cumulativetimeint.Add(cumutime);
+            }
             
             
             //-----------============-----------------------==========================================-
@@ -118,22 +144,25 @@ namespace Mechanect.Screens
             //----================
 
 
+
+         
+
             base.Initialize();
         }
         public override void LoadContent()
         {
-           // graphics = new GraphicsDeviceManager(this);
+            // graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           // IntPtr ptr = this.Window.Handle;
-        //    System.Windows.Forms.Form form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(ptr);
-          //  form.Size = new System.Drawing.Size(1024, 768);
-           // graphics.PreferredBackBufferWidth = 1024;
-           // graphics.PreferredBackBufferHeight = 650;
-          //  graphics.ApplyChanges();
+            // IntPtr ptr = this.Window.Handle;
+            //    System.Windows.Forms.Form form = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(ptr);
+            //  form.Size = new System.Drawing.Size(1024, 768);
+            // graphics.PreferredBackBufferWidth = 1024;
+            // graphics.PreferredBackBufferHeight = 650;
+            //  graphics.ApplyChanges();
             spritefont = Content.Load<SpriteFont>("SpriteFont1");
             drawString.Font1 = Content.Load<SpriteFont>("SpriteFont1");
             avatarBall = Content.Load<Texture2D>("ball");
-            Texture2D Texthree = Content.Load<Texture2D>("3");          
+            Texture2D Texthree = Content.Load<Texture2D>("3");
             Texture2D Textwo = Content.Load<Texture2D>("2");
             Texture2D Texone = Content.Load<Texture2D>("1");
             Texture2D Texgo = Content.Load<Texture2D>("go");
@@ -142,32 +171,41 @@ namespace Mechanect.Screens
             SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
             //countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
             background1 = new CountDown(Content.Load<Texture2D>("track2"), ScreenManager.GraphicsDevice.Viewport.Width,
-            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/,ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
+            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/, ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
             background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,
             ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height); //initializes the background
+            player1disqstring.Font1 = Content.Load<SpriteFont>("SpriteFont1");
+            player2disqstring.Font1= Content.Load<SpriteFont>("SpriteFont1");
+            font1 = Content.Load<SpriteFont>("SpriteFont1");
+            font2 = Content.Load<SpriteFont>("SpriteFont1");
+            P1Tex = Content.Load<Texture2D>("xRed");
+            P2Tex = Content.Load<Texture2D>("xBlue");
 
-            font1 = Content.Load<SpriteFont>("MyFont1");
-            font2 = Content.Load<SpriteFont>("MyFont2");
-             P1Tex = Content.Load<Texture2D>("xRed");
-             P2Tex = Content.Load<Texture2D>("xBlue");
 
-         
 
             //------------------------graphs
-            
+
             Graph = new PerformanceGraph();
             List<string> Commands = new List<string>();
             List<double> CommandsTime = new List<double>();
             List<int> Player1Displacement = new List<int>();
             List<int> Player2Displacement = new List<int>();
-            
+        }
             //main initializing method
-            //Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
+            //Graph.fs(Player1Displacement, Player2Displacement, Commands, CommandsTime, this);
 
            // -----------------------------------
+          /*  while (true)
+            {
+                player1.skeleton = kinect.requestSkeleton();
+                player2.skeleton = kinect.request2ndSkeleton();
+                if (player1.skeleton != null && player2.skeleton != null)
+                {
+                    break;
+                }
+            }
 
-
-        }
+        }*/
 
         public override void UnloadContent()
         {
@@ -176,6 +214,8 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
+
+
             NUMBEROFFRAMES++;
             //----------------------TIME----------------------------
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -184,11 +224,20 @@ namespace Mechanect.Screens
                 timer = 0F;
 
             
+
+
+           
             //--------------------keepsgettingskeletons----------------
 
 
-            player1.skeleton = kinect.requestSkeleton();
-            player2.skeleton = kinect.request2ndSkeleton();
+
+
+
+
+
+           player1.skeleton = kinect.requestSkeleton();
+           player2.skeleton = kinect.request2ndSkeleton();
+            
             //=======================================================
             if (timecounter < 4)
             {
@@ -197,11 +246,15 @@ namespace Mechanect.Screens
             }
 
             //after countdown, Update the Race 
-            if ((timecounter >= 4 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
+            if ((timecounter >= 5 & (timecounter < racecommandsforDRAW.Count + 4)) & !(player2.Disqualified & player1.Disqualified) & !player1.Winner & !player2.Winner)
             {
 
+                
                 drawString.Update(racecommandsforDRAW[timecounter - 4] + "");
-               // float rem = timer*10000000 / 12;
+                avatarprogUI.Update(kinect, player1.skeleton, player2.skeleton); //update position of avatars on screen
+
+                
+                // float rem = timer*10000000 / 12;
                // if (((timer * 10000000) % 12) == 0)
 
                 //drawString.Update((NUMBEROFFRAMES / (timecounter + timer))+"");
@@ -212,13 +265,37 @@ namespace Mechanect.Screens
 
                 if (NUMBEROFFRAMES % 5 == 0)
                 {
-                    if (player1.skeleton != null)
+
+                    if (player1.skeleton != null & player2.skeleton != null)
+                    {
+                        if (player1.skeleton.Position.X > player2.skeleton.Position.X)
+                        {
+                            player1.Positions.Add(player1.skeleton.Position.Z);
+                            player2.Positions.Add(player2.skeleton.Position.Z);
+                        }
+                        else
+                        {
+                            player2.Positions.Add(player1.skeleton.Position.Z);
+                            player1.Positions.Add(player2.skeleton.Position.Z);
+                        }
+                    }
+
+
+
+
+
+
+
+                    /*if (player1.skeleton != null)
                     {
                         player1.Positions.Add(player1.skeleton.Position.Z);
                     }
                     else
                     {
-                        //player1.Disqualified = true;
+
+                        
+                            player1.Disqualified = true;
+                        
                     }
                     if (player2.skeleton != null)
                     {
@@ -226,17 +303,46 @@ namespace Mechanect.Screens
                     }
                     else
                     {
-                        //player2.Disqualified = true;
-                    }
-
+                       
+                            player2.Disqualified = true;
+                        
+                    }*/
                 }
-                if (timer % 10 == 0 /*& timecounter >=5*/)
-                 {
-                    // Tools1.CheckEachSecond(timecounter, player1, player2, timeslice, racecommands, 5, SpriteBatch, spritefont);
-                   
+                
+                     //-----------------which command i m in-----------------------
+                   string s = racecommandsforDRAW[timecounter - 5];
+                    for (int i = 0; i < racecommands.Count;i++)
+                        if (racecommands[i] == s)
+                        {
+                           player1.ActiveCommand = i;
+                            player2.ActiveCommand = i;
+                        }
+                    
+            //-----------------------------------------------------------
+            
+
+                
+               // if (timer % 10 == 0 /*& timecounter >=5*/)
+                if (NUMBEROFFRAMES%60 == 0 && NUMBEROFFRAMES > 300) 
+                {
+                    Tools1.CheckEachSecond(timecounter - 5, player1, player2,cumulativetimeint , racecommands, 100, SpriteBatch, spritefont);
+                     
+                      
+                    //  Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 10000, SpriteBatch, spritefont);
+                     
 
                     player1.DisqualificationTime = player1disqualification;
                     player2.DisqualificationTime = player2disqualification;
+                    if (player1.Disqualified)
+                    {
+                        player1disqstring.Update("player 1 is disqualified");
+                    }
+                    if (player2.Disqualified)
+                    {
+                        player2disqstring.Update("player 2 is disqualified");
+                    }
+
+
 
                  }
 
@@ -262,7 +368,7 @@ namespace Mechanect.Screens
                      }
                    */
                 }
-
+                /*
                 if (player1.skeleton == null & player2.skeleton != null)
                 {
                     if (player2.skeleton.Position.Z <= 0.9 & !player2.Disqualified)
@@ -280,26 +386,97 @@ namespace Mechanect.Screens
                     }
 
                 }
+                */
 
 
 
 
-
-            }
-
-            if (timecounter >= racecommandsforDRAW.Count + 4 || (player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
+            
+        }
+            if (timecounter >= racecommandsforDRAW.Count + 4 || player2.Disqualified || player1.Disqualified || player2.Winner || player1.Winner/* || player1.skeleton == null || player2.skeleton == null*/)
             {
-
-                if (!graphmutex)
-                {
+              //  if (!graphmutex)
+                //{
                     List<double> timeslicedouble = new List<double>();
                     foreach (int s in timeslice)
                     {
                         timeslicedouble.Add((double)s);
                     }
-                    Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble, (double)player1disqualification,(double)player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                    graphmutex = true;
-                }
+                    
+
+
+                   /* List<string> Commands = new List<string>();
+                    List<double> CommandsTime = new List<double>();
+                    List<float> Player1Displacement = new List<float>();
+                    List<float> Player2Displacement = new List<float>();
+                    //initiating testing values 
+                    Commands.Add("constantDisplacement");
+                    Commands.Add("constantDisplacement");
+                    Commands.Add("increasingAcceleration");
+                    Commands.Add("constantDisplacement");
+                    CommandsTime.Add(1);
+                    CommandsTime.Add(1);
+                    CommandsTime.Add(1);
+                    CommandsTime.Add(1);
+                    int intitial = 4000;
+                    int stepping = 1;
+                    for (int i = 0; i <= 47; i++)
+                    {
+                        if (intitial > 0)
+                        {
+                            Player1Displacement.Add(intitial);
+                            stepping = stepping + 5;
+                            intitial = intitial - stepping;
+                        }
+                        else
+                        {
+                            Player1Displacement.Add(0);
+                        }
+                    }
+                    intitial = 4000;
+                    stepping = 1;
+                    for (int i = 0; i <= 47; i++)
+                    {
+                        if (intitial > 0)
+                        {
+                            Player2Displacement.Add(intitial);
+                            stepping = stepping + 54;
+                            intitial = intitial - stepping;
+                        }
+                        else
+                        {
+                            Player2Displacement.Add(0);
+                        }
+                    }
+                    //main initializing method*/
+
+                  //  Graph.drawGraphs(Player1Displacement, Player2Displacement, Commands, CommandsTime, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+
+                   /* List<float> positions1times1k = new List<float>();
+                    List<float> positions2times1k = new List<float>();
+                    foreach (float s in player1.Positions)
+                    {
+                        positions1times1k.Add(s * 1000);
+                    }
+
+                    foreach (float o in player2.Positions)
+                    {
+                        positions2times1k.Add(o * 1000);
+                    }*/
+
+
+
+
+
+
+
+                  
+                   // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                    Graph.drawGraphs(player1.Positions, player2.Positions, racecommands, cumulativetime, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                    
+                    
+                  //graphmutex = true;
+                //}
 
                
 
@@ -310,6 +487,7 @@ namespace Mechanect.Screens
             }
             base.Update(gameTime, covered);
         }
+
             
         /// <summary>
         /// 
@@ -334,7 +512,18 @@ namespace Mechanect.Screens
                 SpriteBatch.Begin();
                 drawString.Draw(SpriteBatch);
             avatarprogUI.Draw(SpriteBatch,avatarBall);
-            
+
+            if (player1.Disqualified)
+            {
+                player1disqstring.Draw(SpriteBatch);
+            }
+            if (player2.Disqualified)
+            {
+                player2disqstring.Draw(SpriteBatch);
+            }
+
+
+
             SpriteBatch.End();
            
             }
@@ -344,11 +533,11 @@ namespace Mechanect.Screens
             if (timecounter >= racecommandsforDRAW.Count + 4 ||(player2.Disqualified & player1.Disqualified) || player2.Winner || player1.Winner)
             {
                // SpriteBatch sprite2 = SpriteBatch;
-              //  sprite2.Begin();
+                SpriteBatch.Begin();
                Graph.drawRange(SpriteBatch, graphics);
                 Graph.drawEnvironment(SpriteBatch, graphics, font1, font2);
                 Graph.drawDisqualification(SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
-               // sprite2.End();
+               SpriteBatch.End();
                 
             }
 
