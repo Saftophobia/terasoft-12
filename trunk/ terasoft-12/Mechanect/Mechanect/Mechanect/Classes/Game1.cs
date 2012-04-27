@@ -29,7 +29,7 @@ namespace Mechanect
         }
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
-         Boolean fullScreen = false; //this one is false
+         Boolean fullScreen = true; //this one is false
 
         public Game1()
         {
@@ -38,10 +38,10 @@ namespace Mechanect
 
             
              Window.AllowUserResizing = true;
-            //Graphics.PreferredBackBufferWidth = 1024;
-              //  Graphics.PreferredBackBufferHeight = 768;
+            Graphics.PreferredBackBufferWidth = 1024;
+            Graphics.PreferredBackBufferHeight = 768;
             if (fullScreen)
-               Graphics.IsFullScreen = true;
+             Graphics.IsFullScreen = true;
            
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
