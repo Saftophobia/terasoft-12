@@ -51,6 +51,7 @@ namespace Mechanect.Screens
             if (instruction.Button.IsClicked())
             {
                 ExitScreen();
+                ScreenManager.AddScreen(new AllExperiments());
             }
             instruction.Button.Update(gameTime);
             base.Update(gameTime, false);
