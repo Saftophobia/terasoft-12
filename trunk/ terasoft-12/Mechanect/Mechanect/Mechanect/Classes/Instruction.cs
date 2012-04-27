@@ -200,7 +200,7 @@ namespace Mechanect
                 Vector2 width = spriteFont.MeasureString(word);
 
 
-                if (lineWidth + width.X < maxLineWidth || lineWidth + width.X < GraphicsDevice.PresentationParameters.BackBufferWidth - 5)
+                if (lineWidth + width.X < maxLineWidth || lineWidth + width.X < device.PresentationParameters.BackBufferWidth - 5)
                 {
                     builder.Append(word + " ");
                     lineWidth += width.X + spaceWidth;
