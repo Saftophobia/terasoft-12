@@ -168,7 +168,7 @@ namespace Mechanect.Screens
             angleBarWidth = 400;
             angleBar = semiCircle();
             //to be updated
-            arrow = ContentManager.Load<Texture2D>("arrow");
+            arrow = ContentManager.Load<Texture2D>("ball");
             font = ContentManager.Load<SpriteFont>("Ariel");
             int screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
             int screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
@@ -360,7 +360,12 @@ namespace Mechanect.Screens
             users[ID].setSkeleton(ID);
             try
             {
-                if (users[ID].USER == null)
+                if (users[ID].USER != null)
+                {
+                    depth[ID] = getDepth(ID);
+                    angle[ID] = getAngle(ID);
+                }
+                if (depth[ID] == 0)
                 {
                     command[ID] = "No player detected";
                     depth[ID] = 0;
@@ -369,8 +374,6 @@ namespace Mechanect.Screens
                     return;
                 }
 
-                depth[ID] = getDepth(ID);
-                angle[ID] = getAngle(ID);
                 accepted[ID] = (depth[ID] <= maxDepth && depth[ID] >= minDepth && angle[ID] <= maxAngle && angle[ID] >= minAngle);
 
                 if (accepted[ID])
