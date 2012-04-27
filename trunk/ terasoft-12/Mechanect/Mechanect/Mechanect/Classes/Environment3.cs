@@ -139,12 +139,12 @@ namespace Mechanect.Classes
             var finalPos = Vector3.Zero;
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.maxVelocityX, 0, Constants3.maxVelocityZ)));
 
-            if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared())
+            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(Constants3.minVelocityX, 0, Constants3.minVelocityZ)));
 
-            if (Vector3.Subtract(finalPos, user.ShootingPosition).LengthSquared() > Vector3.Subtract(hole.Position, user.ShootingPosition).LengthSquared()) //length squared used for better performance than length
+            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
             return Constants3.solvableExperiment;
@@ -166,22 +166,10 @@ namespace Mechanect.Classes
                 x = IsSolvable();
                 switch (x)
                 {
-                    case Constants3.holeOutOfNearRange: if (hole.Position.X == Constants3.maxHolePosX && hole.Position.Z != Constants3.maxHolePosZ)
-                            hole.Position = (Vector3.Add(hole.Position, new Vector3(0, 0, -1)));
-                        else if (hole.Position.Z == Constants3.maxHolePosX && hole.Position.X != Constants3.maxHolePosZ)
-                            hole.Position = (Vector3.Add(hole.Position, new Vector3(1, 0, 0)));
-                        else friction++; break;
-                    case Constants3.holeOutOfFarRange: if (hole.Position.X == Constants3.maxHolePosX && hole.Position.Z != Constants3.maxHolePosZ)
-                            hole.Position = (Vector3.Subtract(hole.Position, new Vector3(0, 0, -1)));
-                        else if (hole.Position.Y == Constants3.maxHolePosX && hole.Position.X != Constants3.maxHolePosZ)
-                            hole.Position = (Vector3.Subtract(hole.Position, new Vector3(1, 0, 0)));
-                        else if (wind != 0)
-                            wind--;
-                        else if (friction != 1)
+                    case Constants3.holeOutOfNearRange: friction++; break;
+                    case Constants3.holeOutOfFarRange: if (friction > 1)
                             friction--;
-                        else if (friction <= 1)
-                            friction -= 0.1f;
-                        break;
+                        else friction -= 0.05f;break;
                     case Constants3.negativeRDifference: int tmp = ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
                     case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
