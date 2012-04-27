@@ -17,12 +17,10 @@ namespace Mechanect
     class PerformanceGraph
     {
         int stageWidth, stageHeight;
-        int a1;
-        int a2;
-        int a3;
-        int a4;
-        int finishX;
-        int finishY;
+        int xPoint1;
+        int yPoint1;
+        int xPoint2;
+        int yPoint2;
         Color curveColor;
         List<float> player1Displacement;
         List<float> player2Displacement;
@@ -33,12 +31,12 @@ namespace Mechanect
         List<float> optimumDisplacement = new List<float>();
         List<float> optimumVelocity = new List<float>();
         List<float> optimumAcceleration = new List<float>();
-        List<String> CommandsList;
-        List<double> TimeSpaces;
+        List<String> commandsList;
+        List<double> timeSpaces;
         double totalTime;
         int[] chosenTimings;
-        float[] chosendisp1 = new float[17];
-        float[] chosendisp2 = new float[17];
+        float[] chosenDisp1 = new float[17];
+        float[] chosenDisp2 = new float[17];
         float[] chosenVelocity1 = new float[17];
         float[] chosenVelocity2 = new float[17];
         float[] chosenAcceleration1 = new float[17];
@@ -57,16 +55,16 @@ namespace Mechanect
         PerformanceGraph[] optA = new PerformanceGraph[16];
         float maxVelocity;
         float maxAcceleration;
-        List<int> P1DispGraph = new List<int>();
-        List<int> P2DispGraph = new List<int>();
-        List<int> P1VeloGraph = new List<int>();
-        List<int> P2VeloGraph = new List<int>();
-        List<int> P1AccGraph = new List<int>();
-        List<int> P2AccGraph = new List<int>();
-        double[] xaxis = new double[5];
-        double[] yaxisDisplacement = new double[5];
-        double[] yaxisVelocity = new double[5];
-        double[] yaxisAcceleration = new double[5];
+        List<int> p1DispGraph = new List<int>();
+        List<int> p2DispGraph = new List<int>();
+        List<int> p1VeloGraph = new List<int>();
+        List<int> p2VeloGraph = new List<int>();
+        List<int> p1AccGraph = new List<int>();
+        List<int> p2AccGraph = new List<int>();
+        double[] xAxis = new double[5];
+        double[] yAxisDisplacement = new double[5];
+        double[] yAxisVelocity = new double[5];
+        double[] yAxisAcceleration = new double[5];
         CountDown xDP1;
         CountDown xVP1;
         CountDown xAP1;
@@ -76,13 +74,11 @@ namespace Mechanect
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
-            a1 = start1;
-            a2 = start2;
-            a3 = finishx;
-            a4 = finishy;
+            xPoint1 = start1;
+            yPoint1 = start2;
+            xPoint2 = finishx;
+            yPoint2 = finishy;
             curveColor = col;
-            this.finishX = finishx;
-            this.finishY = finishy;
             stageWidth = a;
             stageHeight = b;
         }
@@ -106,7 +102,7 @@ namespace Mechanect
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(a1, a2), new Vector2(a3, a4));
+            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(xPoint1, yPoint1), new Vector2(xPoint2, yPoint2));
         }
 
         /// <remarks>
@@ -115,7 +111,7 @@ namespace Mechanect
         /// <para>Date Modified: 22-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The drawLine function is used to draw a straight line connecting an initial point (point1) with a final point (point2).
+        /// The DrawLine function is used to draw a straight line connecting an initial point (point1) with a final point (point2).
         /// </summary>
         /// <param name="batch">An instance of the spriteBatch class.</param>
         /// <param name="blank">An instance of the Texture2D class.</param>
@@ -238,15 +234,18 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawGraphs calls the necessary functions to derive each player's velocity 
+        /// The function DrawGraphs calls the necessary functions to derive each player's velocity 
         /// and acceleration as well as the optimum values, in addition, the function also calls
         /// the necessary functions required to draw the curve.
         /// </summary>
-        /// <param name="Player1Displacement">A list holding Player 1's displacements.</param>
-        /// <param name="Player2Displacement">A list holding Player 2's displacements.</param>
+        /// <param name="Player1Disp">A list holding Player 1's displacements.</param>
+        /// <param name="Player2Disp">A list holding Player 2's displacements.</param>
         /// <param name="Commands">A list holding each command initiated during the race.</param>
         /// <param name="time">A list holding the time elapsed by each command.</param>
-        /// <param name="g1">An instance of the game class.</param>       
+        /// <param name="player1disqtime">The instance when the first player was disqualified.</param>    
+        /// <param name="player2disqtime">The instance when the second player was disqualified.</param>  
+        /// <param name="gwidth">The width of the screen.</param>
+        /// <param name="gheight">The height of the screen.</param>
         /// <returns>void</returns>
         public void DrawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight)
         {
@@ -279,8 +278,8 @@ namespace Mechanect
                 player1Displacement[i] = a;
                 player2Displacement[i] = b;
             }
-            this.CommandsList = Commands;
-            this.TimeSpaces = time;
+            this.commandsList = Commands;
+            this.timeSpaces = time;
             player1Velocity = GetPlayerVelocity(player1Displacement);
             player2Velocity = GetPlayerVelocity(player2Displacement);
             player1Acceleration = GetPlayerAcceleration(player1Velocity);
@@ -298,7 +297,7 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function choose is used to pick only 17 evenly distributed seconds among the total race time
+        /// The function Choose is used to pick only 17 evenly distributed seconds among the total race time
         /// in order to represent each graph's range versus the chosen seconds.
         /// </summary>
         /// <param></param>         
@@ -313,7 +312,7 @@ namespace Mechanect
                 timeCounter++;
             }
             int u = 0;
-            for (int i = 0; i <= chosendisp1.Length - 1; i++)
+            for (int i = 0; i <= chosenDisp1.Length - 1; i++)
             {
                 if (i > 0)
                 {
@@ -323,8 +322,8 @@ namespace Mechanect
                 {
                     u = chosenTimings[i];
                 }
-                chosendisp1[i] = player1Displacement[u];
-                chosendisp2[i] = player2Displacement[u];
+                chosenDisp1[i] = player1Displacement[u];
+                chosenDisp2[i] = player2Displacement[u];
                 chosenVelocity1[i] = player1Velocity[u];
                 chosenVelocity2[i] = player2Velocity[u];
                 chosenAcceleration1[i] = player1Acceleration[u];
@@ -341,7 +340,7 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function setMaximum is used to derive the maximum velocity and the maximum acceleration
+        /// The function SetMaximum is used to derive the maximum velocity and the maximum acceleration
         /// of both players and the optimum player during the race in order to set the maximum point on 
         /// each graph's y-axis according to these values.
         /// </summary>
@@ -391,10 +390,11 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function setDestinations is used to create 16 instances of the PerformanceGraph class for each graph giving
+        /// The function SetDestinations is used to create 16 instances of the PerformanceGraph class for each graph giving
         /// it the initial and final points to be connected in order to represent each graph by 16 connected lines.
         /// </summary>
-        /// <param name="graphics">An instance of the GraphicsDeviceManger class.</param>
+        /// <param name="Width">The width of the screen.</param>
+        /// <param name="Height">The height of the screen.</param>
         /// <returns>void</returns>
         public void SetDestinations(int Width, int Height)
         {
@@ -409,14 +409,14 @@ namespace Mechanect
                 Color color = new Color();
                 switch (j)
                 {
-                    case 0: counter1 = 50; value = 4000; current = disp1; color = Color.Red; temporary = chosendisp1; disqList = P1DispGraph; break;
-                    case 1: counter1 = 50; value = 4000; current = disp2; color = Color.Blue; temporary = chosendisp2; disqList = P2DispGraph; break;
+                    case 0: counter1 = 50; value = 4000; current = disp1; color = Color.Red; temporary = chosenDisp1; disqList = p1DispGraph; break;
+                    case 1: counter1 = 50; value = 4000; current = disp2; color = Color.Blue; temporary = chosenDisp2; disqList = p2DispGraph; break;
                     case 2: counter1 = 50; value = 4000; current = optD; color = Color.Yellow; temporary = chosenOptD; break;
-                    case 3: counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; temporary = chosenVelocity1; disqList = P1VeloGraph; break;
-                    case 4: counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; temporary = chosenVelocity2; disqList = P2VeloGraph; break;
+                    case 3: counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; temporary = chosenVelocity1; disqList = p1VeloGraph; break;
+                    case 4: counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; temporary = chosenVelocity2; disqList = p2VeloGraph; break;
                     case 5: counter1 = 380; value = maxVelocity; current = optV; color = Color.Yellow; temporary = chosenOptV; break;
-                    case 6: counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; temporary = chosenAcceleration1; disqList = P1AccGraph; break;
-                    case 7: counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; temporary = chosenAcceleration2; disqList = P2AccGraph; break;
+                    case 6: counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; temporary = chosenAcceleration1; disqList = p1AccGraph; break;
+                    case 7: counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; temporary = chosenAcceleration2; disqList = p2AccGraph; break;
                     case 8: counter1 = 710; value = maxAcceleration; current = optA; color = Color.Yellow; temporary = chosenOptA; break;
                 }
                 r = (double)value / (double)232;
@@ -475,36 +475,36 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function setAxis chooses 5 evenly distributed values among the total time to be represented on the x-axis
+        /// The function SetAxis chooses 5 evenly distributed values among the total time to be represented on the x-axis
         /// as well as 5 evenly distributed values among the total displacement/velocity/acceleration to be represented on
         /// each graph's y-axis.
         /// </summary>
         /// <returns>void</returns>
         public void SetAxis()
         {
-            xaxis[0] = 0;
+            xAxis[0] = 0;
             double step = (double)totalTime / (double)4;
-            for (int i = 1; i <= xaxis.Length - 1; i++)
+            for (int i = 1; i <= xAxis.Length - 1; i++)
             {
-                xaxis[i] = xaxis[i - 1] + step;
+                xAxis[i] = xAxis[i - 1] + step;
             }
             int counter = 0;
             for (int i = 0; i <= 4; i++)
             {
-                yaxisDisplacement[i] = counter;
+                yAxisDisplacement[i] = counter;
                 counter += 1000;
             }
-            yaxisVelocity[0] = 0;
+            yAxisVelocity[0] = 0;
             step = (double)maxVelocity / (double)4;
-            for (int i = 1; i <= yaxisVelocity.Length - 1; i++)
+            for (int i = 1; i <= yAxisVelocity.Length - 1; i++)
             {
-                yaxisVelocity[i] = yaxisVelocity[i - 1] + step;
+                yAxisVelocity[i] = yAxisVelocity[i - 1] + step;
             }
-            yaxisAcceleration[0] = 0;
+            yAxisAcceleration[0] = 0;
             step = (double)maxAcceleration / (double)4;
-            for (int i = 1; i <= yaxisAcceleration.Length - 1; i++)
+            for (int i = 1; i <= yAxisAcceleration.Length - 1; i++)
             {
-                yaxisAcceleration[i] = yaxisAcceleration[i - 1] + step;
+                yAxisAcceleration[i] = yAxisAcceleration[i - 1] + step;
             }
         }
 
@@ -514,13 +514,13 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawRange loops over each instance of the PerformanceGraph class initialized in the function
+        /// The function DrawRange loops over each instance of the PerformanceGraph class initialized in the function
         /// setDestinations and connects each initial point with each final point.
         /// </summary>
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
         /// <returns>void</returns>
-        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) //to be called in the draw function
+        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice) 
         {
             for (int i = 0; i <= disp1.Length - 1; i++)
             {
@@ -541,7 +541,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawLabels is used to add a label for each axis indicating whether each graph represents displacement or velocity or acceleration.
+        /// The function DrawLabels is used to add a label for each axis indicating whether each graph represents displacement or velocity or acceleration.
         /// </summary>
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -564,7 +564,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawAxis is used to draw the X and Y axis for each graph.
+        /// The function DrawAxis is used to draw the X and Y axis for each graph.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -595,7 +595,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawArrows is used to add an arrow at the end of each axis for each graph.
+        /// The function DrawArrows is used to add an arrow at the end of each axis for each graph.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -636,7 +636,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawXLabels is used to add the values to be displayed on the X-axis.
+        /// The function DrawXLabels is used to add the values to be displayed on the X-axis.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -657,7 +657,7 @@ namespace Mechanect
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    spriteBatch.DrawString(font2, xaxis[j] + "", new Vector2(counter - 5, 358), Color.Black);
+                    spriteBatch.DrawString(font2, xAxis[j] + "", new Vector2(counter - 5, 358), Color.Black);
                     counter += 67;
                 }
             }
@@ -669,7 +669,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawYLabels is used to add the values to be displayed on the Y-axis.
+        /// The function DrawYLabels is used to add the values to be displayed on the Y-axis.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -681,15 +681,15 @@ namespace Mechanect
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             //+ve part of the y-axis
             int y = 0;
-            double[] current = yaxisDisplacement; ;
+            double[] current = yAxisDisplacement; ;
             for (int i = 0; i <= 2; i++)
             {
                 int counter = 110;
                 switch (i)
                 {
-                    case 1: y = 320; current = yaxisVelocity; break;
-                    case 2: y = 650; current = yaxisAcceleration; break;
-                    default: y = 0; current = yaxisDisplacement; break;
+                    case 1: y = 320; current = yAxisVelocity; break;
+                    case 2: y = 650; current = yAxisAcceleration; break;
+                    default: y = 0; current = yAxisDisplacement; break;
                 }
                 for (int j = 4; j >= 1; j--)
                 {
@@ -703,9 +703,9 @@ namespace Mechanect
                 int counter = 400;
                 switch (i)
                 {
-                    case 1: y = 320; current = yaxisVelocity; break;
-                    case 2: y = 650; current = yaxisAcceleration; break;
-                    default: y = 0; current = yaxisDisplacement; break;
+                    case 1: y = 320; current = yAxisVelocity; break;
+                    case 2: y = 650; current = yAxisAcceleration; break;
+                    default: y = 0; current = yAxisDisplacement; break;
                 }
                 for (int j = 1; j <= 4; j++)
                 {
@@ -721,7 +721,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawEnvironment calls the necessary functions to draw the X and Y axis with their labels for each graph on the screen
+        /// The function DrawEnvironment calls the necessary functions to draw the X and Y axis with their labels for each graph on the screen
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
@@ -780,13 +780,16 @@ namespace Mechanect
         /// <para>Date Modified 22/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function drawDisqualification is used to add a mark on the point where a disqualified player was disqualified, the function
+        /// The function DrawDisqualification is used to add a mark on the point where a disqualified player was disqualified, the function
         /// first decides the mark's X-coordinate then uses it to derive its Y-coordinate before representing it on each graph. 
         /// </summary>
         /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
-        /// <param name="graphics">An instance of the GraphicsDeviceManager class.</param>
+        /// <param name="dwidth">The width of the screen.</param>
+        /// <param name="dheight">The height of the screen.</param> 
         /// <param name="P1Tex">A Texture2D representing the image "xRed.png".</param>
         /// <param name="P2Tex">A Texture2D representing the image "xBlue.png".</param>
+        /// <param name="player1disqtime">The instance when player 1 was disqualified.</param>
+        /// <param name="player2disqtime">The instance when player 2 was disqualified</param>
         /// <returns>void</returns>
         public void DrawDisqualification(SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
         {
@@ -834,8 +837,8 @@ namespace Mechanect
                         Texture2D texture = null;
                         switch (j)
                         {
-                            case 0: y1 = P1DispGraph[index] - 10; y2 = P1VeloGraph[index] - 10; y3 = P1AccGraph[index] - 10; texture = P1Tex; break;
-                            case 1: y1 = P2DispGraph[index] - 10; y2 = P2VeloGraph[index] - 10; y3 = P2AccGraph[index] - 10; texture = P2Tex; break;
+                            case 0: y1 = p1DispGraph[index] - 10; y2 = p1VeloGraph[index] - 10; y3 = p1AccGraph[index] - 10; texture = P1Tex; break;
+                            case 1: y1 = p2DispGraph[index] - 10; y2 = p2VeloGraph[index] - 10; y3 = p2AccGraph[index] - 10; texture = P2Tex; break;
                         }
                         xDP1 = new CountDown(texture, dwidth, dheight, r3, y1, 20, 20);
                         xDP1.Draw(spriteBatch);
@@ -855,17 +858,10 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumConstantVelocity derives the optimum values for the "constantVelocity" command, by comparing the
-        /// avarages of each player's velocity and choosing the higher average value as an optimum value, or taking a player's 
-        /// average velocity if the other player was disqualified during the command's time slice or the average of both players'
-        /// average velocities if both have been disqualified during the command's time slice.
+        /// The function OptimumConstantVelocity derives the optimum values for the "constantVelocity" command, by fixing the optimum player's
+        /// velocity and deriving the optimum displacement and acceleration.
         /// </summary>
-        /// <param name="disq1">Player 1's disqualification time.</param>
-        /// <param name="disq2">Player 2's disqualification time.</param>
-        /// <param name="start">The command's initial frame number.</param>
-        /// <param name="end">The command's final frame number.</param>
-        /// <param name="velocityTest1">A list representing Player 1's velocity during the race.</param>
-        /// <param name="velocityTest2">A list representing Player 2's velocity during the race.</param>
+        /// <param name="size">The number of frames assigned to the current command.</param>        
         /// <returns>void</returns>
         public void OptimumConstantVelocity(int size)
         {
@@ -897,18 +893,11 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" and "constantDeceleration" 
-        /// commands, by comparing the avarages of each player's acceleration and choosing the higher average value as an optimum value, or 
-        /// taking a player's average acceleration if the other player was disqualified during the command's time slice or the average of both players'
-        /// accelerations if both have been disqualified during the command's time slice.
+        /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" command
+        /// by either fixing the optimum player's acceleration or giving the optimum player an acceleration value and
+        /// fixing the value then deriving the optimum displacement and velocity values.
         /// </summary>
-        /// <param name="disq1">Player 1's disqualification time.</param>
-        /// <param name="disq2">Player 2's disqualification time.</param>
-        /// <param name="start">The command's initial frame number.</param>
-        /// <param name="end">The command's final frame number.</param>
-        /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
-        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
-        /// <param name="currentCommand">A string representing the current command.</param>
+        /// <param name="size">The number of frames assigned to the current command.</param>        
         /// <returns>void</returns>
         public void OptimumConstantAcceleration(int size)
         {
@@ -950,7 +939,7 @@ namespace Mechanect
         /// <summary>
         /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command,
         /// by comparing between the average acceleration differences for each player during the race and choosing the higher 
-        /// average value as an optimum value, or taking a player's average acceleration difference if the other player was disqualified 
+        /// average value as an optimum value to be added to the optimum player's acceleration, or taking a player's average acceleration difference if the other player was disqualified 
         /// during the command's time slice or assigning fixed values as optimum values if both have been disqualified during the command's 
         /// time slice.
         /// </summary>
@@ -959,7 +948,7 @@ namespace Mechanect
         /// <param name="start">The command's initial frame number.</param>
         /// <param name="end">The command's final frame number.</param>
         /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
-        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race/</param>
+        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <returns>void</returns>
         public void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
         {
@@ -1036,7 +1025,25 @@ namespace Mechanect
             this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
         }
 
-
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 19/4/2012</para>
+        /// <para>Date Modified 26/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function OptimumDeccreasingAcceleration derives the optimum values for the "decreasingAcceleration" command,
+        /// by comparing between the average acceleration differences for each player during the race and choosing the smaller 
+        /// average value as an optimum value to be subtracted from the optimum player's acceleration, or taking a player's average acceleration difference if the other player was disqualified 
+        /// during the command's time slice or assigning fixed values as optimum values if both have been disqualified during the command's 
+        /// time slice.
+        /// </summary>
+        /// <param name="disq1">Player 1's disqualification time.</param>
+        /// <param name="disq2">Player 2's disqualification time.</param>
+        /// <param name="start">The command's initial frame number.</param>
+        /// <param name="end">The command's final frame number.</param>
+        /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
+        /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
+        /// <returns>void</returns>
         public void OptimumDecreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2)
         {
             float totalStep1 = GetTotalStep(accelerationTest1);
@@ -1046,7 +1053,7 @@ namespace Mechanect
             double value = 0;
             if (!LiesInBetween(disq1, start, end - 1) && !LiesInBetween(disq2, start, end - 1))
             {
-                if (a > b)
+                if (a < b)
                 {
                     value = a;
                 }
@@ -1125,10 +1132,10 @@ namespace Mechanect
         /// </remarks>
         /// <summary>
         /// The function OptimumConstantDisplacement derives the optimum values for the "constantDisplacement" command, by adding
-        /// 0 as an optimum acceleration and velocity value and fixing the displacement from the kinect considering the fixed displacement
+        /// 0 as an optimum value for acceleration and velocity and fixing the displacement from the kinect considering the fixed displacement
         /// as an optimum displacement.
         /// </summary>
-        /// <param name="size">The number of frames corresponding to the current command</param>
+        /// <param name="size">The number of frames assigned to the current command.</param>
         /// <returns>void</returns>
         public void OptimumConstantDisplacement(int size)
         {
@@ -1149,7 +1156,7 @@ namespace Mechanect
         /// <para>Date Modified 26/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function getTotalStep calculates the cummulative acceleration difference for the given acceleration list.
+        /// The function GetTotalStep calculates the cummulative acceleration difference for the given acceleration list.
         /// </summary>
         /// <param name="l1">A list holding a player's acceleration values</param>
         /// <returns>float: The total calculated step</returns>
@@ -1184,10 +1191,10 @@ namespace Mechanect
         /// <para>Date Modified: 23-4-2012</para>
         /// </remarks>
         /// <summary>
-        /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements
-        /// during the race by calling the necessary functions.
+        /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements during the race by calling the necessary functions.
         /// </summary>
-        /// <param></param>
+        /// <param name="player1disq">The instance when player 1 was disqualified.</param>
+        /// <param name="player2disq">The instance when player 2 was disqualified.</param>
         /// <returns>void</returns>
         public void GetOptimum(double player1disq, double player2disq)
         {
@@ -1198,10 +1205,10 @@ namespace Mechanect
             previousDisp = 4000;
             previousVelo = 0;
             previousAcc = 0;
-            for (int i = 0; i <= TimeSpaces.Count - 1; i++)
+            for (int i = 0; i <= timeSpaces.Count - 1; i++)
             {
                 List<float> tempList = new List<float>();
-                end = start + (int)(TimeSpaces[i] * 12);
+                end = start + (int)(timeSpaces[i] * 12);
                 List<float> velocityTest1 = new List<float>();
                 List<float> velocityTest2 = new List<float>();
                 List<float> accelerationTest1 = new List<float>();
@@ -1213,25 +1220,25 @@ namespace Mechanect
                     accelerationTest1.Add(player1Acceleration[j]);
                     accelerationTest2.Add(player2Acceleration[j]);
                 }
-                if (CommandsList[i].Equals("constantVelocity"))
+                if (commandsList[i].Equals("constantVelocity"))
                 {
                     int x = end - start;
                     OptimumConstantVelocity(x);
                 }
-                if (CommandsList[i].Equals("constantAcceleration"))
+                if (commandsList[i].Equals("constantAcceleration"))
                 {
                     int x = end - start;
                     OptimumConstantAcceleration(x);
                 }
-                if (CommandsList[i].Equals("increasingAcceleration"))
+                if (commandsList[i].Equals("increasingAcceleration"))
                 {
                     OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
-                if (CommandsList[i].Equals("decreasingAcceleration"))
+                if (commandsList[i].Equals("decreasingAcceleration"))
                 {
                     OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2);
                 }
-                if (CommandsList[i].Equals("constantDisplacement"))
+                if (commandsList[i].Equals("constantDisplacement"))
                 {
                     int size = end - start;
                     OptimumConstantDisplacement(size);
