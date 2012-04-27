@@ -134,6 +134,7 @@ namespace Mechanect.Classes
          /// <param name="tolerance">The tolerance level.</param>
          /// <param name="spriteBatch">The sprite batch to draw the string of state in.</param>
          /// <param name="spFont">The font to draw the string of state with.</param>
+         /// <returns>void: within the method itself it updates the value of the variable isDisqualified of the two users</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
