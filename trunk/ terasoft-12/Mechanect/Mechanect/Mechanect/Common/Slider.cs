@@ -26,7 +26,7 @@ namespace Common.Classes
         private User user;
         private Timer1 timer;
 
-        ContentManager Content;
+        private ContentManager Content;
 
         ///<remarks>
         ///<para>
@@ -120,7 +120,7 @@ namespace Common.Classes
         /// tracking the movement of the hand to move the pointer to the right or the left. Incrementing
         /// or decrementing the value according to the movement.
         /// </summary>
-        void Move()
+        private void Move()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
@@ -148,7 +148,7 @@ namespace Common.Classes
         /// <summary>
         /// changing the pointer to the activated pointer picture
         /// </summary>
-        void On()
+        private void On()
         {
             texture = onPic;
         }
@@ -161,7 +161,7 @@ namespace Common.Classes
         /// <summary>
         /// changing the pointer to the disactivated pointer picture
         /// </summary>
-        void Off()
+        private void Off()
         {
             texture = offPic;
         }
@@ -175,7 +175,7 @@ namespace Common.Classes
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        public bool CheckColission()
+        private bool CheckColission()
         {
 
             Skeleton skeleton = user.USER;
