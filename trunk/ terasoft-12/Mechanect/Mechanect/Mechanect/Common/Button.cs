@@ -124,7 +124,7 @@ namespace Mechanect
         /// <summary>
         /// used to track the user's hand
         /// </summary>
-        void MoveHand()
+        private void MoveHand()
         {
             Skeleton skeleton = user.USER;
             if (skeleton != null)
@@ -142,7 +142,7 @@ namespace Mechanect
         /// <summary>
         /// changing the button to the animated picture
         /// </summary>
-        public void Animate()
+        private void Animate()
         {
             texture = animation;
         }
@@ -155,7 +155,7 @@ namespace Mechanect
         /// <summary>
         /// changing the button to the stopped picture
         /// </summary>
-        public void Stop()
+        private void Stop()
         {
             texture = stopped;
         }
@@ -169,7 +169,7 @@ namespace Mechanect
         /// checks if the hand of the user is over the button or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        public bool CheckColission()
+        private bool CheckColission()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
