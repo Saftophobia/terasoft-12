@@ -34,6 +34,9 @@ namespace Mechanect.Common
         /// <summary>
         /// Sets the drop frame rate.
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr.</para>
+        /// </remarks>
         /// <param name="dropFrameRate">
         /// Specifies the drop rate for frames.</param>
         public void SetDropFrameRate(int dropFrameRate)
@@ -108,7 +111,7 @@ namespace Mechanect.Common
         /// achieve the requested frame rate.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Ahmed Badr</para>
+        /// <para>AUTHOR: Ahmed Badr.</para>
         /// </remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
