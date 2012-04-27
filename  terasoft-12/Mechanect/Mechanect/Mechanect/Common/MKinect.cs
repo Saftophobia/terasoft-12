@@ -170,11 +170,11 @@ namespace Mechanect.Common
 
         public Point GetJointPoint(Joint joint, int sw, int sh)
         {
-            DepthImagePoint point = this.KinectDevice.MapSkeletonPointToDepth(joint.Position, 
-                DepthImageFormat.Resolution640x480Fps30);
-            point.X = (int)(point.X * (sw*2) / this.KinectDevice.DepthStream.FrameWidth);
-            point.Y = (int)(point.Y * sh / this.KinectDevice.DepthStream.FrameHeight);
-            return new Point(point.X, point.Y);
+            Vector2 point = new Vector2(joint.Position.X, joint.Position.Y);
+            point.X = (point.X) * (sw);
+            point.Y = (sh) - ((point.Y + 1) * sh / 2);
+
+            return new Point((int)(point.X), (int)point.Y * 2);
         }
 
     
