@@ -4,3 +4,4 @@ C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trun
 C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TeraSoft-New-Checkout\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\my workspace\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache

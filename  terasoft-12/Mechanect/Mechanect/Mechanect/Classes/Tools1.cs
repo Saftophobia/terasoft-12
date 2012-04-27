@@ -226,7 +226,7 @@ namespace Mechanect.Classes
              
                  spriteBatch.Begin();
                  spriteBatch.DrawString(spFont, user11State, new Vector2(50.0f, 50.0f), Color.Red);
-                 spriteBatch.DrawString(spFont, user12State, new Vector2(50.0f, 50.0f), Color.Blue);
+                 spriteBatch.DrawString(spFont, user12State, new Vector2(50.0f, 150.0f), Color.Blue);
                  spriteBatch.End();
                  Console.Write(user11State + "\n" + user12State);
                  return isThePositionRight && isThePositionRight2;

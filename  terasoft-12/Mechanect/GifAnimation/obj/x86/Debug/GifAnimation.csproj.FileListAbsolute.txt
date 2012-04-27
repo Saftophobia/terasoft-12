@@ -70,3 +70,9 @@ C:\Users\Mohamed\Desktop\New folder\Mechanect\GifAnimation\obj\x86\Debug\Resolve
 C:\Users\Mohamed\Desktop\New folder\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Mohamed\Desktop\New folder\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
 C:\Users\Mohamed\Desktop\New folder\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+D:\my workspace\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+D:\my workspace\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+D:\my workspace\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\my workspace\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\my workspace\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+D:\my workspace\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
