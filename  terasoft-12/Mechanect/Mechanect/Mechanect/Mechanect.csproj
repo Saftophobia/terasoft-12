@@ -173,6 +173,7 @@
     <Compile Include="Screens\InstructionsScreen2.cs" />
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
+    <Compile Include="Screens\LastScreen.cs" />
     <Compile Include="Screens\PauseScreen.cs" />
     <Compile Include="Screens\Settings3.cs" />
   </ItemGroup>

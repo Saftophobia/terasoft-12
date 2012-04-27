@@ -77,7 +77,7 @@ namespace Mechanect.Screens
                 {
                     case 1: ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect())); break;
                     case 2: ScreenManager.AddScreen(new InstructionsScreen2(new User2())); break;
-                    case 3: ScreenManager.AddScreen(new Experiment3(new User3())); break;
+                    case 3: ScreenManager.AddScreen(new InstructionsScreen3(new User3())); break;
                     default: break;
                 }
                 this.Remove();
