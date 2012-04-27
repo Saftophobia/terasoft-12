@@ -99,7 +99,7 @@ namespace Mechanect
   
       
         /// <summary>
-        /// generates random angle between 10 and 80
+        /// generates random angle between 20 and 70
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
@@ -111,12 +111,12 @@ namespace Mechanect
         }
        
         /// <summary>
-        /// generates random velocity between 10 and 70
+        /// generates random velocity between 5 and 25
         /// </summary>
          /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <returns>returns random velocity "int"</returns>
+        /// <returns>returns random velocity "double"</returns>
         private double GetRandomVelocity()
         {
             return (int)(10 * GetRandomNumber(5, 25)) / 10f;
@@ -128,8 +128,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="tolerance"></param>
-        
+       
         private void GetSolvablePoints()
         {
             double TotalTime;
