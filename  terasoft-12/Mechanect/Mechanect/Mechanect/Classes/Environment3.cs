@@ -73,7 +73,7 @@ namespace Mechanect.Classes
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
-            user.AssumedLegMass = 0.01;
+            user.AssumedLegMass = 0.04;
             
             #endregion
             sprite = spriteBatch;
@@ -88,7 +88,7 @@ namespace Mechanect.Classes
 
 
         /// <summary>
-        /// This method verifies whether the experiment is solvable or not.
+        /// This method verifies whether the experiment is solvable.
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Ahmed Badr. </para>
@@ -108,8 +108,6 @@ namespace Mechanect.Classes
             //hole position not before the leg position
             if (hole.Position.Z - user.ShootingPosition.Z > 0)
                 return Constants3.negativeHPosZ;
-            if (friction <= 0)
-                return Constants3.negativeFriction;
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
@@ -167,7 +165,6 @@ namespace Mechanect.Classes
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
-                    case Constants3.negativeFriction: friction *= -1; break;
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Subtract(hole.Position, new Vector3(1, 0, 0)); break;
                 }
             } while (x != Constants3.solvableExperiment);
