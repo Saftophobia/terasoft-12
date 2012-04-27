@@ -49,14 +49,14 @@ namespace Mechanect.Classes
             SetHoleValues();
             hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3(0.1f), d);
         }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// Draws the 3d model of the hole given a camera.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
         /// <param name="cam">
-        /// The camera needed to draw the 3d model
+        /// The camera needed to draw the 3d model.
         /// </param>
 
         public void DrawHole(Camera cam)
@@ -64,12 +64,12 @@ namespace Mechanect.Classes
             hole.Draw(cam);
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// Generates a random float value between two float numbers.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
         /// <param name="min">
         /// The minimum value. 
         /// </param>
@@ -91,12 +91,12 @@ namespace Mechanect.Classes
             }
             else throw new ArgumentException("max value has to be greater than min value");
         }
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// Sets the X,Y,Z values for the hole position which are related to the enviroment's terrain width and height.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
 
         public void SetHoleValues()
         {
