@@ -14,6 +14,8 @@ namespace Mechanect.Screens
 {
     class PauseScreen:Mechanect.Common.GameScreen
     {
+        public static int frameNumber = 0;
+
         ContentManager content;
         Viewport viewPort;
         SpriteBatch spriteBatch;
@@ -110,12 +112,12 @@ namespace Mechanect.Screens
            
             if (!voiceCommands.getHeared("go"))
             {
-                if (Tools3.frameNumber != -1)
+                if (frameNumber != -1)
                 {
                    
-                    Tools3.update_MeasuringVelocityAndAngle(user);
+                    user.Update_MeasuringVelocityAndAngle();
                     // truncate max velocity
-                    velocity = Tools3.setVelocityRelativeToGivenMass(user);
+                    velocity = user.SetVelocityRelativeToGivenMass();
 
                     for (int i = fills.Count()-1; i < user.Velocity; i++)
                     {
@@ -138,7 +140,7 @@ namespace Mechanect.Screens
                         fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
                         arrowAngle = 0;
                         framesToWait = 0;
-                        Tools3.resetUserForShootingOrTryingAgain(user);
+                        user.ResetUserForShootingOrTryingAgain();
                         
                     }
                     else
@@ -148,7 +150,7 @@ namespace Mechanect.Screens
             else
             {
              
-                Tools3.resetUserForShootingOrTryingAgain(user);
+                user.ResetUserForShootingOrTryingAgain();
                 ExitScreen();
             }
 
