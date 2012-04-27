@@ -24,10 +24,46 @@ namespace Mechanect.Classes
         {
             return velocity * frictionValue / velocity.Length() * -1;
         }
-        
-        
-     
 
+
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// calculates the final velocity using Vf = Vi + a*t
+        /// </summary>
+        /// <param name="acceleration">acceleration of the body</param>
+        /// <param name="velocityInitial">initial veloctiy of the body</param>
+        /// <param name="totalTime">the total time the body moved</param>
+        /// <returns></returns>
+
+        public static double GetVelocity(double acceleration, double velocityInitial, double totalTime)
+        {
+            return velocityInitial + (acceleration * totalTime);
+        }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// calculate the acceleration using S = Vi*t + 0.5*a*t^2
+        /// </summary>
+        /// <param name="totalDistance"></param>
+        /// <param name="totalTime"></param>
+        /// <param name="velocityInitial"></param>
+        /// <returns></returns>
+
+        public static double GetAcceleration(double totalDistance, double totalTime, double velocityInitial)
+        {
+            return (((totalDistance - (velocityInitial * totalTime)) * 2) / Math.Pow(totalTime, 2));
+        }
 
 
         ///<remarks>
