@@ -85,7 +85,7 @@ namespace Mechanect.Classes
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
-            user.AssumedLegMass = 0.04;
+            user.AssumedLegMass = 0.01;
             
             #endregion
             sprite = spriteBatch;
