@@ -612,34 +612,33 @@ namespace Mechanect.Classes
          /// checks if the User3 moved their leg from the position they were standing initially
          /// </summary>
          /// <param name="User3">takes a instance of User3 class to check if they moved their leg</param>
-         /// <returns>returns true iff the User3 moved their leg</returns>
-         public static bool hasPlayerMovedHisAnkle(User3 User3)
+         public  bool HasPlayerMovedHisAnkle()
          {
              int movementState = 0;  // 0 has not moved, 1 moved one leg, 2 moved both legs
-             Skeleton player = User3.USER;
+             Skeleton player = USER;
 
-             if (Math.Abs(User3.CurrentLeftLegPositionZ - User3.InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
+             if (Math.Abs(CurrentLeftLegPositionZ - InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
              {
-                 User3.RightLeg = false;
-                 User3.TrackedJoint = player.Joints[JointType.AnkleLeft];
+                 RightLeg = false;
+                 TrackedJoint = player.Joints[JointType.AnkleLeft];
                  movementState++;
 
              }
 
-             if (Math.Abs(User3.CurrentRightLegPositionZ - User3.InitialRightLegPositionZ) > Constants3.legMovementTolerance)
+             if (Math.Abs(CurrentRightLegPositionZ - InitialRightLegPositionZ) > Constants3.legMovementTolerance)
              {
-                 User3.RightLeg = true;
-                 User3.TrackedJoint = player.Joints[JointType.AnkleRight];
+                 RightLeg = true;
+                 TrackedJoint = player.Joints[JointType.AnkleRight];
                  movementState++;
              }
              if (movementState == 1) return true;
              if (movementState == 2) // player has changed their position
              {
                  movementState = 0;
-                 User3.InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
-                 User3.InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
-                 User3.InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
-                 User3.InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
+                 InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
+                 InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
+                 InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
+                 InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
 
              }
 
