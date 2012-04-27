@@ -16,36 +16,36 @@ namespace Mechanect.Classes
 {
     class CountDown
     {
-        Texture2D Texture;
-        int StageWidth, StageHeight;
-        Rectangle r;
-        int v1;
-        int v2;
-        int v3;
-        int v4;
-        int counter;
-        CountDown One;
-        CountDown two;
-        CountDown Three;
-        CountDown go;
-        CountDown background;
-        SoundEffect effect1;
-        SoundEffect effect2;
-        Boolean play1 = true;
-        Boolean play2 = true;
-        Boolean play3 = true;
-        Boolean play4 = true;        
+        private Texture2D Texture;
+        private int stageWidth, stageHeight;
+        private Rectangle r;
+        private int xPoint;
+        private int yPoint;
+        private int width;
+        private int height;
+        private int counter;
+        private CountDown One;
+        private CountDown two;
+        private CountDown Three;
+        private CountDown go;
+        private CountDown background;
+        private SoundEffect effect1;
+        private SoundEffect effect2;
+        private Boolean play1 = true;
+        private Boolean play2 = true;
+        private Boolean play3 = true;
+        private Boolean play4 = true;        
 
         public CountDown(Texture2D tex, int a, int b, int v1, int v2, int v3, int v4)
         {
             Texture = tex;
-            StageWidth = a;
-            StageHeight = b;
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
-            this.v4 = v4;
-            r = new Rectangle(v1, v2, v3, v4);
+            stageWidth = a;
+            stageHeight = b;
+            this.xPoint = v1;
+            this.yPoint = v2;
+            this.width = v3;
+            this.height = v4;
+            r = new Rectangle(xPoint, yPoint, width, height);
             counter = r.Height;
         }
                 
