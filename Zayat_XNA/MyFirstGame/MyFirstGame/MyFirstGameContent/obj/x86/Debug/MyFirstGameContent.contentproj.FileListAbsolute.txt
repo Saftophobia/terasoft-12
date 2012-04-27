@@ -1,1 +1,2 @@
 c:\users\mohamed\documents\visual studio 2010\Projects\MyFirstGame\MyFirstGame\MyFirstGameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Zayat_XNA\MyFirstGame\MyFirstGame\MyFirstGameContent\obj\x86\Debug\ResolveAssemblyReference.cache

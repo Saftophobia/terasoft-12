@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\laser.xnb</Output>
-      <Time>2012-04-13T16:37:05.7708213+02:00</Time>
+      <Output>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\laser.xnb</Output>
+      <Time>2012-04-14T17:13:55.0927413+02:00</Time>
     </Item>
     <Item>
       <Source>mine.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\mine.xnb</Output>
-      <Time>2012-04-13T16:37:05.7818219+02:00</Time>
+      <Output>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\mine.xnb</Output>
+      <Time>2012-04-14T17:13:55.226749+02:00</Time>
     </Item>
     <Item>
       <Source>player.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\player.xnb</Output>
-      <Time>2012-04-13T16:37:05.782822+02:00</Time>
+      <Output>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\player.xnb</Output>
+      <Time>2012-04-14T17:13:54.929732+02:00</Time>
     </Item>
     <Item>
       <Source>gameFont.spritefont</Source>
@@ -34,19 +34,19 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\gameFont.xnb</Output>
-      <Time>2012-04-13T17:11:43.1596411+02:00</Time>
+      <Output>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\gameFont.xnb</Output>
+      <Time>2012-04-14T17:13:55.2327493+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
-      <TargetProfile>HiDef</TargetProfile>
+      <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA TaskContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA TaskContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\user\documents\visual studio 2010\Projects\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA TaskContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA TaskContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\branches\XNA HelloWorld!\Omar_XNA\XNA Task\XNA Task\XNA Task\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -75,7 +75,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-03-19T21:34:51.4276093+02:00</Value>
+        <Value>2012-04-14T01:24:23.6566161+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
