@@ -389,7 +389,7 @@ namespace Mechanect.Classes
                          storePosition(this);
                          if (PauseScreen.frameNumber == 0)
                          {
-                             initalizePlayerPosition(this);
+                             InitalizePlayerPosition(this);
 
                          }
                          else
@@ -592,14 +592,13 @@ namespace Mechanect.Classes
          /// <summary>
          /// stores the initial position of the User3
          /// </summary>
-         /// <param name="User3">takes an instance of the class User3 to store their initial position</param>
-         public static void initalizePlayerPosition(User3 User3)
+         public  void InitalizePlayerPosition()
          {
 
-             User3.InitialLeftLegPositionZ = User3.USER.Joints[JointType.AnkleLeft].Position.Z;
-             User3.InitialLeftLegPositionX = User3.USER.Joints[JointType.AnkleLeft].Position.X;
-             User3.InitialRightLegPositionZ = User3.USER.Joints[JointType.AnkleRight].Position.Z;
-             User3.InitialRightLegPositionX = User3.USER.Joints[JointType.AnkleRight].Position.X;
+             InitialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             InitialLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             InitialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+             InitialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
 
          }
 
