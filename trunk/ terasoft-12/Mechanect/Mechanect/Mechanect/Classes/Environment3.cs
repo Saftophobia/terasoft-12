@@ -73,7 +73,7 @@ namespace Mechanect.Classes
             this.user = user;
             Content = Content2;
             this.device = device;
-            ball = new Ball(0.5f, 5f,device,Content);
+            ball = new Ball(0.0005f, 0.001f, device, Content);
             ball.InitialBallPosition = new Vector3(-60, 3, 2);//-60,3,30
             user.ShootingPosition = new Vector3(0f, 3, 62f);
             //friction = 2f/3600;
@@ -776,7 +776,7 @@ namespace Mechanect.Classes
             angle = Math.Atan2(-initialVelocity.Z, initialVelocity.X);
 
             //Calculate what will the ball's speed be after collision using conservation of momentum equation.
-            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.maxMass)))) / ballMass;
+            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.MaxMass)))) / ballMass;
 
             //Return a vector containing the ball's speed and direction.
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
