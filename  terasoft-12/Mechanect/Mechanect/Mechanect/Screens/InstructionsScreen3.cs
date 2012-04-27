@@ -34,7 +34,7 @@ namespace Mechanect.Screens
         {
             instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
                 ScreenManager.GraphicsDevice, user3);
-            instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
+            instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
            
         }
