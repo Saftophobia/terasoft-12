@@ -65,13 +65,36 @@ namespace Mechanect.Classes
             }
         }
 
-        public float maxMass, minMass;
+        private float maxMass;
+           public float MaxMass
+           {
+               get { 
+                   return maxMass; 
+               }
+               set
+               {
+                   maxMass = value;
+               }
+           }
+
+           private float minMass;
+           public float MinMass
+           {
+               get
+               {
+                   return minMass;
+               }
+               set
+               {
+                   minMass = value;
+               }
+           }
 
         public Ball(float minMass, float maxMass, GraphicsDevice device, ContentManager content)
         {
             this.maxMass = maxMass;
             this.minMass = minMass;
-            mass = generateBallMass(minMass,maxMass);
+            mass = GenerateBallMass();
             this.device = device;
            this.content = content;
         
@@ -93,15 +116,15 @@ namespace Mechanect.Classes
         /// <summary>
         /// generates a random mass for the ball within a certain given range
         /// </summary>
-        /// <param name="min">minimum mass of the ball</param>
-        /// <param name="max">maximum mass of the ball</param>
         /// <returns> returns the generated mass</returns>
-        public float generateBallMass(float min, float max)
+        public float GenerateBallMass()
         {
             Random random = new Random();
-            float generatedMass = ((float)(random.NextDouble() * (max - min))) + min;
+            float generatedMass = ((float)(random.NextDouble() * (MaxMass - MinMass))) + MinMass;
             return generatedMass;
         }
+
+
         /// <summary>
         /// Updates the ball position.
         /// </summary>
