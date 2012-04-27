@@ -35,6 +35,7 @@ namespace Mechanect.Screens
         MKinect mKinect;
         Button button;
         Vector2 buttonPosition;
+        int tolerance;
 
         /// <summary>
         /// Instance Variables
@@ -141,12 +142,13 @@ namespace Mechanect.Screens
         /// </remarks>
         /// <param name="user">Takes an instance of User2 </param>
         /// <param name="mKinect">takes an instance of mKinect</param>
-        public Experiment2(User2 user, MKinect mKinect)
+        public Experiment2(User2 user)
         {
-            environment = new Environment2(5);
+            tolerance = 20;
+            environment = new Environment2(tolerance);
 
             this.user = user;
-            this.mKinect = mKinect;
+            this.mKinect = user.Kinect;
         }
 
 
@@ -184,12 +186,12 @@ namespace Mechanect.Screens
 
             //Loading Fonts
             spriteFont = Content.Load<SpriteFont>("Ariel");
-            velAngleFont = Content.Load<SpriteFont>("angleVelFont");
+            velAngleFont = Content.Load<SpriteFont>("Ariel");
 
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
-            button =  Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight,user);
+            button = Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight, user);
             //TBC
-            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "ok");
+            voiceCommand = new VoiceCommands(mKinect._KinectDevice, "shit");
 
         }
 
@@ -406,7 +408,7 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            LoadPredatorWithNewPosition(environment.Predator.Location);
             DrawEnvironment();
             if (grayScreen)
             {
@@ -483,8 +485,8 @@ namespace Mechanect.Screens
         /// </remarks>
         private void DrawAngVelLabels()
         {
-            String velString = "Velocity = " + environment.Velocity;
-            String angString = "Angle = " + environment.Angle;
+            String velString = "Velocity = " + user.MeasuredVelocity;
+            String angString = "Angle = " + user.MeasuredAngle;
             SpriteBatch.Begin();
 
             if (grayScreen)
@@ -690,7 +692,6 @@ namespace Mechanect.Screens
         { //camera.Update();
             //TBC
 
-
             if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
             {
                 if (environment.Predator.Velocity == null)
@@ -705,20 +706,25 @@ namespace Mechanect.Screens
                 }
             }
 
-            else if (button.IsClicked() || voiceCommand.getHeared("ok"))
-            {
-                grayScreen = false;
-                button = null;
-                voiceCommand = null;
-                user.MeasuredAngle = 0;
-                user.MeasuredVelocity = 0;
-            }
-
             else
             {
-                user.MeasureVelocityAndAngle();
-            }
+                if (button != null)
+                {
+                    button.Update(gameTime);
+                    if (button.IsClicked())
+                    {
+                        grayScreen = false;
+                        button = null;
+                        voiceCommand = null;
+                        user.MeasuredAngle = 0;
+                        user.MeasuredVelocity = 0;
+                    }
+                }
+                user.setSkeleton();
+                if (user.USER != null)
+                    user.MeasureVelocityAndAngle(gameTime);
 
+            }
             base.Update(gameTime, covered);
             
         }
