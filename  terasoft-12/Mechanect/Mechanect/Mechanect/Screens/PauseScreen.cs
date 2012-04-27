@@ -158,8 +158,9 @@ namespace Mechanect.Screens
             }
             else
             {
-             
+
                 user.ResetUserForShootingOrTryingAgain();
+                //user.Trying = false;
                 ExitScreen();
             }
 
