@@ -6,9 +6,9 @@ namespace Mechanect.Screens
 {
     class IntroScreen : GameScreen
     {
-        string instructions = "Welcome to mechanect game made by terasoft, please stand in correct position";
-        Instruction instruction;
-        User user;
+        private string instructions = "Welcome to mechanect game made by terasoft, please stand in correct position";
+        private Instruction instruction;
+        private User user;
 
         public IntroScreen(User user)
         {
@@ -29,7 +29,8 @@ namespace Mechanect.Screens
 
         public override void LoadContent()
         {
-            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
+                ScreenManager.GraphicsDevice, user);
             instruction.Font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
 
