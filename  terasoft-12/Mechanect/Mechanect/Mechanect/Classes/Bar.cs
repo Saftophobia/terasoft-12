@@ -9,10 +9,10 @@ using Microsoft.Xna.Framework.Content;
 namespace Mechanect.Classes
 {
     /// <summary>
-    ///  This class represents the Distance Bar Drawable Object
+    ///  This class represents the Distance Bar Drawable Object.
     /// </summary>
     /// <remarks>
-    /// <para>AUTHOR: Ahmed Badr </para>
+    /// <para>AUTHOR: Ahmed Badr. </para>
     /// </remarks>
     class Bar
     {
@@ -74,7 +74,7 @@ namespace Mechanect.Classes
         /// Initializes the Bar.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Ahmed Badr </para>
+        /// <para>AUTHOR: Ahmed Badr. </para>
         /// </remarks>
         /// <example>This sample shows how to instantiate the Bar class.
         /// <code>
@@ -85,7 +85,7 @@ namespace Mechanect.Classes
         /// </code>
         /// </example>
         /// <param name="drawingPosition">
-        /// Specifies where will the down-right corner of the bar be on the screen.</param>
+        /// Specifies where the bottom-right corner of the bar will be on the screen.</param>
         /// <param name="spriteBatch">
         /// The spriteBatch object that will be used to draw the bar.</param>
         /// <param name="initialPos">
@@ -109,22 +109,22 @@ namespace Mechanect.Classes
 
         }
         /// <summary>
-        /// Updates the current position of the ball.
-        /// </summary>
+        /// Updates the current position of the bar's ball.
+        /// </summar
         /// <remarks>
-        /// <para>AUTHOR: Ahmed Badr </para>
+        /// <para>AUTHOR: Ahmed Badr. </para>
         /// </remarks>
         /// <param name="currentPos">
-        /// Specifies the current position of the ball.</param>
+        /// Specifies the current position of the bar's ball.</param>
         public void Update(Vector2 currentPos)
         {
             this.currentPos = currentPos;
         }
         /// <summary>
-        /// Draws a bar indicating how close the ball it to the user's feet.
+        /// Draws a bar indicating how close the ball is to the user's feet.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Ahmed Badr </para>
+        /// <para>AUTHOR: Ahmed Badr. </para>
         /// </remarks>
         /// <example>This sample shows how to use the Draw() method for this class.
         /// <code>
