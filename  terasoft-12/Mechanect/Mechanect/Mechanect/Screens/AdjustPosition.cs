@@ -25,6 +25,8 @@ namespace Mechanect.Screens
         Boolean[] accepted;
         String[] command;
 
+        int gameID;
+
         int minDepth;
         int maxDepth;
         float minAngle;
@@ -84,16 +86,21 @@ namespace Mechanect.Screens
         /// <param name="maxDepth"> an integer representing the maximum distance in centimeters the player should stand at.</param>
         /// <param name="minAngle"> a float representing the minimum angle the player should make with the kinect sensor.</param>
         /// <param name="maxAngle"> a float representing the minimum angle the player should make with the kinect sensor.</param>
-        public AdjustPosition(User user, int minDepth, int maxDepth, float minAngle, float maxAngle)
+        public AdjustPosition(User user, int minDepth, int maxDepth, float minAngle, float maxAngle, int gameID)
         {
             users = new User[1];
             userColors = new Color[1];
+            command = new String[1];
+            depth = new int[1];
+            angle = new float[1];
+            accepted = new Boolean[1];
             this.users[0] = user;
             this.userColors[0] = Color.Blue;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
             this.minAngle = minAngle;
             this.maxAngle = maxAngle;
+            this.gameID = gameID;
         }
 
 
@@ -111,7 +118,7 @@ namespace Mechanect.Screens
         /// <param name="maxDepth"> an integer representing the maximum distance in centimeters players should stand at.</param>
         /// <param name="minAngle"> a float representing the minimum angle players should make with the kinect sensor.</param>
         /// <param name="maxAngle"> a float representing the minimum angle players should make with the kinect sensor.</param>
-        public AdjustPosition(User user1,User user2 ,int minDepth, int maxDepth, float minAngle, float maxAngle)
+        public AdjustPosition(User user1,User user2 ,int minDepth, int maxDepth, float minAngle, float maxAngle, int gameID)
         {
             users = new User[2];
             userColors = new Color[2];
@@ -119,10 +126,16 @@ namespace Mechanect.Screens
             this.users[1] = user2;
             this.userColors[0] = Color.Blue;
             this.userColors[1] = Color.Brown;
+            command = new String[2];
+            depth = new int[2];
+            angle = new float[2];
+            accepted = new Boolean[2];
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
             this.minAngle = minAngle;
             this.maxAngle = maxAngle;
+            this.gameID = gameID;
+
         }
 
         /// <summary>
@@ -132,7 +145,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             title = "Adjust Position";
-            rule1 = "Stand at a distance of " + (minDepth + maxDepth) / 200 + " meters from the kinect sensor.";
+            rule1 = "Stand at a distance of " + ((float)(minDepth + maxDepth) / 200) + " meters from the kinect sensor.";
             float avgAngle = (minAngle + maxAngle) / 2;
             if (avgAngle == 0)
             {
@@ -146,20 +159,22 @@ namespace Mechanect.Screens
             {
                 rule2 = "Turn to your left at an angle " + (-1 * avgAngle) + "degrees with the kinect sensor.";
             }
-            int sw = ScreenManager.GraphicsDevice.Viewport.Width;
-            int sh = ScreenManager.GraphicsDevice.Viewport.Height;
-            button = new OKButton(ContentManager, new Vector2(sw -  100, sh - 100), sw, sh);
+            accept = Color.GreenYellow;
+            reject = Color.OrangeRed;
             depthBarHeight = 200;
             depthBarWidth = 30;
             depthBar = new Texture2D(ScreenManager.GraphicsDevice, depthBarWidth, depthBarHeight);
             angleBarHeight = 200;
             angleBarWidth = 400;
-            angleBar = new Texture2D(ScreenManager.GraphicsDevice, angleBarWidth, angleBarHeight);
-            accept = Color.GreenYellow;
-            reject = Color.OrangeRed;
+            angleBar = semiCircle();
             //to be updated
             arrow = ContentManager.Load<Texture2D>("arrow");
             font = ContentManager.Load<SpriteFont>("Ariel");
+            int screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
+            int screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+
+
+            button = Tools3.OKButton(ContentManager, new Vector2(800, 450), screenWidth, screenHeight, users[0]);
         }
 
 
@@ -318,9 +333,9 @@ namespace Mechanect.Screens
                     data[i] = color(minDepth, (avgDepth + minDepth) / 2, 2 * i + 50, reject, accept);
                 else if (2 * i + 50 > avgDepth)
                     data[i] = color((avgDepth + maxDepth) / 2, maxDepth, 2 * i + 50, accept, reject);
-                for (int j = 0; j < users.Length; i++)
+                for (int j = 0; j < users.Length; j++)
                     if (2 * i + 50 <= depth[j] + 5 && 2 * i + 50 >= depth[j] - 5)
-                        data[i] = userColors[i];
+                        data[i] = userColors[j];
             }
             Color[] finalData = new Color[depthBarHeight * depthBarWidth];
             for (int j = 0; j < finalData.Length; j++)
@@ -342,38 +357,50 @@ namespace Mechanect.Screens
         /// <param name="ID"> The ID of the user in users[]</param>
         public void UpdateUser(int ID)
         {
-            if (users[ID].USER == null)
+            users[ID].setSkeleton(ID);
+            try
+            {
+                if (users[ID].USER == null)
+                {
+                    command[ID] = "No player detected";
+                    depth[ID] = 0;
+                    angle[ID] = 0;
+                    accepted[ID] = false;
+                    return;
+                }
+
+                depth[ID] = getDepth(ID);
+                angle[ID] = getAngle(ID);
+                accepted[ID] = (depth[ID] <= maxDepth && depth[ID] >= minDepth && angle[ID] <= maxAngle && angle[ID] >= minAngle);
+
+                if (accepted[ID])
+                {
+                    command[ID] = "You are ready to start the game";
+                }
+                else if (depth[ID] < minDepth && depth[ID] != 0)
+                {
+                    command[ID] = "Move backwards away from the kinect sensor";
+                }
+                else if (depth[ID] > maxDepth && depth[ID] != 0)
+                {
+                    command[ID] = "Move forward towards the kinect sensor";
+                }
+                else if (angle[ID] > maxAngle && depth[ID] != 0)
+                {
+                    command[ID] = "Turn a little to your left";
+                }
+                else if (angle[ID] < minAngle && depth[ID] != 0)
+                {
+                    command[ID] = "Turn a little to your right";
+                }
+            }
+            catch (Exception)
             {
                 command[ID] = "No player detected";
                 depth[ID] = 0;
                 angle[ID] = 0;
                 accepted[ID] = false;
                 return;
-            }
-            depth[ID] = getDepth(ID);
-            angle[ID] = getAngle(ID);
-
-            accepted[ID] = (depth[ID] <= maxDepth && depth[ID] >= minDepth && angle[ID] <= maxAngle && angle[ID] >= minAngle);
-
-            if (accepted[ID])
-            {
-                command[ID] = "You are ready to start the game";
-            }
-            else if (depth[ID] < minDepth)
-            {
-                command[ID] = "Move backwards away from the kinect sensor";
-            }
-            else if (depth[ID] > maxDepth)
-            {
-                command[ID] = "Move forward towards the kinect sensor";
-            }
-            else if (angle[ID] > maxAngle)
-            {
-                command[ID] = "Turn a little to your left";
-            }
-            else if (angle[ID] < minAngle)
-            {
-                command[ID] = "Turn a little to your right";
             }
         }
 
@@ -391,7 +418,24 @@ namespace Mechanect.Screens
         {
             for (int i = 0; i < users.Length; i++)
                 UpdateUser(i);
-            button.update(gameTime);
+            button.Update(gameTime);
+            if (button.IsClicked())
+            {
+                Boolean allAccepted = true;
+                for (int i = 0; allAccepted && i < accepted.Length; i++)
+                    if (!accepted[i])
+                        allAccepted = false;
+                if (allAccepted)
+                {
+                    switch (gameID)
+                    {
+                        case 2:
+                            ScreenManager.AddScreen(new Experiment2((User2)users[0]));
+                            ExitScreen();
+                            break;
+                    }
+                }
+            }
             updateDepthBar();
         }
 
@@ -406,33 +450,23 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+            button.Draw(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.DrawString(font, title, new Vector2(500, 20), Color.OrangeRed);
-            ScreenManager.SpriteBatch.End();
-            ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.DrawString(font, rule1, new Vector2(100, 120), Color.OrangeRed);
-            ScreenManager.SpriteBatch.End();
-            ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.DrawString(font, rule2, new Vector2(100, 220), Color.OrangeRed);
-            ScreenManager.SpriteBatch.End();
             for (int i = 0; i < users.Length; i++)
             {
-                ScreenManager.SpriteBatch.Begin();
-                ScreenManager.SpriteBatch.DrawString(font, command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
-                ScreenManager.SpriteBatch.End();
+                ScreenManager.SpriteBatch.DrawString(font, "Player " + i +" : " + command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
             }
-            ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(depthBar, new Vector2(100, 520), Color.White);
-            ScreenManager.SpriteBatch.End();
-            ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(angleBar, new Vector2(300, 520), Color.White);
-            ScreenManager.SpriteBatch.End();
+            ScreenManager.SpriteBatch.Draw(depthBar, new Vector2(100, 450), Color.White);
+            ScreenManager.SpriteBatch.Draw(angleBar, new Vector2(300, 450), Color.White);
             for (int i = 0; i < users.Length; i++)
             {
-                ScreenManager.SpriteBatch.Begin();
-                ScreenManager.SpriteBatch.Draw(arrow, new Rectangle(angleBarWidth / 2 + 300, angleBarHeight + 520, 200, 20), null, userColors[i], (float)((angle[i] - 90) * Math.PI / 180), arrowOrigin, SpriteEffects.None, 0f);
-                ScreenManager.SpriteBatch.End();
+                ScreenManager.SpriteBatch.Draw(arrow, new Rectangle(angleBarWidth / 2 + 300, angleBarHeight + 450, 200, 20), null, userColors[i], (float)((angle[i] - 90) * Math.PI / 180), arrowOrigin, SpriteEffects.None, 0f);
             }
+            ScreenManager.SpriteBatch.End();
         }
     }
 }
