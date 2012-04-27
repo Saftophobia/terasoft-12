@@ -76,11 +76,11 @@ namespace Mechanect.Classes
             ball = new Ball(0.0005f, 0.001f, device, Content);
             ball.InitialBallPosition = new Vector3(-60, 3, 2);//-60,3,30
             user.ShootingPosition = new Vector3(0f, 3, 62f);
-            //friction = 2f/3600;
-            friction = 0f;
+            //friction = 0.5f/3600;
             wind = 0f;
             ball.Position = ball.InitialBallPosition;
             ball.InitialVelocity = new Vector3(10, 0, 10)/60;//30x
+            //ball.InitialVelocity = new Vector3(11.25f, 0, 11.25f)/60;
             ball.Radius = 1;
             ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
@@ -146,9 +146,6 @@ namespace Mechanect.Classes
         {
             hole.Radius =3;
             ball.Radius = 1;
-
-            hole.SetHoleValues();
-
             var x = Constants3.solvableExperiment;
             do
             {
