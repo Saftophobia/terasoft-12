@@ -20,7 +20,7 @@ namespace Mechanect.Common
         private TimeSpan duration;
         private CustomModel model;
         private Boolean enableRotation;
-        public Boolean animationStoped { get; private set; }
+        public Boolean AnimationStoped { get; private set; }
 
         /// <summary>
         /// constructs a ModelLinearAnimation instance
@@ -68,7 +68,7 @@ namespace Mechanect.Common
             }
             else
             {
-                animationStoped = true;
+                AnimationStoped = true;
             }
 
         }
