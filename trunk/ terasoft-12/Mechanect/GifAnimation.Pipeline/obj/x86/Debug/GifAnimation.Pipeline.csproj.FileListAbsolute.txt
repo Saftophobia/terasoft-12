@@ -68,3 +68,10 @@ C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trun
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
 C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.pdb
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.dll
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.pdb
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.dll
+C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\GifAnimation.Pipeline\obj\x86\Debug\GifAnimation.Pipeline.pdb

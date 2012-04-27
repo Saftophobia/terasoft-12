@@ -130,5 +130,34 @@ namespace Mechanect.Classes
            c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), p, sw, sh,
            c.Load<Texture2D>("Textures/Buttons/hand"), u);
         }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// displaying the wining word on the screen.
+        /// </summary>
+        /// <param name="spriteBatch">used to draw images on the screen</param>
+        /// <param name="content">used to load the images</param>
+        /// <param name="position">the desired position</param>
+        /// <param name="status">true: if the user won, false: if the user lost</param>
+        public static void DislayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, bool status)
+        {
+            spriteBatch.Begin();
+            if (status)
+            {
+                Texture2D winningPicture = content.Load<Texture2D>("Textures/WorL/winner");
+                spriteBatch.Draw(winningPicture, position, Color.White);
+            }
+            else
+            {
+                Texture2D losingPicture = content.Load<Texture2D>("Textures/WorL/looser");
+                spriteBatch.Draw(losingPicture, position, Color.White);
+            }
+            spriteBatch.End();
+        }
     }
 }
