@@ -173,7 +173,7 @@ namespace Mechanect.Classes
                     case Constants3.holeOutOfNearRange: friction++; break;
                     case Constants3.holeOutOfFarRange: if (friction > 1)
                             friction--;
-                        else friction -= 0.05f;break;
+                        else wind--; break;
                     case Constants3.negativeRDifference: int tmp = ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
                     case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
