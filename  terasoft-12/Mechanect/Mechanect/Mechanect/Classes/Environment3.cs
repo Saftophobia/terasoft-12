@@ -105,7 +105,7 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Ahmed Badr. </para>
         ///</remarks>
         /// <returns>Retuns an int that represents the type of the problem with the experiment.</returns>
-        public int IsSolvable()
+        private int IsSolvable()
         {
 
             if (ball.Radius <= 0)
