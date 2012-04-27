@@ -131,14 +131,14 @@ namespace Mechanect
 
 
 
-
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// LoadContent will be called only once before drawing and its the place to load
         /// all of your content.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        
         public  void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -150,14 +150,13 @@ namespace Mechanect
             // TODO: use this.Content to load your game content here
         }
 
-       
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
         /// This is called when the game screen should draw itself.
         /// The method draws the instruction screen and the given text along with an ok button down the screen.
         /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public void Draw(GameTime gameTime)
         {
