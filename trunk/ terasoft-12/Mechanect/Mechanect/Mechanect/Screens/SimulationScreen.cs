@@ -40,9 +40,12 @@ namespace Mechanect.Screens
 
              graphics = this.ScreenManager.GraphicsDevice;
 
-             Vector3 optimalVelocity = environment.ball.InitialVelocity;
-             Vector3 shootVelocity = environment.ball.InitialVelocity;
-             float friction = environment.Friction;
+             //Vector3 optimalVelocity = environment.ball.InitialVelocity;
+             //Vector3 shootVelocity = environment.ball.InitialVelocity;
+             //float friction = environment.Friction;
+             Vector3 optimalVelocity = new Vector3(5, 0 , -15);
+             Vector3 shootVelocity = new Vector3(10, 0, -5);
+             float friction = 0.5f;
              environment.ball.ballModel.Position = environment.user.ShootingPosition;
              sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, shootVelocity, optimalVelocity, friction);
          }
@@ -78,7 +81,7 @@ namespace Mechanect.Screens
          public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
          {
              environment.DrawEnvironment(sim.Camera, gameTime);
-             environment.ball.Draw(gameTime, sim.Camera);
+             sim.Draw();
          }
 
 
