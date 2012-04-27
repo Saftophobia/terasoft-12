@@ -22,8 +22,8 @@ namespace Mechanect.Classes
                 location = value;
             }
         }
-        int length;
-        public int Length
+        float length;
+        public float Length
         {
             get
             {
@@ -34,8 +34,8 @@ namespace Mechanect.Classes
                 length = value;
             }
         }
-        int width;
-        public int Width
+        float width;
+        public float Width
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Mechanect.Classes
             }
         }
 
-        public Aquarium(Vector2 location, int width, int length)
+        public Aquarium(Vector2 location, float width, float length)
         {
             this.location = location;
             this.length = length;
@@ -71,7 +71,7 @@ namespace Mechanect.Classes
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
-        public int getHeight()
+        public float getHeight()
         {
             return length;
         }
@@ -82,7 +82,7 @@ namespace Mechanect.Classes
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns></returns>
-        public int getWidth()
+        public float getWidth()
         {
             return width;
         }

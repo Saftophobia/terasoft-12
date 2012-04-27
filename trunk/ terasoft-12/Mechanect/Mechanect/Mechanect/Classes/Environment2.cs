@@ -180,9 +180,9 @@ namespace Mechanect
 
             Predator = new Predator(predatorLocation);
 
-            Prey = new Prey(preyLocation, (int)preyLocation.X * (tolerance / 100), (int)preyLocation.Y * (tolerance / 100));
+            Prey = new Prey(preyLocation, (float)(preyLocation.X * ((float)tolerance / 100)), (float)preyLocation.Y * ((float)tolerance / 100));
 
-            Aquarium = new Aquarium(aquariumLocation, (int)aquariumLocation.X* (tolerance / 100), (int)aquariumLocation.Y* (tolerance / 100));
+            Aquarium = new Aquarium(aquariumLocation, (float)aquariumLocation.X * ((float)tolerance / 100), (float)aquariumLocation.Y * ((float)tolerance / 100));
 
 
 
