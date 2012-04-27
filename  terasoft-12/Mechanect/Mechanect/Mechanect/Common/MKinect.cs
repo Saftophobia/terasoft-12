@@ -32,10 +32,11 @@ namespace Mechanect.Common
             frameCounter = 0;
         }
         /// <summary>
-        /// Sets the drop frame rate.
+        /// Sets the drop rate of frames.For example, for 12/15 FPS, use dropFrameRate=2.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Ahmed Badr.</para>
+        /// <para>NOTE: For maximum FPS, use dropFrameRate=-1.</para>
         /// </remarks>
         /// <param name="dropFrameRate">
         /// Specifies the drop rate for frames.</param>
