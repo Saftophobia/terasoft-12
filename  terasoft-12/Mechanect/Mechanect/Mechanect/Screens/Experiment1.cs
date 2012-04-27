@@ -169,7 +169,7 @@ namespace Mechanect.Screens
             Texture2D Texback = Content.Load<Texture2D>("track2");
             SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
             SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
-            //countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
+            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
             background1 = new CountDown(Content.Load<Texture2D>("track2"), ScreenManager.GraphicsDevice.Viewport.Width,
             ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/, ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
             background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,
@@ -211,7 +211,11 @@ namespace Mechanect.Screens
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="covered"></param>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
 
@@ -325,6 +329,7 @@ namespace Mechanect.Screens
                // if (timer % 10 == 0 /*& timecounter >=5*/)
                 if (NUMBEROFFRAMES%60 == 0 && NUMBEROFFRAMES > 300) 
                 {
+
                     Tools1.CheckEachSecond(timecounter - 5, player1, player2,cumulativetimeint , racecommands, 100, SpriteBatch, spritefont);
                      
                       
@@ -395,8 +400,21 @@ namespace Mechanect.Screens
         }
             if (timecounter >= racecommandsforDRAW.Count + 4 || player2.Disqualified || player1.Disqualified || player2.Winner || player1.Winner/* || player1.skeleton == null || player2.skeleton == null*/)
             {
-              //  if (!graphmutex)
-                //{
+
+                List<double> timeofrace = new List<double>(); // time of the race
+
+                for (int i = 0; i < cumulativetime.Count; i++)
+                {
+                    if (cumulativetime[i] <= timecounter)
+                    {
+                        timeofrace.Add(timeslice[i]);
+                    }
+                }
+
+
+
+                if (!graphmutex)
+                {
                     List<double> timeslicedouble = new List<double>();
                     foreach (int s in timeslice)
                     {
@@ -466,17 +484,13 @@ namespace Mechanect.Screens
 
 
 
-
-
-
-
-                  
+                                  
                    // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                    Graph.drawGraphs(player1.Positions, player2.Positions, racecommands, cumulativetime, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                    Graph.DrawGraphs(player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
                     
                     
-                  //graphmutex = true;
-                //}
+                  graphmutex = true;
+                }
 
                
 
@@ -534,9 +548,9 @@ namespace Mechanect.Screens
             {
                // SpriteBatch sprite2 = SpriteBatch;
                 SpriteBatch.Begin();
-               Graph.drawRange(SpriteBatch, graphics);
-                Graph.drawEnvironment(SpriteBatch, graphics, font1, font2);
-                Graph.drawDisqualification(SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
+               Graph.DrawRange(SpriteBatch, graphics);
+                Graph.DrawEnvironment(SpriteBatch, graphics, font1, font2);
+                Graph.DrawDisqualification(SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
                SpriteBatch.End();
                 
             }

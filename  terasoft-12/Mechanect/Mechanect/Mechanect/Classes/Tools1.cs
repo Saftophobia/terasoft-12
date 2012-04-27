@@ -159,10 +159,10 @@ namespace Mechanect.Classes
 
              List<float> user11Displacement = new List<float>();
              List<float> user12Displacement = new List<float>();
-             for (int i = (pastSecondsFor1 - 1) * 12; i < user11.Positions.Count; i++)
+             for (int i = (timeInSeconds - 1) * 12; i < user11.Positions.Count; i++)
                  user11Displacement.Add(user11.Positions[i]);
 
-             for (int i = (pastSecondsFor2 - 1) * 12; i < user12.Positions.Count; i++)
+             for (int i = (timeInSeconds - 1) * 12; i < user12.Positions.Count; i++)
                  user12Displacement.Add(user12.Positions[i]);
 
              //here the command is checked pver the two players to see if any of them got disqualified
@@ -273,31 +273,31 @@ namespace Mechanect.Classes
              bool result = true;
              float currentTolerance = 10 - tolerance;
 
-             if (command.Equals("ConstantVelocity"))
+             if (command.Equals("constantVelocity"))
              {
                  result = ConstantVelocity(positions, currentTolerance / 10);
              }
              else
              {
-                 if (command.Equals("ConstantAcceleration"))
+                 if (command.Equals("constantAcceleration"))
                  {
                      result = ConstantAcceleration(positions, currentTolerance / 10);
                  }
                  else
                  {
-                     if (command.Equals("ConstantDisplacement"))
+                     if (command.Equals("constantDisplacement"))
                      {
                          result = ConstantDisplacement(positions, currentTolerance / 100);
                      }
                      else
                      {
-                         if (command.Equals("IncreasingAcceleration"))
+                         if (command.Equals("increasingAcceleration"))
                          {
                              result = IncreasingAcceleration(positions, currentTolerance / 10);
                          }
                          else
                          {
-                             if (command.Equals("DecreasingAcceleration"))
+                             if (command.Equals("decreasingAcceleration"))
                              {
                                  result = DecreasingAcceleration(positions, currentTolerance / 10);
                              }
