@@ -418,27 +418,6 @@ namespace Mechanect.Classes
                  }
              }
          }
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         ///  resolves the User3's velocity into 2 components VelocityX, VelocityZ
-         /// </summary>
-         /// <param name="User3">takes instance of class User3 to resolve their velocity</param>
-         /// <returns>returns Vector2: holding the velocity components of the User3</returns>
-
-         public static Vector2 resolveUser3Velocity(User3 User3)
-         {
-             Vector2 velocity;
-             velocity.X = (float)(User3.Velocity * Math.Cos(User3.Angle));
-             velocity.Y = (float)(User3.Velocity * Math.Sign(User3.Angle));
-             return velocity;
-         }
-
-
-
 
          ///<remarks>
          ///<para>
