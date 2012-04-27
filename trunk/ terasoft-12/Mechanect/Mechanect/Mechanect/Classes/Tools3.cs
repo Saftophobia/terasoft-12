@@ -22,21 +22,7 @@ namespace Mechanect.Classes
         /// <remarks>Auther : Bishoy Bassem</remarks>
         public static Vector3 calculateFriction(Vector3 velocity, float frictionValue)
         {
-            float sx = -MathHelper.Clamp(velocity.X, -1, 1);
-            float sy = -MathHelper.Clamp(velocity.Y, -1, 1);
-            float sz = -MathHelper.Clamp(velocity.Z, -1, 1);
-            bool xmax = Math.Abs(velocity.X) > Math.Abs(velocity.Y) && Math.Abs(velocity.X) > Math.Abs(velocity.Z);
-            bool ymax = Math.Abs(velocity.Y) > Math.Abs(velocity.X) && Math.Abs(velocity.Y) > Math.Abs(velocity.Z);
-            if (xmax)
-            {
-                return new Vector3(sx, sy * velocity.Y / velocity.X, sz * velocity.Z / velocity.X) * frictionValue;
-            }
-            if (ymax)
-            {
-                return new Vector3(sx * velocity.X / velocity.Y, sy, sz * velocity.Z / velocity.Y) * frictionValue;
-            }
-            return new Vector3(sx * velocity.X / velocity.Z, sy * velocity.Y / velocity.Z, sz) * frictionValue;
-            
+            return velocity * frictionValue / velocity.Length() * -1;
         }
         
         
