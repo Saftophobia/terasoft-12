@@ -1,3 +1,0 @@
-C:\Users\Cena\Desktop\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-F:\SE\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
