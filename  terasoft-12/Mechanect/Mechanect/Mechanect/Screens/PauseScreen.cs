@@ -125,6 +125,8 @@ namespace Mechanect.Screens
                         fillPosition.Y -= 8;
                     }
                     arrowAngle = (float)user.Angle;
+                    displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
+                       + legMass;
                 }
                 else
                 {
