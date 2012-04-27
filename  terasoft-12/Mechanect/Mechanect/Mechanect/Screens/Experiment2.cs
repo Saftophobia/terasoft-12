@@ -36,7 +36,10 @@ namespace Mechanect.Screens
         Button button;
         Vector2 buttonPosition;
         int tolerance;
+        Boolean ended;
+        int milliSeconds;
 
+        WorL result;
         /// <summary>
         /// Instance Variables
         /// </summary>
@@ -414,6 +417,8 @@ namespace Mechanect.Screens
             {
                 DrawGrayScreen();
             }
+            if (result != null)
+                result.DislayIsWin(ScreenManager.SpriteBatch, aquariumReached && preyEaten);
             DrawAngVelLabels();
             //each  array contains the information of one of the objects needing connectors to be drawn as follows: [positionToBeWrittenOnXandYAxises,Texture,PositionOfObject,ScalingOfTexture]
             object[] startAquariumArray = new object[4] { environment.Predator.Location, bowlTexture, startAquariumPosition, bowlTextureScaling };
@@ -691,44 +696,72 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         { //camera.Update();
             //TBC
-
-            if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+            if (ended)
             {
-                if (environment.Predator.Velocity == null)
-                    environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
-                environment.Predator.UpdatePosition(gameTime);
-                if (!preyEaten) preyEaten = isPreyEaten();
-                if (!aquariumReached) aquariumReached = isAquariumReached();
-                if (aquariumReached)
+                milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (milliSeconds > 1000)
                 {
-                    environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
-                    environment.Predator.Velocity = Vector2.Zero;
+                    result = new WorL(Content, new Vector2(screenWidth/2 - 100 , screenHeight/2 - 100));
+                }
+                if (milliSeconds > 3000)
+                {
+                    result = null;
+                    milliSeconds = 0;
+                    ended = false;
+                    tolerance -= 1;
+                    preyEaten = false;
+                    aquariumReached = false;
+                    user.Reset();
+                    grayScreen = true;
+                    LoadContent();
                 }
             }
-
             else
             {
-                if (button != null)
+                if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
                 {
-                    button.Update(gameTime);
-                    if (button.IsClicked())
+                    if (environment.Predator.Velocity == null)
+                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle)));
+                    environment.Predator.UpdatePosition(gameTime);
+                    if (!preyEaten) preyEaten = isPreyEaten();
+                    if (!aquariumReached) aquariumReached = isAquariumReached();
+                    if (aquariumReached)
                     {
-                        grayScreen = false;
-                        button = null;
-                        voiceCommand = null;
-                        user.Reset();
+                        environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
+                        environment.Predator.Velocity = Vector2.Zero;
+                        ended = true;
                     }
+                    else if (environment.Predator.Location.Y <= 0)
+                    {
+                        environment.Predator.Velocity = Vector2.Zero;
+                        ended = true;
+                    }
+
                 }
-                user.setSkeleton();
-                if (user.USER != null)
-                    user.MeasureVelocityAndAngle(gameTime);
+
+                else
+                {
+                    if (button != null)
+                    {
+                        button.Update(gameTime);
+                        if (button.IsClicked())
+                        {
+                            grayScreen = false;
+                            button = null;
+                            voiceCommand = null;
+                            user.Reset();
+                        }
+                    }
+                    user.setSkeleton();
+                    if (user.USER != null)
+                        user.MeasureVelocityAndAngle(gameTime);
+
+                }
+                base.Update(gameTime, covered);
 
             }
-            base.Update(gameTime, covered);
-            
+
         }
-
-
 
     }
 }

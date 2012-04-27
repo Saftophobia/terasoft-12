@@ -180,7 +180,7 @@ namespace Mechanect.Common
         public virtual void Initialize() { } 
         public virtual void Update(GameTime gameTime, bool covered)
         {
-            user = new User();
+            /*user = new User();
             user.setSkeleton();
             if (user.USER == null)
                 if (pausescreenappeared == false)
@@ -188,6 +188,7 @@ namespace Mechanect.Common
                     screenManager.AddScreen(new CommonPauseScreen(user));
                     pausescreenappeared = true;
                 }
+             */
             if (IsFrozen)
                 return;
             
