@@ -16,61 +16,61 @@ namespace Mechanect
 {
     class PerformanceGraph
     {
-        int stageWidth, stageHeight;
-        int xPoint1;
-        int yPoint1;
-        int xPoint2;
-        int yPoint2;
-        Color curveColor;
-        List<float> player1Displacement;
-        List<float> player2Displacement;
-        List<float> player1Velocity;
-        List<float> player2Velocity;
-        List<float> player1Acceleration;
-        List<float> player2Acceleration;
-        List<float> optimumDisplacement = new List<float>();
-        List<float> optimumVelocity = new List<float>();
-        List<float> optimumAcceleration = new List<float>();
-        List<String> commandsList;
-        List<double> timeSpaces;
-        double totalTime;
-        int[] chosenTimings;
-        float[] chosenDisp1 = new float[17];
-        float[] chosenDisp2 = new float[17];
-        float[] chosenVelocity1 = new float[17];
-        float[] chosenVelocity2 = new float[17];
-        float[] chosenAcceleration1 = new float[17];
-        float[] chosenAcceleration2 = new float[17];
-        float[] chosenOptD = new float[17];
-        float[] chosenOptV = new float[17];
-        float[] chosenOptA = new float[17];
-        PerformanceGraph[] disp1 = new PerformanceGraph[16];
-        PerformanceGraph[] disp2 = new PerformanceGraph[16];
-        PerformanceGraph[] velo1 = new PerformanceGraph[16];
-        PerformanceGraph[] velo2 = new PerformanceGraph[16];
-        PerformanceGraph[] acc1 = new PerformanceGraph[16];
-        PerformanceGraph[] acc2 = new PerformanceGraph[16];
-        PerformanceGraph[] optD = new PerformanceGraph[16];
-        PerformanceGraph[] optV = new PerformanceGraph[16];
-        PerformanceGraph[] optA = new PerformanceGraph[16];
-        float maxVelocity;
-        float maxAcceleration;
-        List<int> p1DispGraph = new List<int>();
-        List<int> p2DispGraph = new List<int>();
-        List<int> p1VeloGraph = new List<int>();
-        List<int> p2VeloGraph = new List<int>();
-        List<int> p1AccGraph = new List<int>();
-        List<int> p2AccGraph = new List<int>();
-        double[] xAxis = new double[5];
-        double[] yAxisDisplacement = new double[5];
-        double[] yAxisVelocity = new double[5];
-        double[] yAxisAcceleration = new double[5];
-        CountDown xDP1;
-        CountDown xVP1;
-        CountDown xAP1;
-        float previousDisp;
-        float previousVelo;
-        float previousAcc;
+        private int stageWidth, stageHeight;
+        private int xPoint1;
+        private int yPoint1;
+        private int xPoint2;
+        private int yPoint2;
+        private Color curveColor;
+        private List<float> player1Displacement;
+        private List<float> player2Displacement;
+        private List<float> player1Velocity;
+        private List<float> player2Velocity;
+        private List<float> player1Acceleration;
+        private List<float> player2Acceleration;
+        private List<float> optimumDisplacement = new List<float>();
+        private List<float> optimumVelocity = new List<float>();
+        private List<float> optimumAcceleration = new List<float>();
+        private List<String> commandsList;
+        private List<double> timeSpaces;
+        private double totalTime;
+        private int[] chosenTimings;
+        private float[] chosenDisp1 = new float[17];
+        private float[] chosenDisp2 = new float[17];
+        private float[] chosenVelocity1 = new float[17];
+        private float[] chosenVelocity2 = new float[17];
+        private float[] chosenAcceleration1 = new float[17];
+        private float[] chosenAcceleration2 = new float[17];
+        private float[] chosenOptD = new float[17];
+        private float[] chosenOptV = new float[17];
+        private float[] chosenOptA = new float[17];
+        private PerformanceGraph[] disp1 = new PerformanceGraph[16];
+        private PerformanceGraph[] disp2 = new PerformanceGraph[16];
+        private PerformanceGraph[] velo1 = new PerformanceGraph[16];
+        private PerformanceGraph[] velo2 = new PerformanceGraph[16];
+        private PerformanceGraph[] acc1 = new PerformanceGraph[16];
+        private PerformanceGraph[] acc2 = new PerformanceGraph[16];
+        private PerformanceGraph[] optD = new PerformanceGraph[16];
+        private PerformanceGraph[] optV = new PerformanceGraph[16];
+        private PerformanceGraph[] optA = new PerformanceGraph[16];
+        private float maxVelocity;
+        private float maxAcceleration;
+        private List<int> p1DispGraph = new List<int>();
+        private List<int> p2DispGraph = new List<int>();
+        private List<int> p1VeloGraph = new List<int>();
+        private List<int> p2VeloGraph = new List<int>();
+        private List<int> p1AccGraph = new List<int>();
+        private List<int> p2AccGraph = new List<int>();
+        private double[] xAxis = new double[5];
+        private double[] yAxisDisplacement = new double[5];
+        private double[] yAxisVelocity = new double[5];
+        private double[] yAxisAcceleration = new double[5];
+        private CountDown xDP1;
+        private CountDown xVP1;
+        private CountDown xAP1;
+        private float previousDisp;
+        private float previousVelo;
+        private float previousAcc;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -170,7 +170,7 @@ namespace Mechanect
                     double dt = ((double)1 / (double)12);
                     float a = DisplacementList[i];
                     float b = DisplacementList[i - 1];
-                    float currentVelocity = (float)((DisplacementList[i-1] - DisplacementList[i]) / dt) ;
+                    float currentVelocity = (float)((DisplacementList[i - 1] - DisplacementList[i]) / dt);
                     result.Add(currentVelocity);
                 }
                 catch (Exception e)
@@ -219,7 +219,7 @@ namespace Mechanect
                 try
                 {
                     double dt = ((double)1 / (double)12);
-                    float currentAcceleration = (float)((VelocityList[i-1] - VelocityList[i]) / dt);
+                    float currentAcceleration = (float)((VelocityList[i - 1] - VelocityList[i]) / dt);
                     result.Add(currentAcceleration);
                 }
                 catch (Exception e)
