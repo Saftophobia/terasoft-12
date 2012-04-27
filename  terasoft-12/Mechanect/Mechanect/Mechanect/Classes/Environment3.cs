@@ -386,7 +386,7 @@ namespace Mechanect.Classes
         /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <param name="heightMap">The grayscale picture that will be used to define the heightmap</param>
+        /// <param name="heightMap">The grayscale picture that will be used to define the heightmap.</param>
         private void LoadHeightData(Texture2D heightMap)
         {
             terrainWidth = (short)heightMap.Width;
@@ -471,9 +471,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Loads a model and adds a texture to it.
         /// </summary>
-        /// <param name="assetName">The name of the model to be loaded</param>
-        /// <param name="textures">The name of the texture to be mapped on the model</param>
-        /// <returns>Returns the model after adding the texture effect</returns>
+        /// <param name="assetName">The name of the model to be loaded.</param>
+        /// <param name="textures">The name of the texture to be mapped on the model.</param>
+        /// <returns>Returns the model after adding the texture effect.</returns>
         private Model LoadModel(string assetName, out Texture2D[] textures)
         {
 
