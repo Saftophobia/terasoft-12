@@ -67,6 +67,12 @@ namespace Mechanect.Screens
         {
             instruction.Draw(gameTime);
         }
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <summary>
+        /// This is called when you want to exit the screen.
+        /// </summary>  
         public override void Remove()
         {
             base.Remove();
