@@ -68,7 +68,6 @@ namespace Mechanect.Classes
         }
         private float offset;
         private Vector2 drawingPosition;
-        private bool isDone;
 
         /// <summary>
         /// Initializes the Bar.
@@ -105,7 +104,6 @@ namespace Mechanect.Classes
             this.currentPos = currentPos;
             this.shootingPos = shootingPos;
             this.spriteBatch = spriteBatch;
-            isDone = false;
 
         }
         /// <summary>
