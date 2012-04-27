@@ -39,7 +39,7 @@ namespace Mechanect.Screens
         Boolean ended;
         int milliSeconds;
 
-        WorL result;
+        
         /// <summary>
         /// Instance Variables
         /// </summary>
@@ -417,8 +417,8 @@ namespace Mechanect.Screens
             {
                 DrawGrayScreen();
             }
-            if (result != null)
-                result.DislayIsWin(ScreenManager.SpriteBatch, aquariumReached && preyEaten);
+            if (ended && milliSeconds > 1000)
+                Tools3.DislayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width/2, ViewPort.Height/2), aquariumReached && preyEaten);
             DrawAngVelLabels();
             //each  array contains the information of one of the objects needing connectors to be drawn as follows: [positionToBeWrittenOnXandYAxises,Texture,PositionOfObject,ScalingOfTexture]
             object[] startAquariumArray = new object[4] { environment.Predator.Location, bowlTexture, startAquariumPosition, bowlTextureScaling };
@@ -699,13 +699,8 @@ namespace Mechanect.Screens
             if (ended)
             {
                 milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (milliSeconds > 1000)
-                {
-                    result = new WorL(Content, new Vector2(screenWidth/2 - 100 , screenHeight/2 - 100));
-                }
                 if (milliSeconds > 3000)
                 {
-                    result = null;
                     milliSeconds = 0;
                     ended = false;
                     tolerance -= 1;
