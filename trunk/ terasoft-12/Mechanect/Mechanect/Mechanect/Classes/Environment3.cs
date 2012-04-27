@@ -19,7 +19,18 @@ namespace Mechanect.Classes
         public Ball ball;
         public User3 user;
         private float wind;
-        public float friction;
+        private float friction;
+        public float Friction
+        {
+            set
+            {
+                friction = value;
+            }
+            get
+            {
+                return friction;
+            }
+        }
         private bool hasCollidedWithBall, ballShot;
         public static int angleTolerance { get; set; }
         public static int velocityTolerance { get; set; }
