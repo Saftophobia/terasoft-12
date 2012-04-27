@@ -13,7 +13,6 @@ namespace Mechanect.Classes
     class Ball
     {
         public CustomModel ballModel;
-
         ContentManager content;
         GraphicsDevice device;
         private Vector3 position;

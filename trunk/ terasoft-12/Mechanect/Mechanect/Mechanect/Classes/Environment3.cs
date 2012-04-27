@@ -22,6 +22,7 @@ namespace Mechanect.Classes
         private float friction;
         public float Friction
         {
+           
             set
             {
                 friction = value;
