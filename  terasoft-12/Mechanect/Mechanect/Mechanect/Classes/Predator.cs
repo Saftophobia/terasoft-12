@@ -23,7 +23,7 @@ namespace Mechanect.Classes
             }
         }
         
-        int size;
+        float size;
 
         Vector2 velocity;
         public Vector2 Velocity
@@ -35,6 +35,28 @@ namespace Mechanect.Classes
             set
             {
                 velocity = value;
+            }
+        }
+        public float VelocityX
+        {
+            get
+            {
+                return velocity.X;
+            }
+            set
+            {
+                velocity.X = value;
+            }
+        }
+        public float VelocitY
+        {
+            get
+            {
+                return velocity.Y;
+            }
+            set
+            {
+                velocity.Y = value;
             }
         }
 
