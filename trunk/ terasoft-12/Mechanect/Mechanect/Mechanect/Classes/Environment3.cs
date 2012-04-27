@@ -50,7 +50,6 @@ namespace Mechanect.Classes
         private Texture2D[] skyboxTextures;
         private Model skyboxModel;
         private ContentManager Content;
-        private WorL winner;
         private SpriteBatch sprite;
 
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
@@ -85,7 +84,6 @@ namespace Mechanect.Classes
             leftrightRot = MathHelper.PiOver2;
             updownRot = -MathHelper.Pi / 10.0f;
             angle = 0f;
-            winner = new WorL(Content2, Vector2.Zero);
         }
 
 
@@ -221,12 +219,12 @@ namespace Mechanect.Classes
             && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
             {
                 BallFallIntoHole();
-                winner.DislayIsWin(sprite, true);
+                Tools3.DislayIsWin(sprite,Content,Vector2.Zero, true);
             }
 
             else
             {
-                winner.DislayIsWin(sprite, false);
+                Tools3.DislayIsWin(sprite, Content, Vector2.Zero, false);
             }
         }
 
