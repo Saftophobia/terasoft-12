@@ -218,15 +218,7 @@ namespace Mechanect
         }
     
         
-        //static void Main(String[] args)
-        //{
-        //    String text = "mohamed raafah ahmed aboelhassieb";
-        //    Vector2 position = new Vector2(12f, 43f);
-        //    Game1 game = new Game1(text, position);
-        //    game.Run();
-
-        //}
-
+        
 
     }
 
