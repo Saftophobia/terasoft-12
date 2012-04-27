@@ -449,7 +449,7 @@ namespace Mechanect.Screens
             SpriteBatch.Draw(bowlTexture, DrawAtRectangleMidPoint(bowlTexture, destinationAquariumPosition, bowlTextureScaling), null, Color.White, 0f, Vector2.Zero, bowlTextureScaling, SpriteEffects.None, 0f);
             string meters = "meters";
             SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth * yAxisPercentage - 0.75f * spriteFont.MeasureString(meters).Y, 2 * spriteFont.MeasureString(meters).X * backgroundTextureScaling), Color.Red, MathHelper.ToRadians(-90), Vector2.Zero, backgroundTextureScaling, SpriteEffects.None, 0f);
-            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 1.75f, screenHeight - spriteFont.MeasureString(meters).Y / 1.5f), Color.Red, 0f, Vector2.Zero,  backgroundTextureScaling, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(velAngleFont, meters, new Vector2(screenWidth - spriteFont.MeasureString(meters).X / 1.55f, screenHeight - spriteFont.MeasureString(meters).Y / 1.5f), Color.Red, 0f, Vector2.Zero,  backgroundTextureScaling, SpriteEffects.None, 0f);
             if (!preyEaten)
                 SpriteBatch.Draw(preyTexture, DrawAtRectangleMidPoint(preyTexture, preyPosition, preyTextureScaling), null, Color.White, 0f, Vector2.Zero, preyTextureScaling, SpriteEffects.None, 0f);
             SpriteBatch.End();
@@ -497,8 +497,8 @@ namespace Mechanect.Screens
 
             if (grayScreen)
             {
-                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X * velocityTextureScaling / 2, screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling + spriteFont.MeasureString(velString).Y * velocityTextureScaling / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
-                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling + spriteFont.MeasureString(angString).Y * velocityTextureScaling), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - (spriteFont.MeasureString(velString).X * velocityTextureScaling) , screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling - (spriteFont.MeasureString(velString).Y * velocityTextureScaling) / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
+                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling/2), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling - spriteFont.MeasureString(angString).Y * velocityTextureScaling/4), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
             }
             else
             {
