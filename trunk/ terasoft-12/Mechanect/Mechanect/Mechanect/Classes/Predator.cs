@@ -82,7 +82,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>returns Vector2 Position of the Predator</returns>
 
 
         public Vector2 getLocation()
