@@ -31,7 +31,7 @@ namespace Mechanect.Classes
         /// <summary>
         /// the chase camera instance
         /// </summary>
-        public ChaseCamera camera { get; private set; }
+        public ChaseCamera Camera { get; private set; }
         private String velocity1;
         private String velocity2;
         private Boolean currentAnimation;
@@ -59,7 +59,7 @@ namespace Mechanect.Classes
             this.friction = friction;
             initialPosition = ball.position;
             animation = new ModelLinearAnimation(ball, shootVelocity, Tools3.calculateFriction(shootVelocity, friction), TimeSpan.FromSeconds(10), true);
-            camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
+            Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
             velocity1 = shootVelocity.ToString();
             velocity2 = optimalVelocity.ToString();
         }
@@ -70,22 +70,22 @@ namespace Mechanect.Classes
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            if (animation.animationStoped)
+            if (animation.AnimationStoped)
             {
                 if (!currentAnimation)
                 {
                     currentAnimation = true;
                     ball.position = initialPosition;
                     animation = new ModelLinearAnimation(ball, optimalVelocity, Tools3.calculateFriction(optimalVelocity, friction), TimeSpan.FromSeconds(10), true);
-                    camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
+                    Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, graphics);
                 }
                 return;
 
             }
             animation.Update(gameTime.ElapsedGameTime);
-            camera.Move(ball.position);
-            camera.Rotate(new Vector3(0, 0.005f, 0));
-            camera.Update();
+            Camera.Move(ball.position);
+            Camera.Rotate(new Vector3(0, 0.005f, 0));
+            Camera.Update();
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Mechanect.Classes
             graphics.BlendState = BlendState.Opaque;
             graphics.DepthStencilState = DepthStencilState.Default;
             graphics.SamplerStates[0] = SamplerState.LinearWrap;
-            ball.Draw(camera);
+            ball.Draw(Camera);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise);
             spriteBatch.DrawString(font, velocity1, new Vector2(5, 0), (!currentAnimation) ? Color.Red : fontColor, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0.5f);
