@@ -477,8 +477,8 @@ namespace Mechanect.Classes
              }
              double velocityFinal = 0;
              double deltaPosition = Math.Abs(currentZ - initialZ);
-             double acceleration = Tools3.getAcceleration(deltaPosition, Constants3.unitTime, Velocity);
-             velocityFinal = Tools3.getVelocity(acceleration, Velocity, Constants3.unitTime);
+             double acceleration = Tools3.GetAcceleration(deltaPosition, Constants3.unitTime, Velocity);
+             velocityFinal = Tools3.GetVelocity(acceleration, Velocity, Constants3.unitTime);
              if (Trying)
                  Velocity = Math.Max(Velocity, velocityFinal);
              else
