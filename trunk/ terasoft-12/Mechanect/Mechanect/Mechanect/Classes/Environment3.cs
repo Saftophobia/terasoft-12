@@ -125,8 +125,7 @@ namespace Mechanect.Classes
 
             var finalPos = Vector3.Zero;
             finalPos = ballFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
-            System.Diagnostics.Debug.WriteLine("finalPosX = " + finalPos.X);
-            System.Diagnostics.Debug.WriteLine("finalPosY = " + finalPos.Y);
+            
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
@@ -174,12 +173,6 @@ namespace Mechanect.Classes
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Subtract(hole.Position, new Vector3(1, 0, 0)); break;
                 }
             } while (x != Constants3.solvableExperiment);
-            System.Diagnostics.Debug.WriteLine("ball radius = " + ball.Radius);
-            System.Diagnostics.Debug.WriteLine("hole radius =  " + hole.Radius);
-            System.Diagnostics.Debug.WriteLine("leg mass = " + user.AssumedLegMass);
-            System.Diagnostics.Debug.WriteLine("ball mass = " + ball.Mass);
-            System.Diagnostics.Debug.WriteLine("friction = " + friction);
-            System.Diagnostics.Debug.WriteLine("hole position = " + hole.Position);
 
         }
 
@@ -201,7 +194,6 @@ namespace Mechanect.Classes
         /// </returns>
         private Vector3 ballFinalPosition(Vector3 velocity)
         {
-            System.Diagnostics.Debug.WriteLine("input velocity = " + velocity);
             var vxsquared = (float)Math.Pow(velocity.X, 2);
             var vzsquared = (float)Math.Pow(velocity.Z, 2);
             float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
@@ -655,7 +647,6 @@ namespace Mechanect.Classes
         /// <returns>Vector3 Ball velocity after collision.</returns>
         private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
-            System.Diagnostics.Debug.WriteLine("7elba input velocity" + initialVelocity);
             double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
 
             //Get the mass of the leg.
@@ -682,7 +673,7 @@ namespace Mechanect.Classes
             finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.MaxMass)))) / ballMass;
 
             //Return a vector containing the ball's speed and direction.
-            System.Diagnostics.Debug.WriteLine("7elba output" + new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle))));
+          
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
 
