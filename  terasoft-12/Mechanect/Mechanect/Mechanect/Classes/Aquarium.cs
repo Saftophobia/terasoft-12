@@ -59,7 +59,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>returns Vector2 postion of the Aquarium</returns>
         public Vector2 getLocation()
         {
             return location;
@@ -70,7 +70,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>returns the height of of Aquarium</returns>
         public float getHeight()
         {
             return length;
@@ -81,7 +81,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <returns></returns>
+        /// <returns>returns the width of the Aquarium</returns>
         public float getWidth()
         {
             return width;
