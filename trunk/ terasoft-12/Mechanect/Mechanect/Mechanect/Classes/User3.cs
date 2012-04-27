@@ -398,7 +398,7 @@ namespace Mechanect.Classes
 
                              if (hasPlayerMovedHisAnkle(this))
                              {
-                                 if (isMovingForward(skeleton, this))
+                                 if (IsMovingForward())
                                  {
                                      updateSpeed(this);
                                      updateAngle(this);
@@ -427,30 +427,29 @@ namespace Mechanect.Classes
          /// <summary>
          /// Checks if the User3 is currently moving their leg forward or not
          /// </summary>
-         /// <param name="skeleton">takes instance of class User3 to check if they are moving their leg forward</param>
          /// <returns>returns true iff the User3 moved his leg forward</returns>
 
-         public static bool isMovingForward(Skeleton skeleton, User3 User3)
+         public  bool IsMovingForward()
          {
-             if (skeleton != null)
+             if (this.USER != null)
              {
-                 double currentZ = User3.CurrentLeftLegPositionZ;
-                 double initialZ = User3.InitialLeftLegPositionZ;
-                 if (User3.RightLeg)
+                 double currentZ = CurrentLeftLegPositionZ;
+                 double initialZ = InitialLeftLegPositionZ;
+                 if (RightLeg)
                  {
-                     currentZ = User3.CurrentRightLegPositionZ;
-                     initialZ = User3.InitialRightLegPositionZ;
+                     currentZ = CurrentRightLegPositionZ;
+                     initialZ = InitialRightLegPositionZ;
                  }
 
                  if (currentZ - initialZ < (-1 * Constants3.legMovementTolerance))
                  {
-                     User3.MovedForward = true;
+                     MovedForward = true;
                      return true;
 
                  }
-                 if (!User3.MovedForward)
-                     if (User3.RightLeg) User3.InitialRightLegPositionZ = User3.CurrentRightLegPositionZ;
-                     else User3.InitialLeftLegPositionZ = User3.CurrentLeftLegPositionZ;
+                 if (!MovedForward)
+                     if (RightLeg) InitialRightLegPositionZ = CurrentRightLegPositionZ;
+                     else InitialLeftLegPositionZ = CurrentLeftLegPositionZ;
 
 
              }
