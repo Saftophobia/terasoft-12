@@ -11,7 +11,7 @@ namespace Mechanect.Classes
         public const float minVelocityX = 0.0f;
         public const float maxVelocityZ = 30.0f;
         public const float maxVelocityX = 30.0f;
-        public const float maxHolePosX = 1.0f;
+        public const float maxHolePosX = 60f;
         public const float maxHolePosZ = 1.0f;
         public const int negativeBRradius = 1;
         public const int negativeBMass = 2;
