@@ -45,7 +45,7 @@ namespace Mechanect.Classes
             this.radius = radius;
             this.terrainWidth = terrainWidth;
             this.terrainHeight = terrainHeight;
-            this.shootingPosition = shootingPosition;
+            shootingPosition = shootingPos ;
             SetHoleValues();
             hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3(0.1f), d);
         }
