@@ -159,10 +159,10 @@ namespace Mechanect.Classes
 
              List<float> user11Displacement = new List<float>();
              List<float> user12Displacement = new List<float>();
-             for (int i = (pastSecondsFor1 - 1) * 12; i < user11.Positions.Count; i++)
+             for (int i = (timeInSeconds - 1) * 12; i < user11.Positions.Count; i++)
                  user11Displacement.Add(user11.Positions[i]);
 
-             for (int i = (pastSecondsFor2 - 1) * 12; i < user12.Positions.Count; i++)
+             for (int i = (timeInSeconds - 1) * 12; i < user12.Positions.Count; i++)
                  user12Displacement.Add(user12.Positions[i]);
 
              //a condition in order not to get an OutOfBounds if the kinect sent wrong data

@@ -116,7 +116,7 @@ namespace Mechanect.Classes
             if (user.AssumedLegMass <= 0)
                 return Constants3.negativeLMass;
             //hole position not before the leg position
-            if (hole.Position.Z - user.ShootingPosition.Z < 0)
+            if (hole.Position.Z - user.ShootingPosition.Z > 0)
                 return Constants3.negativeHPosZ;
             if (friction <= 0)
                 return Constants3.negativeFriction;
