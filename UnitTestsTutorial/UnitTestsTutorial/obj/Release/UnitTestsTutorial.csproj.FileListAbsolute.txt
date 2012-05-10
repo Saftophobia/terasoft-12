@@ -1,0 +1,7 @@
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Release\UnitTestsTutorial.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Release\UnitTestsTutorial.pdb
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Release\nunit.framework.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Release\nunit.framework.xml
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Release\ResolveAssemblyReference.cache
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Release\UnitTestsTutorial.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Release\UnitTestsTutorial.pdb
