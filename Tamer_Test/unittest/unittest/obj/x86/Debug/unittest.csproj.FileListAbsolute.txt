@@ -1,0 +1,7 @@
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\bin\Debug\unittest.exe
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\bin\Debug\unittest.pdb
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\bin\Debug\nunit.framework.dll
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\bin\Debug\nunit.framework.xml
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\obj\x86\Debug\unittest.exe
+C:\Users\Tamerko-pc\documents\visual studio 2010\Projects\unittest\unittest\obj\x86\Debug\unittest.pdb
