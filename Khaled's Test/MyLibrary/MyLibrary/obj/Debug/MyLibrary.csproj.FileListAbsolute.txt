@@ -1,0 +1,7 @@
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\bin\Debug\MyLibrary.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\bin\Debug\MyLibrary.pdb
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\bin\Debug\nunit.framework.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\bin\Debug\nunit.framework.xml
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\obj\Debug\MyLibrary.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\MyLibrary\MyLibrary\obj\Debug\MyLibrary.pdb
