@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1002]C:\Users\User\Documents\Visual Studio 2010\Projects\UnitTests2\UnitTests2\bin\Release\UnitTests2.dll</TopNode>
+  <SelectedNode>[0-1001]UnitTests2.FactorialTest.checkFactorial</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1002]C:\Users\User\Documents\Visual Studio 2010\Projects\UnitTests2\UnitTests2\bin\Release\UnitTests2.dll" Expanded="true" />
+    <Node UniqueName="[0-1003]UnitTests2" Expanded="true" />
+    <Node UniqueName="[0-1000]UnitTests2.FactorialTest" Expanded="true" />
+  </Nodes>
+</VisualState>
