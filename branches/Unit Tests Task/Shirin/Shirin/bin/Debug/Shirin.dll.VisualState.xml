@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1002]C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\Shirin\Shirin\bin\Debug\Shirin.dll</TopNode>
+  <SelectedNode>[0-1001]Shirin.Test.test</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1002]C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\Shirin\Shirin\bin\Debug\Shirin.dll" Expanded="true" />
+    <Node UniqueName="[0-1003]Shirin" Expanded="true" />
+    <Node UniqueName="[0-1000]Shirin.Test" Expanded="true" />
+  </Nodes>
+</VisualState>
