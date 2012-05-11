@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\Michel\Desktop\Unit Tests Task\Michel's Test\Michel's Task\bin\Debug\Michel's Task.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-05-11" time="13:37:33">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0" machine-name="MICHEL-HP" user="Michel" user-domain="Michel-HP" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\Michel\Desktop\Unit Tests Task\Michel's Test\Michel's Task\bin\Debug\Michel's Task.dll" executed="True" result="Success" success="True" time="0.069" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Michel_s_Task" executed="True" result="Success" success="True" time="0.054" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="TheTest" executed="True" result="Success" success="True" time="0.051" asserts="0">
+            <results>
+              <test-case name="Michel_s_Task.TheTest.Test1" executed="True" result="Success" success="True" time="0.035" asserts="7" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
