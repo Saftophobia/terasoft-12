@@ -1,0 +1,28 @@
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.dll
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.pdb
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.dll
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.xml
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.dll
+C:\Users\Ahmed\Documents\Visual Studio 2010\Projects\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.pdb
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.pdb
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.xml
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\ResolveAssemblyReference.cache
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.dll
+F:\SE\branches\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.pdb
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.dll
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.dll
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.pdb
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.dll
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\bin\Debug\nunit.framework.xml
+C:\Users\Ahmed\Desktop\UnitTestsTutorial\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.pdb
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.dll
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\bin\Debug\UnitTestsTutorial.pdb
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\bin\Debug\nunit.framework.dll
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\bin\Debug\nunit.framework.xml
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\obj\Debug\ResolveAssemblyReference.cache
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.dll
+D:\terasoft-12\branches\Unit Tests Task\Badr's Test\UnitTestsTutorial\obj\Debug\UnitTestsTutorial.pdb
