@@ -1,0 +1,7 @@
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\bin\Debug\Shirin.dll
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\bin\Debug\Shirin.pdb
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\bin\Debug\nunit.framework.dll
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\bin\Debug\nunit.framework.xml
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\obj\Debug\Shirin.dll
+C:\Users\Ahmed\documents\visual studio 2010\Projects\Shirin\Shirin\obj\Debug\Shirin.pdb
