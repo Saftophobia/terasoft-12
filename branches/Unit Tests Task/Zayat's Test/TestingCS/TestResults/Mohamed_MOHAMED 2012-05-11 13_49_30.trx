@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="6d5cf705-2f5c-49fd-b704-f8d229864106" name="Mohamed@MOHAMED 2012-05-11 13:49:30" runUser="MOHAMED\Mohamed" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c52ac5aa-f707-46a9-8652-b2151f13af2b">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment userDeploymentRoot="c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestResults" useDefaultDeploymentRoot="false" enabled="false" runDeploymentRoot="Mohamed_MOHAMED 2012-05-11 13_49_30">
+      <DeploymentItem filename="c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\bin\Debug\TestingCS.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-05-11T13:49:30.8197403+02:00" queuing="2012-05-11T13:49:30.9357472+02:00" start="2012-05-11T13:49:31.0007510+02:00" finish="2012-05-11T13:49:31.3757728+02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethodFibDP" storage="c:\users\mohamed\documents\visual studio 2010\projects\testingcs\test_testingcs\bin\debug\test_testingcs.dll" id="f4372c0f-a1d7-862f-477e-8ce0148b152f">
+      <Execution id="34e27d20-6d34-4fb1-849e-6c6df9f81d41" />
+      <TestMethod codeBase="c:/users/mohamed/documents/visual studio 2010/Projects/TestingCS/Test_TestingCs/bin/Debug/Test_TestingCs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Test_TestingCs.TestFib, Test_TestingCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethodFibDP" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="f4372c0f-a1d7-862f-477e-8ce0148b152f" executionId="34e27d20-6d34-4fb1-849e-6c6df9f81d41" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="34e27d20-6d34-4fb1-849e-6c6df9f81d41" testId="f4372c0f-a1d7-862f-477e-8ce0148b152f" testName="TestMethodFibDP" computerName="MOHAMED" duration="00:00:00.0371544" startTime="2012-05-11T13:49:31.0087514+02:00" endTime="2012-05-11T13:49:31.3207712+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34e27d20-6d34-4fb1-849e-6c6df9f81d41">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method Test_TestingCs.TestFib.TestMethodFibDP threw exception: 
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index</Message>
+          <StackTrace>    at System.ThrowHelper.ThrowArgumentOutOfRangeException()
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at TestingCS.Fib.fibDP(Int32 n) in c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\Fib.cs:line 42
+   at Test_TestingCs.TestFib.TestMethodFibDP() in c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\TestFib.cs:line 82
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

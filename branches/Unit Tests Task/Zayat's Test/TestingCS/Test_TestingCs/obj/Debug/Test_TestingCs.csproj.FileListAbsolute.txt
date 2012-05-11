@@ -1,0 +1,14 @@
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\bin\Debug\Test_TestingCs.dll
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\bin\Debug\Test_TestingCs.pdb
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.csprojResolveAssemblyReference.cache
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.dll
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.pdb
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\bin\Debug\TestingCS.exe
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\Test_TestingCs\bin\Debug\TestingCS.pdb
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\bin\Debug\Test_TestingCs.dll
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\bin\Debug\Test_TestingCs.pdb
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\bin\Debug\TestingCS.exe
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\bin\Debug\TestingCS.pdb
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.csprojResolveAssemblyReference.cache
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.dll
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\Test_TestingCs\obj\Debug\Test_TestingCs.pdb

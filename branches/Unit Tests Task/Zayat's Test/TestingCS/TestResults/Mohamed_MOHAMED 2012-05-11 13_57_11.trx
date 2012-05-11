@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="6c8103ce-ceba-40d1-8ddc-1ffced5a9be7" name="Mohamed@MOHAMED 2012-05-11 13:57:11" runUser="MOHAMED\Mohamed" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c52ac5aa-f707-46a9-8652-b2151f13af2b">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Mohamed_MOHAMED 2012-05-11 13_57_11">
+      <DeploymentItem filename="c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\bin\Debug\TestingCS.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-05-11T13:57:11.5413892+02:00" queuing="2012-05-11T13:57:11.5453761+02:00" start="2012-05-11T13:57:11.5733768+02:00" finish="2012-05-11T13:57:15.9429431+02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="2" executed="2" passed="2" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethodFib" storage="c:\users\mohamed\documents\visual studio 2010\projects\testingcs\test_testingcs\bin\debug\test_testingcs.dll" id="9c573486-f987-c21a-deca-d993e64ca37e">
+      <Execution id="ddf996dc-25ca-4dea-8a9a-48ba952f6864" />
+      <TestMethod codeBase="C:/Users/Mohamed/Documents/Visual Studio 2010/Projects/TestingCS/Test_TestingCs/bin/Debug/Test_TestingCs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Test_TestingCs.TestFib, Test_TestingCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethodFib" />
+    </UnitTest>
+    <UnitTest name="TestMethodFibDP" storage="c:\users\mohamed\documents\visual studio 2010\projects\testingcs\test_testingcs\bin\debug\test_testingcs.dll" id="f4372c0f-a1d7-862f-477e-8ce0148b152f">
+      <Execution id="a8885524-ad90-4de4-b2af-160c8d49ca28" />
+      <TestMethod codeBase="C:/Users/Mohamed/Documents/Visual Studio 2010/Projects/TestingCS/Test_TestingCs/bin/Debug/Test_TestingCs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Test_TestingCs.TestFib, Test_TestingCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethodFibDP" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="9c573486-f987-c21a-deca-d993e64ca37e" executionId="ddf996dc-25ca-4dea-8a9a-48ba952f6864" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f4372c0f-a1d7-862f-477e-8ce0148b152f" executionId="a8885524-ad90-4de4-b2af-160c8d49ca28" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ddf996dc-25ca-4dea-8a9a-48ba952f6864" testId="9c573486-f987-c21a-deca-d993e64ca37e" testName="TestMethodFib" computerName="MOHAMED" duration="00:00:04.0417723" startTime="2012-05-11T13:57:11.6023791+02:00" endTime="2012-05-11T13:57:15.8836247+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ddf996dc-25ca-4dea-8a9a-48ba952f6864">
+    </UnitTestResult>
+    <UnitTestResult executionId="a8885524-ad90-4de4-b2af-160c8d49ca28" testId="f4372c0f-a1d7-862f-477e-8ce0148b152f" testName="TestMethodFibDP" computerName="MOHAMED" duration="00:00:00.0015144" startTime="2012-05-11T13:57:15.8876236+02:00" endTime="2012-05-11T13:57:15.8946247+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a8885524-ad90-4de4-b2af-160c8d49ca28">
+    </UnitTestResult>
+  </Results>
+</TestRun>
