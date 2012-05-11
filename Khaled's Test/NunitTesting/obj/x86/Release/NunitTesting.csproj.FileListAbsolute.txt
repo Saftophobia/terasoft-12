@@ -1,1 +1,0 @@
-C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\obj\x86\Release\ResolveAssemblyReference.cache
