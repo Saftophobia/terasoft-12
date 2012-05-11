@@ -1,0 +1,7 @@
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\bin\Release\UnitTests2.dll
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\bin\Release\UnitTests2.pdb
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\bin\Release\nunit.framework.dll
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\bin\Release\nunit.framework.xml
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\obj\Release\ResolveAssemblyReference.cache
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\obj\Release\UnitTests2.dll
+C:\Users\User\AppData\Local\Temporary Projects\UnitTests2\obj\Release\UnitTests2.pdb

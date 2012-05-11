@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\User\Documents\Visual Studio 2010\Projects\UnitTests2\UnitTests2\bin\Release\UnitTests2.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-05-11" time="13:31:35">
+  <environment nunit-version="2.5.10.11092" clr-version="2.0.50727.5448" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0" machine-name="USER-PC" user="User" user-domain="User-PC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\User\Documents\Visual Studio 2010\Projects\UnitTests2\UnitTests2\bin\Release\UnitTests2.dll" executed="True" result="Success" success="True" time="0.091" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="UnitTests2" executed="True" result="Success" success="True" time="0.076" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="FactorialTest" executed="True" result="Success" success="True" time="0.072" asserts="0">
+            <results>
+              <test-case name="UnitTests2.FactorialTest.checkFactorial" executed="True" result="Success" success="True" time="0.038" asserts="2" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
