@@ -1,0 +1,14 @@
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\bin\Debug\TestingCS.exe
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\bin\Debug\TestingCS.pdb
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\obj\x86\Debug\TestingCS.Properties.Resources.resources
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\obj\x86\Debug\TestingCS.csproj.GenerateResource.Cache
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\obj\x86\Debug\TestingCS.exe
+c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\obj\x86\Debug\TestingCS.pdb
+C:\Users\Mohamed\Documents\Visual Studio 2010\Projects\TestingCS\TestingCS\obj\x86\Debug\TestingCS.csprojResolveAssemblyReference.cache
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\obj\x86\Debug\TestingCS.exe
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\obj\x86\Debug\TestingCS.pdb
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\bin\Debug\TestingCS.exe
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\bin\Debug\TestingCS.pdb
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\obj\x86\Debug\TestingCS.csprojResolveAssemblyReference.cache
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\obj\x86\Debug\TestingCS.Properties.Resources.resources
+E:\terasoft-12\branches\Unit Tests Task\Zayat's Test\TestingCS\TestingCS\obj\x86\Debug\TestingCS.csproj.GenerateResource.Cache

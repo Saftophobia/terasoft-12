@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="ee44b9d5-c91e-40b5-a571-d5d9730d1a3e" name="Mohamed@MOHAMED 2012-05-11 13:54:50" runUser="MOHAMED\Mohamed" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="c52ac5aa-f707-46a9-8652-b2151f13af2b">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Mohamed_MOHAMED 2012-05-11 13_54_50">
+      <DeploymentItem filename="c:\users\mohamed\documents\visual studio 2010\Projects\TestingCS\TestingCS\bin\Debug\TestingCS.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-05-11T13:54:50.0542755+02:00" queuing="2012-05-11T13:54:50.0572758+02:00" start="2012-05-11T13:54:50.0712773+02:00" finish="2012-05-11T13:54:54.3085186+02:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethodFib" storage="c:\users\mohamed\documents\visual studio 2010\projects\testingcs\test_testingcs\bin\debug\test_testingcs.dll" id="9c573486-f987-c21a-deca-d993e64ca37e">
+      <Execution id="caa56dae-7ec3-4551-907e-0617b7e8a937" />
+      <TestMethod codeBase="c:/users/mohamed/documents/visual studio 2010/Projects/TestingCS/Test_TestingCs/bin/Debug/Test_TestingCs.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Test_TestingCs.TestFib, Test_TestingCs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethodFib" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="9c573486-f987-c21a-deca-d993e64ca37e" executionId="caa56dae-7ec3-4551-907e-0617b7e8a937" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="caa56dae-7ec3-4551-907e-0617b7e8a937" testId="9c573486-f987-c21a-deca-d993e64ca37e" testName="TestMethodFib" computerName="MOHAMED" duration="00:00:03.9958486" startTime="2012-05-11T13:54:50.1002780+02:00" endTime="2012-05-11T13:54:54.2865182+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="caa56dae-7ec3-4551-907e-0617b7e8a937">
+    </UnitTestResult>
+  </Results>
+</TestRun>
