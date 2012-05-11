@@ -1,0 +1,7 @@
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\bin\Debug\NunitTesting.exe
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\bin\Debug\NunitTesting.pdb
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\bin\Debug\nunit.framework.dll
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\bin\Debug\nunit.framework.xml
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\obj\x86\Debug\NunitTesting.exe
+C:\Users\user\documents\visual studio 2010\Projects\NunitTesting\NunitTesting\obj\x86\Debug\NunitTesting.pdb
