@@ -1,0 +1,7 @@
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\bin\Debug\Michel's Task.dll
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\bin\Debug\Michel's Task.pdb
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\bin\Debug\nunit.framework.dll
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\bin\Debug\nunit.framework.xml
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\obj\Debug\Michel's Task.dll
+C:\Users\Michel\Desktop\Michel's Task\Michel's Task\Michel's Task\obj\Debug\Michel's Task.pdb
