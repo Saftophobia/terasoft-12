@@ -71,6 +71,9 @@ namespace Mechanect
         private float previousDisp;
         private float previousVelo;
         private float previousAcc;
+        private double player1Win;
+        private double player2Win;
+        private double player3Win;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -264,6 +267,7 @@ namespace Mechanect
             GetOptimum((double)player1disqtime, (double)player2disqtime);
             Discard();
             SetNewTime(time, Commands);
+            GetWinning();
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
@@ -345,6 +349,8 @@ namespace Mechanect
         /// <summary>
         /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line.
         /// </summary>
+        /// <param name="time">A list representing each command's time slice</param>
+        /// <param name="Commands">A list representing each command given during the race</param>
         /// <returns>void.</returns>
         public void SetNewTime(List<double> time, List<string> Commands)
         {
@@ -375,6 +381,49 @@ namespace Mechanect
                 if (acc >= newTime)
                 {
                     t = true;
+                }
+            }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function GetWinning determines the times at which each player reaches the finish line.
+        /// </summary>
+        /// <returns>void.</returns>
+        public void GetWinning()
+        {
+            Boolean found1 = false;
+            Boolean found2 = false;
+            Boolean found3 = false;
+            for (int i = 0; i <= player1Displacement.Count - 1; i++)
+            {
+                if (!found1)
+                {
+                    if (player1Displacement[i] == 0)
+                    {
+                        player1Win = (double)i / (double)12;
+                        found1 = true;
+                    }
+                }
+                if (!found2)
+                {
+                    if (player2Displacement[i] == 0)
+                    {
+                        player2Win = (double)i / (double)12;
+                        found2 = true;
+                    }
+                }
+                if (!found3)
+                {
+                    if (optimumDisplacement[i] == 0)
+                    {
+                        player3Win = (double)i / (double)12;
+                        found3 = true;
+                    }
                 }
             }
         }
