@@ -22,6 +22,8 @@ namespace Mechanect
         private int xPoint2;
         private int yPoint2;
         private Color curveColor;
+        private int samples;
+        private int distance;  
         private List<float> player1Displacement;
         private List<float> player2Displacement;
         private List<float> player1Velocity;
@@ -74,6 +76,7 @@ namespace Mechanect
         private double player1Win;
         private double player2Win;
         private double player3Win;
+        private float[,] chosen;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -88,6 +91,65 @@ namespace Mechanect
 
         public PerformanceGraph()
         {
+
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/4/2012</para>
+        /// <para>Date Modified 23/4/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function Initialize determines the optimal number of points to be represented on the graph.
+        /// </summary>
+        /// <param></param>        
+        /// <returns>void</returns>
+        public void Initialize()
+        {
+            if (totalTime <= 1)
+            {
+                samples = 8;
+            }
+            if (totalTime > 1 && totalTime <= 2)
+            {
+                samples = 16;
+            }
+            if (totalTime > 2 && totalTime <= 5)
+            {
+                samples = 32;
+            }
+            if (totalTime > 5 && totalTime <= 10)
+            {
+                samples = 64;
+            }
+            if (totalTime > 10 && totalTime <= 21)
+            {
+                samples = 128;
+            }
+            if (totalTime > 21)
+            {
+                samples = 256;
+            }
+            switch (samples)
+            {
+                case 256: distance = 1; break;
+                case 128: distance = 2; break;
+                case 64: distance = 4; break;
+                case 32: distance = 8; break;
+                case 16: distance = 16; break;
+                case 8: distance = 32; break;
+                case 4: distance = 64; break;
+            }
+            chosen = new float[9, samples + 1];
+            disp1 = new PerformanceGraph[samples];
+            disp2 = new PerformanceGraph[samples];
+            velo1 = new PerformanceGraph[samples];
+            velo2 = new PerformanceGraph[samples];
+            acc1 = new PerformanceGraph[samples];
+            acc2 = new PerformanceGraph[samples];
+            optD = new PerformanceGraph[samples];
+            optV = new PerformanceGraph[samples];
+            optA = new PerformanceGraph[samples];
         }
 
         /// <remarks>
@@ -269,6 +331,7 @@ namespace Mechanect
             SetNewTime(time, Commands);
             GetWinning();
             CalculateTotalTime();
+            Initialize();
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
