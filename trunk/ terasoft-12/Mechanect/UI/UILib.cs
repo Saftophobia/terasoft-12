@@ -6,10 +6,8 @@ using System.Speech.Synthesis;
 
 namespace UI
 {
-    public class Class1
+    public static class UILib
     {
-
-        static SpeechSynthesizer synth = new SpeechSynthesizer();
 
         /// <summary>
         /// This method takes a string of text and reads it to the user.
@@ -19,21 +17,24 @@ namespace UI
         /// <para>DATE WRITTEN: May, 13 </para>
         /// <para>DATE MODIFIED: May, 13  </para>
         /// </remarks>
-        /// <param name="text">The string of text to be said.</param>
-        /// <returns> True if the string was said and false if it wasn't.</returns>
+        /// <param name="text">The string of text to be read out loud.</param>
+        /// <returns> true if the string was said and false if it wasn't.</returns>
         public static bool SayText(string text)
         {
+            SpeechSynthesizer synth = new SpeechSynthesizer();
             try
             {
                 synth.Volume = 100;
                 synth.SpeakAsync(text);
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
 
         }
+
+        
     }
 }
