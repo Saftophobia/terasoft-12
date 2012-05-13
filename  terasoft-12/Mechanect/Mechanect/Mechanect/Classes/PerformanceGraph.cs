@@ -262,6 +262,7 @@ namespace Mechanect
             player1Acceleration = GetPlayerAcceleration(player1Velocity);
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
             GetOptimum((double)player1disqtime, (double)player2disqtime);
+            Discard();
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
@@ -301,6 +302,39 @@ namespace Mechanect
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function Discard drops the frames received after the instance when all the players including
+        /// the optimum player have reached the finish line.
+        /// </summary>
+        /// <returns>void.</returns>
+        public void Discard()
+        {
+            Boolean found = false;
+            List<float> temp1 = new List<float>();
+            List<float> temp2 = new List<float>();
+            List<float> temp3 = new List<float>();
+            for (int i = 0; i <= player1Displacement.Count - 1; i++)
+            {
+                if (!found)
+                {
+                    temp1.Add(player1Displacement[i]);
+                    temp2.Add(player2Displacement[i]);
+                    temp3.Add(optimumDisplacement[i]);
+                    if (player1Displacement[i] == 0 && player2Displacement[i] == 0 && optimumDisplacement[i] == 0)
+                    {
+                        found = true;
+                    }
+                }
+            }
+            player1Displacement = temp1;
+            player2Displacement = temp2;
+            optimumDisplacement = temp3;
+        }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
