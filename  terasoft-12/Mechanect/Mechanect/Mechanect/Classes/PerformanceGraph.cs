@@ -688,11 +688,11 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function SetDestinations is used to create 16 instances of the PerformanceGraph class for each graph giving
-        /// it the initial and final points to be connected in order to represent each graph by 16 connected lines.
+        /// The function SetDestinations is used to create instances of the PerformanceGraph class for each graph giving
+        /// it the initial and final points to be connected in order to represent each graph by connecting the points.
         /// </summary>
         /// <param name="Width">The width of the screen.</param>
         /// <param name="Height">The height of the screen.</param>
