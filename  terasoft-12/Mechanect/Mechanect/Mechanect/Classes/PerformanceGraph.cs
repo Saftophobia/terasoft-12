@@ -77,6 +77,7 @@ namespace Mechanect
         private double player2Win;
         private double player3Win;
         private float[,] chosen;
+        private int trackLength = 4000;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -96,8 +97,8 @@ namespace Mechanect
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function Initialize determines the optimal number of points to be represented on the graph.
@@ -515,27 +516,26 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function Choose is used to pick only 17 evenly distributed seconds among the total race time
-        /// in order to represent each graph's range versus the chosen seconds.
+        /// The function Choose is used to choose a certain number of samples from the Lists in order to represent them on the graph.
         /// </summary>
         /// <param></param>         
         /// <returns>void</returns>
         public void Choose()
         {
-            chosenTimings = new int[17];
+            chosenTimings = new int[samples + 1];
             int timeCounter = 0;
             for (int i = 0; i <= chosenTimings.Length - 1; i++)
             {
-                chosenTimings[i] = (int)(12 * totalTime * ((double)timeCounter / (double)16));
+                chosenTimings[i] = (int)(12 * totalTime * ((double)timeCounter / (double)samples));
                 timeCounter++;
             }
             int u = 0;
-            for (int i = 0; i <= chosenDisp1.Length - 1; i++)
+            for (int i = 0; i <= samples; i++)
             {
-                if (i > 0)
+                if (i > 0 && chosenTimings[i] - 1 >= 0)
                 {
                     u = chosenTimings[i] - 1;
                 }
@@ -543,27 +543,27 @@ namespace Mechanect
                 {
                     u = chosenTimings[i];
                 }
-                chosenDisp1[i] = player1Displacement[u];
-                chosenDisp2[i] = player2Displacement[u];
-                chosenVelocity1[i] = player1Velocity[u];
-                chosenVelocity2[i] = player2Velocity[u];
-                chosenAcceleration1[i] = player1Acceleration[u];
-                chosenAcceleration2[i] = player2Acceleration[u];
-                chosenOptD[i] = optimumDisplacement[u];
-                chosenOptV[i] = optimumVelocity[u];
-                chosenOptA[i] = optimumAcceleration[u];
+
+                chosen[0, i] = player1Displacement[u];
+                chosen[1, i] = player2Displacement[u];
+                chosen[2, i] = player1Velocity[u];
+                chosen[3, i] = player2Velocity[u];
+                chosen[4, i] = player1Acceleration[u];
+                chosen[5, i] = player2Acceleration[u];
+                chosen[6, i] = optimumDisplacement[u];
+                chosen[7, i] = optimumVelocity[u];
+                chosen[8, i] = optimumAcceleration[u];
             }
         }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function SetMaximum is used to derive the maximum velocity and the maximum acceleration
-        /// of both players and the optimum player during the race in order to set the maximum point on 
-        /// each graph's y-axis according to these values.
+        /// The function SetMaximum is used to derive the maximum velocity and the maximum acceleration of both players and the optimum player during 
+        /// the race.
         /// </summary>
         /// <param></param>        
         /// <returns>void</returns>
@@ -571,38 +571,118 @@ namespace Mechanect
         {
             maxVelocity = 0;
             maxAcceleration = 0;
-            List<float> temporaryList1 = new List<float>();
-            List<float> temporaryList2 = new List<float>();
-            for (int i = 0; i <= chosenOptD.Length - 1; i++)
+            int p1WinningFrame = (int)(12 * player1Win);
+            int p2WinningFrame = (int)(12 * player2Win);
+            int p3WinningFrame = (int)(12 * player3Win);
+            for (int i = 0; i <= samples; i++)
             {
-                temporaryList1.Clear();
-                temporaryList2.Clear();
-                temporaryList1.Add(chosenOptV[i]);
-                temporaryList2.Add(chosenOptA[i]);
-                temporaryList1.Add(chosenVelocity1[i]);
-                temporaryList2.Add(chosenAcceleration1[i]);
-                temporaryList1.Add(chosenVelocity2[i]);
-                temporaryList2.Add(chosenAcceleration2[i]);
-                for (int j = 0; j <= temporaryList1.Count - 1; j++)
+                float[] velocity = new float[3];
+                float[] acceleration = new float[3];
+                velocity[0] = chosen[2, i];
+                velocity[1] = chosen[3, i];
+                velocity[2] = chosen[7, i];
+                acceleration[0] = chosen[4, i];
+                acceleration[1] = chosen[5, i];
+                acceleration[2] = chosen[8, i];
+                for (int j = 0; j <= 2; j++)
                 {
-                    if (temporaryList1[j] < 0)//to get maximum negative value
+                    if (velocity[j] < 0)
                     {
-                        temporaryList1[j] *= -1;
+                        velocity[j] *= -1;
                     }
-                    if (temporaryList2[j] < 0)
+                    if (acceleration[j] < 0)
                     {
-                        temporaryList2[j] *= -1;
+                        acceleration[j] *= -1;
                     }
-                    if (temporaryList1[j] > maxVelocity)
+                    if (velocity[j] > maxVelocity)
                     {
-                        maxVelocity = temporaryList1[j];
+                        if (j == 0 && chosenTimings[i] <= p1WinningFrame)
+                        {
+                            maxVelocity = velocity[j];
+                        }
+                        if (j == 1 && chosenTimings[i] <= p2WinningFrame)
+                        {
+                            maxVelocity = velocity[j];
+                        }
+                        if (j == 2 && chosenTimings[i] <= p3WinningFrame)
+                        {
+                            maxVelocity = velocity[j];
+                        }
                     }
-                    if (temporaryList2[j] > maxAcceleration)
+                    if (acceleration[j] > maxAcceleration)
                     {
-                        maxAcceleration = temporaryList2[j];
+                        if (j == 0 && chosenTimings[i] <= p1WinningFrame)
+                        {
+                            maxAcceleration = acceleration[j];
+                        }
+                        if (j == 1 && chosenTimings[i] <= p2WinningFrame)
+                        {
+                            maxAcceleration = acceleration[j];
+                        }
+                        if (j == 2 && chosenTimings[i] <= p3WinningFrame)
+                        {
+                            maxAcceleration = acceleration[j];
+                        }
                     }
                 }
             }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function GetChosenArray returnes the required array given its index.
+        /// </summary>
+        /// <param name="x">The index of the required array</param>        
+        /// <returns>void</returns>
+        public float[] GetChosenArray(int x)
+        {
+            float[] temporary = new float[samples + 1];
+            for (int i = 0; i <= temporary.Length - 1; i++)
+            {
+                temporary[i] = chosen[x, i];
+            }
+            return temporary;
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function GetTotalLinesNeeded returnes the optimal number of lines to be drawn on the graph.
+        /// </summary>
+        /// <param name="player">The required player's number.</param>        
+        /// <returns>void</returns>
+        public int GetTotalLinesNeeded(int player)
+        {
+            int x = samples;
+            double accumulator = 0;
+            double temp = 0;
+            switch (player)
+            {
+                case 1: temp = player1Win; break;
+                case 2: temp = player2Win; break;
+                case 3: temp = player3Win; break;
+            }
+            Boolean found = false;
+            for (int i = 0; i <= samples - 1; i++)
+            {
+                accumulator += ((double)distance / (double)256) * ((double)(totalTime));
+                if (!found)
+                {
+                    if (accumulator >= temp)
+                    {
+                        x = i;
+                        found = true;
+                    }
+                }
+            }
+            return x;
         }
 
         /// <remarks>
@@ -619,6 +699,9 @@ namespace Mechanect
         /// <returns>void</returns>
         public void SetDestinations(int Width, int Height)
         {
+            int Lines1 = GetTotalLinesNeeded(1) - 1;
+            int Lines2 = GetTotalLinesNeeded(2) - 1;
+            int Lines3 = GetTotalLinesNeeded(3) - 1;
             int counter1 = 0;
             float value = 0;
             double r = 0;
@@ -627,34 +710,36 @@ namespace Mechanect
                 PerformanceGraph[] current = new PerformanceGraph[16];
                 float[] temporary = new float[17];
                 List<int> disqList = new List<int>();
+                int index = 0;
                 Color color = new Color();
+                int player = 0;
                 switch (j)
                 {
-                    case 0: counter1 = 50; value = 4000; current = disp1; color = Color.Red; temporary = chosenDisp1; disqList = p1DispGraph; break;
-                    case 1: counter1 = 50; value = 4000; current = disp2; color = Color.Blue; temporary = chosenDisp2; disqList = p2DispGraph; break;
-                    case 2: counter1 = 50; value = 4000; current = optD; color = Color.Yellow; temporary = chosenOptD; break;
-                    case 3: counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; temporary = chosenVelocity1; disqList = p1VeloGraph; break;
-                    case 4: counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; temporary = chosenVelocity2; disqList = p2VeloGraph; break;
-                    case 5: counter1 = 380; value = maxVelocity; current = optV; color = Color.Yellow; temporary = chosenOptV; break;
-                    case 6: counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; temporary = chosenAcceleration1; disqList = p1AccGraph; break;
-                    case 7: counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; temporary = chosenAcceleration2; disqList = p2AccGraph; break;
-                    case 8: counter1 = 710; value = maxAcceleration; current = optA; color = Color.Yellow; temporary = chosenOptA; break;
+                    case 0: player = 1; counter1 = 50; value = trackLength; current = disp1; color = Color.Red; index = 0; disqList = p1DispGraph; break;
+                    case 1: player = 2; counter1 = 50; value = trackLength; current = disp2; color = Color.Blue; index = 1; disqList = p2DispGraph; break;
+                    case 2: player = 3; counter1 = 50; value = trackLength; current = optD; color = Color.Yellow; index = 6; break;
+                    case 3: player = 1; counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; index = 2; disqList = p1VeloGraph; break;
+                    case 4: player = 2; counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; index = 3; disqList = p2VeloGraph; break;
+                    case 5: player = 3; counter1 = 380; value = maxVelocity; current = optV; color = Color.Yellow; index = 7; break;
+                    case 6: player = 1; counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; index = 4; disqList = p1AccGraph; break;
+                    case 7: player = 2; counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; index = 5; disqList = p2AccGraph; break;
+                    case 8: player = 3; counter1 = 710; value = maxAcceleration; current = optA; color = Color.Yellow; index = 8; break;
                 }
+                temporary = GetChosenArray(index);
                 r = (double)value / (double)232;
-
-                for (int i = 0; i <= 15; i++)
+                for (int i = 0; i <= samples - 1; i++)
                 {
-                    int a1 = 118;
-                    int a2 = 118;
+                    int a1 = 68;
+                    int a2 = 68;
                     if (j > 2)
                     {
                         if (temporary[i] < 0)
                         {
-                            a1 = 134;
+                            a1 = 84;
                         }
                         if (temporary[i + 1] < 0)
                         {
-                            a2 = 134;
+                            a2 = 84;
                         }
                     }
                     double r2 = 0; double r4 = 0;
@@ -676,9 +761,14 @@ namespace Mechanect
                     }
                     int r3 = a1 + (int)r2;
                     int r5 = a2 + (int)r4;
-                    current[i] = new PerformanceGraph(counter1, r3, counter1 + 16, r5, Width,
+                    current[i] = new PerformanceGraph(counter1, r3 - 1, counter1 + distance, r5 - 1, Width,
                         Height, color);
-                    counter1 = counter1 + 16;
+                    if (((player == 1 && i > Lines1) || (player == 2 && i > Lines2) || (player == 3 && i > Lines3)) && j > 2)
+                    {
+                        current[i] = new PerformanceGraph(0, 0, 0, 0, 0,
+                        Height, color);
+                    }
+                    counter1 = counter1 + distance;
                     if (j != 2 && j != 5 && j != 8)
                     {
                         if (i == 0)
@@ -690,6 +780,7 @@ namespace Mechanect
                 }
             }
         }
+
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
