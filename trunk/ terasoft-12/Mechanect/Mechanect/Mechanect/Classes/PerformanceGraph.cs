@@ -268,6 +268,7 @@ namespace Mechanect
             Discard();
             SetNewTime(time, Commands);
             GetWinning();
+            CalculateTotalTime();
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
@@ -347,7 +348,8 @@ namespace Mechanect
         /// <para>Date Modified 13/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line.
+        /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line by discarding any
+        /// additional Commands.
         /// </summary>
         /// <param name="time">A list representing each command's time slice</param>
         /// <param name="Commands">A list representing each command given during the race</param>
@@ -426,6 +428,25 @@ namespace Mechanect
                     }
                 }
             }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function CalculateTotalTime calculates the total race time.
+        /// </summary>
+        /// <returns>void.</returns>
+        public void CalculateTotalTime()
+        {
+            double accumulator = 0;
+            for (int i = 0; i <= timeSpaces.Count - 1; i++)
+            {
+                accumulator += timeSpaces[i];
+            }
+            totalTime = accumulator;
         }
 
         /// <remarks>
