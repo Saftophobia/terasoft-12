@@ -53,6 +53,12 @@
     <Compile Include="UILib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Physics\Physics.csproj">
+      <Project>{AB3EBA19-AD21-494E-8330-1C9D0F24A75C}</Project>
+      <Name>Physics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
