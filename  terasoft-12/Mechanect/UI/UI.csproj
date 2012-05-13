@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Speech" />
@@ -41,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\AnimationFrame.cs" />
+    <Compile Include="Animation\ModelFramedAnimation.cs" />
+    <Compile Include="Animation\ModelLinearAnimation.cs" />
+    <Compile Include="Cameras\Camera.cs" />
+    <Compile Include="Cameras\ChaseCamera.cs" />
+    <Compile Include="Cameras\TargetCamera.cs" />
+    <Compile Include="CustomModel.cs" />
     <Compile Include="UILib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
