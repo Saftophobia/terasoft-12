@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace Physics
 {
@@ -15,5 +16,19 @@ namespace Physics
             anotherVector.Normalize();
             return magnitude * anotherVector;
         }
+
+        /// <summary>
+        /// calculates the displacement vector using the equation r - r0 = v0 * t + 0.5 * a * (t^2) 
+        /// </summary>
+        /// <param name="intialVelocity">start velocity vector</param>
+        /// <param name="acceleration">acceleration vector</param>
+        /// <param name="time">time passed</param>
+        /// /// <remarks>Auther : Bishoy Bassem</remarks>
+        public static Vector3 CalculateDisplacement(Vector3 intialVelocity, Vector3 acceleration, TimeSpan time)
+        {
+            float seconds = (float) time.TotalSeconds;
+            return (intialVelocity * seconds) + (0.5f * acceleration * seconds * seconds);
+        }
+
     }
 }
