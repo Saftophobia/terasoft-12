@@ -49,7 +49,7 @@
     <Compile Include="Cameras\Camera.cs" />
     <Compile Include="Cameras\ChaseCamera.cs" />
     <Compile Include="Cameras\TargetCamera.cs" />
-    <Compile Include="CustomModel.cs" />
+    <Compile Include="Components\CustomModel.cs" />
     <Compile Include="UILib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
