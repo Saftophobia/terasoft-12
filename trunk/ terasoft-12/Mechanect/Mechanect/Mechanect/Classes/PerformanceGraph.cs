@@ -238,8 +238,8 @@ namespace Mechanect
         /// and acceleration as well as the optimum values, in addition, the function also calls
         /// the necessary functions required to draw the curve.
         /// </summary>
-        /// <param name="Player1Disp">A list holding Player 1's displacements.</param>
-        /// <param name="Player2Disp">A list holding Player 2's displacements.</param>
+        /// <param name="D1">A list holding Player 1's displacements.</param>
+        /// <param name="D2">A list holding Player 2's displacements.</param>
         /// <param name="Commands">A list holding each command initiated during the race.</param>
         /// <param name="time">A list holding the time elapsed by each command.</param>
         /// <param name="player1disqtime">The instance when the first player was disqualified.</param>    
@@ -247,37 +247,14 @@ namespace Mechanect
         /// <param name="gwidth">The width of the screen.</param>
         /// <param name="gheight">The height of the screen.</param>
         /// <returns>void</returns>
-        public void DrawGraphs(List<float> Player1Disp, List<float> Player2Disp, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight)
+        public void DrawGraphs(List<float> D1, List<float> D2, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight)
         {
             player1Displacement = new List<float>();
             player2Displacement = new List<float>();
-            double accumulator = 0;
-            for (int i = 0; i <= time.Count - 1; i++)
-            {
-                accumulator += time[i];
-            }
-            totalTime = accumulator;
-            int frames = (int)(totalTime * 12);
-            for (int i = 0; i <= frames - 1; i++)
-            {
-                player1Displacement.Add(0);
-                player2Displacement.Add(0);
-            }
-            for (int i = 0; i <= Player1Disp.Count - 1; i++)
-            {
-                player1Displacement[i] = Player1Disp[i];
-            }
-            for (int i = 0; i <= Player2Disp.Count - 1; i++)
-            {
-                player2Displacement[i] = Player2Disp[i];
-            }
-            for (int i = 0; i <= player1Displacement.Count - 1; i++)
-            {
-                float a = player1Displacement[i] * 1000;
-                float b = player2Displacement[i] * 1000;
-                player1Displacement[i] = a;
-                player2Displacement[i] = b;
-            }
+            optimumDisplacement = new List<float>();
+            optimumVelocity = new List<float>();
+            optimumAcceleration = new List<float>();
+            FixDifference(D1, D2);
             this.commandsList = Commands;
             this.timeSpaces = time;
             player1Velocity = GetPlayerVelocity(player1Displacement);
@@ -290,6 +267,40 @@ namespace Mechanect
             SetDestinations(gwidth, gheight);
             SetAxis();
         }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function FixDifference aims to avoid any exceptions resulted from
+        /// capturing more or less frames than the expected number of frames per second.
+        /// </summary>
+        /// <param name="D1">A list representing Player 1's displacement.</param>
+        /// <param name="D2">A list representing Player 2's displacement</param>
+        /// <returns>void.</returns>
+        public void FixDifference(List<float> D1, List<float> D2)
+        {
+            int difference = 0;
+            int size = D1.Count;
+            if (D1.Count > D2.Count)
+            {
+                difference = D1.Count - D2.Count;
+                size = D1.Count - difference;
+            }
+            if (D2.Count > D1.Count)
+            {
+                difference = D2.Count - D1.Count;
+                size = D2.Count - difference;
+            }
+            for (int i = 0; i <= size - 1; i++)
+            {
+                player1Displacement.Add(D1[i]);
+                player2Displacement.Add(D2[i]);
+            }
+        }
+
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
