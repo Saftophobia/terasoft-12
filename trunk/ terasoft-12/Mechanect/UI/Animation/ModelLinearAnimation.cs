@@ -34,7 +34,7 @@ namespace UI.Animation
             startAngle = model.Rotation;
 
             this.velocity = velocity;
-            //this.acceleration = Tools3.GetVectorInDirectionOf(acceleration, velocity);
+            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, velocity);
             this.duration = duration;
             this.enableRotation = enableRotation;
 
@@ -51,8 +51,8 @@ namespace UI.Animation
             startAngle = model.Rotation;
 
             Vector3 displacement = endPosition - startPosition;
-            //this.velocity = Tools3.GetVectorInDirectionOf(velocity, displacement); ;
-            //this.acceleration = Tools3.GetVectorInDirectionOf(acceleration, displacement);
+            this.velocity = Physics.Functions.GetVectorInDirectionOf(velocity, displacement); ;
+            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, displacement);
             this.duration = duration;
             this.enableRotation = enableRotation;
 
