@@ -40,7 +40,7 @@ namespace UI.Animation
 
             if (acceleration < 0)
             {
-                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity.Length() / acceleration / 2));
+                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity.Length() / acceleration));
             }
         }
 
@@ -58,7 +58,7 @@ namespace UI.Animation
 
             if (acceleration < 0)
             {
-                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity / acceleration / 2));
+                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity / acceleration));
             }
         }
 
@@ -71,8 +71,7 @@ namespace UI.Animation
             this.elapsedTime += elapsed;
             if (elapsedTime.TotalSeconds < duration.TotalSeconds)
             {
-                float seconds = (float)elapsedTime.TotalSeconds;
-                Vector3 displacement = (velocity * seconds) + (acceleration * seconds * seconds);
+                Vector3 displacement = Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
                 model.Position = startPosition + displacement;
                 if (enableRotation)
                 {
