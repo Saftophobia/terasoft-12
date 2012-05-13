@@ -263,6 +263,7 @@ namespace Mechanect
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
             GetOptimum((double)player1disqtime, (double)player2disqtime);
             Discard();
+            SetNewTime(time, Commands);
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
@@ -334,6 +335,48 @@ namespace Mechanect
             player1Displacement = temp1;
             player2Displacement = temp2;
             optimumDisplacement = temp3;
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 13/5/2012</para>
+        /// <para>Date Modified 13/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line.
+        /// </summary>
+        /// <returns>void.</returns>
+        public void SetNewTime(List<double> time, List<string> Commands)
+        {
+            timeSpaces = new List<double>();
+            commandsList = new List<string>();
+            int newSize = player1Displacement.Count;
+            double newTime = ((double)newSize / (double)12);
+            Boolean t = false;
+            int count = 0;
+            double acc = 0;
+            this.timeSpaces = new List<double>();
+            this.commandsList = new List<string>();
+            while (!t)
+            {
+                if (acc + time[count] <= newTime)
+                {
+                    this.timeSpaces.Add(time[count]);
+                    commandsList.Add(Commands[count]);
+                }
+                else
+                {
+                    double idealNumber = newTime - acc;
+                    this.timeSpaces.Add(idealNumber);
+                    commandsList.Add(Commands[count]);
+                }
+                acc += time[count];
+                count++;
+                if (acc >= newTime)
+                {
+                    t = true;
+                }
+            }
         }
 
         /// <remarks>
