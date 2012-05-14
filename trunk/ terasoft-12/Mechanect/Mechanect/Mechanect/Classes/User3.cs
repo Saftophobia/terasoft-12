@@ -315,49 +315,72 @@ namespace Mechanect.Classes
          ///  Updates the velocity, angle variables of the User3 after each captured skeleton frame.
          /// </summary>
 
-         public void Update_MeasuringVelocityAndAngle()
+         public void UpdateMeasuringVelocityAndAngle(GameTime gameTime)
          {
              setSkeleton();
              Skeleton skeleton = USER;
-
              if (skeleton != null)
              {
-                 if (PauseScreen.frameNumber != -1)
+                 if (GameScreen.frameNumber % 2 == 0)
                  {
-                     if (PauseScreen.frameNumber % 2 == 0) //30 fps kinect, 60fps XNA 
+                     StoreTime(gameTime);
+                     if (!hasShot)
                      {
-                         StorePosition();
-                         if (PauseScreen.frameNumber == 0)
+                         consecutiveFrame++;
+                         if (HasJustStarted())
                          {
-                             InitalizePlayerPosition();
-
+                             StoreInitialPosition();
+                             SetStarted();
                          }
                          else
                          {
-                             SetCurrentPosition();
+                             StorePreviousPosition();
+                             StoreCurrentPosition();
 
-                             if (HasPlayerMovedHisAnkle())
+                             if (HasPlayerMoved())
                              {
                                  if (IsMovingForward())
                                  {
                                      UpdateSpeed();
                                      UpdateAngle();
-                                     UpdatePosition();
-
-
                                  }
                                  else
-                                     if (MovedForward)
-                                         PauseScreen.frameNumber = -1;
+                                 {
+                                     if (HasAlreadyMovedForward())
+                                     {
+                                         //if (consecutiveFrame > 2)
+                                         //{
+                                         //    consecutiveFrame = 0;
+                                         //    hasJustSlipped = false;
+                                         //}
 
+                                         //if (HasJustSlipped())  // done shooting
+                                         //    hasShot = true;
+                                         //else
+                                         //    hasJustSlipped = true;
+                                         hasShot = true;
+
+
+                                     }
+                                     else
+                                     {
+                                         StoreInitialPosition(); // the player is moving his leg backwards
+                                         StoreInitialTime(gameTime);
+                                     }
+                                 }
                              }
                          }
                      }
-                     if (PauseScreen.frameNumber != -1)
-                         PauseScreen.frameNumber++;
+
                  }
+
              }
+             else
+                 ResetUserForShootingOrTryingAgain();
+
+             GameScreen.frameNumber++;
          }
+
 
          ///<remarks>
          ///<para>
