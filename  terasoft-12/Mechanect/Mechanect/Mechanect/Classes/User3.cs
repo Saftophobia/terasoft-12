@@ -464,43 +464,35 @@ namespace Mechanect.Classes
          }
 
 
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// stores the position where the User3 started moving their leg and the final position where they stopped moving their leg forward
-         /// </summary>
-       
-         public  void StorePosition()
+         public bool HasJustStarted()
          {
-
-             if (RightLeg)
-             {
-                 if (MovedForward && !HasSetInitialPositionForAngle)
-                 {
-                     StoreX1 = InitialRightLegPositionX;
-                     StoreZ1 = InitialRightLegPositionZ;
-                     HasSetInitialPositionForAngle = true;
-                 }
-                 StoreX2 = InitialRightLegPositionX;
-                 StoreZ2 = InitialRightLegPositionZ;
-
-             }
-             else
-             {
-                 if (MovedForward && !HasSetInitialPositionForAngle)
-                 {
-                     StoreX1 = InitialLeftLegPositionX;
-                     StoreZ1 = InitialLeftLegPositionZ;
-                     HasSetInitialPositionForAngle = true;
-                 }
-                 StoreX2 = InitialLeftLegPositionX;
-                 StoreZ2 = InitialLeftLegPositionZ;
-             }
+             return hasJustStarted;
+         }
+         public void SetStarted()
+         {
+             hasJustStarted = false;
          }
 
+         public void StoreInitialPosition()
+         {
+             initialLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             initialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             initialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+             initialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+             previousLeftLegPositionX = initialLeftLegPositionX;
+             previousLeftLegPositionZ = initialLeftLegPositionZ;
+             previousRightLegPositionX = initialRightLegPositionX;
+             previousRightLegPositionZ = initialRightLegPositionZ;
+         }
+
+
+         public void StoreCurrentPosition()
+         {
+             CurrentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             CurrentLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             CurrentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+             CurrentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+         }
       
       
 
