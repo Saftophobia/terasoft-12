@@ -225,6 +225,16 @@ namespace Mechanect.Classes
                 shootingPosition = value;
             }
         }
+
+        public double currentTime { get; set; }
+        public double initialTime { get; set; }
+        public int timeCounter { get; set; }
+        public bool hasJustStarted { get; set; }
+        public bool hasJustSlipped { get; set; }
+        public bool hasShot { get; set; }
+        public bool firstUpdate { get; set; }
+        public int consecutiveFrame { get; set; }
+
         public User3()
         {
 
