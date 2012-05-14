@@ -994,7 +994,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumConstantDisplacement derives the optimum values for the "constantDisplacement" command, by adding
@@ -1003,52 +1003,14 @@ namespace Mechanect
         /// </summary>
         /// <param name="size">The number of frames assigned to the current command.</param>
         /// <returns>void</returns>
-        public void OptimumConstantDisplacement(int size)
+        public static void OptimumConstantDisplacement(int size, PerformanceGraph g)
         {
             for (int k = 0; k <= size - 1; k++)
             {
-                optimumDisplacement.Add(this.previousDisp);
-                optimumVelocity.Add(0);
-                optimumAcceleration.Add(0);
+                g.getOptD().Add(g.getPreviousD());
+                g.getOptV().Add(0);
+                g.getOptA().Add(0);
             }
-            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
-            this.previousVelo = 0;
-            this.previousAcc = 0;
-        }
-
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function GetTotalStep calculates the cummulative acceleration difference for the given acceleration list.
-        /// </summary>
-        /// <param name="l1">A list holding a player's acceleration values</param>
-        /// <returns>float: The total calculated step</returns>
-        public float GetTotalStep(List<float> l1)
-        {
-            float totalStep = 0;
-            for (int k = 0; k <= l1.Count - 1; k++)
-            {
-                float step = 0;
-                try
-                {
-                    if (l1[k] > 0 && l1[k + 1] > 0)//to avoid 0
-                    {
-                        step = l1[k + 1] - l1[k];
-                    }
-                }
-                catch (Exception e)
-                {
-                }
-                totalStep += step;
-            }
-            if (totalStep < 0)
-            {
-                totalStep *= -1;
-            }
-            return totalStep;
         }
 
         /// <remarks>
@@ -1107,7 +1069,7 @@ namespace Mechanect
                 if (commandsList[i].Equals("constantDisplacement"))
                 {
                     int size = end - start;
-                    OptimumConstantDisplacement(size);
+                    OptimumConstantDisplacement(size,g);
                 }
                 velocityTest1.Clear();
                 velocityTest2.Clear();
