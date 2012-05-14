@@ -18,15 +18,15 @@ namespace Mechanect
         private Vector2 point1;
         private Vector2 point2;
         private Color curveColor;
-        private List<float> player1Displacement;
-        private List<float> player2Displacement;
+        private List<float> player1Displacement=new List<float>();
+        private List<float> player2Displacement = new List<float>();
         private List<float> player1Velocity;
         private List<float> player2Velocity;
         private List<float> player1Acceleration;
         private List<float> player2Acceleration;
-        private List<float> optimumDisplacement;
-        private List<float> optimumVelocity;
-        private List<float> optimumAcceleration;
+        private List<float> optimumDisplacement = new List<float>();
+        private List<float> optimumVelocity = new List<float>();
+        private List<float> optimumAcceleration = new List<float>();
         private List<String> commandsList;
         private List<double> timeSpaces;
         private double totalTime;
@@ -251,9 +251,7 @@ namespace Mechanect
         /// <para>Date Modified 23/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function DrawGraphs calls the necessary functions to derive each player's velocity 
-        /// and acceleration as well as the optimum values, in addition, the function also calls
-        /// the necessary functions required to draw the curve.
+        /// The function DrawGraphs calls the necessary functions to derive each player's velocity and acceleration as well as the optimum values, in addition, the function also calls the necessary functions required to draw the curve.
         /// </summary>
         /// <param name="D1">A list holding Player 1's displacements.</param>
         /// <param name="D2">A list holding Player 2's displacements.</param>
@@ -263,22 +261,18 @@ namespace Mechanect
         /// <param name="player2disqtime">The instance when the second player was disqualified.</param>  
         /// <param name="gwidth">The width of the screen.</param>
         /// <param name="gheight">The height of the screen.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void DrawGraphs(PerformanceGraph g, List<float> D1, List<float> D2, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight,int length)
+        public static void DrawGraphs(PerformanceGraph g, List<float> D1, List<float> D2, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight,int length)
         {
-            this.trackLength = length;
-            player1Displacement = new List<float>();
-            player2Displacement = new List<float>();
-            optimumDisplacement = new List<float>();
-            optimumVelocity = new List<float>();
-            optimumAcceleration = new List<float>();
+            g.setTrackLength(length);
             FixDifference(D1, D2, g);
-            this.commandsList = Commands;
-            this.timeSpaces = time;
-            player1Velocity = GetPlayerVelocity(player1Displacement);
-            player2Velocity = GetPlayerVelocity(player2Displacement);
-            player1Acceleration = GetPlayerAcceleration(player1Velocity);
-            player2Acceleration = GetPlayerAcceleration(player2Velocity);
+            g.setCommandsList(Commands);
+            g.setTimeSlices(time); 
+            g.setVel1(GetPlayerVelocity(g.getP1Disp()));
+            g.setVel2(GetPlayerVelocity(g.getP2Disp()));
+            g.setAcc1(GetPlayerAcceleration(g.getP1Vel()));
+            g.setAcc2(GetPlayerAcceleration(g.getP2Vel()));
             //OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
             Discard(g);
             SetNewTime(time, Commands,g);
@@ -289,8 +283,8 @@ namespace Mechanect
             SetMaximum(g);
             SetDestinations(g, gwidth, gheight);
             SetAxis(g);
-        }  
-
+        }
+                
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
@@ -1080,6 +1074,34 @@ namespace Mechanect
         public float getChosenValue(int a, int b)
         {
             return chosen[a, b];
+        }
+        public void setVel1(List<float> x)
+        {
+            player1Velocity = x;
+        }
+        public void setVel2(List<float> x)
+        {
+            player2Velocity = x;
+        }
+        public void setAcc1(List<float> x)
+        {
+            player1Acceleration = x;
+        }
+        public void setAcc2(List<float> x)
+        {
+            player2Acceleration = x;
+        }
+        public void setTrackLength(int x)
+        {
+            trackLength = x;
+        }
+        public void setCommandsList(List<string> d)
+        {
+            commandsList = d;
+        }
+        public void setTimeSlices(List<double> d)
+        {
+            timeSpaces = d;
         }
     }
 }
