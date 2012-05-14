@@ -138,7 +138,7 @@ namespace Mechanect.Classes
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
-         /// <para>DATE MODIFIED: 27/4/12 </para>
+         /// <para>DATE MODIFIED: 14/5/12 </para>
          /// </remarks>
          public static void CheckEachSecond(int timeInSeconds, User1 user11, User1 user12, List<int> timeOfCommands, List<String> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
          {
