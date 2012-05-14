@@ -315,15 +315,15 @@ namespace Mechanect
             player1Acceleration = GetPlayerAcceleration(player1Velocity);
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
             OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
-            g.Discard();
-            g.SetNewTime(time, Commands);
-            g.GetWinning();
-            g.CalculateTotalTime();
-            g.Initialize();
-            g.Choose();
-            g.SetMaximum();
-            g.SetDestinations(gwidth, gheight);
-            g.SetAxis();
+            Discard(g);
+            SetNewTime(time, Commands);
+            GetWinning();
+            CalculateTotalTime();
+            Initialize();
+            Choose();
+            SetMaximum();
+            SetDestinations(gwidth, gheight);
+            SetAxis();
         }  
 
         /// <remarks>
@@ -362,35 +362,34 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
-        /// <para>Date Modified 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function Discard drops the frames received after the instance when all the players including
-        /// the optimum player have reached the finish line.
+        /// The function Discard drops the frames received after the instance when all the players including the optimum player have reached the finish line.
         /// </summary>
         /// <returns>void.</returns>
-        public void Discard()
+        public static void Discard(PerformanceGraph g)
         {
             Boolean found = false;
             List<float> temp1 = new List<float>();
             List<float> temp2 = new List<float>();
             List<float> temp3 = new List<float>();
-            for (int i = 0; i <= player1Displacement.Count - 1; i++)
+            for (int i = 0; i <= g.getP1Disp().Count - 1; i++)
             {
                 if (!found)
                 {
-                    temp1.Add(player1Displacement[i]);
-                    temp2.Add(player2Displacement[i]);
-                    temp3.Add(optimumDisplacement[i]);
-                    if (player1Displacement[i] == 0 && player2Displacement[i] == 0 && optimumDisplacement[i] == 0)
+                    temp1.Add(g.getP1Disp()[i]);
+                    temp2.Add(g.getP2Disp()[i]);
+                    temp3.Add(g.getOptD()[i]);
+                    if (g.getP1Disp()[i] == 0 && g.getP2Disp()[i] == 0 && g.getOptD()[i] == 0)
                     {
                         found = true;
                     }
                 }
             }
-            player1Displacement = temp1;
-            player2Displacement = temp2;
-            optimumDisplacement = temp3;
+            g.setP1Disp(temp1);
+            g.setP2Disp(temp2);
+            g.setOpdD(temp3);
         }
 
         /// <remarks>
@@ -811,6 +810,10 @@ namespace Mechanect
         {
             return player1Displacement;
         }
+        public List<float> getP2Disp()
+        {
+            return player2Displacement;
+        }
         public double getTotalTime()
         {
             return totalTime;
@@ -982,6 +985,10 @@ namespace Mechanect
         public void setP2Acc(List<float> L)
         {
             this.player2Acceleration = L;
+        }
+        public void setOpdD(List<float> L)
+        {
+            this.optimumDisplacement = L;
         }
     }
 }
