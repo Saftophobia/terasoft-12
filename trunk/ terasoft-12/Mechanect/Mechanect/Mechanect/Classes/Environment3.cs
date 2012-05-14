@@ -573,9 +573,9 @@ namespace Mechanect.Classes
         /// <summary>
         /// Update Method.
         /// </summary>
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            user.Update_MeasuringVelocityAndAngle();
+            user.UpdateMeasuringVelocityAndAngle(gameTime);
             CheckCollision();
             Shoot();
         }
@@ -600,9 +600,9 @@ namespace Mechanect.Classes
         /// </summary>
         private void Shoot()
         {
-            float relativeVelocity = user.SetVelocityRelativeToGivenMass();
-            Vector3 initialLegVelocity; //This variable represents the velocity of the leg with which the user has shot the ball.
-            initialLegVelocity = new Vector3((float)(relativeVelocity * Math.Cos(user.Angle)), 0, -(float)(relativeVelocity * Math.Sin(user.Angle)));
+            
+            Vector3 initialLegVelocity  = user.velocity; //This variable represents the velocity of the leg with which the user has shot the ball.
+           
             
             if (hasCollidedWithBall && !ballShot)
             {
