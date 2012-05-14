@@ -43,16 +43,26 @@ namespace Mechanect.Classes
         /// </summary>
         /// <param name="content">setting content for later use in ScreenManager</param>
         /// <param name="device">setting device for later use in ScreenManager</param>
+        /// <remarks>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 15/5/2012</para>
+        /// <para>Date Modified 15/5/2012</para>
+        /// </remarks>
         public Environment1(ContentManager content,GraphicsDevice device)
         {
             this.content = content;
             this.device = device;
         }
-
+       
+        
         /// <summary>
-        /// loads content for the Environment(skybox,effect and heightmap)
+        /// Loads Effect/heightmap/skybox from contentmanager and set up vertices/indices/normals/buffers from exp3 library
         /// </summary>
-        /// <remarks>Author: Safty</remarks>
+        /// <remarks>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 15/5/2012</para>
+        /// <para>Date Modified 15/5/2012</para>
+        /// </remarks>
         public void LoadContent()
         {
             effect = content.Load<Effect>("Exp1/effects");
@@ -66,11 +76,28 @@ namespace Mechanect.Classes
             CopyToBuffers();
 
         }
-
+        /// <summary>
+        /// updates Environment Logic ( Camera, avatar position, etc)
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <remarks>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 15/5/2012</para>
+        /// <para>Date Modified 15/5/2012</para>
+        /// </remarks>
         public void update(GameTime gameTime)
         {
             c.Update();
         }
+        /// <summary>
+        /// Draws Environment by calling Exp3 library
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <remarks>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 15/5/2012</para>
+        /// <para>Date Modified 15/5/2012</para>
+        /// </remarks>
         public void Draw(GameTime gameTime)
         {
             DrawEnvironment(gameTime);
