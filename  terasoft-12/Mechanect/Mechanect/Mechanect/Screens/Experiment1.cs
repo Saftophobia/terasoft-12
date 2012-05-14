@@ -511,7 +511,7 @@ namespace Mechanect.Screens
 
 
                         // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                        Graph.DrawGraphs(Graph,player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height,4000);
+                        //Graph.DrawGraphs(Graph,player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height,4000);
 
 
                         graphmutex = true;
@@ -581,9 +581,10 @@ namespace Mechanect.Screens
             {
                // SpriteBatch sprite2 = SpriteBatch;
                 SpriteBatch.Begin();
-               GraphUI.DrawRange(SpriteBatch, graphics,Graph);
-               GraphUI.DrawEnvironment(Graph, SpriteBatch, graphics, font1, font2);
-               GraphUI.DrawDisqualification(Graph, SpriteBatch, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex, (double)player1disqualification, (double)player2disqualification);
+               
+               //GraphUI.DrawRange(SpriteBatch, graphics,Graph);
+               //GraphUI.DrawEnvironment(Graph, SpriteBatch, graphics, font1, font2);
+               //GraphUI.DrawDisqualification(Graph, SpriteBatch, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex, (double)player1disqualification, (double)player2disqualification);
                SpriteBatch.End();
                 
             }
