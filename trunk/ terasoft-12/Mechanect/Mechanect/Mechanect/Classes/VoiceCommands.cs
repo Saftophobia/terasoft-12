@@ -1,17 +1,13 @@
- using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Text;
 using Microsoft.Kinect;
-using Microsoft.Speech;
 using Microsoft.Speech.AudioFormat;
 using Microsoft.Speech.Recognition;
 using System.IO;
 
 
 namespace Mechanect.Classes
-{
-   
+{  
     /// <summary>
     /// Voice Command Class allow you to check if certain word was said or not by user.
     /// </summary>
@@ -19,16 +15,12 @@ namespace Mechanect.Classes
     /// <para>AUTHOR: Tamer Nabil </para>
     /// </remarks>
     class VoiceCommands
-    {
-    
-        
-        KinectAudioSource KinectAudio;
-        SpeechRecognitionEngine sre;
-        Stream stream;
-        KinectSensor Kinect;
-        String HearedString= " ";
-        
-       
+    {     
+        KinectAudioSource _kinectAudio;
+        SpeechRecognitionEngine _speechRecognitionEngine;
+        Stream _stream;
+        readonly KinectSensor _kinect;
+        String _hearedString= " ";  
         /// <summary>
         /// Constructor takes as input Kinect Sensor and use it to initialize the instance variable 
         ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and String Command contains commands.
@@ -37,69 +29,54 @@ namespace Mechanect.Classes
          /// <remarks>
           /// <para>AUTHOR: Tamer Nabil </para>
          /// </remarks>
-        /// <param name="Kinect"></param>
-        /// <param name="Command"></param>
+        /// <param name="kinect"></param>
+        /// <param name="command"></param>
    
-        public VoiceCommands(KinectSensor Kinect,String Command)
+        public VoiceCommands(KinectSensor kinect,String command)
         {
-            this.Kinect = Kinect;
-            InitalizeKinectAudio(Command);
-
-        }
-
-       
+            this._kinect = kinect;
+            InitalizeKinectAudio(command);
+        }  
        /// <summary>
-       /// 
        /// InitalizeKinectAudio()   Get called by the constructor to initialize current Kinect audio Souce and 
        /// add grammers which can be accepted.
-       /// 
        /// </summary>
-        /// <remarks>
+       /// <remarks>
        /// <para>AUTHOR: Tamer Nabil </para>
        /// </remarks>
-       /// <param name="Command"></param>
+       /// <param name="command"></param>
          
-
-        
-        private void InitalizeKinectAudio(String Command)
+        private void InitalizeKinectAudio(String command)
         {
-            String [] ArrayOfCommand = Command.Split(',');
-            KinectAudio = Kinect.AudioSource;
-
-            RecognizerInfo ri = GetKinectRecognizer();
-
-            sre = new SpeechRecognitionEngine(ri.Id);
-
+            String [] arrayOfCommand = command.Split(',');
+          //  KinectAudio = Kinect.AudioSource;
+            RecognizerInfo recognizerInfo = GetKinectRecognizer();
+            _speechRecognitionEngine = new SpeechRecognitionEngine(recognizerInfo.Id);
             var choices = new Choices();
-           for (int i = 0; i < ArrayOfCommand.Length; i++)
-            {
-                choices.Add(ArrayOfCommand[i]);
-            }
-            
-
-            GrammarBuilder gb = new GrammarBuilder();
-            gb.Culture = ri.Culture;
-            gb.Append(choices);
-            
-
-           
-            var g = new Grammar(gb);
-
-            sre.LoadGrammar(g);
-            sre.SpeechRecognized += SreSpeechRecognized;
-           
-
-            stream = KinectAudio.Start();
-
-            sre.SetInputToAudioStream(stream,
-                          new SpeechAudioFormatInfo(
-                              EncodingFormat.Pcm, 16000, 16, 1,
-                              32000, 2, null));
-
-            sre.RecognizeAsync(RecognizeMode.Multiple);
-
+           foreach (var t in arrayOfCommand)
+           {
+               choices.Add(t);
+           }
+           var gb = new GrammarBuilder { Culture = recognizerInfo.Culture };
+           gb.Append(choices);           
+           var g = new Grammar(gb);
+            _speechRecognitionEngine.LoadGrammar(g);
+            _speechRecognitionEngine.SpeechRecognized += SpeechRecognitionEngineSpeechRecognized;
         }
+        /// <summary>
+        /// StartAudioStream is amethod that the engine start listening to the user.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
 
+        public void StartAudioStream()
+        {
+            _kinectAudio = _kinect.AudioSource;
+            _stream = _kinectAudio.Start();
+            _speechRecognitionEngine.SetInputToAudioStream(_stream, new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
+            _speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);   
+        }
          
         /// <summary>
         /// getHeared take ExpectedString as input and compare it with the Heared String from kinect and returns true
@@ -108,21 +85,20 @@ namespace Mechanect.Classes
          /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="ExpectedString"></param>
+        /// <param name="expectedString"></param>
         /// <returns>returns boolean ,true if he heared expectedString,false otherwise</returns>
 
-        public Boolean getHeared(String ExpectedString)
+        public Boolean GetHeared(String expectedString)
         {
-            if(ExpectedString.Equals(HearedString))
-            {
-                return true;
-            }
-            else{
-                return false;
-            }
-          
+            return expectedString.Equals(_hearedString);
         }
-         
+        
+        //to be deleted !
+         public Boolean getHeared(String expectedString)
+        {
+            return expectedString.Equals(_hearedString);
+        }
+
         /// <summary>
         /// This method store value of what said to kinect in the instance variable 
         /// "HearedString"
@@ -132,16 +108,12 @@ namespace Mechanect.Classes
            /// </remarks>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SreSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        private void SpeechRecognitionEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if (e.Result.Confidence > 0.5)
-            {
-                HearedString = e.Result.Text;
-
-            }
-            
+            if (e.Result.Confidence > 0.4)
+                _hearedString = e.Result.Text;
         }
-        
+
         /// <summary>
         /// a static method that returns a list of speech recognition engines on the system. 
         /// Speech uses a Language-Integrated Query (LINQ) to obtain the ID of the first recognizer in the list and 
@@ -165,3 +137,4 @@ namespace Mechanect.Classes
 
     }
 }
+
