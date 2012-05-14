@@ -809,7 +809,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawRange loops over each instance of the PerformanceGraph class initialized in the function
@@ -817,20 +817,21 @@ namespace Mechanect
         /// </summary>
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
+        public static void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, PerformanceGraph g)
         {
-            for (int i = 0; i <= disp1.Length - 1; i++)
+            for (int i = 0; i <= g.getDisplacement1().Length - 1; i++)
             {
-                disp1[i].Draw(spriteBatch, GraphicsDevice);
-                disp2[i].Draw(spriteBatch, GraphicsDevice);
-                velo1[i].Draw(spriteBatch, GraphicsDevice);
-                velo2[i].Draw(spriteBatch, GraphicsDevice);
-                acc1[i].Draw(spriteBatch, GraphicsDevice);
-                acc2[i].Draw(spriteBatch, GraphicsDevice);
-                optD[i].Draw(spriteBatch, GraphicsDevice);
-                optV[i].Draw(spriteBatch, GraphicsDevice);
-                optA[i].Draw(spriteBatch, GraphicsDevice);
+                g.getDisplacement1()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getDisplacement2()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getVelocity1()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getVelocity2()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getAcceleration1()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getAcceleration2()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getOptimumDisplacement()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getOptimumVelocity()[i].Draw(spriteBatch, GraphicsDevice);
+                g.getOptimumAcceleration()[i].Draw(spriteBatch, GraphicsDevice);
             }
         }
         /// <remarks>
@@ -1635,6 +1636,42 @@ namespace Mechanect
         public List<int> getP2AccGraph()
         {
             return p2AccGraph;
+        }
+        public PerformanceGraph[] getDisplacement1()
+        {
+            return disp1;
+        }
+        public PerformanceGraph[] getDisplacement2()
+        {
+            return disp2;
+        }
+        public PerformanceGraph[] getVelocity1()
+        {
+            return velo1;
+        }
+        public PerformanceGraph[] getVelocity2()
+        {
+            return velo2;
+        }
+        public PerformanceGraph[] getAcceleration1()
+        {
+            return acc1;
+        }
+        public PerformanceGraph[] getAcceleration2()
+        {
+            return acc2;
+        }
+        public PerformanceGraph[] getOptimumDisplacement()
+        {
+            return optD;
+        }
+        public PerformanceGraph[] getOptimumVelocity()
+        {
+            return optV;
+        }
+        public PerformanceGraph[] getOptimumAcceleration()
+        {
+            return optA;
         }
     }
 }
