@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +12,14 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Screens
 {
-    class PauseScreen:Mechanect.Common.GameScreen
+    class PauseScreen : Mechanect.Common.GameScreen
     {
-        public static int frameNumber = 0;
+
 
         ContentManager content;
         Viewport viewPort;
         SpriteBatch spriteBatch;
-        
+
         Texture2D givens;
         Vector2 givensPosition;
 
@@ -27,7 +27,7 @@ namespace Mechanect.Screens
         Texture2D velocityBar;
         Vector2 vBarPosition;
 
-      
+
         Vector2 fillPosition;
         List<Vector2> fillsPositions;
         List<Texture2D> fills;
@@ -37,7 +37,7 @@ namespace Mechanect.Screens
         Vector2 arrowPosition;
         float arrowAngle;
         float arrowScale;
-    
+
         User3 user;
         MKinect kinect;
         VoiceCommands voiceCommands;
@@ -49,9 +49,9 @@ namespace Mechanect.Screens
 
         SpriteFont font;
         int framesToWait;
-        double velocity;
+        Vector3 velocity;
 
-           public PauseScreen( User3 user,MKinect kinect,double ballVelocity, double ballMass, double legMass)
+        public PauseScreen(User3 user, MKinect kinect, double ballVelocity, double ballMass, double legMass)
         {
             this.user = user;
             this.kinect = kinect;
@@ -59,36 +59,34 @@ namespace Mechanect.Screens
             this.legMass = legMass;
             this.ballMass = ballMass;
             framesToWait = 0;
-            velocity = 0;
-            voiceCommands = new VoiceCommands(kinect._KinectDevice,"ready,go");
+            velocity = Vector3.Zero;
+            voiceCommands = new VoiceCommands(kinect._KinectDevice, "ready,go");
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
-
-       
             displayedGivens = "";
-      
-            
-           
+            frameNumber = 0;
+
+
 
         }
 
-         
-          public override void LoadContent()
+
+        public override void LoadContent()
         {
             viewPort = ScreenManager.GraphicsDevice.Viewport;
             content = ScreenManager.Game.Content;
             spriteBatch = ScreenManager.SpriteBatch;
-             
 
-          
+
+
             font = content.Load<SpriteFont>("spriteFont1");
-           
+
             velocityBar = content.Load<Texture2D>("Textures/VBar");
             vBarPosition = new Vector2((velocityBar.Width / 2) + 20, viewPort.Height - (velocityBar.Height / 2));
             fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
 
             givens = content.Load<Texture2D>("Textures/screen");
-            givensPosition = new Vector2(viewPort.Width/2 , givens.Height/4);
+            givensPosition = new Vector2(viewPort.Width / 2, givens.Height / 4);
 
 
             arrow = content.Load<Texture2D>("Textures/arrow");
@@ -97,7 +95,7 @@ namespace Mechanect.Screens
             arrowAngle = 0;
 
 
-           
+
         }
 
         public override void UnloadContent()
@@ -107,24 +105,24 @@ namespace Mechanect.Screens
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
-           
-           
+
+
             if (!voiceCommands.getHeared("go"))
             {
-                if (frameNumber != -1)
+                if (!user.HasShot())
                 {
-                   
-                    user.Update_MeasuringVelocityAndAngle();
+
+                    user.UpdateMeasuringVelocityAndAngle(gameTime);
                     // truncate max velocity
                     velocity = user.SetVelocityRelativeToGivenMass();
 
                     int draw;
-                    if (velocity > 31)
+                    if (velocity.Length() > 31)
                         draw = 31;
-                    else 
-                        draw = (int)velocity;
+                    else
+                        draw = (int)velocity.Length();
 
-                    for (int i = fills.Count()-1; i <draw; i++)
+                    for (int i = fills.Count() - 1; i < draw; i++)
                     {
                         fillsPositions.Add(fillPosition);
                         fills.Add(content.Load<Texture2D>("Textures/Vfill"));
@@ -132,14 +130,14 @@ namespace Mechanect.Screens
                     }
                     arrowAngle = (float)user.Angle;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                       + legMass;
+                       + (Math.Truncate(legMass * 1000) / 1000) + '\n' + user.velocity.Length();
                 }
                 else
                 {
-                 
-                    user.Velocity = velocity;
-                    displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: " 
-                        + legMass + '\n' + "shooting velocity: " + velocity + " m/s " + '\n' + "shooting angle: " + (user.Angle*180/Math.PI) + " degrees";
+
+                    user.velocity = velocity;
+                    displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
+                        + legMass + '\n' + "shooting velocity: " + velocity.Length() + " m/s " + '\n' + "shooting angle: " + (user.Angle * 180 / Math.PI) + " degrees";
 
                     if (framesToWait > 300) // after 5 seconds
                     {
@@ -150,22 +148,22 @@ namespace Mechanect.Screens
                         arrowAngle = 0;
                         framesToWait = 0;
                         user.ResetUserForShootingOrTryingAgain();
-                        
                     }
                     else
                         framesToWait++;
+
                 }
             }
             else
             {
 
                 user.ResetUserForShootingOrTryingAgain();
-                //user.Trying = false;
+                user.Trying = false;
                 ExitScreen();
             }
 
 
-       
+
             base.Update(gameTime, covered);
         }
 
@@ -173,7 +171,7 @@ namespace Mechanect.Screens
         {
 
             spriteBatch.Begin();
-            spriteBatch.Draw(givens,givensPosition,null,Color.White,0,new Vector2(givens.Width/2,givens.Height/2),1f,SpriteEffects.None,0);
+            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 1f, SpriteEffects.None, 0);
             spriteBatch.End();
 
 
@@ -195,13 +193,13 @@ namespace Mechanect.Screens
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
             spriteBatch.End();
 
-    
+
 
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width/3, givens.Height/4), Color.Red);
+            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 3, givens.Height / 4), Color.Red);
             spriteBatch.End();
-        
-            
+
+
         }
 
 
@@ -211,5 +209,5 @@ namespace Mechanect.Screens
             base.Remove();
         }
     }
-    
+
 }
