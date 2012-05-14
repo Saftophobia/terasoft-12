@@ -6,7 +6,7 @@ namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-        private string instructions = " The point of this game is to shoot the ball that it reaches the hole with zero velocity";
+        private string instructions = " Welcome to football Mechanect game made by terasoft, The point of this game is to shoot the ball such that it reaches the hole with zero velocity, in the beginning you're shown a screen where you can test shooting and see your angle and velocity, press Ok when you're ready";
         private Instruction instruction;
         private User3 user3;
 
