@@ -1015,7 +1015,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawEnvironment calls the necessary functions to draw the X and Y axis with their labels for each graph on the screen
@@ -1025,15 +1025,15 @@ namespace Mechanect
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void DrawEnvironment(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawEnvironment(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawAxis(g,spriteBatch, GraphicsDevice);
+            DrawAxis(g, spriteBatch, GraphicsDevice);
             DrawLabels(spriteBatch, GraphicsDevice, font);
-            DrawArrows(g,spriteBatch, GraphicsDevice);
-            DrawXLabels(g,spriteBatch, GraphicsDevice, font2);
-            DrawYLabels(g,spriteBatch, GraphicsDevice,font2);
+            DrawArrows(g, spriteBatch, GraphicsDevice);
+            DrawXLabels(g, spriteBatch, GraphicsDevice, font2);
+            DrawYLabels(g, spriteBatch, GraphicsDevice, font2);
             //drawing the marks on the X-axis
             int counter = 50;
             for (int i = 0; i <= 2; i++)
@@ -1046,8 +1046,8 @@ namespace Mechanect
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 345),
-                        new Vector2(counter, 355));
+                    g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 295),
+                        new Vector2(counter, 305));
                     counter += 64;
                 }
             }
@@ -1055,7 +1055,7 @@ namespace Mechanect
             int y = 50;
             for (int i = 0; i <= 2; i++)
             {
-                int counter2 = 118;
+                int counter2 = 68;
                 switch (i)
                 {
                     case 1: y = 380; break;
@@ -1064,11 +1064,21 @@ namespace Mechanect
                 }
                 for (int j = 1; j <= 9; j++)
                 {
-                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
+                    g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
                         new Vector2(y + 5, counter2));
                     counter2 += 58;
                 }
             }
+            //drawing the legend
+            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Red, new Vector2(130, 580),
+                new Vector2(180, 580));
+            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Blue, new Vector2(460, 580),
+                new Vector2(510, 580));
+            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Yellow, new Vector2(790, 580),
+                new Vector2(840, 580));
+            spriteBatch.DrawString(font, "Player 1", new Vector2(185, 573), Color.Red);
+            spriteBatch.DrawString(font, "Player 2", new Vector2(515, 573), Color.Blue);
+            spriteBatch.DrawString(font, "Optimum", new Vector2(845, 573), Color.Yellow);
         }
 
         /// <remarks>
