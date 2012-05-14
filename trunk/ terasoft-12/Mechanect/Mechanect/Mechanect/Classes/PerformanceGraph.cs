@@ -317,7 +317,7 @@ namespace Mechanect
             OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
             Discard(g);
             SetNewTime(time, Commands,g);
-            GetWinning();
+            GetWinning(g);
             CalculateTotalTime();
             Initialize();
             Choose();
@@ -443,35 +443,36 @@ namespace Mechanect
         /// <summary>
         /// The function GetWinning determines the times at which each player reaches the finish line.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void.</returns>
-        public void GetWinning()
+        public static void GetWinning(PerformanceGraph g)
         {
             Boolean found1 = false;
             Boolean found2 = false;
             Boolean found3 = false;
-            for (int i = 0; i <= player1Displacement.Count - 1; i++)
+            for (int i = 0; i <= g.getP1Disp().Count - 1; i++)
             {
                 if (!found1)
                 {
-                    if (player1Displacement[i] == 0)
+                    if (g.getP1Disp()[i] == 0)
                     {
-                        player1Win = (double)i / (double)12;
+                        g.setWin1((double)i / (double)12);
                         found1 = true;
                     }
                 }
                 if (!found2)
                 {
-                    if (player2Displacement[i] == 0)
+                    if (g.getP2Disp()[i] == 0)
                     {
-                        player2Win = (double)i / (double)12;
+                        g.setWin2((double)i / (double)12);
                         found2 = true;
                     }
                 }
                 if (!found3)
                 {
-                    if (optimumDisplacement[i] == 0)
+                    if (g.getOptD()[i] == 0)
                     {
-                        player3Win = (double)i / (double)12;
+                        g.setWin3((double)i / (double)12);
                         found3 = true;
                     }
                 }
@@ -995,6 +996,18 @@ namespace Mechanect
         public void clearCommands()
         {
             commandsList = new List<string>();
+        }
+        public void setWin1(double d)
+        {
+            player1Win = d;
+        }
+        public void setWin2(double d)
+        {
+            player2Win = d;
+        }
+        public void setWin3(double d)
+        {
+            player3Win = d;
         }
     }
 }
