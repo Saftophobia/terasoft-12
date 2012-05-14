@@ -323,7 +323,7 @@ namespace Mechanect
             Initialize(g);
             Choose(g);
             SetMaximum(g);
-            SetDestinations(gwidth, gheight);
+            SetDestinations(g, gwidth, gheight);
             SetAxis();
         }  
 
@@ -605,14 +605,15 @@ namespace Mechanect
         /// <summary>
         /// The function GetChosenArray returnes the required array given its index.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <param name="x">The index of the required array</param>        
         /// <returns>void</returns>
-        public float[] GetChosenArray(int x)
+        public static float[] GetChosenArray(PerformanceGraph g, int x)
         {
-            float[] temporary = new float[samples + 1];
+            float[] temporary = new float[g.getSamples() + 1];
             for (int i = 0; i <= temporary.Length - 1; i++)
             {
-                temporary[i] = chosen[x, i];
+                temporary[i] = g.getChosenValue(x, i);
             }
             return temporary;
         }
@@ -625,23 +626,24 @@ namespace Mechanect
         /// <summary>
         /// The function GetTotalLinesNeeded returnes the optimal number of lines to be drawn on the graph.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <param name="player">The required player's number.</param>        
         /// <returns>void</returns>
-        public int GetTotalLinesNeeded(int player)
+        public static int GetTotalLinesNeeded(PerformanceGraph g, int player)
         {
-            int x = samples;
+            int x = g.getSamples();
             double accumulator = 0;
             double temp = 0;
             switch (player)
             {
-                case 1: temp = player1Win; break;
-                case 2: temp = player2Win; break;
-                case 3: temp = player3Win; break;
+                case 1: temp = g.getWin1(); break;
+                case 2: temp = g.getWin2(); break;
+                case 3: temp = g.getWin3(); break;
             }
             Boolean found = false;
-            for (int i = 0; i <= samples - 1; i++)
+            for (int i = 0; i <= g.getSamples() - 1; i++)
             {
-                accumulator += ((double)distance / (double)256) * ((double)(totalTime));
+                accumulator += ((double)g.getDistance() / (double)256) * ((double)(g.getTotalTime()));
                 if (!found)
                 {
                     if (accumulator >= temp)
@@ -665,12 +667,13 @@ namespace Mechanect
         /// </summary>
         /// <param name="Width">The width of the screen.</param>
         /// <param name="Height">The height of the screen.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void SetDestinations(int Width, int Height)
+        public static void SetDestinations(PerformanceGraph g, int Width, int Height)
         {
-            int Lines1 = GetTotalLinesNeeded(1) - 1;
-            int Lines2 = GetTotalLinesNeeded(2) - 1;
-            int Lines3 = GetTotalLinesNeeded(3) - 1;
+            int Lines1 = GetTotalLinesNeeded(g,1) - 1;
+            int Lines2 = GetTotalLinesNeeded(g,2) - 1;
+            int Lines3 = GetTotalLinesNeeded(g,3) - 1;
             int counter1 = 0;
             float value = 0;
             double r = 0;
@@ -681,22 +684,22 @@ namespace Mechanect
                 List<int> disqList = new List<int>();
                 int index = 0;
                 Color color = new Color();
-                int player = 0;
+                int player = 0; 
                 switch (j)
                 {
-                    case 0: player = 1; counter1 = 50; value = trackLength; current = disp1; color = Color.Red; index = 0; disqList = p1DispGraph; break;
-                    case 1: player = 2; counter1 = 50; value = trackLength; current = disp2; color = Color.Blue; index = 1; disqList = p2DispGraph; break;
-                    case 2: player = 3; counter1 = 50; value = trackLength; current = optD; color = Color.Yellow; index = 6; break;
-                    case 3: player = 1; counter1 = 380; value = maxVelocity; current = velo1; color = Color.Red; index = 2; disqList = p1VeloGraph; break;
-                    case 4: player = 2; counter1 = 380; value = maxVelocity; current = velo2; color = Color.Blue; index = 3; disqList = p2VeloGraph; break;
-                    case 5: player = 3; counter1 = 380; value = maxVelocity; current = optV; color = Color.Yellow; index = 7; break;
-                    case 6: player = 1; counter1 = 710; value = maxAcceleration; current = acc1; color = Color.Red; index = 4; disqList = p1AccGraph; break;
-                    case 7: player = 2; counter1 = 710; value = maxAcceleration; current = acc2; color = Color.Blue; index = 5; disqList = p2AccGraph; break;
-                    case 8: player = 3; counter1 = 710; value = maxAcceleration; current = optA; color = Color.Yellow; index = 8; break;
+                    case 0: player = 1; counter1 = 50; value = g.getTrackLength(); current = g.getDisplacement1(); color = Color.Red; index = 0; disqList = g.getP1DispGraph(); break;
+                    case 1: player = 2; counter1 = 50; value = g.getTrackLength(); current = g.getDisplacement2(); color = Color.Blue; index = 1; disqList = g.getP2DispGraph(); break;
+                    case 2: player = 3; counter1 = 50; value = g.getTrackLength(); current = g.getOptimumDisplacement(); color = Color.Yellow; index = 6; break;
+                    case 3: player = 1; counter1 = 380; value = g.getMaxVelocity(); current = g.getVelocity1(); color = Color.Red; index = 2; disqList = g.getP1VelGraph(); break;
+                    case 4: player = 2; counter1 = 380; value = g.getMaxVelocity(); current = g.getVelocity2(); color = Color.Blue; index = 3; disqList = g.getP2VelGraph(); break;
+                    case 5: player = 3; counter1 = 380; value = g.getMaxVelocity(); current = g.getOptimumVelocity(); color = Color.Yellow; index = 7; break;
+                    case 6: player = 1; counter1 = 710; value = g.getMaxAcceleration(); current = g.getAcceleration1(); color = Color.Red; index = 4; disqList = g.getP1AccGraph(); break;
+                    case 7: player = 2; counter1 = 710; value = g.getMaxAcceleration(); current = g.getAcceleration2(); color = Color.Blue; index = 5; disqList = g.getP2AccGraph(); break;
+                    case 8: player = 3; counter1 = 710; value = g.getMaxAcceleration(); current = g.getOptimumAcceleration(); color = Color.Yellow; index = 8; break;
                 }
-                temporary = GetChosenArray(index);
+                temporary = GetChosenArray(g,index);
                 r = (double)value / (double)232;
-                for (int i = 0; i <= samples - 1; i++)
+                for (int i = 0; i <= g.getSamples() - 1; i++)
                 {
                     int a1 = 68;
                     int a2 = 68;
@@ -720,24 +723,24 @@ namespace Mechanect
 
                     if (j > 2 && j <= 5)
                     {
-                        r2 = (double)(maxVelocity - 2 - temporary[i]) / (double)r;
-                        r4 = (double)(maxVelocity - 2 - temporary[i + 1]) / (double)r;
+                        r2 = (double)(g.getMaxVelocity() - 2 - temporary[i]) / (double)r;
+                        r4 = (double)(g.getMaxVelocity() - 2 - temporary[i + 1]) / (double)r;
                     }
                     if (j > 5 && j <= 8)
                     {
-                        r2 = (double)(maxAcceleration - 2 - temporary[i]) / (double)r;
-                        r4 = (double)(maxAcceleration - 2 - temporary[i + 1]) / (double)r;
+                        r2 = (double)(g.getMaxAcceleration() - 2 - temporary[i]) / (double)r;
+                        r4 = (double)(g.getMaxAcceleration() - 2 - temporary[i + 1]) / (double)r;
                     }
                     int r3 = a1 + (int)r2;
                     int r5 = a2 + (int)r4;
-                    current[i] = new PerformanceGraph(counter1, r3 - 1, counter1 + distance, r5 - 1, Width,
+                    current[i] = new PerformanceGraph(counter1, r3 - 1, counter1 + g.getDistance(), r5 - 1, Width,
                         Height, color);
                     if (((player == 1 && i > Lines1) || (player == 2 && i > Lines2) || (player == 3 && i > Lines3)) && j > 2)
                     {
                         current[i] = new PerformanceGraph(0, 0, 0, 0, 0,
                         Height, color);
                     }
-                    counter1 = counter1 + distance;
+                    counter1 = counter1 + g.getDistance();
                     if (j != 2 && j != 5 && j != 8)
                     {
                         if (i == 0)
@@ -1073,11 +1076,11 @@ namespace Mechanect
         {
             maxAcceleration = x;
         }
-        public double getMaxAcceleration()
+        public float getMaxAcceleration()
         {
             return maxAcceleration;
         }
-        public double getMaxVelocity()
+        public float getMaxVelocity()
         {
             return maxVelocity;
         }
