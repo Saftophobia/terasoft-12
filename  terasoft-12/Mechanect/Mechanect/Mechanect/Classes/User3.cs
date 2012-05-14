@@ -528,6 +528,17 @@ namespace Mechanect.Classes
                  currentTime = gameTime.TotalGameTime.TotalSeconds;
          }
 
+         public void StorePreviousPosition()
+         {
+             if (currentRightLegPositionZ != 0)
+             {
+                 previousLeftLegPositionX = currentLeftLegPositionX;
+                 previousLeftLegPositionZ = currentLeftLegPositionZ;
+                 previousRightLegPositionX = currentRightLegPositionX;
+                 previousRightLegPositionZ = currentRightLegPositionZ;
+             }
+         }
+
 
          ///<remarks>
          ///<para>
