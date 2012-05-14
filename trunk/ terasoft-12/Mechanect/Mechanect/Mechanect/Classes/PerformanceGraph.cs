@@ -811,10 +811,10 @@ namespace Mechanect
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumConstantVelocity derives the optimum values for the "constantVelocity" command, by fixing the optimum player's
-        /// velocity and deriving the optimum displacement and acceleration.
+        /// The function OptimumConstantVelocity derives the optimum values for the "constantVelocity" command.
         /// </summary>
-        /// <param name="size">The number of frames assigned to the current command.</param>        
+        /// <param name="size">The number of frames assigned to the current command.</param> 
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
         public static void OptimumConstantVelocity(int size, PerformanceGraph g)
         {
@@ -843,11 +843,10 @@ namespace Mechanect
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" command
-        /// by either fixing the optimum player's acceleration or giving the optimum player an acceleration value and
-        /// fixing the value then deriving the optimum displacement and velocity values.
+        /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" command.
         /// </summary>
-        /// <param name="size">The number of frames assigned to the current command.</param>        
+        /// <param name="size">The number of frames assigned to the current command.</param>  
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
         public static void OptimumConstantAcceleration(int size, PerformanceGraph g)
         {
@@ -884,11 +883,7 @@ namespace Mechanect
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command,
-        /// by comparing between the average acceleration differences for each player during the race and choosing the higher 
-        /// average value as an optimum value to be added to the optimum player's acceleration, or taking a player's average acceleration difference if the other player was disqualified 
-        /// during the command's time slice or assigning fixed values as optimum values if both have been disqualified during the command's 
-        /// time slice.
+        /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command.
         /// </summary>
         /// <param name="disq1">Player 1's disqualification time.</param>
         /// <param name="disq2">Player 2's disqualification time.</param>
@@ -896,6 +891,7 @@ namespace Mechanect
         /// <param name="end">The command's final frame number.</param>
         /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
         public static void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
         {
@@ -938,11 +934,7 @@ namespace Mechanect
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumDeccreasingAcceleration derives the optimum values for the "decreasingAcceleration" command,
-        /// by comparing between the average acceleration differences for each player during the race and choosing the smaller 
-        /// average value as an optimum value to be subtracted from the optimum player's acceleration, or taking a player's average acceleration difference if the other player was disqualified 
-        /// during the command's time slice or assigning fixed values as optimum values if both have been disqualified during the command's 
-        /// time slice.
+        /// The function OptimumDeccreasingAcceleration derives the optimum values for the "decreasingAcceleration" command.
         /// </summary>
         /// <param name="disq1">Player 1's disqualification time.</param>
         /// <param name="disq2">Player 2's disqualification time.</param>
@@ -950,6 +942,7 @@ namespace Mechanect
         /// <param name="end">The command's final frame number.</param>
         /// <param name="accelerationTest1">A list representing Player 1's acceleration during the race.</param>
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
         public static void OptimumDecreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
         {
@@ -997,11 +990,10 @@ namespace Mechanect
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function OptimumConstantDisplacement derives the optimum values for the "constantDisplacement" command, by adding
-        /// 0 as an optimum value for acceleration and velocity and fixing the displacement from the kinect considering the fixed displacement
-        /// as an optimum displacement.
+        /// The function OptimumConstantDisplacement derives the optimum values for the "constantDisplacement" command.
         /// </summary>
         /// <param name="size">The number of frames assigned to the current command.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
         public static void OptimumConstantDisplacement(int size, PerformanceGraph g)
         {
@@ -1015,62 +1007,72 @@ namespace Mechanect
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Created: 19-4-2012</para>
-        /// <para>Date Modified: 23-4-2012</para>
+        /// <para>Date Created: 19/4/2012</para>
+        /// <para>Date Modified: 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements during the race by calling the necessary functions.
         /// </summary>
         /// <param name="player1disq">The instance when player 1 was disqualified.</param>
         /// <param name="player2disq">The instance when player 2 was disqualified.</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void GetOptimum(double player1disq, double player2disq, PerformanceGraph g)
+        public static void GetOptimum(double player1disq, double player2disq, PerformanceGraph g)
         {
             int disq1 = (int)(player1disq * 12);//index of disq frame
             int disq2 = (int)(player2disq * 12);//index of disq frame
             int start = 0;
             int end = 0;
-            previousDisp = 4000;
-            previousVelo = 0;
-            previousAcc = 0;
-            for (int i = 0; i <= timeSpaces.Count - 1; i++)
+            g.setPreviousD(g.getTrackLength());
+            g.setPreviousV(0);
+            g.setPreviousA(0);
+            for (int i = 0; i <= g.getTimeSpaces().Count - 1; i++)
             {
                 List<float> tempList = new List<float>();
-                end = start + (int)(timeSpaces[i] * 12);
+                end = start + (int)(g.getTimeSpaces()[i] * 12);
                 List<float> velocityTest1 = new List<float>();
                 List<float> velocityTest2 = new List<float>();
                 List<float> accelerationTest1 = new List<float>();
                 List<float> accelerationTest2 = new List<float>();
-                for (int j = start; j <= end - 1; j++)
+                for (int j = start; j <= end; j++)
                 {
-                    velocityTest1.Add(player1Velocity[j]);
-                    velocityTest2.Add(player2Velocity[j]);
-                    accelerationTest1.Add(player1Acceleration[j]);
-                    accelerationTest2.Add(player2Acceleration[j]);
+                    try
+                    {
+                        velocityTest1.Add(g.getP1Vel()[j]);
+                        velocityTest2.Add(g.getP2Vel()[j]);
+                        accelerationTest1.Add(g.getP1Acc()[j]);
+                        accelerationTest2.Add(g.getP2Acc()[j]);
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
-                if (commandsList[i].Equals("constantVelocity"))
+                if (g.getCommands()[i].Equals("constantVelocity"))
                 {
                     int x = end - start;
-                    PerformanceGraph.OptimumConstantVelocity(x,g);
+                    OptimumConstantVelocity(x, g);
                 }
-                if (commandsList[i].Equals("constantAcceleration"))
+                if (g.getCommands()[i].Equals("constantAcceleration"))
                 {
                     int x = end - start;
-                    OptimumConstantAcceleration(x,g);
+                    OptimumConstantAcceleration(x, g);
                 }
-                if (commandsList[i].Equals("increasingAcceleration"))
+                if (g.getCommands()[i].Equals("increasingAcceleration"))
                 {
-                    OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2,g);
+                    OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, g);
                 }
-                if (commandsList[i].Equals("decreasingAcceleration"))
+                if (g.getCommands()[i].Equals("decreasingAcceleration"))
                 {
-                    OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2,g);
+                    OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, g);
                 }
-                if (commandsList[i].Equals("constantDisplacement"))
+                if (g.getCommands()[i].Equals("constantDisplacement"))
                 {
                     int size = end - start;
-                    OptimumConstantDisplacement(size,g);
+                    OptimumConstantDisplacement(size, g);
                 }
+                g.setPreviousA(g.getOptA()[g.getOptA().Count - 1]);
+                g.setPreviousV(g.getOptV()[g.getOptV().Count - 1]);
+                g.setPreviousD(g.getOptD()[g.getOptD().Count - 1]);
                 velocityTest1.Clear();
                 velocityTest2.Clear();
                 accelerationTest1.Clear();
@@ -1238,6 +1240,46 @@ namespace Mechanect
         public List<float> getOptA()
         {
             return optimumAcceleration;
+        }
+        public void setPreviousD(float value)
+        {
+            this.previousDisp = value;
+        }
+        public void setPreviousV(float value)
+        {
+            this.previousVelo = value;
+        }
+        public void setPreviousA(float value)
+        {
+            this.previousAcc = value;
+        }
+        public List<string> getCommands()
+        {
+            return commandsList;
+        }
+        public List<double> getTimeSpaces()
+        {
+            return timeSpaces;
+        }
+        public List<float> getP1Vel()
+        {
+            return player1Velocity;
+        }
+        public List<float> getP2Vel()
+        {
+            return player2Velocity;
+        }
+        public List<float> getP1Acc()
+        {
+            return player1Acceleration;
+        }
+        public List<float> getP2Acc()
+        {
+            return player2Acceleration;
+        }
+        public int getTrackLength()
+        {
+            return trackLength;
         }
     }
 }
