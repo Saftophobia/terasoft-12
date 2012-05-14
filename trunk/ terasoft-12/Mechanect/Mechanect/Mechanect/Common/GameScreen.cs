@@ -24,6 +24,8 @@ namespace Mechanect.Common
     {
         #region Fields and Properties
 
+        public static int frameNumber { get; set; }
+
         /// <summary>
         /// Is the screen a popup (ie a message dialog)
         /// </summary>
