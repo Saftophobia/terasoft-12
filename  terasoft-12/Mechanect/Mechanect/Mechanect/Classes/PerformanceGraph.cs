@@ -318,7 +318,7 @@ namespace Mechanect
             Discard(g);
             SetNewTime(time, Commands,g);
             GetWinning(g);
-            CalculateTotalTime();
+            CalculateTotalTime(g);
             Initialize();
             Choose();
             SetMaximum();
@@ -482,20 +482,21 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
-        /// <para>Date Modified 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function CalculateTotalTime calculates the total race time.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void.</returns>
-        public void CalculateTotalTime()
+        public static void CalculateTotalTime(PerformanceGraph g)
         {
             double accumulator = 0;
-            for (int i = 0; i <= timeSpaces.Count - 1; i++)
+            for (int i = 0; i <= g.getTimeSpaces().Count - 1; i++)
             {
-                accumulator += timeSpaces[i];
+                accumulator += g.getTimeSpaces()[i];
             }
-            totalTime = accumulator;
+            g.setTotalTime(accumulator);
         }
 
         /// <remarks>
@@ -816,6 +817,10 @@ namespace Mechanect
         public double getTotalTime()
         {
             return totalTime;
+        }
+        public void setTotalTime(double value)
+        {
+            totalTime = value;
         }
         public int[] getChosen()
         {
