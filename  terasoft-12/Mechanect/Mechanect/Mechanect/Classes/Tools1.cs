@@ -138,10 +138,17 @@ namespace Mechanect.Classes
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
-         /// <para>DATE MODIFIED: 26/4/12 </para>
+         /// <para>DATE MODIFIED: 27/4/12 </para>
          /// </remarks>
          public static void CheckEachSecond(int timeInSeconds, User1 user11, User1 user12, List<int> timeOfCommands, List<String> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
          {
+             //check if I have a very low number of frames (which doesn't allow me to check)
+             if ((user11.Positions.Count <= 3) || (user12.Positions.Count <= 3))
+                 return;
+
+             //check the frame rate that the kinect could get
+             int frameRate = user11.Positions.Count / timeInSeconds;
+
              //this part is to check to define the start of the positions to check the command on them
              int pastSecondsFor1 = 0;
              for (int i = 0; i < user11.ActiveCommand; i++)
@@ -151,18 +158,23 @@ namespace Mechanect.Classes
              for (int i = 0; i < user12.ActiveCommand; i++)
                  pastSecondsFor2 += timeOfCommands[i];
 
-             if ((pastSecondsFor1 - 1) * 12 >= user11.Positions.Count)
+             if ((pastSecondsFor1 * frameRate) >= user11.Positions.Count)
              {
-                 pastSecondsFor1 = timeInSeconds;
-                 pastSecondsFor2 = timeInSeconds;
+                 //pastSecondsFor1 = timeInSeconds * frameRate;
+                 //pastSecondsFor2 = timeInSeconds * frameRate;
+                 return;
              }
+
+             //check to drop the first second of the command
+             if (timeInSeconds == pastSecondsFor1)
+                 return;
 
              List<float> user11Displacement = new List<float>();
              List<float> user12Displacement = new List<float>();
-             for (int i = (timeInSeconds - 1) * 12; i < user11.Positions.Count; i++)
+             for (int i = (pastSecondsFor1 + 1) * frameRate; i < user11.Positions.Count; i++)
                  user11Displacement.Add(user11.Positions[i]);
 
-             for (int i = (timeInSeconds - 1) * 12; i < user12.Positions.Count; i++)
+             for (int i = (pastSecondsFor1 + 1) * frameRate; i < user12.Positions.Count; i++)
                  user12Displacement.Add(user12.Positions[i]);
 
              //a condition in order not to get an OutOfBounds if the kinect sent wrong data
