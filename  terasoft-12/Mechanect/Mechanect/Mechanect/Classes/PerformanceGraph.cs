@@ -299,14 +299,15 @@ namespace Mechanect
         /// <param name="gwidth">The width of the screen.</param>
         /// <param name="gheight">The height of the screen.</param>
         /// <returns>void</returns>
-        public void DrawGraphs(PerformanceGraph g, List<float> D1, List<float> D2, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight)
+        public void DrawGraphs(PerformanceGraph g, List<float> D1, List<float> D2, List<String> Commands, List<double> time, double player1disqtime, double player2disqtime, int gwidth, int gheight,int length)
         {
+            this.trackLength = length;
             player1Displacement = new List<float>();
             player2Displacement = new List<float>();
             optimumDisplacement = new List<float>();
             optimumVelocity = new List<float>();
             optimumAcceleration = new List<float>();
-            FixDifference(D1, D2);
+            FixDifference(D1, D2, g);
             this.commandsList = Commands;
             this.timeSpaces = time;
             player1Velocity = GetPlayerVelocity(player1Displacement);
@@ -314,30 +315,30 @@ namespace Mechanect
             player1Acceleration = GetPlayerAcceleration(player1Velocity);
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
             OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
-            Discard();
-            SetNewTime(time, Commands);
-            GetWinning();
-            CalculateTotalTime();
-            Initialize();
-            Choose();
-            SetMaximum();
-            SetDestinations(gwidth, gheight);
-            SetAxis();
-        }
+            g.Discard();
+            g.SetNewTime(time, Commands);
+            g.GetWinning();
+            g.CalculateTotalTime();
+            g.Initialize();
+            g.Choose();
+            g.SetMaximum();
+            g.SetDestinations(gwidth, gheight);
+            g.SetAxis();
+        }  
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
-        /// <para>Date Modified 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function FixDifference aims to avoid any exceptions resulted from
-        /// capturing more or less frames than the expected number of frames per second.
+        /// The function FixDifference aims to avoid any exceptions resulted from capturing more or less frames than the expected number of frames per second.
         /// </summary>
         /// <param name="D1">A list representing Player 1's displacement.</param>
         /// <param name="D2">A list representing Player 2's displacement</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void.</returns>
-        public void FixDifference(List<float> D1, List<float> D2)
+        public static void FixDifference(List<float> D1, List<float> D2, PerformanceGraph g)
         {
             int difference = 0;
             int size = D1.Count;
@@ -353,8 +354,8 @@ namespace Mechanect
             }
             for (int i = 0; i <= size - 1; i++)
             {
-                player1Displacement.Add(D1[i]);
-                player2Displacement.Add(D2[i]);
+                g.getP1Disp().Add(D1[i]);
+                g.getP1Disp().Add(D2[i]);
             }
         }
 
@@ -957,6 +958,30 @@ namespace Mechanect
         public int getTrackLength()
         {
             return trackLength;
+        }
+        public void setP1Disp(List<float> L)
+        {
+            this.player1Displacement = L;
+        }
+        public void setP2Disp(List<float> L)
+        {
+            this.player2Displacement = L;
+        }
+        public void setP1Vel(List<float> L)
+        {
+            this.player1Velocity = L;
+        }
+        public void setP2Vel(List<float> L)
+        {
+            this.player2Velocity = L;
+        }
+        public void setP1Acc(List<float> L)
+        {
+            this.player1Acceleration = L;
+        }
+        public void setP2Acc(List<float> L)
+        {
+            this.player2Acceleration = L;
         }
     }
 }
