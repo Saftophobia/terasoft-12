@@ -42,8 +42,8 @@ namespace Mechanect.Screens
 
         /// <summary>
         /// Allows the game screen to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// and detects if the user clicked the button to skip this screen
+        /// checking for collisions, gathering input, and playing audio
+        /// and detects if the user clicked the button to skip this screen.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah, Bishoy Bassem </para>
