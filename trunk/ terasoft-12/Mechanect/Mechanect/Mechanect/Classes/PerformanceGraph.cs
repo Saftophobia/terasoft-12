@@ -316,7 +316,7 @@ namespace Mechanect
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
             OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
             Discard(g);
-            SetNewTime(time, Commands);
+            SetNewTime(time, Commands,g);
             GetWinning();
             CalculateTotalTime();
             Initialize();
@@ -395,38 +395,36 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
-        /// <para>Date Modified 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line by discarding any
-        /// additional Commands.
+        /// The function SetNewTime sets the race time to be equal to the total time elapsed by the players to reach the finish line by discarding any additional Commands.
         /// </summary>
         /// <param name="time">A list representing each command's time slice</param>
         /// <param name="Commands">A list representing each command given during the race</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void.</returns>
-        public void SetNewTime(List<double> time, List<string> Commands)
+        public static void SetNewTime(List<double> time, List<string> Commands, PerformanceGraph g)
         {
-            timeSpaces = new List<double>();
-            commandsList = new List<string>();
-            int newSize = player1Displacement.Count;
+            int newSize = g.getP1Disp().Count;
             double newTime = ((double)newSize / (double)12);
             Boolean t = false;
             int count = 0;
             double acc = 0;
-            this.timeSpaces = new List<double>();
-            this.commandsList = new List<string>();
+            g.clearTimeSpaces();
+            g.clearCommands();
             while (!t)
             {
                 if (acc + time[count] <= newTime)
                 {
-                    this.timeSpaces.Add(time[count]);
-                    commandsList.Add(Commands[count]);
+                    g.getTimeSpaces().Add(time[count]);
+                    g.getCommands().Add(Commands[count]);
                 }
                 else
                 {
                     double idealNumber = newTime - acc;
-                    this.timeSpaces.Add(idealNumber);
-                    commandsList.Add(Commands[count]);
+                    g.getTimeSpaces().Add(idealNumber);
+                    g.getCommands().Add(Commands[count]);
                 }
                 acc += time[count];
                 count++;
@@ -989,6 +987,14 @@ namespace Mechanect
         public void setOpdD(List<float> L)
         {
             this.optimumDisplacement = L;
+        }
+        public void clearTimeSpaces()
+        {
+            timeSpaces = new List<double>();
+        }
+        public void clearCommands()
+        {
+            commandsList = new List<string>();
         }
     }
 }
