@@ -963,30 +963,30 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawYLabels is used to add the values to be displayed on the Y-axis.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
-        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void DrawYLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawYLabels(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             //+ve part of the y-axis
             int y = 0;
-            double[] current = yAxisDisplacement; ;
+            double[] current = g.YAxisDis(); ;
             for (int i = 0; i <= 2; i++)
             {
-                int counter = 110;
+                int counter = 60;
                 switch (i)
                 {
-                    case 1: y = 320; current = yAxisVelocity; break;
-                    case 2: y = 650; current = yAxisAcceleration; break;
-                    default: y = 0; current = yAxisDisplacement; break;
+                    case 1: y = 320; current = g.YAxisVel(); break;
+                    case 2: y = 650; current = g.YAxisAcc(); break;
+                    default: y = 0; current = g.YAxisDis(); break;
                 }
                 for (int j = 4; j >= 1; j--)
                 {
@@ -997,12 +997,12 @@ namespace Mechanect
             //-ve part of the y-axis
             for (int i = 0; i <= 2; i++)
             {
-                int counter = 400;
+                int counter = 350;
                 switch (i)
                 {
-                    case 1: y = 320; current = yAxisVelocity; break;
-                    case 2: y = 650; current = yAxisAcceleration; break;
-                    default: y = 0; current = yAxisDisplacement; break;
+                    case 1: y = 320; current = g.YAxisVel(); break;
+                    case 2: y = 650; current = g.YAxisAcc(); break;
+                    default: y = 0; current = g.YAxisDis(); break;
                 }
                 for (int j = 1; j <= 4; j++)
                 {
@@ -1033,7 +1033,7 @@ namespace Mechanect
             DrawLabels(spriteBatch, GraphicsDevice, font);
             DrawArrows(g,spriteBatch, GraphicsDevice);
             DrawXLabels(g,spriteBatch, GraphicsDevice, font2);
-            DrawYLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawYLabels(g,spriteBatch, GraphicsDevice,font2);
             //drawing the marks on the X-axis
             int counter = 50;
             for (int i = 0; i <= 2; i++)
@@ -1674,6 +1674,18 @@ namespace Mechanect
         public double[] GetXAxis()
         {
             return xAxis;
+        }
+        public double[] YAxisDis()
+        {
+            return yAxisDisplacement;
+        }
+        public double[] YAxisVel()
+        {
+            return yAxisVelocity;
+        }
+        public double[] YAxisAcc()
+        {
+            return yAxisAcceleration;
         }
     }
 }
