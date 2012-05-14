@@ -1080,59 +1080,51 @@ namespace Mechanect
                 start = end;
                 tempList.Clear();
             }
+            CompleteList(g);
         }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
+        /// <para>Date Written 14/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function LiesInBetween checks whether a given number
-        /// lies between another two given values or not.
+        /// The function CompleteList is used to equalize the length of the optimum lists and the players' lists.
         /// </summary>
-        /// <param name="value">The number to be checked.</param> 
-        /// <param name="start">The lower bound.</param> 
-        /// <param name="end">The upper bound.</param> 
-        /// <returns>Boolean: true if the given number lies between
-        /// the other two values.</returns>
-        public Boolean LiesInBetween(int value, int start, int end)
+        /// <param name="g">An instance of the PerformanceGraph.</param
+        /// <returns>void.</returns>
+        public static void CompleteList(PerformanceGraph g)
         {
-            Boolean t = false;
-            if (value <= end && value > start)
+            if (g.getOptD().Count < g.getP1Disp().Count)
             {
-                t = true;
+                int difference = g.getP1Disp().Count - g.getOptD().Count;
+                for (int i = 0; i <= difference - 1; i++)
+                {
+                    g.getOptD().Add(g.getPreviousD());
+                }
             }
-            if (value >= start && value < end)
+            if (g.getOptV().Count < g.getP1Vel().Count)
             {
-                t = true;
+                int difference = g.getP1Vel().Count - g.getOptV().Count;
+                for (int i = 0; i <= difference - 1; i++)
+                {
+                    g.getOptV().Add(g.getPreviousV());
+                }
             }
-            return t;
+            if (g.getOptA().Count < g.getP1Acc().Count)
+            {
+                int difference = g.getP1Acc().Count - g.getOptA().Count;
+                for (int i = 0; i <= difference - 1; i++)
+                {
+                    g.getOptA().Add(g.getPreviousA());
+                }
+            }
         }
 
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function GetAverageList is used to get the average value
-        /// from a set of values in a list.
-        /// </summary>
-        /// <param name="list">A list holding a set of values.</param
-        /// <returns>int: returns an integer representing the average 
-        /// value of the list.</returns>
-        public double GetAverageList(List<float> list)
+        public List<float> getP1Disp()
         {
-            double x = 0;
-
-            for (int i = 0; i <= list.Count - 1; i++)
-            {
-                x += (double)list[i];
-            }
-            return (double)x / (double)(list.Count);
+            return player1Displacement;
         }
-
         public double getTotalTime()
         {
             return totalTime;
