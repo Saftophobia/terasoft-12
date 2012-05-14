@@ -859,32 +859,31 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawAxis is used to draw the X and Y axis for each graph.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
-        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
-        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void DrawAxis(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawAxis(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 100),
-                new Vector2(50, 620));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 100),
-                new Vector2(380, 620));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 100),
-                new Vector2(710, 620));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 350),
-                new Vector2(316, 350));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 350),
-                new Vector2(646, 350));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 350),
-                new Vector2(976, 350));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 50),
+                new Vector2(50, 570));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 50),
+                new Vector2(380, 570));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 50),
+                new Vector2(710, 570));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 300),
+                new Vector2(316, 300));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 300),
+                new Vector2(646, 300));
+            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 300),
+                new Vector2(976, 300));
         }
 
         /// <remarks>
@@ -1026,11 +1025,11 @@ namespace Mechanect
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void DrawEnvironment(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public void DrawEnvironment(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawAxis(spriteBatch, GraphicsDevice, font, font2);
+            DrawAxis(g,spriteBatch, GraphicsDevice);
             DrawLabels(spriteBatch, GraphicsDevice, font);
             DrawArrows(spriteBatch, GraphicsDevice, font, font2);
             DrawXLabels(spriteBatch, GraphicsDevice, font, font2);
