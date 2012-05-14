@@ -372,8 +372,8 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool ConstantAcceleration(List<float> positions, float currentTolerance)
          {
-             List<float> velocities = PerformanceGraph.GetPlayerVelocity(positions);
-
+             //List<float> velocities = PerformanceGraph.GetPlayerVelocity(positions);
+             List<float> velocities = new List<float>();//this line must be replaced by the line above after shirin solves the class problems
 
              bool result = true;
              float firstVelocity = velocities[1] - velocities[0];
@@ -445,8 +445,8 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool IncreasingAcceleration(List<float> positions, float currentTolerance)
          {
-             List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
-
+             //List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
+             List<float> accelerations = new List<float>();//this line must be replaced by the line above after shirin solves the class problems
 
              bool result = true;
              for (int i = 1; i < accelerations.Count; i++)
@@ -482,8 +482,8 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool DecreasingAcceleration(List<float> positions, float currentTolerance)
          {
-             List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
-
+             //List<float> accelerations = PerformanceGraph.GetPlayerAcceleration(PerformanceGraph.GetPlayerVelocity(positions));
+             List<float> accelerations = new List<float>();//this line must be replaced by the line above after shirin solves the class problems
 
              bool result = true;
              for (int i = 1; i < accelerations.Count; i++)
