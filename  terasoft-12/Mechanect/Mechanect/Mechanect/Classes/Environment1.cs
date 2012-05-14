@@ -58,6 +58,7 @@ namespace Mechanect.Classes
             effect = content.Load<Effect>("Exp1/effects");
             Texture2D heightMap = content.Load<Texture2D>("Exp1/heightmap6");
             skyboxModel = LoadModel("Exp1/skybox2", out skyboxTextures);
+            c = new TargetCamera(new Vector3(0, 150, -350), new Vector3(0, 0, 0), device);
             LoadHeightData(heightMap);
             SetUpVertices();
             SetUpIndices();
