@@ -29,6 +29,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Is the screen a popup (ie a message dialog)
         /// </summary>
+
         public bool IsPopup
         {
             get { return isPopup; }
