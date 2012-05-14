@@ -572,9 +572,11 @@ namespace Mechanect.Classes
          /// scales the velocity of the leg's User3 relative to the assumed mass of the User3's leg and maps the velocity in meters to pixels
          /// </summary>
          /// <returns>returns the scales velocity</returns>
-         public float SetVelocityRelativeToGivenMass()
+         public Vector3 SetVelocityRelativeToGivenMass()
          {
-             return (float)((Constants3.normalLegMass / AssumedLegMass) * Velocity);
+             float ratio = (float)(Constants3.normalLegMass / assumedLegMass);
+             return new Vector3(velocity.X * ratio, 0, velocity.Z * ratio);
+
          }
 
 
