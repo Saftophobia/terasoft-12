@@ -511,7 +511,7 @@ namespace Mechanect.Screens
 
 
                         // Graph.drawGraphs(player1.Positions, player2.Positions, racecommands,timeslicedouble,player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
-                        Graph.DrawGraphs(Graph,player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+                        Graph.DrawGraphs(Graph,player1.Positions, player2.Positions, racecommands, timeofrace, player1disqualification, player2disqualification, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height,4000);
 
 
                         graphmutex = true;
