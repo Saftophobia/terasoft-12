@@ -322,7 +322,7 @@ namespace Mechanect
             CalculateTotalTime(g);
             Initialize(g);
             Choose(g);
-            SetMaximum();
+            SetMaximum(g);
             SetDestinations(gwidth, gheight);
             SetAxis();
         }  
@@ -503,7 +503,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 13/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function Choose is used to choose a certain number of samples from the Lists in order to represent them on the graph.
@@ -548,28 +548,27 @@ namespace Mechanect
         /// <para>Date Modified 13/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function SetMaximum is used to derive the maximum velocity and the maximum acceleration of both players and the optimum player during 
-        /// the race.
+        /// The function SetMaximum is used to derive the maximum velocity and the maximum acceleration of both players and the optimum player during the race.
         /// </summary>
-        /// <param></param>        
+        /// <param name="g">An instance of the PerformanceGraph.</param>        
         /// <returns>void</returns>
-        public void SetMaximum()
+        public static void SetMaximum(PerformanceGraph g)
         {
-            maxVelocity = 0;
-            maxAcceleration = 0;
-            int p1WinningFrame = (int)(12 * player1Win);
-            int p2WinningFrame = (int)(12 * player2Win);
-            int p3WinningFrame = (int)(12 * player3Win);
-            for (int i = 0; i <= samples; i++)
+            g.setMaxVelocity(0);
+            g.setMaxAcceleration(0);
+            int p1WinningFrame = (int)(12 * g.getWin1());
+            int p2WinningFrame = (int)(12 * g.getWin2());
+            int p3WinningFrame = (int)(12 * g.getWin3());
+            for (int i = 0; i <= g.getSamples(); i++)
             {
                 float[] velocity = new float[3];
                 float[] acceleration = new float[3];
-                velocity[0] = chosen[2, i];
-                velocity[1] = chosen[3, i];
-                velocity[2] = chosen[7, i];
-                acceleration[0] = chosen[4, i];
-                acceleration[1] = chosen[5, i];
-                acceleration[2] = chosen[8, i];
+                velocity[0] = g.getChosenValue(2, i);
+                velocity[1] = g.getChosenValue(3, i);
+                velocity[2] = g.getChosenValue(7, i);     
+                acceleration[0] = g.getChosenValue(4, i);
+                acceleration[1] = g.getChosenValue(5, i);
+                acceleration[2] = g.getChosenValue(8, i);
                 for (int j = 0; j <= 2; j++)
                 {
                     if (velocity[j] < 0)
@@ -580,40 +579,24 @@ namespace Mechanect
                     {
                         acceleration[j] *= -1;
                     }
-                    if (velocity[j] > maxVelocity)
+                    if (velocity[j] > g.getMaxVelocity())
                     {
-                        if (j == 0 && chosenTimings[i] <= p1WinningFrame)
+                        if ((j == 0 && g.getChosenTimings()[i] <= p1WinningFrame) || (j == 1 && g.getChosenTimings()[i] <= p2WinningFrame) || (j == 2 && g.getChosenTimings()[i] <= p3WinningFrame))
                         {
-                            maxVelocity = velocity[j];
-                        }
-                        if (j == 1 && chosenTimings[i] <= p2WinningFrame)
-                        {
-                            maxVelocity = velocity[j];
-                        }
-                        if (j == 2 && chosenTimings[i] <= p3WinningFrame)
-                        {
-                            maxVelocity = velocity[j];
+                            g.setMaxVelocity(velocity[j]);
                         }
                     }
-                    if (acceleration[j] > maxAcceleration)
+                    if (acceleration[j] > g.getMaxAcceleration())
                     {
-                        if (j == 0 && chosenTimings[i] <= p1WinningFrame)
+                        if ((j == 0 && g.getChosenTimings()[i] <= p1WinningFrame) || (j == 1 && g.getChosenTimings()[i] <= p2WinningFrame) || (j == 2 && g.getChosenTimings()[i] <= p3WinningFrame))
                         {
-                            maxAcceleration = acceleration[j];
-                        }
-                        if (j == 1 && chosenTimings[i] <= p2WinningFrame)
-                        {
-                            maxAcceleration = acceleration[j];
-                        }
-                        if (j == 2 && chosenTimings[i] <= p3WinningFrame)
-                        {
-                            maxAcceleration = acceleration[j];
-                        }
+                            g.setMaxAcceleration(acceleration[j]);
+                        }                        
                     }
                 }
             }
         }
-
+        
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
@@ -1081,6 +1064,38 @@ namespace Mechanect
         public void setChosenGraph(int a, int b, float f)
         {
             chosen[a, b] = f;
+        }
+        public void setMaxVelocity(float x)
+        {
+            maxVelocity = x;
+        }
+        public void setMaxAcceleration(float x)
+        {
+            maxAcceleration = x;
+        }
+        public double getMaxAcceleration()
+        {
+            return maxAcceleration;
+        }
+        public double getMaxVelocity()
+        {
+            return maxVelocity;
+        }
+        public double getWin1()
+        {
+            return player1Win;
+        }
+        public double getWin2()
+        {
+            return player2Win;
+        }
+        public double getWin3()
+        {
+            return player3Win;
+        }
+        public float getChosenValue(int a, int b)
+        {
+            return chosen[a, b];
         }
     }
 }
