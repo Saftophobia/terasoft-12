@@ -224,6 +224,11 @@ namespace Mechanect.Classes
         public bool hasShot { get; set; }
         public bool firstUpdate { get; set; }
         public int consecutiveFrame { get; set; }
+        public double previousLeftLegPositionX;
+        public double previousLeftLegPositionZ;
+        public double previousRightLegPositionX;
+        public double previousRightLegPositionZ;
+
 
         public User3()
         {
