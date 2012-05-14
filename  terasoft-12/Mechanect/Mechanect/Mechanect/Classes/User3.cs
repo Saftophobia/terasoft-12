@@ -506,47 +506,22 @@ namespace Mechanect.Classes
              CurrentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
              CurrentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
-      
-      
 
 
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// sets the current leg positions of the User3 from the detected skeleton
-         /// </summary>
-        
-
-         public void SetCurrentPosition()
+         public void StoreInitialTime(GameTime gameTime)
          {
-             CurrentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-             CurrentLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-             CurrentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-             CurrentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+             initialTime = gameTime.TotalGameTime.TotalSeconds;
          }
-
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// stores the initial position of the User3
-         /// </summary>
-         public  void InitalizePlayerPosition()
+         public void StoreTime(GameTime gameTime)
          {
-
-             InitialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-             InitialLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-             InitialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
-             InitialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-
+             if (firstUpdate)
+             {
+                 StoreInitialTime(gameTime);
+                 firstUpdate = false;
+             }
+             else
+                 currentTime = gameTime.TotalGameTime.TotalSeconds;
          }
-
-
 
 
          ///<remarks>
