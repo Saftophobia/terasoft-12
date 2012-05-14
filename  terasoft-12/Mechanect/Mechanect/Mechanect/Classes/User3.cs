@@ -602,19 +602,25 @@ namespace Mechanect.Classes
              InitialRightLegPositionZ = 0;
              CurrentRightLegPositionZ = 0;
 
-             StoreX1 = 0;
-             StoreX2 = 0;
-             StoreZ1 = 0;
-             StoreZ2 = 0;
+             currentTime = 0;
+             initialTime = 0;
+             timeCounter = 0;
+             hasJustSlipped = false;
+             hasJustStarted = true;
+             hasShot = false;
+             firstUpdate = true;
+             consecutiveFrame = 0;
 
-             Velocity = 0;
+             velocity = Vector3.Zero;
              Angle = 0;
 
              MovedForward = false;
              Trying = true;
-             HasSetInitialPositionForAngle = false;
+             GameScreen.frameNumber = 0;
 
-             PauseScreen.frameNumber = 0;
+
+
+
          }
        
     }
