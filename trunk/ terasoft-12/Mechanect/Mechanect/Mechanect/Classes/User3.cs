@@ -10,19 +10,7 @@ namespace Mechanect.Classes
 {
     class User3:User
     {
-        private bool hasSetInitialPositionForAngle;
-        public bool HasSetInitialPositionForAngle
-        {
-            get
-            {
-                return hasSetInitialPositionForAngle;
-            }
-            set
-            {
-                hasSetInitialPositionForAngle = value;
-            }
-        }
-
+       
 
         private Joint trackedJoint;
         public Joint TrackedJoint  //  the user's tracked joint
@@ -116,62 +104,6 @@ namespace Mechanect.Classes
                 currentRightLegPositionZ = value;
             }
         }
-
-        // store 
-
-        private double storeX1;
-        public double StoreX1
-        {
-            get
-            {
-                return storeX1;
-            }
-            set
-            {
-                storeX1 = value;
-
-            }
-        }
-        private double storeX2;
-        public double StoreX2
-        {
-            get
-            {
-                return storeX2;
-            }
-            set
-            {
-                storeX2 = value;
-
-            }
-        }
-        private double storeZ1;
-        public double StoreZ1
-        {
-            get
-            {
-                return storeZ1;
-            }
-            set
-            {
-                storeZ1 = value;
-
-            }
-        }
-        public double storeZ2;
-        public double StoreZ2
-        {
-            get
-            {
-                return storeZ2;
-            }
-            set
-            {
-                storeZ2 = value;
-
-            }
-        }
-
 
         //left leg
 
@@ -293,10 +225,10 @@ namespace Mechanect.Classes
                 shootingPosition = value;
             }
         }
-         public User3()
+        public User3()
         {
-           
-         
+
+
 
             initialLeftLegPositionX = 0;
             currentLeftLegPositionX = 0;
@@ -308,19 +240,22 @@ namespace Mechanect.Classes
             initialRightLegPositionZ = 0;
             currentRightLegPositionZ = 0;
 
-            storeX1 = 0;
-            storeX2 = 0;
-            storeZ1 = 0;
-            storeZ2 = 0;
-            
-            velocity = 0;
+            velocity = Vector3.Zero;
             angle = 0;
-        
+
             movedForward = false;
             trying = true;
-            hasSetInitialPositionForAngle = false;
-            assumedLegMass = GenerateFootMass(Constants3.normalLegMass, 0.04f);
-         
+            assumedLegMass = 0.01f;
+            currentTime = 0;
+            initialTime = 0;
+            timeCounter = 0;
+            hasJustSlipped = false;
+            hasJustStarted = true;
+            hasShot = false;
+            firstUpdate = true;
+            consecutiveFrame = 0;
+
+
 
         }
         /// <summary>
