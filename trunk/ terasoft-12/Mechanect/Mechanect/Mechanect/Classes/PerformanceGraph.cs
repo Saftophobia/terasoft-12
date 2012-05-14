@@ -837,7 +837,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawLabels is used to add a label for each axis indicating whether each graph represents displacement or velocity or acceleration.
@@ -845,16 +845,15 @@ namespace Mechanect
         /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
         /// <param name="font">The spritefont "Myfont1.spritefont".</param>
-        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void DrawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font)
         {
-            spriteBatch.DrawString(font, "Displacement", new Vector2(5, 70), Color.Black);
-            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 70), Color.Black);
-            spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 70), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(270, 380), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(600, 380), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(930, 380), Color.Black);
+            spriteBatch.DrawString(font, "Displacement", new Vector2(5, 20), Color.Black);
+            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 20), Color.Black);
+            spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 20), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(270, 325), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(600, 325), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(930, 325), Color.Black);
         }
 
         /// <remarks>
@@ -1032,7 +1031,7 @@ namespace Mechanect
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
             DrawAxis(spriteBatch, GraphicsDevice, font, font2);
-            DrawLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawLabels(spriteBatch, GraphicsDevice, font);
             DrawArrows(spriteBatch, GraphicsDevice, font, font2);
             DrawXLabels(spriteBatch, GraphicsDevice, font, font2);
             DrawYLabels(spriteBatch, GraphicsDevice, font, font2);
