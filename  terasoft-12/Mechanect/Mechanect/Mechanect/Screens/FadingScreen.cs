@@ -47,7 +47,10 @@ namespace Mechanect.Screens
         {
             ScreenManager.GraphicsDevice.Clear(Color.Black);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(logo, new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2, (ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height - 100) * scale) / 2), null, Color.White, -0.1f, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
+            ScreenManager.SpriteBatch.Draw(logo, new Vector2((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2,
+                (ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height - 100) * scale) / 2),
+                null, Color.White, -0.1f, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
+
             ScreenManager.SpriteBatch.Draw(black, Vector2.Zero, null, Color.White * fading, -0.1f, new Vector2(0, 0),
                 new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height), SpriteEffects.None, 0);
             ScreenManager.SpriteBatch.End();
