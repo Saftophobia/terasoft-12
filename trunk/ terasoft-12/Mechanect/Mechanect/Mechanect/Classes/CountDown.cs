@@ -34,7 +34,13 @@ namespace Mechanect.Classes
         private Boolean play1 = true;
         private Boolean play2 = true;
         private Boolean play3 = true;
-        private Boolean play4 = true;        
+        private Boolean play4 = true;
+
+
+        public CountDown()
+        {
+
+        }
 
         public CountDown(Texture2D tex, int a, int b, int v1, int v2, int v3, int v4)
         {
