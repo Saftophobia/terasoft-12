@@ -321,7 +321,7 @@ namespace Mechanect
             GetWinning(g);
             CalculateTotalTime(g);
             Initialize(g);
-            Choose();
+            Choose(g);
             SetMaximum();
             SetDestinations(gwidth, gheight);
             SetAxis();
@@ -508,38 +508,37 @@ namespace Mechanect
         /// <summary>
         /// The function Choose is used to choose a certain number of samples from the Lists in order to represent them on the graph.
         /// </summary>
-        /// <param></param>         
+        /// <param name ="g">An instance of the PerformanceGraph.</param>         
         /// <returns>void</returns>
-        public void Choose()
+        public static void Choose(PerformanceGraph g)
         {
-            chosenTimings = new int[samples + 1];
-            int timeCounter = 0;
-            for (int i = 0; i <= chosenTimings.Length - 1; i++)
+            g.setChosenTimings(g.getSamples() + 1);
+            int timeCounter = 0; 
+            for (int i = 0; i <= g.getChosenTimings().Length - 1; i++)
             {
-                chosenTimings[i] = (int)(12 * totalTime * ((double)timeCounter / (double)samples));
+                g.getChosenTimings()[i] = (int)(12 * g.getTotalTime() * ((double)timeCounter / (double)g.getSamples()));
                 timeCounter++;
             }
             int u = 0;
-            for (int i = 0; i <= samples; i++)
+            for (int i = 0; i <= g.getSamples(); i++)
             {
-                if (i > 0 && chosenTimings[i] - 1 >= 0)
+                if (i > 0 && g.getChosenTimings()[i] - 1 >= 0)
                 {
-                    u = chosenTimings[i] - 1;
+                    u = g.getChosenTimings()[i] - 1;
                 }
                 else
                 {
-                    u = chosenTimings[i];
+                    u = g.getChosenTimings()[i];
                 }
-
-                chosen[0, i] = player1Displacement[u];
-                chosen[1, i] = player2Displacement[u];
-                chosen[2, i] = player1Velocity[u];
-                chosen[3, i] = player2Velocity[u];
-                chosen[4, i] = player1Acceleration[u];
-                chosen[5, i] = player2Acceleration[u];
-                chosen[6, i] = optimumDisplacement[u];
-                chosen[7, i] = optimumVelocity[u];
-                chosen[8, i] = optimumAcceleration[u];
+                g.setChosenGraph(0, i, g.getP1Disp()[u]);
+                g.setChosenGraph(1, i, g.getP2Disp()[u]);
+                g.setChosenGraph(2, i, g.getP1Vel()[u]);
+                g.setChosenGraph(3, i, g.getP2Vel()[u]);
+                g.setChosenGraph(4, i, g.getP1Acc()[u]);
+                g.setChosenGraph(5, i, g.getP2Acc()[u]);
+                g.setChosenGraph(6, i, g.getOptD()[u]);
+                g.setChosenGraph(7, i, g.getOptV()[u]);
+                g.setChosenGraph(8, i, g.getOptA()[u]);
             }
         }
 
@@ -1033,7 +1032,7 @@ namespace Mechanect
         }
         public void setChosen(int a, int b)
         {
-            chosen = new float[9, samples + 1];
+            chosen = new float[a, b];
         }
         public void setDisp1(int x)
         {
@@ -1070,6 +1069,18 @@ namespace Mechanect
         public void setOptimumA(int x)
         {
             optA = new PerformanceGraph[x];
+        }
+        public void setChosenTimings(int x)
+        {
+            chosenTimings = new int[x];
+        }
+        public int[] getChosenTimings()
+        {
+            return chosenTimings;
+        }
+        public void setChosenGraph(int a, int b, float f)
+        {
+            chosen[a, b] = f;
         }
     }
 }
