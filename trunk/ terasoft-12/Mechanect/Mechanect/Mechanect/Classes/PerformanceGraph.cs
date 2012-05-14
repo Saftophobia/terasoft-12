@@ -840,7 +840,7 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" command
@@ -849,36 +849,33 @@ namespace Mechanect
         /// </summary>
         /// <param name="size">The number of frames assigned to the current command.</param>        
         /// <returns>void</returns>
-        public void OptimumConstantAcceleration(int size)
+        public static void OptimumConstantAcceleration(int size, PerformanceGraph g)
         {
-            float acceleration = previousAcc;
+            float acceleration = g.getPreviousA();
             if (acceleration == 0)
             {
-                acceleration = 160;
+                acceleration = 5;
             }
-            float accumulator = previousVelo;
-            float z = previousVelo + acceleration;
-            float x = previousDisp - z;
+            float accumulator = g.getPreviousV();
+            float z = g.getPreviousV() + acceleration;
+            float x = g.getPreviousD() - z;
             for (int i = 0; i <= size - 1; i++)
             {
                 if (x >= 0)
                 {
-                    optimumAcceleration.Add(acceleration);
-                    optimumVelocity.Add(z);
-                    optimumDisplacement.Add(x);
+                    g.getOptA().Add(acceleration);
+                    g.getOptV().Add(z);
+                    g.getOptD().Add(x);
                 }
                 else
                 {
-                    optimumAcceleration.Add(0);
-                    optimumVelocity.Add(0);
-                    optimumDisplacement.Add(0);
+                    g.getOptA().Add(0);
+                    g.getOptV().Add(0);
+                    g.getOptD().Add(0);
                 }
                 z = z + acceleration;
                 x = x - z;
             }
-            this.previousAcc = optimumAcceleration[optimumAcceleration.Count - 1];
-            this.previousVelo = optimumVelocity[optimumVelocity.Count - 1];
-            this.previousDisp = optimumDisplacement[optimumDisplacement.Count - 1];
         }
 
         /// <remarks>
@@ -1178,7 +1175,7 @@ namespace Mechanect
                 if (commandsList[i].Equals("constantAcceleration"))
                 {
                     int x = end - start;
-                    OptimumConstantAcceleration(x);
+                    OptimumConstantAcceleration(x,g);
                 }
                 if (commandsList[i].Equals("increasingAcceleration"))
                 {
