@@ -80,7 +80,7 @@ namespace Mechanect
         {
 
         }
-
+        
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 13/5/2012</para>
@@ -89,56 +89,57 @@ namespace Mechanect
         /// <summary>
         /// The function Initialize determines the optimal number of points to be represented on the graph.
         /// </summary>
-        /// <param></param>        
+        /// <param name ="g">An instance of the PerformanceGraph.</param>        
         /// <returns>void</returns>
-        public void Initialize()
+        public static void Initialize(PerformanceGraph g)
         {
-            if (totalTime <= 1)
+            if (g.getTotalTime() <= 1)
             {
-                samples = 8;
+                g.setSamples(8);
             }
-            if (totalTime > 1 && totalTime <= 2)
+            if (g.getTotalTime() > 1 && g.getTotalTime() <= 2)
             {
-                samples = 16;
+                 g.setSamples(16);
             }
-            if (totalTime > 2 && totalTime <= 5)
+            if (g.getTotalTime() > 2 && g.getTotalTime() <= 5)
             {
-                samples = 32;
+                 g.setSamples(32);
             }
-            if (totalTime > 5 && totalTime <= 10)
+            if (g.getTotalTime() > 5 && g.getTotalTime() <= 10)
             {
-                samples = 64;
+                 g.setSamples(64);
             }
-            if (totalTime > 10 && totalTime <= 21)
+            if (g.getTotalTime() > 10 && g.getTotalTime() <= 21)
             {
-                samples = 128;
+                 g.setSamples(128);
             }
-            if (totalTime > 21)
+            if (g.getTotalTime() > 21)
             {
-                samples = 256;
+                 g.setSamples(256);
             }
-            switch (samples)
+            int x = g.getSamples();
+            switch (x)
             {
-                case 256: distance = 1; break;
-                case 128: distance = 2; break;
-                case 64: distance = 4; break;
-                case 32: distance = 8; break;
-                case 16: distance = 16; break;
-                case 8: distance = 32; break;
-                case 4: distance = 64; break;
-            }
-            chosen = new float[9, samples + 1];
-            disp1 = new PerformanceGraph[samples];
-            disp2 = new PerformanceGraph[samples];
-            velo1 = new PerformanceGraph[samples];
-            velo2 = new PerformanceGraph[samples];
-            acc1 = new PerformanceGraph[samples];
-            acc2 = new PerformanceGraph[samples];
-            optD = new PerformanceGraph[samples];
-            optV = new PerformanceGraph[samples];
-            optA = new PerformanceGraph[samples];
+                case 256: g.setDistance(1); break;
+                case 128: g.setDistance(2); break;
+                case 64: g.setDistance(4); break;
+                case 32: g.setDistance(8); break;
+                case 16: g.setDistance(16); break;
+                case 8: g.setDistance(32); break;
+                case 4: g.setDistance(64); break;
+            }            
+            g.setChosen(9, x + 1);
+            g.setDisp1(x);
+            g.setDisp2(x);
+            g.setVel1(x);
+            g.setVel2(x);
+            g.setAcc1(x);
+            g.setAcc2(x);
+            g.setOptimumD(x);
+            g.setOptimumV(x);
+            g.setOptimumA(x);
         }
-
+        
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Created: 22-4-2012</para>
@@ -319,7 +320,7 @@ namespace Mechanect
             SetNewTime(time, Commands,g);
             GetWinning(g);
             CalculateTotalTime(g);
-            Initialize();
+            Initialize(g);
             Choose();
             SetMaximum();
             SetDestinations(gwidth, gheight);
@@ -1013,6 +1014,62 @@ namespace Mechanect
         public void setWin3(double d)
         {
             player3Win = d;
+        }
+        public int getSamples()
+        {
+            return samples;
+        }
+        public void setSamples(int x)
+        {
+            samples = x;
+        }
+        public void setDistance(int x)
+        {
+            distance = x;
+        }
+        public int getDistance()
+        {
+            return distance;
+        }
+        public void setChosen(int a, int b)
+        {
+            chosen = new float[9, samples + 1];
+        }
+        public void setDisp1(int x)
+        {
+            disp1 = new PerformanceGraph[x];
+        }
+        public void setDisp2(int x)
+        {
+            disp2 = new PerformanceGraph[x];
+        }
+        public void setVel1(int x)
+        {
+            velo1 = new PerformanceGraph[x];
+        }
+        public void setVel2(int x)
+        {
+            velo2 = new PerformanceGraph[x];
+        }
+        public void setAcc1(int x)
+        {
+            acc1 = new PerformanceGraph[x];
+        }
+        public void setAcc2(int x)
+        {
+            acc2 = new PerformanceGraph[x];
+        }
+        public void setOptimumD(int x)
+        {
+            optD = new PerformanceGraph[x];
+        }
+        public void setOptimumV(int x)
+        {
+            optV = new PerformanceGraph[x];
+        }
+        public void setOptimumA(int x)
+        {
+            optA = new PerformanceGraph[x];
         }
     }
 }
