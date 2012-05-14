@@ -929,17 +929,17 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawXLabels is used to add the values to be displayed on the X-axis.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
-        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
         /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
         /// <returns>void</returns>
-        public void DrawXLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawXLabels(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             int counter = 35;
@@ -953,7 +953,8 @@ namespace Mechanect
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    spriteBatch.DrawString(font2, xAxis[j] + "", new Vector2(counter - 5, 358), Color.Black);
+                    string formatted = g.GetXAxis()[j].ToString("N2");
+                    spriteBatch.DrawString(font2, formatted + "", new Vector2(counter - 5, 308), Color.Black);
                     counter += 67;
                 }
             }
@@ -1031,7 +1032,7 @@ namespace Mechanect
             DrawAxis(g,spriteBatch, GraphicsDevice);
             DrawLabels(spriteBatch, GraphicsDevice, font);
             DrawArrows(g,spriteBatch, GraphicsDevice);
-            DrawXLabels(spriteBatch, GraphicsDevice, font, font2);
+            DrawXLabels(g,spriteBatch, GraphicsDevice, font2);
             DrawYLabels(spriteBatch, GraphicsDevice, font, font2);
             //drawing the marks on the X-axis
             int counter = 50;
@@ -1669,6 +1670,10 @@ namespace Mechanect
         public PerformanceGraph[] getOptimumAcceleration()
         {
             return optA;
+        }
+        public double[] GetXAxis()
+        {
+            return xAxis;
         }
     }
 }
