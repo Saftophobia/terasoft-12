@@ -581,9 +581,9 @@ namespace Mechanect.Screens
             {
                // SpriteBatch sprite2 = SpriteBatch;
                 SpriteBatch.Begin();
-               PerformanceGraph.DrawRange(SpriteBatch, graphics,Graph);
-                PerformanceGraph.DrawEnvironment(Graph,SpriteBatch, graphics, font1, font2);
-                PerformanceGraph.DrawDisqualification(Graph,SpriteBatch,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex,(double)player1disqualification,(double)player2disqualification);
+               GraphUI.DrawRange(SpriteBatch, graphics,Graph);
+               GraphUI.DrawEnvironment(Graph, SpriteBatch, graphics, font1, font2);
+               GraphUI.DrawDisqualification(Graph, SpriteBatch, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, P1Tex, P2Tex, (double)player1disqualification, (double)player2disqualification);
                SpriteBatch.End();
                 
             }
