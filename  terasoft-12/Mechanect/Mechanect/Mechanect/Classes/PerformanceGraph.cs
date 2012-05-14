@@ -889,40 +889,39 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 26/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawArrows is used to add an arrow at the end of each axis for each graph.
         /// </summary>
         /// <param name="spriteBatch">An instance of the Spritebatch class.</param>
         /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>
-        /// <param name="font">The spritefont "Myfont1.spritefont".</param>
-        /// <param name="font2">The spritefont "Myfont2.spritefont".</param>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void DrawArrows(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font, SpriteFont font2)
+        public static void DrawArrows(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
             int counter = 309;
             for (int i = 0; i <= 2; i++)
             {
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 343),
-                new Vector2(counter + 7, 350));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 357),
-                new Vector2(counter + 7, 350));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 293),
+                new Vector2(counter + 7, 300));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 307),
+                new Vector2(counter + 7, 300));
                 counter += 330;
             }
             counter = 40;
             for (int i = 0; i <= 2; i++)
             {
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 110),
-                new Vector2(counter + 10, 100));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 110),
-                new Vector2(counter + 8, 100));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 610),
-                new Vector2(counter + 10, 620));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 610),
-                new Vector2(counter + 8, 620));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 60),
+                new Vector2(counter + 10, 50));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 60),
+                new Vector2(counter + 8, 50));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 560),
+                new Vector2(counter + 10, 570));
+                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 560),
+                new Vector2(counter + 8, 570));
                 counter += 330;
             }
         }
@@ -1031,7 +1030,7 @@ namespace Mechanect
             blank.SetData(new[] { Color.White });
             DrawAxis(g,spriteBatch, GraphicsDevice);
             DrawLabels(spriteBatch, GraphicsDevice, font);
-            DrawArrows(spriteBatch, GraphicsDevice, font, font2);
+            DrawArrows(g,spriteBatch, GraphicsDevice);
             DrawXLabels(spriteBatch, GraphicsDevice, font, font2);
             DrawYLabels(spriteBatch, GraphicsDevice, font, font2);
             //drawing the marks on the X-axis
