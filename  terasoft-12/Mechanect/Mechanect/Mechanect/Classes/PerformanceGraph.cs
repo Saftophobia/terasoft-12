@@ -17,44 +17,34 @@ namespace Mechanect
     class PerformanceGraph
     {
         private int stageWidth, stageHeight;
-        private int xPoint1;
-        private int yPoint1;
-        private int xPoint2;
-        private int yPoint2;
+        private Vector2 point1;
+        private Vector2 point2;
         private Color curveColor;
-        private int samples;
-        private int distance;  
         private List<float> player1Displacement;
         private List<float> player2Displacement;
         private List<float> player1Velocity;
         private List<float> player2Velocity;
         private List<float> player1Acceleration;
         private List<float> player2Acceleration;
-        private List<float> optimumDisplacement = new List<float>();
-        private List<float> optimumVelocity = new List<float>();
-        private List<float> optimumAcceleration = new List<float>();
+        private List<float> optimumDisplacement;
+        private List<float> optimumVelocity;
+        private List<float> optimumAcceleration;
         private List<String> commandsList;
         private List<double> timeSpaces;
         private double totalTime;
         private int[] chosenTimings;
-        private float[] chosenDisp1 = new float[17];
-        private float[] chosenDisp2 = new float[17];
-        private float[] chosenVelocity1 = new float[17];
-        private float[] chosenVelocity2 = new float[17];
-        private float[] chosenAcceleration1 = new float[17];
-        private float[] chosenAcceleration2 = new float[17];
-        private float[] chosenOptD = new float[17];
-        private float[] chosenOptV = new float[17];
-        private float[] chosenOptA = new float[17];
-        private PerformanceGraph[] disp1 = new PerformanceGraph[16];
-        private PerformanceGraph[] disp2 = new PerformanceGraph[16];
-        private PerformanceGraph[] velo1 = new PerformanceGraph[16];
-        private PerformanceGraph[] velo2 = new PerformanceGraph[16];
-        private PerformanceGraph[] acc1 = new PerformanceGraph[16];
-        private PerformanceGraph[] acc2 = new PerformanceGraph[16];
-        private PerformanceGraph[] optD = new PerformanceGraph[16];
-        private PerformanceGraph[] optV = new PerformanceGraph[16];
-        private PerformanceGraph[] optA = new PerformanceGraph[16];
+        private int samples;
+        private int distance;
+        private float[,] chosen;
+        private PerformanceGraph[] disp1;
+        private PerformanceGraph[] disp2;
+        private PerformanceGraph[] velo1;
+        private PerformanceGraph[] velo2;
+        private PerformanceGraph[] acc1;
+        private PerformanceGraph[] acc2;
+        private PerformanceGraph[] optD;
+        private PerformanceGraph[] optV;
+        private PerformanceGraph[] optA;
         private float maxVelocity;
         private float maxAcceleration;
         private List<int> p1DispGraph = new List<int>();
@@ -67,24 +57,20 @@ namespace Mechanect
         private double[] yAxisDisplacement = new double[5];
         private double[] yAxisVelocity = new double[5];
         private double[] yAxisAcceleration = new double[5];
-        private CountDown xDP1;
-        private CountDown xVP1;
-        private CountDown xAP1;
         private float previousDisp;
         private float previousVelo;
         private float previousAcc;
         private double player1Win;
         private double player2Win;
         private double player3Win;
-        private float[,] chosen;
-        private int trackLength = 4000;
+        private int trackLength;
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
-            xPoint1 = start1;
-            yPoint1 = start2;
-            xPoint2 = finishx;
-            yPoint2 = finishy;
+            point1.X = start1;
+            point1.Y = start2;
+            point2.X = finishx;
+            point2.Y = finishy;
             curveColor = col;
             stageWidth = a;
             stageHeight = b;
@@ -168,7 +154,7 @@ namespace Mechanect
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(xPoint1, yPoint1), new Vector2(xPoint2, yPoint2));
+            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(point1.X, point1.Y), new Vector2(point2.X, point2.Y));
         }
 
         /// <remarks>
@@ -1089,10 +1075,10 @@ namespace Mechanect
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 22/4/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function DrawDisqualification is used to add a mark on the point where a disqualified player was disqualified, the function
+        /// The function DrawDisqualification is used to add a mark on the point where a player got disqualified, the function
         /// first decides the mark's X-coordinate then uses it to derive its Y-coordinate before representing it on each graph. 
         /// </summary>
         /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
@@ -1103,7 +1089,7 @@ namespace Mechanect
         /// <param name="player1disqtime">The instance when player 1 was disqualified.</param>
         /// <param name="player2disqtime">The instance when player 2 was disqualified</param>
         /// <returns>void</returns>
-        public void DrawDisqualification(SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
+        public static void DrawDisqualification(PerformanceGraph g, SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
         {
             if (player1disqtime > 0 || player2disqtime > 0)
             {
@@ -1118,48 +1104,51 @@ namespace Mechanect
                     }
                     if (t)
                     {
-                        double time = totalTime;
+                        double time = g.getTotalTime();
                         int index = 8;
-                        for (int i = 0; i <= chosenTimings.Length - 1; i++)
+                        for (int i = 0; i <= g.getChosen().Length - 1; i++)
                         {
-                            if (i < chosenTimings.Length - 1)
+                            if (i < g.getChosen().Length - 1)
                             {
-                                double d1 = ((double)chosenTimings[i] / (double)12);
-                                double d2 = ((double)chosenTimings[i + 1] / (double)12);
+                                double d1 = ((double)g.getChosen()[i] / (double)12);
+                                double d2 = ((double)g.getChosen()[i + 1] / (double)12);
                                 if (n >= d1 && n < d2)
                                 {
                                     double x = d1 + ((double)(d2 - d1) / (double)2);
                                     if (n < x)
                                     {
-                                        time = (double)chosenTimings[i] / (double)12;
+                                        time = (double)g.getChosen()[i] / (double)12;
                                         index = i;
                                     }
                                     else
                                     {
-                                        time = (double)chosenTimings[i + 1] / (double)12;
+                                        time = (double)g.getChosen()[i + 1] / (double)12;
                                         index = i + 1;
                                     }
                                 }
                             }
                         }
                         int y1 = 0; int y2 = 0; int y3 = 0;
-                        double r1 = (double)totalTime / (double)256;
+                        double r1 = (double)g.getTotalTime() / (double)256;
                         double r2 = (double)(time) / (double)r1;
                         int r3 = 40 + (int)r2;
                         Texture2D texture = null;
                         switch (j)
                         {
-                            case 0: y1 = p1DispGraph[index] - 10; y2 = p1VeloGraph[index] - 10; y3 = p1AccGraph[index] - 10; texture = P1Tex; break;
-                            case 1: y1 = p2DispGraph[index] - 10; y2 = p2VeloGraph[index] - 10; y3 = p2AccGraph[index] - 10; texture = P2Tex; break;
+                            case 0: y1 = g.getP1DispGraph()[index] - 8; y2 = g.getP1VelGraph()[index] - 8; y3 = g.getP1AccGraph()[index] - 8; texture = P1Tex; break;
+                            case 1: y1 = g.getP2DispGraph()[index] - 8; y2 = g.getP2VelGraph()[index] - 8; y3 = g.getP2AccGraph()[index] - 8; texture = P2Tex; break;
                         }
-                        xDP1 = new CountDown(texture, dwidth, dheight, r3, y1, 20, 20);
-                        xDP1.Draw(spriteBatch);
+                        CountDown xDP = new CountDown();
+                        CountDown xVP = new CountDown();
+                        CountDown xAP = new CountDown();
+                        xDP = new CountDown(texture, dwidth, dheight, r3, y1, 20, 20);
+                        xDP.Draw(spriteBatch);
                         r3 = 370 + (int)r2;
-                        xVP1 = new CountDown(texture, dwidth, dheight, r3, y2, 20, 20);
-                        xVP1.Draw(spriteBatch);
+                        xVP = new CountDown(texture, dwidth, dheight, r3, y2, 20, 20);
+                        xVP.Draw(spriteBatch);
                         r3 = 700 + (int)r2;
-                        xAP1 = new CountDown(texture, dwidth, dheight, r3, y3, 20, 20);
-                        xAP1.Draw(spriteBatch);
+                        xAP = new CountDown(texture, dwidth, dheight, r3, y3, 20, 20);
+                        xAP.Draw(spriteBatch);
                     }
                 }
             }
@@ -1613,6 +1602,39 @@ namespace Mechanect
                 x += (double)list[i];
             }
             return (double)x / (double)(list.Count);
+        }
+
+        public double getTotalTime()
+        {
+            return totalTime;
+        }
+        public int[] getChosen()
+        {
+            return chosenTimings;
+        }
+        public List<int> getP1DispGraph()
+        {
+            return p1DispGraph;
+        }
+        public List<int> getP2DispGraph()
+        {
+            return p2DispGraph;
+        }
+        public List<int> getP1VelGraph()
+        {
+            return p1VeloGraph;
+        }
+        public List<int> getP2VelGraph()
+        {
+            return p2VeloGraph;
+        }
+        public List<int> getP1AccGraph()
+        {
+            return p1AccGraph;
+        }
+        public List<int> getP2AccGraph()
+        {
+            return p2AccGraph;
         }
     }
 }
