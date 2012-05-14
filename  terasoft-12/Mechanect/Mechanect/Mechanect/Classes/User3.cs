@@ -164,18 +164,8 @@ namespace Mechanect.Classes
 
 
 
-        private double velocity;
-        public double Velocity // the velocity of the users leg
-        {
-            get
-            {
-                return velocity;
-            }
-            set
-            {
-                velocity = value;
-            }
-        }
+        public Vector3 velocity { get; set; }
+
         private bool trying; // is the user in the trying mode or shooting
         public bool Trying
         {
