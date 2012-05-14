@@ -392,75 +392,58 @@ namespace Mechanect.Classes
          }
 
 
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// Calculates the new value of the velocity and sets it the variable velocity of the User3 to it
-         /// </summary>
 
+         public bool HasPlayerMoved()
+         {
+
+             Skeleton player = USER;
+             if (Math.Abs(CurrentLeftLegPositionZ - initialLeftLegPositionZ) > Constants3.legMovementTolerance)
+             {
+                 RightLeg = false;
+                 TrackedJoint = player.Joints[JointType.AnkleLeft];
+                 return true;
+             }
+             if (Math.Abs(CurrentRightLegPositionZ - initialLeftLegPositionZ) > Constants3.legMovementTolerance)
+             {
+                 RightLeg = true;
+                 TrackedJoint = player.Joints[JointType.AnkleRight];
+                 return true;
+             }
+             return false;
+         }
+         public bool HasJustSlipped()
+         {
+             return hasJustSlipped;
+         }
+         public bool HasAlreadyMovedForward()
+         {
+             return movedForward;
+         }
+         public bool HasShot()
+         {
+             return hasShot;
+         }
          public void UpdateSpeed()
          {
              double currentZ = CurrentLeftLegPositionZ;
              double initialZ = InitialLeftLegPositionZ;
+             double currentX = CurrentLeftLegPositionX;
+             double initialX = initialLeftLegPositionX;
              if (RightLeg)
              {
                  currentZ = CurrentRightLegPositionZ;
                  initialZ = InitialRightLegPositionZ;
+                 currentX = currentRightLegPositionX;
+                 initialX = InitialRightLegPositionX;
              }
-             double velocityFinal = 0;
-             double deltaPosition = Math.Abs(currentZ - initialZ);
-             double acceleration = Tools3.GetAcceleration(deltaPosition, Constants3.unitTime, Velocity);
-             velocityFinal = Tools3.GetVelocity(acceleration, Velocity, Constants3.unitTime);
+             double deltaTime = Math.Abs(currentTime - initialTime);
+             Vector3 deltaPosition = new Vector3((float)(currentZ - initialZ), 0, (float)(currentX - initialX));
+             Vector3 finalVelocity = Tools3.GetVelocity(deltaPosition, deltaTime);
              if (Trying)
-                 Velocity = Math.Max(Velocity, velocityFinal);
-             else
-                 Velocity = velocityFinal;
-         }
-
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// updates the current and previous positions of the User3's moving leg
-         /// </summary>
-         public void UpdatePosition()
-         {
-             if (RightLeg)
-             {
-                 InitialRightLegPositionX = CurrentRightLegPositionX;
-                 InitialRightLegPositionZ = CurrentRightLegPositionZ;
-             }
-             else
-             {
-                 InitialLeftLegPositionX = CurrentLeftLegPositionX;
-                 InitialLeftLegPositionZ = CurrentLeftLegPositionZ;
-             }
-         }
-
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// Calculates the value of new the angle that the User3 is moving their leg with and sets the variable angle to it
-         /// </summary>
-
-         public  void UpdateAngle()
-         {
-             if (storeZ2 != StoreZ1)
-                 Angle = (Math.Atan((StoreX2 - StoreX1) / (Math.Abs(StoreZ2 - StoreZ1))));
-             else
-                 if (StoreX1 < StoreX2)
-                     Angle = (Math.PI / 2);
+                 if (velocity.Length() <= finalVelocity.Length())
+                     velocity = finalVelocity;
                  else
-                     Angle = -(Math.PI / 2);
-
+                     velocity = finalVelocity;
          }
 
 
@@ -534,47 +517,6 @@ namespace Mechanect.Classes
          }
 
 
-         ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>
-         /// <summary>
-         /// checks if the User3 moved their leg from the position they were standing initially
-         /// </summary>
-         public  bool HasPlayerMovedHisAnkle()
-         {
-             int movementState = 0;  // 0 has not moved, 1 moved one leg, 2 moved both legs
-             Skeleton player = USER;
-
-             if (Math.Abs(CurrentLeftLegPositionZ - InitialLeftLegPositionZ) > Constants3.legMovementTolerance)
-             {
-                 RightLeg = false;
-                 TrackedJoint = player.Joints[JointType.AnkleLeft];
-                 movementState++;
-
-             }
-
-             if (Math.Abs(CurrentRightLegPositionZ - InitialRightLegPositionZ) > Constants3.legMovementTolerance)
-             {
-                 RightLeg = true;
-                 TrackedJoint = player.Joints[JointType.AnkleRight];
-                 movementState++;
-             }
-             if (movementState == 1) return true;
-             if (movementState == 2) // player has changed their position
-             {
-                 movementState = 0;
-                 InitialLeftLegPositionX = player.Joints[JointType.AnkleLeft].Position.X;
-                 InitialLeftLegPositionZ = player.Joints[JointType.AnkleLeft].Position.Z;
-                 InitialRightLegPositionX = player.Joints[JointType.AnkleRight].Position.X;
-                 InitialRightLegPositionZ = player.Joints[JointType.AnkleRight].Position.Z;
-
-             }
-
-
-             return false;
-         }
 
 
          ///<remarks>
