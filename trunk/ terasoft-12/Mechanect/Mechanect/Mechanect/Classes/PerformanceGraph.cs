@@ -10,8 +10,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Classes;
 
-
-
 namespace Mechanect
 {
     class PerformanceGraph
@@ -187,31 +185,13 @@ namespace Mechanect
         /// <para>Date Modified 19/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The static method GetPlayerVelocity is used to generate
-        /// a List representing the player's velocity during the race.
-        /// 
-        /// The velocity is calculated using the following equation:
-        ///        
-        /// Velocity= (Displacement.Final-Displacement.Initial)/dt
-        ///
-        /// where dt is (1/12) since the kinect is programmed to capture 
-        /// 12 frames per second implying that the time space (dt) between 
-        /// each depth frame and its successor is (1/12) seconds.
-        /// The resulting velocity is multiplied by negative one to
-        /// get the Player's velocity relative to the Player not to the
-        /// kinect, since the List holding the Player's displacements
-        /// from the kinect is relative to the kinect not the player.
-        /// 
-        /// The try and catch statement is used to add a 0 at the begining 
-        /// of the List representing the player's velocity since the players
-        /// would be at a fixed distance from the kinect at the exact instant
-        /// when the race starts.
+        /// The static method GetPlayerVelocity is used to generate a List representing the player's velocity during the race.        
+        /// The velocity is calculated using the following equation: Velocity= (Displacement.Final-Displacement.Initial)/dt where dt is (1/12) since the kinect is programmed to capture 12 frames per second implying that the time space (dt) between each depth frame and its successor is (1/12) seconds.
+        /// The resulting velocity is multiplied by negative one to get the Player's velocity relative to the Player not to the kinect, since the List holding the Player's displacements
+        /// from the kinect is relative to the kinect not the player.  
         /// </summary>
-        /// <param name="DisplacementList"> A List representing the
-        /// player's displacements during the race.</param>      
-        /// <returns>List: returns a list representing the player's
-        /// velocity.</returns>
-
+        /// <param name="DisplacementList"> A List representing the player's displacements during the race.</param>      
+        /// <returns>List: returns a list representing the player's velocity.</returns>
         public static List<float> GetPlayerVelocity(List<float> DisplacementList)
         {
             int size = DisplacementList.Count;
@@ -238,29 +218,13 @@ namespace Mechanect
         /// <para>Date Modified 19/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The static method GetPlayerAcceleration is used to generate
-        /// a List representing the player's acceleration during the race.
-        /// 
-        /// The acceleration is calculated using the following equation:
-        ///               
-        /// Acceleration= (Velocity.Final-Velocity.Initial)/dt
-        /// 
-        /// where dt is (1/12) since the kinect is programmed to capture 12 
-        /// frames per second implying that the time space (dt) between each  
-        /// depth frame and its successor is (1/12) seconds.
-        /// The resulting acceleration is not multiplied by -1 since the
-        /// incoming velocities represent the player's velocity relative
-        /// to the player not the kinect.
-        /// 
-        /// The try and catch statement is used to add a 0 at the begining 
-        /// of the List representing the player's velocity since the players 
-        /// would have 0 velocity at the exact instant when the race starts. 
+        /// The static method GetPlayerAcceleration is used to generate a List representing the player's acceleration during the race. 
+        /// The acceleration is calculated using the following equation: Acceleration= (Velocity.Final-Velocity.Initial)/dt where dt is (1/12) since the kinect is programmed to capture 12 
+        /// frames per second implying that the time space (dt) between each depth frame and its successor is (1/12) seconds. The resulting acceleration is not multiplied by -1 since the
+        /// incoming velocities represent the player's velocity relative to the player not the kinect.
         /// </summary>
-        /// <param name="VelocityList">A list representing the player's
-        /// velocities during the race.</param>    
-        /// <returns>List: returns a list representing the player's
-        /// acceleration.</returns>
-
+        /// <param name="VelocityList">A list representing the player's velocities during the race.</param>    
+        /// <returns>List: returns a list representing the player's acceleration.</returns>
         public static List<float> GetPlayerAcceleration(List<float> VelocityList)
         {
             int size = VelocityList.Count;
@@ -315,7 +279,7 @@ namespace Mechanect
             player2Velocity = GetPlayerVelocity(player2Displacement);
             player1Acceleration = GetPlayerAcceleration(player1Velocity);
             player2Acceleration = GetPlayerAcceleration(player2Velocity);
-            OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
+            //OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
             Discard(g);
             SetNewTime(time, Commands,g);
             GetWinning(g);
@@ -324,7 +288,7 @@ namespace Mechanect
             Choose(g);
             SetMaximum(g);
             SetDestinations(g, gwidth, gheight);
-            SetAxis();
+            SetAxis(g);
         }  
 
         /// <remarks>
@@ -763,35 +727,52 @@ namespace Mechanect
         /// as well as 5 evenly distributed values among the total displacement/velocity/acceleration to be represented on
         /// each graph's y-axis.
         /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public void SetAxis()
+        public static void SetAxis(PerformanceGraph g)
         {
-            xAxis[0] = 0;
-            double step = (double)totalTime / (double)4;
-            for (int i = 1; i <= xAxis.Length - 1; i++)
+            g.setXAxis(0, 0);
+            double step = (double)g.getTotalTime() / (double)4;
+            for (int i = 1; i <= g.GetXAxis().Length - 1; i++)
             {
-                xAxis[i] = xAxis[i - 1] + step;
+                g.setXAxis(i, g.GetXAxis()[i - 1] + step);
             }
             int counter = 0;
             for (int i = 0; i <= 4; i++)
             {
-                yAxisDisplacement[i] = counter;
+                g.setYAxisDisp(i, counter);
                 counter += 1000;
             }
-            yAxisVelocity[0] = 0;
-            step = (double)maxVelocity / (double)4;
-            for (int i = 1; i <= yAxisVelocity.Length - 1; i++)
+            g.setYAxisVel(0, 0);
+            step = (double)g.getMaxVelocity() / (double)4;
+            for (int i = 1; i <= g.YAxisVel().Length - 1; i++)
             {
-                yAxisVelocity[i] = yAxisVelocity[i - 1] + step;
+                g.setYAxisVel(i,g.YAxisVel()[i - 1] + step);
             }
-            yAxisAcceleration[0] = 0;
-            step = (double)maxAcceleration / (double)4;
-            for (int i = 1; i <= yAxisAcceleration.Length - 1; i++)
+            g.setYAxisAcc(0,0);
+            step = (double)g.getMaxAcceleration() / (double)4;
+            for (int i = 1; i <= g.YAxisAcc().Length - 1; i++)
             {
-                yAxisAcceleration[i] = yAxisAcceleration[i - 1] + step;
+                g.setYAxisAcc(i, g.YAxisAcc()[i - 1] + step);
             }
         }
-        
+
+        public void setYAxisDisp(int x, double y)
+        {
+            yAxisDisplacement[x] = y;
+        }
+        public void setYAxisVel(int x, double y)
+        {
+            yAxisVelocity[x] = y;
+        }
+        public void setYAxisAcc(int x, double y)
+        {
+            yAxisAcceleration[x] = y;
+        }
+        public void setXAxis(int x, double y)
+        {
+            xAxis[x] = y;
+        }
         public List<float> getP1Disp()
         {
             return player1Displacement;
