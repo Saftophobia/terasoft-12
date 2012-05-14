@@ -364,33 +364,63 @@ namespace Mechanect.Classes
          /// </summary>
          /// <returns>returns true iff the User3 moved his leg forward</returns>
 
-         public  bool IsMovingForward()
+         public bool IsMovingForward()
          {
              if (this.USER != null)
              {
                  double currentZ = CurrentLeftLegPositionZ;
-                 double initialZ = InitialLeftLegPositionZ;
+                 double previousZ = previousLeftLegPositionZ;
                  if (RightLeg)
                  {
                      currentZ = CurrentRightLegPositionZ;
-                     initialZ = InitialRightLegPositionZ;
+                     previousZ = previousRightLegPositionZ;
                  }
 
-                 if (currentZ - initialZ < (-1 * Constants3.legMovementTolerance))
+                 if (currentZ - previousZ < (-1 * Constants3.legMovementTolerance))
                  {
                      MovedForward = true;
                      return true;
 
                  }
-                 if (!MovedForward)
-                     if (RightLeg) InitialRightLegPositionZ = CurrentRightLegPositionZ;
-                     else InitialLeftLegPositionZ = CurrentLeftLegPositionZ;
+
+                 if (RightLeg)
+                 {
+                     initialRightLegPositionZ = CurrentRightLegPositionZ;
+                     InitialRightLegPositionX = CurrentRightLegPositionX;
+                 }
+                 else
+                 {
+                     initialLeftLegPositionZ = CurrentLeftLegPositionZ;
+                     InitialLeftLegPositionX = currentLeftLegPositionX;
+                 }
 
 
              }
              return false;
          }
 
+         public void UpdateAngle()
+         {
+             double positionX1 = InitialLeftLegPositionX;
+             double positionX2 = currentLeftLegPositionX;
+             double positionZ1 = initialLeftLegPositionZ;
+             double positionZ2 = currentLeftLegPositionZ;
+             if (rightLeg)
+             {
+                 positionX1 = initialRightLegPositionX;
+                 positionX2 = CurrentRightLegPositionX;
+                 positionZ1 = initialRightLegPositionZ;
+                 positionZ2 = CurrentRightLegPositionZ;
+             }
+             if (positionZ2 != positionZ1)
+                 Angle = (Math.Atan((positionX2 - positionX1) / (Math.Abs(positionZ2 - positionZ1))));
+             else
+                 if (positionX1 < positionX2)
+                     Angle = (Math.PI / 2);
+                 else
+                     Angle = -(Math.PI / 2);
+
+         }
 
 
          public bool HasPlayerMoved()
