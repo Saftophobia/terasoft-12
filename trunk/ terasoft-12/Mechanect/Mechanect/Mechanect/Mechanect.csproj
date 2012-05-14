@@ -121,6 +121,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Environment1.cs" />
+    <Compile Include="Classes\exp1finale.cs" />
+    <Compile Include="Classes\GraphEngine.cs" />
+    <Compile Include="Classes\GraphUI.cs" />
+    <Compile Include="Classes\OptimumEngine.cs" />
+    <Compile Include="Screens\Experimentnew1.cs" />
+    <Compile Include="Screens\FadingScreen.cs" />
     <Compile Include="Screens\UserStream.cs" />
     <Compile Include="Classes\Aquarium.cs" />
     <Compile Include="Classes\Avatar.cs" />
