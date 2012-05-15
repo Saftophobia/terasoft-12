@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+//using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+//using Microsoft.Xna.Framework.Input;
+//using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using Mechanect.Common;
 using Mechanect.Classes;
@@ -40,7 +40,6 @@ namespace Common.Classes
         /// <param name="sw">screen width</param>
         /// <param name="sh">screen height</param>
         /// <param name="c">the content manager to draw the textures</param>
-
         public Slider(Vector2 p, int sw, int sh, ContentManager c, User u)
         {
             screenW = sw;
@@ -127,12 +126,12 @@ namespace Common.Classes
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
                 
-                if ((hand.X - positionPointer.X) >= 40 && !(value == 5))
+                if ((hand.X - positionPointer.X) >= 30 && !(value == 5))
                 {
-                    positionPointer.X += (barPic.Width/5);
+                    positionPointer.X += (barPic.Width / 5);
                     value++;
                 }
-                if ((hand.X - positionPointer.X) <= -40 && !(value == 1))
+                if ((hand.X - positionPointer.X) <= -30 && !(value == 1))
                 {
                     positionPointer.X -= (barPic.Width / 5);
                     value--;
