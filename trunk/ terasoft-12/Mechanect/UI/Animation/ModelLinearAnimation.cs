@@ -45,22 +45,19 @@ namespace UI.Animation
             }
         }
 
-        public ModelLinearAnimation(CustomModel model, Vector3 endPosition, float velocity, float acceleration, TimeSpan duration, bool enableRotation)
+        public ModelLinearAnimation(CustomModel model, Vector3 endPosition, float finalVelocity, float acceleration, bool enableRotation)
         {
             this.model = model;
             startPosition = model.Position;
             startAngle = model.Rotation;
 
             Vector3 displacement = endPosition - startPosition;
-            this.velocity = Physics.Functions.GetVectorInDirectionOf(velocity, displacement); ;
-            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, displacement);
-            this.duration = duration;
-            this.enableRotation = enableRotation;
+            float intialVelocity = Physics.Functions.CalculateIntialVelocity(finalVelocity, acceleration, displacement.Length());
 
-            if (acceleration < 0)
-            {
-                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity / acceleration));
-            }
+            this.velocity = Physics.Functions.GetVectorInDirectionOf(intialVelocity, displacement); ;
+            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, displacement);
+            this.duration = TimeSpan.FromSeconds(2 * displacement.Length() / (intialVelocity + finalVelocity));
+            this.enableRotation = enableRotation;
         }
 
         /// <summary>
