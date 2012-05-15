@@ -118,15 +118,14 @@ namespace Mechanect
   
         public Instruction()
         {
-           // game.Window.AllowUserResizing = true;
+           
             instructions = "";
             origin = new Vector2(0f, 0f);
-        //    game.IsMouseVisible = true;
+            
         }
        
         /// <summary>
         /// Set the origin Vector to be the left top corner of the screen.
-        /// Allow the User to resize the screen, and make the mouse visible in the screen
         /// <remarks>
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
@@ -181,9 +180,10 @@ namespace Mechanect
             spriteBatch.End();
         }
         /// <summary>
-        /// This is called when the game should draw itself.
+        /// This Method would retrun the string, in wraped form
         /// </summary>
         /// <para>Author: Mohamed Raafat</para>
+        /// <returns>String</returns>
         
 
         String getInsructions()
