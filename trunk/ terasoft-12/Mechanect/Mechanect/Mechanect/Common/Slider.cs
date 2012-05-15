@@ -87,15 +87,15 @@ namespace Common.Classes
         /// checking if the hand of the user has been hovered on the pointer and starts
         /// the timer and activating the pointer to be moved.
         /// </summary>
-        public void Update() 
+        public void Update(GameTime gameTime) 
         {
             if (CheckColission())
             {
                 if (!timer.IsRunning())
-                    timer.Start();
+                    timer.Start(gameTime);
                 else
                 {
-                    if (timer.GetDuration() >= (2000))
+                    if (timer.GetDuration(gameTime) >= (2000))
                     {
                         On();
                         Move();
