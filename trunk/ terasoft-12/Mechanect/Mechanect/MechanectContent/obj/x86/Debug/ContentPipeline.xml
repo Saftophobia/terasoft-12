@@ -1161,6 +1161,15 @@
       <Output>obj\x86\Debug\Exp1\xwing_0.xml</Output>
       <Time>2012-05-15T08:30:20.4474457+02:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\user.png</Source>
+      <Name>Textures\user</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb</Output>
+      <Time>2012-05-15T19:40:27.463649+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
