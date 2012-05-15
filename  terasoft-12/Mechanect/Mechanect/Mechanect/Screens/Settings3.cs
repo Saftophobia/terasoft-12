@@ -77,8 +77,8 @@ namespace Mechanect.Screens
                 this.Remove();
             }
             OKbutton.Update(gameTime);
-            velocity.Update();
-            angle.Update();
+            velocity.Update(gameTime);
+            angle.Update(gameTime);
             level.Update(gameTime);
             base.Update(gameTime, covered);
         }
