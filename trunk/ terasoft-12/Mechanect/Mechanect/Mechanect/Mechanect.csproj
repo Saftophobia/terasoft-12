@@ -209,6 +209,14 @@
       <Project>{76B7215D-8172-4FF9-A1A9-4989B0D4C15B}</Project>
       <Name>GifAnimation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Physics\Physics.csproj">
+      <Project>{AB3EBA19-AD21-494E-8330-1C9D0F24A75C}</Project>
+      <Name>Physics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UI\UI.csproj">
+      <Project>{E291E85F-5616-453D-803E-07C0BC64B9B1}</Project>
+      <Name>UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MechanectContent\MechanectContent.contentproj">
       <Name>MechanectContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
