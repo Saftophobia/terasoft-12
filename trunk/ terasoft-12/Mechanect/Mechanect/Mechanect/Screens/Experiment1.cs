@@ -170,11 +170,10 @@ namespace Mechanect.Screens
             Texture2D Texback = Content.Load<Texture2D>("track2");
             SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
             SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
-            countdown = new CountDown(Texthree, Textwo, Texone, Texgo, Texback, Seffect1, Seffect2,ScreenManager.GraphicsDevice.Viewport.Width,ScreenManager.GraphicsDevice.Viewport.Height); //initializes the Countdown 
-            background1 = new CountDown(Content.Load<Texture2D>("track2"), ScreenManager.GraphicsDevice.Viewport.Width,
-            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/, ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
-            background2 = new CountDown(Content.Load<Texture2D>("Background2"), ScreenManager.GraphicsDevice.Viewport.Width,
-            ScreenManager.GraphicsDevice.Viewport.Height, 0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height); //initializes the background
+            countdown = new CountDown();
+            countdown.InitializeCountDown(Texthree, Textwo, Texone, Texgo, Seffect1, Seffect2);//initializes the Countdown 
+            background1 = new CountDown(Content.Load<Texture2D>("track2"), 0, 0, ScreenManager.GraphicsDevice.Viewport.Width/*1024*/, ScreenManager.GraphicsDevice.Viewport.Height/* 768*/); //initializes the background
+            background2 = new CountDown(Content.Load<Texture2D>("Background2"), 0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height); //initializes the background
             player1disqstring.Font1 = Content.Load<SpriteFont>("SpriteFont1");
             player2disqstring.Font1= Content.Load<SpriteFont>("SpriteFont1");
             font1 = Content.Load<SpriteFont>("SpriteFont1");
@@ -261,7 +260,7 @@ namespace Mechanect.Screens
                 //=======================================================
                 if (timecounter < 4)
                 {
-                    countdown.UpdateCountdownScreen();
+                    countdown.Update();
 
                 }
 
@@ -547,7 +546,7 @@ namespace Mechanect.Screens
             {
                // SpriteBatch.Begin();
                 background1.Draw(SpriteBatch);
-                countdown.DrawCountdownScreen(SpriteBatch);
+                countdown.DrawCountdown(SpriteBatch);
               //  SpriteBatch.End();
             }
 
