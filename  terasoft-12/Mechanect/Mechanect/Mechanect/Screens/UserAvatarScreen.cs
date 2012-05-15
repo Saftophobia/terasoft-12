@@ -70,7 +70,7 @@ namespace Mechanect.Screens
             font = content.Load<SpriteFont>("spriteFont1");
             for (int i = 0; i < avatar.Length; i++)
             {
-                avatar[i] = content.Load<Texture2D>("Textures/screen");
+                avatar[i] = content.Load<Texture2D>(@"Textures/user");
                 avatarPosition[i] = new Vector2(screenWidth / (2*(i+1)), screenHeight / (4*(i+1)));
             }
         }
@@ -108,15 +108,15 @@ namespace Mechanect.Screens
             if (user.USER != null)
             {
                 if (users[0].USER.Position.Z > minDepth && users[0].USER.Position.Z < maxDepth / 4)
-                    ChangeTextureColor(texture, Color.Yellow);
+                    ChangeTextureColor(texture, "Yellow");
                 else if (users[0].USER.Position.Z > maxDepth / 4 && users[0].USER.Position.Z < maxDepth / 2)
-                    ChangeTextureColor(texture, Color.Green);
+                    ChangeTextureColor(texture,"Green");
                 else if (users[0].USER.Position.Z > maxDepth / 2 && users[0].USER.Position.Z < maxDepth)
-                    ChangeTextureColor(texture, Color.Blue);
+                    ChangeTextureColor(texture, "Blue");
                 else if (users[0].USER.Position.Z > maxDepth)
-                    ChangeTextureColor(texture, Color.MediumVioletRed);
+                    ChangeTextureColor(texture, "Red");
             }
-            else ChangeTextureColor(texture, Color.MediumTurquoise);
+            else ChangeTextureColor(texture, "Transparent");
             }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Mechanect.Screens
                 graphics.Clear(Color.Transparent);
                 spriteBatch.Begin();
             for(int i=0; i<avatar.Length; i++)
-                spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0, new Vector2(avatar[i].Width / 2, avatar[i].Height / 2), 1f, SpriteEffects.None, 0);
+                spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0, new Vector2(avatar[i].Width / 4, avatar[i].Height / 4), 1f, SpriteEffects.None, 0);
                 for (int i = 0; i < users.Length; i++)
                 {
                     ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
@@ -187,14 +187,32 @@ namespace Mechanect.Screens
         /// /// <param name="color">
         /// The color you want your texture's color to be changed to.
         /// </param>
-        public void ChangeTextureColor(Texture2D texture, Color color)
+        public void ChangeTextureColor(Texture2D texture, string color)
         {
             Color[] data = new Color[texture.Width * texture.Height];
             texture.GetData(data);
-
-            for (int i = 0; i < data.Length; i++)
-                    data[i] = color;
-
+            switch (color)
+            {
+                case "Red":
+                    for (int i = 0; i < data.Length; i++)
+                        data[i].R = 255; break;
+                case "Yellow":
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        data[i].G = 255;
+                        data[i].B = 255;
+                    } break;
+                case "Green":
+                    for (int i = 0; i < data.Length; i++)
+                        data[i].G = 255; break;
+                case "Blue":
+                    for (int i = 0; i < data.Length; i++)
+                        data[i].B = 255; break;
+                case "Transparent":
+                    for (int i = 0; i < data.Length; i++)
+                        data[i].A = 0; break;
+                default:break;
+            }
             texture.SetData(data);
         }
 
