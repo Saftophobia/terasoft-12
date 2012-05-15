@@ -16,6 +16,9 @@ namespace Mechanect.Classes
 {
     class Environment1
     {
+        bool chase = false;
+        drawstring drawstring;
+        SpriteFont font1;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GraphicsDevice device;
@@ -33,8 +36,7 @@ namespace Mechanect.Classes
         VertexBuffer myVertexBuffer;
         IndexBuffer myIndexBuffer;
         Texture2D[] skyboxTextures;
-        TargetCamera c;
-        // ChaseCamera c;
+        ChaseCamera c, c1, c2;
         Model skyboxModel;
         ContentManager content;
 
@@ -48,10 +50,11 @@ namespace Mechanect.Classes
         /// <para>Date Written 15/5/2012</para>
         /// <para>Date Modified 15/5/2012</para>
         /// </remarks>
-        public Environment1(ContentManager content,GraphicsDevice device)
+        public Environment1(ContentManager content,GraphicsDevice device,SpriteBatch spriteBatch)
         {
             this.content = content;
             this.device = device;
+            this.spriteBatch = spriteBatch;
         }
        
         
@@ -65,10 +68,16 @@ namespace Mechanect.Classes
         /// </remarks>
         public void LoadContent()
         {
+            font1 = content.Load<SpriteFont>("SpriteFont1");
+            drawstring = new drawstring(new Vector2 (400,200));
+            drawstring.Font1 = font1;
+
+
             effect = content.Load<Effect>("Exp1/effects");
             Texture2D heightMap = content.Load<Texture2D>("Exp1/heightmap6");
             skyboxModel = LoadModel("Exp1/skybox2", out skyboxTextures);
-            c = new TargetCamera(new Vector3(0, 150, -350), new Vector3(0, 0, 0), device);
+            c1 = new ChaseCamera(new Vector3(0, 150, -350), Vector3.Zero,Vector3.Zero, device);
+            c2 = new ChaseCamera(new Vector3(0, 70, 150), new Vector3(0, 35, 0), new Vector3(0, 0, 0),device);
             LoadHeightData(heightMap);
             SetUpVertices();
             SetUpIndices();
@@ -87,6 +96,30 @@ namespace Mechanect.Classes
         /// </remarks>
         public void update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
+            if(state.IsKeyDown(Keys.K))
+            {
+                if(chase)
+                { 
+                    chase = false;
+                }else
+                { 
+                    chase = true;
+                }
+
+            }
+            if (chase)
+            {
+                c2.Rotate(new Vector3(0, 0.003f, 0));
+                c = c2;
+                drawstring.Update("KNEES UP! and get in the !@#$ing Range");
+      
+            }
+            else
+            {
+                c = c1;      
+            }
+            
             c.Update();
         }
         /// <summary>
@@ -101,7 +134,18 @@ namespace Mechanect.Classes
         public void Draw(GameTime gameTime)
         {
             DrawEnvironment(gameTime);
+            if (chase)
+            {
+                spriteBatch.Begin();
+                drawstring.Draw(spriteBatch);
+                spriteBatch.End();
+            }
         }
+
+
+
+
+
 
             #region Waiting for Sanad's library its documented
 
