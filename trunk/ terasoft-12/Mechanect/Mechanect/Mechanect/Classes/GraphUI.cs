@@ -396,13 +396,13 @@ namespace Mechanect.Classes
                         CountDown xDP = new CountDown();
                         CountDown xVP = new CountDown();
                         CountDown xAP = new CountDown();
-                        xDP = new CountDown(texture, dwidth, dheight, r3, y1, 20, 20);
+                        xDP = new CountDown(texture, r3, y1, 20, 20);
                         xDP.Draw(spriteBatch);
                         r3 = 370 + (int)r2;
-                        xVP = new CountDown(texture, dwidth, dheight, r3, y2, 20, 20);
+                        xVP = new CountDown(texture, r3, y2, 20, 20);
                         xVP.Draw(spriteBatch);
                         r3 = 700 + (int)r2;
-                        xAP = new CountDown(texture, dwidth, dheight, r3, y3, 20, 20);
+                        xAP = new CountDown(texture, r3, y3, 20, 20);
                         xAP.Draw(spriteBatch);
                     }
                 }
