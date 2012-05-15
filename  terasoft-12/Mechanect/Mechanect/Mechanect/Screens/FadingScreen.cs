@@ -6,6 +6,9 @@ using System;
 
 namespace Mechanect.Screens
 {
+    /// <summary>
+    /// This class creates a screen that fades in and out. The screen has a white background.
+    /// </summary>
     class FadingScreen : GameScreen
     {
         private bool first;
@@ -18,6 +21,7 @@ namespace Mechanect.Screens
         private float xPositionOffset;
         private float yPositionOffset;
         private bool done;
+    
         public bool Done
         {
             set
@@ -29,11 +33,20 @@ namespace Mechanect.Screens
                 return done;
             }
         }
-
+        /// <summary>
+        /// Fadingscreen's default constructor.
+        /// </summary>
         public FadingScreen()
         {
         }
-        
+        /// <summary>
+        /// Fadingscreen's constructor.
+        /// </summary>
+        /// <param name="path">path of the image that will be added to the middle of the screen.</param>
+        /// <param name="logoScale">scaling ratio of the image.</param>
+        /// <param name="rotation">rotation for the image.</param>
+        /// <param name="xPositionOffset">X-axis position offset of the image.</param>
+        /// <param name="yPositionOffset">Y-axis position offset of the image.</param>
         public FadingScreen(string path, float logoScale,float rotation,float xPositionOffset, float yPositionOffset)
         {
             this.path = path;
@@ -46,13 +59,20 @@ namespace Mechanect.Screens
             done = false;
             
         }
-
+        /// <summary>
+        /// Loads the content of this screen.
+        /// </summary>
         public override void LoadContent()
         {
             black = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/black");
             logo = ScreenManager.Game.Content.Load<Texture2D>(@""+path);
         }
 
+       /// <summary>
+       /// Updates the content of this screen.
+       /// </summary>
+       /// <param name="gameTime">represents the time of the game.</param>
+       /// <param name="covered">specifies wether the screen is covered.</param>
         public override void Update(GameTime gameTime, bool covered)
         {
             if (fading <= 0.01f || !first)
@@ -70,7 +90,10 @@ namespace Mechanect.Screens
             else
                 fading *= 0.97f;
         }
- 
+        /// <summary>
+        /// Draws the content of the fading screen.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
