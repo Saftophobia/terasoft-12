@@ -18,7 +18,7 @@ namespace Mechanect.Screens
             if (Done)
             {
                 base.Remove();
-                ScreenManager.AddScreen(new ITworxScreen());
+                ScreenManager.AddScreen(new AllExperiments());
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
 using Mechanect.Screens;
+using Mechanect.Common;
 
 namespace Mechanect.Classes
 {

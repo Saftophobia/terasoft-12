@@ -6,3 +6,4 @@ C:\Users\ahmed\Desktop\New folder (3)\ terasoft-12\Mechanect\Mechanect\Mechanect
 C:\Users\Mohamed\Desktop\New folder\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\my workspace\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
