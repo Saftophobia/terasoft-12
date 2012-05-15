@@ -72,7 +72,6 @@ namespace Mechanect
         {
             spriteBatch.Begin();
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
-            spriteBatch.Draw(hand, handPosition, Color.White);
             spriteBatch.End();
         }
 
@@ -209,6 +208,19 @@ namespace Mechanect
         public void Reset()
         {
             status = false;
+        }
+
+        ///<remarks>
+        ///<para>
+        ///Author: HegazY
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// draw the hand on the screen. It must be called after beginning the SpriteBatch.
+        /// </summary>
+        public void DrawHand(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(hand, handPosition, Color.White);
         }
     }
 }
