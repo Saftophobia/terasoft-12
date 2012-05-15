@@ -522,3 +522,4 @@ C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front_0.xnb
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb
+C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb
