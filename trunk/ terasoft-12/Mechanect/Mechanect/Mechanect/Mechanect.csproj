@@ -132,7 +132,7 @@
     <Compile Include="Screens\GUCScreen.cs" />
     <Compile Include="Screens\ITWroxScreen.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
-    <Compile Include="Screens\UserStream.cs" />
+    <Compile Include="Screens\UserAvatarScreen.cs" />
     <Compile Include="Classes\Aquarium.cs" />
     <Compile Include="Classes\Avatar.cs" />
     <Compile Include="Classes\AvatarprogUI.cs" />
