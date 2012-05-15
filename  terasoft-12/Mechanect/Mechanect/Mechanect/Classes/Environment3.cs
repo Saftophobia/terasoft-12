@@ -565,7 +565,7 @@ namespace Mechanect.Classes
 
         #endregion
 
-        #region Omar's Methods
+        #region Ball Control Methods.
 
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
