@@ -26,6 +26,19 @@ namespace Mechanect
                 spriteFont = value;
             }
         }
+        Rectangle rectangle;
+        Rectangle Rectangle
+        {
+            get
+            {
+                return rectangle;
+            }
+            set
+            {
+                rectangle = value;
+            }
+        }
+       
         Vector2 origin;
         Vector2 positionInScreen;
         String instructions;
@@ -161,7 +174,7 @@ namespace Mechanect
         public void Draw(GameTime gameTime)
         {
            // device.Clear(Color.YellowGreen);
-            string output = WrapText(spriteFont, this.instructions, screenWidth);
+            string output = WrapText(this.instructions);
             button.Draw(spriteBatch);
             spriteBatch.Begin();
             spriteBatch.DrawString(spriteFont, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
@@ -171,11 +184,11 @@ namespace Mechanect
         /// This is called when the game should draw itself.
         /// </summary>
         /// <para>Author: Mohamed Raafat</para>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
 
         String getInsructions()
         {
-            String output = WrapText(SpriteFont, this.instructions, screenWidth);
+            String output = WrapText(this.instructions);
             return output;
         }
 
@@ -183,37 +196,26 @@ namespace Mechanect
         /// Makes sure that text displayed will not exceeds screen boundries
         /// </summary>
         /// <para>AUTHOR: Mohamed Raafat </para>
-        /// <param name="spriteFont">contains properties of the font</param>
         /// <param name="text">text to be displayed on screen</param>
-        /// <param name="maxLineWidth">max line width to be displayed</param>
-        /// <returns>builder</returns>
-        public String WrapText(SpriteFont spriteFont, String text, float maxLineWidth)
+        /// <returns>String</returns>
+        private String WrapText(String text)
         {
-            string[] words = text.Split(' ');
-            StringBuilder builder = new StringBuilder();
-            float lineWidth = PositionInScreen.X;
-            float spaceWidth = spriteFont.MeasureString(" ").X;
+            String line = String.Empty;
+            String returnString = String.Empty;
+            String[] wordArray = text.Split(' ');
 
-            foreach (String word in words)
+            foreach (String word in wordArray)
             {
-                Vector2 width = spriteFont.MeasureString(word);
-
-
-                if (lineWidth + width.X < maxLineWidth || lineWidth + width.X < device.PresentationParameters.BackBufferWidth - 5)
+                if (spriteFont.MeasureString(line + word).Length() > rectangle.Width)
                 {
-                    builder.Append(word + " ");
-                    lineWidth += width.X + spaceWidth;
-
+                    returnString = returnString + line + '\n';
+                    line = String.Empty;
                 }
-                else
-                {
 
-                    builder.Append("\n" + word + " ");
-                    lineWidth = 0;
-
-                }
+                line = line + word + ' ';
             }
-            return builder.ToString();
+
+            return returnString + line;
         }
     
         
