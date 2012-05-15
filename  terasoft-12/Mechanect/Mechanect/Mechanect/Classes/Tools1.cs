@@ -504,6 +504,49 @@ namespace Mechanect.Classes
              return result;
          }
 
+        /// <summary>
+        /// Gets Y position of the Knee every frame and returns the knee speed at the equivalent Frame
+        /// </summary>
+        /// <param name="kneeposition">Y coordinate of the knee position from kinect</param>
+         /// <returns>knee speed at the equivalent Frame</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Safty</para>
+         /// <para>DATE WRITTEN: 15/5/12 </para>
+         /// <para>DATE MODIFIED: 15/5/12 </para>
+         /// </remarks>
+         public static float[] getKneespeed(float[] kneeposition)
+         {
+             return new float[0];
+         }
+         
+        /// <summary>
+        /// converts kneespeed list to displacement list
+        /// </summary>
+        /// <param name="kneespeed">Speed of the knee on specific frame</param>
+        /// <returns>linear displacement which the avatar should move on screen</returns>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 15/5/12 </para>
+        /// </remarks>
+         public static double[] TransitionalDisplacment(float[] kneespeed)
+         {
+             return new double[0];
+         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
     }
