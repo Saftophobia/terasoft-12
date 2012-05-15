@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Timers;
+using Microsoft.Xna.Framework;
 
 namespace Common.Classes
 {
     class Timer1
     {
-        private DateTime startTime;
+        private double startTime;
         private bool running;
 
         ///<remarks>
@@ -20,10 +21,10 @@ namespace Common.Classes
         /// used to start the timer by marking the time and changing the status of the timer
         /// to runnig
         /// </summary>
-        public void Start()
+        public void Start(GameTime gameTime)
         {
             running = true;
-            startTime = DateTime.Now;
+            startTime = gameTime.TotalGameTime.TotalMilliseconds;
         }
 
 
@@ -31,11 +32,12 @@ namespace Common.Classes
         /// used to get the time since the timer has started, to the time this method is called
         /// </summary>
         /// <returns>the duration that the timer has spent since it's started</returns>
-        public double GetDuration()
+        public double GetDuration(GameTime gameTime)
         {
             if (running)
             {
-                return (DateTime.Now - startTime).TotalMilliseconds;
+                double currentTime = gameTime.TotalGameTime.TotalMilliseconds;
+                return (currentTime - startTime);
             }
             return 0;
         }

@@ -95,11 +95,11 @@ namespace Mechanect
             if (CheckColission())
             {
                 if (!timer.IsRunning())
-                    timer.Start();
+                    timer.Start(gameTime);
                 else
                 {
                     Animate();
-                    if (timer.GetDuration() >= (2000))
+                    if (timer.GetDuration(gameTime) >= (2000))
                     {
                         status = true;
                         timer.Stop();
