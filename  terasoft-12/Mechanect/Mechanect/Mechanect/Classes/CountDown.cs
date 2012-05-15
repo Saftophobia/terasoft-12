@@ -16,76 +16,67 @@ namespace Mechanect.Classes
 {
     class CountDown
     {
-        private Texture2D Texture;
-        private int stageWidth, stageHeight;
-        private Rectangle r;
-        private int xPoint;
-        private int yPoint;
-        private int width;
-        private int height;
-        private int counter;
-        private CountDown One;
-        private CountDown two;
-        private CountDown Three;
-        private CountDown go;
-        private CountDown background;
-        private SoundEffect effect1;
-        private SoundEffect effect2;
-        private Boolean play1 = true;
-        private Boolean play2 = true;
-        private Boolean play3 = true;
-        private Boolean play4 = true;
+        Texture2D Texture;
+        Rectangle r;
+        int counter;
+        SoundEffect effect1;
+        SoundEffect effect2;
+        Texture2D three;
+        Texture2D two;
+        Texture2D one;
+        Texture2D go;
 
+        public CountDown(Texture2D tex, int v1, int v2, int v3, int v4)
+        {
+            Texture = tex;
+            r = new Rectangle(v1, v2, v3, v4);
+            counter = r.Height;
+        }
 
         public CountDown()
         {
 
         }
 
-        public CountDown(Texture2D tex, int a, int b, int v1, int v2, int v3, int v4)
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function InitializeCountdown accepts a set of textures and sound effects to be used during the countdown.
+        /// </summary>
+        /// <param name = "Texthree">Number Three.</param>
+        /// <param name="Textwo">Number Two.</param>
+        /// <param name="Texone">Number One.</param>
+        /// <param name="Texgo">The word Go.</param>
+        /// <param name="Seffect1">An instance of the SoundEffect.</param>
+        /// <param name="Seffect2">An instance of the SoundEffect.</param>
+        /// <returns>void</returns>
+        public void InitializeCountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo, SoundEffect Seffect1, SoundEffect Seffect2)
         {
-            Texture = tex;
-            stageWidth = a;
-            stageHeight = b;
-            this.xPoint = v1;
-            this.yPoint = v2;
-            this.width = v3;
-            this.height = v4;
-            r = new Rectangle(xPoint, yPoint, width, height);
-            counter = r.Height;
-        }
-                
-        public CountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo,Texture2D Texback,
-                SoundEffect Seffect1, SoundEffect Seffect2,int width, int height)
-        {
-            Three = new CountDown(Texthree, width,
-                   height, 400, 200, 200, 200);
-            two = new CountDown(Textwo, width,
-                height, 400, 200, 200, 200);
-            One = new CountDown(Texone, width,
-                height, 400, 200, 200, 200);
-            go = new CountDown(Texgo, width,
-                height, 430, 200, 150, 150);            
+            three = Texthree;
+            two = Textwo;
+            one = Texone;
+            go = Texgo;
             effect1 = Seffect1;
             effect2 = Seffect2;
+            counter = 0;
         }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 20/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function Update is used to decrement the counter in
-        /// order to allow the next number to appearon the screen 
-        /// when the counter reaches 0.
+        /// The function Update is used to increment the counter in order to allow the next number to appear on the screen.
         /// </summary>
         /// <param></param> 
         /// <returns>void</returns>
-
         public void Update()
         {
-            counter = counter - 4;
+            counter++;
         }
 
         /// <remarks>
@@ -94,27 +85,7 @@ namespace Mechanect.Classes
         /// <para>Date Modified 20/4/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function GetCounter is used to get the counter
-        /// in order to decide whether the next number should
-        /// appear on the screen or not yet.
-        /// </summary>
-        /// <param name></param>  
-        /// <returns>int: The counter.</returns>
-
-        public int GetCounter()
-        {
-            return counter;
-        }
-
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 20/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function Draw is used to draw a Texture2D given
-        /// the co-ordinates of the rectangle in which the texture
-        /// will be drawn.
+        /// The function Draw is used to draw a Texture given the co-ordinates of the rectangle in which the texture will be drawn.
         /// </summary>
         /// <param name="spriteBatch"> An instance of the spriteBatch class.</param>       
         /// <returns>void</returns>
@@ -132,87 +103,62 @@ namespace Mechanect.Classes
                 {
                     spriteBatch.Draw(Texture, r, Color.White);
                 }
-                catch (Exception e1)
+                catch (Exception f)
                 {
                 }
             }
         }
+
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 20/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// Used to check whether the current number should disappear from the screen or not yet.
-        /// </summary>
+        /// The function PlaySoundEffects is used to play sound effects during the countdown.
+        /// </summary>  
         /// <returns>void</returns>
-        public void UpdateCountdownScreen() {
-            if (Three.GetCounter() > 0)
+        public void PlaySoundEffects()
+        {
+            switch (counter)
             {
-                Three.Update();
-                if (play1)
-                {
-                    effect1.Play();
-                    play1 = false;
-                }
-            }
-            if (Three.GetCounter() == 0 && two.GetCounter() > 0)
-            {
-                two.Update();
-                if (play2)
-                {
-                    effect1.Play();
-                    play2 = false;
-                }
-            }
-            if (two.GetCounter() == 0 && Three.GetCounter() == 0 && One.GetCounter() > 0)
-            {
-                One.Update();
-                if (play3)
-                {
-                    effect1.Play();
-                    play3 = false;
-                }
-            }
-            if (One.GetCounter() == 0 && two.GetCounter() == 0 && Three.GetCounter() == 0 && go.GetCounter() > 0)
-            {
-                if (play4)
-                {
-                    effect2.Play();
-                    play4 = false;
-                }
-
+                case 4: effect1.Play(); break;
+                case 54: effect1.Play(); break;
+                case 104: effect1.Play(); break;
+                case 154: effect2.Play(); break;
             }
         }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 20/4/2012</para>
-        /// <para>Date Modified 20/4/2012</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function DrawCountdownScreen draws the current countdown number on the screen only if its counter is greater than 0.
-        /// </summary>
-        /// <param name="spriteBatch">An instance of the SpriteBatch class.</param>  
-		/// <returns>void</returns>		
-        public void DrawCountdownScreen(SpriteBatch spriteBatch)
+        /// The function DrawCountdown is used to draw the numbers on the screen.
+        /// </summary>  
+        /// <returns>void</returns>
+        public void DrawCountdown(SpriteBatch spriteBatch)
         {
-            if (Three.GetCounter() > 0)
+            spriteBatch.Begin();
+            Rectangle r = new Rectangle(450, 280, 140, 140);
+            if (counter >= 0 && counter < 50)
             {
-                Three.Draw(spriteBatch);
+                spriteBatch.Draw(three, r, Color.White);
             }
-            if (Three.GetCounter() == 0 && two.GetCounter() > 0)
+            if (counter >= 50 && counter < 100)
             {
-                two.Draw(spriteBatch);
+                spriteBatch.Draw(two, r, Color.White);
             }
-            if (two.GetCounter() == 0 && Three.GetCounter() == 0 && One.GetCounter() > 0)
+            if (counter >= 100 && counter < 150)
             {
-                One.Draw(spriteBatch);
+                spriteBatch.Draw(one, r, Color.White);
             }
-            if (One.GetCounter() == 0 && two.GetCounter() == 0 && Three.GetCounter() == 0 && go.GetCounter() > 0)
+            if (counter >= 150)
             {
-                go.Draw(spriteBatch);
+                spriteBatch.Draw(go, r, Color.White);
             }
+            spriteBatch.End();
         }
     }
 }
