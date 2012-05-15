@@ -83,7 +83,7 @@ namespace Mechanect.Screens
             if (keyState.IsKeyDown(Keys.B))
             {
                 ExitScreen();
-                ScreenManager.AddScreen(new InstructionsScreen2(new User2()));
+                ScreenManager.AddScreen(new Settings2(new User2()));
             }
             if (keyState.IsKeyDown(Keys.C))
             {

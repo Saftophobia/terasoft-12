@@ -126,11 +126,13 @@
     <Compile Include="Classes\GraphEngine.cs" />
     <Compile Include="Classes\GraphUI.cs" />
     <Compile Include="Classes\OptimumEngine.cs" />
+    <Compile Include="Classes\ThemeAndLevel.cs" />
     <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
     <Compile Include="Screens\GUCScreen.cs" />
     <Compile Include="Screens\ITWroxScreen.cs" />
+    <Compile Include="Screens\Settings2.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
     <Compile Include="Screens\UserAvatarScreen.cs" />
     <Compile Include="Classes\Aquarium.cs" />
