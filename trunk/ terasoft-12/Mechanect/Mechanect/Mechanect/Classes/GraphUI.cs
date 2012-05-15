@@ -16,6 +16,46 @@ namespace Mechanect.Classes
     {
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Created: 22-4-2012</para>
+        /// <para>Date Modified: 22-4-2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The DrawLine function is used to draw a straight line connecting an initial point (point1) with a final point (point2).
+        /// </summary>
+        /// <param name="batch">An instance of the spriteBatch class.</param>
+        /// <param name="blank">An instance of the Texture2D class.</param>
+        /// <param name="width">The width of the line.</param>
+        /// <param name="color">The color of the line.</param>
+        /// <param name="point1">The initial point.</param>
+        /// <param name="point2">The final point.</param>        
+        /// <returns>void</returns>
+        public static void DrawLine(SpriteBatch batch, Texture2D blank, float width, Microsoft.Xna.Framework.Color color, Vector2 point1, Vector2 point2)
+        {
+            float angle = (float)Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
+            float length = Vector2.Distance(point1, point2);
+            batch.Draw(blank, point1, null, color, angle, Vector2.Zero, new Vector2(length, width), SpriteEffects.None, 0);
+        }   
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Created: 22-4-2012</para>
+        /// <para>Date Modified: 22-4-2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The Draw function is used to draw a line connecing the points (a1,a2) and (b1,b2). 
+        /// </summary>
+        /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
+        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>       
+        /// <returns>void</returns>
+        public static void Draw(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
+        {
+            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            blank.SetData(new[] { Color.White });
+            DrawLine(spriteBatch, blank, 2, g.getCurveColor(), new Vector2(g.getPoint1().X, g.getPoint1().Y), new Vector2(g.getPoint2().X, g.getPoint2().Y));
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
         /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
@@ -31,15 +71,15 @@ namespace Mechanect.Classes
         {
             for (int i = 0; i <= g.getDisplacement1().Length - 1; i++)
             {
-                g.getDisplacement1()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getDisplacement2()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getVelocity1()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getVelocity2()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getAcceleration1()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getAcceleration2()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getOptimumDisplacement()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getOptimumVelocity()[i].Draw(spriteBatch, GraphicsDevice);
-                g.getOptimumAcceleration()[i].Draw(spriteBatch, GraphicsDevice);
+                Draw(g.getDisplacement1()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getDisplacement2()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getVelocity1()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getVelocity2()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getAcceleration1()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getAcceleration2()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getOptimumDisplacement()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getOptimumVelocity()[i], spriteBatch, GraphicsDevice);
+                Draw(g.getOptimumAcceleration()[i], spriteBatch, GraphicsDevice);
             }
         }
         /// <remarks>
@@ -80,17 +120,17 @@ namespace Mechanect.Classes
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 50),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 50),
                 new Vector2(50, 570));
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 50),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 50),
                 new Vector2(380, 570));
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 50),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 50),
                 new Vector2(710, 570));
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 300),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 300),
                 new Vector2(316, 300));
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 300),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 300),
                 new Vector2(646, 300));
-            g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 300),
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 300),
                 new Vector2(976, 300));
         }
 
@@ -113,22 +153,22 @@ namespace Mechanect.Classes
             int counter = 309;
             for (int i = 0; i <= 2; i++)
             {
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 293),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 293),
                 new Vector2(counter + 7, 300));
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 307),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 307),
                 new Vector2(counter + 7, 300));
                 counter += 330;
             }
             counter = 40;
             for (int i = 0; i <= 2; i++)
             {
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 60),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 60),
                 new Vector2(counter + 10, 50));
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 60),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 60),
                 new Vector2(counter + 8, 50));
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 560),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 560),
                 new Vector2(counter + 10, 570));
-                g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 560),
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 560),
                 new Vector2(counter + 8, 570));
                 counter += 330;
             }
@@ -254,8 +294,7 @@ namespace Mechanect.Classes
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 295),
-                        new Vector2(counter, 305));
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 295), new Vector2(counter, 305));
                     counter += 64;
                 }
             }
@@ -272,17 +311,16 @@ namespace Mechanect.Classes
                 }
                 for (int j = 1; j <= 9; j++)
                 {
-                    g.DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2),
-                        new Vector2(y + 5, counter2));
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2), new Vector2(y + 5, counter2));
                     counter2 += 58;
                 }
             }
             //drawing the legend
-            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Red, new Vector2(130, 580),
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Red, new Vector2(130, 580),
                 new Vector2(180, 580));
-            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Blue, new Vector2(460, 580),
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Blue, new Vector2(460, 580),
                 new Vector2(510, 580));
-            g.DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Yellow, new Vector2(790, 580),
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Yellow, new Vector2(790, 580),
                 new Vector2(840, 580));
             spriteBatch.DrawString(font, "Player 1", new Vector2(185, 573), Color.Red);
             spriteBatch.DrawString(font, "Player 2", new Vector2(515, 573), Color.Blue);
