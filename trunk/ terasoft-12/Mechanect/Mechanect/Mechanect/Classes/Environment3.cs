@@ -676,6 +676,14 @@ namespace Mechanect.Classes
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
 
+        /// <summary>
+        /// Gets the height of the terrain at any point.
+        /// </summar
+        /// <remarks>
+        /// <para>AUTHOR: Omar Abdulaal.</para>
+        /// </remarks>
+        /// <param name="Position">
+        /// Specifies the point you want to get the height of the terrain at.</param>
         public float GetHeight(Vector3 Position)
         {
             int xComponent = (int)Position.X;
