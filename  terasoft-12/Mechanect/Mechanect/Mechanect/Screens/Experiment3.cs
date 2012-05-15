@@ -59,7 +59,7 @@ namespace Mechanect.Screens
             c.Update();
             if (environment.ball.Position.X >= environment.user.ShootingPosition.X && environment.ball.Position.Z >= environment.user.ShootingPosition.Z)
             {
-                environment.Update();
+                environment.Update(gameTime);
 
             }
             environment.ball.Update(environment.Friction);

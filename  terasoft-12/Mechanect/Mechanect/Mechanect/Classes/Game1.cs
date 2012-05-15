@@ -37,9 +37,7 @@ namespace Mechanect
             Content.RootDirectory = "Content";
 
             
-             Window.AllowUserResizing = true;
-            Graphics.PreferredBackBufferWidth = 1024;
-            Graphics.PreferredBackBufferHeight = 768;
+            Window.AllowUserResizing = true;
             if (fullScreen)
              Graphics.IsFullScreen = true;
            
@@ -71,7 +69,7 @@ namespace Mechanect
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
             //screenManager.AddScreen(new InstructionsScreen3());
-            screenManager.AddScreen(new AllExperiments());
+            screenManager.AddScreen(new TeraSoftScreen());
             //screenManager.AddScreen(new Experiment2(new User2()));
             //screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
             //screenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
