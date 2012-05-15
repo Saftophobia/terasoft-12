@@ -30,5 +30,17 @@ namespace Physics
             return (intialVelocity * seconds) + (0.5f * acceleration * seconds * seconds);
         }
 
+        /// <summary>
+        /// calculates the intial velocity magnitude using the equation vf^2 = v0^2 + 2as
+        /// </summary>
+        /// <param name="finalVelocity">final velocity magnitude</param>
+        /// <param name="acceleration">acceleration magnitude</param>
+        /// <param name="distance">distance</param>
+        /// <remarks>Auther : Bishoy Bassem</remarks>
+        public static float CalculateIntialVelocity(float finalVelocity, float acceleration, float distance)
+        {
+            return (float)Math.Sqrt(finalVelocity * finalVelocity - 2 * acceleration * distance);
+        }
+
     }
 }
