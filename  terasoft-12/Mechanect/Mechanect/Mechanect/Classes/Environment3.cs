@@ -676,6 +676,12 @@ namespace Mechanect.Classes
             return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
         }
 
+        public float GetHeight(Vector3 Position)
+        {
+            int xComponent = (int)Position.X;
+            int yComponent = (int)Position.Y;
+            return heightData[xComponent + terrainWidth / 2, yComponent + terrainHeight / 2];
+        }
 
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
