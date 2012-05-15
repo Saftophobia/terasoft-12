@@ -71,6 +71,8 @@ Content\Exp1\heightmap6.xnb
 Content\Exp1\left.xnb
 Content\Exp1\right.xnb
 Content\Exp1\up.xnb
+Content\Resources\Images\GUC.xnb
+Content\Resources\Images\Terasoft.xnb
 Content\Ariel.xnb
 Content\SpriteFont1.xnb
 Content\Resources\TimesNewRoman.xnb
@@ -105,5 +107,3 @@ Content\Exp1\left_0.xnb
 Content\Exp1\front_0.xnb
 Content\Exp1\back_0.xnb
 Content\Exp1\down_0.xnb
-Content\Resources\Images\GUC.xnb
-Content\Resources\Images\Terasoft.xnb
