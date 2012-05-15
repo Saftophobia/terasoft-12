@@ -15,8 +15,8 @@ namespace Mechanect.Screens
         int screenWidth;
         int screenHeight;
         ContentManager content;
-        Texture2D avatar;
-        Vector2 avatarPosition;
+        Texture2D[] avatar;
+        Vector2[] avatarPosition;
         SpriteFont font;
         User[] users;
         String[] command;
@@ -27,6 +27,8 @@ namespace Mechanect.Screens
         {
             this.users = new User[1];
             this.command = new String[1];
+            avatar = new Texture2D[1];
+            avatarPosition = new Vector2[1];
             this.users[0] = user;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
@@ -35,8 +37,19 @@ namespace Mechanect.Screens
         {
             this.users = new User[2];
             this.command = new String[2];
+            avatar = new Texture2D[2];
+            avatarPosition = new Vector2[2];
             this.users[0] = user;
             this.users[1] = user2;
+            this.minDepth = minDepth;
+            this.maxDepth = maxDepth;
+        }
+        public UserAvatarScreen(User[] users, int minDepth, int maxDepth)
+        {
+            this.users = users;
+            this.command = new String[users.Length];
+            avatar = new Texture2D[users.Length];
+            avatarPosition = new Vector2[users.Length];
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
         }
@@ -54,9 +67,12 @@ namespace Mechanect.Screens
             screenHeight = graphics.Viewport.Height;
             spriteBatch = ScreenManager.SpriteBatch;
             content = ScreenManager.Game.Content;
-            avatarPosition = new Vector2(screenWidth / 2, screenHeight / 4);
             font = content.Load<SpriteFont>("spriteFont1");
-            avatar = content.Load<Texture2D>("Textures/screen");
+            for (int i = 0; i < avatar.Length; i++)
+            {
+                avatar[i] = content.Load<Texture2D>("Textures/screen");
+                avatarPosition[i] = new Vector2(screenWidth / (2*(i+1)), screenHeight / (4*(i+1)));
+            }
         }
 
         /// <summary>
@@ -87,9 +103,9 @@ namespace Mechanect.Screens
         /// <param name="texture">
         /// The 2D texture that should be colored.
         /// </param>
-        public void UpdateAvatar(Texture2D texture)
+        public void UpdateAvatar(Texture2D texture, User user)
         {
-            if (users[0].USER != null)
+            if (user.USER != null)
             {
                 if (users[0].USER.Position.Z > minDepth && users[0].USER.Position.Z < maxDepth / 4)
                     ChangeTextureColor(texture, Color.Yellow);
@@ -132,8 +148,10 @@ namespace Mechanect.Screens
         public override void Update(GameTime gameTime, bool covered)
         {
             for (int i = 0; i < users.Length; i++)
+            {
                 UpdateUser(i);
-                UpdateAvatar(avatar);
+                UpdateAvatar(avatar[i], users[i]);
+            }
             base.Update(gameTime, covered);
         }
 
@@ -148,7 +166,8 @@ namespace Mechanect.Screens
         {          
                 graphics.Clear(Color.Transparent);
                 spriteBatch.Begin();
-                spriteBatch.Draw(avatar, avatarPosition, null, Color.White, 0, new Vector2(avatar.Width / 2, avatar.Height / 2), 1f, SpriteEffects.None, 0);
+            for(int i=0; i<avatar.Length; i++)
+                spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0, new Vector2(avatar[i].Width / 2, avatar[i].Height / 2), 1f, SpriteEffects.None, 0);
                 for (int i = 0; i < users.Length; i++)
                 {
                     ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
