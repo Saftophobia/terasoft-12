@@ -6,10 +6,11 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Classes
 {
-    class User1:User
+    class User1
     {
 
         public Skeleton skeleton;
+
         
         
         
@@ -28,6 +29,18 @@ namespace Mechanect.Classes
             set
             {
                 activeCommand = value;
+            }
+        }
+        private List<float> kneepos;
+        public List<float> Kneepos
+        { 
+            get
+            { 
+                return kneepos;
+            }
+            set
+            {
+                kneepos = value;
             }
         }
         private List<float> positions;
@@ -72,6 +85,7 @@ namespace Mechanect.Classes
             this.Winner = false;
             this.disqualified = false;
             this.positions = new List<float>();
+            this.kneepos = new List<float>();
             
             
         }
