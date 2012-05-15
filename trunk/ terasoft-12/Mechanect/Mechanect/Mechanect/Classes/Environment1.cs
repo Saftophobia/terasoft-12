@@ -16,7 +16,7 @@ namespace Mechanect.Classes
 {
     class Environment1
     {
-        bool chase = false;
+        bool chase = true;
         drawstring drawstring;
         SpriteFont font1;
         GraphicsDeviceManager graphics;
@@ -99,27 +99,23 @@ namespace Mechanect.Classes
             KeyboardState state = Keyboard.GetState();
             if(state.IsKeyDown(Keys.K))
             {
-                if(chase)
-                { 
-                    chase = false;
-                }else
-                { 
-                    chase = true;
-                }
-
+                TargetCam();
             }
+            if (state.IsKeyDown(Keys.L))
+            {
+                ChaseCam();
+            }
+
             if (chase)
             {
                 c2.Rotate(new Vector3(0, 0.003f, 0));
                 c = c2;
                 drawstring.Update("KNEES UP! and get in the !@#$ing Range");
-      
             }
             else
             {
                 c = c1;      
-            }
-            
+            } 
             c.Update();
         }
         /// <summary>
@@ -139,6 +135,21 @@ namespace Mechanect.Classes
                 spriteBatch.Begin();
                 drawstring.Draw(spriteBatch);
                 spriteBatch.End();
+            }
+        }
+
+        public void TargetCam()
+        {
+            if (chase)
+            {
+                chase = false;
+            }
+        }
+        public void ChaseCam()
+        {
+            if (!chase)
+            {
+                chase = true;
             }
         }
 

@@ -514,9 +514,9 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 15/5/12 </para>
          /// <para>DATE MODIFIED: 15/5/12 </para>
          /// </remarks>
-         public static float[] getKneespeed(float[] kneeposition)
+         public static List<float> getKneespeed(List<float> kneeposition)
          {
-             return new float[0];
+             return null;
          }
          
         /// <summary>
@@ -529,9 +529,9 @@ namespace Mechanect.Classes
         /// <para>DATE WRITTEN: 15/5/12 </para>
         /// <para>DATE MODIFIED: 15/5/12 </para>
         /// </remarks>
-         public static double[] TransitionalDisplacment(float[] kneespeed)
+         public static List<float> TransitionalDisplacment(List<float> kneespeed)
          {
-             return new double[0];
+             return null;
          }
 
 
