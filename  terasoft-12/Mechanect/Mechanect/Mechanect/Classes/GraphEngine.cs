@@ -143,7 +143,7 @@ namespace Mechanect.Classes
             for (int i = 0; i <= size - 1; i++)
             {
                 g.getP1Disp().Add(D1[i]);
-                g.getP1Disp().Add(D2[i]);
+                g.getP2Disp().Add(D2[i]);
             }
         }
 
