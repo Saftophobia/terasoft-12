@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using Mechanect.Common;
 using Microsoft.Kinect;
+using Mechanect.Classes;
 
 namespace Mechanect.Screens
 {
@@ -18,60 +13,81 @@ namespace Mechanect.Screens
     {
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
-        KinectSensor kinect;
-        Texture2D colorVideo, depthVideo;
         int screenWidth;
         int screenHeight;
-        Boolean debugging = true;
         ContentManager content;
-        Texture2D screen;
-        Vector2 screenPosition;
+        Texture2D avatar;
+        Vector2 avatarPosition;
         SpriteFont font;
-
-        public UserStream()
+        User[] users;
+        Boolean[] accepted;
+        String[] command;
+        int minDepth;
+        int maxDepth;
+        int depth;
+        public UserStream(User user, int minDepth, int maxDepth)
         {
+            this.users = new User[1];
+            this.accepted = new Boolean[1];
+            this.command = new String[1];
+            this.users[0] = user;
+            this.minDepth = minDepth;
+            this.maxDepth = maxDepth;
+        }
+        public UserStream(User user, User user2, int minDepth, int maxDepth)
+        {
+            this.users = new User[2];
+            this.accepted = new Boolean[2];
+            this.command = new String[2];
+            this.users[0] = user;
+            this.users[1] = user2;
+            this.minDepth = minDepth;
+            this.maxDepth = maxDepth;
         }
 
         public override void Initialize()
         {
-            //Initialise Kinect
-
             graphics = ScreenManager.GraphicsDevice;
             screenWidth = graphics.Viewport.Width;
             screenHeight = graphics.Viewport.Height;
             spriteBatch = ScreenManager.SpriteBatch;
             content = ScreenManager.Game.Content;
-            screenPosition = new Vector2(screenWidth / 2, screenHeight / 4);
+            avatarPosition = new Vector2(screenWidth / 2, screenHeight / 4);
             font = content.Load<SpriteFont>("spriteFont1");
-            screen = content.Load<Texture2D>("Textures/screen");
-            try
+            avatar = content.Load<Texture2D>("Textures/screen");
+        }
+        public void UpdateUser(int ID)
+        {
+            if (users[ID].USER == null || users[ID].USER.Position.Z == 0)
             {
-                kinect = KinectSensor.KinectSensors[0];
-                kinect.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
-                kinect.DepthStream.Enable(DepthImageFormat.Resolution320x240Fps30);
-                kinect.AllFramesReady += new EventHandler<AllFramesReadyEventArgs>(kinect_AllFramesReady);
-                kinect.Start();
-                colorVideo = new Texture2D(graphics, kinect.ColorStream.FrameWidth, kinect.ColorStream.FrameHeight);
-                depthVideo = new Texture2D(graphics, kinect.DepthStream.FrameWidth, kinect.DepthStream.FrameHeight);
-                Debug.WriteLineIf(debugging, kinect.Status);
+                command[ID] = "No player detected";
+                accepted[ID] = false;
+                return;
             }
-            catch (Exception e)
+            depth = GenerateDepth(ID);
+        }
+        public void UpdateAvatar(Texture2D texture)
+        {
+            if (users[0].USER != null)
             {
-                Debug.WriteLine(e.ToString());
+                if (users[0].USER.Position.Z > minDepth && users[0].USER.Position.Z < maxDepth / 4)
+                    ChangeTextureColor(texture, Color.Yellow);
+                else if (users[0].USER.Position.Z > maxDepth / 4 && users[0].USER.Position.Z < maxDepth / 2)
+                    ChangeTextureColor(texture, Color.Green);
+                else if (users[0].USER.Position.Z > maxDepth / 2 && users[0].USER.Position.Z < maxDepth)
+                    ChangeTextureColor(texture, Color.Blue);
+                else if (users[0].USER.Position.Z > maxDepth)
+                    ChangeTextureColor(texture, Color.MediumVioletRed);
             }
-            base.Initialize();
+            else ChangeTextureColor(texture, Color.MediumTurquoise);
+            }
+        public int GenerateDepth(int i)
+        {
+            return (int)(100 * users[i].USER.Joints[JointType.HipCenter].Position.Z);
         }
 
         public override void LoadContent()
         {
-            try
-            {
-                kinect.ElevationAngle = 0;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.ToString());
-            }
 
         }
 
@@ -82,109 +98,37 @@ namespace Mechanect.Screens
 
         public override void Update(GameTime gameTime, bool covered)
         {
-            base.Update(gameTime, false);
+            for (int i = 0; i < users.Length; i++)
+                UpdateUser(i);
+                UpdateAvatar(avatar);
+            base.Update(gameTime, covered);
         }
 
         public override void Draw(GameTime gameTime)
-        {
-            try
-            {
-                //graphics.Clear(Color.Transparent);
-                //spriteBatch.Begin();
-                //spriteBatch.Draw(screen, screenPosition, null, Color.Transparent, 0, new Vector2(screen.Width / 2, screen.Height / 2), 1f, SpriteEffects.None, 0);
-                //spriteBatch.End();
+        {          
+                graphics.Clear(Color.Transparent);
                 spriteBatch.Begin();
-                spriteBatch.Draw(colorVideo, new Rectangle(0, 0, colorVideo.Width, colorVideo.Height), Color.White);
-                spriteBatch.Draw(depthVideo, new Rectangle(640, 0, depthVideo.Width, depthVideo.Height), Color.White);
+                spriteBatch.Draw(avatar, avatarPosition, null, Color.White, 0, new Vector2(avatar.Width / 2, avatar.Height / 2), 1f, SpriteEffects.None, 0);
+                for (int i = 0; i < users.Length; i++)
+                {
+                    ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
+                }
                 spriteBatch.End();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.ToString());
-            }
         }
+        public void ChangeTextureColor(Texture2D texture, Color color)
+        {
+            Color[] data = new Color[texture.Width * texture.Height];
+            texture.GetData(data);
+
+            for (int i = 0; i < data.Length; i++)
+                    data[i] = color;
+
+            texture.SetData(data);
+        }
+
         public override void Remove()
         {
             base.Remove();
-        }
-
-        void kinect_AllFramesReady(object sender, AllFramesReadyEventArgs imageFrames)
-        {
-            //
-            // Color Frame 
-            //
-
-            //Get raw image
-            ColorImageFrame colorVideoFrame = imageFrames.OpenColorImageFrame();
-
-            if (colorVideoFrame != null)
-            {
-                //Create array for pixel data and copy it from the image frame
-                Byte[] pixelData = new Byte[colorVideoFrame.PixelDataLength];
-                colorVideoFrame.CopyPixelDataTo(pixelData);
-
-                //Convert RGBA to BGRA
-                Byte[] bgraPixelData = new Byte[colorVideoFrame.PixelDataLength];
-                for (int i = 0; i < pixelData.Length; i += 4)
-                {
-                    bgraPixelData[i] = pixelData[i + 2];
-                    bgraPixelData[i + 1] = pixelData[i + 1];
-                    bgraPixelData[i + 2] = pixelData[i];
-                    bgraPixelData[i + 3] = (Byte)255; //The video comes with 0 alpha so it is transparent
-                }
-
-                // Create a texture and assign the realigned pixels
-                colorVideo = new Texture2D(graphics, colorVideoFrame.Width, colorVideoFrame.Height);
-                colorVideo.SetData(bgraPixelData);
-            }
-            else return;
-
-            //
-            // Depth Frame
-            //
-            DepthImageFrame depthVideoFrame = imageFrames.OpenDepthImageFrame();
-
-            if (depthVideoFrame != null)
-            {
-                Debug.WriteLineIf(debugging, "Frame");
-                //Create array for pixel data and copy it from the image frame
-                short[] pixelData = new short[depthVideoFrame.PixelDataLength];
-                depthVideoFrame.CopyPixelDataTo(pixelData);
-
-                for (int i = 0; i < 10; i++)
-                { Debug.WriteLineIf(debugging, pixelData[i]); }
-
-                // Convert the Depth Frame
-                // Create a texture and assign the realigned pixels
-                //
-                depthVideo = new Texture2D(graphics, depthVideoFrame.Width, depthVideoFrame.Height);
-                depthVideo.SetData(ConvertDepthFrame(pixelData, kinect.DepthStream));
-            }
-            else return;
-        }
-
-        private byte[] ConvertDepthFrame(short[] depthFrame, DepthImageStream depthStream)
-        {
-            int RedIndex = 0, GreenIndex = 1, BlueIndex = 2, AlphaIndex = 3;
-
-            byte[] depthFrame32 = new byte[depthStream.FrameWidth * depthStream.FrameHeight * 4];
-
-            for (int i16 = 0, i32 = 0; i16 < depthFrame.Length && i32 < depthFrame32.Length; i16++, i32 += 4)
-            {
-                int player = depthFrame[i16] & DepthImageFrame.PlayerIndexBitmask;
-                int realDepth = depthFrame[i16] >> DepthImageFrame.PlayerIndexBitmaskWidth;
-
-                // transform 13-bit depth information into an 8-bit intensity appropriate
-                // for display (we disregard information in most significant bit)
-                byte intensity = (byte)(~(realDepth >> 4));
-
-                depthFrame32[i32 + RedIndex] = (byte)(intensity);
-                depthFrame32[i32 + GreenIndex] = (byte)(intensity);
-                depthFrame32[i32 + BlueIndex] = (byte)(intensity);
-                depthFrame32[i32 + AlphaIndex] = 255;
-            }
-
-            return depthFrame32;
         }
     }
 }
