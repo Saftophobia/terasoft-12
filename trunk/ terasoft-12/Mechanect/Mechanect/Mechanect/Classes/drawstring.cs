@@ -36,7 +36,7 @@ namespace Mechanect.Classes
                 Vector2 FontOrigin = Font1.MeasureString(output) / 2;
                 // Draw the string
                 
-                spriteBatch.DrawString(Font1, output, Fontpos, Color.Black,
+                spriteBatch.DrawString(Font1, output, Fontpos, Color.White,
                     0, FontOrigin, 1.0f, SpriteEffects.None, 0.5f);
                
                

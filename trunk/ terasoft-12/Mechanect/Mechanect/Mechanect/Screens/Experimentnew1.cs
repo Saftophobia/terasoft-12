@@ -65,7 +65,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             graphics = this.ScreenManager.GraphicsDevice;
-            Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice);
+            Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice,this.SpriteBatch);
             Environment1.LoadContent();
         }
 
