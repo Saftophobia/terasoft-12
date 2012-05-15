@@ -77,49 +77,20 @@ namespace Mechanect
         public PerformanceGraph()
         {
 
-        }      
-
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Created: 22-4-2012</para>
-        /// <para>Date Modified: 22-4-2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The Draw function is used to draw a line connecing the points (a1,a2) and (b1,b2). 
-        /// </summary>
-        /// <param name="spriteBatch">An instance of the spriteBatch class.</param>
-        /// <param name="GraphicsDevice">An instance of the GraphicsDevice class.</param>       
-        /// <returns>void</returns>
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice)
-        {
-            Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            blank.SetData(new[] { Color.White });
-            DrawLine(spriteBatch, blank, 2, curveColor, new Vector2(point1.X, point1.Y), new Vector2(point2.X, point2.Y));
         }
 
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Created: 22-4-2012</para>
-        /// <para>Date Modified: 22-4-2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The DrawLine function is used to draw a straight line connecting an initial point (point1) with a final point (point2).
-        /// </summary>
-        /// <param name="batch">An instance of the spriteBatch class.</param>
-        /// <param name="blank">An instance of the Texture2D class.</param>
-        /// <param name="width">The width of the line.</param>
-        /// <param name="color">The color of the line.</param>
-        /// <param name="point1">The initial point.</param>
-        /// <param name="point2">The final point.</param>        
-        /// <returns>void</returns>
-        public void DrawLine(SpriteBatch batch, Texture2D blank,
-              float width, Microsoft.Xna.Framework.Color color, Vector2 point1, Vector2 point2)
+        public Vector2 getPoint1()
         {
-            float angle = (float)Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
-            float length = Vector2.Distance(point1, point2);
-            batch.Draw(blank, point1, null, color, angle, Vector2.Zero, new Vector2(length, width), SpriteEffects.None, 0);
-        }      
-
+            return point1;
+        }
+        public Vector2 getPoint2()
+        {
+            return point2;
+        }
+        public Color getCurveColor()
+        {
+            return curveColor;
+        }
         public void setYAxisDisp(int x, double y)
         {
             yAxisDisplacement[x] = y;
