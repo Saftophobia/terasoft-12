@@ -15,22 +15,23 @@ namespace Mechanect.Experimemnt3
     {
         private Ball ball;
         private Vector3 intialPosition;
-        private float arriveVelocity;
         private Vector3 shootPosition;
+        private float arriveVelocity;
         private float friction;
 
-        private bool pauseScreenShowed;
-        private bool ballStoot;
         private TargetCamera camera;
         private ModelLinearAnimation animation;
 
+        private bool pauseScreenShowed;
+        private bool ballStoot;
+        private bool ballStopped;
+
         public Experiment3()
         {
-            shootPosition = new Vector3(0, 0, 0);
-            friction = -2;
-            arriveVelocity = 15;
-
             intialPosition = new Vector3(-100, 0, -100);
+            shootPosition = new Vector3(0, 0, 0);
+            arriveVelocity = 15;
+            friction = -2;
         }
 
         public override void LoadContent()
@@ -40,7 +41,7 @@ namespace Mechanect.Experimemnt3
             animation = new ModelLinearAnimation(ball, shootPosition, arriveVelocity, friction, true);
         }
 
-        public void animateBall(Vector3 velocity)
+        public void ShootBall(Vector3 velocity)
         {
             ball.Rotation = Vector3.Zero;
             animation = new ModelLinearAnimation(ball, velocity, friction, TimeSpan.FromSeconds(10), true);
@@ -48,15 +49,7 @@ namespace Mechanect.Experimemnt3
 
         public override void Update(GameTime gameTime, bool covered)
         {
-            if (pauseScreenShowed)
-            {
-                if (animation.AnimationStoped && !ballStoot)
-                {
-                    ballStoot = true;
-                    animateBall(new Vector3(10, 0, -10));
-                }
-            }
-            else
+            if (!pauseScreenShowed)
             {
                 float distance = (ball.Position - intialPosition).Length();
                 float totalDistance = (shootPosition - intialPosition).Length();
@@ -65,6 +58,15 @@ namespace Mechanect.Experimemnt3
                     pauseScreenShowed = true;
                     //add pause screen
                 }
+            }
+            else if (animation.AnimationStoped && !ballStoot)
+            {
+                ballStoot = true;
+                ShootBall(new Vector3(10, 0, -10));
+            }
+            else if (animation.AnimationStoped && !ballStopped)
+            {
+                ballStopped = true;
             }
             camera.Update();
             animation.Update(gameTime.ElapsedGameTime);
