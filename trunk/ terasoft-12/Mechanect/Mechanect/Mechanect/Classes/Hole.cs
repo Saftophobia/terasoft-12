@@ -39,7 +39,7 @@ namespace Mechanect.Classes
         CustomModel hole;
         int terrainWidth;
         int terrainHeight;
-
+        const double scaleratio=0.02;
         public Hole(ContentManager c, GraphicsDevice d, int terrainWidth, int terrainHeight, int radius, Vector3 shootingPos)
         {
             this.radius = radius;
@@ -47,7 +47,7 @@ namespace Mechanect.Classes
             this.terrainHeight = terrainHeight;
             shootingPosition = shootingPos ;
             SetHoleValues();
-            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3(0.1f), d);
+            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3((float)scaleratio*radius), d);
         }
         /// <summary>
         /// Draws the 3d model of the hole given a camera.
@@ -100,8 +100,6 @@ namespace Mechanect.Classes
 
         public void SetHoleValues()
         {
-
-
             position.X = GenerateRandomValue(-terrainWidth / 4, terrainWidth / 4);
             position.Y = 3;
             position.Z = GenerateRandomValue(-(terrainHeight- radius)/2, (shootingPosition.Z - radius));
