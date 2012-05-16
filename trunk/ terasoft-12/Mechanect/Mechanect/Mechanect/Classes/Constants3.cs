@@ -18,6 +18,7 @@ namespace Mechanect.Classes
         public const int negativeHPosZ = 6;
         public const int negativeFriction = 7;
         public const int negativeRDifference = 8;
+        public const double scaleratio = 0.02;
         //Difference between the radii of the ball and hole
         public const int holeOutOfFarRange = 9;
         public const int holeOutOfNearRange = 10;
