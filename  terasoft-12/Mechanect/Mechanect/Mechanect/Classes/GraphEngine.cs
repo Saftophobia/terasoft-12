@@ -102,7 +102,7 @@ namespace Mechanect.Classes
             g.setVel2(GetPlayerVelocity(g.getP2Disp()));
             g.setAcc1(GetPlayerAcceleration(g.getP1Vel()));
             g.setAcc2(GetPlayerAcceleration(g.getP2Vel()));
-            //OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
+            OptimumEngine.GetOptimum((double)player1disqtime, (double)player2disqtime,g);
             Discard(g);
             SetNewTime(time, Commands, g);
             GetWinning(g);
@@ -543,7 +543,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 23/4/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function SetAxis chooses 5 evenly distributed values among the total time to be represented on the x-axis
@@ -561,10 +561,11 @@ namespace Mechanect.Classes
                 g.setXAxis(i, g.GetXAxis()[i - 1] + step);
             }
             int counter = 0;
+            int stepping = (int)(g.getTrackLength() / 4);
             for (int i = 0; i <= 4; i++)
             {
                 g.setYAxisDisp(i, counter);
-                counter += 1000;
+                counter += stepping;
             }
             g.setYAxisVel(0, 0);
             step = (double)g.getMaxVelocity() / (double)4;
