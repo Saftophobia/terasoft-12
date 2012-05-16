@@ -73,6 +73,11 @@ Content\Exp1\right.xnb
 Content\Exp1\up.xnb
 Content\Resources\Images\GUC.xnb
 Content\Resources\Images\Terasoft.xnb
+Content\Textures\user.xnb
+Content\Textures\Experiment2\Sliders Images\easy.xnb
+Content\Textures\Experiment2\Sliders Images\hard.xnb
+Content\Textures\Experiment2\Sliders Images\medium.xnb
+Content\Textures\Experiment2\Sliders Images\Theme1.xnb
 Content\Ariel.xnb
 Content\SpriteFont1.xnb
 Content\Resources\TimesNewRoman.xnb
@@ -107,4 +112,3 @@ Content\Exp1\left_0.xnb
 Content\Exp1\front_0.xnb
 Content\Exp1\back_0.xnb
 Content\Exp1\down_0.xnb
-Content\Textures\user.xnb
