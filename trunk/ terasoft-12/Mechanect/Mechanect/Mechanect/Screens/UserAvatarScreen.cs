@@ -22,7 +22,7 @@ namespace Mechanect.Screens
         String[] command;
         int minDepth;
         int maxDepth;
-        int depth;
+        int[] depth;
         public UserAvatarScreen(User user, int minDepth, int maxDepth)
         {
             this.users = new User[1];
@@ -32,6 +32,7 @@ namespace Mechanect.Screens
             this.users[0] = user;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
+            this.depth= new int[1];
         }
         public UserAvatarScreen(User user, User user2, int minDepth, int maxDepth)
         {
@@ -43,6 +44,7 @@ namespace Mechanect.Screens
             this.users[1] = user2;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
+            this.depth = new int[2];
         }
         public UserAvatarScreen(User[] users, int minDepth, int maxDepth)
         {
@@ -50,6 +52,7 @@ namespace Mechanect.Screens
             this.command = new String[users.Length];
             avatar = new Texture2D[users.Length];
             avatarPosition = new Vector2[users.Length];
+            this.depth = new int[users.Length];
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
         }
@@ -86,12 +89,17 @@ namespace Mechanect.Screens
         /// </param>
         public void UpdateUser(int ID)
         {
-            if (users[ID].USER == null || users[ID].USER.Position.Z == 0)
+            depth[ID] = GenerateDepth(ID);
+            if (depth[ID] == 0)
             {
-                command[ID] = "No player detected";
+                command[ID] = "No player detected"+depth[ID];
                 return;
             }
-            depth = GenerateDepth(ID);
+            else
+            {
+                command[ID] = ""+depth[ID];
+                return;
+            }
         }
 
         /// <summary>
@@ -105,18 +113,24 @@ namespace Mechanect.Screens
         /// </param>
         public void UpdateAvatar(Texture2D texture, User user)
         {
-            if (user.USER != null)
+            int x=0;
+            for (int i = 0; i < users.Length; i++)
             {
-                if (users[0].USER.Position.Z > minDepth && users[0].USER.Position.Z < maxDepth / 4)
-                    ChangeTextureColor(texture, "Yellow");
-                else if (users[0].USER.Position.Z > maxDepth / 4 && users[0].USER.Position.Z < maxDepth / 2)
-                    ChangeTextureColor(texture,"Green");
-                else if (users[0].USER.Position.Z > maxDepth / 2 && users[0].USER.Position.Z < maxDepth)
-                    ChangeTextureColor(texture, "Blue");
-                else if (users[0].USER.Position.Z > maxDepth)
-                    ChangeTextureColor(texture, "Red");
+                if (users[i].Equals(user))
+                    x = i;
             }
-            else ChangeTextureColor(texture, "Transparent");
+            if (user.USER != null)
+                {
+                if (depth[x] < maxDepth / 4)
+                    ChangeTextureColor(texture, "Yellow");
+                else if (depth[x] < maxDepth / 2)
+                    ChangeTextureColor(texture,"Green");
+                else if (depth[x] < maxDepth)
+                    ChangeTextureColor(texture, "Blue");
+                else if (depth[x] > maxDepth)
+                    ChangeTextureColor(texture, "Red");
+                }
+            else ChangeTextureColor(texture, "Green");
             }
 
         /// <summary>
@@ -133,7 +147,14 @@ namespace Mechanect.Screens
         /// </returns>
         public int GenerateDepth(int index)
         {
-            return (int)(100 * users[index].USER.Joints[JointType.HipCenter].Position.Z);
+            try
+            {
+                return (int)(100 * users[index].USER.Joints[JointType.HipCenter].Position.Z);
+            }
+            catch (NullReferenceException)
+            {
+                return 0;
+            }
         }
 
         /// <summary>
