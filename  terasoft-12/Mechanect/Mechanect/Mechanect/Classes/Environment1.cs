@@ -16,6 +16,7 @@ namespace Mechanect.Classes
 {
     class Environment1
     {
+        float Distance = 1000.0f;
         bool chase = true;
         drawstring drawstring;
         SpriteFont font1;
