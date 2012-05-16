@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>CUBE_Root</Name>
     <Identity>
-      <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+      <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
       <SourceTool>XImporter</SourceTool>
     </Identity>
     <Transform>3 0 0 0 0 3 0 0 0 0 3 0 0 0 0 1</Transform>
@@ -121,7 +121,7 @@
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -138,7 +138,7 @@
     </Resource>
     <Resource ID="#Resource2" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -155,7 +155,7 @@
     </Resource>
     <Resource ID="#Resource3" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -172,7 +172,7 @@
     </Resource>
     <Resource ID="#Resource4" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -189,7 +189,7 @@
     </Resource>
     <Resource ID="#Resource5" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -206,7 +206,7 @@
     </Resource>
     <Resource ID="#Resource6" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
+        <SourceFilename>F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\Models\skybox2.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>

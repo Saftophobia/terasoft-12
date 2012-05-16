@@ -543,3 +543,8 @@ C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\UI.dll
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Physics.pdb
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\UI.pdb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\dude.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\head_0.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\jacket_0.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\pants_0.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\upBodyC_0.xnb
