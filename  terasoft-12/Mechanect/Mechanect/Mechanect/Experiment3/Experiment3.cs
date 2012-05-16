@@ -83,10 +83,38 @@ namespace Mechanect.Experimemnt3
             {
                 //update distance bar
             }
+            if (!ballFallingIntoHole && animation.AnimationStoped && (Vector3.Distance(new Vector3(ball.Position.X, 0, ball.Position.Z), hole.Position) < (ball.Radius + hole.Radius)))
+            {
+                ballFallingIntoHole = true;
+                AnimateBallFalling();
+            }
             targetCamera.Update();
             animation.Update(gameTime.ElapsedGameTime);
+
+            if (ballFallAnimation != null)
+                ballFallAnimation.Update(gameTime.ElapsedGameTime);
+
             //update ball height
+            ball.setHeight(environment.GetHeight(ball.Position));
+
             base.Update(gameTime, covered);
+        }
+
+        /// <summary>
+        /// Creates the animation of the ball falling into the hole.
+        /// </summar
+        /// <remarks>
+        /// <para>AUTHOR: Omar Abdulaal.</para>
+        /// </remarks>
+        private void AnimateBallFalling()
+        {
+            ballFallAnimation = new ModelFramedAnimation(ball);
+
+            if (shootVelocity.X > 0)
+                ballFallAnimation.AddFrame(new Vector3(ball.Position.X + 0.5f, -0.5f, ball.Position.Z - 0.5f), Vector3.Zero, TimeSpan.FromSeconds(0.2));
+            else
+                ballFallAnimation.AddFrame(new Vector3(ball.Position.X - 0.5f, -0.5f, ball.Position.Z - 0.5f), Vector3.Zero, TimeSpan.FromSeconds(0.2));
+            ballFallAnimation.AddFrame(hole.Position, Vector3.Zero, TimeSpan.FromSeconds(0.75));
         }
 
         public override void Draw(GameTime gameTime)
