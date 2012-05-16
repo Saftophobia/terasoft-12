@@ -260,7 +260,7 @@ namespace Mechanect.Classes
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
            
-            InitializeHole();
+            InitializeHole(4);
             
             skyboxModel = LoadModel("Models/skybox2", out skyboxTextures);
 
@@ -541,10 +541,10 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Khaled Salah </pfzara>
         ///</remarks>
         
-        protected void InitializeHole()
+        protected void InitializeHole(int radius)
         {
             // TODO: Add your initialization logic here
-            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,4 ,user.ShootingPosition);
+            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,radius ,user.ShootingPosition);
         }
 
 
@@ -558,10 +558,44 @@ namespace Mechanect.Classes
         protected void DrawHole(Camera cam)
         {
             hole.DrawHole(cam);
+            int radius = hole.Radius;
+            Vector3 scale = new Vector3((float)0.02 * radius);
+            int outerRadius = radius * 2 + 2;
+             double angleStep = 1f / radius;
+                for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
+                {
+                    int a = (int)Math.Round(radius + radius * Math.Cos(angle));
+                    int b = (int)Math.Round(radius + radius * Math.Sin(angle));
+
+                
+                  //for (int x = 50; x <= 61; x++)
+                  //  {
+                  //      for (int y = 50; y <= 61; y++)
+                  //      {
+                  //          vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y] - 20, -y);
+                  //          vertices[x + y * terrainWidth].Color = Color.Transparent;
+                  //      }
+                  //  }
+                }
+                for (int x = 50; x <= 61; x++)
+                {
+                    for (int y = 50; y <= 61; y++)
+                    {
+                        for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
+                        {
+                            int a = (int)Math.Round(radius + radius * Math.Cos(angle));
+                            int b = (int)Math.Round(radius + radius * Math.Sin(angle));
+                            vertices[a+x + (b+y) * terrainWidth].Color = Color.White;
+                            vertices[a+x + (b+y) * terrainWidth].Position = new Vector3(x+a, heightData[x+a, y+b] - 20, -y-b);
+                        }
+                    }
+                }
+
+            }
             // TODO: Add your drawing code here
 
             //base.Draw(gameTime);
-        }
+        
 
         #endregion
 
