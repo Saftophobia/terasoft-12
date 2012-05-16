@@ -62,33 +62,6 @@ namespace Mechanect.Classes
         {
             hole.Draw(cam);
         }
-
-        /// <summary>
-        /// Generates a random float value between two float numbers.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        /// <param name="min">
-        /// The minimum value. 
-        /// </param>
-        /// /// <param name="max">
-        /// The maximum value.
-        /// </param>
-        /// <returns>
-        /// Float number which is the generated random value.
-        /// </returns>
-
-        public float GenerateRandomValue(float min, float max)
-        {
-            if (max > min)
-            {
-                var random = new Random();
-               var value = ((float)(random.NextDouble() * (max - min))) + min;
-                return value;
-            }
-            else throw new ArgumentException("max value has to be greater than min value");
-        }
         /// <summary>
         /// Sets the X,Y,Z values for the hole position which are related to the enviroment's terrain width and height.
         /// </summary>
@@ -98,9 +71,9 @@ namespace Mechanect.Classes
 
         public void SetHoleValues()
         {
-            position.X = GenerateRandomValue(-terrainWidth / 4, terrainWidth / 4);
+            position.X = Tools3.GenerateRandomValue(-terrainWidth / 4, terrainWidth / 4);
             position.Y = 3;
-            position.Z = GenerateRandomValue(-(terrainHeight- radius)/2, (shootingPosition.Z - radius));
+            position.Z = Tools3.GenerateRandomValue(-(terrainHeight- radius)/2, (shootingPosition.Z - radius));
         }
     }
 }
