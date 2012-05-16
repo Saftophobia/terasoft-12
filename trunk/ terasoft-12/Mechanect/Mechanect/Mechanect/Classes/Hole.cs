@@ -46,7 +46,7 @@ namespace Mechanect.Classes
             this.terrainHeight = terrainHeight;
             shootingPosition = shootingPos ;
             SetHoleValues();
-            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3((float)Constants3.scaleratio*radius), d);
+            hole = new CustomModel(c.Load<Model>(@"Models/holemodel"), position, Vector3.Zero, new Vector3((float)Constants3.scaleRatio*radius), d);
         }
         /// <summary>
         /// Draws the 3d model of the hole given a camera.
