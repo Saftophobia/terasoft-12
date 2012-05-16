@@ -47,16 +47,16 @@ namespace Mechanect.Experimemnt3
         private String velocity2;
 
         /// <summary>
-        /// constructs a new ResultSimulation instance and intializes it
+        /// constructs a new Simulation instance and intializes it
         /// </summary>
-        /// <param name="ball">3d ball model</param>
-        /// <param name="shootVelocity">shooting velocity vector</param>
-        /// <param name="optimalVelocity">correct velocity vector</param>
-        /// <param name="friction">acceleration vector</param>
-        /// <param name="fontColor"></param>
-        /// <param name="graphics"></param>
-        /// <param name="spriteBatch"></param>
-        /// <param name="font"></param>
+        /// <param name="ball">ball instance</param>
+        /// <param name="shootPosition">shoot position vector</param>
+        /// <param name="holePosition">hole position vector</param>
+        /// <param name="shootVelocity">shoot velocity vector</param>
+        /// <param name="friction">friction magnitude</param>
+        /// <param name="content">content manager</param>
+        /// <param name="device">draphics device</param>
+        /// <param name="spriteBatch">sprite batch</param>
         public Simulation(Ball ball, Vector3 shootPosition, Vector3 holePosition, Vector3 shootVelocity, float friction, ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.device = device;
@@ -104,7 +104,7 @@ namespace Mechanect.Experimemnt3
         }
 
         /// <summary>
-        /// draws the velocity values and the model according to the view and position of the chase camera
+        /// draws the velocity values
         /// </summary>
         public void Draw()
         {
