@@ -2,6 +2,7 @@ Content\Models\fish.xnb
 Content\Models\ball.xnb
 Content\Models\Arrow.xnb
 Content\Models\holemodel.xnb
+Content\dude.xnb
 Content\Textures\screen.xnb
 Content\Textures\Vfill.xnb
 Content\Textures\VBar.xnb
@@ -100,6 +101,10 @@ Content\Exp1\effects.xnb
 Content\BEEP1B.xnb
 Content\StartBeep.xnb
 Content\TropicalFish12_0.xnb
+Content\head_0.xnb
+Content\jacket_0.xnb
+Content\pants_0.xnb
+Content\upBodyC_0.xnb
 Content\Textures\up_0.xnb
 Content\Textures\right_0.xnb
 Content\Textures\left_0.xnb
