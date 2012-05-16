@@ -147,7 +147,6 @@
     <Compile Include="Classes\drawstring.cs" />
     <Compile Include="Classes\Environment2.cs" />
     <Compile Include="Classes\Environment3.cs" />
-    <Compile Include="Classes\Game.cs" />
     <Compile Include="Classes\Game1b.cs">
       <SubType>Code</SubType>
     </Compile>

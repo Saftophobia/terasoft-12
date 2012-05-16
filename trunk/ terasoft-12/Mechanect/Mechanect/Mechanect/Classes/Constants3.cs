@@ -7,6 +7,7 @@ namespace Mechanect.Classes
 {
     static class Constants3
     {
+        public static Game1 game1;
         public const float minVelocityZ = 0.0f;
         public const float maxVelocityZ = 30.0f;
         public const float maxHolePosX = 60f;
