@@ -114,7 +114,8 @@ namespace Mechanect.Classes
             }
             else
             {
-                c = c1;      
+                c = c1;
+                //drawstring.Update("");
             } 
             c.Update();
         }

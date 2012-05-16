@@ -104,11 +104,12 @@ namespace Mechanect.Screens
             {
                 Environment1.TargetCam();
                 fill_Knee_pos();
-                user1.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
-                user2.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
-                //checkeachsecond
-                //moveavatar
-
+               // user1.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
+               // user2.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
+                //checkeachsecond 
+                //moveavatar -350 x axis +-10 // chase camera make it 50 Y axis. 
+                //c.move(0,50,avg(avatar1+avatar2);
+ 
 
             }
 
