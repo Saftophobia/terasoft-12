@@ -514,9 +514,25 @@ namespace Mechanect.Classes
          /// <para>DATE WRITTEN: 15/5/12 </para>
          /// <para>DATE MODIFIED: 15/5/12 </para>
          /// </remarks>
-         public static List<float> getKneespeed(List<float> kneeposition)
+         public static void getKneespeed(List<float> kneeposition, List<float> playerdisplacement)
          {
-             return null;
+
+             if (kneeposition.Count() == 0 || kneeposition.Count() == 1)
+             {
+                 //do nothing
+             }
+             if (kneeposition.Count() == 2)
+             {
+                 
+
+             }
+             else
+             {
+
+             }
+
+
+             return;
          }
          
         /// <summary>
