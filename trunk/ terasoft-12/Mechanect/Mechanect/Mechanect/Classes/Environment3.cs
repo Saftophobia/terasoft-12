@@ -565,7 +565,7 @@ namespace Mechanect.Classes
 
         #endregion
 
-        #region Ball Control Methods.
+        #region Ball Control Methods
 
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
@@ -617,24 +617,13 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// Checks if the users leg has collided with the ball.
+        /// Checks if the ball has entered the range in which the user can shoot in.
         /// </summary>
         private void CheckCollision()
         {
-
-            Vector3 legPosition; //Current position of leg.
-            if (user.RightLeg)
-                legPosition = new Vector3((float)user.CurrentRightLegPositionX, 0, (float)user.CurrentRightLegPositionZ);
-            else
-                legPosition = new Vector3((float)user.CurrentLeftLegPositionX, 0, (float)user.CurrentLeftLegPositionZ);
-
-            if (Math.Abs(Vector3.Subtract(ball.Position, legPosition).Length()) < 5)
-            {
+            Vector3 currentBallPos = new Vector3(ball.Position.X, 0, ball.Position.Y);
+            if (Math.Abs(currentBallPos.Length() - user.ShootingPosition.Length()) <= 10)
                 hasCollidedWithBall = true;
-                
-            }
-            else
-                hasCollidedWithBall = false;
         }
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
