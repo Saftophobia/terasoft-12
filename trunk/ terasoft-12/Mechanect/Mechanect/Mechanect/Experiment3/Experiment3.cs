@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using UI.Cameras;
 using UI.Animation;
-
+using Mechanect.Classes;
 
 namespace Mechanect.Experimemnt3
 {
@@ -19,12 +19,14 @@ namespace Mechanect.Experimemnt3
         private float arriveVelocity;
         private float friction;
 
-        private TargetCamera camera;
+        private TargetCamera targetCamera;
         private ModelLinearAnimation animation;
+        private Simulation simulation;
 
         private bool pauseScreenShowed;
         private bool ballStoot;
-        private bool ballStopped;
+        private bool simulationStarted;
+
 
         public Experiment3()
         {
@@ -36,7 +38,7 @@ namespace Mechanect.Experimemnt3
 
         public override void LoadContent()
         {
-            camera = new TargetCamera(new Vector3(0, 60, 60), Vector3.Zero, ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 60, 60), Vector3.Zero, ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             animation = new ModelLinearAnimation(ball, shootPosition, arriveVelocity, friction, true);
         }
@@ -64,18 +66,46 @@ namespace Mechanect.Experimemnt3
                 ballStoot = true;
                 ShootBall(new Vector3(10, 0, -10));
             }
-            else if (animation.AnimationStoped && !ballStopped)
+            else if (animation.AnimationStoped && !simulationStarted)
             {
-                ballStopped = true;
+                simulationStarted = true;
+                simulation = new Simulation(ball, shootPosition, new Vector3(50, 0, -100), new Vector3(10, 0, -10), friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             }
-            camera.Update();
+            else if (simulationStarted)
+            {
+                simulation.Update(gameTime);
+                if (simulation.SimulationFinished)
+                {
+                    //add final screen
+                }
+            }
+            if (!ballStoot)
+            {
+                //update distance bar
+            }
+            targetCamera.Update();
             animation.Update(gameTime.ElapsedGameTime);
+            //update ball height
             base.Update(gameTime, covered);
         }
 
         public override void Draw(GameTime gameTime)
         {
+            Camera camera = targetCamera;
+            if (simulationStarted)
+            {
+                camera = simulation.Camera;
+            }
+            // draw E]environment
             ball.Draw(camera);
+            if (!ballStoot)
+            {
+                //draw distance bar
+            }
+            if (simulationStarted)
+            {
+                simulation.Draw();
+            }
         }
 
         public override void UnloadContent()
