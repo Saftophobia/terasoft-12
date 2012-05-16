@@ -523,3 +523,12 @@ C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb
 C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\easy.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\hard.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\medium.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\Theme1.xnb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Physics.dll
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\UI.dll
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Physics.pdb
+F:\SE\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\UI.pdb
