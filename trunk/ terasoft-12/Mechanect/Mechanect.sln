@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics", "Physics\Physics.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{E291E85F-5616-453D-803E-07C0BC64B9B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestsLib", "UnitTestsLib\UnitTestsLib.csproj", "{7EF0FECE-274B-4A9E-8285-727AD85C5911}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,16 +91,6 @@ Global
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|x86.ActiveCfg = Release|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7EF0FECE-274B-4A9E-8285-727AD85C5911}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
