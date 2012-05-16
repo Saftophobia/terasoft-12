@@ -13,7 +13,8 @@ namespace UI.Animation
     public class ModelLinearAnimation
     {
 
-        private Vector3 startPosition, startAngle, velocity, acceleration;
+        private Vector3 startPosition, startAngle, velocity;
+        private float acceleration;
         private TimeSpan elapsedTime;
         private TimeSpan duration;
         private CustomModel model;
@@ -35,7 +36,7 @@ namespace UI.Animation
             startAngle = model.Rotation;
 
             this.velocity = velocity;
-            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, velocity);
+            this.acceleration = acceleration;
             this.duration = duration;
             this.enableRotation = enableRotation;
 
@@ -52,11 +53,9 @@ namespace UI.Animation
             startAngle = model.Rotation;
 
             Vector3 displacement = endPosition - startPosition;
-            float intialVelocity = Physics.Functions.CalculateIntialVelocity(finalVelocity, acceleration, displacement.Length());
-
-            this.velocity = Physics.Functions.GetVectorInDirectionOf(intialVelocity, displacement); ;
-            this.acceleration = Physics.Functions.GetVectorInDirectionOf(acceleration, displacement);
-            this.duration = TimeSpan.FromSeconds(2 * displacement.Length() / (intialVelocity + finalVelocity));
+            this.velocity = Physics.Functions.CalculateIntialVelocity(displacement, finalVelocity, acceleration);
+            this.acceleration = acceleration;
+            this.duration = Physics.Functions.CalculateTime(displacement.Length(), velocity.Length(), finalVelocity);
             this.enableRotation = enableRotation;
         }
 
