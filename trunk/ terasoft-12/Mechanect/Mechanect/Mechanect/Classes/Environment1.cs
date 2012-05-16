@@ -39,6 +39,8 @@ namespace Mechanect.Classes
         ChaseCamera c, c1, c2;
         Model skyboxModel;
         ContentManager content;
+        int translation1 = 0;
+        int translation2 = 0;
 
         /// <summary>
         /// Constructor for Environment1
@@ -131,8 +133,8 @@ namespace Mechanect.Classes
         public void Draw(GameTime gameTime)
         {
             DrawEnvironment(gameTime);
-            DrawModel(xwingModel, -20, 60, 0);
-            DrawModel(xwingModel2, 20, 60, 0);
+            DrawModel(xwingModel, -20, 60, translation1);
+            DrawModel(xwingModel2, 20, 60, translation2);
             //xwingModel2
 
             if (chase)
@@ -140,6 +142,26 @@ namespace Mechanect.Classes
                 spriteBatch.Begin();
                 drawstring.Draw(spriteBatch);
                 spriteBatch.End();
+            }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function MoveAvatar is used to increase the Z-Position of an avatar by a given value.
+        /// </summary>
+        /// <param name="player">The required player.</param>
+        /// <param name="value">The value to increase.</param>
+        /// <returns>void.</returns>
+        public void MoveAvatar(int player, int value)
+        {
+            switch (player)
+            {
+                case 1: translation1 += value; break;
+                case 2: translation2 += value; break;
             }
         }
 
@@ -169,7 +191,8 @@ namespace Mechanect.Classes
         /// <param name="xwingModels"> The model to be drawn.</param>
         /// <param name="x">X-Coordinate of the Model.</param>
         /// <param name="y">Y-Coordinate of the Model.</param>
-        /// <param name="z">Z-Coordinate of the Model.</param>       
+        /// <param name="z">Z-Coordinate of the Model.</param>  
+        /// <returns>void.</returns>
         private void DrawModel(Model xwingModels, int x, int y, int z)
         {
             Matrix worldMatrix = Matrix.CreateScale(0.05f, 0.05f, 0.05f) * Matrix.CreateRotationY(angle) * Matrix.CreateTranslation(new Vector3(x, y, z));
@@ -196,7 +219,8 @@ namespace Mechanect.Classes
         /// <summary>
         /// The function LoadModel is used to Load the Model from the content Manager.
         /// </summary>
-        /// <param name="assetName">The Model file's name.</param>       
+        /// <param name="assetName">The Model file's name.</param>
+        /// <returns>void.</returns>
         private Model LoadModel(string assetName)
         {
             Model newModel = content.Load<Model>(assetName); foreach (ModelMesh mesh in newModel.Meshes)
