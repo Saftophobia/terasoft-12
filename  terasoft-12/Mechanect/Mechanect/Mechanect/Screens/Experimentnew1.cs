@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Mechanect.Classes;
 using Microsoft.Kinect;
 using Mechanect.Common;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Mechanect.Screens
 {
@@ -39,7 +40,7 @@ namespace Mechanect.Screens
         Environment1 Environment1;
         GraphicsDevice graphics;
         User1 user1, user2;
-
+        CountDown countdown;
         /// <summary>
         /// Initializes Experiment1 with 2 different Users
         /// </summary>
@@ -60,6 +61,7 @@ namespace Mechanect.Screens
         {
             kinect = new MKinect();
             base.Initialize();
+
         }
         /// <summary>
         /// Load Content from ContentManager
@@ -71,11 +73,12 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void LoadContent()
         {
-            
-            
+
+
             graphics = this.ScreenManager.GraphicsDevice;
-            Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice,this.SpriteBatch);
+            Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice, this.SpriteBatch);
             Environment1.LoadContent();
+            loadcountdown();
         }
 
 
@@ -91,6 +94,7 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
+            countdown.Update();
             Environment1.update(gameTime);
             if (user1.skeleton == null || user2.skeleton == null)
             {
@@ -104,12 +108,12 @@ namespace Mechanect.Screens
             {
                 Environment1.TargetCam();
                 fill_Knee_pos();
-               // user1.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
-               // user2.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
+                // user1.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
+                // user2.Positions = Tools1.TransitionalDisplacment(Tools1.getKneespeed(user1.Kneepos));
                 //checkeachsecond 
                 //moveavatar -350 x axis +-10 // chase camera make it 50 Y axis. 
                 //c.move(0,50,avg(avatar1+avatar2);
- 
+
 
             }
 
@@ -131,8 +135,8 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             Environment1.Draw(gameTime);
-
-
+            countdown.DrawCountdown(SpriteBatch);
+            countdown.PlaySoundEffects();
         }
 
         public void fill_Knee_pos()
@@ -150,5 +154,26 @@ namespace Mechanect.Screens
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function loadcountdown() loads the textures and soundeffects required for the countdown.
+        /// </summary>
+        /// <returns>void</returns>
+        public void loadcountdown()
+        {
+            Texture2D Texthree = Content.Load<Texture2D>("3");
+            Texture2D Textwo = Content.Load<Texture2D>("2");
+            Texture2D Texone = Content.Load<Texture2D>("1");
+            Texture2D Texgo = Content.Load<Texture2D>("go");
+            Texture2D Texback = Content.Load<Texture2D>("track2");
+            SoundEffect Seffect1 = Content.Load<SoundEffect>("BEEP1B");
+            SoundEffect Seffect2 = Content.Load<SoundEffect>("StartBeep");
+            countdown = new CountDown();
+            countdown.InitializeCountDown(Texthree, Textwo, Texone, Texgo, Seffect1, Seffect2);//initializes the Countdown 
+        }
     }
 }
