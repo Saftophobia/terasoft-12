@@ -50,14 +50,14 @@ namespace Mechanect.Classes
         /// <para>Date Written 15/5/2012</para>
         /// <para>Date Modified 15/5/2012</para>
         /// </remarks>
-        public Environment1(ContentManager content,GraphicsDevice device,SpriteBatch spriteBatch)
+        public Environment1(ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.content = content;
             this.device = device;
             this.spriteBatch = spriteBatch;
         }
-       
-        
+
+
         /// <summary>
         /// Loads Effect/heightmap/skybox from contentmanager and set up vertices/indices/normals/buffers from exp3 library
         /// </summary>
@@ -68,16 +68,16 @@ namespace Mechanect.Classes
         /// </remarks>
         public void LoadContent()
         {
-            font1 = content.Load<SpriteFont>("SpriteFont1");
-            drawstring = new drawstring(new Vector2 (400,200));
-            drawstring.Font1 = font1;
-
-
             effect = content.Load<Effect>("Exp1/effects");
+            font1 = content.Load<SpriteFont>("SpriteFont1");
+            drawstring = new drawstring(new Vector2(400, 200));
+            drawstring.Font1 = font1;
+            xwingModel = LoadModel("Exp1/xwing");
+            xwingModel2 = LoadModel("Exp1/xwing");
             Texture2D heightMap = content.Load<Texture2D>("Exp1/heightmap6");
             skyboxModel = LoadModel("Exp1/skybox2", out skyboxTextures);
-            c1 = new ChaseCamera(new Vector3(0, 150, -350), Vector3.Zero,Vector3.Zero, device);
-            c2 = new ChaseCamera(new Vector3(0, 70, 150), new Vector3(0, 35, 0), new Vector3(0, 0, 0),device);
+            c1 = new ChaseCamera(new Vector3(0, 150, -350), Vector3.Zero, Vector3.Zero, device);
+            c2 = new ChaseCamera(new Vector3(0, 70, 150), new Vector3(0, 35, 0), new Vector3(0, 0, 0), device);
             LoadHeightData(heightMap);
             SetUpVertices();
             SetUpIndices();
@@ -97,7 +97,7 @@ namespace Mechanect.Classes
         public void update(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
-            if(state.IsKeyDown(Keys.K))
+            if (state.IsKeyDown(Keys.K))
             {
                 TargetCam();
             }
@@ -116,7 +116,7 @@ namespace Mechanect.Classes
             {
                 c = c1;
                 //drawstring.Update("");
-            } 
+            }
             c.Update();
         }
         /// <summary>
@@ -131,6 +131,10 @@ namespace Mechanect.Classes
         public void Draw(GameTime gameTime)
         {
             DrawEnvironment(gameTime);
+            DrawModel(xwingModel, -20, 60, 0);
+            DrawModel(xwingModel2, 20, 60, 0);
+            //xwingModel2
+
             if (chase)
             {
                 spriteBatch.Begin();
@@ -154,12 +158,56 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function DrawModel is used to Draw the model and set the rotation,translation and scaling factors.
+        /// </summary>
+        /// <param name="xwingModels"> The model to be drawn.</param>
+        /// <param name="x">X-Coordinate of the Model.</param>
+        /// <param name="y">Y-Coordinate of the Model.</param>
+        /// <param name="z">Z-Coordinate of the Model.</param>       
+        private void DrawModel(Model xwingModels, int x, int y, int z)
+        {
+            Matrix worldMatrix = Matrix.CreateScale(0.05f, 0.05f, 0.05f) * Matrix.CreateRotationY(angle) * Matrix.CreateTranslation(new Vector3(x, y, z));
+            Matrix[] xwingTransforms = new Matrix[xwingModels.Bones.Count];
+            xwingModels.CopyAbsoluteBoneTransformsTo(xwingTransforms);
+            foreach (ModelMesh mesh in xwingModels.Meshes)
+            {
+                foreach (Effect currentEffect in mesh.Effects)
+                {
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["Colored"];
+                    currentEffect.Parameters["xWorld"].SetValue(xwingTransforms[mesh.ParentBone.Index] * worldMatrix);
+                    currentEffect.Parameters["xView"].SetValue(c.View);
+                    currentEffect.Parameters["xProjection"].SetValue(c.Projection);
+                }
+                mesh.Draw();
+            }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 16/5/2012</para>
+        /// <para>Date Modified 16/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function LoadModel is used to Load the Model from the content Manager.
+        /// </summary>
+        /// <param name="assetName">The Model file's name.</param>       
+        private Model LoadModel(string assetName)
+        {
+            Model newModel = content.Load<Model>(assetName); foreach (ModelMesh mesh in newModel.Meshes)
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                    meshPart.Effect = effect.Clone();
+            return newModel;
+        }
 
 
 
-
-
-            #region Waiting for Sanad's library its documented
+        #region Waiting for Sanad's library its documented
 
         /// <summary>
         /// Draws the environment. Similar to the Draw() method of XNA and should be called in it.
@@ -382,6 +430,7 @@ namespace Mechanect.Classes
             for (int i = 0; i < vertices.Length; i++)
                 vertices[i].Normal.Normalize();
         }
+
 
 
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
