@@ -129,6 +129,7 @@
     <Compile Include="Classes\ThemeAndLevel.cs" />
     <Compile Include="Experiment3\Ball.cs" />
     <Compile Include="Experiment3\Experiment3.cs" />
+    <Compile Include="Experiment3\Simulation.cs" />
     <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
