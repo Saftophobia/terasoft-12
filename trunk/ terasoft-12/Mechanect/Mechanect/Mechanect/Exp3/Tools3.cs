@@ -14,21 +14,6 @@ namespace Mechanect.Exp3
     public class Tools3
     {
       
-
-        /// <summary>
-        /// calculates the friction vector that will cause the velocity to stop without changing the velocity direction
-        /// </summary>
-        /// <param name="velocity">the velocity vector</param>
-        /// <param name="frictionValue">the value of the friction</param>
-        /// <remarks>Auther : Bishoy Bassem</remarks>
-        public static Vector3 calculateFriction(Vector3 velocity, float frictionValue)
-        {
-            return velocity * frictionValue / velocity.Length() * -1;
-        }
-
-
-
-
         ///<remarks>
         ///<para>
         ///Author: Cena
