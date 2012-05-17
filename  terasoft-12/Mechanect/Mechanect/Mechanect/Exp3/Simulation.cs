@@ -63,8 +63,8 @@ namespace Mechanect.Exp3
 
             optimalVelocity = Physics.Functions.CalculateIntialVelocity(holePosition - shootPosition, 0, friction);
 
-            animation1 = new BallAnimation(ball, shootVelocity, friction, holePosition);
-            animation2 = new BallAnimation(ball, optimalVelocity, friction, holePosition);
+            animation1 = new BallAnimation(ball, shootVelocity, friction, holePosition, 1);
+            animation2 = new BallAnimation(ball, optimalVelocity, friction, holePosition, 1);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
             velocity1 = shootVelocity.ToString();
