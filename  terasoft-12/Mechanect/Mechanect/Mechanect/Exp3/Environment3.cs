@@ -79,7 +79,7 @@ namespace Mechanect.Exp3
 
         public SkinnedCustomModel PlayerModel { get; private set; }
 
-
+        private Vector3 ballInitialPosition, ballInitialVelocity;
         //Texture2D grassTexture;
         //Texture2D cloudMap;
         //Model skyDome;
@@ -89,7 +89,7 @@ namespace Mechanect.Exp3
 
 
 
-        public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
+        public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
             #region dummyInitializations
             /* the values used here should allow the ball to reach the user's feet.
@@ -100,24 +100,23 @@ namespace Mechanect.Exp3
             Content = Content2;
             this.device = device;
            // ball = new Ball(10000.0f, 10001.0f, device, Content);
-            ball.InitialBallPosition = new Vector3(-60, 3, 2);//-60,3,30
             user.ShootingPosition = new Vector3(0f, 3, 62f);
             //friction = 0.5f/3600;
             wind = 0f;
-            ball.Position = ball.InitialBallPosition;
-            ball.InitialVelocity = new Vector3(10, 0, 10)/60;//30x
             //ball.InitialVelocity = new Vector3(11.25f, 0, 11.25f)/60;
             ball.Radius = 1;
-            ball.Velocity = ball.InitialVelocity;
             ball.Mass = 2;
             user.AssumedLegMass = 0.01;
             
             #endregion
             sprite = spriteBatch;
             Vector3 ballPos = ball.Position;
-            Vector3 ballInitPos = ball.InitialBallPosition;
+
+            ballInitialPosition = initialBallPosition;
+            ballInitialVelocity = initialBallVelocity;
+
             Vector3 shootingPos = user.ShootingPosition;
-            distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
+            distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitialPosition.X, ballInitialPosition.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             friction = 1.0f;
 
             PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), shootingPos, 
@@ -224,8 +223,8 @@ namespace Mechanect.Exp3
         {
             var vxsquared = (float)Math.Pow(velocity.X, 2);
             var vzsquared = (float)Math.Pow(velocity.Z, 2);
-            float x = (vxsquared / (2 * friction)) + ball.InitialBallPosition.X;
-            float z = (vzsquared / (2 * friction)) + ball.InitialBallPosition.Z;
+            float x = (vxsquared / (2 * friction)) + ballInitialPosition.X;
+            float z = (vzsquared / (2 * friction)) + ballInitialPosition.Z;
             return new Vector3(x, 0, z);
         }
 
@@ -239,8 +238,8 @@ namespace Mechanect.Exp3
         private void HasScored()
         {
             Vector3 hole = this.hole.Position;
-            Vector3 ballVelocity = ball.InitialVelocity;
-            Vector3 InitialPosition = ball.InitialBallPosition;
+            Vector3 ballVelocity = ballInitialVelocity;
+            Vector3 InitialPosition = ballInitialPosition;
             var xComp = (float)(velocityTolerance * Math.Cos(angleTolerance));
             var yComp = (float)(velocityTolerance * Math.Sin(angleTolerance));
             var tolerance = new Vector2(xComp, yComp);
@@ -305,7 +304,7 @@ namespace Mechanect.Exp3
             CalculateNormals();
             CopyToBuffers();
            
-            ball.LoadContent();
+            //ball.LoadContent();
 
         }
 
