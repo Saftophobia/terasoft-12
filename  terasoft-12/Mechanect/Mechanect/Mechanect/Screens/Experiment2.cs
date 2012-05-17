@@ -334,7 +334,7 @@ namespace Mechanect.Screens
             xyAxisTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/xyAxis");
             predatorTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
             preyTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/worm");
-            bowlTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/bowl2");
+            //bowlTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/bowl2");
             bowlTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/Fishbowl");
             grayTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/GrayScreen");
             velocityTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/VelocityGauge");
