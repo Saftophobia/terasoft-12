@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Common;
-using Mechanect.Screens;
 using Mechanect.Classes;
 
 
@@ -71,7 +70,7 @@ namespace Mechanect
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
             //screenManager.AddScreen(new InstructionsScreen3());
             //screenManager.AddScreen(new TeraSoftScreen());
-            screenManager.AddScreen(new Experiment3(new User3()));
+            screenManager.AddScreen(new Mechanect.Screens.Experiment3(new User3()));
             //screenManager.AddScreen(new Experiment2(new User2()));
             //screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
             //screenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
