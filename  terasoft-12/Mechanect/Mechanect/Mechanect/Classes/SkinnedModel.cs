@@ -8,7 +8,6 @@ namespace Mechanect.Classes
 {
     class SkinnedModel
     {
-
         # region Fields
 
         private Model model;
@@ -27,6 +26,16 @@ namespace Mechanect.Classes
 
         #region Initialization
 
+        /// <summary>
+        /// used for a 3D model with skeleton and skin.
+        /// </summary>
+        /// <param name="model">the model</param>
+        /// <param name="position">the position of the model</param>
+        /// <param name="rotation">the rotation of the model</param>
+        /// <param name="scale">scaling the model</param>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         public SkinnedModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
         {
             this.model = model;
@@ -50,12 +59,24 @@ namespace Mechanect.Classes
 
         #region Update and Draw
 
+        /// <summary>
+        /// updating the model if any achanges occurred to its skin or bones
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         public void Update()
         {
             UpdateWorldTransforms();
             UpdateSkinTransforms();
         }
 
+        /// <summary>
+        /// updating the world view of every bone according to the changes to its parent bone
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         private void UpdateWorldTransforms()
         {
             Matrix rootTransform = Matrix.Identity;
@@ -72,6 +93,12 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <summary>
+        /// updating the changes of the skin according to the changes in the bones.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         private void UpdateSkinTransforms()
         {
             for (int bone = 0; bone < skinTransforms.Length; bone++)
@@ -81,6 +108,15 @@ namespace Mechanect.Classes
             }
         }
 
+        /// <summary>
+        /// drawing the model
+        /// </summary>
+        /// <param name="gameTimem">GameTime object</param>
+        /// <param name="view">The Camera's View</param>
+        /// <param name="projection">The Camera's Projection</param>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         public void Draw(GameTime gameTimem, Matrix view, Matrix projection)
         {
             Matrix[] bones = skinTransforms;
