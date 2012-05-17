@@ -73,7 +73,7 @@ namespace Mechanect.Screens
             {
 
                 ExitScreen();
-                ScreenManager.AddScreen(new Experiment3(user));
+                ScreenManager.AddScreen(new Experiment3((User3)user));
                 Environment3.angleTolerance = angle.GetValue();
                 Environment3.velocityTolerance = velocity.GetValue();
                 this.Remove();
