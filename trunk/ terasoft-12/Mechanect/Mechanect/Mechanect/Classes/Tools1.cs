@@ -332,35 +332,35 @@ namespace Mechanect.Classes
          public static bool CommandSatisfied(String command, List<float> positions, float tolerance)
          {
              bool result = true;
-             float currentTolerance = 10 - tolerance;
+             float currentTolerance = tolerance;
 
              if (command.Equals("constantVelocity"))
              {
-                 result = ConstantVelocity(positions, currentTolerance / 10);
+                 result = ConstantVelocity(positions, currentTolerance);
              }
              else
              {
                  if (command.Equals("constantAcceleration"))
                  {
-                     result = ConstantAcceleration(positions, currentTolerance / 10);
+                     result = ConstantAcceleration(positions, currentTolerance);
                  }
                  else
                  {
                      if (command.Equals("constantDisplacement"))
                      {
-                         result = ConstantDisplacement(positions, currentTolerance / 100);
+                         result = ConstantDisplacement(positions, currentTolerance);
                      }
                      else
                      {
                          if (command.Equals("increasingAcceleration"))
                          {
-                             result = IncreasingAcceleration(positions, currentTolerance / 10);
+                             result = IncreasingAcceleration(positions, currentTolerance);
                          }
                          else
                          {
                              if (command.Equals("decreasingAcceleration"))
                              {
-                                 result = DecreasingAcceleration(positions, currentTolerance / 10);
+                                 result = DecreasingAcceleration(positions, currentTolerance);
                              }
                          }
                      }
@@ -417,6 +417,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool ConstantAcceleration(List<float> positions, float currentTolerance)
          {
+             currentTolerance = currentTolerance * 10;
              List<float> velocities = GraphEngine.GetPlayerVelocity(positions);
 
              bool result = true;
@@ -489,6 +490,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool IncreasingAcceleration(List<float> positions, float currentTolerance)
          {
+             currentTolerance = currentTolerance * 100;
              List<float> accelerations = GraphEngine.GetPlayerAcceleration(GraphEngine.GetPlayerVelocity(positions));
 
              bool result = true;
@@ -525,6 +527,7 @@ namespace Mechanect.Classes
          /// </remarks>
          public static bool DecreasingAcceleration(List<float> positions, float currentTolerance)
          {
+             currentTolerance = currentTolerance * 100;
              List<float> accelerations = GraphEngine.GetPlayerAcceleration(GraphEngine.GetPlayerVelocity(positions));
 
              bool result = true;
