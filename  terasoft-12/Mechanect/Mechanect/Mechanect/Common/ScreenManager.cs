@@ -9,6 +9,10 @@ using Mechanect.Screens;
 
 namespace Mechanect.Common
 {
+   /// <summary>
+   /// This class represents a screen manager.
+   /// </summary>
+   /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
     public class ScreenManager : DrawableGameComponent
     {
         #region Fields
@@ -69,7 +73,7 @@ namespace Mechanect.Common
         #region Update and Draw
 
         /// <summary>
-        /// Update manager and screens
+        /// Updates all the screens that should be drawn in a first in first updated manner.
         /// </summary>
         public override void Update(GameTime gameTime)
         {
@@ -90,11 +94,6 @@ namespace Mechanect.Common
                     screen.UnfreezeScreen();
                     screensToUpdate.Add(screen);
                 }
-
-            if (!Game.IsActive)
-            {
-                //Pause
-            }
             else
             {
                 while (screensToUpdate.Count > 0)
@@ -102,14 +101,16 @@ namespace Mechanect.Common
                     GameScreen screen = screensToUpdate[screensToUpdate.Count - 1];
 
                     screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
-
-                    //Update the screen
                     screen.Update(gameTime, false);
+                    screen.Update(gameTime);
 
                 }
             }
         }
-
+        /// <summary>
+        /// Draws all the screens that should be drawn in a first in first drawn manner.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (GameScreen screen in screens)
@@ -123,6 +124,10 @@ namespace Mechanect.Common
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Adds a screen to the list of screens that are managed by the screenManager.
+        /// </summary>
+        /// <param name="screen">Represents the screen that should be managed by the screenManager</param>
         public void AddScreen(GameScreen screen)
         {
             screen.ScreenManager = this;
@@ -134,6 +139,11 @@ namespace Mechanect.Common
             screens.Add(screen);
         }
 
+        /// <summary>
+        /// Removes a screen from the list of screens that are managed by the screenManager.
+        /// </summary>
+        /// <param name="screen">Represents the screen that should be removed from the list
+        /// of managed screens by the screenManager</param>
         public void RemoveScreen(GameScreen screen)
         {
             if (this.isInitialized)
