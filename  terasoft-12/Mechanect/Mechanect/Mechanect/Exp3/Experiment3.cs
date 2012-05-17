@@ -47,6 +47,8 @@ namespace Mechanect.Exp3
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
             environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
+
+            environment.LoadEnvironmentContent();
         }
 
         public void ShootBall(Vector3 velocity)
@@ -147,6 +149,8 @@ namespace Mechanect.Exp3
         public override void Draw(GameTime gameTime)
         {
             Camera camera = targetCamera;
+
+            environment.DrawEnvironment(camera, gameTime);
             if (simulation != null)
             {
                 camera = simulation.Camera;
