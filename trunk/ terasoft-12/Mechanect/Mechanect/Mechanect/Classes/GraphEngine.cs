@@ -543,7 +543,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 16/5/2012</para>
+        /// <para>Date Modified 17/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function SetAxis chooses 5 evenly distributed values among the total time to be represented on the x-axis
@@ -564,17 +564,17 @@ namespace Mechanect.Classes
             int stepping = (int)(g.getTrackLength() / 4);
             for (int i = 0; i <= 4; i++)
             {
-                g.setYAxisDisp(i, counter);
+                g.setYAxisDisp(i, (int)(counter / 1000));
                 counter += stepping;
             }
             g.setYAxisVel(0, 0);
-            step = (double)g.getMaxVelocity() / (double)4;
+            step = (int)(((double)g.getMaxVelocity() / (double)4) / 1000);
             for (int i = 1; i <= g.YAxisVel().Length - 1; i++)
             {
                 g.setYAxisVel(i, g.YAxisVel()[i - 1] + step);
             }
             g.setYAxisAcc(0, 0);
-            step = (double)g.getMaxAcceleration() / (double)4;
+            step = (int)(((double)g.getMaxAcceleration() / (double)4) / 1000);
             for (int i = 1; i <= g.YAxisAcc().Length - 1; i++)
             {
                 g.setYAxisAcc(i, g.YAxisAcc()[i - 1] + step);
