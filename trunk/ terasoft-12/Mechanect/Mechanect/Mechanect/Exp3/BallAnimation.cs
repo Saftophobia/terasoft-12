@@ -14,12 +14,12 @@ namespace Mechanect.Exp3
         private Ball ball;
         private Vector3 holePosition;
         private Vector3 stopPosition;
+        private bool ballWillFall;
 
         public BallAnimation(Ball ball, Vector3 shootVelocity, float friction, Vector3 holePosition)
             : base(ball, shootVelocity, friction, TimeSpan.FromSeconds(10))
         {
             this.ball = ball;
-            ball.Rotation = Vector3.Zero;
             this.holePosition = holePosition;
             fallAnimation = new ModelFramedAnimation(ball);
             stopPosition = Physics.Functions.CalculateDisplacement(shootVelocity, friction, TimeSpan.FromSeconds(Math.Abs(shootVelocity.Length() / friction)));
@@ -38,10 +38,9 @@ namespace Mechanect.Exp3
 
         public override bool Finished()
         {
-            bool ballFell = true;
-            if (ballFell)
+            if (ballWillFall)
             {
-                return base.Finished() && fallAnimation.Finished();
+                return fallAnimation.Finished();
             }
             else
             {
