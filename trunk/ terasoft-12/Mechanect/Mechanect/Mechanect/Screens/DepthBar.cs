@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
+using Mechanect.Common;
 
 namespace Mechanect.Screens
 {

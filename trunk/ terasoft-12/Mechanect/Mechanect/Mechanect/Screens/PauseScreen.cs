@@ -6,9 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
-using Mechanect.Cameras;
-using Mechanect.Classes;
+using UI.Cameras;
+using Mechanect.Exp3;
 using Microsoft.Kinect;
+using Mechanect.Common;
+using Mechanect.Exp3;
 
 namespace Mechanect.Screens
 {

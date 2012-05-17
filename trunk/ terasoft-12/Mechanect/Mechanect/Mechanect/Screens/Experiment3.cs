@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Mechanect.Classes;
 using Mechanect.Common;
-using Mechanect.Cameras;
+using UI.Cameras;
+using Mechanect.Exp3;
 
 
 
@@ -16,7 +17,7 @@ namespace Mechanect.Screens
     class Experiment3 : Mechanect.Common.GameScreen
 
     {
-        Mechanect.Classes.Environment3 environment;
+        Mechanect.Exp3.Environment3 environment;
         GraphicsDevice graphics;
         Camera c;
         User3 user;
@@ -64,18 +65,9 @@ namespace Mechanect.Screens
             environment.DistanceBar.Update(new Vector2(position.X,position.Z));
             //sim.Update(gameTime);
             Bar bar = environment.DistanceBar;
-            if ((Vector2.Distance(bar.InitialPos, bar.CurrentPos) / Vector2.Distance(bar.InitialPos, bar.ShootingPos)) > 0.5 && !freezeLock)
-            {
-                freezeLock = true;
-                this.FreezeScreen();
-                ScreenManager.AddScreen(new PauseScreen(user, user.Kinect, environment.ball.Velocity.Length(), environment.ball.Mass, ((User3)user).AssumedLegMass));
-                
-            }
+     
 
-            if ((Vector2.Distance(bar.InitialPos, bar.CurrentPos) / Vector2.Distance(bar.InitialPos, bar.ShootingPos)) > 0.8)
-            {
-                StartSimulation();
-            }
+       
             
             //if (environment.ball.Position.X >= user.ShootingPosition.X && environment.ball.Position.Z >= user.ShootingPosition.Z)
             //{
@@ -105,11 +97,6 @@ namespace Mechanect.Screens
         /// <summary>
         /// starts the ball simulation
         /// </summary>
-        private void StartSimulation()
-        {
-            ExitScreen();
-            ScreenManager.AddScreen(new SimulationScreen(environment));
-        }
        
 
         public override void Remove()

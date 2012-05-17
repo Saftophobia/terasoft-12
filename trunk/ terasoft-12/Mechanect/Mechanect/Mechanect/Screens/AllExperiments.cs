@@ -4,9 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Classes;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+using Mechanect.Experiment2;
+using Mechanect.Exp3;
 namespace Mechanect.Screens
 {
-    class AllExperiments : GameScreen
+    class AllExperiments : Mechanect.Common.GameScreen
     {
         string instructions = " Press A to choose Experiment1" +"\n" + " B to choose Experiment2" + "\n" + " C to choose Experiment3";
         User user;

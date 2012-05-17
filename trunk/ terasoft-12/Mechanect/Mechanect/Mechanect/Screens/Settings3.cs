@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
-using Common.Classes;
-using Mechanect.Classes;
+
+using ButtonsAndSliders;
+using Mechanect.Exp3;
+
 
 namespace Mechanect.Screens
 {

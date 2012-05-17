@@ -6,7 +6,7 @@ using Microsoft.Speech.Recognition;
 using System.IO;
 
 
-namespace Mechanect.Classes
+namespace Mechanect.Common
 {  
     /// <summary>
     /// Voice Command Class allow you to check if certain word was said or not by user.
@@ -14,7 +14,7 @@ namespace Mechanect.Classes
      /// <remarks>
     /// <para>AUTHOR: Tamer Nabil </para>
     /// </remarks>
-    class VoiceCommands
+   public class VoiceCommands
     {     
         KinectAudioSource _kinectAudio;
         SpeechRecognitionEngine _speechRecognitionEngine;
