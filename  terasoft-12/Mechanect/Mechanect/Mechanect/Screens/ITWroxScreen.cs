@@ -6,13 +6,22 @@ using Microsoft.Xna.Framework;
 
 namespace Mechanect.Screens
 {
+    /// <summary>
+    /// This class represents the ITWorx screen.
+    /// </summary>
     class ITworxScreen : FadingScreen
     {
-
+        /// <summary>
+        /// Creates a new instance of ITWorxScreen.
+        /// </summary>
         public ITworxScreen()
             : base("Resources/Images/ITWorx", 1f, 0, 0, -0.06f)
         { }
-
+        /// <summary>
+        /// Updates this screen
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
+        /// <param name="covered">specifies wether the screen is covered.</param>
         public override void Update(GameTime gameTime, bool covered)
         {
             base.Update(gameTime, false);
@@ -23,7 +32,7 @@ namespace Mechanect.Screens
             }
         }
         /// <summary>
-        /// Draw the content of this screen.
+        /// Draws the content of this screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)

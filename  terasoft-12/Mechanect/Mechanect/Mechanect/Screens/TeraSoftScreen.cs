@@ -7,14 +7,14 @@ using System;
 namespace Mechanect.Screens
 {
     /// <summary>
-    /// This is a screen containg the GUC logo.
+    /// This class represents the Terasoft screen.
     /// </summary>
     class TeraSoftScreen : FadingScreen
     {
         private float scale;
         private Texture2D gucLogo;
         /// <summary>
-        /// This is the default construtor for TeraSoftScreen class.
+        /// Creates a new instance of the TeraSoftScreen.
         /// </summary>
         public TeraSoftScreen()
             : base("Resources/Images/Terasoft", 0.5f,0,0,-0.06f)
@@ -22,6 +22,9 @@ namespace Mechanect.Screens
             scale = 0.3f;
         }
 
+        /// <summary>
+        /// Loads the content of this screen.
+        /// </summary>
         public override void LoadContent()
         {
             gucLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/GUC");
@@ -42,6 +45,10 @@ namespace Mechanect.Screens
             }
         }
 
+        /// <summary>
+        /// Draws the content of this screen.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);

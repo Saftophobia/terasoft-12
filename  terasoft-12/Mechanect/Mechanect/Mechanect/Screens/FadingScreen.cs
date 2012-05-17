@@ -34,13 +34,13 @@ namespace Mechanect.Screens
             }
         }
         /// <summary>
-        /// Fadingscreen's default constructor.
+        /// Creates a new instance of FadingScreen.
         /// </summary>
         public FadingScreen()
         {
         }
         /// <summary>
-        /// Fadingscreen's constructor.
+        /// Creates a new instance of FadingScreen.
         /// </summary>
         /// <param name="path">path of the image that will be added to the middle of the screen.</param>
         /// <param name="logoScale">scaling ratio of the image.</param>
