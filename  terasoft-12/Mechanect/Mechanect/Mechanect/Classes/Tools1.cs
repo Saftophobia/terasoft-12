@@ -124,6 +124,51 @@ namespace Mechanect.Classes
 
 
          /// <summary>
+         /// Check if any of both players won the race or not.
+         /// </summary>
+         /// <param name="user1">The first player.</param>
+         /// <param name="user2">The second player.</param>
+         /// <returns>
+         /// string: The status of both players, whether any of them won, 
+         /// both of them won, no one won, or the race is still going (will be an empty string)
+         /// </returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 17/5/12 </para>
+         /// <para>DATE MODIFIED: 17/5/12 </para>
+         /// </remarks>
+         public static string GetWinner(User1 user1, User1 user2)
+         {
+             if ((user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
+             {
+                 user1.Winner = true;
+                 return "Player 1 won the race";
+             }
+             else
+             {
+                 if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified))
+                 {
+                     user2.Winner = true;
+                     return "Player 1 won the race";
+                 }
+                 else
+                     if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && (user2.Disqualified)
+                         && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && (user1.Disqualified))
+                         return "No one won this race because you both got disqualified";
+                     else
+                         if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified)
+                            && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
+                         {
+                             user1.Winner = true;
+                             user2.Winner = true;
+                             return "It's a tie!!!";
+                         }
+                         else
+                             return "";
+             }
+         }
+
+         /// <summary>
          /// This method should be called on each second, and it will do the check on both players to see if they followed the commands.
          /// </summary>
          /// <param name="timeInSeconds">The second the game is in.</param>
