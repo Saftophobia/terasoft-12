@@ -20,7 +20,7 @@ namespace Mechanect.Classes
         SpeechRecognitionEngine _speechRecognitionEngine;
         Stream _stream;
         readonly KinectSensor _kinect;
-        string _hearedstring= " ";  
+        string _hearedString= " ";  
         /// <summary>
         /// Constructor takes as input Kinect Sensor and use it to initialize the instance variable 
         ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and string Command contains commands.
@@ -79,29 +79,29 @@ namespace Mechanect.Classes
         }
          
         /// <summary>
-        /// getHeared take Expectedstring as input and compare it with the Heared string from kinect and returns true
+        /// getHeared take expectedString as input and compare it with the Heared string from kinect and returns true
         /// if equal  and false otherwise.
         /// </summary>
          /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="expectedstring"></param>
-        /// <returns>returns boolean ,true if he heared expectedstring,false otherwise</returns>
+        /// <param name="expectedString"></param>
+        /// <returns>returns boolean ,true if he heared expectedString,false otherwise</returns>
 
-        public Boolean GetHeared(string expectedstring)
+        public bool GetHeared(string expectedString)
         {
-            return expectedstring.Equals(_hearedstring);
+            return expectedString.Equals(_hearedString);
         }
-        
-        //to be deleted !
-         public Boolean getHeared(string expectedstring)
+
+        [Obsolete("getHeared is deprecated, please use GetHeared instead.")]
+         public Boolean getHeared(string expectedString)
         {
-            return expectedstring.Equals(_hearedstring);
+            return expectedString.Equals(_hearedString);
         }
 
         /// <summary>
         /// This method store value of what said to kinect in the instance variable 
-        /// "Hearedstring"
+        /// "hearedString"
         /// </summary>
          /// <remarks>
            /// <para>AUTHOR: Tamer Nabil </para>
@@ -111,7 +111,7 @@ namespace Mechanect.Classes
         private void SpeechRecognitionEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (e.Result.Confidence > 0.4)
-                _hearedstring = e.Result.Text;
+                _hearedString = e.Result.Text;
         }
 
         /// <summary>
@@ -137,5 +137,6 @@ namespace Mechanect.Classes
 
     }
 }
+
 
 
