@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using UI.Animation;
 using UI.Cameras;
 
-namespace Mechanect.Experiment3
+namespace Mechanect.Exp3
 {
     /// <summary>
     /// represents the simulation of the result
@@ -27,22 +27,14 @@ namespace Mechanect.Experiment3
         private SpriteFont font;
         private Color fontColor;
 
-        private ModelLinearAnimation animation1;
-        private ModelLinearAnimation animation2;
+        private BallAnimation animation1;
+        private BallAnimation animation2;
         private bool secondAnimationStarted;
         /// <summary>
         /// the chase camera instance
         /// </summary>
         public ChaseCamera Camera { get; private set; }
-        public Boolean SimulationFinished
-        {
-            get
-            {
-                return animation2.AnimationStoped;
-            }
 
-        }
-        
         private String velocity1;
         private String velocity2;
 
@@ -63,7 +55,7 @@ namespace Mechanect.Experiment3
             this.spriteBatch = spriteBatch;
             this.ball = ball;
             this.shootPosition = shootPosition;
-            ball.Rotation = Vector3.Zero;
+
             ball.Position = shootPosition;
 
             font = content.Load<SpriteFont>("SpriteFont1");
@@ -71,8 +63,8 @@ namespace Mechanect.Experiment3
 
             optimalVelocity = Physics.Functions.CalculateIntialVelocity(holePosition - shootPosition, 0, friction);
 
-            animation1 = new ModelLinearAnimation(ball, shootVelocity, friction, TimeSpan.FromSeconds(10), true);
-            animation2 = new ModelLinearAnimation(ball, optimalVelocity, friction, TimeSpan.FromSeconds(10), true);
+            animation1 = new BallAnimation(ball, shootVelocity, friction, holePosition);
+            animation2 = new BallAnimation(ball, optimalVelocity, friction, holePosition);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
             velocity1 = shootVelocity.ToString();
@@ -86,18 +78,18 @@ namespace Mechanect.Experiment3
         public void Update(GameTime gameTime)
         {
             ModelLinearAnimation current = animation1;
-            if (animation1.AnimationStoped)
+            if (animation1.Finished())
             {
                 if (!secondAnimationStarted)
                 {
                     secondAnimationStarted = true;
-                    ball.Rotation = Vector3.Zero;
                     ball.Position = shootPosition;
                     Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
                 }
                 current = animation2;
             }
             current.Update(gameTime.ElapsedGameTime);
+            ball.Rotate(current.Displacement);
             Camera.Move(ball.Position);
             Camera.Rotate(new Vector3(0, 0.005f, 0));
             Camera.Update();
@@ -112,6 +104,11 @@ namespace Mechanect.Experiment3
             spriteBatch.DrawString(font, velocity1, new Vector2(5, 0), (!secondAnimationStarted) ? Color.Red : fontColor, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0.5f);
             spriteBatch.DrawString(font, velocity2, new Vector2(5, font.MeasureString(velocity2).Y * 0.5f), (secondAnimationStarted) ? Color.Red : fontColor, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0.5f);
             spriteBatch.End();
+        }
+
+        public bool Finished()
+        {
+            return animation2.Finished();
         }
 
     }

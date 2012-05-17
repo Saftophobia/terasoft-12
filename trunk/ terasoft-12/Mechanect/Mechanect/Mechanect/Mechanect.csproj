@@ -126,6 +126,7 @@
     <Compile Include="Classes\OptimumEngine.cs" />
     <Compile Include="Classes\ThemeAndLevel.cs" />
     <Compile Include="Experiment3\Ball.cs" />
+    <Compile Include="Experiment3\BallAnimation.cs" />
     <Compile Include="Experiment3\Experiment3.cs" />
     <Compile Include="Experiment3\Simulation.cs" />
     <Compile Include="Screens\DepthBar.cs" />
