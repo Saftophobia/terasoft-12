@@ -201,21 +201,22 @@ namespace Mechanect
         private string WrapText(string text)
         {
             string line = string.Empty;
-            string returnstring = string.Empty;
+            string returnString = string.Empty;
             string[] wordArray = text.Split(' ');
 
             foreach (string word in wordArray)
             {
                 if (spriteFont.MeasureString(line + word).Length() > rectangle.Width)
                 {
-                    returnstring = returnstring + line + '\n';
+                    returnString +=  line + '\n';
                     line = string.Empty;
                 }
 
                 line +=  word + ' ';
             }
 
-            return returnstring + line;
+            returnString += line;
+            return returnString ;
         }
     
         
