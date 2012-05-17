@@ -765,8 +765,8 @@ namespace Mechanect.Classes
             try
             {
                 int xComponent = (int)Position.X;
-                int yComponent = (int)Position.Y;
-                return heightData[xComponent + terrainWidth / 2, yComponent + terrainHeight / 2];
+                int zComponent = (int)Position.Z;
+                return heightData[xComponent + terrainWidth / 2, zComponent + terrainHeight / 2];
             }
             catch (ArgumentOutOfRangeException e)
             {
