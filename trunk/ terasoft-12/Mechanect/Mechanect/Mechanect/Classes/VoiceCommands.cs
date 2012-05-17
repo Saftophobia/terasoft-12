@@ -20,22 +20,22 @@ namespace Mechanect.Classes
         SpeechRecognitionEngine _speechRecognitionEngine;
         Stream _stream;
         readonly KinectSensor _kinect;
-        String _hearedString= " ";  
+        string _hearedstring= " ";  
         /// <summary>
         /// Constructor takes as input Kinect Sensor and use it to initialize the instance variable 
-        ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and String Command contains commands.
+        ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and string Command contains commands.
         ///Seperated By "," if acceptable commands.
         /// </summary>
          /// <remarks>
           /// <para>AUTHOR: Tamer Nabil </para>
          /// </remarks>
-        /// <param name="kinect"></param>
-        /// <param name="command"></param>
+        /// <param name="kinect">kinect</param>
+        /// <param name="commands">commands</param>
    
-        public VoiceCommands(KinectSensor kinect,String command)
+        public VoiceCommands(KinectSensor kinect,string commands)
         {
-            this._kinect = kinect;
-            InitalizeKinectAudio(command);
+            _kinect = kinect;
+            InitalizeKinectAudio(commands);
         }  
        /// <summary>
        /// InitalizeKinectAudio()   Get called by the constructor to initialize current Kinect audio Souce and 
@@ -44,23 +44,23 @@ namespace Mechanect.Classes
        /// <remarks>
        /// <para>AUTHOR: Tamer Nabil </para>
        /// </remarks>
-       /// <param name="command"></param>
+       /// <param name="commands">list of commands separated by ,</param>
          
-        private void InitalizeKinectAudio(String command)
+        private void InitalizeKinectAudio(string commands)
         {
-            String [] arrayOfCommand = command.Split(',');
+            string [] arrayOfCommands = commands.Split(',');
           //  KinectAudio = Kinect.AudioSource;
             RecognizerInfo recognizerInfo = GetKinectRecognizer();
             _speechRecognitionEngine = new SpeechRecognitionEngine(recognizerInfo.Id);
             var choices = new Choices();
-           foreach (var t in arrayOfCommand)
+            foreach (var command in arrayOfCommands)
            {
-               choices.Add(t);
+               choices.Add(command);
            }
-           var gb = new GrammarBuilder { Culture = recognizerInfo.Culture };
-           gb.Append(choices);           
-           var g = new Grammar(gb);
-            _speechRecognitionEngine.LoadGrammar(g);
+           var grammarBuilder = new GrammarBuilder { Culture = recognizerInfo.Culture};
+           grammarBuilder.Append(choices);
+           var grammar = new Grammar(grammarBuilder);
+            _speechRecognitionEngine.LoadGrammar(grammar);
             _speechRecognitionEngine.SpeechRecognized += SpeechRecognitionEngineSpeechRecognized;
         }
         /// <summary>
@@ -79,29 +79,29 @@ namespace Mechanect.Classes
         }
          
         /// <summary>
-        /// getHeared take ExpectedString as input and compare it with the Heared String from kinect and returns true
+        /// getHeared take Expectedstring as input and compare it with the Heared string from kinect and returns true
         /// if equal  and false otherwise.
         /// </summary>
          /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="expectedString"></param>
-        /// <returns>returns boolean ,true if he heared expectedString,false otherwise</returns>
+        /// <param name="expectedstring"></param>
+        /// <returns>returns boolean ,true if he heared expectedstring,false otherwise</returns>
 
-        public Boolean GetHeared(String expectedString)
+        public Boolean GetHeared(string expectedstring)
         {
-            return expectedString.Equals(_hearedString);
+            return expectedstring.Equals(_hearedstring);
         }
         
         //to be deleted !
-         public Boolean getHeared(String expectedString)
+         public Boolean getHeared(string expectedstring)
         {
-            return expectedString.Equals(_hearedString);
+            return expectedstring.Equals(_hearedstring);
         }
 
         /// <summary>
         /// This method store value of what said to kinect in the instance variable 
-        /// "HearedString"
+        /// "Hearedstring"
         /// </summary>
          /// <remarks>
            /// <para>AUTHOR: Tamer Nabil </para>
@@ -111,7 +111,7 @@ namespace Mechanect.Classes
         private void SpeechRecognitionEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (e.Result.Confidence > 0.4)
-                _hearedString = e.Result.Text;
+                _hearedstring = e.Result.Text;
         }
 
         /// <summary>
@@ -126,15 +126,16 @@ namespace Mechanect.Classes
         /// <returns>returns RecognizerInfo</returns>
         private static RecognizerInfo GetKinectRecognizer()
         {
-            Func<RecognizerInfo, bool> matchingFunc = r =>
+            Func<RecognizerInfo, bool> matchingFunc = matchFunction =>
             {
                 string value;
-                r.AdditionalInfo.TryGetValue("Kinect", out value);
-                return "True".Equals(value, StringComparison.InvariantCultureIgnoreCase) && "en-US".Equals(r.Culture.Name, StringComparison.InvariantCultureIgnoreCase);
+                matchFunction.AdditionalInfo.TryGetValue("Kinect", out value);
+                return "True".Equals(value, StringComparison.InvariantCultureIgnoreCase) && "en-US".Equals(matchFunction.Culture.Name, StringComparison.InvariantCultureIgnoreCase);
             };
             return SpeechRecognitionEngine.InstalledRecognizers().Where(matchingFunc).FirstOrDefault();
         }
 
     }
 }
+
 
