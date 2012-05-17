@@ -30,5 +30,11 @@ namespace Mechanect.Classes
         public const int solvableExperiment = 0;
         public const float normalLegMass = 0.01f;
         public const float legMovementTolerance = 0.15f; //meters
+
+
+        public const int minShootingX = -10;
+        public const int maxShootingX = 10;
+        public const int minShootingZ = 52;
+        public const int maxShootingZ = 62;
     }
 }
