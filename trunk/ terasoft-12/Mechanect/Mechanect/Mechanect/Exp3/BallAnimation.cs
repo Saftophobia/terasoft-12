@@ -16,6 +16,17 @@ namespace Mechanect.Exp3
         private Vector3 stopPosition;
         private bool ballWillFall;
 
+        [System.Obsolete("This Constructor will no longer be used.", false)]
+        public BallAnimation(Ball ball, Vector3 shootVelocity, float friction, Vector3 holePosition)
+            : base(ball, shootVelocity, friction, TimeSpan.FromSeconds(10))
+        {
+            this.ball = ball;
+            this.holePosition = holePosition;
+            fallAnimation = new ModelFramedAnimation(ball);
+            stopPosition = Physics.Functions.CalculateDisplacement(shootVelocity, friction, TimeSpan.FromSeconds(Math.Abs(shootVelocity.Length() / friction)));
+
+        }
+
         public BallAnimation(Ball ball, Vector3 shootVelocity, float friction, Vector3 holePosition, float holeRadius)
             : base(ball, shootVelocity, friction, TimeSpan.FromSeconds(10))
         {
