@@ -14,8 +14,7 @@ namespace Physics
         /// <remarks>Author : Bishoy Bassem</remarks>
         public static Vector3 GetVectorInDirectionOf(float magnitude, Vector3 anotherVector)
         {
-            anotherVector.Normalize();
-            return magnitude * anotherVector;
+            return magnitude * Vector3.Normalize(anotherVector);
         }
 
 
