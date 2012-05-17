@@ -122,6 +122,7 @@
     <Compile Include="Classes\exp1finale.cs" />
     <Compile Include="Classes\GraphEngine.cs" />
     <Compile Include="Classes\GraphUI.cs" />
+    <Compile Include="Classes\SkinnedModel.cs" />
     <Compile Include="Classes\OptimumEngine.cs" />
     <Compile Include="Classes\ThemeAndLevel.cs" />
     <Compile Include="Experiment3\Ball.cs" />
@@ -208,6 +209,10 @@
     <ProjectReference Include="..\..\Physics\Physics.csproj">
       <Project>{AB3EBA19-AD21-494E-8330-1C9D0F24A75C}</Project>
       <Name>Physics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SkinnedModel\SkinnedModelWindows.csproj">
+      <Project>{0D41E29B-829F-4255-BCA5-64DC2677DA6D}</Project>
+      <Name>SkinnedModelWindows</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\UI\UI.csproj">
       <Project>{E291E85F-5616-453D-803E-07C0BC64B9B1}</Project>
