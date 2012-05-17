@@ -365,19 +365,19 @@ namespace Mechanect.Classes
                         {
                             if (i < g.getChosen().Length - 1)
                             {
-                                double d1 = ((double)g.getChosen()[i] / (double)12);
-                                double d2 = ((double)g.getChosen()[i + 1] / (double)12);
+                                double d1 = ((double)g.getChosen()[i] / (double)24);
+                                double d2 = ((double)g.getChosen()[i + 1] / (double)24);
                                 if (n >= d1 && n < d2)
                                 {
                                     double x = d1 + ((double)(d2 - d1) / (double)2);
                                     if (n < x)
                                     {
-                                        time = (double)g.getChosen()[i] / (double)12;
+                                        time = (double)g.getChosen()[i] / (double)24;
                                         index = i;
                                     }
                                     else
                                     {
-                                        time = (double)g.getChosen()[i + 1] / (double)12;
+                                        time = (double)g.getChosen()[i + 1] / (double)24;
                                         index = i + 1;
                                     }
                                 }

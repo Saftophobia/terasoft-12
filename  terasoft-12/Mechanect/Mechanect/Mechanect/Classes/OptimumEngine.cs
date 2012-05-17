@@ -82,7 +82,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 17/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command.
@@ -95,7 +95,7 @@ namespace Mechanect.Classes
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void OptimumIncreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
+        public static void OptimumIncreasingAcceleration(int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
         {
             double value = 0.6;
             List<float> accelerationTrial = new List<float>();
@@ -133,7 +133,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 17/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumDeccreasingAcceleration derives the optimum values for the "decreasingAcceleration" command.
@@ -146,7 +146,7 @@ namespace Mechanect.Classes
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void OptimumDecreasingAcceleration(int disq1, int disq2, int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
+        public static void OptimumDecreasingAcceleration(int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
         {
             double value = 0.1;
             List<float> accelerationTrial = new List<float>();
@@ -210,7 +210,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Created: 19/4/2012</para>
-        /// <para>Date Modified: 14/5/2012</para>
+        /// <para>Date Modified: 17/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements during the race by calling the necessary functions.
@@ -221,8 +221,6 @@ namespace Mechanect.Classes
         /// <returns>void</returns>
         public static void GetOptimum(double player1disq, double player2disq, PerformanceGraph g)
         {
-            int disq1 = (int)(player1disq * 12);//index of disq frame
-            int disq2 = (int)(player2disq * 12);//index of disq frame
             int start = 0;
             int end = 0;
             g.setPreviousD(g.getTrackLength());
@@ -231,7 +229,7 @@ namespace Mechanect.Classes
             for (int i = 0; i <= g.getTimeSpaces().Count - 1; i++)
             {
                 List<float> tempList = new List<float>();
-                end = start + (int)(g.getTimeSpaces()[i] * 12);
+                end = start + (int)(g.getTimeSpaces()[i] * 24);
                 List<float> velocityTest1 = new List<float>();
                 List<float> velocityTest2 = new List<float>();
                 List<float> accelerationTest1 = new List<float>();
@@ -261,11 +259,11 @@ namespace Mechanect.Classes
                 }
                 if (g.getCommands()[i].Equals("increasingAcceleration"))
                 {
-                    OptimumIncreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, g);
+                    OptimumIncreasingAcceleration(start, end, accelerationTest1, accelerationTest2, g);
                 }
                 if (g.getCommands()[i].Equals("decreasingAcceleration"))
                 {
-                    OptimumDecreasingAcceleration(disq1, disq2, start, end, accelerationTest1, accelerationTest2, g);
+                    OptimumDecreasingAcceleration(start, end, accelerationTest1, accelerationTest2, g);
                 }
                 if (g.getCommands()[i].Equals("constantDisplacement"))
                 {
