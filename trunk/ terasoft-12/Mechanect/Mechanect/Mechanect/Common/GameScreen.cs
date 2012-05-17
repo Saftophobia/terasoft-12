@@ -135,7 +135,6 @@ namespace Mechanect.Common
         }
 
         //change protection level to private
-        [System.Obsolete("use method ExitScreen() instead", false)]
         public virtual void Remove()
         {
             screenManager.RemoveScreen(this);
@@ -145,6 +144,7 @@ namespace Mechanect.Common
         #endregion
 
         #region Methods
+        [System.Obsolete("use method Remove() instead", false)]
         public virtual void ExitScreen()
         {
                 this.Remove();

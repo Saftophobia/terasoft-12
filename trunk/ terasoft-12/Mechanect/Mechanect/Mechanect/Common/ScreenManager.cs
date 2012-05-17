@@ -91,9 +91,6 @@ namespace Mechanect.Common
                     screensToUpdate.Add(screen);
                 }
 
-            bool screenIsCovered = false;
-            bool firstScreen = true;
-
             if (!Game.IsActive)
             {
                 //Pause
@@ -107,18 +104,8 @@ namespace Mechanect.Common
                     screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
 
                     //Update the screen
-                    screen.Update(gameTime, screenIsCovered);
+                    screen.Update(gameTime, false);
 
-                    if (screen.IsActive)
-                    {
-                        if (firstScreen)
-                        {
-                            firstScreen = false;
-                        }
-
-                        if (!screen.IsPopup)
-                            screenIsCovered = true;
-                    }
                 }
             }
         }
