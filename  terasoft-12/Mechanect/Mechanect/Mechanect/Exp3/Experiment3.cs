@@ -46,7 +46,7 @@ namespace Mechanect.Exp3
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
             environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
-                ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
+                ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
         }
 
         public void ShootBall(Vector3 velocity)

@@ -45,7 +45,7 @@ namespace Mechanect.Exp3
                 return friction;
             }
         }
-        private bool hasCollidedWithBall, ballShot;
+
         public static int angleTolerance { get; set; }
         public static int velocityTolerance { get; set; }
         private Bar distanceBar;
@@ -89,7 +89,7 @@ namespace Mechanect.Exp3
 
 
 
-        public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
+        public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user, Ball ball)
         {
             #region dummyInitializations
             /* the values used here should allow the ball to reach the user's feet.
@@ -99,6 +99,7 @@ namespace Mechanect.Exp3
             this.user = user;
             Content = Content2;
             this.device = device;
+            this.ball = ball;
            // ball = new Ball(10000.0f, 10001.0f, device, Content);
             user.ShootingPosition = new Vector3(0f, 3, 62f);
             //friction = 0.5f/3600;
