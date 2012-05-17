@@ -14,7 +14,7 @@ namespace Mechanect.Classes
     /// <remarks>
     /// <para>AUTHOR: Ahmed Badr. </para>
     /// </remarks>
-    class Bar
+    public class Bar
     {
         private SpriteBatch spriteBatch;
         private Texture2D bar;

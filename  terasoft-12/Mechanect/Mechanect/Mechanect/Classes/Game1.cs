@@ -40,8 +40,8 @@ namespace Mechanect
             Window.AllowUserResizing = true;
             if (fullScreen)
              Graphics.IsFullScreen = true;
-            
 
+            Constants3.game1 = this;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
 

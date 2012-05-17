@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Classes
 {
-    class Ball
+    public class Ball
     {
         public CustomModel ballModel;
         ContentManager content;

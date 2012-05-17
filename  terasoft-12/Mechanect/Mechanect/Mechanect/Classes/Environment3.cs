@@ -13,9 +13,20 @@ using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
-    class Environment3
+    public class Environment3
     {
         private Hole hole;
+        public Hole HoleProperty
+        {
+            set
+            {
+                hole = value;
+            }
+            get
+            {
+                return hole;
+            }
+        }
         public Ball ball;
         public User3 user;
         private float wind;
@@ -146,10 +157,6 @@ namespace Mechanect.Classes
         public void GenerateSolvable()
         {
 
-            if (hole.Position.Z > Constants3.maxHolePosZ)
-                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ);
-            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX)
-                hole.Position = new Vector3(Constants3.maxHolePosX, hole.Position.Y, hole.Position.Z);
             var x = Constants3.solvableExperiment;
             do
             {
@@ -169,9 +176,16 @@ namespace Mechanect.Classes
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
                     case Constants3.negativeFriction: friction *= -1; break;
-                    case Constants3.negativeHPosZ: hole.Position = Vector3.Subtract(hole.Position, new Vector3(0, 0, 1)); break;
+                    case Constants3.negativeHPosZ: hole.Position = Vector3.Add(hole.Position, new Vector3(0, 0, 1)); break;
                 }
             } while (x != Constants3.solvableExperiment);
+           
+            if (hole.Position.Z >= Constants3.maxHolePosZ-hole.Radius)
+                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
+            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX-hole.Radius)
+                hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
+            if(hole.Position.Z<=user.ShootingPosition.Z)
+                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
 
         }
 
