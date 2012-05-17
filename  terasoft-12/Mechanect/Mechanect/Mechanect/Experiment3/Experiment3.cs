@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using UI.Cameras;
 using UI.Animation;
+using Mechanect.Classes;
 
 namespace Mechanect.Exp3
 {
@@ -14,9 +15,12 @@ namespace Mechanect.Exp3
     {
         private Ball ball;
         private Vector3 intialPosition;
-        private Vector3 shootPosition;
+        private Vector3 shootPosition, shootVelocity;
         private float arriveVelocity;
         private float friction;
+
+        private Environment3 environment;
+        private User3 user;
 
         private TargetCamera targetCamera;
         private BallAnimation animation;
@@ -25,20 +29,22 @@ namespace Mechanect.Exp3
         private bool pauseScreenShowed;
         private bool firstAnimation;
 
-        public Experiment3()
+        public Experiment3(User3 user)
         {
             intialPosition = new Vector3(-100, 0, -100);
-            shootPosition = new Vector3(0, 0, 0);
+            shootPosition = new Vector3(0, 3, 62);
             arriveVelocity = 10;
             friction = -2;
             firstAnimation = true;
+            this.user = user;
         }
 
         public override void LoadContent()
         {
-            targetCamera = new TargetCamera(new Vector3(0, 60, 60), Vector3.Zero, ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero);
+            environment = new Environment3(ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
         }
 
         public void ShootBall(Vector3 velocity)
@@ -92,6 +98,19 @@ namespace Mechanect.Exp3
             animation.Update(gameTime.ElapsedGameTime);
             //update ball height
             //ball.setHeight(environment.GetHeight(ball.Position));
+
+            if (environment.hasBallEnteredShootRegion())
+            {
+                shootVelocity = 4 * environment.Shoot(gameTime);
+                if (user.hasShot)
+                {
+                    if (shootVelocity.Length() != 0)
+                    {
+                        this.ShootBall(shootVelocity);
+                    }
+                }
+            }
+
             base.Update(gameTime, covered);
         }
 
