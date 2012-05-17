@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework;
  
 namespace Mechanect
 {
-    
-    public class Environment2 
+   public class Environment2 
     {
         public Prey Prey { get; set; }
         public Predator Predator { get; set; }
@@ -41,6 +40,22 @@ namespace Mechanect
             _velocity = 0;
             _angle = 0;
             GetSolvablePoints();
+        }
+        /// <summary>
+        /// Constructor that assigns Predator,prey and aquarium positions,length and width
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="position">represents position for predator</param>
+        /// <param name="prey">represents x and y coordinates for prey + length + width</param>
+        /// <param name="aquriaum">represents x and y coordinates for aquarium + length + width</param>
+       
+        public Environment2(Vector2 position,Rectangle prey,Rectangle aquriaum)
+        {    
+              Predator = new Predator(position);
+              Prey = new Prey(new Vector2(prey.X,prey.Y),prey.Width,prey.Height);
+              Aquarium = new Aquarium(new Vector2(aquriaum.X, aquriaum.Y), aquriaum.Width, aquriaum.Height);
         }
         /// <summary>
         /// generates random angle between 20 and 70
@@ -84,8 +99,8 @@ namespace Mechanect
             double totalTime = GetTotalTime(predatorLocation.Y);
 
             double timeSlice = totalTime / 3;
-            double timePrey = GetRandomNumber(timeSlice, timeSlice * 2);
-            double timeAquarium = GetRandomNumber(timePrey + (timePrey * 10 / 100), totalTime);
+            double timePrey = GetRandomNumber(timeSlice - 10/100, (timeSlice * 2)-(timeSlice + timeSlice*Tolerance*2/100));
+            double timeAquarium = GetRandomNumber(timePrey + (timePrey * Tolerance*2 / 100), totalTime);
 
             preyLocation.X = GetX(timePrey);
             preyLocation.Y = (float)((_velocity * Math.Sin(_angle) * timePrey) - (0.5 * 9.8 * Math.Pow(timePrey, 2)) + predatorLocation.Y);
@@ -100,8 +115,8 @@ namespace Mechanect
             
 
             Predator = new Predator(predatorLocation);
-            Prey = new Prey(preyLocation,(preyLocation.X * ((float)_tolerance / 100)),preyLocation.Y * ((float)_tolerance / 100));
             Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)_tolerance / 100),aquariumLocation.Y * ((float)_tolerance / 100));
+            Prey = new Prey(preyLocation,Aquarium.Length * 2/5,Aquarium.Width* 2/5);
         }
 
         /// <summary>
