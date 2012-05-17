@@ -49,19 +49,6 @@ namespace Physics
 
 
         /// <summary>
-        /// calculates the time using the equation s = (v0 + vf)t / 2
-        /// </summary>
-        /// <param name="distance">distance magnitude</param>
-        /// <param name="intialVelocity">intial velocity magnitude</param>
-        /// <param name="finalVelocity">final velocity magnitude</param>
-        /// <returns></returns>
-        public static TimeSpan CalculateTime(float distance, float intialVelocity, float finalVelocity)
-        {
-            return TimeSpan.FromSeconds(2 * distance / (intialVelocity + finalVelocity));
-        }
-
-
-        /// <summary>
         /// Generates a random float value between two float numbers.
         /// </summary>
         /// <remarks>
