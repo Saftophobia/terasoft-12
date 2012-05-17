@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +24,7 @@ namespace Mechanect
         List<Button> _buttons;
         Button _rightArrow2, _leftArrow2;
         private readonly Vector2 position2;
-        public ThemeAndLevel(Microsoft.Xna.Framework.Game game, Vector2 position, SpriteBatch spriteBatch, User u)
+        public ThemeAndLevel(Game game, Vector2 position, SpriteBatch spriteBatch, User u)
         {
             _user = u;
             _spriteBatch = spriteBatch;
