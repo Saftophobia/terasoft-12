@@ -30,6 +30,7 @@ namespace Mechanect.Exp3
             if (!base.Finished())
             {
                 base.Update(elapsed);
+                ball.Rotate(Displacement);
                 return;
             }
             // check if ball fell and animte

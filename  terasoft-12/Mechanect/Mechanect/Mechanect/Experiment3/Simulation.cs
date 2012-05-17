@@ -89,7 +89,7 @@ namespace Mechanect.Exp3
                 current = animation2;
             }
             current.Update(gameTime.ElapsedGameTime);
-            ball.Rotate(current.Displacement);
+            //ball.Rotate(current.Displacement);
             Camera.Move(ball.Position);
             Camera.Rotate(new Vector3(0, 0.005f, 0));
             Camera.Update();
