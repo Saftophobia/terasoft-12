@@ -135,7 +135,6 @@ namespace Mechanect.Common
         {
             //Screen will be drawn but not updated
             screenState = ScreenState.Frozen;
-            ScreenManager.screensToUpdate.Remove(this);
             IsFrozen = true;
         }
 
@@ -146,7 +145,6 @@ namespace Mechanect.Common
         {
             screenState = ScreenState.Active;
             IsFrozen = false;
-            screenManager.screensToUpdate.Add(this);
         }
         #endregion
     }
