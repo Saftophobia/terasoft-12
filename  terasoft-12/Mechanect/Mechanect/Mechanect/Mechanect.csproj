@@ -130,7 +130,6 @@
     <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
-    <Compile Include="Screens\GUCScreen.cs" />
     <Compile Include="Screens\ITWroxScreen.cs" />
     <Compile Include="Screens\Settings2.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
