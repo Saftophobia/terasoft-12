@@ -43,8 +43,8 @@ namespace Mechanect.Screens
             environment.InitializeEnvironment(ScreenManager.GraphicsDevice);
             environment.LoadEnvironmentContent();
             environment.GenerateSolvable();
-            Constants3.environment3 = environment;
-            Constants3.game1.Exit();
+            //Constants3.environment3 = environment;
+            //Constants3.game1.Exit();
             
             //sim = new ResultSimulation(graphics, ScreenManager.SpriteBatch, ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1"), Color.Black, environment.ball.ballModel, new Vector3(5, 0 ,0 ), new Vector3(3, 0, 0), new Vector3(-1, 0, 0));
 
