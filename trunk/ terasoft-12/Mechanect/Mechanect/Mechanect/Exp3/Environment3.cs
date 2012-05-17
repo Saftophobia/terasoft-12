@@ -63,10 +63,10 @@ namespace Mechanect.Exp3
         private GraphicsDevice device;
 
         private Effect effect;
-        private VertexPositionColorNormal[] vertices;
-        private short[] indices;
-        public short terrainWidth {get; private set;}
-        public short terrainHeight { get; private set; }
+        private VertexPositionNormalTexture[] vertices;
+        private int[] indices;
+        public int terrainWidth { get; private set; }
+        public int terrainHeight { get; private set; }
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
@@ -81,13 +81,13 @@ namespace Mechanect.Exp3
 
         private Vector3 ballInitialPosition, ballInitialVelocity;
         public float arriveVelocity { get; set; }
-        //Texture2D grassTexture;
-        //Texture2D cloudMap;
-        //Model skyDome;
-        //RenderTarget2D cloudsRenderTarget;
-        //Texture2D cloudStaticMap;
-        //VertexPositionTexture[] fullScreenVertices;
-
+        
+        Texture2D grassTexture;
+        Texture2D cloudMap;
+        Model skyDome;
+        RenderTarget2D cloudsRenderTarget;
+        Texture2D cloudStaticMap;
+        VertexPositionTexture[] fullScreenVertices;
 
 
         public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user, Ball ball)
@@ -286,27 +286,31 @@ namespace Mechanect.Exp3
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadEnvironmentContent()
         {
-            
-            effect = Content.Load<Effect>("Textures/effects");
-            
-            //effect = Content.Load<Effect>("MYHLSL");
-            //grassTexture = Content.Load<Texture2D>("grass2");
-            //skyDome = Content.Load<Model>("dome");
-            //cloudMap = Content.Load<Texture2D>("cloudMap");
-            //skyDome.Meshes[0].MeshParts[0].Effect = effect.Clone();
-            //Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
 
-            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
+            //loads the the fx file to use the effects defined in it
+            effect = Content.Load<Effect>("Textures/MYHLSL");
+            skyDome = Content.Load<Model>("Models/dome");
+            cloudMap = Content.Load<Texture2D>("Textures/cloudMap");
+            skyDome.Meshes[0].MeshParts[0].Effect = effect.Clone();
+
+
+            //loads the height data from the height map
+            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplarge");
             LoadHeightData(heightMap);
-           
-            InitializeHole(4);
-            
-            skyboxModel = LoadModel("Models/skybox2", out skyboxTextures);
+            PresentationParameters pp = device.PresentationParameters;
+            cloudsRenderTarget = new RenderTarget2D(device, pp.BackBufferWidth, pp.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
+
+            cloudStaticMap = CreateStaticMap(32);
+
+            grassTexture = Content.Load<Texture2D>("Textures/grass2");
 
             SetUpVertices();
             SetUpIndices();
             CalculateNormals();
             CopyToBuffers();
+           
+            InitializeHole(4);
+
            
             //ball.LoadContent();
 
@@ -322,14 +326,26 @@ namespace Mechanect.Exp3
         ///<param name="gameTime">Provides a snapshot of timing values.</param
         public void DrawEnvironment(Camera c, GameTime gameTime)
         {
+            float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
+            GeneratePerlinNoise(time);
+
+
+
+            //Clears the Z buffer
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
-            DrawSkybox(c);
-            var rs = new RasterizerState();
+
+            DrawSkyDome(c);
+
+            //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
+            RasterizerState rs = new RasterizerState();
             rs.CullMode = CullMode.None;
             rs.FillMode = FillMode.Solid;
             device.RasterizerState = rs;
+
             var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
-            effect.CurrentTechnique = effect.Techniques["Colored"];
+            //Matrix worldMatrix = Matrix.Identity;
+            //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
+            effect.CurrentTechnique = effect.Techniques["Textured"];
             var lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
             lightDirection.Normalize();
             effect.Parameters["xLightDirection"].SetValue(lightDirection);
@@ -338,7 +354,7 @@ namespace Mechanect.Exp3
             effect.Parameters["xView"].SetValue(c.View);
             effect.Parameters["xProjection"].SetValue(c.Projection);
             effect.Parameters["xWorld"].SetValue(worldMatrix);
-
+            effect.Parameters["xTexture"].SetValue(grassTexture);
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
                 pass.Apply();
@@ -346,53 +362,11 @@ namespace Mechanect.Exp3
                 device.Indices = myIndexBuffer;
                 device.SetVertexBuffer(myVertexBuffer);
 
-                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionColorNormal.VertexDeclaration);
+                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
+
             }
             DrawHole(c);
         }
-
-        /*
-        protected void DrawEnvironment(GameTime gameTime)
-       {
-           float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
-
-           //Clears the Z buffer
-           device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
-           GeneratePerlinNoise(time);
-           DrawSkyDome(viewMatrix);
-
-           //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
-           RasterizerState rs = new RasterizerState();
-           rs.CullMode = CullMode.None;
-           rs.FillMode = FillMode.Solid;
-           device.RasterizerState = rs;
-
-           Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
-           //Matrix worldMatrix = Matrix.Identity;
-           //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
-           effect.CurrentTechnique = effect.Techniques["Textured"];
-           Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
-           lightDirection.Normalize();
-           effect.Parameters["xLightDirection"].SetValue(lightDirection);
-           effect.Parameters["xAmbient"].SetValue(0.1f);
-           effect.Parameters["xEnableLighting"].SetValue(true);
-           effect.Parameters["xView"].SetValue(viewMatrix);
-           effect.Parameters["xProjection"].SetValue(projectionMatrix);
-           effect.Parameters["xWorld"].SetValue(worldMatrix);
-           effect.Parameters["xTexture"].SetValue(grassTexture);
-           foreach (EffectPass pass in effect.CurrentTechnique.Passes)
-           {
-               pass.Apply();
-
-               device.Indices = myIndexBuffer;
-               device.SetVertexBuffer(myVertexBuffer);
-
-               device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
-               
-           }
-       }
-        
-         */
 
         /// <summary>
         /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
@@ -400,53 +374,23 @@ namespace Mechanect.Exp3
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpVertices()
         {
-            var minHeight = float.MaxValue;
-            var maxHeight = float.MinValue;
-            for (var x = 0; x < terrainWidth; x++)
+            vertices = new VertexPositionNormalTexture[terrainWidth * terrainHeight];
+
+            for (int x = 0; x < terrainWidth; x++)
             {
-                for (var y = 0; y < terrainHeight; y++)
+                for (int y = 0; y < terrainHeight; y++)
                 {
-                    if (heightData[x, y] < minHeight)
-                        minHeight = heightData[x, y];
-                    if (heightData[x, y] > maxHeight)
-                        maxHeight = heightData[x, y];
+                    vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
+                    vertices[x + y * terrainWidth].TextureCoordinate.X = (float)x / 10.0f;
+                    vertices[x + y * terrainWidth].TextureCoordinate.Y = (float)y / 10.0f;
                 }
             }
 
-            vertices = new VertexPositionColorNormal[terrainWidth * terrainHeight];
-            for (var x = 0; x < terrainWidth; x++)
-            {
-                for (var y = 0; y < terrainHeight; y++)
-                {
-                    vertices[x + (y * terrainWidth)].Position = new Vector3(x, heightData[x, y], -y);
-                    vertices[x + (y * terrainWidth)].Color = Color.Green;
-
-                }
-            }
-            
+            fullScreenVertices = SetUpFullscreenVertices();
 
         }
-
-        /*
-           private void SetUpVertices()
-       {
-           vertices = new VertexPositionNormalTexture[terrainWidth * terrainHeight];
-
-           for (int x = 0; x < terrainWidth; x++)
-           {
-               for (int y = 0; y < terrainHeight; y++)
-               {
-                   vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
-                   vertices[x + y * terrainWidth].TextureCoordinate.X = (float)x / 10.0f;
-                   vertices[x + y * terrainWidth].TextureCoordinate.Y = (float)y / 10.0f;
-               }
-           }
-
-           fullScreenVertices = SetUpFullscreenVertices();
-           fullScreenVertexDeclaration = new VertexDeclaration(VertexPositionTexture.VertexDeclaration.GetVertexElements());
-       }
           
-       }*/
+       
 
 
 
@@ -457,7 +401,7 @@ namespace Mechanect.Exp3
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpIndices()
         {
-            indices = new short[(terrainWidth - 1) * (terrainHeight - 1) * 6];
+            indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
             var counter = 0;
             for (var y = 0; y < terrainHeight - 1; y++)
             {
@@ -468,13 +412,13 @@ namespace Mechanect.Exp3
                     var topLeft = x + ((y + 1) * terrainWidth);
                     var topRight = (x + 1) + ((y + 1) * terrainWidth);
 
-                    indices[counter++] = (short)topLeft;
-                    indices[counter++] = (short)lowerRight;
-                    indices[counter++] = (short)lowerLeft;
+                    indices[counter++] = (int)topLeft;
+                    indices[counter++] = (int)lowerRight;
+                    indices[counter++] = (int)lowerLeft;
 
-                    indices[counter++] = (short)topLeft;
-                    indices[counter++] = (short)topRight;
-                    indices[counter++] = (short)lowerRight;
+                    indices[counter++] = (int)topLeft;
+                    indices[counter++] = (int)topRight;
+                    indices[counter++] = (int)lowerRight;
                 }
             }
         }
@@ -488,8 +432,8 @@ namespace Mechanect.Exp3
         /// <param name="heightMap">The grayscale picture that will be used to define the heightmap.</param>
         private void LoadHeightData(Texture2D heightMap)
         {
-            terrainWidth = (short)heightMap.Width;
-            terrainHeight = (short)heightMap.Height;
+            terrainWidth = (int)heightMap.Width;
+            terrainHeight = (int)heightMap.Height;
 
             Color[] heightMapColors = new Color[terrainWidth * terrainHeight];
             heightMap.GetData(heightMapColors);
@@ -510,9 +454,9 @@ namespace Mechanect.Exp3
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CopyToBuffers()
         {
-            myVertexBuffer = new VertexBuffer(device, VertexPositionColorNormal.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
+            myVertexBuffer = new VertexBuffer(device, VertexPositionNormalTexture.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
             myVertexBuffer.SetData(vertices);
-            myIndexBuffer = new IndexBuffer(device, typeof(short), indices.Length, BufferUsage.WriteOnly);
+            myIndexBuffer = new IndexBuffer(device, typeof(int), indices.Length, BufferUsage.WriteOnly);
             myIndexBuffer.SetData(indices);
         }
 
@@ -629,8 +573,12 @@ namespace Mechanect.Exp3
             device.DepthStencilState = dss;
         }
 
-        /*
-        private void DrawSkyDome(Camera c,Matrix currentViewMatrix)
+        /// <summary>
+        /// Draws the skydome to display the sky, and fills it with moving clouds.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <param name="c">The camera used in the environment.</param>
+        private void DrawSkyDome(Camera c)
         {
             DepthStencilState dss = new DepthStencilState();
             dss.DepthBufferWriteEnable = false;
@@ -639,13 +587,13 @@ namespace Mechanect.Exp3
             Matrix[] modelTransforms = new Matrix[skyDome.Bones.Count];
             skyDome.CopyAbsoluteBoneTransformsTo(modelTransforms);
 
-            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(cameraPosition);
+            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(c.Position);
             foreach (ModelMesh mesh in skyDome.Meshes)
             {
                 foreach (Effect currentEffect in mesh.Effects)
                 {
                     Matrix worldMatrix = modelTransforms[mesh.ParentBone.Index] * wMatrix;
-                    currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["SkyDome"];
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
                     currentEffect.Parameters["xView"].SetValue(c.View);
                     currentEffect.Parameters["xProjection"].SetValue(c.Projection);
@@ -658,8 +606,14 @@ namespace Mechanect.Exp3
             dss2.DepthBufferWriteEnable = true;
             device.DepthStencilState = dss2;
         }
-        
 
+
+        /// <summary>
+        /// Creates a noise map, based on Perlin's noise.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <param name="resolution">Desired resolution of the map that will be created.</param>
+        /// <returns></returns>
         private Texture2D CreateStaticMap(int resolution)
         {
             Random rand = new Random();
@@ -677,6 +631,11 @@ namespace Mechanect.Exp3
             return noiseImage;
         }
 
+        /// <summary>
+        /// Sets vertices for the triangles, which allow rendering the noise maps using HLSL effects.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <returns>Array of the vertices.</returns>
         private VertexPositionTexture[] SetUpFullscreenVertices()
         {
             VertexPositionTexture[] vertices = new VertexPositionTexture[4];
@@ -689,7 +648,12 @@ namespace Mechanect.Exp3
         }
 
 
-
+        /// <summary>
+        /// Generates the Perlin noise maps, renders them, and does all the needed effects on them, using HLSL, 
+        /// then sets the cloudmap to the generated noise map.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <param name="time">The time used to control how fast the clouds move.</param>
         private void GeneratePerlinNoise(float time)
         {
 
@@ -705,6 +669,7 @@ namespace Mechanect.Exp3
             {
 
                 pass.Apply();
+                //device.VertexDeclaration = fullScreenVertexDeclaration;
                 device.DrawUserPrimitives(PrimitiveType.TriangleStrip, fullScreenVertices, 0, 2);
 
 
@@ -713,7 +678,7 @@ namespace Mechanect.Exp3
             device.SetRenderTarget(null);
             cloudMap = cloudsRenderTarget;
         }
-        */
+
         #endregion
 
         #region Hole methods
@@ -768,7 +733,7 @@ namespace Mechanect.Exp3
                         {
                             int a = (int)Math.Round(radius + radius * Math.Cos(angle));
                             int b = (int)Math.Round(radius + radius * Math.Sin(angle));
-                            vertices[a+x + (b+y) * terrainWidth].Color = Color.White;
+                            //vertices[a+x + (b+y) * terrainWidth].Color = Color.White;
                             vertices[a+x + (b+y) * terrainWidth].Position = new Vector3(x+a, heightData[x+a, y+b] - 20, -y-b);
                         }
                     }
