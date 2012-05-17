@@ -122,6 +122,7 @@
     <Compile Include="Classes\exp1finale.cs" />
     <Compile Include="Classes\GraphEngine.cs" />
     <Compile Include="Classes\GraphUI.cs" />
+    <Compile Include="Classes\MySpriteBatch.cs" />
     <Compile Include="Classes\SkinnedModel.cs" />
     <Compile Include="Classes\OptimumEngine.cs" />
     <Compile Include="Classes\ThemeAndLevel.cs" />
