@@ -66,6 +66,8 @@ namespace Mechanect.Screens
         {
             black = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/black");
             logo = ScreenManager.Game.Content.Load<Texture2D>(@""+path);
+            this.xPositionOffset = ScreenManager.GraphicsDevice.Viewport.Width * xPositionOffset;
+            this.yPositionOffset = ScreenManager.GraphicsDevice.Viewport.Height * yPositionOffset;
         }
 
        /// <summary>
@@ -96,10 +98,10 @@ namespace Mechanect.Screens
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.White);
+           // ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(logo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2) + xPositionOffset,
-                ((ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height - 100) * scale) / 2) + yPositionOffset),
+                ((ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height) * scale) / 2) + yPositionOffset),
                 null, Color.White, rotation, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
 
             ScreenManager.SpriteBatch.Draw(black, Vector2.Zero, null, Color.White * fading, 0, new Vector2(0, 0),

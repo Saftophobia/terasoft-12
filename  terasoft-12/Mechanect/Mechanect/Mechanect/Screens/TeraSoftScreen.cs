@@ -11,13 +11,22 @@ namespace Mechanect.Screens
     /// </summary>
     class TeraSoftScreen : FadingScreen
     {
+        private float scale;
+        private Texture2D gucLogo;
         /// <summary>
         /// This is the default construtor for TeraSoftScreen class.
         /// </summary>
         public TeraSoftScreen()
-            : base("Resources/Images/Terasoft", 0.5f,0,0,-50)
-        { }
+            : base("Resources/Images/Terasoft", 0.5f,0,0,-0.06f)
+        {
+            scale = 0.3f;
+        }
 
+        public override void LoadContent()
+        {
+            gucLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/GUC");
+            base.LoadContent();
+        }
         /// <summary>
         /// Updates the content of this screen.
         /// </summary>
@@ -31,6 +40,18 @@ namespace Mechanect.Screens
                 base.Remove();
                 ScreenManager.AddScreen(new ITworxScreen());
             }
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            ScreenManager.GraphicsDevice.Clear(Color.White);
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.Draw(gucLogo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - gucLogo.Width * scale) / 1.1f),
+                ((ScreenManager.GraphicsDevice.Viewport.Height - (gucLogo.Height) * scale) / 1.1f)),
+                null, Color.White, 0, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
+            ScreenManager.SpriteBatch.End();
+            base.Draw(gameTime);
+          
         }
     }
 }
