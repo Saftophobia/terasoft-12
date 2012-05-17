@@ -77,6 +77,10 @@ namespace Mechanect.Classes
 
         public SkinnedModel PlayerModel { get; private set; }
 
+
+        //Texture2D grassTexture;
+
+
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
             #region dummyInitializations
@@ -275,6 +279,7 @@ namespace Mechanect.Classes
         {
             
             effect = Content.Load<Effect>("Textures/effects");
+            //grassTexture = Content.Load<Texture2D>("grass2");
 
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
@@ -330,8 +335,48 @@ namespace Mechanect.Classes
             }
             DrawHole(c);
         }
+       
+        /*
+        protected void DrawEnvironment(Camera c, GameTime gameTime)
+        {
+            float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
 
+            //Clears the Z buffer
+            device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+            DrawSkybox(c);
+            //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
+            RasterizerState rs = new RasterizerState();
+            rs.CullMode = CullMode.None;
+            rs.FillMode = FillMode.Solid;
+            device.RasterizerState = rs;
+
+            Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
+            //Matrix worldMatrix = Matrix.Identity;
+            //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
+            effect.CurrentTechnique = effect.Techniques["Textured"];
+            Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
+            lightDirection.Normalize();
+            effect.Parameters["xLightDirection"].SetValue(lightDirection);
+            effect.Parameters["xAmbient"].SetValue(0.1f);
+            effect.Parameters["xEnableLighting"].SetValue(true);
+            effect.Parameters["xView"].SetValue(c.View);
+            effect.Parameters["xProjection"].SetValue(c.Projection);
+            effect.Parameters["xWorld"].SetValue(worldMatrix);
+            effect.Parameters["xTexture"].SetValue(grassTexture);
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+
+                device.Indices = myIndexBuffer;
+                device.SetVertexBuffer(myVertexBuffer);
+
+                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
+
+            }
+        }
         
+         */
+ 
         /// <summary>
         /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
         /// </summary>
@@ -365,7 +410,22 @@ namespace Mechanect.Classes
 
         }
 
+        /*private void SetUpVertices()
+       {
+           vertices = new VertexPositionNormalTexture[terrainWidth * terrainHeight];
 
+           for (int x = 0; x < terrainWidth; x++)
+           {
+               for (int y = 0; y < terrainHeight; y++)
+               {
+                   vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y], -y);
+                   vertices[x + y * terrainWidth].TextureCoordinate.X = (float)x / 10.0f;
+                   vertices[x + y * terrainWidth].TextureCoordinate.Y = (float)y / 10.0f;
+               }
+           }
+
+          
+       }*/
 
 
 
