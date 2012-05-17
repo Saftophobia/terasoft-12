@@ -130,8 +130,8 @@ namespace Mechanect.Common
 
         public virtual void Update(GameTime gameTime)
         {
-            if (IsFrozen)
-                return;
+            //if (IsFrozen)
+            //    return;
         }
 
         //change protection level to private
@@ -160,6 +160,7 @@ namespace Mechanect.Common
         {
             //Screen will be drawn but not updated
             screenState = ScreenState.Frozen;
+            ScreenManager.screensToUpdate.Remove(this);
             IsFrozen = true;
         }
 
@@ -168,6 +169,7 @@ namespace Mechanect.Common
             //Screen will be drawn but not updated
             screenState = ScreenState.Active;
             IsFrozen = false;
+            screenManager.screensToUpdate.Add(this);
         }
         #endregion
     }
