@@ -9,74 +9,46 @@ using Mechanect.Screens;
 namespace Mechanect.Common
 {
     /// <summary>
-    /// What is our screen doing currently?
+    /// Represents the screen states.
     /// </summary>
+    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
     public enum ScreenState
     {
         Active,
         Frozen,
         Hidden
     }
+    /// <summary>
+    /// This class represents the screen of the game
+    /// </summary>
+    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
     public abstract class GameScreen
     {
         #region Fields and Properties
 
         public static int frameNumber { get; set; }
 
-        /// <summary>
-        /// Is the screen a popup (ie a message dialog)
-        /// </summary>
-
-        public bool IsPopup
-        {
-            get { return isPopup; }
-            set { isPopup = value; }
-        }
         User user;
-        bool pausescreenappeared = false;
+
+        private bool isFrozen;
         public bool IsFrozen
         {
             get { return isFrozen; }
             set { isFrozen = value; }
         }
-        private bool isFrozen = false;
-        private bool isPopup = false;
 
-
-        /// <summary>
-        /// What is the screen doing currently?
-        /// </summary>
+        private ScreenState screenState;
         public ScreenState ScreenState
         {
             get { return screenState; }
             set { screenState = value; }
         }
-        ScreenState screenState;
-
-        /// <summary>
-        /// The screen manager that controls the screen.
-        /// </summary>
-        /// <summary>
-        /// Updates the Screen
-        /// </summary>
-        /// <example>This sample shows how use Update method in a class extending GameScreen if you want to have your screen
-        /// not covered by another screen
-        /// <code>
-        /// public override void Update(GameTime gameTime, bool covered)
-        /// {
-        ///     base.Update(gameTime, false);
-        /// }
-        /// </code>
-        /// </example>
-        /// <param name="gameTime"></param>
-        /// <param name="covered"></param>
+        private ScreenManager screenManager;
         public ScreenManager ScreenManager
         {
             get { return screenManager; }
             internal set { screenManager = value; }
         }
-        ScreenManager screenManager;
-
         
         public bool IsActive
         {
@@ -86,23 +58,18 @@ namespace Mechanect.Common
             }
         }
 
-        /// <summary>
-        /// Is the screen currently being covered by another?
-        /// </summary>
         #endregion
 
         #region Initialization
-        public virtual void LoadContent() {
-           user = new User();
-        }
+
+        public virtual void LoadContent() { }
+
+        public virtual void Initialize() { }
 
         public virtual void UnloadContent() { }
         #endregion
 
         #region Update and Draw
-        public virtual void Initialize() {
-            user = new User();
-        }
 
         [System.Obsolete("will be replaced by Update(gameTime)", false)]
         public virtual void Update(GameTime gameTime, bool covered)
@@ -127,19 +94,28 @@ namespace Mechanect.Common
             if (IsFrozen)
                 return;
         }
+        /// <summary>
+        /// Updates the screen.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
+        public virtual void Update(GameTime gameTime) { }
+        //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
+        //{
+        //    if (IsFrozen)
+        //        return;
+        //}
 
-        public virtual void Update(GameTime gameTime)
-        {
-            //if (IsFrozen)
-            //    return;
-        }
-
-        //change protection level to private
+        /// <summary>
+        /// Removes the current screen.
+        /// </summary>
         public virtual void Remove()
         {
             screenManager.RemoveScreen(this);
         }
-
+        /// <summary>
+        /// Draws the screen.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
         public abstract void Draw(GameTime gameTime);
         #endregion
 
@@ -153,8 +129,7 @@ namespace Mechanect.Common
 
 
         /// <summary>
-        /// Should be called when the screen should be frozen, note that this method does not automatically freeze the screen.
-        /// It only changes the ScreenState to Frozen, which should be checked as a condition later.
+        /// Freezes the screen. The screen will not be updated.
         /// </summary>
         public void FreezeScreen()
         {
@@ -164,9 +139,11 @@ namespace Mechanect.Common
             IsFrozen = true;
         }
 
+        /// <summary>
+        /// Unfreezes the screen. The screen will be normally updated.
+        /// </summary>
         public void UnfreezeScreen()
         {
-            //Screen will be drawn but not updated
             screenState = ScreenState.Active;
             IsFrozen = false;
             screenManager.screensToUpdate.Add(this);
