@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using UI.Components;
 
-namespace Mechanect.Experiment3
+namespace Mechanect.Exp3
 {
     public class Ball : CustomModel
     {
@@ -15,6 +15,11 @@ namespace Mechanect.Experiment3
             : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, new Vector3(0.02f), device)
         {
             Radius = radius;
+        }
+
+        public void Rotate(Vector3 displacement)
+        {
+            Rotation = new Vector3(displacement.Length() / 3, (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
         public void setHeight(float height)
