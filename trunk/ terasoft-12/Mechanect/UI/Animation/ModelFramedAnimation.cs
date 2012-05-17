@@ -86,6 +86,9 @@ namespace UI.Animation
             frames.Add(new AnimationFrame(position, rotation, time));
         }
 
+        /// <summary>
+        /// returns true if the animation finished
+        /// </summary>
         public override bool Finished()
         {
             if (frames.Count == 0)
