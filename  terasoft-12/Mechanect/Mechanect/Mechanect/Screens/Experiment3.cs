@@ -87,7 +87,9 @@ namespace Mechanect.Screens
             //    environment.Update();
 
             //}
-            
+
+            environment.PlayerModel.Update();
+
             base.Update(gameTime, covered);
             //environment.UpdateEnvironment(gameTime);
         }
@@ -98,6 +100,7 @@ namespace Mechanect.Screens
             environment.DrawEnvironment(c, gameTime);
             environment.DistanceBar.Draw();
             environment.ball.Draw(gameTime, c);
+            environment.PlayerModel.Draw(gameTime, c.View, c.Projection);
             ScreenManager.SpriteBatch.End();
         }
 

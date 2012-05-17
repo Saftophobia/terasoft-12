@@ -75,6 +75,8 @@ namespace Mechanect.Classes
         private ContentManager Content;
         private SpriteBatch sprite;
 
+        public SkinnedModel PlayerModel { get; private set; }
+
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
             #region dummyInitializations
@@ -105,6 +107,9 @@ namespace Mechanect.Classes
             Vector3 shootingPos = user.ShootingPosition;
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             friction = 1.0f;
+
+            PlayerModel = new SkinnedModel(Content2.Load<Model>("dude"), shootingPos, 
+                new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
         }
 
 

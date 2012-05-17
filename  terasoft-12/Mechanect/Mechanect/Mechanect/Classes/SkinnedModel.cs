@@ -6,7 +6,7 @@ using SkinnedModel;
 
 namespace Mechanect.Classes
 {
-    class SkinnedModel
+    public class SkinnedModel
     {
         # region Fields
 
