@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Mechanect.Experiment2.UI;
+
 
 namespace Mechanect.Classes
 {
-    public class Predator
+    public class Predator 
     {
 
         Vector2 location;
+        Texture2D fishTexture;
         public Vector2 Location
         {
             get
@@ -66,15 +71,16 @@ namespace Mechanect.Classes
             get
             {
                 if (velocity.X == 0) return 0;
-                return Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
+                return  Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
             }
         }
 
         public Predator(Vector2 location)
-        {
+        {   
             this.location = location;
 
         }
+
 
         /// <summary>
         /// returns the location of the predator.
@@ -106,6 +112,34 @@ namespace Mechanect.Classes
             location.Y += (float)(velocity.Y * gameTime.ElapsedGameTime.TotalSeconds);
             velocity.Y -= (float)(9.8 * gameTime.ElapsedGameTime.TotalSeconds);
         }
-    
+        /// <summary>
+        /// Sets the texture for the Predator
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: May, 17 </para>
+        /// <para>DATE MODIFIED: May, 17  </para>
+        /// </remarks>
+        /// <param name="contentManager">A content Manager to get the texture from the directories</param>
+
+        public void setTexture(ContentManager contentManager)
+        {
+            fishTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
+        }
+
+        // <summary>
+        /// Draws The scaled sprite batch
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: May, 17 </para>
+        /// <para>DATE MODIFIED: May, 17  </para>
+        /// </remarks>
+        /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
+        /// <param name="scale"> The scaling of the texture</param>
+        void Draw(MySpriteBatch mySpriteBatch, float scale)
+        {
+            mySpriteBatch.DrawTexture(fishTexture, location, (float)Angle, scale);
+        }
     }
 }
