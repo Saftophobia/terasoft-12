@@ -79,6 +79,10 @@ Content\Textures\Experiment2\Sliders Images\easy.xnb
 Content\Textures\Experiment2\Sliders Images\hard.xnb
 Content\Textures\Experiment2\Sliders Images\medium.xnb
 Content\Textures\Experiment2\Sliders Images\Theme1.xnb
+Content\Textures\heightmaplarge.xnb
+Content\Textures\heightmaplargeflat.xnb
+Content\Textures\grass2.xnb
+Content\Textures\cloudMap.xnb
 Content\Ariel.xnb
 Content\SpriteFont1.xnb
 Content\Resources\TimesNewRoman.xnb
@@ -98,6 +102,7 @@ Content\Exp1\skybox2.xnb
 Content\Exp1\xwing.xnb
 Content\Textures\effects.xnb
 Content\Exp1\effects.xnb
+Content\Textures\MYHLSL.xnb
 Content\BEEP1B.xnb
 Content\StartBeep.xnb
 Content\TropicalFish12_0.xnb
