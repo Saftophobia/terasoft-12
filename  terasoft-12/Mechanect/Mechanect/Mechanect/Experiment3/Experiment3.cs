@@ -13,19 +13,22 @@ namespace Mechanect.Experimemnt3
 {
     public class Experiment3 : Mechanect.Common.GameScreen
     {
+        private Environment3 environment;
         private Ball ball;
+        private Hole hole;
         private Vector3 intialPosition;
-        private Vector3 shootPosition;
+        private Vector3 shootPosition, shootVelocity;
         private float arriveVelocity;
         private float friction;
 
         private TargetCamera targetCamera;
         private ModelLinearAnimation animation;
+        private ModelFramedAnimation ballFallAnimation;
         private Simulation simulation;
 
         private bool pauseScreenShowed;
         private bool ballStoot;
-        private bool simulationStarted;
+        private bool simulationStarted, ballFallingIntoHole;
 
 
         public Experiment3()
