@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment2
 {
     /// <summary>
     /// This Class responsible for functionalities that User will do when testing either Velocity or Angle
@@ -13,7 +13,7 @@ namespace Mechanect.Classes
     /// <para>Author: Mohamed Raafat</para>
     /// </remarks>
     /// </summary>
-    class User2 : Mechanect.Classes.User
+    class User2 : Mechanect.Common.User
     {
 
         /// <summary>

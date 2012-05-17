@@ -12,6 +12,7 @@ using UI.Cameras;
 using Mechanect.Common;
 using UI.Components;
 using Mechanect.Exp3;
+using Mechanecht.Common;
 namespace Mechanect.Exp3
 {
     public class Environment3
@@ -76,7 +77,7 @@ namespace Mechanect.Exp3
         private ContentManager Content;
         private SpriteBatch sprite;
 
-        public UI.Components.SkinnedModel PlayerModel { get; private set; }
+        public SkinnedCustomModel PlayerModel { get; private set; }
 
 
         //Texture2D grassTexture;
@@ -119,7 +120,7 @@ namespace Mechanect.Exp3
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitPos.X, ballInitPos.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             friction = 1.0f;
 
-            PlayerModel = new SkinnedModel(Content2.Load<Model>("dude"), shootingPos, 
+            PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), shootingPos, 
                 new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
         }
 
@@ -151,13 +152,11 @@ namespace Mechanect.Exp3
                 return Constants3.negativeRDifference;
 
             var finalPos = Vector3.Zero;
-            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
-            
+           
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
-            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
-
+            
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
             else
@@ -814,45 +813,7 @@ namespace Mechanect.Exp3
 
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Calculates the balls velocity after collision using conservation of momentum.
-        /// </summary>
-        /// <param name="initialVelocity">Legs initial velocity prior to collision.</param>
-        /// <returns>Vector3 Ball velocity after collision.</returns>
-        private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
-        {
-            double initialVelocityLeg, initialVelocityBall, finalVelocityBall, angle;
-
-            //Get the mass of the leg.
-            double assumedLegMass = user.AssumedLegMass;
-
-            //Get the mass of the ball.
-            double ballMass = ball.Mass;
-
-            double acceleration = -(friction + wind); //Deceleration of the ball due to resistance.
-
-            //Get the velocity of the ball right before the collision. 
-            //If shooting the ball .. initial balls velocity is its current velocity.. else calculate it.
-            if (!ballShot)
-                initialVelocityBall = Math.Sqrt((ball.InitialVelocity.Length() + (2 * acceleration * Math.Abs(Vector3.Distance(ball.Position, user.ShootingPosition)))));
-            else
-                initialVelocityBall = ball.Velocity.Length();
-
-            initialVelocityLeg = initialVelocity.Length();
-
-            //Calculate the angle with which the user has shot the ball.
-            angle = Math.Atan2(-initialVelocity.Z, initialVelocity.X);
-
-            //Calculate what will the ball's speed be after collision using conservation of momentum equation.
-            finalVelocityBall = ((assumedLegMass * initialVelocityLeg) + (ballMass * initialVelocityBall) - (assumedLegMass * (initialVelocityLeg * (1 - ballMass / ball.MaxMass)))) / ballMass;
-
-            //Return a vector containing the ball's speed and direction.
-          
-            return new Vector3((float)(finalVelocityBall * Math.Cos(angle)), 0, -(float)(finalVelocityBall * Math.Sin(angle)));
-        }
+   
 
         /// <summary>
         /// Gets the height of the terrain at any point.

@@ -2,11 +2,12 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SkinnedModel;
 
 
-namespace Compoenents
+namespace Mechanecht.Common
 {
-    public class SkinnedModel
+    public class SkinnedCustomModel
     {
         # region Fields
 
@@ -36,7 +37,7 @@ namespace Compoenents
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        public SkinnedModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
+        public SkinnedCustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
         {
             this.model = model;
             this.skinningData = model.Tag as SkinningData;

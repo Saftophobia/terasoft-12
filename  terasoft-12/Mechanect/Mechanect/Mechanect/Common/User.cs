@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
-using Mechanect.Common;
 
-namespace Mechanect.Classes
+namespace Mechanect.Common
 {
     public class User
     {

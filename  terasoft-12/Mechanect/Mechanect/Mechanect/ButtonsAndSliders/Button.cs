@@ -10,8 +10,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using ButtonsAndSliders;
+using Mechanect.Common;
 
-namespace ButtonsSliders
+namespace ButtonsAndSliders
 {
     public class Button
     {

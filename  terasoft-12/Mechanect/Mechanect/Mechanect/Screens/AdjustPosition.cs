@@ -13,6 +13,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using Mechanect.Common;
+using Mechanect.Experiment2;
+using ButtonsAndSliders;
+using Mechanect.Exp3;
 
 namespace Mechanect.Screens
 {

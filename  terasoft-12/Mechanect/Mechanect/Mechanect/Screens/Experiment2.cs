@@ -11,9 +11,12 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Mechanect.Cameras;
+using UI.Cameras;
 using Mechanect.Common;
-using System.Windows.Forms;
+
+using Mechanect.Experiment2;
+using Mechanect.Exp3;
+using ButtonsAndSliders;
 
 namespace Mechanect.Screens
 {
