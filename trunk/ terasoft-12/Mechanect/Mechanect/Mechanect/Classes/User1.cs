@@ -31,6 +31,32 @@ namespace Mechanect.Classes
                 activeCommand = value;
             }
         }
+
+        private List<float[]> velocitylist;
+        public List<float[]> Velocitylist
+        {
+            get
+            {
+                return velocitylist;
+            }
+            set
+            {
+                velocitylist = value;
+            }
+        }
+
+        private List<float> kneeposr;
+        public List<float> Kneeposr
+        {
+            get
+            {
+                return kneeposr;
+            }
+            set
+            {
+                kneeposr = value;
+            }
+        }
         private List<float> kneepos;
         public List<float> Kneepos
         { 
