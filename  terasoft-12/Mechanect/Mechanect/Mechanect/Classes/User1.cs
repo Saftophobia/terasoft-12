@@ -45,18 +45,7 @@ namespace Mechanect.Classes
             }
         }
 
-        private List<float> kneeposr;
-        public List<float> Kneeposr
-        {
-            get
-            {
-                return kneeposr;
-            }
-            set
-            {
-                kneeposr = value;
-            }
-        }
+        
         private List<float> kneepos;
         public List<float> Kneepos
         { 
@@ -67,6 +56,19 @@ namespace Mechanect.Classes
             set
             {
                 kneepos = value;
+            }
+        }
+
+        private List<float> kneeposr;
+        public List<float> Kneeposr
+        {
+            get
+            {
+                return kneeposr;
+            }
+            set
+            {
+                kneeposr = value;
             }
         }
         private List<float> positions;
