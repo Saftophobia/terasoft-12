@@ -211,7 +211,7 @@ namespace Mechanect.Classes
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 17/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawYLabels is used to add the values to be displayed on the Y-axis.
@@ -225,16 +225,16 @@ namespace Mechanect.Classes
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             //+ve part of the y-axis
-            int y = 0;
+            int y = 10;
             double[] current = g.YAxisDis(); ;
             for (int i = 0; i <= 2; i++)
             {
                 int counter = 60;
                 switch (i)
                 {
-                    case 1: y = 320; current = g.YAxisVel(); break;
-                    case 2: y = 650; current = g.YAxisAcc(); break;
-                    default: y = 0; current = g.YAxisDis(); break;
+                    case 1: y = 335; current = g.YAxisVel(); break;
+                    case 2: y = 665; current = g.YAxisAcc(); break;
+                    default: y = 10; current = g.YAxisDis(); break;
                 }
                 for (int j = 4; j >= 1; j--)
                 {
@@ -248,9 +248,9 @@ namespace Mechanect.Classes
                 int counter = 350;
                 switch (i)
                 {
-                    case 1: y = 320; current = g.YAxisVel(); break;
-                    case 2: y = 650; current = g.YAxisAcc(); break;
-                    default: y = 0; current = g.YAxisDis(); break;
+                    case 1: y = 335; current = g.YAxisVel(); break;
+                    case 2: y = 665; current = g.YAxisAcc(); break;
+                    default: y = 10; current = g.YAxisDis(); break;
                 }
                 for (int j = 1; j <= 4; j++)
                 {
