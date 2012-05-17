@@ -59,11 +59,6 @@ namespace Mechanect.Screens
         {
             Vector3 position = environment.ball.Position;
             c.Update();
-            if (environment.ball.Position.X >= environment.user.ShootingPosition.X && environment.ball.Position.Z >= environment.user.ShootingPosition.Z)
-            {
-                environment.Update(gameTime);
-
-            }
             environment.ball.Update(environment.Friction);
             
             environment.DistanceBar.Update(new Vector2(position.X,position.Z));
