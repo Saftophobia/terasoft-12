@@ -16,7 +16,7 @@ namespace Mechanect.Screens
     class Experiment3 : Mechanect.Common.GameScreen
 
     {
-        Environment3 environment;
+        Mechanect.Classes.Environment3 environment;
         GraphicsDevice graphics;
         Camera c;
         User3 user;
