@@ -41,7 +41,7 @@ namespace Mechanect
        
         Vector2 origin;
         Vector2 positionInScreen;
-        String instructions;
+        string instructions;
         Texture2D mytexture;
         public Texture2D MyTexture
         {
@@ -101,7 +101,7 @@ namespace Mechanect
             }
         }
 
-        public String Instructions
+        public string Instructions
         {
             get
             {
@@ -130,7 +130,7 @@ namespace Mechanect
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(String instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
+        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
         {
             this.instructions = instructions;
             this.origin = new Vector2(0f, 0f);
@@ -183,12 +183,12 @@ namespace Mechanect
         /// This Method would retrun the string, in wraped form
         /// </summary>
         /// <para>Author: Mohamed Raafat</para>
-        /// <returns>String</returns>
+        /// <returns>string</returns>
         
 
-        String getInsructions()
+        string getInsructions()
         {
-            String output = WrapText(this.instructions);
+            string output = WrapText(this.instructions);
             return output;
         }
 
@@ -197,25 +197,25 @@ namespace Mechanect
         /// </summary>
         /// <para>AUTHOR: Mohamed Raafat </para>
         /// <param name="text">text to be displayed on screen</param>
-        /// <returns>String</returns>
-        private String WrapText(String text)
+        /// <returns>string</returns>
+        private string WrapText(string text)
         {
-            String line = String.Empty;
-            String returnString = String.Empty;
-            String[] wordArray = text.Split(' ');
+            string line = string.Empty;
+            string returnstring = string.Empty;
+            string[] wordArray = text.Split(' ');
 
-            foreach (String word in wordArray)
+            foreach (string word in wordArray)
             {
                 if (spriteFont.MeasureString(line + word).Length() > rectangle.Width)
                 {
-                    returnString = returnString + line + '\n';
-                    line = String.Empty;
+                    returnstring = returnstring + line + '\n';
+                    line = string.Empty;
                 }
 
-                line = line + word + ' ';
+                line +=  word + ' ';
             }
 
-            return returnString + line;
+            return returnstring + line;
         }
     
         
