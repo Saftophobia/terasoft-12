@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation\Animation.cs" />
     <Compile Include="Animation\AnimationFrame.cs" />
     <Compile Include="Animation\ModelFramedAnimation.cs" />
     <Compile Include="Animation\ModelLinearAnimation.cs" />

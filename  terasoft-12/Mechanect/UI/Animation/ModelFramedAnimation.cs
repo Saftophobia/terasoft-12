@@ -11,29 +11,26 @@ namespace UI.Animation
     /// <remarks>
     /// Auther : Bishoy Bassem
     /// </remarks>
-    public class ModelFramedAnimation
+    public class ModelFramedAnimation : Animation
     {
+
         private List<AnimationFrame> frames = new List<AnimationFrame>();
-        private TimeSpan elapsedTime;
-        private CustomModel model;
 
         /// <summary>
         /// constructs a ModelFramedAnimation instance
         /// </summary>
         /// <param name="model">the 3d custom model</param>
         public ModelFramedAnimation(CustomModel model)
+            : base(model)
         {
-            this.model = model;
-            this.frames = new List<AnimationFrame>(); ;
-            AddFrame(model.Position, model.Rotation, TimeSpan.FromSeconds(0));
-            elapsedTime = TimeSpan.FromSeconds(0);
+           frames = new List<AnimationFrame>();
         }
 
         /// <summary>
         /// updates the model position and orientation according to the time elapsed
         /// </summary>
         /// <param name="elapsed">time offset from the last update</param>
-        public void Update(TimeSpan elapsed)
+        public override void Update(TimeSpan elapsed)
         {
 
             this.elapsedTime += elapsed;
@@ -85,6 +82,18 @@ namespace UI.Animation
         public void AddFrame(Vector3 position, Vector3 rotation, TimeSpan time)
         {
             frames.Add(new AnimationFrame(position, rotation, time));
+        }
+
+        public override bool Finished()
+        {
+            if (frames.Count == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return elapsedTime > frames[frames.Count - 1].Time;
+            }
         }
     }
 }
