@@ -43,6 +43,30 @@ namespace Mechanect.Experiment1
                 kneepos = value;
             }
         }
+        private List<float> kneeposr;
+        public List<float> Kneeposr
+        {
+            get
+            {
+                return kneeposr;
+            }
+            set
+            {
+                kneeposr = value;
+            }
+        }
+        private List<float[]> velocitylist;
+        public List<float[]> Velocitylist
+        {
+            get
+            {
+                return velocitylist;
+            }
+            set
+            {
+                velocitylist = value;
+            }
+        }
         private List<float> positions;
         public List<float> Positions
         {
