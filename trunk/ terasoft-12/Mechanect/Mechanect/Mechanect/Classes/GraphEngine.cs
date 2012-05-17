@@ -32,7 +32,7 @@ namespace Mechanect.Classes
             {
                 try
                 {
-                    double dt = ((double)1 / (double)12);
+                    double dt = ((double)1 / (double)24);
                     float currentVelocity = ((float)(DisplacementList[i] - DisplacementList[i - 1]) / (float)(dt)) * -1;
                     result.Add(currentVelocity);
                 }
@@ -62,7 +62,7 @@ namespace Mechanect.Classes
             {
                 try
                 {
-                    double dt = ((double)1 / (double)12);
+                    double dt = ((double)1 / (double)24);
                     float currentAcceleration = (float)((VelocityList[i] - VelocityList[i - 1]) / dt);
                     result.Add(currentAcceleration);
                 }
@@ -195,7 +195,7 @@ namespace Mechanect.Classes
         public static void SetNewTime(List<double> time, List<string> Commands, PerformanceGraph g)
         {
             int newSize = g.getP1Disp().Count;
-            double newTime = ((double)newSize / (double)12);
+            double newTime = ((double)newSize / (double)24);
             Boolean t = false;
             int count = 0;
             double acc = 0;
@@ -244,7 +244,7 @@ namespace Mechanect.Classes
                 {
                     if (g.getP1Disp()[i] == 0)
                     {
-                        g.setWin1((double)i / (double)12);
+                        g.setWin1((double)i / (double)24);
                         found1 = true;
                     }
                 }
@@ -252,7 +252,7 @@ namespace Mechanect.Classes
                 {
                     if (g.getP2Disp()[i] == 0)
                     {
-                        g.setWin2((double)i / (double)12);
+                        g.setWin2((double)i / (double)24);
                         found2 = true;
                     }
                 }
@@ -260,7 +260,7 @@ namespace Mechanect.Classes
                 {
                     if (g.getOptD()[i] == 0)
                     {
-                        g.setWin3((double)i / (double)12);
+                        g.setWin3((double)i / (double)24);
                         found3 = true;
                     }
                 }
@@ -303,7 +303,7 @@ namespace Mechanect.Classes
             int timeCounter = 0;
             for (int i = 0; i <= g.getChosenTimings().Length - 1; i++)
             {
-                g.getChosenTimings()[i] = (int)(12 * g.getTotalTime() * ((double)timeCounter / (double)g.getSamples()));
+                g.getChosenTimings()[i] = (int)(24 * g.getTotalTime() * ((double)timeCounter / (double)g.getSamples()));
                 timeCounter++;
             }
             int u = 0;
@@ -343,9 +343,9 @@ namespace Mechanect.Classes
         {
             g.setMaxVelocity(0);
             g.setMaxAcceleration(0);
-            int p1WinningFrame = (int)(12 * g.getWin1());
-            int p2WinningFrame = (int)(12 * g.getWin2());
-            int p3WinningFrame = (int)(12 * g.getWin3());
+            int p1WinningFrame = (int)(24 * g.getWin1());
+            int p2WinningFrame = (int)(24 * g.getWin2());
+            int p3WinningFrame = (int)(24 * g.getWin3());
             for (int i = 0; i <= g.getSamples(); i++)
             {
                 float[] velocity = new float[3];
