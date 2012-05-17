@@ -113,7 +113,6 @@ namespace Mechanect.Common
                     {
                         if (firstScreen)
                         {
-                            screen.HandleInput();
                             firstScreen = false;
                         }
 
