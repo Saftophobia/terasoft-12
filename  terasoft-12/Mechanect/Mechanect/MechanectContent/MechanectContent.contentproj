@@ -144,10 +144,6 @@
       <Project>{9C683759-D9CF-423E-87B1-153097BE2820}</Project>
       <Name>GifAnimation.Pipeline</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SkinnedModelPipeline\SkinnedModelPipeline.csproj">
-      <Project>{4636C7E1-B845-4B83-B96D-64A11B8A4515}</Project>
-      <Name>SkinnedModelPipeline</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SpriteFont1.spritefont">
