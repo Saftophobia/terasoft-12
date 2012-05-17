@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using UI.Animation;
 using UI.Cameras;
 
-namespace Mechanect.Experimemnt3
+namespace Mechanect.Experiment3
 {
     /// <summary>
     /// represents the simulation of the result

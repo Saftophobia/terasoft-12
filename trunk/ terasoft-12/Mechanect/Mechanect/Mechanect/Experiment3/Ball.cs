@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using UI.Components;
 
-namespace Mechanect.Experimemnt3
+namespace Mechanect.Experiment3
 {
     public class Ball : CustomModel
     {

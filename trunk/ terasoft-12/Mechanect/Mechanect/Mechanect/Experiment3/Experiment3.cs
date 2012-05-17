@@ -9,7 +9,7 @@ using UI.Cameras;
 using UI.Animation;
 using Mechanect.Classes;
 
-namespace Mechanect.Experimemnt3
+namespace Mechanect.Experiment3
 {
     public class Experiment3 : Mechanect.Common.GameScreen
     {
@@ -86,7 +86,7 @@ namespace Mechanect.Experimemnt3
             {
                 //update distance bar
             }
-            if (!ballFallingIntoHole && animation.AnimationStoped && (Vector3.Distance(new Vector3(ball.Position.X, 0, ball.Position.Z), hole.Position) < (ball.Radius + hole.Radius)))
+            /*if (!ballFallingIntoHole && animation.AnimationStoped && (Vector3.Distance(new Vector3(ball.Position.X, 0, ball.Position.Z), hole.Position) < (ball.Radius + hole.Radius)))
             {
                 ballFallingIntoHole = true;
                 AnimateBallFalling();
@@ -98,7 +98,7 @@ namespace Mechanect.Experimemnt3
                 ballFallAnimation.Update(gameTime.ElapsedGameTime);
 
             //update ball height
-            ball.setHeight(environment.GetHeight(ball.Position));
+            ball.setHeight(environment.GetHeight(ball.Position));*/
 
             base.Update(gameTime, covered);
         }
