@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class Moving2DAvatar
     {

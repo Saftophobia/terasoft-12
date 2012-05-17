@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using UI.Cameras;
 
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class Environment1
     {

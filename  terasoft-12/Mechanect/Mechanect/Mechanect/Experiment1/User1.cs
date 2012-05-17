@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
-    class User1
+    public class User1
     {
 
         public Skeleton skeleton;

@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using UI.Cameras;
 using Mechanect.Common;
+using Mechanect.Experiment1;
 
 
 namespace Mechanect.Screens
@@ -87,11 +88,11 @@ namespace Mechanect.Screens
             graphics = ScreenManager.GraphicsDevice;
             //-----------------------initializetimecountand commands--------------------------
             racecommands = gCommands;
-            Mechanect.Classes.Tools1.commandshuffler<string>(racecommands);
+            Tools1.commandshuffler<string>(racecommands);
             //racecommands = racecommands.Concat<string>(racecommands).ToList<string>(); // copy the list for more Commands
             // foreach (string s in racecommands)
             //   System.Console.WriteLine(s);
-            timeslice = Mechanect.Classes.Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
+            timeslice = Tools1.generaterandomnumbers(racecommands.Count); //sets a time slice for each command
             // foreach (int s in timeslice)
             //  System.Console.WriteLine(s);
             racecommandsforDRAW = new List<string>();

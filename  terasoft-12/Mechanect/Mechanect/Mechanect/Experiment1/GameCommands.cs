@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class GameCommands
     {

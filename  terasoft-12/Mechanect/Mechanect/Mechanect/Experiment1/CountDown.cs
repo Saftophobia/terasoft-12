@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class CountDown
     {
