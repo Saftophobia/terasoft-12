@@ -14,9 +14,8 @@ namespace Mechanect.Exp3
     public class Experiment3 : Mechanect.Common.GameScreen
     {
         private Ball ball;
-        private Hole hole;
         private Vector3 intialPosition;
-        private Vector3 shootPosition, shootVelocity;
+        private Vector3 shootPosition;
         private float arriveVelocity;
         private float friction;
 
@@ -70,8 +69,8 @@ namespace Mechanect.Exp3
                 //update distance bar
                 if (distance / totalDistance > 1)
                 {
-                    //firstAnimation = false;
-                    //ShootBall(new Vector3(10, 0, -10));
+                    firstAnimation = false;
+                    ShootBall(new Vector3(10, 0, -10));
                 }
             }
             else if (animation.Finished() && simulation == null)
@@ -95,7 +94,7 @@ namespace Mechanect.Exp3
 
             if (environment.hasBallEnteredShootRegion())
             {
-                shootVelocity = 4 * environment.Shoot(gameTime);
+                Vector3 shootVelocity = 4 * environment.Shoot(gameTime);
                 if (user.hasShot)
                 {
                     if (shootVelocity.Length() != 0)
@@ -150,13 +149,11 @@ namespace Mechanect.Exp3
         public override void Draw(GameTime gameTime)
         {
             Camera camera = targetCamera;
-
-            environment.DrawEnvironment(camera, gameTime);
             if (simulation != null)
             {
                 camera = simulation.Camera;
             }
-            // draw environment
+            environment.DrawEnvironment(camera, gameTime);
             ball.Draw(camera);
             if (firstAnimation)
             {
