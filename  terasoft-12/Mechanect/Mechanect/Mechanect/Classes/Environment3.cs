@@ -79,7 +79,8 @@ namespace Mechanect.Classes
 
 
         //Texture2D grassTexture;
-
+        Texture2D cloudMap;
+        Model skyDome;
 
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
@@ -279,7 +280,13 @@ namespace Mechanect.Classes
         {
             
             effect = Content.Load<Effect>("Textures/effects");
+            
+            //effect = Content.Load<Effect>("MYHLSL");
             //grassTexture = Content.Load<Texture2D>("grass2");
+            //skyDome = Content.Load<Model>("dome");
+            //cloudMap = Content.Load<Texture2D>("cloudMap");
+            //skyDome.Meshes[0].MeshParts[0].Effect = effect.Clone();
+            //Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
 
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmap");
             LoadHeightData(heightMap);
@@ -608,6 +615,36 @@ namespace Mechanect.Classes
             device.DepthStencilState = dss;
         }
 
+        /*
+        private void DrawSkyDome(Camera c,Matrix currentViewMatrix)
+        {
+            DepthStencilState dss = new DepthStencilState();
+            dss.DepthBufferWriteEnable = false;
+            device.DepthStencilState = dss;
+
+            Matrix[] modelTransforms = new Matrix[skyDome.Bones.Count];
+            skyDome.CopyAbsoluteBoneTransformsTo(modelTransforms);
+
+            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(cameraPosition);
+            foreach (ModelMesh mesh in skyDome.Meshes)
+            {
+                foreach (Effect currentEffect in mesh.Effects)
+                {
+                    Matrix worldMatrix = modelTransforms[mesh.ParentBone.Index] * wMatrix;
+                    currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
+                    currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
+                    currentEffect.Parameters["xView"].SetValue(c.View);
+                    currentEffect.Parameters["xProjection"].SetValue(c.Projection);
+                    currentEffect.Parameters["xTexture"].SetValue(cloudMap);
+                    currentEffect.Parameters["xEnableLighting"].SetValue(false);
+                }
+                mesh.Draw();
+            }
+            DepthStencilState dss2 = new DepthStencilState();
+            dss2.DepthBufferWriteEnable = true;
+            device.DepthStencilState = dss2;
+        }
+        */
 
 
         #endregion
