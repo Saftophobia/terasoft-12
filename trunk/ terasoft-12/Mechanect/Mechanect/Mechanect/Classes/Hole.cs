@@ -7,7 +7,7 @@ using Mechanect.Cameras;
 
 namespace Mechanect.Classes
 {
-    class Hole
+    public class Hole
     {
         private int radius;
         public int Radius
