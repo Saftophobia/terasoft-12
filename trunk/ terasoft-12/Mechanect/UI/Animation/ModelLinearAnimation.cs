@@ -10,16 +10,19 @@ namespace UI.Animation
     /// <remarks>
     /// Auther : Bishoy Bassem
     /// </remarks>
-    public class ModelLinearAnimation
+    public class ModelLinearAnimation : Animation
     {
 
         private Vector3 startPosition, startAngle, velocity;
         private float acceleration;
-        private TimeSpan elapsedTime;
         private TimeSpan duration;
-        private CustomModel model;
-        private bool enableRotation;
-        public bool AnimationStoped { get; private set; }
+        public Vector3 Displacement
+        {
+            get
+            {
+                return model.Position - startPosition;
+            }
+        }
 
         /// <summary>
         /// constructs a ModelLinearAnimation instance
@@ -27,18 +30,16 @@ namespace UI.Animation
         /// <param name="model">the 3d custom model</param>
         /// <param name="velocity">the object's velocity vector</param>
         /// <param name="acceleration">the object's acceleration vector</param>
-        /// <param name="enableRotation">enables object rotation</param>
         /// <param name="duration">animation duration</param>
-        public ModelLinearAnimation(CustomModel model, Vector3 velocity, float acceleration, TimeSpan duration, bool enableRotation)
+        public ModelLinearAnimation(CustomModel model, Vector3 velocity, float acceleration, TimeSpan duration)
+            : base(model)
         {
-            this.model = model;
             startPosition = model.Position;
             startAngle = model.Rotation;
 
             this.velocity = velocity;
             this.acceleration = acceleration;
             this.duration = duration;
-            this.enableRotation = enableRotation;
 
             if (acceleration < 0)
             {
@@ -46,40 +47,22 @@ namespace UI.Animation
             }
         }
 
-        public ModelLinearAnimation(CustomModel model, Vector3 endPosition, float finalVelocity, float acceleration, bool enableRotation)
-        {
-            this.model = model;
-            startPosition = model.Position;
-            startAngle = model.Rotation;
-
-            Vector3 displacement = endPosition - startPosition;
-            this.velocity = Physics.Functions.CalculateIntialVelocity(displacement, finalVelocity, acceleration);
-            this.acceleration = acceleration;
-            this.duration = Physics.Functions.CalculateTime(displacement.Length(), velocity.Length(), finalVelocity);
-            this.enableRotation = enableRotation;
-        }
-
         /// <summary>
-        /// updates the model position and orientation according to the time elapsed
+        /// updates the model position according to the time elapsed
         /// </summary>
         /// <param name="elapsed">time offset from the last update</param>
-        public void Update(TimeSpan elapsed)
+        public override void Update(TimeSpan elapsed)
         {
             this.elapsedTime += elapsed;
-            if (elapsedTime.TotalSeconds < duration.TotalSeconds)
+            if (elapsedTime < duration)
             {
-                Vector3 displacement = Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
-                model.Position = startPosition + displacement;
-                if (enableRotation)
-                {
-                    model.Rotation = startAngle + new Vector3(displacement.Length() / 3, (float) Math.Atan2(displacement.X, displacement.Z), 0);
-                }
+                model.Position = startPosition + Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
             }
-            else
-            {
-                AnimationStoped = true;
-            }
+        }
 
+        public override bool Finished()
+        {
+            return elapsedTime > duration;
         }
     }
 }
