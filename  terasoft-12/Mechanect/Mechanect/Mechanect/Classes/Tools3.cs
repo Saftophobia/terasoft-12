@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Classes
 {
-    class Tools3
+    public class Tools3
     {
       
 
