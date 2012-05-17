@@ -240,7 +240,7 @@ namespace Mechanect.Classes
             if ((ballVelocity.X <= (optimumVx + tolerance.X)) && (ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius))
             && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
             {
-                BallFallIntoHole();
+                //BallFallIntoHole();
                 Tools3.DislayIsWin(sprite,Content,Vector2.Zero, true);
             }
 
@@ -624,60 +624,25 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// Update Method.
-        /// </summary>
-        public void Update(GameTime gameTime)
-        {
-            user.UpdateMeasuringVelocityAndAngle(gameTime);
-            CheckCollision();
-            Shoot();
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Initialize Method.
-        /// </summary>
-        public void Initialize()
-        {
-            hasCollidedWithBall = false;
-            ballShot = false;
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
         /// Updates the balls velocity according to the speed and angle the user shot with.
         /// </summary>
-        private void Shoot()
+        public Vector3 Shoot(GameTime gameTime)
         {
-            
-            Vector3 initialLegVelocity  = user.velocity; //This variable represents the velocity of the leg with which the user has shot the ball.
-           
-            
-            if (hasCollidedWithBall && !ballShot)
-            {
-                ballShot = true;
-                Vector3 velocityAfterCollision = GetVelocityAfterCollision(initialLegVelocity); //calculate the velocity of the ball right after the collision
-                ball.Velocity = velocityAfterCollision; // update the velocity of the ball
+            user.UpdateMeasuringVelocityAndAngle(gameTime);
+            Vector3 legVelocity = user.velocity;
+            return legVelocity;
 
-                this.ball.Velocity = velocityAfterCollision;
-            }
+
         }
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Checks if the ball has entered the range in which the user can shoot in.
-        /// </summary>
-        private void CheckCollision()
+
+        public bool hasBallEnteredShootRegion()
         {
-            Vector3 currentBallPos = new Vector3(ball.Position.X, 0, ball.Position.Y);
-            if (Math.Abs(currentBallPos.Length() - user.ShootingPosition.Length()) <= 10)
-                hasCollidedWithBall = true;
+            float ballPosX = ball.Position.X;
+            float ballPosZ = ball.Position.Z;
+            return ballPosX <= Constants3.maxShootingX && ballPosX >= Constants3.minShootingX && ballPosZ <= Constants3.maxShootingZ && ballPosZ >= Constants3.minShootingZ;
+
         }
+
         /// <remarks>
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
@@ -728,29 +693,16 @@ namespace Mechanect.Classes
         /// Specifies the point you want to get the height of the terrain at.</param>
         public float GetHeight(Vector3 Position)
         {
-            int xComponent = (int)Position.X;
-            int yComponent = (int)Position.Y;
-            return heightData[xComponent + terrainWidth / 2, yComponent + terrainHeight / 2];
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Simulates ball falling into a hole by updating its velocity when it reaches the hole.
-        /// </summary>
-        private void BallFallIntoHole()
-        {
-            //Waiting for completed class Hole from Khaled Salah
-
-            //Get the balls Velocity.
-            Vector3 newVelocity = ball.Velocity;
-
-            //Set the balls velocity to the old velocity plus -10j (Downward Motion)
-            newVelocity = Vector3.Add(newVelocity, new Vector3(0, -10, 0));
-
-            //Update the balls velocity
-            ball.Velocity = newVelocity;
+            try
+            {
+                int xComponent = (int)Position.X;
+                int yComponent = (int)Position.Y;
+                return heightData[xComponent + terrainWidth / 2, yComponent + terrainHeight / 2];
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                return 0 + ball.Radius;
+            }
         }
         #endregion
     }
