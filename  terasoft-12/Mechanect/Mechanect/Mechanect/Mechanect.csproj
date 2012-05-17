@@ -118,18 +118,50 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Environment1.cs" />
-    <Compile Include="Classes\exp1finale.cs" />
-    <Compile Include="Classes\GraphEngine.cs" />
-    <Compile Include="Classes\GraphUI.cs" />
-    <Compile Include="Classes\MySpriteBatch.cs" />
-    <Compile Include="Classes\SkinnedModel.cs" />
-    <Compile Include="Classes\OptimumEngine.cs" />
-    <Compile Include="Classes\ThemeAndLevel.cs" />
-    <Compile Include="Experiment3\Ball.cs" />
-    <Compile Include="Experiment3\BallAnimation.cs" />
-    <Compile Include="Experiment3\Experiment3.cs" />
-    <Compile Include="Experiment3\Simulation.cs" />
+    <Compile Include="ButtonsAndSliders\Button.cs" />
+    <Compile Include="ButtonsAndSliders\Slider.cs" />
+    <Compile Include="ButtonsAndSliders\Timer1.cs" />
+    <Compile Include="Common\Game1.cs" />
+    <Compile Include="Common\Instruction.cs" />
+    <Compile Include="Common\PositionAdjustment.cs" />
+    <Compile Include="Common\Program.cs" />
+    <Compile Include="Common\SkinnedCustomModel.cs" />
+    <Compile Include="Common\User.cs" />
+    <Compile Include="Common\VoiceCommands.cs" />
+    <Compile Include="Experiment1\AvatarprogUI.cs" />
+    <Compile Include="Experiment1\CountDown.cs" />
+    <Compile Include="Experiment1\drawstring.cs" />
+    <Compile Include="Experiment1\Environment1.cs" />
+    <Compile Include="Experiment1\exp1finale.cs" />
+    <Compile Include="Experiment1\Game.cs" />
+    <Compile Include="Experiment1\Game1b.cs" />
+    <Compile Include="Experiment1\GameCommands.cs" />
+    <Compile Include="Experiment1\GraphEngine.cs" />
+    <Compile Include="Experiment1\GraphUI.cs" />
+    <Compile Include="Experiment1\Moving2DAvatar.cs" />
+    <Compile Include="Experiment1\OptimumEngine.cs" />
+    <Compile Include="Experiment1\PerformanceGraph.cs" />
+    <Compile Include="Experiment1\Tools1.cs" />
+    <Compile Include="Experiment1\User1.cs" />
+    <Compile Include="Experiment2\Aquarium.cs" />
+    <Compile Include="Experiment2\Environment2.cs" />
+    <Compile Include="Experiment2\MySpriteBatch.cs" />
+    <Compile Include="Experiment2\Predator.cs" />
+    <Compile Include="Experiment2\Prey.cs" />
+    <Compile Include="Experiment2\ThemeAndLevel.cs" />
+    <Compile Include="Experiment2\Tools2.cs" />
+    <Compile Include="Experiment2\User2.cs" />
+    <Compile Include="Exp3\Ball.cs" />
+    <Compile Include="Exp3\BallAnimation.cs" />
+    <Compile Include="Exp3\Bar.cs" />
+    <Compile Include="Exp3\Constants3.cs" />
+    <Compile Include="Exp3\Environment3.cs" />
+    <Compile Include="Exp3\Experiment3.cs" />
+    <Compile Include="Exp3\Hole.cs" />
+    <Compile Include="Exp3\LevelSelect.cs" />
+    <Compile Include="Exp3\Simulation.cs" />
+    <Compile Include="Exp3\Tools3.cs" />
+    <Compile Include="Exp3\User3.cs" />
     <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
@@ -137,61 +169,15 @@
     <Compile Include="Screens\Settings2.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
     <Compile Include="Screens\UserAvatarScreen.cs" />
-    <Compile Include="Classes\Aquarium.cs" />
-    <Compile Include="Classes\Avatar.cs" />
-    <Compile Include="Classes\AvatarprogUI.cs" />
-    <Compile Include="Classes\Ball.cs" />
-    <Compile Include="Classes\Bar.cs" />
-    <Compile Include="Classes\Constants1.cs" />
-    <Compile Include="Classes\Constants2.cs" />
-    <Compile Include="Classes\Constants3.cs" />
-    <Compile Include="Classes\CountDown.cs" />
-    <Compile Include="Classes\drawstring.cs" />
-    <Compile Include="Classes\Environment2.cs" />
-    <Compile Include="Classes\Environment3.cs" />
-    <Compile Include="Classes\Game1b.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classes\GameCommands.cs" />
-    <Compile Include="Classes\Hole.cs" />
-    <Compile Include="Classes\Instruction.cs" />
-    <Compile Include="Classes\LevelSelect.cs" />
-    <Compile Include="Classes\PerformanceGraph.cs" />
-    <Compile Include="Classes\PositionAdjustment.cs" />
-    <Compile Include="Classes\Predator.cs" />
-    <Compile Include="Classes\Prey.cs" />
-    <Compile Include="Classes\ResultSimulation.cs" />
-    <Compile Include="Classes\Tools1.cs" />
-    <Compile Include="Classes\Tools2.cs" />
-    <Compile Include="Classes\Tools3.cs" />
-    <Compile Include="Classes\User.cs" />
-    <Compile Include="Classes\User1.cs" />
-    <Compile Include="Classes\User2.cs" />
-    <Compile Include="Classes\User3.cs" />
-    <Compile Include="Classes\VoiceCommands.cs" />
-    <Compile Include="Cameras\Camera.cs" />
-    <Compile Include="Cameras\ChaseCamera.cs" />
-    <Compile Include="Cameras\TargetCamera.cs" />
-    <Compile Include="Common\AnimationFrame.cs" />
-    <Compile Include="Common\Button.cs" />
-    <Compile Include="Common\CustomModel.cs" />
     <Compile Include="Common\GameScreen.cs" />
     <Compile Include="Common\MKinect.cs" />
-    <Compile Include="Common\ModelFramedAnimation.cs" />
-    <Compile Include="Common\ModelLinearAnimation.cs" />
     <Compile Include="Common\ScreenManager.cs" />
-    <Compile Include="Common\Slider.cs" />
-    <Compile Include="Common\Timer1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Program.cs" />
-    <Compile Include="Classes\Game1.cs" />
     <Compile Include="Screens\AdjustPosition.cs" />
     <Compile Include="Screens\AllExperiments.cs" />
     <Compile Include="Screens\CommonPauseScreen.cs" />
-    <Compile Include="Screens\SimulationScreen.cs" />
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experiment2.cs" />
-    <Compile Include="Screens\Experiment3.cs" />
     <Compile Include="Screens\InstructionsScreen2.cs" />
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
@@ -252,10 +238,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Experiment1\" />
-    <Folder Include="Experiment2\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
