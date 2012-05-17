@@ -14,6 +14,7 @@ namespace Mechanect.Exp3
     public class Experiment3 : Mechanect.Common.GameScreen
     {
         private Ball ball;
+        private Hole hole;
         private Vector3 intialPosition;
         private Vector3 shootPosition, shootVelocity;
         private float arriveVelocity;
@@ -43,13 +44,13 @@ namespace Mechanect.Exp3
         {
             targetCamera = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
-            animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero);
+            animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
             environment = new Environment3(ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
         }
 
         public void ShootBall(Vector3 velocity)
         {
-            animation = new BallAnimation(ball, velocity, friction, Vector3.Zero);
+            animation = new BallAnimation(ball, velocity, friction, Vector3.Zero, 0);
         }
 
         public override void Update(GameTime gameTime, bool covered)
@@ -84,16 +85,6 @@ namespace Mechanect.Exp3
                 }
             }
 
-            /*if (!ballFallingIntoHole && animation.AnimationStoped && (Vector3.Distance(new Vector3(ball.Position.X, 0, ball.Position.Z), hole.Position) < (ball.Radius + hole.Radius)))
-            {
-                ballFallingIntoHole = true;
-                AnimateBallFalling();
-            }
-            
-
-            if (ballFallAnimation != null)
-                ballFallAnimation.Update(gameTime.ElapsedGameTime);
-            */
             targetCamera.Update();
             animation.Update(gameTime.ElapsedGameTime);
             //update ball height
