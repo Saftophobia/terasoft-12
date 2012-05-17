@@ -131,6 +131,26 @@ namespace Mechanect.Exp3
             ballFallAnimation.AddFrame(hole.Position, Vector3.Zero, TimeSpan.FromSeconds(0.75));*/
         }
 
+
+        /// <summary>
+        /// Calculates Velocity after collision using conservation of momentum laws.
+        /// </summary>
+        /// <param name="initialVelocity">Initial velocity before collision.</param>
+        /// <returns>Vector3 velocity after collision</returns>
+        private Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
+        {
+            double ballMass, legMass, initialLegVelocity;
+
+            initialLegVelocity = initialVelocity.Length();
+            ballMass = ball.Mass;
+            legMass = user.AssumedLegMass;
+
+            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
+            Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
+
+            return normalizedVector * finalVelocity;
+        }
+
         public override void Draw(GameTime gameTime)
         {
             Camera camera = targetCamera;
