@@ -79,8 +79,13 @@ namespace Mechanect.Classes
 
 
         //Texture2D grassTexture;
-        Texture2D cloudMap;
-        Model skyDome;
+        //Texture2D cloudMap;
+        //Model skyDome;
+        //RenderTarget2D cloudsRenderTarget;
+        //Texture2D cloudStaticMap;
+        //VertexPositionTexture[] fullScreenVertices;
+
+
 
         public Environment3(SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user)
         {
@@ -342,48 +347,50 @@ namespace Mechanect.Classes
             }
             DrawHole(c);
         }
-       
+
         /*
-        protected void DrawEnvironment(Camera c, GameTime gameTime)
-        {
-            float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
+        protected void DrawEnvironment(GameTime gameTime)
+       {
+           float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
 
-            //Clears the Z buffer
-            device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
-            DrawSkybox(c);
-            //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
-            RasterizerState rs = new RasterizerState();
-            rs.CullMode = CullMode.None;
-            rs.FillMode = FillMode.Solid;
-            device.RasterizerState = rs;
+           //Clears the Z buffer
+           device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+           GeneratePerlinNoise(time);
+           DrawSkyDome(viewMatrix);
 
-            Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
-            //Matrix worldMatrix = Matrix.Identity;
-            //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
-            effect.CurrentTechnique = effect.Techniques["Textured"];
-            Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
-            lightDirection.Normalize();
-            effect.Parameters["xLightDirection"].SetValue(lightDirection);
-            effect.Parameters["xAmbient"].SetValue(0.1f);
-            effect.Parameters["xEnableLighting"].SetValue(true);
-            effect.Parameters["xView"].SetValue(c.View);
-            effect.Parameters["xProjection"].SetValue(c.Projection);
-            effect.Parameters["xWorld"].SetValue(worldMatrix);
-            effect.Parameters["xTexture"].SetValue(grassTexture);
-            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
+           //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
+           RasterizerState rs = new RasterizerState();
+           rs.CullMode = CullMode.None;
+           rs.FillMode = FillMode.Solid;
+           device.RasterizerState = rs;
 
-                device.Indices = myIndexBuffer;
-                device.SetVertexBuffer(myVertexBuffer);
+           Matrix worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f) * Matrix.CreateRotationY(angle);
+           //Matrix worldMatrix = Matrix.Identity;
+           //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
+           effect.CurrentTechnique = effect.Techniques["Textured"];
+           Vector3 lightDirection = new Vector3(1.0f, -1.0f, -1.0f);
+           lightDirection.Normalize();
+           effect.Parameters["xLightDirection"].SetValue(lightDirection);
+           effect.Parameters["xAmbient"].SetValue(0.1f);
+           effect.Parameters["xEnableLighting"].SetValue(true);
+           effect.Parameters["xView"].SetValue(viewMatrix);
+           effect.Parameters["xProjection"].SetValue(projectionMatrix);
+           effect.Parameters["xWorld"].SetValue(worldMatrix);
+           effect.Parameters["xTexture"].SetValue(grassTexture);
+           foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+           {
+               pass.Apply();
 
-                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
+               device.Indices = myIndexBuffer;
+               device.SetVertexBuffer(myVertexBuffer);
 
-            }
-        }
+               device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
+               
+           }
+       }
         
          */
- 
+
         /// <summary>
         /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
         /// </summary>
@@ -417,7 +424,8 @@ namespace Mechanect.Classes
 
         }
 
-        /*private void SetUpVertices()
+        /*
+           private void SetUpVertices()
        {
            vertices = new VertexPositionNormalTexture[terrainWidth * terrainHeight];
 
@@ -431,6 +439,9 @@ namespace Mechanect.Classes
                }
            }
 
+           fullScreenVertices = SetUpFullscreenVertices();
+           fullScreenVertexDeclaration = new VertexDeclaration(VertexPositionTexture.VertexDeclaration.GetVertexElements());
+       }
           
        }*/
 
@@ -644,9 +655,62 @@ namespace Mechanect.Classes
             dss2.DepthBufferWriteEnable = true;
             device.DepthStencilState = dss2;
         }
+        
+
+        private Texture2D CreateStaticMap(int resolution)
+        {
+            Random rand = new Random();
+            Color[] noisyColors = new Color[resolution * resolution];
+
+            for (int x = 0; x < resolution; x++)
+            {
+                for (int y = 0; y < resolution; y++)
+                {
+                    noisyColors[x + y * resolution] = new Color(new Vector3((float)rand.Next(1000) / 1000.0f, 0, 0));
+                }
+            }
+            Texture2D noiseImage = new Texture2D(device, 32, 32, false, SurfaceFormat.Color);
+            noiseImage.SetData(noisyColors);
+            return noiseImage;
+        }
+
+        private VertexPositionTexture[] SetUpFullscreenVertices()
+        {
+            VertexPositionTexture[] vertices = new VertexPositionTexture[4];
+            vertices[0] = new VertexPositionTexture(new Vector3(-1, 1, 0f), new Vector2(0, 1));
+            vertices[1] = new VertexPositionTexture(new Vector3(1, 1, 0f), new Vector2(1, 1));
+            vertices[2] = new VertexPositionTexture(new Vector3(-1, -1, 0f), new Vector2(0, 0));
+            vertices[3] = new VertexPositionTexture(new Vector3(1, -1, 0f), new Vector2(1, 0));
+
+            return vertices;
+        }
+
+
+
+        private void GeneratePerlinNoise(float time)
+        {
+
+            device.SetRenderTarget(cloudsRenderTarget);
+            device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
+
+            effect.CurrentTechnique = effect.Techniques["PerlinNoise"];
+            effect.Parameters["xTexture"].SetValue(cloudStaticMap);
+            effect.Parameters["xOvercast"].SetValue(1.1f);
+            effect.Parameters["xTime"].SetValue(time / 1000.0f);
+
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+
+                pass.Apply();
+                device.DrawUserPrimitives(PrimitiveType.TriangleStrip, fullScreenVertices, 0, 2);
+
+
+            }
+
+            device.SetRenderTarget(null);
+            cloudMap = cloudsRenderTarget;
+        }
         */
-
-
         #endregion
 
         #region Hole methods
