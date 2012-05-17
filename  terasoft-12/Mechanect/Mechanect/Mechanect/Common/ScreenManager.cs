@@ -13,7 +13,7 @@ namespace Mechanect.Common
     {
         #region Fields
         List<GameScreen> screens = new List<GameScreen>();
-        List<GameScreen> screensToUpdate = new List<GameScreen>();
+        public List<GameScreen> screensToUpdate = new List<GameScreen>();
 
         SpriteBatch spriteBatch;
 
