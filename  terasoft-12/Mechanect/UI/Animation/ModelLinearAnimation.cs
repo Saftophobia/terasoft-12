@@ -60,6 +60,9 @@ namespace UI.Animation
             }
         }
 
+        /// <summary>
+        /// returns true if the animation finished
+        /// </summary>
         public override bool Finished()
         {
             return elapsedTime > duration;
