@@ -624,8 +624,10 @@ namespace Mechanect.Classes
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// Updates the balls velocity according to the speed and angle the user shot with.
+        /// Returns the balls velocity according to the speed and angle the user shot with.
         /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <returns>Vector3 Ball velocity after collision.</returns>
         public Vector3 Shoot(GameTime gameTime)
         {
             user.UpdateMeasuringVelocityAndAngle(gameTime);
@@ -635,6 +637,13 @@ namespace Mechanect.Classes
 
         }
 
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Checks whether the ball entered the region user can shoot in.
+        /// </summary>
+        /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
         public bool hasBallEnteredShootRegion()
         {
             float ballPosX = ball.Position.X;
