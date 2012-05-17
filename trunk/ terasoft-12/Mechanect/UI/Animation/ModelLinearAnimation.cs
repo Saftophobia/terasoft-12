@@ -13,7 +13,8 @@ namespace UI.Animation
     public class ModelLinearAnimation : Animation
     {
 
-        private Vector3 startPosition, startAngle, velocity;
+        private Vector3 startPosition;
+        private Vector3 velocity;
         private float acceleration;
         private TimeSpan duration;
         public Vector3 Displacement
@@ -35,7 +36,6 @@ namespace UI.Animation
             : base(model)
         {
             startPosition = model.Position;
-            startAngle = model.Rotation;
 
             this.velocity = velocity;
             this.acceleration = acceleration;
