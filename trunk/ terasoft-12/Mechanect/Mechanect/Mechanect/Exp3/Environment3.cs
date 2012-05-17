@@ -80,6 +80,7 @@ namespace Mechanect.Exp3
         public SkinnedCustomModel PlayerModel { get; private set; }
 
         private Vector3 ballInitialPosition, ballInitialVelocity;
+        public float arriveVelocity { get; set; }
         //Texture2D grassTexture;
         //Texture2D cloudMap;
         //Model skyDome;
@@ -152,11 +153,13 @@ namespace Mechanect.Exp3
                 return Constants3.negativeRDifference;
 
             var finalPos = Vector3.Zero;
-           
+            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
+
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
-            
+            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
+
             if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
             else
@@ -794,8 +797,6 @@ namespace Mechanect.Exp3
             user.UpdateMeasuringVelocityAndAngle(gameTime);
             Vector3 legVelocity = user.velocity;
             return legVelocity;
-
-
         }
 
         /// <remarks>
@@ -836,6 +837,27 @@ namespace Mechanect.Exp3
                 return 0 + ball.Radius;
             }
         }
+
+
+        /// <summary>
+        /// Calculates Velocity after collision using conservation of momentum laws.
+        /// </summary>
+        /// <param name="initialVelocity">Initial velocity before collision.</param>
+        /// <returns>Vector3 velocity after collision</returns>
+        public Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
+        {
+            double ballMass, legMass, initialLegVelocity;
+
+            initialLegVelocity = initialVelocity.Length();
+            ballMass = ball.Mass;
+            legMass = user.AssumedLegMass;
+
+            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
+            Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
+
+            return normalizedVector * finalVelocity;
+        }
+
         #endregion
     }
 }

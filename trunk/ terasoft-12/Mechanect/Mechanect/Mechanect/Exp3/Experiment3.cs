@@ -47,6 +47,7 @@ namespace Mechanect.Exp3
             environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
 
+            environment.arriveVelocity = arriveVelocity;
             environment.LoadEnvironmentContent();
         }
 
@@ -99,7 +100,7 @@ namespace Mechanect.Exp3
                 {
                     if (shootVelocity.Length() != 0)
                     {
-                        this.ShootBall(shootVelocity);
+                        this.ShootBall(environment.GetVelocityAfterCollision(shootVelocity));
                         firstAnimation = false;
                     }
                 }
@@ -125,7 +126,7 @@ namespace Mechanect.Exp3
             ballFallAnimation.AddFrame(hole.Position, Vector3.Zero, TimeSpan.FromSeconds(0.75));*/
         }
 
-
+        /*
         /// <summary>
         /// Calculates Velocity after collision using conservation of momentum laws.
         /// </summary>
@@ -144,7 +145,7 @@ namespace Mechanect.Exp3
 
             return normalizedVector * finalVelocity;
         }
-
+        */
 
         public override void Draw(GameTime gameTime)
         {
