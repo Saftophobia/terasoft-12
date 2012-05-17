@@ -32,17 +32,17 @@ namespace UI.Animation
         /// <param name="elapsed">time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
-
             this.elapsedTime += elapsed;
-            TimeSpan endTime = frames[frames.Count - 1].Time;
-
-            if (elapsedTime > endTime)
+            if (Finished())
+            {
                 return;
+            }
 
             int i = 0;
-
             while (frames[i + 1].Time < elapsedTime)
+            {
                 i++;
+            }
 
             TimeSpan frameElapsedTime = elapsedTime - frames[i].Time;
             float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
@@ -65,11 +65,13 @@ namespace UI.Animation
         private int Wrap(int value, int max)
         {
             while (value > max)
+            {
                 value -= max;
-
+            }
             while (value < 0)
+            {
                 value += max;
-
+            }
             return value;
         }
 
