@@ -13,7 +13,7 @@ namespace UI.Animation
     public class ModelLinearAnimation : Animation
     {
 
-        private Vector3 startPosition;
+        protected Vector3 startPosition;
         private Vector3 velocity;
         private float acceleration;
         private TimeSpan duration;
