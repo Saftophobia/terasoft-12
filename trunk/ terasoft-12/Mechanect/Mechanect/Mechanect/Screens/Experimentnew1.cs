@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Classes;
+using Mechanect.Experiment1;
 using Microsoft.Kinect;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Audio;

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using Mechanect.Experiment2;
 using Mechanect.Exp3;
+using Mechanect.Experiment1;
 namespace Mechanect.Screens
 {
     class AllExperiments : Mechanect.Common.GameScreen

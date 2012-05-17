@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class Tools1
     {

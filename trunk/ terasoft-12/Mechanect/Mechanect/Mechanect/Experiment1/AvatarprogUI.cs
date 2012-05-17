@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Kinect;
 using Mechanect.Common;
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     class AvatarprogUI
     {

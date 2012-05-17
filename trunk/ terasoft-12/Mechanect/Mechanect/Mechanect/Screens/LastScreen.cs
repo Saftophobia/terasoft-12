@@ -8,6 +8,7 @@ using Mechanect.Classes;
 using Mechanect.Experiment2;
 using ButtonsAndSliders;
 using Mechanect.Exp3;
+using Mechanect.Experiment1;
 
 
 namespace Mechanect.Screens

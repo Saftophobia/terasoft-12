@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 
-namespace Mechanect.Classes
+namespace Mechanect.Experiment1
 {
     /// <summary>
     /// This is the main type for your game
