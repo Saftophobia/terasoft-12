@@ -9,7 +9,7 @@ using Mechanect.Common;
 
 namespace Mechanect.Classes
 {
-    class User3:User
+    public class User3:User
     {
        
 
