@@ -182,7 +182,8 @@ namespace Mechanect.Common
         #region Update and Draw
         public virtual void Initialize() {
             user = new User();
-        } 
+        }
+        [System.Obsolete("will be replaced by Update(gameTime)", false)]
         public virtual void Update(GameTime gameTime, bool covered)
         {
          /*   user.setSkeleton();
@@ -237,6 +238,33 @@ namespace Mechanect.Common
             }
         }
 
+        public virtual void Update(GameTime gameTime)
+        {
+            if (IsFrozen)
+                return;
+
+            if (IsExiting)
+            {
+                screenState = ScreenState.TransitionOff;
+                if (!ScreenTransition(gameTime, transitionOffTime, -1))
+                {
+                    this.Remove();
+                }
+            }
+               else if (screenState != ScreenState.Active)
+            {
+                if (ScreenTransition(gameTime, transitionOffTime, 1))
+                {
+                    screenState = ScreenState.TransitionOn;
+                }
+                else
+                {
+                    screenState = ScreenState.Active;
+                }
+            }
+        }
+
+
         public virtual void Remove()
         {
             screenManager.RemoveScreen(this);
@@ -275,6 +303,8 @@ namespace Mechanect.Common
             if (transitionOffTime == TimeSpan.Zero)
                 this.Remove();
         }
+
+
 
         /// <summary>
         /// Should be called when the screen should be frozen, note that this method does not automatically freeze the screen.
