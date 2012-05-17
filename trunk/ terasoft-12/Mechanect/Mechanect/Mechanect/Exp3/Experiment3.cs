@@ -7,12 +7,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using UI.Cameras;
 using UI.Animation;
+using Mechanect.Classes;
 
 namespace Mechanect.Exp3
 {
     public class Experiment3 : Mechanect.Common.GameScreen
     {
         private Ball ball;
+        private Hole hole;
         private Vector3 intialPosition;
         private Vector3 shootPosition, shootVelocity;
         private float arriveVelocity;
@@ -42,14 +44,13 @@ namespace Mechanect.Exp3
         {
             targetCamera = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
-            animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero);
-            environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
-                ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
+            animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
+            environment = new Environment3(ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
         }
 
         public void ShootBall(Vector3 velocity)
         {
-            animation = new BallAnimation(ball, velocity, friction, Vector3.Zero);
+            animation = new BallAnimation(ball, velocity, friction, Vector3.Zero, 0);
         }
 
         public override void Update(GameTime gameTime, bool covered)
@@ -84,16 +85,6 @@ namespace Mechanect.Exp3
                 }
             }
 
-            /*if (!ballFallingIntoHole && animation.AnimationStoped && (Vector3.Distance(new Vector3(ball.Position.X, 0, ball.Position.Z), hole.Position) < (ball.Radius + hole.Radius)))
-            {
-                ballFallingIntoHole = true;
-                AnimateBallFalling();
-            }
-            
-
-            if (ballFallAnimation != null)
-                ballFallAnimation.Update(gameTime.ElapsedGameTime);
-            */
             targetCamera.Update();
             animation.Update(gameTime.ElapsedGameTime);
             //update ball height
@@ -116,7 +107,7 @@ namespace Mechanect.Exp3
 
         /// <summary>
         /// Creates the animation of the ball falling into the hole.
-        /// </summar
+        /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Omar Abdulaal.</para>
         /// </remarks>
@@ -145,11 +136,12 @@ namespace Mechanect.Exp3
             ballMass = ball.Mass;
             legMass = user.AssumedLegMass;
 
-            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
+            float finalVelocity = (float) (((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
 
             return normalizedVector * finalVelocity;
         }
+
 
         public override void Draw(GameTime gameTime)
         {
