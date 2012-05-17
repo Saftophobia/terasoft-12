@@ -88,3 +88,9 @@ F:\SE\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference
 F:\SE\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 F:\SE\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
 F:\SE\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\ResolveAssemblyReference.cache
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+X:\terasoft-12n\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb

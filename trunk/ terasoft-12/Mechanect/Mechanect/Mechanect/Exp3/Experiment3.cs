@@ -43,7 +43,8 @@ namespace Mechanect.Exp3
             targetCamera = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero);
-            environment = new Environment3(ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
+            environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
+                ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
         }
 
         public void ShootBall(Vector3 velocity)
