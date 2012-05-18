@@ -475,12 +475,11 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
-         public static bool ConstantAcceleration(List<float> positions, float currentTolerance)
+         public static bool ConstantAcceleration(List<float> velocities, float currentTolerance)
          {
              currentTolerance = currentTolerance * 10;
-             List<float> velocities = GraphEngine.GetPlayerVelocity(positions);
 
              bool result = true;
              float firstVelocity = velocities[1] - velocities[0];
@@ -489,16 +488,17 @@ namespace Mechanect.Exp1
                  float currentVelocity = (velocities[i] - velocities[i - 1]);
                  if (!((currentVelocity >= (firstVelocity - currentTolerance)) && (currentVelocity <= (firstVelocity + currentTolerance))))
                  {
-                     if (positions[positions.Count - 1] == 0.8)
-                     {
-                         result = true;
-                         break;
-                     }
-                     else
-                     {
-                         result = false;
-                         break;
-                     }
+                     //if (positions[positions.Count - 1] == 0.8)
+                     //{
+                     //    result = true;
+                     //    break;
+                     //}
+                     //else
+                     //{
+                     //    result = false;
+                     //    break;
+                     //}
+                     return false;
                  }
              }
              return result;
