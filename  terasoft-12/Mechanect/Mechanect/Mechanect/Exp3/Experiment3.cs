@@ -48,7 +48,7 @@ namespace Mechanect.Exp3
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
 
             environment.arriveVelocity = arriveVelocity;
-            environment.LoadEnvironmentContent();
+            environment.LoadContent();
         }
 
         public void ShootBall(Vector3 velocity)
@@ -155,7 +155,7 @@ namespace Mechanect.Exp3
             {
                 camera = simulation.Camera;
             }
-            environment.DrawEnvironment(camera, gameTime);
+            environment.Draw(camera, gameTime);
             ball.Draw(camera);
             if (firstAnimation)
             {

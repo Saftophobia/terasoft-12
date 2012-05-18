@@ -264,9 +264,27 @@ namespace Mechanect.Exp3
             }
         }
 
+        
         #region Environment Generation Code
+        public void LoadContent()
+        {
+            //loads the height data from the height map
+            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplarge");
+            LoadHeightData(heightMap);
+            SetUpVertices();
+            //LoadEnvironmentContent();
+            InitializeHole(4);
 
 
+            //ball.LoadContent();
+
+        }
+
+        public void Draw(Camera c, GameTime gameTime)
+        {
+            //DrawEnvironment(c, gameTime);
+            DrawHole(c);
+        }
         
         /// <summary>
         /// Initializes the Environment.
@@ -295,9 +313,7 @@ namespace Mechanect.Exp3
             skyDome.Meshes[0].MeshParts[0].Effect = effect.Clone();
 
 
-            //loads the height data from the height map
-            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplarge");
-            LoadHeightData(heightMap);
+            
             PresentationParameters pp = device.PresentationParameters;
             cloudsRenderTarget = new RenderTarget2D(device, pp.BackBufferWidth, pp.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
 
@@ -305,15 +321,12 @@ namespace Mechanect.Exp3
 
             grassTexture = Content.Load<Texture2D>("Textures/grass2");
 
-            SetUpVertices();
+            
             SetUpIndices();
             CalculateNormals();
             CopyToBuffers();
            
-            InitializeHole(4);
-
-           
-            //ball.LoadContent();
+            
 
         }
 
@@ -366,7 +379,7 @@ namespace Mechanect.Exp3
                 device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
 
             }
-            DrawHole(c);
+            
            
         }
 
