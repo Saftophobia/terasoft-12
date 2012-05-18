@@ -37,6 +37,7 @@ namespace Mechanect.Exp3
             friction = -2;
             firstAnimation = true;
             this.user = user;
+
         }
 
         public override void LoadContent()
@@ -46,9 +47,14 @@ namespace Mechanect.Exp3
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
             environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
-
+            
             environment.arriveVelocity = arriveVelocity;
+            
             environment.LoadContent();
+
+            environment.GenerateSolvable();
+            //Constants3.environment3 = environment;
+            //Constants3.game1.Exit();
         }
 
         public void ShootBall(Vector3 velocity)
