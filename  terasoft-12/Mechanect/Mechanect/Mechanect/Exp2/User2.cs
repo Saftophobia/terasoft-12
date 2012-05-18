@@ -31,23 +31,22 @@ namespace Mechanect.Experiment2
         private bool beforeHip;
         private double previousAngle;
         int counter = 0;
-        KinectSensor k;
-        private Skeleton[] skeletonFrames;
-        public Skeleton[] SkeletonFrames
+        int listCounter = 0;
+        private double angleBeingMeasured;
+        public double AngleBeingMeasured
         {
             get
             {
-                return skeletonFrames;
+                return angleBeingMeasured;
             }
             set
             {
-                skeletonFrames = value;
-
+                angleBeingMeasured = value;
             }
         }
-
+        List<Vector2> angleAndTime = new List<Vector2>;
         private double measuredVelocity;
-        private double measuredAngle;
+        private double measuredFinalAngle;
         /// <summary>
         /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
@@ -60,11 +59,11 @@ namespace Mechanect.Experiment2
         {
             get
             {
-                return measuredAngle;
+                return measuredFinalAngle;
             }
             set
             {
-                measuredAngle = value;
+                measuredFinalAngle = value;
             }
         }
 
@@ -91,33 +90,11 @@ namespace Mechanect.Experiment2
 
         public User2()
         {
-            this.k.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(k_SkeletonFrameReady);
-            k.SkeletonStream.Enable();
+          
         }
 
-        void k_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
-            {
-                if (skeletonFrame != null)
-                {
-                    //check to see if there is any data in the skeleton
-                    if (this.skeletonFrames == null)
-                    {
-                        //Allocate array of skeletons
-                        this.skeletonFrames = new Skeleton[skeletonFrame.SkeletonArrayLength];
-                    }
-
-                    //Copy skeletons from this frame
-                    skeletonFrame.CopySkeletonDataTo(this.skeletonFrames);
-
-                    //find first tracked skeleton, if any
-                    Skeleton skeleton = this.skeletonFrames.Where(s => s.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
-
-                }
-            }
-        }
-
+        
+        
         /// <summary>
         /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
@@ -139,7 +116,7 @@ namespace Mechanect.Experiment2
         {
             shooting = false;
             beforeHip = false;
-            measuredAngle = 0;
+            measuredFinalAngle = 0;
             previousAngle = 0;
         }
 
@@ -210,15 +187,31 @@ namespace Mechanect.Experiment2
                     previousAngle = angle;
                     return;
                 }
-
-
-
-
-
                 currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
 
-                measuredAngle = (int)(10 * angle) / 10f;
+                measuredFinalAngle = (int)(10 * angle) / 10f;
                 shooting = false;
+
+                if (shooting == true)
+                {
+                    if (listCounter == 5)
+                        listCounter = 0;
+                    if (angleAndTime.Count >= 0 && angleAndTime.Count < angleAndTime.Capacity)
+                    {
+                        angleAndTime.Add(new Vector2((float)currentTime, (float)angleBeingMeasured));
+                    }
+                    else
+                    {
+                        if (angleAndTime.Count == angleAndTime.Capacity)
+                        {
+                            angleAndTime.RemoveAt(this.listCounter);
+                            angleAndTime.Insert(this.listCounter, new Vector2((float)currentTime, (float)angleBeingMeasured));
+                        }
+                    }
+                    listCounter++;
+
+                }
+
 
 
             }
@@ -242,7 +235,7 @@ namespace Mechanect.Experiment2
                 return;
             }
 
-            measuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
+            measuredVelocity = ((int)(500 * measuredFinalAngle / currentTime)) / 10f;
         }
 
 
