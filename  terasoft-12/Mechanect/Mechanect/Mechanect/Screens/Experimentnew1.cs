@@ -8,8 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Kinect;
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Audio;
-using Mechanect.Classes;
-using Mechanect.Experiment1;
+using Mechanect.Exp1;
 
 namespace Mechanect.Screens
 {
