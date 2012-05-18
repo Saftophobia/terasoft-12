@@ -327,7 +327,6 @@ namespace Mechanect.Exp3
                      StoreTime(gameTime);
                      if (!hasShot)
                      {
-                         consecutiveFrame++;
                          if (HasJustStarted())
                          {
                              StoreInitialPosition();
@@ -348,21 +347,7 @@ namespace Mechanect.Exp3
                                  else
                                  {
                                      if (HasAlreadyMovedForward())
-                                     {
-                                         //if (consecutiveFrame > 2)
-                                         //{
-                                         //    consecutiveFrame = 0;
-                                         //    hasJustSlipped = false;
-                                         //}
-
-                                         //if (HasJustSlipped())  // done shooting
-                                         //    hasShot = true;
-                                         //else
-                                         //    hasJustSlipped = true;
                                          hasShot = true;
-
-
-                                     }
                                      else
                                      {
                                          StoreInitialPosition(); // the player is moving his leg backwards
