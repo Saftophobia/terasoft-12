@@ -1,9 +1,10 @@
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
-using Mechanect.Classes;
-using Mechanect.Experiment2;
+using Mechanect.Exp2;
 using ButtonsAndSliders;
 using Mechanect.Exp3;
+
+
 
 namespace Mechanect.Screens
 {
@@ -75,3 +76,4 @@ namespace Mechanect.Screens
 
     }
 }
+

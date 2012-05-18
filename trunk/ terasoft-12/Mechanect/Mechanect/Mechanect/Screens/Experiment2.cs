@@ -13,10 +13,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using UI.Cameras;
 using Mechanect.Common;
-
-using Mechanect.Experiment2;
 using Mechanect.Exp3;
 using ButtonsAndSliders;
+using Mechanect.Exp2;
 
 namespace Mechanect.Screens
 {
@@ -27,7 +26,7 @@ namespace Mechanect.Screens
     /// <remarks>
     /// <para>AUTHOR: Mohamed Alzayat, Mohamed Abdelazim </para>
     /// </remarks>
-    class Experiment2 : Mechanect.Common.GameScreen
+    public class Experiment2 : Mechanect.Common.GameScreen
     {
 
 

@@ -13,12 +13,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using UI.Cameras;
 using Mechanect.Common;
-using Mechanect.Experiment1;
+using Mechanect.Exp1;
 
 
 namespace Mechanect.Screens
 {
-    class Experiment1:Mechanect.Common.GameScreen
+   public class Experiment1:Mechanect.Common.GameScreen
     {
         Boolean positionmutex = false;
         Boolean graphmutex = false;

@@ -2,7 +2,7 @@
 using Mechanect.Common;
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Classes;
-using Mechanect.Experiment2;
+using Mechanect.Exp2;
 namespace Mechanect.Screens
 {
     class InstructionsScreen2 : GameScreen

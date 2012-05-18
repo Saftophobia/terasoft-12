@@ -1,11 +1,12 @@
 ﻿using ButtonsAndSliders;
 using Mechanect.Common;
-using Mechanect.Exp3;
-using Mechanect.Experiment1;
-using Mechanect.Experiment2;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
+using Mechanect.Exp3;
+using Mechanect.Exp1;
+using Mechanect.Exp2;
+using Microsoft.Xna.Framework;
 namespace Mechanect.Screens
 {
     /// <summary>
