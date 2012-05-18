@@ -15,6 +15,7 @@ namespace Mechanect.Exp3
             : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, new Vector3(0.02f), device)
         {
             Radius = radius;
+            Mass = 0.001;
         }
 
         public void Rotate(Vector3 displacement)

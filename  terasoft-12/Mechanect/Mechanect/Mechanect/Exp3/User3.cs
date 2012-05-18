@@ -442,7 +442,7 @@ namespace Mechanect.Exp3
                  positionZ2 = CurrentRightLegPositionZ;
              }
              if (positionZ2 != positionZ1)
-                 Angle = (Math.Atan((positionX2 - positionX1) / (Math.Abs(positionZ2 - positionZ1))));
+                 Angle = -(Math.Atan((positionX2 - positionX1) / ((positionZ2 - positionZ1))));
              else
                  if (positionX1 < positionX2)
                      Angle = (Math.PI / 2);
@@ -462,7 +462,7 @@ namespace Mechanect.Exp3
                  TrackedJoint = player.Joints[JointType.AnkleLeft];
                  return true;
              }
-             if (Math.Abs(CurrentRightLegPositionZ - initialLeftLegPositionZ) > Constants3.legMovementTolerance)
+             if (Math.Abs(CurrentRightLegPositionZ - initialRightLegPositionZ) > Constants3.legMovementTolerance)
              {
                  RightLeg = true;
                  TrackedJoint = player.Joints[JointType.AnkleRight];
@@ -496,7 +496,7 @@ namespace Mechanect.Exp3
                  initialX = InitialRightLegPositionX;
              }
              double deltaTime = Math.Abs(currentTime - initialTime);
-             Vector3 deltaPosition = new Vector3((float)(currentZ - initialZ), 0, (float)(currentX - initialX));
+             Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
              Vector3 finalVelocity = Tools3.GetVelocity(deltaPosition, deltaTime);
              if (Trying)
                  if (velocity.Length() <= finalVelocity.Length())
@@ -521,10 +521,6 @@ namespace Mechanect.Exp3
              initialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
              initialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
              initialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
-             previousLeftLegPositionX = initialLeftLegPositionX;
-             previousLeftLegPositionZ = initialLeftLegPositionZ;
-             previousRightLegPositionX = initialRightLegPositionX;
-             previousRightLegPositionZ = initialRightLegPositionZ;
          }
 
 

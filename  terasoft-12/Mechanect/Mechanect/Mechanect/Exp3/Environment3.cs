@@ -121,8 +121,9 @@ namespace Mechanect.Exp3
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitialPosition.X, ballInitialPosition.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             friction = 1.0f;
 
-            PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), shootingPos, 
+            PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), new Vector3(0,3,68), 
                 new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            
         }
 
 
@@ -366,6 +367,7 @@ namespace Mechanect.Exp3
 
             }
             DrawHole(c);
+           
         }
 
         /// <summary>
@@ -819,7 +821,6 @@ namespace Mechanect.Exp3
 
             float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
-
             return normalizedVector * finalVelocity;
         }
 
