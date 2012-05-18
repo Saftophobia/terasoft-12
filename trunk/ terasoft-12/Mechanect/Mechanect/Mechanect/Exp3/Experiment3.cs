@@ -41,7 +41,7 @@ namespace Mechanect.Exp3
 
         public override void LoadContent()
         {
-            targetCamera = new TargetCamera(new Vector3(0, 80, 120), Vector3.Zero, ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 140, 250), new Vector3(0,80,0), ScreenManager.GraphicsDevice);
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
             environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
@@ -58,6 +58,7 @@ namespace Mechanect.Exp3
 
         public override void Update(GameTime gameTime, bool covered)
         {
+            environment.PlayerModel.Update();
             if (firstAnimation)
             {
                 float distance = (ball.Position - intialPosition).Length();
@@ -68,11 +69,11 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 //update distance bar
-                if (distance / totalDistance > 1)
-                {
-                    firstAnimation = false;
-                    ShootBall(new Vector3(10, 0, -10));
-                }
+                //if (distance / totalDistance > 1)
+                //{
+                //    firstAnimation = false;
+                //    ShootBall(new Vector3(10, 0, -10));
+                //}
             }
             else if (animation.Finished() && simulation == null)
             {
@@ -95,7 +96,7 @@ namespace Mechanect.Exp3
 
             if (environment.hasBallEnteredShootRegion())
             {
-                Vector3 shootVelocity = 4 * environment.Shoot(gameTime);
+                Vector3 shootVelocity = 8 * environment.Shoot(gameTime);
                 if (user.hasShot)
                 {
                     if (shootVelocity.Length() != 0)
@@ -164,6 +165,7 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
             }
+            environment.PlayerModel.Draw(gameTime, camera.View, camera.Projection);
         }
 
         public override void UnloadContent()
