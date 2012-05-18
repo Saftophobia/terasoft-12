@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
-using Mechanect.Classes;
-using Microsoft.Xna.Framework;
 using Mechanect;
-using System.Threading;
+using Mechanect.Exp3;
 
 namespace Tests
 {
