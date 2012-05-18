@@ -253,18 +253,20 @@ namespace Mechanect.Exp3
             if ((ballVelocity.X <= (optimumVx + tolerance.X)) && (ballVelocity.Y <= (optimumVy + tolerance.X + this.hole.Radius))
             && (ballVelocity.X >= (optimumVx - tolerance.Y)) && (ballVelocity.Y >= (optimumVy - tolerance.Y + this.hole.Radius)))
             {
-                //BallFallIntoHole();
-                Tools3.DislayIsWin(sprite,Content,Vector2.Zero, true);
+               
+                Tools3.DisplayIsWin(sprite,Content,Vector2.Zero, true);
             }
 
             else
             {
-                Tools3.DislayIsWin(sprite, Content, Vector2.Zero, false);
+                Tools3.DisplayIsWin(sprite, Content, Vector2.Zero, false);
             }
         }
 
-        
-        #region Environment Generation Code
+        /// <summary>
+        /// Loads the content of the environment.
+        /// </summary>
+        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadContent()
         {
             //loads the height data from the height map
@@ -279,11 +281,20 @@ namespace Mechanect.Exp3
 
         }
 
+        /// <summary>
+        /// Draws the environment.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <param name="c">The camera the environment is viewed from.</param>
+        ///<param name="gameTime">Provides a snapshot of timing values.</param>
         public void Draw(Camera c, GameTime gameTime)
         {
             //DrawEnvironment(c, gameTime);
             DrawHole(c);
         }
+
+        #region Environment Generation Code
+        
         
         /// <summary>
         /// Initializes the Environment.
@@ -336,7 +347,7 @@ namespace Mechanect.Exp3
         /// Draws the environment. Similar to the Draw() method of XNA and should be called in it.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        ///<param name="gameTime">Provides a snapshot of timing values.</param
+        ///<param name="gameTime">Provides a snapshot of timing values.</param>
         public void DrawEnvironment(Camera c, GameTime gameTime)
         {
             float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
