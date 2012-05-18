@@ -65,18 +65,18 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="covered"></param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (mainMenu.IsClicked())
             {
 
-                ExitScreen();
+                Remove();
                 ScreenManager.AddScreen(new AllExperiments());
                 this.Remove();
             }
             if (newGame.IsClicked())
             {
-                ExitScreen();
+                Remove();
                 switch(experemintNumber)
                 {
                     case 1: ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect())); break;
@@ -88,7 +88,7 @@ namespace Mechanect.Screens
             }
             mainMenu.Update(gameTime);
             newGame.Update(gameTime);
-            base.Update(gameTime, covered);
+            base.Update(gameTime);
         }
 
 
