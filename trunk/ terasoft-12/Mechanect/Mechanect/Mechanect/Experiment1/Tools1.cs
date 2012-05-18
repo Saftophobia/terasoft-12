@@ -603,7 +603,7 @@ namespace Mechanect.Experiment1
         /// <para>Date Written 15/5/2012</para>
         /// <para>Date Modified 18/5/2012</para>
         /// </remarks>
-         public static void getspeedl(User1 user1, float speed, float[] speedlist, bool calculatespeedbool, float[] max, float[] min,float timer)
+         public static void getspeedl(User1 user1, float speed, float[] speedlist, bool calculatespeedbool, float[] max, float[] min, float timer, Environment1 environment1)
          {
 
              if (user1.Kneepos.Count() != 0)
@@ -652,6 +652,14 @@ namespace Mechanect.Experiment1
                              speedlist[0] = speed;
                              speedlist[1] = timer;//calculate the speed of the oscillation from min to max
                              user1.Velocitylist.Add(speedlist);
+                             if (user1.Number == 1)
+                             {
+                                 environment1.MoveAvatar(1, (int)speed);
+                             }
+                             if (user1.Number == 2)
+                             {
+                                 environment1.MoveAvatar(2, (int)speed);
+                             }
                              calculatespeedbool = false;
                          }
                          min[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
@@ -683,7 +691,7 @@ namespace Mechanect.Experiment1
          /// <para>Date Written 15/5/2012</para>
          /// <para>Date Modified 18/5/2012</para>
          /// </remarks>
-         public static void getspeedr(User1 user1, float speedr, float[] speedlistr, bool calculatespeedboolr, float[] maxr, float[] minr, float timer)
+         public static void getspeedr(User1 user1, float speedr, float[] speedlistr, bool calculatespeedboolr, float[] maxr, float[] minr, float timer, Environment1 environment1)
          {
              if (user1.Kneeposr.Count() != 0)
              {
@@ -731,6 +739,14 @@ namespace Mechanect.Experiment1
                              speedlistr[0] = speedr;
                              speedlistr[1] = timer;//calculate the speed of the oscillation from min to max
                              user1.Velocitylist.Add(speedlistr);
+                             if (user1.Number == 1)
+                             {
+                                 environment1.MoveAvatar(1, (int)speedr);
+                             }
+                             if (user1.Number == 2)
+                             {
+                                 environment1.MoveAvatar(2, (int)speedr);
+                             }
                              calculatespeedboolr = false;
                          }
                          minr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];

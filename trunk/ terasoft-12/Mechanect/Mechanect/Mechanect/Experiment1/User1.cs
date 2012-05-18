@@ -103,8 +103,20 @@ namespace Mechanect.Experiment1
                 disqualificationTime = value;
             }
         }
+        private int number;
+        public int Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+            }
+        }
 
-        public User1() 
+        public User1(int number) 
         {
             this.Winner = false;
             this.disqualified = false;
