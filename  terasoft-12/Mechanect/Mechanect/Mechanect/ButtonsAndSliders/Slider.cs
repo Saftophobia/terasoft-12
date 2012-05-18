@@ -88,7 +88,7 @@ namespace ButtonsAndSliders
         /// </summary>
         public void Update(GameTime gameTime) 
         {
-            if (CheckColission())
+            if (CheckCollision())
             {
                 if (!timer.IsRunning())
                     timer.Start(gameTime);
@@ -174,7 +174,7 @@ namespace ButtonsAndSliders
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        private bool CheckColission()
+        private bool CheckCollision()
         {
 
             Skeleton skeleton = user.USER;
