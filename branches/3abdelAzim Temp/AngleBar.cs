@@ -1,106 +1,82 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Common;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Kinect;
 
-namespace Mechanect.Screens
-{
+namespace Mechanect.ButtonsAndSliders {
     class AngleBar
     {
-        private Classes.User user;
-        private int minDepth;
-        private int maxDepth;
-        private int p;
-        private int p_2;
-        private Microsoft.Xna.Framework.Color color;
-        private Microsoft.Xna.Framework.Color color_2;
-        private Microsoft.Xna.Framework.Color color_3;
-        private Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice;
-        public StringBuilder Rule;
 
-        public AngleBar(Classes.User user, int minDepth, int maxDepth, int p, int p_2, Microsoft.Xna.Framework.Color color, Microsoft.Xna.Framework.Color color_2, Microsoft.Xna.Framework.Color color_3, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice)
-        {
-            // TODO: Complete member initialization
-            this.user = user;
-            this.minDepth = minDepth;
-            this.maxDepth = maxDepth;
-            this.p = p;
-            this.p_2 = p_2;
-            this.color = color;
-            this.color_2 = color_2;
-            this.color_3 = color_3;
-            this.graphicsDevice = graphicsDevice;
-        }
-        internal void Update()
-        {
-            throw new NotImplementedException();
-        }
+        #region Variables And Fields
 
-        internal string Command()
-        {
-            throw new NotImplementedException();
-        }
+        User[] users;
+        int minAngle;
+        int maxAngle;
+        int curveWidth;
+        int radius;
+        Color accept;
+        Color reject;
+        Color[] playerColors;
 
-        internal bool Accepted()
-        {
-            throw new NotImplementedException();
-        }
+        Texture2D semiCircle;
+        Texture2D playerIndicator;
 
-        /*
-        public override void LoadContent()
+        public bool Accepted
         {
-            title = "Adjust Position";
-            float avgAngle = (minAngle + maxAngle) / 2;
-            if (avgAngle == 0)
+            get
             {
-                rule2 = "Stand facing the kinect sensor";
+                for (int i = 0; i < users.Length; i++)
+                    if (Angle(i) >= maxAngle || Angle(i) <= minAngle)
+                        return false;
+                return true;
             }
-            else if (avgAngle > 0)
-            {
-                rule2 = "Turn to your right at an angle " + avgAngle + "degrees with the kinect sensor.";
-            }
-            else
-            {
-                rule2 = "Turn to your left at an angle " + (-1 * avgAngle) + "degrees with the kinect sensor.";
-            }
-            angleBarHeight = 200;
-            angleBarWidth = 400;
-            angleBar = SemiCircle();
-            //to be updated
-            arrow = ContentManager.Load<Texture2D>("ball");
-         */
-
-
-        /*
-        #region anglebar
-
-        /// <summary>
-        /// measures the orientation of the user with respect to the kinect sensor
-        /// <example>a player standing facing the kinect sensor will have zero angle, </example>
-        /// <example>a player turned to his right with respect to the kinect sensor will a positive angle, </example>
-        /// <example>a player turned to his left with respect to the kinect sensor will a negative angle. </example>
-        /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        /// <param name="ID"> the index of the User in the users array</param>
-        /// <returns>returns the angle users[ID] makes with the kinect sensor. </returns>
-        public float GetAngle(int ID)
-        {
-            if (ID < users.Length)
-            {
-                Vector2 rightHip = new Vector2(users[ID].USER.Joints[JointType.HipRight].Position.X, users[ID].USER.Joints[JointType.HipRight].Position.Z);
-                Vector2 leftHip = new Vector2(users[ID].USER.Joints[JointType.HipLeft].Position.X, users[ID].USER.Joints[JointType.HipLeft].Position.Z);
-                Vector2 point = new Vector2(rightHip.X - leftHip.X, rightHip.Y - leftHip.Y);
-                double angle = Math.Atan(point.Y / point.X);
-                angle *= (180 / Math.PI);
-                return (float)angle;
-            }
-            else return 0;
         }
 
+        public string Rule
+        {
+            get
+            {
+                float avgAngle = (minAngle + maxAngle) / 2;
+                if (avgAngle == 0)
+                {
+                    return "Stand facing the kinect sensor";
+                }
+                else if (avgAngle > 0)
+                {
+                    return "Turn to your right at an angle " + avgAngle + "degrees with the kinect sensor.";
+                }
+                else
+                {
+                    return "Turn to your left at an angle " + (-1 * avgAngle) + "degrees with the kinect sensor.";
+                }
+            }
+        }
+
+        #endregion
+
+        #region LoadTextures
+
+        public AngleBar(User[] users, int minAngle, int maxAngle, int radius, Color accept, Color reject, Color[] playerColors, GraphicsDevice graphicsDevice, ContentManager contentManager)
+        {
+            this.users = users;
+            this.minAngle = minAngle;
+            this.maxAngle = maxAngle;
+            this.radius = radius;
+            this.curveWidth = radius / 4;
+            this.accept = accept;
+            this.reject = reject;
+            this.playerColors = playerColors;
+            semiCircle = CreateSemiCircle(graphicsDevice);
+            playerIndicator = contentManager.Load<Texture2D>("ball");
+        }
+
+        #region Create Semicircle
+        
 
         /// <summary>
         /// gets the suitable color that fits in the gradient in the semicircle
@@ -133,21 +109,22 @@ namespace Mechanect.Screens
         ///</para>
         ///</remarks>
         ///<returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
-        public Texture2D SemiCircle()
+        public Texture2D CreateSemiCircle(GraphicsDevice graphicsDevice)
         {
+            int width = 2 * radius;
             float avgAngle = (minAngle + maxAngle) / 2;
-            Texture2D grad = new Texture2D(ScreenManager.GraphicsDevice, angleBarWidth, angleBarHeight);
-            Color[] data = new Color[angleBarHeight * angleBarWidth];
+            Texture2D grad = new Texture2D(graphicsDevice, width, radius);
+            Color[] data = new Color[radius * width];
             int x = 0;
             int y = 0;
             double r = 0;
             double theta;
             for (int i = 0; i < data.Length; i++)
             {
-                x = (int)(i % angleBarWidth - angleBarWidth / 2);
-                y = angleBarHeight - i / angleBarWidth;
+                x = (int)(i % width - width / 2);
+                y = radius - i / width;
                 r = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
-                if (r <= angleBarWidth / 2 && r >= angleBarWidth / 2 - curveWidth)
+                if (r <= width / 2 && r >= width / 2 - curveWidth)
                 {
                     if (x == 0) theta = 0;
                     else
@@ -172,11 +149,74 @@ namespace Mechanect.Screens
 
 
         #endregion
-*/
 
-        internal void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 vector2)
+        #endregion
+
+        #region Functions
+
+        public string Command(int ID)
         {
-            throw new NotImplementedException();
+            if (Angle(ID) == 0)
+                return "No player detected";
+            if (Angle(ID) < minAngle)
+                return "Turn a little to your right";
+            if (Angle(ID) > maxAngle)
+                return "Turn a little to your left";
+            return "OK!";
         }
+        
+        /// <summary>
+        /// measures the orientation of the user with respect to the kinect sensor
+        /// <example>a player standing facing the kinect sensor will have zero angle, </example>
+        /// <example>a player turned to his right with respect to the kinect sensor will a positive angle, </example>
+        /// <example>a player turned to his left with respect to the kinect sensor will a negative angle. </example>
+        /// </summary>
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <param name="ID"> the index of the User in the users array</param>
+        /// <returns>returns the angle users[ID] makes with the kinect sensor. </returns>
+        public int Angle(int ID)
+        {
+            try
+            {
+                Vector2 rightHip = new Vector2(users[ID].USER.Joints[JointType.HipRight].Position.X, users[ID].USER.Joints[JointType.HipRight].Position.Z);
+                Vector2 leftHip = new Vector2(users[ID].USER.Joints[JointType.HipLeft].Position.X, users[ID].USER.Joints[JointType.HipLeft].Position.Z);
+                Vector2 point = rightHip - leftHip;
+                double angle = Math.Atan(point.Y / point.X);
+                angle *= (180 / Math.PI);
+                return (int)angle;
+            }
+            catch (NullReferenceException)
+            {
+                return 0;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return 0;
+            }
+        }
+
+        #endregion
+
+        #region Draw
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+            spriteBatch.Draw(semiCircle, position, Color.White);
+            for (int i = 0; i < users.Length; i++)
+                spriteBatch.Draw(playerIndicator,
+                               new Rectangle(radius + (int)position.X, radius + (int)position.Y, radius, radius / 8),
+                               null, playerColors[i],
+                               (float)((Angle(i) - 90) * Math.PI / 180),
+                               new Vector2(0, playerIndicator.Height / 2),
+                               SpriteEffects.None,
+                               0f);
+
+        }
+
+        #endregion
     }
 }
