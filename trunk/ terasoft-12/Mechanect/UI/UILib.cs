@@ -8,7 +8,7 @@ namespace UI
 {
     public static class UILib
     {
-
+        private static SpeechSynthesizer speechSynthesizer;
         /// <summary>
         /// This method takes a string of text and reads it to the user.
         /// </summary>
@@ -21,11 +21,14 @@ namespace UI
         /// <returns> true if the string was said and false if it wasn't.</returns>
         public static bool SayText(string text)
         {
-            SpeechSynthesizer synth = new SpeechSynthesizer();
+            if (speechSynthesizer == null)
+            {
+                speechSynthesizer = new SpeechSynthesizer();
+            }
             try
             {
-                synth.Volume = 100;
-                synth.SpeakAsync(text);
+                speechSynthesizer.Volume = 100;
+                speechSynthesizer.SpeakAsync(text);
                 return true;
             }
             catch (Exception)
