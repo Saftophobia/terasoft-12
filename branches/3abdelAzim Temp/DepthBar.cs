@@ -1,91 +1,78 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
-using Mechanect.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
 
-namespace Mechanect.Screens
+namespace Mechanect.Common
 {
     class DepthBar
     {
-        User user;
+
+        #region Variables And Fields
+
+        User[] users;
         int minDepth;
         int maxDepth;
-        String rule;
-        Texture2D depthBar;
         int width;
         int height;
         Color accept;
         Color reject;
-        Color userColor;
-        int depth;
+        Color[] playerColors;
+
+        Texture2D gradient;
+        Texture2D playerIndicator; 
+        
+        public bool Accepted
+        {
+            get
+            {
+                for (int i = 0; i < users.Length; i++)
+                    if (Depth(i) >= maxDepth || Depth(i) <= minDepth)
+                        return false;
+                return true;
+            }
+        }
 
         public string Rule
         {
             get
             {
-                return rule;
+                return "Stand at a distance of " + ((float)(minDepth + maxDepth) / 200) + " meters from the kinect sensor.";
             }
         }
 
-        public DepthBar(User user, int minDepth, int maxDepth, int width, int height, Color accept, Color reject, Color userColor, GraphicsDevice graphicsDevice)
+        #endregion
+
+        #region LoadTextures
+
+        public DepthBar(User[] users, int minDepth, int maxDepth, int width, int height, Color accept, Color reject, Color[] playerColors, GraphicsDevice graphicsDevice)
         {
-            this.user = user;
+            this.users = users;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
             this.width = width;
             this.height = height;
             this.accept = accept;
             this.reject = reject;
-            this.userColor = userColor;
-            depthBar = new Texture2D(graphicsDevice, width, height);
-            rule = "Stand at a distance of " + ((float)(minDepth + maxDepth) / 200) + " meters from the kinect sensor.";
+            this.playerColors = playerColors;
+            LoadContent(graphicsDevice);
         }
 
 
-        public bool Accepted()
+        public void LoadContent(GraphicsDevice graphicsDevice)
         {
-            return depth <= maxDepth && depth >= minDepth;
+            gradient = CreateGradient(graphicsDevice);
+            playerIndicator = new Texture2D(graphicsDevice, width, 5);
+            Color[] fillColor = new Color[width * 5];
+            for (int j = 0; j < fillColor.Length; j++)
+                fillColor[j] = Color.White;
+            playerIndicator.SetData<Color>(fillColor);
         }
 
-        public string Command()
-        {
-
-            if (depth < minDepth)
-            {
-                return "Move backwards away from the kinect sensor";
-            }
-            if (depth > maxDepth)
-            {
-                return "Move forward towards the kinect sensor";
-            }
-            return "You Are Standing at a correct distance from the kinect sensor";
-        }
-
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        /// <summary>
-        /// <returns>returns the distance of users[ID] from the kinect sensor</returns>
-        /// </summary>
-        /// <param name="ID"> the index of the User in the users array</param>
-        public int Depth()
-        {
-            try
-            {
-                return (int)(100 * user.USER.Joints[JointType.HipCenter].Position.Z);
-            }
-            catch (NullReferenceException)
-            {
-                return 0;
-            }
-        }
-
+        #region CreateGradient
         /// <summary>
         /// The method gets the suitable color to fit in the gradient.
         /// </summary>
@@ -116,41 +103,82 @@ namespace Mechanect.Screens
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        public void Update()
+        public Texture2D CreateGradient(GraphicsDevice graphicsDevice)
         {
+            Texture2D gradient = new Texture2D(graphicsDevice, width, height);
             Color[] data = new Color[height];
-            depth = Depth();
             int avgDepth = (minDepth + maxDepth) / 2;
             for (int i = 0; i < height; i++)
             {
-                if (2 * i + 50 <= minDepth || 2 * i + 50 >= maxDepth)
+                if ((400 / height) * i + 50 <= minDepth || (400 / height) * i + 50 >= maxDepth)
                     data[i] = reject;
-                else if (2 * i + 50 > (avgDepth + minDepth) / 2 && 2 * i + 50 < (avgDepth + maxDepth) / 2)
+                else if ((400 / height) * i + 50 > (avgDepth + minDepth) / 2 && (400 / height) * i + 50 < (avgDepth + maxDepth) / 2)
                     data[i] = accept;
-                else if (2 * i + 50 < avgDepth)
-                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, 2 * i + 50, reject, accept);
-                else if (2 * i + 50 > avgDepth)
-                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, 2 * i + 50, accept, reject);
-                if (2 * i + 50 <= depth + 5 && 2 * i + 50 >= depth - 5)
-                    data[i] = userColor;
+                else if ((400 / height) * i + 50 < avgDepth)
+                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, (400 / height) * i + 50, reject, accept);
+                else if ((400 / height) * i + 50 > avgDepth)
+                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, (400 / height) * i + 50, accept, reject);
             }
             Color[] finalData = new Color[height * width];
             for (int j = 0; j < finalData.Length; j++)
             {
                 finalData[j] = data[j / width];
             }
-            depthBar.SetData(finalData);
+            gradient.SetData(finalData);
+            return gradient;
         }
+        #endregion
+        
+        #endregion
+
+        #region Functions
+
+        public string Command(int ID)
+        {
+            if (Depth(ID) == 0)
+                return "No player detected";
+            if (Depth(ID) < minDepth)
+                return "Move backwards away from the kinect sensor";
+            if (Depth(ID) > maxDepth)
+                return "Move forward towards the kinect sensor";
+            return "OK!";
+        }
+
+        ///<remarks>
+        ///<para>
+        ///Author: Mohamed AbdelAzim
+        ///</para>
+        ///</remarks>
+        /// <summary>
+        /// <returns>returns the distance of users[ID] from the kinect sensor</returns>
+        /// </summary>
+        /// <param name="ID"> the index of the User in the users array</param>
+        public int Depth(int ID)
+        {
+            try
+            {
+                return (int)(100 * users[ID].USER.Joints[JointType.HipCenter].Position.Z);
+            }
+            catch (NullReferenceException)
+            {
+                return 0;
+            }
+        }
+
+        #endregion
+
+        #region Draw
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(depthBar, position, Color.White);
+            spriteBatch.Draw(gradient, position, Color.White);
+            for (int i = 0; i < users.Length; i++)
+            {
+                spriteBatch.Draw(playerIndicator, position + new Vector2(0, Depth(i)), playerColors[i]);
+            }
+
         }
 
-
-        internal void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }
