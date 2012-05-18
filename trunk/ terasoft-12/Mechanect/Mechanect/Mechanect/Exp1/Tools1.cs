@@ -449,27 +449,18 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 23/4/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
          public static bool ConstantVelocity(List<float> positions, float currentTolerance)
          {
              bool result = true;
-             float firstVelocity = positions[0] - positions[1];
-             for (int i = 2; i < positions.Count; i++)
+             float firstVelocity = positions[0];
+             for (int i = 1; i < positions.Count; i++)
              {
-                 float currentDisplacement = (positions[i - 1] - positions[i]);
-                 if (!((currentDisplacement >= (firstVelocity - currentTolerance)) && (currentDisplacement <= (firstVelocity + currentTolerance))))
+                 float currentVelocity = positions[i];
+                 if (!((currentVelocity >= (firstVelocity - currentTolerance)) && (currentVelocity <= (firstVelocity + currentTolerance))))
                  {
-                     if (positions[positions.Count - 1] == 0.8)
-                     {
-                         result = true;
-                         break;
-                     }
-                     else
-                     {
-                         result = false;
-                         break;
-                     }
+                     return false;
                  }
              }
              return result;
