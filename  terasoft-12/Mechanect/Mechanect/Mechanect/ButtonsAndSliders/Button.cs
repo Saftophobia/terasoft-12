@@ -90,7 +90,7 @@ namespace ButtonsAndSliders
             MoveHand();
             texture.Update(gameTime.ElapsedGameTime.Ticks);
 
-            if (CheckColission())
+            if (CheckCollision())
             {
                 if (!timer.IsRunning())
                     timer.Start(gameTime);
@@ -167,7 +167,7 @@ namespace ButtonsAndSliders
         /// checks if the hand of the user is over the button or not
         /// </summary>
         /// <returns>returns true if the user is hovering the button</returns>
-        private bool CheckColission()
+        private bool CheckCollision()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
