@@ -113,7 +113,26 @@ namespace Mechanect.Exp3
         /// <param name="content">used to load the images</param>
         /// <param name="position">the desired position</param>
         /// <param name="status">true: if the user won, false: if the user lost</param>
+        [System.Obsolete("use method DisplayIsWin instead, typoo", false)]
         public static void DislayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, bool status)
+        {
+            /*
+            spriteBatch.Begin();
+            if (status)
+            {
+                Texture2D winningPicture = content.Load<Texture2D>("Textures/WorL/winner");
+                spriteBatch.Draw(winningPicture, position, Color.White);
+            }
+            else
+            {
+                Texture2D losingPicture = content.Load<Texture2D>("Textures/WorL/looser");
+                spriteBatch.Draw(losingPicture, position, Color.White);
+            }
+            spriteBatch.End();
+             */
+        }
+
+        public static void DisplayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, bool status)
         {
             spriteBatch.Begin();
             if (status)
