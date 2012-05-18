@@ -1,124 +1,112 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ButtonsAndSliders;
 using Mechanect.Common;
-using Microsoft.Xna.Framework.Graphics;
-using Mechanect.Classes;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
-using Mechanect.Experiment2;
 using Mechanect.Exp3;
 using Mechanect.Experiment1;
+using Mechanect.Experiment2;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
+    /// <summary>
+    /// This class represents the screen where the user picks an experiment.
+    /// </summary>
+    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
     class AllExperiments : Mechanect.Common.GameScreen
     {
-        string instructions = " Press A to choose Experiment1" +"\n" + " B to choose Experiment2" + "\n" + " C to choose Experiment3";
         User user;
         ContentManager content;
         SpriteBatch batch;
         GraphicsDevice device;
+        Texture2D backgroundTexture;
         int screenWidth;
         int screenHeight;
-        public SpriteFont Font1 { get; set; }
+        Button experiment1;
+        Button experiment2;
+        Button experiment3;
 
-        public Texture2D MyTexture { get; set; }
-       // Button button1;
-       // Button button2;
-        // Button button3;
+        [System.Obsolete("Will be repaced by ", false)]
         public AllExperiments()
         {
+
         }
-        public AllExperiments(ContentManager content, SpriteBatch batch, GraphicsDevice device, User user, int screenWidth, int screenHeight)
+        /// <summary>
+        /// Creates a new instance of AllExperiments
+        /// </summary>
+        /// <param name="user">The user that will be tracked when this screen is active</param>
+        public AllExperiments(User user)
         {
             this.user = user;
-            this.content = content;
-            this.batch = batch;
-            this.device = device;
-            this.screenWidth = screenWidth;
-            this.screenHeight = screenHeight;
         }
         /// <summary>
-        /// LoadContent will be called only once before drawing and its the place to load
-        /// all of your content.
+        /// Loads the content of this screen.
         /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-      public override void LoadContent()
+        public override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
+            this.content = ScreenManager.Game.Content;
+            this.batch = ScreenManager.SpriteBatch;
+            this.device = ScreenManager.GraphicsDevice;
+            this.screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
+            this.screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
             screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
             screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
-         //   b =  Tools3.OKButton(cmanager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
-          // screenWidth , screenHeight,user );
-           Font1 = ScreenManager.Game.Content.Load<SpriteFont>(@"SpriteFont1");
-            MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
-            // TODO: use this.Content to load your game content here
+
+            experiment1 = Tools3.OKButton(content, new Vector2(0, device.Viewport.Height / 2),
+           screenWidth, screenHeight, user);
+            experiment2 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2) - 70, device.Viewport.Height / 2),
+           screenWidth, screenHeight, user);
+            experiment3 = Tools3.OKButton(content, new Vector2((device.Viewport.Width) - 150, device.Viewport.Height / 2),
+           screenWidth, screenHeight, user);
+            backgroundTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/background");
         }
-
-            
-         //   button1 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2)-200, device.Viewport.Height - 1200),
-           //screenWidth, screenHeight, user);
-           // button2 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2)-400, device.Viewport.Height - 800),
-           //screenWidth, screenHeight, user);
-            //button3 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2)-800, device.Viewport.Height - 400),
-           //screenWidth, screenHeight, user);
-
-
-      /// <summary>
-      /// Allows the game screen to run logic such as updating the world,
-      /// checking for collisions, gathering input, and playing audio.
-      /// </summary>
-      /// <remarks>
-      ///<para>AUTHOR: Khaled Salah </para>
-      ///</remarks>
-      /// <param name="gameTime">Provides a snapshot of timing values.</param>
-      /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
-
-        public override void Update(GameTime gameTime, bool covered)
+        /// <summary>
+        /// perfroms the necessary updates for the AllExperiments screen.
+        /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
+        public override void Update(GameTime gameTime)
         {
-
-            KeyboardState keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.A))
+            experiment1.Update(gameTime);
+            experiment2.Update(gameTime);
+            experiment3.Update(gameTime);
+            if (experiment1.IsClicked())
             {
-                ExitScreen();
+                Remove();
                 ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
             }
-            if (keyState.IsKeyDown(Keys.B))
+            if (experiment2.IsClicked())
             {
-                ExitScreen();
+                Remove();
                 ScreenManager.AddScreen(new Settings2(new User2()));
             }
-            if (keyState.IsKeyDown(Keys.C))
+            if (experiment3.IsClicked())
             {
-                ExitScreen();
+                Remove();
                 ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
             }
-          //  instruction.Button.Update(gameTime);
-            //button1.Update(gameTime);
-            //button2.Update(gameTime);
-            //button3.Update(gameTime);
-         //   base.Update(gameTime, false);
         }
 
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
         /// <summary>
-        /// This is called when the game screen should draw itself.
+        /// draws the AllExperiments screen.
         /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>    
+        /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.GraphicsDevice.Clear(Color.YellowGreen);
-            // b.Draw(spriteBatch);
+            ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.DrawString(Font1, instructions, new Vector2(), Color.Black, 0, new Vector2(), 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height), Color.White);
+            experiment1.DrawHand(ScreenManager.SpriteBatch);
+            experiment2.DrawHand(ScreenManager.SpriteBatch);
+            experiment3.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
-            //instruction.Draw(gameTime);
-          //  button1.Draw(batch);
-           // button2.Draw(batch);
-           // button3.Draw(batch);
+            experiment1.Draw(ScreenManager.SpriteBatch);
+            experiment2.Draw(ScreenManager.SpriteBatch);
+            experiment3.Draw(ScreenManager.SpriteBatch);
+
         }
+
+        /// <summary>
+        /// removes this screen from the screens that should be managed by the screenManager
+        /// </summary>
         public override void Remove()
         {
             base.Remove();
