@@ -11,6 +11,7 @@ using Mechanect.Exp3;
 using Microsoft.Kinect;
 using Mechanect.Common;
 using Mechanect.Exp3;
+using ButtonsAndSliders;
 
 namespace Mechanect.Screens
 {
@@ -53,6 +54,16 @@ namespace Mechanect.Screens
         int framesToWait;
         Vector3 velocity;
 
+
+        string count;
+        Vector2 countPosition;
+        Color countColor;
+        SpriteFont countFont;
+        float countScale;
+
+        Button button;
+        Texture2D ok;
+
         public PauseScreen(User3 user, MKinect kinect, double ballVelocity, double ballMass, double legMass)
         {
             this.user = user;
@@ -67,7 +78,10 @@ namespace Mechanect.Screens
             fills = new List<Texture2D>();
             displayedGivens = "";
             frameNumber = 0;
-
+            count = "";
+            countScale = 1;
+            countColor = Color.Red;
+            
 
 
         }
@@ -81,8 +95,8 @@ namespace Mechanect.Screens
 
 
 
-            font = content.Load<SpriteFont>("spriteFont1");
-
+            font = content.Load<SpriteFont>("SpriteFont1");
+            countFont = content.Load<SpriteFont>("SpriteFont2");
             velocityBar = content.Load<Texture2D>("Textures/VBar");
             vBarPosition = new Vector2((velocityBar.Width / 2) + 20, viewPort.Height - (velocityBar.Height / 2));
             fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
@@ -92,9 +106,15 @@ namespace Mechanect.Screens
 
 
             arrow = content.Load<Texture2D>("Textures/arrow");
-            arrowScale = 0.3f;
+            arrowScale = 0.2f;
             arrowPosition = new Vector2(viewPort.Width - (float)((Math.Sqrt(arrowScale) * arrow.Width)), viewPort.Height / 2 + (float)((Math.Sqrt(arrowScale) * arrow.Height / 2)));
             arrowAngle = 0;
+
+            countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
+
+
+            button = Tools3.OKButton(content, new Vector2(viewPort.Width - 255, 0), viewPort.Width, viewPort.Height, user);
+            
 
 
 
@@ -108,8 +128,8 @@ namespace Mechanect.Screens
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
         {
 
-
-            if (!voiceCommands.getHeared("go"))
+            button.Update(gameTime);
+            if (!voiceCommands.getHeared("go") && !button.IsClicked())
             {
                 if (!user.HasShot())
                 {
@@ -132,16 +152,17 @@ namespace Mechanect.Screens
                     }
                     arrowAngle = (float)user.Angle;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                       + (Math.Truncate(legMass * 1000) / 1000) + '\n' + user.velocity.Length();
+                       + (Math.Truncate(legMass * 1000) / 1000);
                 }
                 else
                 {
 
                     user.velocity = velocity;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + legMass + '\n' + "shooting velocity: " + velocity.Length() + " m/s " + '\n' + "shooting angle: " + (user.Angle * 180 / Math.PI) + " degrees";
+                        + Math.Truncate(legMass * 1000) / 1000 +'\n' + "Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
+                        + '\n' + "Shooting angle: " + Math.Truncate((user.Angle * 180 / Math.PI) * 1000) / 1000 +" deg";
 
-                    if (framesToWait > 300) // after 5 seconds
+                    if (framesToWait > 240) // after 4 seconds
                     {
 
                         fillsPositions.Clear();
@@ -150,10 +171,28 @@ namespace Mechanect.Screens
                         arrowAngle = 0;
                         framesToWait = 0;
                         user.ResetUserForShootingOrTryingAgain();
+                        count = "";
+                        countColor = Color.Red;
+                        countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
+                        countScale = 1;
                     }
                     else
+                    {
+                        if (framesToWait >= 0 && framesToWait <= 60)
+                            count = "3";
+                        if (framesToWait > 60 && framesToWait <= 120)
+                            count = "2";
+                        if (framesToWait > 120 && framesToWait <= 180)
+                            count = "1";
+                        if (framesToWait > 180 && framesToWait <= 240)
+                        {
+                            count = "Try Again";
+                            countColor = Color.DarkGreen;
+                            countPosition = new Vector2(viewPort.Width / 8, (1 * viewPort.Height) / 3);
+                            countScale = 0.8f;
+                        }
                         framesToWait++;
-
+                    }
                 }
             }
             else
@@ -172,34 +211,25 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
-            spriteBatch.Begin();
-            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 1f, SpriteEffects.None, 0);
-            spriteBatch.End();
 
+            button.Draw(spriteBatch);
 
             spriteBatch.Begin();
+
+            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.7f, SpriteEffects.None, 0);
             spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
-            spriteBatch.End();
-
-
             for (int i = 0; i < fills.Count; i++)
-            {
-                spriteBatch.Begin();
                 spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
                     Color.White, 0, new Vector2(fills.ElementAt<Texture2D>(i).Width / 2,
                         fills.ElementAt<Texture2D>(i).Height / 2), 1, SpriteEffects.None, 0);
-                spriteBatch.End();
-            }
-
-            spriteBatch.Begin();
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.Black);
+            spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
+            button.DrawHand(spriteBatch);
+
             spriteBatch.End();
 
-
-
-            spriteBatch.Begin();
-            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 3, givens.Height / 4), Color.Red);
-            spriteBatch.End();
+            
 
 
         }
