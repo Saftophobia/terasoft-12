@@ -35,9 +35,9 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
         /// <param name="covered">specifies wether the screen is covered.</param>
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime,false);
+            base.Update(gameTime);
             if (Done)
             {
                 base.Remove();

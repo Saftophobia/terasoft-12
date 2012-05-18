@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Mechanect.Common;
 
 namespace Mechanect.Screens
 {
@@ -22,13 +23,13 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
         /// <param name="covered">specifies wether the screen is covered.</param>
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime, false);
+            base.Update(gameTime);
             if (Done)
             {
                 base.Remove();
-                ScreenManager.AddScreen(new AllExperiments());
+                ScreenManager.AddScreen(new AllExperiments(new User()));
             }
         }
         /// <summary>
