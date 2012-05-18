@@ -188,7 +188,7 @@ namespace Mechanect.Exp3
                             friction--;
                         else if (wind > 1) 
                             wind--;
-                        else hole.Position = new Vector3(hole.Position.X / 2, hole.Position.Y, hole.Position.Z); break; 
+                        else hole.Position = new Vector3(hole.Position.X/2, hole.Position.Y, hole.Position.Z+1); break; 
                     case Constants3.negativeRDifference: int tmp = ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
                     case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
@@ -205,7 +205,6 @@ namespace Mechanect.Exp3
                 hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
             if(hole.Position.Z<=user.ShootingPosition.Z)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
-
         }
 
 
