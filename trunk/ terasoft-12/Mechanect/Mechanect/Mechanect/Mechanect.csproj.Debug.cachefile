@@ -100,6 +100,7 @@ Content\Textures\rightArrow.xnb
 Content\Models\skybox2.xnb
 Content\Exp1\skybox2.xnb
 Content\Exp1\xwing.xnb
+Content\Models\dome.xnb
 Content\Textures\effects.xnb
 Content\Exp1\effects.xnb
 Content\Textures\MYHLSL.xnb
@@ -122,3 +123,4 @@ Content\Exp1\left_0.xnb
 Content\Exp1\front_0.xnb
 Content\Exp1\back_0.xnb
 Content\Exp1\down_0.xnb
+Content\Textures\cloudMap_0.xnb
