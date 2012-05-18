@@ -168,6 +168,77 @@ namespace Mechanect.Experiment1
              }
          }
 
+        /// <summary>
+        /// This method checks the disqualification of the two players once the command is over
+        /// </summary>
+        /// <param name="timeInSeconds">The time of the game.</param>
+        /// <param name="user1">The first player.</param>
+        /// <param name="user2">The second player.</param>
+        /// <param name="timeOfCommands">The list specifying the time of each command.</param>
+        /// <param name="currentCommands">The list of current game commands.</param>
+        /// <param name="tolerance">The tolerance level.</param>
+        /// <returns>void: Within the method itself it updates the value of the variable isDisqualified of the two players.</returns>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 18/5/12 </para>
+        /// <para>DATE MODIFIED: 18/5/12 </para>
+        /// </remarks>
+         public static void CheckTheCommand(int timeInSeconds, User1 user1, User1 user2, List<int> timeOfCommands, List<string> currentCommands, float tolerance)
+         {
+             //get the accumulative time of current command
+             int accumulativeTime = 0;
+             for (int i = 0; i < user1.ActiveCommand; i++)
+                 accumulativeTime += timeOfCommands[i];
+
+             if (accumulativeTime != timeInSeconds)
+                 return;
+
+             //get the start index of speed list
+             int startIndexFor1 = 0;
+             int startIndexFor2 = 0;
+             for (int i = 0; i < user1.Velocitylist.Count; i++)
+                 if ((accumulativeTime + 1) >= user1.Velocitylist[i][1])
+                 {
+                     startIndexFor1 = i;
+                     break;
+                 }
+
+             for (int i = 0; i < user2.Velocitylist.Count; i++)
+                 if ((accumulativeTime + 1) >= user2.Velocitylist[i][1])
+                 {
+                     startIndexFor2 = i;
+                     break;
+                 }
+
+             //set the list of speeds
+             List<float> speedsOf1 = new List<float>();
+             List<float> speedsOf2 = new List<float>();
+             if (startIndexFor1 < user1.Velocitylist.Count)
+                 for (int i = startIndexFor1; i < user1.Velocitylist.Count; i++)
+                     speedsOf1.Add(user1.Velocitylist[i][0]);
+
+             if (startIndexFor2 < user2.Velocitylist.Count)
+                 for (int i = startIndexFor2; i < user2.Velocitylist.Count; i++)
+                     speedsOf2.Add(user2.Velocitylist[i][0]);
+
+             //here the command is checked pver the two players to see if any of them got disqualified
+             string s = "";
+             if (!CommandSatisfied(currentCommands[user1.ActiveCommand], speedsOf1, tolerance))
+             {
+                 user1.Disqualified = true;
+                 user1.DisqualificationTime = timeInSeconds;
+                 s += "User 1 got Disqualified \n";
+                 Console.Write("User1 1 got Disqualified");
+             }
+             if (!CommandSatisfied(currentCommands[user2.ActiveCommand], speedsOf2, tolerance))
+             {
+                 user2.Disqualified = true;
+                 user2.DisqualificationTime = timeInSeconds;
+                 s += "User 2 got Disqualified";
+                 Console.Write("User 2 got Disqualified");
+             }
+         }
+
          /// <summary>
          /// This method should be called on each second, and it will do the check on both players to see if they followed the commands.
          /// </summary>
@@ -455,26 +526,27 @@ namespace Mechanect.Experiment1
          /// </remarks>
          public static bool ConstantDisplacement(List<float> positions, float currentTolerance)
          {
-             bool result = true;
-             float firstDisplacement = positions[0];
-             for (int i = 1; i < positions.Count; i++)
-             {
-                 float currentDisplacement = positions[i];
-                 if (!((currentDisplacement >= (firstDisplacement - currentTolerance)) && (currentDisplacement <= (firstDisplacement + currentTolerance))))
-                 {
-                     if (positions[positions.Count - 1] == 0.8)
-                     {
-                         result = true;
-                         break;
-                     }
-                     else
-                     {
-                         result = false;
-                         break;
-                     }
-                 }
-             }
-             return result;
+             //bool result = true;
+             //float firstDisplacement = positions[0];
+             //for (int i = 1; i < positions.Count; i++)
+             //{
+             //    float currentDisplacement = positions[i];
+             //    if (!((currentDisplacement >= (firstDisplacement - currentTolerance)) && (currentDisplacement <= (firstDisplacement + currentTolerance))))
+             //    {
+             //        if (positions[positions.Count - 1] == 0.8)
+             //        {
+             //            result = true;
+             //            break;
+             //        }
+             //        else
+             //        {
+             //            result = false;
+             //            break;
+             //        }
+             //    }
+             //}
+             //return result;
+             return (positions.Count == 0);
          }
 
          /// <summary>
