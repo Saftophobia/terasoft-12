@@ -6,9 +6,9 @@ using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 using Mechanect.Common;
 using Mechanect.Classes;
-using MKinect;
+//using MKinect;
 
-namespace Mechanect.Experiment2
+namespace Mechanect.Exp2
 {
     /// <summary>
     /// This Class responsible for functionalities that User will do when testing either Velocity or Angle
@@ -16,7 +16,7 @@ namespace Mechanect.Experiment2
     /// <para>Author: Mohamed Raafat</para>
     /// </remarks>
     /// </summary>
-    class User2 : Mechanect.Common.User
+    public class User2 : Mechanect.Common.User
     {
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Mechanect.Experiment2
                 angleBeingMeasured = value;
             }
         }
-        List<Vector2> angleAndTime = new List<Vector2>;
+        List<Vector2> angleAndTime = new List<Vector2>();
         private double measuredVelocity;
         private double measuredFinalAngle;
         /// <summary>
