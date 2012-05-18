@@ -175,7 +175,13 @@ namespace Mechanect.Exp3
         ///</remarks>
         public void GenerateSolvable()
         {
-
+            if (hole.Position.Z >= Constants3.maxHolePosZ - hole.Radius)
+                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
+            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX - hole.Radius)
+                hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
+            if (hole.Position.Z <= user.ShootingPosition.Z)
+                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
+       
             var x = Constants3.solvableExperiment;
             do
             {
@@ -197,14 +203,7 @@ namespace Mechanect.Exp3
                     case Constants3.negativeFriction: friction *= -1; break;
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Add(hole.Position, new Vector3(0, 0, 1)); break;
                 }
-            } while (x != Constants3.solvableExperiment);
-           
-            if (hole.Position.Z >= Constants3.maxHolePosZ-hole.Radius)
-                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
-            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX-hole.Radius)
-                hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
-            if(hole.Position.Z<=user.ShootingPosition.Z)
-                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
+            } while (x != Constants3.solvableExperiment);    
         }
 
 
