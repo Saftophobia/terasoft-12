@@ -72,7 +72,7 @@ namespace Mechanect.Screens
             if (experiment1.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
+                ScreenManager.AddScreen(new Experiment1(new User1(1), new User1(2), new MKinect()));
             }
             if (experiment2.IsClicked())
             {
