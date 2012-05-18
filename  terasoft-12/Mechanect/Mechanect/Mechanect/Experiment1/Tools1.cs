@@ -565,22 +565,7 @@ namespace Mechanect.Experiment1
          public static void getKneespeed(List<float> kneeposition, List<float> playerdisplacement)
          {
 
-             if (kneeposition.Count() == 0 || kneeposition.Count() == 1)
-             {
-                 //do nothing
-             }
-             if (kneeposition.Count() == 2)
-             {
-                 
-
-             }
-             else
-             {
-
-             }
-
-
-             return;
+            
          }
          
         /// <summary>
@@ -604,10 +589,163 @@ namespace Mechanect.Experiment1
 
 
 
+        /// <summary>
+        /// calculate the Speed of an oscillation of the left knee
+        /// </summary>
+        /// <param name="user1">which User to track</param>
+        /// <param name="speed">speed of the knee</param>
+        /// <param name="speedlist">a variable to hold the speed of the knee and time of the calculation</param>
+        /// <param name="calculatespeedbool">a boolean to calculate the knee only when knee is losing Height</param>
+        /// <param name="max">Max knee height</param>
+        /// <param name="min">Min knee height</param>
+        /// <param name="timer">Gametime</param>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 15/5/2012</para>
+        /// <para>Date Modified 18/5/2012</para>
+        /// </remarks>
+         public static void getspeedl(User1 user1, float speed, float[] speedlist, bool calculatespeedbool, float[] max, float[] min,float timer)
+         {
+
+             if (user1.Kneepos.Count() != 0)
+             {
+                 if (user1.Kneepos.Count() == 1)
+                 {
+                     min[0] = user1.Kneepos[0]; //set the first input to be minimum
+                     min[1] = timer;
+                 }
+                 else
+                 {
+
+
+                     if (user1.Kneepos[user1.Kneepos.Count() - 1] == user1.Kneepos[user1.Kneepos.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
+                     {
+
+                         if (user1.Kneepos[user1.Kneepos.Count() - 1] == max[0])
+                         {
+                             max[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
+                             max[1] = timer;
+                         }
+                         if (user1.Kneepos[user1.Kneepos.Count() - 1] == min[0])
+                         {
+                             min[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
+                             min[1] = timer;
+                         }
+                         user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
+                         // and set one b4 to be the min
+                     }
+                     if (user1.Kneepos.Count() - 1 > user1.Kneepos.Count() - 2) // if the next input greater than the one b4 .. set it to max
+                     {
+
+                         calculatespeedbool = true;
+                         max[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
+                         max[1] = timer;
+                         user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
+
+                     }
+                     else // the next input is smaller than the one b4 .. 
+                     {
+
+
+                         if (calculatespeedbool)
+                         {
+                             speed = ((max[0] - min[0]) / (max[1] - min[1]));
+                             speedlist[0] = speed;
+                             speedlist[1] = timer;//calculate the speed of the oscillation from min to max
+                             user1.Velocitylist.Add(speedlist);
+                             calculatespeedbool = false;
+                         }
+                         min[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
+                         min[1] = timer;
+                         user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
+
+
+                     }
+                 }
 
 
 
+             }
+         }
 
+
+        
+         /// <summary>
+         /// calculate the Speed of an oscillation of the Right knee
+         /// </summary>
+         /// <param name="user1">which User to track</param>
+         /// <param name="speed">speed of the knee</param>
+         /// <param name="speedlist">a variable to hold the speed of the knee and time of the calculation</param>
+         /// <param name="calculatespeedbool">a boolean to calculate the knee only when knee is losing Height</param>
+         /// <param name="max">Max knee height</param>
+         /// <param name="min">Min knee height</param>
+         /// <param name="timer">Gametime</param>
+         /// <para>Author: Safty</para>
+         /// <para>Date Written 15/5/2012</para>
+         /// <para>Date Modified 18/5/2012</para>
+         /// </remarks>
+         public static void getspeedr(User1 user1, float speedr, float[] speedlistr, bool calculatespeedboolr, float[] maxr, float[] minr, float timer)
+         {
+             if (user1.Kneeposr.Count() != 0)
+             {
+                 if (user1.Kneeposr.Count() == 1)
+                 {
+                     minr[0] = user1.Kneeposr[0]; //set the first input to be minimum
+                     minr[1] = timer;
+                 }
+                 else
+                 {
+
+
+                     if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == user1.Kneeposr[user1.Kneeposr.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
+                     {
+
+                         if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == maxr[0])
+                         {
+                             maxr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
+                             maxr[1] = timer;
+                         }
+                         if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == minr[0])
+                         {
+                             minr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
+                             minr[1] = timer;
+                         }
+                         user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
+                         // and set one b4 to be the min
+                     }
+                     if (user1.Kneeposr.Count() - 1 > user1.Kneeposr.Count() - 2) // if the next input greater than the one b4 .. set it to max
+                     {
+
+                         calculatespeedboolr = true;
+                         maxr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
+                         maxr[1] = timer;
+                         user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
+
+                     }
+                     else // the next input is smaller than the one b4 .. 
+                     {
+
+
+                         if (calculatespeedboolr)
+                         {
+                             speedr = ((maxr[0] - minr[0]) / (maxr[1] - minr[1]));
+                             speedlistr[0] = speedr;
+                             speedlistr[1] = timer;//calculate the speed of the oscillation from min to max
+                             user1.Velocitylist.Add(speedlistr);
+                             calculatespeedboolr = false;
+                         }
+                         minr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
+                         minr[1] = timer;
+                         user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
+
+
+                     }
+                 }
+
+
+
+             }
+         }
+    
 
 
 

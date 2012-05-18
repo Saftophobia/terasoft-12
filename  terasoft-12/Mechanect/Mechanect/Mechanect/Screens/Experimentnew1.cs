@@ -16,17 +16,26 @@ namespace Mechanect.Screens
     class Experimentnew1 : Mechanect.Common.GameScreen
     {
         #region kneevariables
-        
-        float speed;
-        float speedr;
+
+        float speed = 0;
+        float speed2 = 0;
+        float speedr = 0;
+        float speedr2 = 0;
         float[] speedlist = new float[2];
         float[] speedlistr = new float[2];
-
+        float[] speedlist2 = new float[2];
+        float[] speedlistr2 = new float[2];
        
         bool calculatespeedbool = false;
         bool calculatespeedboolr = false;
+        bool calculatespeedbool2 = false;
+        bool calculatespeedboolr2 = false;
+
         float[] max, min = new float[2];
         float[] maxr, minr = new float[2];
+        float[] max2, min2 = new float[2];
+        float[] maxr2, minr2 = new float[2];
+
         Joint left, right;
         float timer = 0;
         int timecounter;
@@ -126,10 +135,11 @@ namespace Mechanect.Screens
             {
                 Environment1.TargetCam();
                 fill_Knee_pos();
-                getspeedleft(user1);
-                getspeedleft(user2);
-                getspeedright(user1);
-                getspeedright(user2);
+                Tools1.getspeedl(user1, speed, speedlist, calculatespeedbool, max, min, timer);
+                Tools1.getspeedr(user1, speedr, speedlistr, calculatespeedboolr, maxr, minr, timer);
+                Tools1.getspeedl(user2, speed2, speedlist2, calculatespeedbool2, max2, min2, timer);
+                Tools1.getspeedr(user2, speedr2, speedlistr2, calculatespeedboolr2, maxr2, minr2, timer);
+              
 
 
             }
@@ -155,7 +165,13 @@ namespace Mechanect.Screens
             countdown.DrawCountdown(SpriteBatch);
             countdown.PlaySoundEffects();
         }
-
+        /// <summary>
+        /// Gets Data from kinect( Y position of knee) and adds it to the kneepos array at User1
+        /// </summary>
+        /// <para>Author: Safty</para>
+        /// <para>Date Written 18/5/2012</para>
+        /// <para>Date Modified 18/5/2012</para>
+        /// </remarks>
         public void fill_Knee_pos()
         {
 
@@ -200,8 +216,8 @@ namespace Mechanect.Screens
             countdown = new CountDown();
             countdown.InitializeCountDown(Texthree, Textwo, Texone, Texgo, Seffect1, Seffect2);//initializes the Countdown 
         }
-
-        public void getspeedleft(User1 user1)
+        /*
+        public void getspeedleft(User1 user1,float[] min,float[] max)
         {
 
             if (user1.Kneepos.Count() != 0)
@@ -326,7 +342,7 @@ namespace Mechanect.Screens
 
             }
         }
-    
+    */
     
     }
 }
