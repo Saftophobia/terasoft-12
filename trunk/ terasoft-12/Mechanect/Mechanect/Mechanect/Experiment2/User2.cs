@@ -134,22 +134,32 @@ namespace Mechanect.Experiment2
                     return;
                 counter = 0;
 
-                Vector2 hand = new Vector2(USER.Joints[JointType.HandLeft].Position.X - USER.Joints[JointType.ShoulderLeft].Position.X
-                    , USER.Joints[JointType.HandLeft].Position.Y - USER.Joints[JointType.ShoulderLeft].Position.Y);
+                Vector3 centerHipToLeftShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.HipCenter].Position.X, USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.HipCenter].Position.Y, USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.HipCenter].Position.Z); 
 
-                double angle = (float)Math.Atan(hand.Y / hand.X);
-                angle = angle * 180 / Math.PI;
-                angle += 90;
-                angle /= 2;
-
-                if (angle - previousAngle > 0.5)
-                {
+                Vector3 centerHiptoRightShoulder = new Vector3(USER.Joints[JointType.ShoulderRight].Position.X - USER.Joints[JointType.HipCenter].Position.X, USER.Joints[JointType.ShoulderRight].Position.Y - USER.Joints[JointType.HipCenter].Position.Y, USER.Joints[JointType.ShoulderRight].Position.Z - USER.Joints[JointType.HipCenter].Position.Z);
+              
+                Vector3 leftShoulderToRightShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.ShoulderRight].Position.X, USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.ShoulderRight].Position.Y, USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.ShoulderRight].Position.Z);
+               
+                Vector3 leftShoulderToLeftHand = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.ShoulderRight].Position.X, USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.ShoulderRight].Position.Y, USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.ShoulderRight].Position.Z); 
+               
+                Vector3 normalToShouldersHipPlane = Vector3.Cross(centerHipToLeftShoulder, centerHiptoRightShoulder); 
+                
+                Vector3 normalToShoulderHandPlane = Vector3.Cross(leftShoulderToLeftHand, leftShoulderToRightShoulder); 
+               
+                double angle = (double)Math.Acos(Vector3.Dot(normalToShoulderHandPlane, normalToShouldersHipPlane)); 
+                angle = angle * 180 / Math.PI; 
+                angle += 90; angle /= 2; 
+                if (angle - previousAngle > 0.5) 
+                { 
                     previousAngle = angle;
-                    return;
-                }
-                currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
-                measuredAngle = (int)(10 * angle) / 10f;
-                shooting = false;
+                    return; 
+                } 
+                currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime; 
+                
+                measuredAngle = (int)(10 * angle) / 10f; 
+                shooting = false; 
+
+             
             }
 
         }
