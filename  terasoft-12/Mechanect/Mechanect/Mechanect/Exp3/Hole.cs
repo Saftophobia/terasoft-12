@@ -11,18 +11,19 @@ namespace Mechanect.Exp3
     public class Hole :CustomModel
     {
         public int Radius { get; set; }
-        private Vector3 shootingPosition;
+        private Vector3 shootingPos;
         int terrainWidth;
         int terrainHeight;
-        public Hole(ContentManager c, GraphicsDevice d, int terrainWidth, int terrainHeight, int radius, Vector3 shootingPos)
-            : base(c.Load<Model>(@"Models/holemodel"), GeneratePosition(radius,terrainWidth,terrainHeight,shootingPos), Vector3.Zero,  new Vector3((float)Constants3.scaleRatio*radius), d)
+
+        public Hole(ContentManager content, GraphicsDevice device, int terrainWidth, int terrainHeight, int radius, Vector3 shootingPos)
+            : base(content.Load<Model>(@"Models/holemodel"), GeneratePosition(radius,terrainWidth,terrainHeight,shootingPos),
+            Vector3.Zero,  new Vector3((float)Constants3.scaleRatio*radius), deivce)
         {
-            this.Radius = radius;
+            Radius = radius;
             this.terrainWidth = terrainWidth;
             this.terrainHeight = terrainHeight;
-            shootingPosition = shootingPos ;
+            this.shootingPos = shootingPos ;
         }
-
        
         /// <summary>
         /// Sets the X,Y,Z values for the hole position which are related to the enviroment's terrain width and height.
