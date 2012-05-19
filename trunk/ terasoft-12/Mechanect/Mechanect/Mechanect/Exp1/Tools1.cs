@@ -181,7 +181,7 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 18/5/12 </para>
-         /// <para>DATE MODIFIED: 18/5/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
          public static void CheckTheCommand(int timeInSeconds, User1 user1, User1 user2, List<int> timeOfCommands, List<string> currentCommands, float tolerance)
          {
@@ -213,24 +213,32 @@ namespace Mechanect.Exp1
              //set the list of speeds
              List<float> speedsOf1 = new List<float>();
              List<float> speedsOf2 = new List<float>();
+             List<float[]> velocitiesWithTimeOf1 = new List<float[]>();
+             List<float[]> velocitiesWithTimeOf2 = new List<float[]>();
              if (startIndexFor1 < user1.Velocitylist.Count)
                  for (int i = startIndexFor1; i < user1.Velocitylist.Count; i++)
+                 {
                      speedsOf1.Add(user1.Velocitylist[i][0]);
+                     velocitiesWithTimeOf1.Add(user1.Velocitylist[i]);
+                 }
 
              if (startIndexFor2 < user2.Velocitylist.Count)
                  for (int i = startIndexFor2; i < user2.Velocitylist.Count; i++)
+                 {
                      speedsOf2.Add(user2.Velocitylist[i][0]);
+                     velocitiesWithTimeOf2.Add(user2.Velocitylist[i]);
+                 }
 
              //here the command is checked pver the two players to see if any of them got disqualified
              string s = "";
-             if (!CommandSatisfied(currentCommands[user1.ActiveCommand], speedsOf1, tolerance))
+             if (!CommandSatisfied(currentCommands[user1.ActiveCommand], speedsOf1, tolerance, velocitiesWithTimeOf1))
              {
                  user1.Disqualified = true;
                  user1.DisqualificationTime = timeInSeconds;
                  s += "User 1 got Disqualified \n";
                  Console.Write("User1 1 got Disqualified");
              }
-             if (!CommandSatisfied(currentCommands[user2.ActiveCommand], speedsOf2, tolerance))
+             if (!CommandSatisfied(currentCommands[user2.ActiveCommand], speedsOf2, tolerance, velocitiesWithTimeOf2))
              {
                  user2.Disqualified = true;
                  user2.DisqualificationTime = timeInSeconds;
@@ -239,6 +247,7 @@ namespace Mechanect.Exp1
              }
          }
 
+        [Obsolete("CheckEachSecond is deprecated, please use CheckTheCommand instead.", true)]
          /// <summary>
          /// This method should be called on each second, and it will do the check on both players to see if they followed the commands.
          /// </summary>
@@ -298,7 +307,7 @@ namespace Mechanect.Exp1
                  return;
 
              //here the command is checked pver the two players to see if any of them got disqualified
-             if (!CommandSatisfied(currentCommands[user11.ActiveCommand], user11Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[user11.ActiveCommand], user11Displacement, tolerance,user11.Velocitylist))
              {
                  user11.Disqualified = true;
                  user11.DisqualificationTime = timeInSeconds;
@@ -307,7 +316,7 @@ namespace Mechanect.Exp1
                  spriteBatch.End();
                  Console.Write("User1 1 got Disqualified");
              }
-             if (!CommandSatisfied(currentCommands[user12.ActiveCommand], user12Displacement, tolerance))
+             if (!CommandSatisfied(currentCommands[user12.ActiveCommand], user12Displacement, tolerance, user12.Velocitylist))
              {
                  user12.Disqualified = true;
                  user12.DisqualificationTime = timeInSeconds;
@@ -392,46 +401,47 @@ namespace Mechanect.Exp1
          /// This method checks whether the user satisfied the commands or not.
          /// </summary>
          /// <param name="command">Which is the name of the command that should be satisfied.</param>
-         /// <param name="positions">A list containing the positions of the user.</param>
+         /// <param name="velocities">A list containing the velocities of the user.</param>
          /// <param name="tolerance">The tolerance level.</param>
+         /// <param name="velocityListWithTime">A list containing the velocities of the user with its respective time.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 26/4/12 </para>
          /// </remarks>
-         public static bool CommandSatisfied(String command, List<float> positions, float tolerance)
+         public static bool CommandSatisfied(string command, List<float> velocities, float tolerance, List<float[]> velocityListWithTime)
          {
              bool result = true;
              float currentTolerance = tolerance;
 
              if (command.Equals("constantVelocity"))
              {
-                 result = ConstantVelocity(positions, currentTolerance);
+                 result = ConstantVelocity(velocities, currentTolerance);
              }
              else
              {
                  if (command.Equals("constantAcceleration"))
                  {
-                     result = ConstantAcceleration(positions, currentTolerance);
+                     result = ConstantAcceleration(velocityListWithTime, currentTolerance);
                  }
                  else
                  {
                      if (command.Equals("constantDisplacement"))
                      {
-                         result = ConstantDisplacement(positions, currentTolerance);
+                         result = ConstantDisplacement(velocities, currentTolerance);
                      }
                      else
                      {
                          if (command.Equals("increasingAcceleration"))
                          {
-                             result = IncreasingAcceleration(positions, currentTolerance);
+                             result = IncreasingAcceleration(velocityListWithTime, currentTolerance);
                          }
                          else
                          {
                              if (command.Equals("decreasingAcceleration"))
                              {
-                                 result = DecreasingAcceleration(positions, currentTolerance);
+                                 result = DecreasingAcceleration(velocityListWithTime, currentTolerance);
                              }
                          }
                      }
@@ -440,10 +450,29 @@ namespace Mechanect.Exp1
              return result;
          }
 
+        /// <summary>
+        /// This method calculates the acceleration of the joint.
+        /// </summary>
+        /// <param name="velocities">The list of velocities and time of each velocity.</param>
+        /// <returns>List<float>: The acceleration of the joint.</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// </remarks>
+         public static List<float> GetAcceleration(List<float[]> velocities)
+         {
+             List<float> acc = new List<float>();
+             if (velocities.Count > 2)
+                 for (int i = 1; i < velocities.Count; i++)
+                     acc.Add((velocities[i][0] - velocities[i - 1][0]) / (velocities[i][1] - velocities[i - 1][1]));
+             return acc;
+         }
+
          /// <summary>
          /// Checks if the user applied the command of Constant Velocity or not.
          /// </summary>
-         /// <param name="positions">List of the user positions throughout the command.</param>
+         /// <param name="velocities">List of the user velocities throughout the command.</param>
          /// <param name="currentTolerance">The tolerance of the game.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false"</returns>
          /// <remarks>
@@ -451,14 +480,13 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 23/4/12 </para>
          /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
-         public static bool ConstantVelocity(List<float> positions, float currentTolerance)
+         public static bool ConstantVelocity(List<float> velocities, float currentTolerance)
          {
              bool result = true;
-             float firstVelocity = positions[0];
-             for (int i = 1; i < positions.Count; i++)
+             for (int i = 1; i < velocities.Count; i++)
              {
-                 float currentVelocity = positions[i];
-                 if (!((currentVelocity >= (firstVelocity - currentTolerance)) && (currentVelocity <= (firstVelocity + currentTolerance))))
+                 if (!((velocities[i] >= (velocities[i - 1] - currentTolerance)) &&
+                     (velocities[i] <= (velocities[i - 1] + currentTolerance))))
                  {
                      return false;
                  }
@@ -469,7 +497,7 @@ namespace Mechanect.Exp1
          /// <summary>
          /// Checks if the user applied the command of Constant Acceleration or not.
          /// </summary>
-         /// <param name="positions">List of the user positions throughout the command.</param>
+         /// <param name="velocitiesWithTime">List of the user velocities throughout the command with its respective time.</param>
          /// <param name="currentTolerance">The tolerance of the game.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
@@ -477,27 +505,17 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 23/4/12 </para>
          /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
-         public static bool ConstantAcceleration(List<float> velocities, float currentTolerance)
+         public static bool ConstantAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
-             currentTolerance = currentTolerance * 10;
+
+             List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
              bool result = true;
-             float firstVelocity = velocities[1] - velocities[0];
-             for (int i = 2; i < velocities.Count; i++)
+             for (int i = 1; i < accelerations.Count; i++)
              {
-                 float currentVelocity = (velocities[i] - velocities[i - 1]);
-                 if (!((currentVelocity >= (firstVelocity - currentTolerance)) && (currentVelocity <= (firstVelocity + currentTolerance))))
+                 if (!((accelerations[i] >= (accelerations[i - 1] - currentTolerance)) && 
+                     (accelerations[i] <= (accelerations[i - 1] + currentTolerance))))
                  {
-                     //if (positions[positions.Count - 1] == 0.8)
-                     //{
-                     //    result = true;
-                     //    break;
-                     //}
-                     //else
-                     //{
-                     //    result = false;
-                     //    break;
-                     //}
                      return false;
                  }
              }
@@ -507,7 +525,7 @@ namespace Mechanect.Exp1
          /// <summary>
          /// Checks if the user applied the command of Constant Displacement or not.
          /// </summary>
-         /// <param name="positions">List of the user positions throughout the command.</param>
+         /// <param name="velocities">List of the user velocities throughout the command.</param>
          /// <param name="currentTolerance">The tolerance of the game.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
@@ -515,104 +533,60 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 23/4/12 </para>
          /// <para>DATE MODIFIED: 18/5/12 </para>
          /// </remarks>
-         public static bool ConstantDisplacement(List<float> positions, float currentTolerance)
+         public static bool ConstantDisplacement(List<float> velocities, float currentTolerance)
          {
-             //bool result = true;
-             //float firstDisplacement = positions[0];
-             //for (int i = 1; i < positions.Count; i++)
-             //{
-             //    float currentDisplacement = positions[i];
-             //    if (!((currentDisplacement >= (firstDisplacement - currentTolerance)) && (currentDisplacement <= (firstDisplacement + currentTolerance))))
-             //    {
-             //        if (positions[positions.Count - 1] == 0.8)
-             //        {
-             //            result = true;
-             //            break;
-             //        }
-             //        else
-             //        {
-             //            result = false;
-             //            break;
-             //        }
-             //    }
-             //}
-             //return result;
-             return (positions.Count == 0);
+             return (velocities.Count == 0);
          }
 
          /// <summary>
          /// Checks if the user applied the command of Increasing Acceleration or not.
          /// </summary>
-         /// <param name="positions">List of the user positions throughout the command.</param>
+         /// <param name="velocitiesWithTime">List of the user velocities throughout the command with its respective time.</param>
          /// <param name="currentTolerance">The tolerance of the game.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 26/4/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
-         public static bool IncreasingAcceleration(List<float> positions, float currentTolerance)
+         public static bool IncreasingAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
-             currentTolerance = currentTolerance * 100;
-             List<float> accelerations = GraphEngine.GetPlayerAcceleration(GraphEngine.GetPlayerVelocity(positions));
+             List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
-             bool result = true;
              for (int i = 1; i < accelerations.Count; i++)
              {
-                 float currentAcceleration = accelerations[i];
-                 if (!(currentAcceleration > (accelerations[i - 1] - currentTolerance)))
+                 if (!(accelerations[i] > (accelerations[i - 1] - currentTolerance)))
                 {
-                    if (positions[positions.Count - 1] == 0.8)
-                    {
-                        result = true;
-                        break;
-                    }
-                    else
-                    {
-                        result = false;
-                        break;
-                    }
+                    return false;
                  }
              }
-             return result;
+             return true;
          }
 
          /// <summary>
          /// Checks if the user applied the command of Decreasing Acceleration or not.
          /// </summary>
-         /// <param name="positions">List of the user positions throughout the command.</param>
+         /// <param name="velocitiesWithTime">List of the user velocities throughout the command with its respective time.</param>
          /// <param name="currentTolerance">The tolerance of the game.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 26/4/12 </para>
+         /// <para>DATE MODIFIED: 19/5/12 </para>
          /// </remarks>
-         public static bool DecreasingAcceleration(List<float> positions, float currentTolerance)
+         public static bool DecreasingAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
-             currentTolerance = currentTolerance * 100;
-             List<float> accelerations = GraphEngine.GetPlayerAcceleration(GraphEngine.GetPlayerVelocity(positions));
+             List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
-             bool result = true;
              for (int i = 1; i < accelerations.Count; i++)
              {
-                 float currentAcceleration = accelerations[i];
-                 if (!(currentAcceleration < (accelerations[i - 1] + currentTolerance)))
+                 if (!(accelerations[i] < (accelerations[i - 1] + currentTolerance)))
                  {
-                     if (positions[positions.Count - 1] == 0.8)
-                     {
-                         result = true;
-                         break;
-                     }
-                     else
-                     {
-                         result = false;
-                         break;
-                     }
+                     return false;
                  }
              }
 
-             return result;
+             return true;
          }
 
         /// <summary>
