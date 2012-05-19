@@ -55,7 +55,7 @@ namespace Physics
         public static Vector3 CalculateIntialVelocity(Vector3 displacement, float finalVelocity, float acceleration)
         {
             float intialVelocity = (float)Math.Sqrt(finalVelocity * finalVelocity - 2 * acceleration * displacement.Length());
-            return Physics.Functions.GetVectorInDirectionOf(intialVelocity, displacement);
+            return GetVectorInDirectionOf(intialVelocity, displacement);
         }
     }
 }
