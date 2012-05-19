@@ -13,17 +13,18 @@ namespace UI.Animation
     public class ModelLinearAnimation : Animation
     {
 
-        protected Vector3 startPosition;
-        private Vector3 velocity;
-        private float acceleration;
-        private TimeSpan duration;
+        public Vector3 StartPosition { get; private set; }
+        public TimeSpan Duration { get; private set; }
         public Vector3 Displacement
         {
             get
             {
-                return model.Position - startPosition;
+                return model.Position - StartPosition;
             }
         }
+
+        private Vector3 velocity;
+        private float acceleration;
 
         /// <summary>
         /// constructs a ModelLinearAnimation instance
@@ -35,16 +36,11 @@ namespace UI.Animation
         public ModelLinearAnimation(CustomModel model, Vector3 velocity, float acceleration, TimeSpan duration)
             : base(model)
         {
-            startPosition = model.Position;
+            StartPosition = model.Position;
+            Duration = duration;
 
             this.velocity = velocity;
             this.acceleration = acceleration;
-            this.duration = duration;
-
-            if (acceleration < 0)
-            {
-                this.duration = TimeSpan.FromSeconds(Math.Abs(velocity.Length() / acceleration));
-            }
         }
 
         /// <summary>
@@ -54,9 +50,9 @@ namespace UI.Animation
         public override void Update(TimeSpan elapsed)
         {
             this.elapsedTime += elapsed;
-            if (elapsedTime < duration)
+            if (!Finished())
             {
-                model.Position = startPosition + Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
+                model.Position = StartPosition + Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
             }
         }
 
@@ -65,7 +61,7 @@ namespace UI.Animation
         /// </summary>
         public override bool Finished()
         {
-            return elapsedTime > duration;
+            return elapsedTime > Duration;
         }
     }
 }
