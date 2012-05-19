@@ -22,8 +22,8 @@ namespace Mechanect.Screens
         }
 
         public override void LoadContent()
-        {
-            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user2);
+        {   //I commented this line to have a compilation-error free repo
+           // instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice, user2);
             instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
 

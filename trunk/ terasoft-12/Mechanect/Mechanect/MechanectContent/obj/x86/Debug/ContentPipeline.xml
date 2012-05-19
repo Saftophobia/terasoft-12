@@ -7,13 +7,13 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
-      <Time>2012-05-17T22:21:20.655819+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\fish.xnb</Output>
+      <Time>2012-05-19T22:36:10.9718528+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\fish_0.xml</Key>
-        <Value>2012-05-17T23:56:14.844508+02:00</Value>
+        <Value>2012-05-19T23:00:05.7983529+02:00</Value>
       </Dependency>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
@@ -21,11 +21,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
-      <Time>2012-05-17T22:21:20.6628194+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\ball.xnb</Output>
+      <Time>2012-05-19T22:36:10.9768522+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\ball_0.xml</Key>
-        <Value>2012-05-17T23:56:15.6925565+02:00</Value>
+        <Value>2012-05-19T23:00:06.71942+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -34,11 +34,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
-      <Time>2012-05-17T22:21:20.6648195+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\Arrow.xnb</Output>
+      <Time>2012-05-19T22:36:10.9798529+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Arrow_0.xml</Key>
-        <Value>2012-05-17T23:56:15.8895678+02:00</Value>
+        <Value>2012-05-19T23:00:06.925432+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -47,11 +47,11 @@
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\holemodel.xnb</Output>
-      <Time>2012-05-17T22:21:20.6508187+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\holemodel.xnb</Output>
+      <Time>2012-05-19T22:36:10.969853+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\holemodel_0.xml</Key>
-        <Value>2012-05-17T23:56:15.9625719+02:00</Value>
+        <Value>2012-05-19T23:00:07.0134374+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -60,16 +60,16 @@
       <Importer>FbxImporter</Importer>
       <Processor>SkinnedModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\dude.xnb</Output>
-      <Time>2012-05-17T22:22:24.1314496+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\dude.xnb</Output>
+      <Time>2012-05-19T22:37:44.0842485+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\dude_0.xml</Key>
-        <Value>2012-05-17T23:56:19.4027687+02:00</Value>
+        <Value>2012-05-19T23:00:10.4106316+02:00</Value>
       </Dependency>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\head_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\jacket_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\pants_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\upBodyC_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\head_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\jacket_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\pants_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\upBodyC_0.xnb</Request>
     </Item>
     <Item>
       <Source>Textures\screen.png</Source>
@@ -77,8 +77,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
-      <Time>2012-05-17T22:24:38.1201133+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\screen.xnb</Output>
+      <Time>2012-05-19T22:39:58.2635196+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Vfill.png</Source>
@@ -86,8 +86,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
-      <Time>2012-05-17T22:23:32.2123436+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Vfill.xnb</Output>
+      <Time>2012-05-19T22:38:55.7361486+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\VBar.png</Source>
@@ -95,8 +95,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
-      <Time>2012-05-17T22:24:38.1861171+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\VBar.xnb</Output>
+      <Time>2012-05-19T22:39:58.3115238+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\arrow.png</Source>
@@ -104,8 +104,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
-      <Time>2012-05-17T22:24:38.1821169+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\arrow.xnb</Output>
+      <Time>2012-05-19T22:39:58.3065228+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\hand.png</Source>
@@ -113,8 +113,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
-      <Time>2012-05-17T22:22:52.2980607+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\hand.xnb</Output>
+      <Time>2012-05-19T22:38:11.0112351+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\bar.png</Source>
@@ -122,8 +122,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
-      <Time>2012-05-17T22:22:32.3869218+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\bar.xnb</Output>
+      <Time>2012-05-19T22:37:53.9783116+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\off.png</Source>
@@ -131,8 +131,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
-      <Time>2012-05-17T22:22:32.3879219+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\off.xnb</Output>
+      <Time>2012-05-19T22:37:53.9813119+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Slider\on.png</Source>
@@ -140,8 +140,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
-      <Time>2012-05-17T22:22:32.3859217+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Slider\on.xnb</Output>
+      <Time>2012-05-19T22:37:53.9763117+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\WorL\looser.png</Source>
@@ -149,8 +149,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
-      <Time>2012-05-17T22:23:08.3969815+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\looser.xnb</Output>
+      <Time>2012-05-19T22:38:31.7915535+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\WorL\winner.png</Source>
@@ -158,8 +158,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
-      <Time>2012-05-17T22:23:08.3949813+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\WorL\winner.xnb</Output>
+      <Time>2012-05-19T22:38:31.7905522+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\back.bmp</Source>
@@ -167,8 +167,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back.xnb</Output>
-      <Time>2012-05-17T22:24:38.185117+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back.xnb</Output>
+      <Time>2012-05-19T22:39:58.3095235+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\down.bmp</Source>
@@ -176,8 +176,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down.xnb</Output>
-      <Time>2012-05-17T22:23:32.2093434+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down.xnb</Output>
+      <Time>2012-05-19T22:38:55.7331487+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\front.bmp</Source>
@@ -185,8 +185,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front.xnb</Output>
-      <Time>2012-05-17T22:24:38.1701162+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front.xnb</Output>
+      <Time>2012-05-19T22:39:58.2965221+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\heightmap.bmp</Source>
@@ -194,8 +194,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmap.xnb</Output>
-      <Time>2012-05-17T22:23:08.3939813+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmap.xnb</Output>
+      <Time>2012-05-19T22:38:31.788552+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\left.bmp</Source>
@@ -203,8 +203,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left.xnb</Output>
-      <Time>2012-05-17T22:24:38.1791167+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left.xnb</Output>
+      <Time>2012-05-19T22:39:58.3015219+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\right.bmp</Source>
@@ -212,8 +212,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right.xnb</Output>
-      <Time>2012-05-17T22:22:52.28606+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right.xnb</Output>
+      <Time>2012-05-19T22:38:10.9962331+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\up.bmp</Source>
@@ -221,8 +221,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up.xnb</Output>
-      <Time>2012-05-17T22:23:08.3879809+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up.xnb</Output>
+      <Time>2012-05-19T22:38:31.7795522+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\Ball.png</Source>
@@ -230,8 +230,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Ball.xnb</Output>
-      <Time>2012-05-17T22:22:32.1489082+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Ball.xnb</Output>
+      <Time>2012-05-19T22:37:53.9143087+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\Bar.png</Source>
@@ -239,8 +239,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Bar.xnb</Output>
-      <Time>2012-05-17T22:22:32.1359074+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Bar.xnb</Output>
+      <Time>2012-05-19T22:37:53.8895828+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\texture.png</Source>
@@ -248,8 +248,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\texture.xnb</Output>
-      <Time>2012-05-17T22:23:32.2063433+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\texture.xnb</Output>
+      <Time>2012-05-19T22:38:55.729149+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip.png</Source>
@@ -257,8 +257,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip.xnb</Output>
-      <Time>2012-05-17T22:24:38.1621157+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip.xnb</Output>
+      <Time>2012-05-19T22:39:58.2935222+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\AngleGauge.png</Source>
@@ -266,8 +266,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\AngleGauge.xnb</Output>
-      <Time>2012-05-17T22:23:32.2163438+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\AngleGauge.xnb</Output>
+      <Time>2012-05-19T22:38:55.7441491+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\background.jpg</Source>
@@ -275,8 +275,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\background.xnb</Output>
-      <Time>2012-05-17T22:23:32.2263444+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\background.xnb</Output>
+      <Time>2012-05-19T22:38:55.8081531+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\bowl2.png</Source>
@@ -284,8 +284,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\bowl2.xnb</Output>
-      <Time>2012-05-17T22:23:32.2203441+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\bowl2.xnb</Output>
+      <Time>2012-05-19T22:38:55.8011523+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\fish.png</Source>
@@ -293,8 +293,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\fish.xnb</Output>
-      <Time>2012-05-17T22:23:32.2253444+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\fish.xnb</Output>
+      <Time>2012-05-19T22:38:55.8061529+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\Fishbowl.png</Source>
@@ -302,8 +302,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\Fishbowl.xnb</Output>
-      <Time>2012-05-17T22:23:32.2153438+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\Fishbowl.xnb</Output>
+      <Time>2012-05-19T22:38:55.7421489+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\GrayScreen.png</Source>
@@ -311,8 +311,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\GrayScreen.xnb</Output>
-      <Time>2012-05-17T22:23:32.218344+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\GrayScreen.xnb</Output>
+      <Time>2012-05-19T22:38:55.7461494+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\VelocityGauge.png</Source>
@@ -320,8 +320,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\VelocityGauge.xnb</Output>
-      <Time>2012-05-17T22:23:32.2233442+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\VelocityGauge.xnb</Output>
+      <Time>2012-05-19T22:38:55.8041527+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\worm.png</Source>
@@ -329,8 +329,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\worm.xnb</Output>
-      <Time>2012-05-17T22:23:32.219344+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\worm.xnb</Output>
+      <Time>2012-05-19T22:38:55.7471499+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet1\xyAxis.png</Source>
@@ -338,8 +338,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\xyAxis.xnb</Output>
-      <Time>2012-05-17T22:23:32.2223442+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet1\xyAxis.xnb</Output>
+      <Time>2012-05-19T22:38:55.8021528+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\AngleGauge.png</Source>
@@ -347,8 +347,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\AngleGauge.xnb</Output>
-      <Time>2012-05-17T22:24:14.668772+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\AngleGauge.xnb</Output>
+      <Time>2012-05-19T22:39:37.5913752+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\Bowl.png</Source>
@@ -356,8 +356,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Bowl.xnb</Output>
-      <Time>2012-05-17T22:24:14.686773+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Bowl.xnb</Output>
+      <Time>2012-05-19T22:39:37.5993757+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\fish.png</Source>
@@ -365,8 +365,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\fish.xnb</Output>
-      <Time>2012-05-17T22:24:14.6967736+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\fish.xnb</Output>
+      <Time>2012-05-19T22:39:37.616376+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\Fishbowl.png</Source>
@@ -374,8 +374,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Fishbowl.xnb</Output>
-      <Time>2012-05-17T22:24:14.6647718+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Fishbowl.xnb</Output>
+      <Time>2012-05-19T22:39:37.5893754+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\GrayScreen.png</Source>
@@ -383,8 +383,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\GrayScreen.xnb</Output>
-      <Time>2012-05-17T22:24:14.6727722+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\GrayScreen.xnb</Output>
+      <Time>2012-05-19T22:39:37.5933754+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\sea1.jpg</Source>
@@ -392,8 +392,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\sea1.xnb</Output>
-      <Time>2012-05-17T22:24:14.6897732+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\sea1.xnb</Output>
+      <Time>2012-05-19T22:39:37.6083759+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\sea2.jpg</Source>
@@ -401,8 +401,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\sea2.xnb</Output>
-      <Time>2012-05-17T22:24:14.6927734+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\sea2.xnb</Output>
+      <Time>2012-05-19T22:39:37.6113762+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\twiz-fishbowl.png</Source>
@@ -410,8 +410,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\twiz-fishbowl.xnb</Output>
-      <Time>2012-05-17T22:24:14.6947735+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\twiz-fishbowl.xnb</Output>
+      <Time>2012-05-19T22:39:37.6143762+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\VelocityGauge.png</Source>
@@ -419,8 +419,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\VelocityGauge.xnb</Output>
-      <Time>2012-05-17T22:24:14.6937734+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\VelocityGauge.xnb</Output>
+      <Time>2012-05-19T22:39:37.612376+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\Worm.png</Source>
@@ -428,8 +428,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Worm.xnb</Output>
-      <Time>2012-05-17T22:24:14.6887731+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\Worm.xnb</Output>
+      <Time>2012-05-19T22:39:37.6063757+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\ImageSet2\xyAxis.png</Source>
@@ -437,8 +437,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\xyAxis.xnb</Output>
-      <Time>2012-05-17T22:24:14.6907732+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\ImageSet2\xyAxis.xnb</Output>
+      <Time>2012-05-19T22:39:37.609376+02:00</Time>
     </Item>
     <Item>
       <Source>ball.png</Source>
@@ -446,8 +446,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\ball.xnb</Output>
-      <Time>2012-05-17T22:22:24.1074482+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\ball.xnb</Output>
+      <Time>2012-05-19T22:37:44.0392463+02:00</Time>
     </Item>
     <Item>
       <Source>1.png</Source>
@@ -455,8 +455,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\1.xnb</Output>
-      <Time>2012-05-17T22:25:08.3618431+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\1.xnb</Output>
+      <Time>2012-05-19T22:40:18.2144376+02:00</Time>
     </Item>
     <Item>
       <Source>2.png</Source>
@@ -464,8 +464,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\2.xnb</Output>
-      <Time>2012-05-17T22:25:08.3698435+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\2.xnb</Output>
+      <Time>2012-05-19T22:40:18.2174383+02:00</Time>
     </Item>
     <Item>
       <Source>3.png</Source>
@@ -473,8 +473,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\3.xnb</Output>
-      <Time>2012-05-17T22:25:08.3768439+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\3.xnb</Output>
+      <Time>2012-05-19T22:40:18.2214384+02:00</Time>
     </Item>
     <Item>
       <Source>Background2.jpg</Source>
@@ -482,8 +482,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Background2.xnb</Output>
-      <Time>2012-05-17T22:21:20.6458184+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Background2.xnb</Output>
+      <Time>2012-05-19T22:36:10.9678524+02:00</Time>
     </Item>
     <Item>
       <Source>go.png</Source>
@@ -491,8 +491,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\go.xnb</Output>
-      <Time>2012-05-17T22:25:08.3868445+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\go.xnb</Output>
+      <Time>2012-05-19T22:40:18.2264386+02:00</Time>
     </Item>
     <Item>
       <Source>texture.png</Source>
@@ -500,8 +500,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\texture.xnb</Output>
-      <Time>2012-05-17T22:25:08.3658433+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\texture.xnb</Output>
+      <Time>2012-05-19T22:40:18.2164378+02:00</Time>
     </Item>
     <Item>
       <Source>textureStrip.png</Source>
@@ -509,8 +509,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\textureStrip.xnb</Output>
-      <Time>2012-05-17T22:25:08.4118459+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\textureStrip.xnb</Output>
+      <Time>2012-05-19T22:40:18.2444394+02:00</Time>
     </Item>
     <Item>
       <Source>track2.jpg</Source>
@@ -518,8 +518,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\track2.xnb</Output>
-      <Time>2012-05-17T22:25:08.413846+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\track2.xnb</Output>
+      <Time>2012-05-19T22:40:18.24644+02:00</Time>
     </Item>
     <Item>
       <Source>TropicalFish12.jpg</Source>
@@ -527,8 +527,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12.xnb</Output>
-      <Time>2012-05-17T22:25:08.4158461+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12.xnb</Output>
+      <Time>2012-05-19T22:40:18.2494403+02:00</Time>
     </Item>
     <Item>
       <Source>xBlack.png</Source>
@@ -536,8 +536,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xBlack.xnb</Output>
-      <Time>2012-05-17T22:25:08.3838443+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xBlack.xnb</Output>
+      <Time>2012-05-19T22:40:18.2244383+02:00</Time>
     </Item>
     <Item>
       <Source>xBlue.png</Source>
@@ -545,8 +545,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xBlue.xnb</Output>
-      <Time>2012-05-17T22:22:24.1324497+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xBlue.xnb</Output>
+      <Time>2012-05-19T22:37:44.0862484+02:00</Time>
     </Item>
     <Item>
       <Source>xRed.png</Source>
@@ -554,8 +554,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xRed.xnb</Output>
-      <Time>2012-05-17T22:25:08.3728437+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\xRed.xnb</Output>
+      <Time>2012-05-19T22:40:18.2194382+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip1.png</Source>
@@ -563,8 +563,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip1.xnb</Output>
-      <Time>2012-05-17T22:22:52.2730592+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip1.xnb</Output>
+      <Time>2012-05-19T22:38:10.9862331+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip2.png</Source>
@@ -572,8 +572,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip2.xnb</Output>
-      <Time>2012-05-17T22:22:52.2810597+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip2.xnb</Output>
+      <Time>2012-05-19T22:38:10.9892335+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip3.png</Source>
@@ -581,8 +581,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip3.xnb</Output>
-      <Time>2012-05-17T22:22:52.2830598+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip3.xnb</Output>
+      <Time>2012-05-19T22:38:10.9912329+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip4.png</Source>
@@ -590,8 +590,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip4.xnb</Output>
-      <Time>2012-05-17T22:22:52.2840599+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip4.xnb</Output>
+      <Time>2012-05-19T22:38:10.992233+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\textureStrip5.png</Source>
@@ -599,8 +599,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip5.xnb</Output>
-      <Time>2012-05-17T22:22:52.2880601+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\textureStrip5.xnb</Output>
+      <Time>2012-05-19T22:38:10.9982329+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\black.png</Source>
@@ -608,8 +608,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\black.xnb</Output>
-      <Time>2012-05-17T22:22:32.127907+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\black.xnb</Output>
+      <Time>2012-05-19T22:37:53.8855823+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\Mechanect.png</Source>
@@ -617,8 +617,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Mechanect.xnb</Output>
-      <Time>2012-05-17T22:22:32.1399077+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Mechanect.xnb</Output>
+      <Time>2012-05-19T22:37:53.8915834+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\ITWorx.png</Source>
@@ -626,8 +626,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\ITWorx.xnb</Output>
-      <Time>2012-05-17T22:22:32.1249068+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\ITWorx.xnb</Output>
+      <Time>2012-05-19T22:37:53.884583+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\back.bmp</Source>
@@ -635,8 +635,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back.xnb</Output>
-      <Time>2012-05-17T22:26:56.1700093+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back.xnb</Output>
+      <Time>2012-05-19T22:42:32.3986819+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\down.bmp</Source>
@@ -644,8 +644,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down.xnb</Output>
-      <Time>2012-05-17T22:26:56.1030055+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down.xnb</Output>
+      <Time>2012-05-19T22:42:32.3696807+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\front.bmp</Source>
@@ -653,8 +653,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front.xnb</Output>
-      <Time>2012-05-17T22:26:56.1060057+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front.xnb</Output>
+      <Time>2012-05-19T22:42:32.3736811+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\heightmap6.bmp</Source>
@@ -662,8 +662,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\heightmap6.xnb</Output>
-      <Time>2012-05-17T22:26:56.1140061+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\heightmap6.xnb</Output>
+      <Time>2012-05-19T22:42:32.3866814+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\left.bmp</Source>
@@ -671,8 +671,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left.xnb</Output>
-      <Time>2012-05-17T22:26:56.1100059+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left.xnb</Output>
+      <Time>2012-05-19T22:42:32.3806811+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\right.bmp</Source>
@@ -680,8 +680,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right.xnb</Output>
-      <Time>2012-05-17T22:26:56.1570086+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right.xnb</Output>
+      <Time>2012-05-19T22:42:32.3936821+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\up.bmp</Source>
@@ -689,8 +689,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up.xnb</Output>
-      <Time>2012-05-17T22:26:56.0990053+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up.xnb</Output>
+      <Time>2012-05-19T22:42:32.3646801+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\GUC.png</Source>
@@ -698,8 +698,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\GUC.xnb</Output>
-      <Time>2012-05-17T22:22:32.1329073+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\GUC.xnb</Output>
+      <Time>2012-05-19T22:37:53.8875822+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\Images\Terasoft.png</Source>
@@ -707,8 +707,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Terasoft.xnb</Output>
-      <Time>2012-05-17T22:22:32.144908+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\Images\Terasoft.xnb</Output>
+      <Time>2012-05-19T22:37:53.8935832+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\user.png</Source>
@@ -716,8 +716,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb</Output>
-      <Time>2012-05-17T22:23:32.2143437+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\user.xnb</Output>
+      <Time>2012-05-19T22:38:55.7401487+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\Sliders Images\easy.png</Source>
@@ -725,8 +725,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\easy.xnb</Output>
-      <Time>2012-05-17T22:24:15.2338043+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\easy.xnb</Output>
+      <Time>2012-05-19T22:39:38.1482052+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\Sliders Images\hard.png</Source>
@@ -734,8 +734,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\hard.xnb</Output>
-      <Time>2012-05-17T22:24:15.2298041+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\hard.xnb</Output>
+      <Time>2012-05-19T22:39:38.1432054+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\Sliders Images\medium.png</Source>
@@ -743,8 +743,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\medium.xnb</Output>
-      <Time>2012-05-17T22:24:15.2328042+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\medium.xnb</Output>
+      <Time>2012-05-19T22:39:38.1472051+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Experiment2\Sliders Images\Theme1.jpg</Source>
@@ -752,8 +752,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\Theme1.xnb</Output>
-      <Time>2012-05-17T22:24:15.2308041+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Experiment2\Sliders Images\Theme1.xnb</Output>
+      <Time>2012-05-19T22:39:38.1452052+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\heightmaplarge.bmp</Source>
@@ -761,8 +761,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmaplarge.xnb</Output>
-      <Time>2012-05-17T22:23:08.3819806+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmaplarge.xnb</Output>
+      <Time>2012-05-19T22:38:31.7755521+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\heightmaplargeflat.bmp</Source>
@@ -770,8 +770,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmaplargeflat.xnb</Output>
-      <Time>2012-05-17T22:23:08.3899811+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\heightmaplargeflat.xnb</Output>
+      <Time>2012-05-19T22:38:31.7825521+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\grass2.jpg</Source>
@@ -779,8 +779,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\grass2.xnb</Output>
-      <Time>2012-05-17T22:23:08.3929812+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\grass2.xnb</Output>
+      <Time>2012-05-19T22:38:31.7865526+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\cloudMap.jpg</Source>
@@ -788,8 +788,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\cloudMap.xnb</Output>
-      <Time>2012-05-17T22:22:52.2600585+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\cloudMap.xnb</Output>
+      <Time>2012-05-19T22:38:10.9822331+02:00</Time>
     </Item>
     <Item>
       <Source>Ariel.spritefont</Source>
@@ -797,8 +797,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
-      <Time>2012-05-17T22:22:24.0974477+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Ariel.xnb</Output>
+      <Time>2012-05-19T22:37:44.0342469+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -806,8 +806,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-05-17T22:22:24.1424502+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-05-19T22:37:44.7286547+02:00</Time>
     </Item>
     <Item>
       <Source>Resources\TimesNewRoman.spritefont</Source>
@@ -815,8 +815,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\TimesNewRoman.xnb</Output>
-      <Time>2012-05-17T22:22:32.1209066+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Resources\TimesNewRoman.xnb</Output>
+      <Time>2012-05-19T22:37:53.8835829+02:00</Time>
     </Item>
     <Item>
       <Source>PositionFont.spritefont</Source>
@@ -824,24 +824,24 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\PositionFont.xnb</Output>
-      <Time>2012-05-17T22:22:24.0944475+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\PositionFont.xnb</Output>
+      <Time>2012-05-19T22:37:44.0322471+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\newgame-m.gif</Source>
       <Name>Textures\Buttons\newgame-m</Name>
       <Importer>GifAminationImporter</Importer>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-m.xnb</Output>
-      <Time>2012-05-17T22:22:52.2900602+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-m.xnb</Output>
+      <Time>2012-05-19T22:38:11.0012336+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\newgame-s.gif</Source>
       <Name>Textures\Buttons\newgame-s</Name>
       <Importer>GifAminationImporter</Importer>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-s.xnb</Output>
-      <Time>2012-05-17T22:22:52.2930604+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\newgame-s.xnb</Output>
+      <Time>2012-05-19T22:38:11.0042332+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\menu-m.gif</Source>
@@ -849,8 +849,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-m.xnb</Output>
-      <Time>2012-05-17T22:22:52.2910603+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-m.xnb</Output>
+      <Time>2012-05-19T22:38:11.0032342+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\menu-s.gif</Source>
@@ -858,8 +858,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-s.xnb</Output>
-      <Time>2012-05-17T22:22:52.2960605+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\menu-s.xnb</Output>
+      <Time>2012-05-19T22:38:11.0092349+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\ok-m.gif</Source>
@@ -867,8 +867,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-m.xnb</Output>
-      <Time>2012-05-17T22:22:52.2950605+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-m.xnb</Output>
+      <Time>2012-05-19T22:38:11.0082348+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Buttons\ok-s.gif</Source>
@@ -876,8 +876,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-s.xnb</Output>
-      <Time>2012-05-17T22:22:52.2990607+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\Buttons\ok-s.xnb</Output>
+      <Time>2012-05-19T22:38:11.0122337+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\dummy.gif</Source>
@@ -885,8 +885,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummy.xnb</Output>
-      <Time>2012-05-17T22:23:32.2133437+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummy.xnb</Output>
+      <Time>2012-05-19T22:38:55.7391494+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\dummySelected.gif</Source>
@@ -894,8 +894,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummySelected.xnb</Output>
-      <Time>2012-05-17T22:24:38.1801168+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\dummySelected.xnb</Output>
+      <Time>2012-05-19T22:39:58.3035225+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\leftArrow.gif</Source>
@@ -903,8 +903,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\leftArrow.xnb</Output>
-      <Time>2012-05-17T22:24:38.1811168+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\leftArrow.xnb</Output>
+      <Time>2012-05-19T22:39:58.3045226+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\rightArrow.gif</Source>
@@ -912,8 +912,8 @@
       <Importer>GifAminationImporter</Importer>
       <Processor>GifAnimationProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\rightArrow.xnb</Output>
-      <Time>2012-05-17T22:23:32.2103435+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\rightArrow.xnb</Output>
+      <Time>2012-05-19T22:38:55.7351489+02:00</Time>
     </Item>
     <Item>
       <Source>Models\skybox2.x</Source>
@@ -921,18 +921,18 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\skybox2.xnb</Output>
-      <Time>2012-05-17T22:21:20.6588192+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Models\skybox2.xnb</Output>
+      <Time>2012-05-19T22:36:10.973853+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\skybox2_0.xml</Key>
-        <Value>2012-05-17T23:56:26.1961573+02:00</Value>
+        <Value>2012-05-19T23:00:29.8105663+02:00</Value>
       </Dependency>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Request>
     </Item>
     <Item>
       <Source>Exp1\skybox2.x</Source>
@@ -940,18 +940,18 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\skybox2.xnb</Output>
-      <Time>2012-05-17T22:26:56.1070057+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\skybox2.xnb</Output>
+      <Time>2012-05-19T22:42:32.3746808+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Exp1\skybox2_0.xml</Key>
-        <Value>2012-05-17T23:56:26.995203+02:00</Value>
+        <Value>2012-05-19T23:00:31.6125503+02:00</Value>
       </Dependency>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb</Request>
-      <Request>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb</Request>
+      <Request>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb</Request>
     </Item>
     <Item>
       <Source>Exp1\xwing.x</Source>
@@ -959,11 +959,11 @@
       <Importer>XImporter</Importer>
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\xwing.xnb</Output>
-      <Time>2012-05-17T22:26:56.1000053+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\xwing.xnb</Output>
+      <Time>2012-05-19T22:42:32.3656806+02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Exp1\xwing_0.xml</Key>
-        <Value>2012-05-17T23:56:27.8612525+02:00</Value>
+        <Value>2012-05-19T23:00:33.2876458+02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -972,8 +972,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\effects.xnb</Output>
-      <Time>2012-05-17T22:22:52.2890601+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\effects.xnb</Output>
+      <Time>2012-05-19T22:38:11.0002331+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\effects.fx</Source>
@@ -981,8 +981,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\effects.xnb</Output>
-      <Time>2012-05-17T22:26:56.1610088+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\effects.xnb</Output>
+      <Time>2012-05-19T22:42:32.3946819+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MYHLSL.fx</Source>
@@ -990,8 +990,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\MYHLSL.xnb</Output>
-      <Time>2012-05-17T22:22:52.2640587+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\MYHLSL.xnb</Output>
+      <Time>2012-05-19T22:38:10.9832324+02:00</Time>
     </Item>
     <Item>
       <Source>BEEP1B.WAV</Source>
@@ -999,8 +999,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\BEEP1B.xnb</Output>
-      <Time>2012-05-17T22:22:24.1044481+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\BEEP1B.xnb</Output>
+      <Time>2012-05-19T22:37:44.0372461+02:00</Time>
     </Item>
     <Item>
       <Source>StartBeep.wav</Source>
@@ -1008,15 +1008,15 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\StartBeep.xnb</Output>
-      <Time>2012-05-17T22:22:24.0904473+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\StartBeep.xnb</Output>
+      <Time>2012-05-19T22:37:43.9266619+02:00</Time>
     </Item>
     <Item>
       <Source>Models\fish.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\fish_0.xml</Output>
-      <Time>2012-05-17T22:21:20.655819+02:00</Time>
+      <Time>2012-05-19T22:36:10.9718528+02:00</Time>
     </Item>
     <Item>
       <Source>TropicalFish12.jpg</Source>
@@ -1031,36 +1031,36 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
-      <Time>2012-05-17T22:25:08.4158461+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\TropicalFish12_0.xnb</Output>
+      <Time>2012-05-19T22:40:18.2494403+02:00</Time>
     </Item>
     <Item>
       <Source>Models\ball.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\ball_0.xml</Output>
-      <Time>2012-05-17T22:21:20.6628194+02:00</Time>
+      <Time>2012-05-19T22:36:10.9768522+02:00</Time>
     </Item>
     <Item>
       <Source>Models\Arrow.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Arrow_0.xml</Output>
-      <Time>2012-05-17T22:21:20.6648195+02:00</Time>
+      <Time>2012-05-19T22:36:10.9798529+02:00</Time>
     </Item>
     <Item>
       <Source>Models\holemodel.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\holemodel_0.xml</Output>
-      <Time>2012-05-17T22:21:20.6508187+02:00</Time>
+      <Time>2012-05-19T22:36:10.969853+02:00</Time>
     </Item>
     <Item>
       <Source>dude.fbx</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\dude_0.xml</Output>
-      <Time>2012-05-17T22:22:24.1314496+02:00</Time>
+      <Time>2012-05-19T22:37:44.0842485+02:00</Time>
     </Item>
     <Item>
       <Source>head.tga</Source>
@@ -1075,8 +1075,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\head_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.0900048+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\head_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3466789+02:00</Time>
     </Item>
     <Item>
       <Source>jacket.tga</Source>
@@ -1091,8 +1091,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\jacket_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.0960051+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\jacket_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3606808+02:00</Time>
     </Item>
     <Item>
       <Source>pants.tga</Source>
@@ -1107,8 +1107,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\pants_0.xnb</Output>
-      <Time>2012-05-17T22:22:24.1144486+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\pants_0.xnb</Output>
+      <Time>2012-05-19T22:37:44.0522473+02:00</Time>
     </Item>
     <Item>
       <Source>upBodyC.tga</Source>
@@ -1123,15 +1123,15 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\upBodyC_0.xnb</Output>
-      <Time>2012-05-17T22:21:20.6398181+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\upBodyC_0.xnb</Output>
+      <Time>2012-05-19T22:36:10.9648517+02:00</Time>
     </Item>
     <Item>
       <Source>Models\skybox2.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\skybox2_0.xml</Output>
-      <Time>2012-05-17T22:21:20.6588192+02:00</Time>
+      <Time>2012-05-19T22:36:10.973853+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\up.bmp</Source>
@@ -1146,8 +1146,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Output>
-      <Time>2012-05-17T22:23:08.3879809+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\up_0.xnb</Output>
+      <Time>2012-05-19T22:38:31.7795522+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\right.bmp</Source>
@@ -1162,8 +1162,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Output>
-      <Time>2012-05-17T22:22:52.28606+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\right_0.xnb</Output>
+      <Time>2012-05-19T22:38:10.9962331+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\left.bmp</Source>
@@ -1178,8 +1178,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Output>
-      <Time>2012-05-17T22:24:38.1791167+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\left_0.xnb</Output>
+      <Time>2012-05-19T22:39:58.3015219+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\front.bmp</Source>
@@ -1194,8 +1194,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Output>
-      <Time>2012-05-17T22:24:38.1701162+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\front_0.xnb</Output>
+      <Time>2012-05-19T22:39:58.2965221+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\back.bmp</Source>
@@ -1210,8 +1210,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Output>
-      <Time>2012-05-17T22:24:38.185117+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\back_0.xnb</Output>
+      <Time>2012-05-19T22:39:58.3095235+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\down.bmp</Source>
@@ -1226,15 +1226,15 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Output>
-      <Time>2012-05-17T22:23:32.2093434+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Textures\down_0.xnb</Output>
+      <Time>2012-05-19T22:38:55.7331487+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\skybox2.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Exp1\skybox2_0.xml</Output>
-      <Time>2012-05-17T22:26:56.1070057+02:00</Time>
+      <Time>2012-05-19T22:42:32.3746808+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\up.bmp</Source>
@@ -1249,8 +1249,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.0990053+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\up_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3646801+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\right.bmp</Source>
@@ -1265,8 +1265,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.1570086+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\right_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3936821+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\left.bmp</Source>
@@ -1281,8 +1281,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.1100059+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\left_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3806811+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\front.bmp</Source>
@@ -1297,8 +1297,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.1060057+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\front_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3736811+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\back.bmp</Source>
@@ -1313,8 +1313,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.1700093+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\back_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3986819+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\down.bmp</Source>
@@ -1329,15 +1329,15 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb</Output>
-      <Time>2012-05-17T22:26:56.1030055+02:00</Time>
+      <Output>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\Exp1\down_0.xnb</Output>
+      <Time>2012-05-19T22:42:32.3696807+02:00</Time>
     </Item>
     <Item>
       <Source>Exp1\xwing.x</Source>
       <Importer>XImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Exp1\xwing_0.xml</Output>
-      <Time>2012-05-17T22:26:56.1000053+02:00</Time>
+      <Time>2012-05-19T22:42:32.3656806+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -1345,15 +1345,15 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\</RootDirectory>
-      <LoggerRootDirectory>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
-      <IntermediateDirectory>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\MechanectContent\</RootDirectory>
+      <LoggerRootDirectory>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\Mechanect\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
-        <Key>X:\terasoft-12\trunk\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
-        <Value>2012-05-17T23:08:28.5175635+02:00</Value>
+        <Key>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll</Key>
+        <Value>2012-05-19T23:00:04.1942599+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
@@ -1380,12 +1380,12 @@
         <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
-        <Key>X:\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll</Key>
-        <Value>2012-05-17T23:08:28.8095802+02:00</Value>
+        <Key>E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation.Pipeline\bin\x86\Debug\GifAnimation.Pipeline.dll</Key>
+        <Value>2012-05-19T23:00:04.4462745+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-03-19T21:34:51.4276093+02:00</Value>
+        <Value>2012-05-02T18:42:27.3947898+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

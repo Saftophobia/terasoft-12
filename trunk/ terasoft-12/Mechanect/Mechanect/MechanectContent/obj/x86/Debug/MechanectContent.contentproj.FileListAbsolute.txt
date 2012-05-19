@@ -9,3 +9,4 @@ C:\Users\user\Desktop\Terasoft\trunk\ terasoft-12\Mechanect\Mechanect\MechanectC
 F:\SE\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 X:\terasoft-12n\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
 X:\terasoft-12\trunk\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\Mechanect\MechanectContent\obj\x86\Debug\MechanectContent.contentprojResolveAssemblyReference.cache

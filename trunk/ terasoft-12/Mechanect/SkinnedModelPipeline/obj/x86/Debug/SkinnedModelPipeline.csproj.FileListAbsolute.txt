@@ -5,3 +5,10 @@ C:\Users\ahmed\Desktop\3d model\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.
 C:\Users\ahmed\Desktop\3d model\SkinnedModelPipeline\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\ahmed\Desktop\3d model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
 C:\Users\ahmed\Desktop\3d model\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.dll
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModelPipeline.pdb
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.dll
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\bin\x86\Debug\SkinnedModel.pdb
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.csprojResolveAssemblyReference.cache
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.dll
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\SkinnedModelPipeline\obj\x86\Debug\SkinnedModelPipeline.pdb

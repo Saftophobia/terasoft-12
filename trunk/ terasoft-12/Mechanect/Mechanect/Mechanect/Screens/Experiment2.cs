@@ -496,18 +496,22 @@ namespace Mechanect.Screens
         private void DrawAngVelLabels()
         {
             String velString = "Velocity = " + Math.Round(user.MeasuredVelocity,2);
-            String angString = "Angle = " + Math.Round(user.MeasuredAngle,2);
+            //I commented this line to have a compilation-error free repo
+           // String angString = "Angle = " + Math.Round(user.MeasuredAngle,2);
             SpriteBatch.Begin();
 
             if (grayScreen)
             {
                 SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * yAxisPercentage + velocityTexture.Width * velocityTextureScaling - (spriteFont.MeasureString(velString).X * velocityTextureScaling) , screenHeight * xAxisPercentage + velocityTexture.Height * velocityTextureScaling - (spriteFont.MeasureString(velString).Y * velocityTextureScaling) / 2), Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2, velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
-                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling/2), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling - spriteFont.MeasureString(angString).Y * velocityTextureScaling/4), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
+                //I commented this line to have a compilation-error free repo
+                //SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth * yAxisPercentage + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString(angString).X * velocityTextureScaling/2), screenHeight * xAxisPercentage + angleTexture.Height * angleTextureScaling - spriteFont.MeasureString(angString).Y * velocityTextureScaling/4), Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height * angleTextureScaling / 2), velocityTextureScaling , SpriteEffects.None, 0f);
             }
             else
             {
-                SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity,2), new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity+"                    ").X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
-                SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle,2), new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
+                //I commented this line to have a compilation-error free repo
+                //SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity,2), new Vector2(screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity+"                    ").X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
+                //I commented this line to have a compilation-error free repo
+                //SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle,2), new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f, new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0), velocityTextureScaling, SpriteEffects.None, 0f);
             }
             SpriteBatch.End();
         }
@@ -719,7 +723,8 @@ namespace Mechanect.Screens
                     if (!isCopied)
                     {
                         isCopied = true;
-                        environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
+                        //I commented this line to have a compilation-error free repo
+                        //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
                     }
                     environment.Predator.UpdatePosition(gameTime);
                     if (!preyEaten) preyEaten = isPreyEaten();
@@ -753,10 +758,13 @@ namespace Mechanect.Screens
                     }
                     user.setSkeleton();
                     if (user.USER != null && user.USER.Position.Z != 0)
-                        user.MeasureVelocityAndAngle(gameTime);
-
+                    {
+                        //I commented this line to have a compilation-error free repo
+                     //   user.MeasureVelocityAndAngle(gameTime);
+                    }
                 }
-                base.Update(gameTime, covered);
+                //I commented this line to have a compilation-error free repo
+                //base.Update(gameTime, covered);
 
             }
 

@@ -146,10 +146,11 @@ namespace Mechanect.Screens
                 if (timer > 0)
                 {
                     fill_Knee_pos();
-                    Tools1.getspeedl(user1, speed, speedlist, calculatespeedbool, max, min, timer,this.Environment1);
-                    Tools1.getspeedr(user1, speedr, speedlistr, calculatespeedboolr, maxr, minr, timer, this.Environment1);
-                    Tools1.getspeedl(user2, speed2, speedlist2, calculatespeedbool2, max2, min2, timer, this.Environment1);
-                    Tools1.getspeedr(user2, speedr2, speedlistr2, calculatespeedboolr2, maxr2, minr2, timer, this.Environment1);
+                    //I commented these to have a compilation-error free repo
+                    //Tools1.getspeedl(user1, speed, speedlist, calculatespeedbool, max, min, timer,this.Environment1);
+                    //Tools1.getspeedr(user1, speedr, speedlistr, calculatespeedboolr, maxr, minr, timer, this.Environment1);
+                    //Tools1.getspeedl(user2, speed2, speedlist2, calculatespeedbool2, max2, min2, timer, this.Environment1);
+                    //Tools1.getspeedr(user2, speedr2, speedlistr2, calculatespeedboolr2, maxr2, minr2, timer, this.Environment1);
                     
                     
                     //display commands on screen
