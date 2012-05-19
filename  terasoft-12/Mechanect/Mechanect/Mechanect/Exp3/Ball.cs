@@ -8,13 +8,26 @@ namespace Mechanect.Exp3
 {
     public class Ball : CustomModel
     {
-        public int Radius { get; set; }
+        private float radius;
+        public float Radius
+        {
+            get
+            {
+                return radius;
+            }
+            set
+            {
+                radius = value;
+                Scale = (radius / BoundingSphere.Radius) * Vector3.One;
+            }
+        }
+
         public double Mass { get; set; }
 
-        public Ball(Vector3 intialPosition, int radius,  GraphicsDevice device, ContentManager content)
-            : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, new Vector3(0.02f), device)
+        public Ball(Vector3 intialPosition, float radius,  GraphicsDevice device, ContentManager content)
+            : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, Vector3.One, device)
         {
-            Radius = (int)GetRadius();
+            Radius = radius;
             Mass = 0.001;
         }
 
@@ -31,7 +44,7 @@ namespace Mechanect.Exp3
 
         public bool Fell(Hole hole)
         {
-            return false;
+            return BoundingSphere.Intersects(hole.BoundingSphere);
         }
 
         /// <summary>
