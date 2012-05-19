@@ -30,13 +30,13 @@ namespace Mechanect.Common
         /// <summary>
         /// used for a 3D model with skeleton and skin.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
         /// <param name="model">the model</param>
         /// <param name="position">the position of the model</param>
         /// <param name="rotation">the rotation of the model</param>
         /// <param name="scale">scaling the model</param>
-        /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
-        /// </remarks>
         public SkinnedCustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
         {
             this.model = model;
