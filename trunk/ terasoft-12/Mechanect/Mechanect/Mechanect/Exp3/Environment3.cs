@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using UI.Cameras;
 using Mechanect.Common;
-using UI.Components;
-using Mechanect.Exp3;
-using Mechanecht.Common;
 namespace Mechanect.Exp3
 {
     public class Environment3
@@ -106,8 +97,6 @@ namespace Mechanect.Exp3
             //friction = 0.5f/3600;
             wind = 0f;
             //ball.InitialVelocity = new Vector3(11.25f, 0, 11.25f)/60;
-            ball.Radius = 1;
-            ball.Mass = 2;
             user.AssumedLegMass = 0.01;
             
             #endregion
@@ -819,9 +808,9 @@ namespace Mechanect.Exp3
             {
                 int xComponent = (int)Position.X;
                 int zComponent = (int)Position.Z;
-                return heightData[xComponent + terrainWidth / 2, zComponent + terrainHeight / 2];
+                return heightData[xComponent + terrainWidth / 2, zComponent + terrainHeight / 2] + ball.Radius;
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (Exception e)
             {
                 return 0 + ball.Radius;
             }
