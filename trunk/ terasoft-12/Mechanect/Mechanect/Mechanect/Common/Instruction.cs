@@ -17,6 +17,21 @@ namespace Mechanect
     {
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
+        Rectangle rectangle;
+        ContentManager contentManager;
+        GraphicsDevice device;
+        Texture2D mytexture;
+        User user;
+        Button button;
+        Vector2 origin;
+        Vector2 positionInScreen;
+        Vector2 ButtonPosition = new Vector2(300, 300);
+        string instructions;
+        int screenWidth = 800;
+        int screenHeight = 400;
+        
+        
+
         public SpriteFont SpriteFont
         {
             get
@@ -28,7 +43,7 @@ namespace Mechanect
                 spriteFont = value;
             }
         }
-        Rectangle rectangle;
+       
         Rectangle Rectangle
         {
             get
@@ -41,10 +56,8 @@ namespace Mechanect
             }
         }
        
-        Vector2 origin;
-        Vector2 positionInScreen;
-        string instructions;
-        Texture2D mytexture;
+     
+       
         public Texture2D MyTexture
         {
             get
@@ -56,15 +69,24 @@ namespace Mechanect
                 mytexture = value;
             }
         }
-        Vector2 startPosition = Vector2.Zero;
-        Vector2 ButtonPosition = new Vector2(300, 300);
-        Button button;
+       
+       
         public Button Button
         {
-           get { return button; }
-            set { button = value; }
+           get 
+           { 
+               return button; 
+               
+           }
+
+            set 
+            { 
+
+                button = value; 
+                
+            }
         }
-        ContentManager contentManager;
+       
         public ContentManager ContentManager
         {
             get
@@ -76,9 +98,8 @@ namespace Mechanect
                 contentManager = value;
             }
         }
-        int screenWidth = 800;
-        int screenHeight = 400;
-        GraphicsDevice device;
+       
+        
         public GraphicsDevice Device
         {
             get
@@ -114,26 +135,16 @@ namespace Mechanect
                 instructions = value;
             }
         }
-
-        User user;
-     
-  
-        public Instruction()
-        {
-           
-            instructions = "";
-            origin = new Vector2(0f, 0f);
-            
-        }
        
         /// <summary>
-        /// Set the origin Vector to be the left top corner of the screen.
+        /// Constructor of the class Instruction, Sets 
         /// <remarks>
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
+        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user,Rectangle rectangle)
         {
+            this.rectangle = rectangle;
             this.instructions = instructions;
             this.origin = new Vector2(0f, 0f);
             this.contentManager = contentManager;
