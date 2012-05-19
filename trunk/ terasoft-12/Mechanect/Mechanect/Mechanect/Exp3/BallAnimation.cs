@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using UI.Animation;
+using Physics;
 
 namespace Mechanect.Exp3
 {
@@ -15,10 +16,10 @@ namespace Mechanect.Exp3
         private Vector3 totalDisplacement;
 
         public BallAnimation(Ball ball, Vector3 velocity, float friction, Vector3 holePosition, float holeRadius)
-            : base(ball, velocity, friction, Physics.Functions.CalculateTime(velocity.Length(), 0, friction))
+            : base(ball, velocity, friction, LinearMotion.CalculateTime(velocity.Length(), 0, friction))
         {
             this.ball = ball;
-            Vector3 totalDisplacement = Physics.Functions.CalculateDisplacement(velocity, friction, Duration);
+            Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
             if (totalDisplacement.Length() < (ball.Radius + holeRadius))
