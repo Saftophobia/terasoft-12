@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,9 @@ using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 using Mechanect.Common;
 using Mechanect.Classes;
-//using MKinect;
+using MKinect;
 
-namespace Mechanect.Exp2
+namespace Mechanect.Experiment2
 {
     /// <summary>
     /// This Class responsible for functionalities that User will do when testing either Velocity or Angle
@@ -16,23 +16,36 @@ namespace Mechanect.Exp2
     /// <para>Author: Mohamed Raafat</para>
     /// </remarks>
     /// </summary>
-    public class User2 : Mechanect.Common.User
+    class User2 : Mechanect.Common.User
     {
 
         /// <summary>
         /// Instance Variables
-        /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
-        /// </remarks>
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+
         private int currentTime;
         private int startTime;
+        private int counter;
+        private int listCounter;
         private bool shooting;
         private bool beforeHip;
         private double previousAngle;
-        int counter = 0;
-        int listCounter = 0;
         private double angleBeingMeasured;
+        private double measuredVelocity;
+        private double measuredFinalAngle;
+        private List<Vector2> angleAndTime = new List<Vector2>();
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "angleBeingMeasured"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>double, The value of the angleBeingMeasured</returns>
+
         public double AngleBeingMeasured
         {
             get
@@ -44,18 +57,16 @@ namespace Mechanect.Exp2
                 angleBeingMeasured = value;
             }
         }
-        List<Vector2> angleAndTime = new List<Vector2>();
-        private double measuredVelocity;
-        private double measuredFinalAngle;
+
         /// <summary>
-        /// Getter and setter for the MeasuredAgnle Value
+        /// Setter and Getter for Instance variable "measuredFinalAngle"
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns> the measured angle</returns>
+        /// <returns>double, The value of the measuredFinalAngle</returns>
 
-        public double MeasuredAngle
+        public double MeasuredFinalAngle
         {
             get
             {
@@ -68,14 +79,13 @@ namespace Mechanect.Exp2
         }
 
         /// <summary>
-        /// Getter and setter for the MeasuredVelocity Value
+        /// Setter and Getter for Instance variable "measuredVelocity"
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns> the measured velocity</returns>
-
-
+        /// <returns>double, The value of the measuredVelocity</returns>
+        /// 
         public double MeasuredVelocity
         {
             get
@@ -88,29 +98,196 @@ namespace Mechanect.Exp2
             }
         }
 
-        public User2()
-        {
-          
-        }
-
-        
-        
         /// <summary>
-        /// Getter and setter for the MeasuredAgnle Value
+        /// Setter and Getter for Instance variable "previousAngle"
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-
-        public void MeasureVelocityAndAngle(GameTime gameTime)
+        /// <returns>double, The value of the previousAngle</returns>
+        /// 
+        public double PreviousAngle
         {
-            MeasureAngle(gameTime);
-            MeasureVelocity();
+            get
+            {
+                return previousAngle;
+            }
+            set
+            {
+                previousAngle = value;
+            }
         }
 
+        /// <summary>
+        /// Setter and Getter for Instance variable "shooting"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>bool, The value of the shooting</returns>
+
+        public bool Shooting
+        {
+            get
+            {
+                return shooting;
+            }
+            set
+            {
+                shooting = value;
+            }
+
+        }
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "beforeHip"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>bool, The value of the beforeHip</returns>
+
+        public bool BeforeHip
+        {
+            get
+            {
+                return beforeHip;
+            }
+            set
+            {
+                beforeHip = value;
+            }
+        }
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "currentTime"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>int, The value of the currentTime</returns>
+
+        public int CurrentTime
+        {
+            get
+            {
+                return currentTime;
+            }
+            set
+            {
+                currentTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "startTime"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>int, The value of the startTime</returns>
+
+        public int StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+            set
+            {
+                startTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "counter"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>int, The value of the counter</returns>
+
+        public int Counter
+        {
+            get
+            {
+                return counter;
+            }
+            set
+            {
+                counter = value;
+            }
+        }
+
+        /// <summary>
+        /// Setter and Getter for Instance variable "listCounter"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns> int,The value of the listCounter</returns>
+
+        public int ListCounter
+        {
+            get
+            {
+                return listCounter;
+            }
+            set
+            {
+                listCounter = value;
+            }
+        }
+        /// <summary>
+        /// Setter and Getter for Instance variable "angleAndTime"
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>List'Vector2',The value of the angleAndTime</returns>
+
+        public List<Vector2> AngleTime
+        {
+            get
+            {
+                return angleAndTime;
+            }
+            set
+            {
+                angleAndTime = value;
+            }
+        }
+
+        /// <summary>
+        /// Constructor for User2 class, that sets the value of the counter and listCounter
+        /// </summary>
+        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
+        public User2()
+        {
+            this.counter = 0;
+            this.listCounter = 0;
+
+        }
+
+
+        /* 
+         /// <summary>
+         /// Getter and setter for the MeasuredAgnle Value
+         /// </summary>
+         /// <remarks>
+         /// <para>Author: Mohamed Raafat</para>
+         /// </remarks>
+
+         public void MeasureVelocityAndAngle(GameTime gameTime)
+         {
+             MeasureAngle(gameTime);
+             MeasureVelocity();
+         }
+ */
         /// <summary>
         /// Resets all instance variables to their intitial values
         /// </summary>
+        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
 
         public void Reset()
         {
@@ -126,11 +303,11 @@ namespace Mechanect.Exp2
 
 
         /// <summary>
-        /// Gets the angle between two Vectors, from left hip to left shoulder and from left shoulder to left hand
-        /// and convert it to degrees.
+        /// Calculate the angle between two planes, one is a vertical plane containing: left shoulder, right shoulder,
+        /// and center hip, and another plane that is inclined containing: left shoulder, right shoulder, and left hand
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
         /// <param name ="gametime">Takes the gametime to make time calculations </param>
         private void MeasureAngle(GameTime gametime)
@@ -198,14 +375,14 @@ namespace Mechanect.Exp2
                         listCounter = 0;
                     if (angleAndTime.Count >= 0 && angleAndTime.Count < angleAndTime.Capacity)
                     {
-                        angleAndTime.Add(new Vector2((float)currentTime, (float)angleBeingMeasured));
+                        angleAndTime.Add(new Vector2((float)angleBeingMeasured, (float)currentTime));
                     }
                     else
                     {
                         if (angleAndTime.Count == angleAndTime.Capacity)
                         {
                             angleAndTime.RemoveAt(this.listCounter);
-                            angleAndTime.Insert(this.listCounter, new Vector2((float)currentTime, (float)angleBeingMeasured));
+                            angleAndTime.Insert(this.listCounter, new Vector2((float)angleBeingMeasured, (float)currentTime));
                         }
                     }
                     listCounter++;
@@ -223,7 +400,7 @@ namespace Mechanect.Exp2
         /// Calculate the angular velocity and then the linear velocity
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
         /// <returns>Returns the linear velocity of the arm</returns>
         private void MeasureVelocity()
@@ -235,7 +412,9 @@ namespace Mechanect.Exp2
                 return;
             }
 
-            measuredVelocity = ((int)(500 * measuredFinalAngle / currentTime)) / 10f;
+            measuredVelocity = (this.angleAndTime[this.listCounter].X - this.angleAndTime[0].X) /
+                (this.angleAndTime[this.listCounter].Y - this.angleAndTime[0].Y);
+
         }
 
 
