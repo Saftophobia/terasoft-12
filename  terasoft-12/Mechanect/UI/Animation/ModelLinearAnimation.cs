@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using UI.Components;
+using Physics;
 
 namespace UI.Animation
 {
@@ -52,7 +53,7 @@ namespace UI.Animation
             this.elapsedTime += elapsed;
             if (!Finished())
             {
-                model.Position = StartPosition + Physics.Functions.CalculateDisplacement(velocity, acceleration, elapsedTime);
+                model.Position = StartPosition + LinearMotion.CalculateDisplacement(velocity, acceleration, elapsedTime);
             }
         }
 
