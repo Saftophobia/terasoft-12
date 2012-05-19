@@ -24,9 +24,14 @@ namespace Mechanect.Exp3
             Rotation = new Vector3(displacement.Length() / perimeter, (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
-        public void setHeight(float height)
+        public void SetHeight(float height)
         {
             Position = new Vector3(Position.X, height, Position.Z);
+        }
+
+        public bool Fell(Hole hole)
+        {
+            return false;
         }
     }
 }
