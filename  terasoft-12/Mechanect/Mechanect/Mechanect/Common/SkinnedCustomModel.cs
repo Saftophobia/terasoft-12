@@ -144,5 +144,25 @@ namespace Mechanecht.Common
         }
 
         #endregion
+
+        #region Animation
+
+        /// <summary>
+        /// moving a specific bone 
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
+        /// <param name="boneName">the name of the bone, same as in the model</param>
+        /// <param name="offset">the number of extra bone information</param>
+        /// <param name="bend">the binding of the bone in 3D</param>
+        public void MoveBone(string boneName, int offset, Vector3 bend)
+        {
+            int boneId = model.Bones[boneName].Index + offset;
+            boneTransforms[boneId] = Matrix.CreateFromYawPitchRoll(bend.X, bend.Y, bend.Z)
+                * originalBones[boneId];
+        }
+
+        #endregion
     }
 }
