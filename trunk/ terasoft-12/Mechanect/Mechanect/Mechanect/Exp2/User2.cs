@@ -369,7 +369,7 @@ namespace Mechanect.Experiment2
                 measuredFinalAngle = (int)(10 * angle) / 10f;
                 shooting = false;
 
-                if (shooting == true)
+                if (shooting)
                 {
                     if (listCounter == 5)
                         listCounter = 0;
