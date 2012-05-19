@@ -19,6 +19,19 @@ namespace Physics
 
 
         /// <summary>
+        /// calculates the time the equation v = v0 + at
+        /// </summary>
+        /// <param name="intialVelocity">start velocity magnitude</param>
+        /// <param name="finalVelocity">final velocity magnitude</param>
+        /// <param name="acceleration">acceleration magnitude</param>
+        /// <remarks>Author : Bishoy Bassem</remarks>
+        public static TimeSpan CalculateTime(float intialVelocity, float finalVelocity, float acceleration)
+        {
+            return TimeSpan.FromSeconds((finalVelocity - intialVelocity) / acceleration);
+        }
+
+
+        /// <summary>
         /// calculates the displacement vector using the equation r - r0 = v0t + 0.5a(t^2) 
         /// </summary>
         /// <param name="intialVelocity">start velocity vector</param>
