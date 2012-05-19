@@ -28,7 +28,6 @@ namespace UI.Components
         /// </summary>
         public Vector3 Scale { get; set; }
 
-        private Model model;
         private Matrix[] modelTransforms;
 
         private GraphicsDevice graphicsDevice;
@@ -59,9 +58,9 @@ namespace UI.Components
             this.Rotation = rotation;
             this.Scale = scale;
             this.graphicsDevice = graphicsDevice;
-            this.model = model;
+            Model = model;
             modelTransforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+            Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
             createBoundingSphere();
         }
 
@@ -72,7 +71,7 @@ namespace UI.Components
         public void Draw(Camera camera)
         {
             Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
-            foreach (ModelMesh mesh in model.Meshes)
+            foreach (ModelMesh mesh in Model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index] * world;
                 foreach (ModelMeshPart part in mesh.MeshParts)
