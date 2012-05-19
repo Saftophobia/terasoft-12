@@ -100,3 +100,8 @@ X:\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\ResolveAs
 X:\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 X:\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
 X:\terasoft-12\trunk\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.dll
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation\bin\x86\Debug\GifAnimation.pdb
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.dll
+E:\TeraSoft-Sprint2-Week2\ terasoft-12\Mechanect\GifAnimation\obj\x86\Debug\GifAnimation.pdb

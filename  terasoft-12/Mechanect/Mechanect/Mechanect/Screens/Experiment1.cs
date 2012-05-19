@@ -349,7 +349,8 @@ namespace Mechanect.Screens
                         {
                             if (cumulativetimeint[z] != timecounter)
                             {
-                                Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 100, SpriteBatch, spritefont);
+                                //I commented this line to have a compilation-error free repo
+                                //Tools1.CheckEachSecond(timecounter - 5, player1, player2, timeslice, racecommands, 100, SpriteBatch, spritefont);
                                 break;
                             }
                         }
