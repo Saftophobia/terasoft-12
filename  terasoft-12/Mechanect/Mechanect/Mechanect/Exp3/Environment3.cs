@@ -699,7 +699,8 @@ namespace Mechanect.Exp3
         /// Initializes all variables needed to draw the hole.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </pfzara>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///<param name="radius">The hole radius.</param>
         ///</remarks>
         
         protected void InitializeHole(int radius)
@@ -714,6 +715,7 @@ namespace Mechanect.Exp3
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
+        ///<param name="cam">The same camera the environment is viewed from needed to draw the hole model.</param>
 
         protected void DrawHole(Camera cam)
         {

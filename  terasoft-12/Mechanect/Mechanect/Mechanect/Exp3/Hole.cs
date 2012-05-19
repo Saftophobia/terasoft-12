@@ -26,11 +26,18 @@ namespace Mechanect.Exp3
         }
        
         /// <summary>
-        /// Sets the X,Y,Z values for the hole position which are related to the enviroment's terrain width and height.
+        /// Generates a position for the hole according to certain constraints given the terrain width, terrain height, shooting position and the hole radius.
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
+        ///<param name="radius">The radius of the hole.</param>
+        ///<param name="terrainWidth">The width of the terrain or the environment where the hole should be generated within.</param>
+        ///<param name="terrainHeight">The height of the terrain or the environment where the hole should be generated within.</param>
+        ///<param name="shootingPosition">The shooting position of the user.</param>
         ///</remarks>
+        /// <returns>
+        /// Vector which is the randomly generated position of the hole.
+        /// </returns>
 
         public static Vector3 GeneratePosition(int radius,int terrainWidth, int terrainHeight,Vector3 shootingPosition)
         {
