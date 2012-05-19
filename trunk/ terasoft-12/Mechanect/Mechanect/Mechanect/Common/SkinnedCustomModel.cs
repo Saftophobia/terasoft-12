@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using SkinnedModel;
 
 
-namespace Mechanecht.Common
+namespace Mechanect.Common
 {
     public class SkinnedCustomModel
     {
