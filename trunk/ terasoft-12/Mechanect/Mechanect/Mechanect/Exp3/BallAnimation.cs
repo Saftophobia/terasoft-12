@@ -12,15 +12,16 @@ namespace Mechanect.Exp3
 
         private Ball ball;
         private ModelFramedAnimation fallAnimation;
-        private Vector3 stopPosition;
+        private Vector3 totalDisplacement;
 
         public BallAnimation(Ball ball, Vector3 velocity, float friction, Vector3 holePosition, float holeRadius)
-            : base(ball, velocity, friction, TimeSpan.FromSeconds(10))
+            : base(ball, velocity, friction, Physics.Functions.CalculateTime(velocity.Length(), 0, friction))
         {
             this.ball = ball;
-            stopPosition = Physics.Functions.CalculateDisplacement(velocity, friction, TimeSpan.FromSeconds(Math.Abs(velocity.Length() / friction)));
+            Vector3 totalDisplacement = Physics.Functions.CalculateDisplacement(velocity, friction, Duration);
+            Vector3 stopPosition = StartPosition + totalDisplacement;
 
-            if (Vector3.Distance(stopPosition, holePosition) < (ball.Radius + holeRadius))
+            if (totalDisplacement.Length() < (ball.Radius + holeRadius))
             {
                 fallAnimation = new ModelFramedAnimation(ball);
                 if (stopPosition.X < holePosition.X)
@@ -37,7 +38,7 @@ namespace Mechanect.Exp3
 
         public override void Update(TimeSpan elapsed)
         {
-            if (fallAnimation == null || (Displacement.Length() / Vector3.Distance(startPosition, stopPosition) < 0.95))
+            if (fallAnimation == null || Displacement.Length() / totalDisplacement.Length() < 0.95)
             {
                 base.Update(elapsed);
                 ball.Rotate(Displacement);
