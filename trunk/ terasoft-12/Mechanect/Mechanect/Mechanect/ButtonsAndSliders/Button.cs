@@ -30,13 +30,14 @@ namespace ButtonsAndSliders
 
         private bool status;
 
+        static int drawHand = -1;
         ///<remarks>
         ///<para>
         ///Author: HegazY
         ///</para>
         ///</remarks>
         /// <summary>
-        /// The constructor used to initialize the button
+        /// The constructor used to initialize the button. First Button to be created must be last button to be drawn.
         /// </summary>
         /// <param name="t">the gif texture of the button not moving</param>
         /// <param name="tt">the gif texture of the button moving</param>
@@ -56,6 +57,9 @@ namespace ButtonsAndSliders
             hand = h;
             user = u;
             timer = new Timer1();
+
+            if (drawHand == -1)
+                drawHand = this.GetHashCode();
         }
 
         ///<remarks>
@@ -67,11 +71,12 @@ namespace ButtonsAndSliders
         /// drawing the button and the hand
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
+        [System.Obsolete("call this method after begining a SpriteBatch", false)]
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
-            spriteBatch.End();
+            if (drawHand == this.GetHashCode())
+                spriteBatch.Draw(hand, handPosition, Color.White);
         }
 
         ///<remarks>
@@ -99,6 +104,7 @@ namespace ButtonsAndSliders
                     Animate();
                     if (timer.GetDuration(gameTime) >= (2000))
                     {
+                        drawHand = -1;
                         status = true;
                         timer.Stop();
                     }
@@ -217,6 +223,7 @@ namespace ButtonsAndSliders
         /// <summary>
         /// draw the hand on the screen. It must be called after beginning the SpriteBatch.
         /// </summary>
+        [System.Obsolete("This method will not be needed any more", false)]
         public void DrawHand(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(hand, handPosition, Color.White);
