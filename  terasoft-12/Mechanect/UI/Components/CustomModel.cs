@@ -33,7 +33,18 @@ namespace UI.Components
 
         private GraphicsDevice graphicsDevice;
 
-        protected Model Model { get { return model; } private set { model = value; } }
+        protected Model Model { get; private set; }
+
+        private BoundingSphere boundingSphere;
+        public BoundingSphere BoundingSphere
+        {
+            get
+            {
+                Matrix worldTransform = Matrix.CreateScale(Scale) * Matrix.CreateTranslation(Position);
+                BoundingSphere transformed = boundingSphere;
+                return transformed.Transform(worldTransform);
+            }
+        }
         
         /// <summary>
         /// constructs a CustomModel instance 
@@ -51,6 +62,7 @@ namespace UI.Components
             this.model = model;
             modelTransforms = new Matrix[model.Bones.Count];
             model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+            createBoundingSphere();
         }
 
         /// <summary>
@@ -73,6 +85,17 @@ namespace UI.Components
                 }
                 mesh.Draw();
             }
+        }
+
+        private void createBoundingSphere()
+        {
+            BoundingSphere sphere = new BoundingSphere(Vector3.Zero, 0);
+            foreach (ModelMesh mesh in Model.Meshes)
+            {
+                BoundingSphere transformed = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index]);
+                sphere = BoundingSphere.CreateMerged(sphere, transformed);
+            }
+            boundingSphere = sphere;
         }
     }
 }
