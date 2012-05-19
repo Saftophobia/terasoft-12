@@ -184,7 +184,7 @@ namespace Mechanect.Exp3
                         else if (wind > 1) 
                             wind--;
                         else hole.Position = new Vector3(hole.Position.X/2, hole.Position.Y, hole.Position.Z+1); break; 
-                    case Constants3.negativeRDifference: int tmp = ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
+                    case Constants3.negativeRDifference: int tmp = (int)ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
                     case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
