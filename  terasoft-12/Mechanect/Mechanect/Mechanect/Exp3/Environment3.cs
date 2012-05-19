@@ -261,7 +261,7 @@ namespace Mechanect.Exp3
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplarge");
             LoadHeightData(heightMap);
             SetUpVertices();
-            //LoadEnvironmentContent();
+            LoadEnvironmentContent();
             InitializeHole(4);
 
 
@@ -277,7 +277,7 @@ namespace Mechanect.Exp3
         ///<param name="gameTime">Provides a snapshot of timing values.</param>
         public void Draw(Camera c, GameTime gameTime)
         {
-            //DrawEnvironment(c, gameTime);
+            DrawEnvironment(c, gameTime);
             DrawHole(c);
         }
 
@@ -579,7 +579,7 @@ namespace Mechanect.Exp3
                 }
                 mesh.Draw();
             }
-            //DrawHole();
+            DrawHole(c);
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -718,7 +718,7 @@ namespace Mechanect.Exp3
         
         protected void DrawHole(Camera cam)
         {
-            hole.DrawHole(cam);
+            hole.Draw(cam);
             int radius = hole.Radius;
             Vector3 scale = new Vector3((float)0.02 * radius);
             int outerRadius = radius * 2 + 2;
