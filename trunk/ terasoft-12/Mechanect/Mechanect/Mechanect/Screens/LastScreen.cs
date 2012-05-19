@@ -71,7 +71,7 @@ namespace Mechanect.Screens
             {
 
                 Remove();
-                ScreenManager.AddScreen(new AllExperiments());
+                ScreenManager.AddScreen(new AllExperiments(user));
                 this.Remove();
             }
             if (newGame.IsClicked())
@@ -79,7 +79,7 @@ namespace Mechanect.Screens
                 Remove();
                 switch(experemintNumber)
                 {
-                    case 1: ScreenManager.AddScreen(new Experiment1(new User1(1), new User1(2), new MKinect())); break;
+                    //case 1: ScreenManager.AddScreen(new Experiment1(new User1(1), new User1(2), new MKinect())); break;
                     case 2: ScreenManager.AddScreen(new InstructionsScreen2(new User2())); break;
                     case 3: ScreenManager.AddScreen(new InstructionsScreen3(new User3())); break;
                     default: break;
@@ -103,8 +103,10 @@ namespace Mechanect.Screens
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            mainMenu.Draw(this.ScreenManager.SpriteBatch);
+            this.ScreenManager.SpriteBatch.Begin();
             newGame.Draw(this.ScreenManager.SpriteBatch);
+            mainMenu.Draw(this.ScreenManager.SpriteBatch);
+            this.ScreenManager.SpriteBatch.End();
         }
     }
 }
