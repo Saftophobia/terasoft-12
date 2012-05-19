@@ -20,7 +20,8 @@ namespace Mechanect.Exp3
 
         public void Rotate(Vector3 displacement)
         {
-            Rotation = new Vector3(displacement.Length() / 3, (float)Math.Atan2(displacement.X, displacement.Z), 0);
+            float perimeter = (float) (2 * Math.PI * 1);
+            Rotation = new Vector3(displacement.Length() / perimeter, (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
         public void setHeight(float height)
