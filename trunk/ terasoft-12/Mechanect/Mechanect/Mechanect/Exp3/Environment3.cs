@@ -704,7 +704,6 @@ namespace Mechanect.Exp3
         
         protected void InitializeHole(int radius)
         {
-            // TODO: Add your initialization logic here
             hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,radius ,user.ShootingPosition);
         }
 
@@ -715,48 +714,30 @@ namespace Mechanect.Exp3
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
-        
+
         protected void DrawHole(Camera cam)
         {
             hole.Draw(cam);
             int radius = hole.Radius;
-            Vector3 scale = new Vector3((float)0.02 * radius);
-            int outerRadius = radius * 2 + 2;
-             double angleStep = 1f / radius;
-                for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
+            int xPos = (int)hole.Position.X;
+            int yPos = (int)hole.Position.Y;
+            // double angleStep = 1f / radius;
+            //    for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
+            //    {
+            //        int a = (int)Math.Round(radius + radius * Math.Cos(angle));
+            //        int b = (int)Math.Round(radius + radius * Math.Sin(angle));
+            //    }
+            for (float x = hole.Position.X-radius; x <= hole.Position.X+radius; x++)
+            {
+                for (float y = hole.Position.Z-radius; y <= hole.Position.Z+radius; y++)
                 {
-                    int a = (int)Math.Round(radius + radius * Math.Cos(angle));
-                    int b = (int)Math.Round(radius + radius * Math.Sin(angle));
-
-                
-                  //for (int x = 50; x <= 61; x++)
-                  //  {
-                  //      for (int y = 50; y <= 61; y++)
-                  //      {
-                  //          vertices[x + y * terrainWidth].Position = new Vector3(x, heightData[x, y] - 20, -y);
-                  //          vertices[x + y * terrainWidth].Color = Color.Transparent;
-                  //      }
-                  //  }
+                    vertices[(int)x + (terrainHeight/2) * (int)y + terrainWidth/2].Position = new Vector3(x, heightData[(int)x+terrainWidth/2,(int) y+terrainHeight/2] - 20, -y);
+                    //vertices[(x + (terrainHeight / 2) * (y + (terrainWidth / 2)))].Position = new Vector3(x, heightData[x, y] - 20, -y);
+                    //vertices[x + y * terrainWidth].Color = Color.Transparent;
                 }
-                for (int x = 50; x <= 61; x++)
-                {
-                    for (int y = 50; y <= 61; y++)
-                    {
-                        for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
-                        {
-                            int a = (int)Math.Round(radius + radius * Math.Cos(angle));
-                            int b = (int)Math.Round(radius + radius * Math.Sin(angle));
-                            //vertices[a+x + (b+y) * terrainWidth].Color = Color.White;
-                            vertices[a+x + (b+y) * terrainWidth].Position = new Vector3(x+a, heightData[x+a, y+b] - 20, -y-b);
-                        }
-                    }
-                }
-
             }
-            // TODO: Add your drawing code here
+        }
 
-            //base.Draw(gameTime);
-        
 
         #endregion
 
