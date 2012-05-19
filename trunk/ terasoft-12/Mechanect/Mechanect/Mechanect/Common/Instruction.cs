@@ -135,6 +135,13 @@ namespace Mechanect
                 instructions = value;
             }
         }
+        public Instruction()
+        {
+
+            instructions = "";
+            origin = new Vector2(0f, 0f);
+
+        }
        
         /// <summary>
         /// Constructor of the class Instruction, Sets 
@@ -142,9 +149,8 @@ namespace Mechanect
         /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// </summary>
-        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user,Rectangle rectangle)
+        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
         {
-            this.rectangle = rectangle;
             this.instructions = instructions;
             this.origin = new Vector2(0f, 0f);
             this.contentManager = contentManager;
