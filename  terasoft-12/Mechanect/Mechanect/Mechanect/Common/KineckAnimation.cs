@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Mechanect.Common
 {
-    class KineckAnimation
+    public class KineckAnimation
     {
         #region Fields
 
