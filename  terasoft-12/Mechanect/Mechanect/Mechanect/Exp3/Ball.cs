@@ -33,18 +33,13 @@ namespace Mechanect.Exp3
 
         public void Rotate(Vector3 displacement)
         {
-            float perimeter = (float) (2 * Math.PI * 1);
-            Rotation = new Vector3(displacement.Length() / perimeter, (float)Math.Atan2(displacement.X, displacement.Z), 0);
+            float perimeter = (float)(2 * Math.PI * radius);
+            Rotation = new Vector3(displacement.Length() / (perimeter / 6), (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
         public void SetHeight(float height)
         {
-            Position = new Vector3(Position.X, height, Position.Z);
-        }
-
-        public bool Fell(Hole hole)
-        {
-            return BoundingSphere.Intersects(hole.BoundingSphere);
+            Position = new Vector3(Position.X, height + radius, Position.Z);
         }
 
         /// <summary>
