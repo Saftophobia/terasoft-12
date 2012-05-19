@@ -37,15 +37,19 @@ namespace Mechanect.Exp3
             friction = -2;
             firstAnimation = true;
             this.user = user;
-
         }
 
         public override void LoadContent()
         {
             targetCamera = new TargetCamera(new Vector3(0, 140, 250), new Vector3(0,80,0), ScreenManager.GraphicsDevice);
+
             ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
-            animation = new BallAnimation(ball, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction), friction, Vector3.Zero, 0);
-            environment = new Environment3(intialPosition, Physics.Functions.CalculateIntialVelocity(shootPosition - intialPosition, arriveVelocity, friction),
+
+            Vector3 intialVelocity = Physics.Functions.CalculateIntialVelocity(shootPosition - ball.Position, arriveVelocity, friction);
+
+            animation = new BallAnimation(ball, intialVelocity, friction, Vector3.Zero, 0);
+
+            environment = new Environment3(intialPosition, intialVelocity,
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
             
             environment.arriveVelocity = arriveVelocity;
@@ -62,24 +66,28 @@ namespace Mechanect.Exp3
             animation = new BallAnimation(ball, velocity, friction, Vector3.Zero, 0);
         }
 
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
             environment.PlayerModel.Update();
             if (firstAnimation)
             {
-                float distance = (ball.Position - intialPosition).Length();
-                float totalDistance = (shootPosition - intialPosition).Length();
+                float distance = animation.Displacement.Length();
+                float totalDistance = (shootPosition - animation.StartPosition).Length();
                 if (distance / totalDistance > 0.5 && !pauseScreenShowed)
                 {
                     pauseScreenShowed = true;
                     //add pause screen
                 }
                 //update distance bar
-                //if (distance / totalDistance > 1)
-                //{
-                //    firstAnimation = false;
-                //    ShootBall(new Vector3(10, 0, -10));
-                //}
+                /*if (distance / totalDistance > 1)
+                {
+                    firstAnimation = false;
+                    ShootBall(new Vector3(10, 0, -10));
+                }*/
+                if (animation.Finished())
+                {
+                    //add final screen
+                }
             }
             else if (animation.Finished() && simulation == null)
             {
@@ -113,7 +121,7 @@ namespace Mechanect.Exp3
                 }
             }
 
-            base.Update(gameTime, covered);
+            base.Update(gameTime);
         }
 
         /// <summary>
