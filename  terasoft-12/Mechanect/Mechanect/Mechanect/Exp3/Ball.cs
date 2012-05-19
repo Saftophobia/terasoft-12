@@ -14,7 +14,7 @@ namespace Mechanect.Exp3
         public Ball(Vector3 intialPosition, int radius,  GraphicsDevice device, ContentManager content)
             : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, new Vector3(0.02f), device)
         {
-            Radius = radius;
+            Radius = (int)GetRadius();
             Mass = 0.001;
         }
 
@@ -32,6 +32,23 @@ namespace Mechanect.Exp3
         public bool Fell(Hole hole)
         {
             return false;
+        }
+
+        /// <summary>
+        /// Creates the animation of the ball falling into the hole.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Omar Abdulaal.</para>
+        /// </remarks>
+        /// <returns>Radius of the balls model</returns>
+        private float GetRadius()
+        {
+            BoundingSphere sphere = new BoundingSphere();
+            foreach (ModelMesh mesh in Model.Meshes)
+            {
+                sphere = BoundingSphere.CreateMerged(sphere, mesh.BoundingSphere);
+            }
+            return sphere.Radius;
         }
     }
 }

@@ -106,7 +106,7 @@ namespace Mechanect.Exp3
             targetCamera.Update();
             animation.Update(gameTime.ElapsedGameTime);
             //update ball height
-            //ball.setHeight(environment.GetHeight(ball.Position));
+            ball.SetHeight(environment.GetHeight(ball.Position));
 
             if (environment.hasBallEnteredShootRegion())
             {
