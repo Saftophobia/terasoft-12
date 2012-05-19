@@ -32,6 +32,8 @@ namespace UI.Components
         private Matrix[] modelTransforms;
 
         private GraphicsDevice graphicsDevice;
+
+        protected Model Model { get { return model; } private set { model = value; } }
         
         /// <summary>
         /// constructs a CustomModel instance 
