@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using UI.Cameras;
 using UI.Animation;
 using Mechanect.Classes;
+using Physics;
 
 namespace Mechanect.Exp3
 {
@@ -43,9 +44,9 @@ namespace Mechanect.Exp3
         {
             targetCamera = new TargetCamera(new Vector3(0, 140, 250), new Vector3(0,80,0), ScreenManager.GraphicsDevice);
 
-            ball = new Ball(intialPosition, 10, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            ball = new Ball(intialPosition, 4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
 
-            Vector3 intialVelocity = Physics.Functions.CalculateIntialVelocity(shootPosition - ball.Position, arriveVelocity, friction);
+            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(shootPosition - ball.Position, arriveVelocity, friction);
 
             animation = new BallAnimation(ball, intialVelocity, friction, Vector3.Zero, 0);
 
@@ -54,9 +55,9 @@ namespace Mechanect.Exp3
             
             environment.arriveVelocity = arriveVelocity;
             
-            environment.LoadContent();
+            //environment.LoadContent();
 
-            environment.GenerateSolvable();
+           // environment.GenerateSolvable();
             //Constants3.environment3 = environment;
             //Constants3.game1.Exit();
         }
@@ -79,11 +80,11 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 //update distance bar
-                /*if (distance / totalDistance > 1)
+                if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     ShootBall(new Vector3(10, 0, -10));
-                }*/
+                }
                 if (animation.Finished())
                 {
                     //add final screen
@@ -169,7 +170,7 @@ namespace Mechanect.Exp3
             {
                 camera = simulation.Camera;
             }
-            environment.Draw(camera, gameTime);
+            //environment.Draw(camera, gameTime);
             ball.Draw(camera);
             if (firstAnimation)
             {

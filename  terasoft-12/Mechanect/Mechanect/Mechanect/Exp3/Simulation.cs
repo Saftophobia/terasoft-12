@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using UI.Animation;
 using UI.Cameras;
+using Physics;
 
 namespace Mechanect.Exp3
 {
@@ -61,7 +62,7 @@ namespace Mechanect.Exp3
             font = content.Load<SpriteFont>("SpriteFont1");
             fontColor = Color.Black;
 
-            optimalVelocity = Physics.Functions.CalculateIntialVelocity(holePosition - shootPosition, 0, friction);
+            optimalVelocity = LinearMotion.CalculateIntialVelocity(holePosition - shootPosition, 0, friction);
 
             animation1 = new BallAnimation(ball, shootVelocity, friction, holePosition, 1);
             animation2 = new BallAnimation(ball, optimalVelocity, friction, holePosition, 1);
