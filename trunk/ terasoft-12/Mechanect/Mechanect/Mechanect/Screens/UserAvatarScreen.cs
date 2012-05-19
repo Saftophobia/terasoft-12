@@ -113,21 +113,21 @@ namespace Mechanect.Screens
         /// </param>
         public void UpdateAvatar(Texture2D texture, User user)
         {
-            int x=0;
+            int userindex=0;
             for (int i = 0; i < users.Length; i++)
             {
                 if (users[i].Equals(user))
-                    x = i;
+                    userindex = i;
             }
             if (user.USER != null)
                 {
-                if (depth[x] < maxDepth / 4)
+                if (depth[userindex] < maxDepth / 4)
                     ChangeTextureColor(texture, "Yellow");
-                else if (depth[x] < maxDepth / 2)
+                else if (depth[userindex] < maxDepth / 2)
                     ChangeTextureColor(texture,"Green");
-                else if (depth[x] < maxDepth)
+                else if (depth[userindex] < maxDepth)
                     ChangeTextureColor(texture, "Blue");
-                else if (depth[x] > maxDepth)
+                else if (depth[userindex] > maxDepth)
                     ChangeTextureColor(texture, "Red");
                 }
             else ChangeTextureColor(texture, "Green");
@@ -173,7 +173,6 @@ namespace Mechanect.Screens
                 UpdateUser(i);
                 UpdateAvatar(avatar[i], users[i]);
             }
-            base.Update(gameTime, covered);
         }
 
         /// <summary>
@@ -187,11 +186,13 @@ namespace Mechanect.Screens
         {          
                 graphics.Clear(Color.Transparent);
                 spriteBatch.Begin();
-            for(int i=0; i<avatar.Length; i++)
-                spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0, new Vector2(avatar[i].Width / 4, avatar[i].Height / 4), 1f, SpriteEffects.None, 0);
+                 for(int i=0; i<avatar.Length; i++)
+                spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0, 
+                    new Vector2(avatar[i].Width / 4, avatar[i].Height / 4), 1f, SpriteEffects.None, 0);
                 for (int i = 0; i < users.Length; i++)
                 {
-                    ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i], new Vector2(100, 320 + 100 * i), Color.OrangeRed);
+                    ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i],
+                        new Vector2(100, 320 + 100 * i), Color.OrangeRed);
                 }
                 spriteBatch.End();
         }
