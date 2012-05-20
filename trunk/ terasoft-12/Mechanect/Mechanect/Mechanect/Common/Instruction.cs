@@ -193,8 +193,8 @@ namespace Mechanect
         {
            // device.Clear(Color.YellowGreen);
             string output = WrapText(this.instructions);
-            button.Draw(spriteBatch);
             spriteBatch.Begin();
+            button.Draw(spriteBatch);
             spriteBatch.DrawString(spriteFont, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
