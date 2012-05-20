@@ -11,9 +11,9 @@ namespace UI.Animation
     /// </remarks>
     public class AnimationFrame
     {
-        public Vector3 Position;
-        public Vector3 Rotation;
-        public TimeSpan Time;
+        public Vector3 Position { get; private set; }
+        public Vector3 Rotation { get; private set; }
+        public TimeSpan Time { get; private set; }
 
         /// <summary>
         /// constructs an AnimationFrame instance

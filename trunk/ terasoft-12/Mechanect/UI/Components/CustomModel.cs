@@ -70,7 +70,10 @@ namespace UI.Components
         /// <param name="camera">a camera instance</param>
         public void Draw(Camera camera)
         {
-            Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
+            Matrix world = Matrix.CreateScale(Scale) 
+                * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) 
+                * Matrix.CreateTranslation(Position);
+
             foreach (ModelMesh mesh in Model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index] * world;
