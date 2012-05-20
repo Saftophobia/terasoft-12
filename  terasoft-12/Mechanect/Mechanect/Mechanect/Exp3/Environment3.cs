@@ -258,11 +258,13 @@ namespace Mechanect.Exp3
         public void LoadContent()
         {
             //loads the height data from the height map
-            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplarge");
+            Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
+            //InitializeHole(10);
+            hole = new Hole(Content, device, terrainWidth, terrainHeight, 10, user.ShootingPosition);
+            CreateHole();
             SetUpVertices();
             LoadEnvironmentContent();
-            InitializeHole(4);
 
 
             //ball.LoadContent();
@@ -579,7 +581,6 @@ namespace Mechanect.Exp3
                 }
                 mesh.Draw();
             }
-            DrawHole(c);
 
             dss = new DepthStencilState();
             dss.DepthBufferEnable = true;
@@ -720,27 +721,34 @@ namespace Mechanect.Exp3
         protected void DrawHole(Camera cam)
         {
             hole.Draw(cam);
+        }
+
+        protected void CreateHole()
+        {
+
             int radius = hole.Radius;
             int xPos = (int)hole.Position.X;
             int yPos = (int)hole.Position.Y;
+            System.Diagnostics.Debug.WriteLine("The hole model's passed position is " + hole.Position.ToString());
+            System.Diagnostics.Debug.WriteLine("The hole's radius is  " + hole.Radius);
+
             // double angleStep = 1f / radius;
             //    for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
             //    {
             //        int a = (int)Math.Round(radius + radius * Math.Cos(angle));
             //        int b = (int)Math.Round(radius + radius * Math.Sin(angle));
             //    }
-            for (float x = hole.Position.X-radius; x <= hole.Position.X+radius; x++)
+            for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
             {
-                for (float y = hole.Position.Z-radius; y <= hole.Position.Z+radius; y++)
+                for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
                 {
-                    vertices[(int)x + (terrainHeight/2) * (int)y + terrainWidth/2].Position = new Vector3(x, heightData[(int)x+terrainWidth/2,(int) y+terrainHeight/2] - 20, -y);
-                    //vertices[(x + (terrainHeight / 2) * (y + (terrainWidth / 2)))].Position = new Vector3(x, heightData[x, y] - 20, -y);
+                    heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] - 20;
+              //      vertices[(int)(x + (terrainHeight / 2) * (y + (terrainWidth / 2)))].Position = new Vector3(x, heightData[(int)x, (int)y] - 20, -y);
                     //vertices[x + y * terrainWidth].Color = Color.Transparent;
                 }
             }
+            
         }
-
-
         #endregion
 
         #region Ball Control Methods
@@ -790,7 +798,7 @@ namespace Mechanect.Exp3
             try
             {
                 int xComponent = (int)Position.X;
-                int zComponent = (int)Position.Z;
+                int zComponent = -(int)Position.Z;
                 return heightData[xComponent + terrainWidth / 2, zComponent + terrainHeight / 2] + ball.Radius;
             }
             catch (Exception e)
