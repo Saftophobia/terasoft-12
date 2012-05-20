@@ -30,6 +30,8 @@ namespace Mechanect.Exp3
         public const int solvableExperiment = 0;
         public const float normalLegMass = 0.01f;
         public const float legMovementTolerance = 0.15f; //meters
+        public const float minimumShootingDistance = 0.25f;//meters
+        public const float movingForwardTolerance = 0.09f;
 
 
         public const int minShootingX = -10;
