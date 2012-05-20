@@ -14,7 +14,7 @@ namespace UI.Animation
     /// </remarks>
     public abstract class Animation
     {
-        protected TimeSpan elapsedTime;
+        public TimeSpan ElapsedTime { get; protected set; }
         protected CustomModel model;
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace UI.Animation
         protected Animation(CustomModel model)
         {
             this.model = model;
-            elapsedTime = TimeSpan.FromSeconds(0);
+            ElapsedTime = TimeSpan.FromSeconds(0);
         }
 
         /// <summary>

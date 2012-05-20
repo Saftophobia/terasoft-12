@@ -32,19 +32,19 @@ namespace UI.Animation
         /// <param name="elapsed">time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
-            this.elapsedTime += elapsed;
+            this.ElapsedTime += elapsed;
             if (Finished())
             {
                 return;
             }
 
             int i = 0;
-            while (frames[i + 1].Time < elapsedTime)
+            while (frames[i + 1].Time < ElapsedTime)
             {
                 i++;
             }
 
-            TimeSpan frameElapsedTime = elapsedTime - frames[i].Time;
+            TimeSpan frameElapsedTime = ElapsedTime - frames[i].Time;
             float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
 
             model.Position = Vector3.CatmullRom(
@@ -97,7 +97,7 @@ namespace UI.Animation
             }
             else
             {
-                return elapsedTime > frames[frames.Count - 1].Time;
+                return ElapsedTime > frames[frames.Count - 1].Time;
             }
         }
     }
