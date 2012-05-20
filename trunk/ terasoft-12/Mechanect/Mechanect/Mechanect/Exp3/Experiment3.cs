@@ -53,7 +53,7 @@ namespace Mechanect.Exp3
 
             environment = new Environment3(intialPosition, intialVelocity,
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
-            bar = new Bar(new Vector2(500,200), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(shootPosition.X, shootPosition.Z), ScreenManager.Game.Content);
+            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.95f, ScreenManager.GraphicsDevice.Viewport.Width * 0.35f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(shootPosition.X, shootPosition.Z), ScreenManager.Game.Content);
             environment.arriveVelocity = arriveVelocity;
             
             //environment.LoadContent();
