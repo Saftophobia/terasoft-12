@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Timers;
+﻿using System.Timers;
 using Microsoft.Xna.Framework;
 
 namespace ButtonsAndSliders
