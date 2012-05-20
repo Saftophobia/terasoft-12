@@ -30,7 +30,7 @@ namespace Mechanect.Common
 
         #endregion
 
-        #region update
+        #region Update
 
         /// <summary>
         /// Updating the movement
@@ -41,6 +41,7 @@ namespace Mechanect.Common
         public void Update()
         {
             MoveRightLeg();
+            MoveLeftLeg();
         }
 
         #endregion
@@ -85,9 +86,9 @@ namespace Mechanect.Common
                 Joint hip = skeleton.Joints[JointType.HipLeft];
                 float value = (hip.Position.Z - foot.Position.Z) * 3;
                 if (value < 0)
-                    model.MoveBone("L_Knee", -2, new Vector3(0, 0, value));
+                    model.MoveBone("L_Knee2", -2, new Vector3(0, 0, value));
                 else
-                    model.MoveBone("L_Thigh", -2, new Vector3(0, 0, value));
+                    model.MoveBone("L_Thigh1", -2, new Vector3(0, 0, value));
 
             }
         }
