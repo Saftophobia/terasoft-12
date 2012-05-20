@@ -118,7 +118,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ButtonsAndSliders\AngleBar.cs" />
     <Compile Include="ButtonsAndSliders\Button.cs" />
+    <Compile Include="ButtonsAndSliders\DepthBar.cs" />
     <Compile Include="ButtonsAndSliders\Slider.cs" />
     <Compile Include="ButtonsAndSliders\Timer1.cs" />
     <Compile Include="Common\Game1.cs" />
@@ -163,7 +165,6 @@
     <Compile Include="Exp3\Simulation.cs" />
     <Compile Include="Exp3\Tools3.cs" />
     <Compile Include="Exp3\User3.cs" />
-    <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
     <Compile Include="Screens\ITWorxScreen.cs" />
