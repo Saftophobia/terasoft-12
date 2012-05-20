@@ -238,7 +238,7 @@ namespace Mechanect.Exp2
         ///<param name="rectangle">A rectangle that represents the size of the window that will contain the basic experiment elements</param>
         private void DrawObjects(MySpriteBatch mySpriteBatch)
         {
-            mySpriteBatch.DrawTexture(xyAxisTexture, new Vector2(windowWidth / 2, windowHeight / 2), 0, 1);
+            mySpriteBatch.DrawTexture(xyAxisTexture, windowStartPosition + new Vector2(windowWidth / 2, windowHeight / 2), 0, 1);
             Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
             Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
             Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
