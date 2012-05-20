@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mechanect.Common;
+﻿using Mechanect.Common;
 using Microsoft.Xna.Framework;
-
+using Microsoft.Xna.Framework.Content;
 using ButtonsAndSliders;
 using Mechanect.Exp3;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace Mechanect.Screens
@@ -16,7 +13,7 @@ namespace Mechanect.Screens
         private Button OKbutton;
         private Slider velocity;
         private Slider angle;
-        User user;
+        private User user;
         private levelSelect level;
 
         public Settings3(User user)
@@ -34,25 +31,25 @@ namespace Mechanect.Screens
         /// </summary>
         public override void LoadContent()
         {
-          OKbutton =  Tools3.OKButton(this.ScreenManager.Game.Content,
-            new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width-200 , this.ScreenManager.GraphicsDevice.Viewport.Height-250),
-            this.ScreenManager.GraphicsDevice.Viewport.Width,
-            this.ScreenManager.GraphicsDevice.Viewport.Height,user);
+            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
+            ContentManager contentManager = this.ScreenManager.Game.Content;
 
-          velocity = new Slider(new Vector2(20, 300),
-            this.ScreenManager.GraphicsDevice.Viewport.Width,
-            this.ScreenManager.GraphicsDevice.Viewport.Height,
-            this.ScreenManager.Game.Content,user);
+            OKbutton = Tools3.OKButton(contentManager,
+            new Vector2(screenWidth - 200, screenHeight - 250), screenWidth,
+            screenHeight, user);
 
-          angle = new Slider(new Vector2(20, 400),
-            this.ScreenManager.GraphicsDevice.Viewport.Width,
-            this.ScreenManager.GraphicsDevice.Viewport.Height,
-            this.ScreenManager.Game.Content,user);
+          velocity = new Slider(new Vector2(20, 300), screenWidth, screenHeight,
+            contentManager, user);
+
+          angle = new Slider(new Vector2(20, 400), screenWidth, screenHeight,
+            contentManager, user);
 
 
-          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), this.ScreenManager.SpriteBatch, user);
+          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), 
+              this.ScreenManager.SpriteBatch, user);
 
-          level.Initialize(this.ScreenManager.GraphicsDevice.Viewport.Width, this.ScreenManager.GraphicsDevice.Viewport.Height);
+          level.Initialize(screenWidth, screenHeight);
 
         }
 
@@ -67,22 +64,20 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="covered"></param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (OKbutton.IsClicked())
             {
-
-                ExitScreen();
                 ScreenManager.AddScreen(new Experiment3((User3)user));
-                Environment3.angleTolerance = angle.GetValue();
-                Environment3.velocityTolerance = velocity.GetValue();
-                this.Remove();
+                Environment3.angleTolerance = angle.Value;
+                Environment3.velocityTolerance = velocity.Value;
+                Remove();
             }
             OKbutton.Update(gameTime);
             velocity.Update(gameTime);
             angle.Update(gameTime);
             level.Update(gameTime);
-            base.Update(gameTime, covered);
+            base.Update(gameTime);
         }
 
 
@@ -95,12 +90,16 @@ namespace Mechanect.Screens
         /// drwing the OK button, the two slider on the screen and the levels slider
         /// </summary>
         /// <param name="gameTime"></param>
-        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
-            level.Draw(gameTime);
-            velocity.Draw(this.ScreenManager.SpriteBatch);
-            angle.Draw(this.ScreenManager.SpriteBatch);
-            OKbutton.Draw(this.ScreenManager.SpriteBatch);
+            SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
+            //level.Draw(gameTime);
+
+            spriteBatch.Begin();
+            OKbutton.Draw(spriteBatch);
+            velocity.Draw(spriteBatch);
+            angle.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
     }
