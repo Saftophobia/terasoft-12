@@ -43,17 +43,18 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Used to get the customized button with OKButton
         /// </summary>
-        /// <param name="c">content managaer to load pictures</param>
-        /// <param name="p">position of the button</param>
-        /// <param name="sw">screen width</param>
-        /// <param name="sh">screen height</param>
-        /// <param name="u">instance of user<param>
-        /// <returns>returns OK button</returns>
-        public static Button OKButton(ContentManager c, Vector2 p, int sw, int sh, User u)
+        /// <param name="contentManager">content managaer to load pictures</param>
+        /// <param name="position">position of the button</param>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
+        /// <param name="user">instance of user<param>
+        /// <returns>returns NewGame button</returns>
+        public static Button OKButton(ContentManager contentManager, Vector2 position,
+            int screenWidth, int screenHeight, User user)
         {
-            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-s"),
-           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-m"), p, sw, sh,
-           c.Load<Texture2D>("Textures/Buttons/hand"), u);
+            return new Button(contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-s"),
+                contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/ok-m"), position, 
+                screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
         }
 
 
@@ -65,17 +66,18 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Used to get the customized button with MainMenu
         /// </summary>
-        /// <param name="c">content managaer to load pictures</param>
-        /// <param name="p">position of the button</param>
-        /// <param name="sw">screen width</param>
-        /// <param name="sh">screen height</param>
-        /// <param name="u">instance of user<param>
-        /// <returns>returns MainMenu button</returns>
-        public static Button MainMenuButton(ContentManager c, Vector2 p, int sw, int sh, User u)
+        /// <param name="contentManager">content managaer to load pictures</param>
+        /// <param name="position">position of the button</param>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
+        /// <param name="user">instance of user<param>
+        /// <returns>returns NewGame button</returns>
+        public static Button MainMenuButton(ContentManager contentManager, Vector2 position,
+            int screenWidth, int screenHeight, User user)
         {
-            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-s"),
-           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-m"), p, sw, sh,
-           c.Load<Texture2D>("Textures/Buttons/hand"), u);
+            return new Button(contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-s"),
+                contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/menu-m"), position, 
+                screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
         }
 
 
@@ -87,17 +89,18 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Used to get the customized button with NewGame
         /// </summary>
-        /// <param name="c">content managaer to load pictures</param>
-        /// <param name="p">position of the button</param>
-        /// <param name="sw">screen width</param>
-        /// <param name="sh">screen height</param>
-        /// <param name="u">instance of user<param>
+        /// <param name="contentManager">content managaer to load pictures</param>
+        /// <param name="position">position of the button</param>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
+        /// <param name="user">instance of user<param>
         /// <returns>returns NewGame button</returns>
-        public static Button NewGameButton(ContentManager c, Vector2 p, int sw, int sh, User u)
+        public static Button NewGameButton(ContentManager contentManager, Vector2 position, 
+            int screenWidth, int screenHeight, User user)
         {
-            return new Button(c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-s"),
-           c.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), p, sw, sh,
-           c.Load<Texture2D>("Textures/Buttons/hand"), u);
+            return new Button(contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-s"),
+                contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/newgame-m"), position, 
+                screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
         }
 
 
