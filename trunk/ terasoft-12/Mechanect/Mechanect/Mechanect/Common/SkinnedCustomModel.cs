@@ -125,7 +125,8 @@ namespace Mechanect.Common
             // Render the skinned mesh.
             foreach (ModelMesh mesh in model.Meshes)
             {
-                Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
+                Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, 
+                    Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
                 foreach (SkinnedEffect effect in mesh.Effects)
                 {
                     effect.SetBoneTransforms(bones);
