@@ -24,7 +24,7 @@ namespace Mechanect.Exp2
         List<Button> _buttons;
         Button _rightArrow2, _leftArrow2;
         private readonly Vector2 position2;
-        public ThemeAndLevel(Microsoft.Xna.Framework.Game game, Vector2 position, SpriteBatch spriteBatch, User u)
+        public ThemeAndLevel(Game game, Vector2 position, SpriteBatch spriteBatch, User u)
         {
             _user = u;
             _spriteBatch = spriteBatch;
@@ -175,7 +175,12 @@ namespace Mechanect.Exp2
 
             //Draw each Button in the list
             foreach (var b in _buttons)
+            {
+                _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
                 b.Draw(_spriteBatch);
+                _spriteBatch.End();
+
+            }
 
         }
     }
