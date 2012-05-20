@@ -14,7 +14,7 @@ namespace ButtonsAndSliders
         private Vector2 positionPointer;
         private Texture2D texture, onPic, offPic, barPic;
         private int screenW, ScreenH;
-        private int value;
+        public int Value { get; private set;}
 
         private User user;
         private Timer1 timer;
@@ -37,7 +37,7 @@ namespace ButtonsAndSliders
         {
             screenW = sw;
             ScreenH = sh;
-            value = 1;
+            Value = 1;
 
             user = u;
             Content = c;
@@ -62,12 +62,11 @@ namespace ButtonsAndSliders
         /// drawing the bar and the pointer
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
+        [System.Obsolete("call this method after begining a SpriteBatch", false)]
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(barPic, positionBar, Color.White);
             spriteBatch.Draw(texture, positionPointer, Color.White);
-            spriteBatch.End();
         }
 
         ///<remarks>
@@ -118,16 +117,16 @@ namespace ButtonsAndSliders
             if (skeleton != null)
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
-                
-                if ((hand.X - positionPointer.X) >= 30 && !(value == 5))
+
+                if ((hand.X - positionPointer.X) >= 30 && !(Value == 5))
                 {
                     positionPointer.X += (barPic.Width / 5);
-                    value++;
+                    Value++;
                 }
-                if ((hand.X - positionPointer.X) <= -30 && !(value == 1))
+                if ((hand.X - positionPointer.X) <= -30 && !(Value == 1))
                 {
                     positionPointer.X -= (barPic.Width / 5);
-                    value--;
+                    Value--;
                 }
             }
         }
@@ -166,7 +165,7 @@ namespace ButtonsAndSliders
         /// <summary>
         /// checks if the hand of the user is over the pointer or not
         /// </summary>
-        /// <returns>returns true if the user is hovering the button</returns>
+        /// <returns>returns true if the user is hovering the pointer</returns>
         private bool CheckCollision()
         {
 
@@ -175,7 +174,8 @@ namespace ButtonsAndSliders
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 50, 50);
-                Rectangle r2 = new Rectangle((int)positionPointer.X, (int)positionPointer.Y, offPic.Width, offPic.Height);
+                Rectangle r2 = new Rectangle((int)positionPointer.X, (int)positionPointer.Y, 
+                    offPic.Width, offPic.Height);
 
                 return r1.Intersects(r2);
             }
@@ -192,9 +192,10 @@ namespace ButtonsAndSliders
         /// used to get the value that the user selected
         /// </summary>
         /// <returns>the value that the user selected</returns>
+        [System.Obsolete("this method will be deleted, use button.value", false)]
         public int GetValue()
         {
-            return value;
+            return Value;
         }
 
     }
