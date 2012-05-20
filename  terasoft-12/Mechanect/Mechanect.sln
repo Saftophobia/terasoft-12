@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mechanect", "Mechanect\Mechanect\Mechanect.csproj", "{381BBF5A-322A-434A-9867-2DEBCA749103}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechanectContent", "Mechanect\MechanectContent\MechanectContent.contentproj", "{86D5B048-45DE-4E57-A784-B816A9166EE4}"
@@ -13,17 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Physics", "Physics\Physics.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{E291E85F-5616-453D-803E-07C0BC64B9B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsLib", "TestsLib\TestsLib.csproj", "{7E875664-5067-4C99-9287-D134B54FA643}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelWindows", "SkinnedModel\SkinnedModelWindows.csproj", "{0D41E29B-829F-4255-BCA5-64DC2677DA6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinnedModelPipeline", "SkinnedModelPipeline\SkinnedModelPipeline.csproj", "{4636C7E1-B845-4B83-B96D-64A11B8A4515}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -103,18 +97,6 @@ Global
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|x86.ActiveCfg = Release|Any CPU
 		{E291E85F-5616-453D-803E-07C0BC64B9B1}.Release|Xbox 360.ActiveCfg = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Debug|Xbox 360.ActiveCfg = Debug|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|x86.ActiveCfg = Release|Any CPU
-		{7E875664-5067-4C99-9287-D134B54FA643}.Release|Xbox 360.ActiveCfg = Release|Any CPU
 		{0D41E29B-829F-4255-BCA5-64DC2677DA6D}.Debug|Any CPU.ActiveCfg = Debug|Xbox 360
 		{0D41E29B-829F-4255-BCA5-64DC2677DA6D}.Debug|Mixed Platforms.ActiveCfg = Debug|Xbox 360
 		{0D41E29B-829F-4255-BCA5-64DC2677DA6D}.Debug|Mixed Platforms.Build.0 = Debug|Xbox 360
@@ -148,5 +130,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
