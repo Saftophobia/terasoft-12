@@ -6,12 +6,18 @@ using Mechanect.Exp1;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Mechanect.Screens.Exp1Screens
 {
     class Winnerscreen:Mechanect.Common.GameScreen
     {
         float timer;
+        bool t;
+        SoundEffectInstance CheersInstance;
+        SoundEffect Cheers;
+        CountDown view;
+
         User1 user1, user2;
         Viewport ViewPort
         {
@@ -52,9 +58,17 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void LoadContent()
         {
+            view = new CountDown(Content.Load<Texture2D>("track"), 0, 0, ViewPort.Width, ViewPort.Height);
+            Cheers = Content.Load<SoundEffect>("Crowd2");
+            CheersInstance = Cheers.CreateInstance();  
             //load the background
             //load the soundeffect
-
+            if (!t)//Condition to prevent replaying of the soundtrack
+            {
+                CheersInstance.IsLooped = true;
+                CheersInstance.Play();
+                t = true;
+            }
             base.LoadContent();
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -88,6 +102,7 @@ namespace Mechanect.Screens.Exp1Screens
             //draw the Font
             SpriteBatch.Begin();
             SpriteBatch.DrawString(spritefont1, winningstring, new Vector2(500, 500), Microsoft.Xna.Framework.Color.Black);
+            view.Draw(SpriteBatch);
             SpriteBatch.End();
         }
     }
