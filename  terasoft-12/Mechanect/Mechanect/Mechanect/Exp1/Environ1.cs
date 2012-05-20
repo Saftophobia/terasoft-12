@@ -43,12 +43,12 @@ namespace Mechanect.Exp1
             view = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/track"), 0, 0, device.DisplayMode.Width, device.DisplayMode.Height);
             finish = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/finish"), (device.DisplayMode.Width / 2) - 70, 0, 150, 40);
             one = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/2"), (device.DisplayMode.Width / 2) + 30, device.DisplayMode.Height - 35, 28, 30);
-            two = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/1"), (device.DisplayMode.Width / 2) - 45, device.DisplayMode.Height - 33, 20, 28);
+            two = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/1"), (device.DisplayMode.Width / 2) - 45, device.DisplayMode.Height - 35, 20, 28);
             start = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/start"), (device.DisplayMode.Width / 2) - 82, device.DisplayMode.Height - 65, 185, 50);
             flag1 = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/flag1"), (device.DisplayMode.Width / 2) + 61, 0, 50, 50);
             flag2 = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/flag2"), (device.DisplayMode.Width / 2) - 100, 0, 50, 50);
-            bike1 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) - 45, device.DisplayMode.Height-60));
-            bike2 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) + 30, device.DisplayMode.Height-60));
+            bike1 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) - 45, (int)(device.DisplayMode.Height  * 0.92)));
+            bike2 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) + 30, (int)(device.DisplayMode.Height * 0.92)));
             Chants = Content.Load<SoundEffect>("Exp1/2Dcontent/Crowd1");
             
             ChantsInstance = Chants.CreateInstance();

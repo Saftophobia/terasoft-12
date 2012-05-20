@@ -13,7 +13,7 @@ namespace Mechanect.Screens.Exp1Screens
 {
     class Exp1 : Mechanect.Common.GameScreen
     {
-        int avatarconst = 15;
+        int avatarconst;
         #region KeeVariables
         float firstframe = 5000;
         float speed = 5000;
@@ -68,7 +68,7 @@ namespace Mechanect.Screens.Exp1Screens
         Environ1 environ1;
         GraphicsDevice graphics;
         User1 user1, user2;
-        float timer = 0;
+        float timer = -4;
         CountDown countdown;
         public Exp1(User1 user1, User1 user2)
         {
@@ -88,6 +88,7 @@ namespace Mechanect.Screens.Exp1Screens
             environ1 = new Environ1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice,this.SpriteBatch);
             environ1.LoadContent();
             loadcountdown();
+            avatarconst = (int)(graphics.DisplayMode.Height * 0.1);
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
@@ -125,12 +126,7 @@ namespace Mechanect.Screens.Exp1Screens
                 if (timer > 0)
                 {
                     
-                    //I commented these to have a compilation-error free repo
-                    //Tools1.getspeedl(user1, speed, speedlist, calculatespeedbool, max, min, timer,this.Environment1);
-                    //Tools1.getspeedr(user1, speedr, speedlistr, calculatespeedboolr, maxr, minr, timer, this.Environment1);
-                    //Tools1.getspeedl(user2, speed2, speedlist2, calculatespeedbool2, max2, min2, timer, this.Environment1);
-                    //Tools1.getspeedr(user2, speedr2, speedlistr2, calculatespeedboolr2, maxr2, minr2, timer, this.Environment1);
-                    if (firstframe != (user1.skeleton.Joints[JointType.KneeLeft].Position.Y))
+                   if (firstframe != (user1.skeleton.Joints[JointType.KneeLeft].Position.Y))
                     {
                         fill_Knee_pos();
                         getspeedleft();
@@ -139,21 +135,24 @@ namespace Mechanect.Screens.Exp1Screens
                         //  getspeedright2();
                         firstframe = (user1.skeleton.Joints[JointType.KneeLeft].Position.Y);
                     }
-                    if (timer > 10)
-                    {
-                        int b = 0;
-                    }
 
+                   //Tools1.CheckTheCommand(timer, user1, user2);
+                   Tools1.GetWinner(user1,user2, (float)(graphics.DisplayMode.Height * 0.91)); // with respect to the track
+
+                    
                     //display commands on screen
-                    //check micho's method
-                    //check micho's winning method
+                   if (timer > 10)
+                   {
+                       int b = 0;
+                   }
+
                 }
 
             }
 
             if (user1.Winner || user2.Winner || (user1.Disqualified && user2.Disqualified))
             {
-                ScreenManager.AddScreen(new Winnerscreen(user1,user2));
+                ScreenManager.AddScreen(new Winnerscreen(user1,user2,graphics));
                 Remove();
             }
             base.Update(gameTime);
@@ -168,7 +167,7 @@ namespace Mechanect.Screens.Exp1Screens
             else
             {
                 SpriteBatch.Begin();
-                countdown.DrawCountdown(SpriteBatch,(int)(graphics.Viewport.Width*0.44) ,(int)(graphics.Viewport.Height*0.44 ));
+                countdown.DrawCountdown(SpriteBatch,(int)(graphics.DisplayMode.Width*0.44) ,(int)(graphics.DisplayMode.Height*0.44 ));
                 SpriteBatch.End();
                 countdown.PlaySoundEffects();
                 if (timer > 4)
@@ -267,6 +266,7 @@ namespace Mechanect.Screens.Exp1Screens
                                     speedlist2[0] = speed2;
                                     speedlist2[1] = timer;//calculate the speed of the oscillation from min to max
                                     user2.Velocitylist.Add(speedlist2);
+                                    user2.Positions.Add(speed2);
 
 
                                    // this.Environment1.MoveAvatar(2, (int)speed2 * 15);
@@ -345,7 +345,7 @@ namespace Mechanect.Screens.Exp1Screens
                                     speedlistr2[0] = speedr2;
                                     speedlistr2[1] = timer;//calculate the speed of the oscillation from min to max
                                     user2.Velocitylist.Add(speedlistr2);
-
+                                    user2.Positions.Add(speedr2);
 
                                  //   this.Environment1.MoveAvatar(2, (int)speedr2 * 15);
                                     this.environ1.bike2.Move((int)speedr2 * avatarconst);
@@ -425,7 +425,7 @@ namespace Mechanect.Screens.Exp1Screens
                                     speedlist[0] = speed;
                                     speedlist[1] = timer;//calculate the speed of the oscillation from min to max
                                     user1.Velocitylist.Add(speedlist);
-
+                                    user1.Positions.Add(speed);
 
 
                                    // this.Environment1.MoveAvatar(1, (int)speed * 15);
@@ -505,11 +505,8 @@ namespace Mechanect.Screens.Exp1Screens
                                     speedlistr[0] = speedr;
                                     speedlistr[1] = timer;//calculate the speed of the oscillation from min to max
                                     user1.Velocitylist.Add(speedlistr);
-
-                                    if (timer > 20)
-                                    {
-                                        string x = "";
-                                    }
+                                    user1.Positions.Add(speedr);
+                                 
                                    // this.Environment1.MoveAvatar(1, (int)speedr * 15);
                                     this.environ1.bike1.Move((int)speedr * avatarconst);
 

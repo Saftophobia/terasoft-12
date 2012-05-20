@@ -13,11 +13,10 @@ namespace Mechanect.Screens.Exp1Screens
     class Winnerscreen:Mechanect.Common.GameScreen
     {
         float timer;
-        bool t;
         SoundEffectInstance CheersInstance;
         SoundEffect Cheers;
         CountDown view;
-
+        GraphicsDevice device;
         User1 user1, user2;
         Viewport ViewPort
         {
@@ -44,11 +43,11 @@ namespace Mechanect.Screens.Exp1Screens
         string winningstring;
 
 
-        public Winnerscreen(User1 user1,User1 user2)
+        public Winnerscreen(User1 user1,User1 user2,GraphicsDevice device)
         {
             this.user1 = user1;
             this.user2 = user2;
-
+            this.device = device;
         }
 
         public override void Initialize()
@@ -58,41 +57,40 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void LoadContent()
         {
-            view = new CountDown(Content.Load<Texture2D>("track"), 0, 0, ViewPort.Width, ViewPort.Height);
-            Cheers = Content.Load<SoundEffect>("Crowd2");
-            CheersInstance = Cheers.CreateInstance();  
+            winningstring = "";
+            view = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/chearingbackground"), 0, 0, device.DisplayMode.Width, device.DisplayMode.Height);
+            Cheers = Content.Load<SoundEffect>("Exp1/2Dcontent/Crowd2");
+            CheersInstance = Cheers.CreateInstance();
+            CheersInstance.Play();
             //load the background
             //load the soundeffect
-            if (!t)//Condition to prevent replaying of the soundtrack
-            {
-                CheersInstance.IsLooped = true;
-                CheersInstance.Play();
-                t = true;
-            }
+           
             base.LoadContent();
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds - 4;
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             //who is winner and who is disqualified
-
+            
+            
+              
             if (user1.Winner)
             {
-                winningstring = " Winner1 is the winner!";
+                winningstring = " Player 1 is the winner!";
             }
             if (user2.Winner)
             {
-                winningstring = "Winner2 is the winner!";
+                winningstring = "Player 2 is the winner!";
             }
             if(user1.Disqualified && user1.Disqualified)
             {
-                winningstring = " No one made it to the finish line :-/ ";
+                winningstring = " Damn, you guys sucks!!";
             }
 
-            if (timer > 5)
+            if (timer > 6)
             {
-                ScreenManager.AddScreen(new GraphScreen(user1,user2));
-                Remove();
+                
+                
             }
             base.Update(gameTime);
         }
@@ -100,10 +98,17 @@ namespace Mechanect.Screens.Exp1Screens
         {
            //Draw the Background
             //draw the Font
-            SpriteBatch.Begin();
-            SpriteBatch.DrawString(spritefont1, winningstring, new Vector2(500, 500), Microsoft.Xna.Framework.Color.Black);
             view.Draw(SpriteBatch);
-            SpriteBatch.End();
+            if (timer < 6)
+            {
+                SpriteBatch.Begin();
+                SpriteBatch.DrawString(spritefont1, winningstring, new Vector2((int)(device.DisplayMode.Width * 0.35), (int)(device.DisplayMode.Height * 0.3)), Microsoft.Xna.Framework.Color.Black);
+                SpriteBatch.End();
+            }
+            else
+            {
+
+            }
         }
     }
 
