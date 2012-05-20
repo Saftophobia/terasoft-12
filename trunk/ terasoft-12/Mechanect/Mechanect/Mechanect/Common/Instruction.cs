@@ -146,7 +146,7 @@ namespace Mechanect
         /// <summary>
         /// Constructor of the class Instruction, Sets 
         /// <remarks>
-        /// <para>Author: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat & Khaled Salah</para>
         /// </remarks>
         /// </summary>
         public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
@@ -172,13 +172,10 @@ namespace Mechanect
         
         public  void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             screenWidth = device.Viewport.Width;
             screenHeight = device.Viewport.Height;
             button =  Tools3.OKButton(contentManager,new Vector2(device.Viewport.Width / 2, device.Viewport.Height-400),
            screenWidth , screenHeight,user );
-           
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -237,10 +234,5 @@ namespace Mechanect
             returnString += line;
             return returnString ;
         }
-    
-        
-        
-
     }
-
 }
