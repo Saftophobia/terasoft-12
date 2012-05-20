@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -126,8 +126,9 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
         /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
+        /// <param name="location">The location of the drawing origin</param>
         /// <param name="scale"> The scaling of the texture</param>
-        void Draw(MySpriteBatch mySpriteBatch, float scale)
+        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, float scale)
         {
             mySpriteBatch.DrawTexture(preyTexture, location, angle, scale);
         }

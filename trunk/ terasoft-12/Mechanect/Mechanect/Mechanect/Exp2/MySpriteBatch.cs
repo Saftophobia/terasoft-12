@@ -11,7 +11,7 @@ namespace Mechanect.Exp2
     /// <summary>
     /// This class was created just to eliminate the duplication of the customized Draw method.
     /// </summary>
-    class MySpriteBatch 
+    public class MySpriteBatch 
     {
         SpriteBatch SpriteBatch;
         /// <summary>

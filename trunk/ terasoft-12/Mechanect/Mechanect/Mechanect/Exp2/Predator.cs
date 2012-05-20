@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Mechanect.Exp2
 {
-    public class Predator 
+    public class Predator
     {
 
         Vector2 location;
@@ -26,7 +26,7 @@ namespace Mechanect.Exp2
                 location = value;
             }
         }
-        
+
         float size;
 
         Vector2 velocity;
@@ -64,18 +64,18 @@ namespace Mechanect.Exp2
             }
         }
 
-        
+
         public double Angle
         {
             get
             {
                 if (velocity.X == 0) return 0;
-                return  Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
+                return Math.Atan(velocity.Y / velocity.X) * (180 / Math.PI);
             }
         }
 
         public Predator(Vector2 location)
-        {   
+        {
             this.location = location;
 
         }
@@ -135,8 +135,9 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
         /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
+        /// <param name="location">The location of the drawing origin</param>
         /// <param name="scale"> The scaling of the texture</param>
-        void Draw(MySpriteBatch mySpriteBatch, float scale)
+        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, float scale)
         {
             mySpriteBatch.DrawTexture(fishTexture, location, (float)Angle, scale);
         }
