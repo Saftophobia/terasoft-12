@@ -135,36 +135,36 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 17/5/12 </para>
-         /// <para>DATE MODIFIED: 17/5/12 </para>
+         /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
-         public static string GetWinner(User1 user1, User1 user2)
+         public static void GetWinner(User1 user1, User1 user2)
          {
              if ((user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
              {
                  user1.Winner = true;
-                 return "Player 1 won the race";
+                 return;
              }
              else
              {
                  if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified))
                  {
                      user2.Winner = true;
-                     return "Player 1 won the race";
+                     return;
                  }
                  else
                      if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && (user2.Disqualified)
                          && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && (user1.Disqualified))
-                         return "No one won this race because you both got disqualified";
+                         return;
                      else
                          if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified)
                             && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
                          {
                              user1.Winner = true;
                              user2.Winner = true;
-                             return "It's a tie!!!";
+                             return;
                          }
                          else
-                             return "";
+                             return;
              }
          }
 
@@ -243,86 +243,6 @@ namespace Mechanect.Exp1
                  user2.Disqualified = true;
                  user2.DisqualificationTime = timeInSeconds;
                  s += "User 2 got Disqualified";
-                 Console.Write("User 2 got Disqualified");
-             }
-         }
-
-        [Obsolete("CheckEachSecond is deprecated, please use CheckTheCommand instead.", true)]
-         /// <summary>
-         /// This method should be called on each second, and it will do the check on both players to see if they followed the commands.
-         /// </summary>
-         /// <param name="timeInSeconds">The second the game is in.</param>
-         /// <param name="user11">The first user.</param>
-         /// <param name="user12">The second user.</param>
-         /// <param name="timeOfCommands">The time of each command throughout the whole race.</param>
-         /// <param name="CurrentCommands">The list of commands that should be satisfied for the whole race.</param>
-         /// <param name="tolerance">The tolerance level.</param>
-         /// <param name="spriteBatch">The sprite batch to draw the string of state in.</param>
-         /// <param name="spFont">The font to draw the string of state with.</param>
-         /// <returns>void: within the method itself it updates the value of the variable isDisqualified of the two users</returns>
-         /// <remarks>
-         /// <para>AUTHOR: Michel Nader </para>
-         /// <para>DATE WRITTEN: 19/4/12 </para>
-         /// <para>DATE MODIFIED: 14/5/12 </para>
-         /// </remarks>
-         public static void CheckEachSecond(int timeInSeconds, User1 user11, User1 user12, List<int> timeOfCommands, List<String> currentCommands, float tolerance, SpriteBatch spriteBatch, SpriteFont spFont)
-         {
-             //check if I have a very low number of frames (which doesn't allow me to check)
-             if ((user11.Positions.Count <= 3) || (user12.Positions.Count <= 3))
-                 return;
-
-             //check the frame rate that the kinect could get
-             int frameRate = user11.Positions.Count / timeInSeconds;
-
-             //this part is to check to define the start of the positions to check the command on them
-             int pastSecondsFor1 = 0;
-             for (int i = 0; i < user11.ActiveCommand; i++)
-                 pastSecondsFor1 += timeOfCommands[i];
-
-             int pastSecondsFor2 = 0;
-             for (int i = 0; i < user12.ActiveCommand; i++)
-                 pastSecondsFor2 += timeOfCommands[i];
-
-             if ((pastSecondsFor1 * frameRate) >= user11.Positions.Count)
-             {
-                 //pastSecondsFor1 = timeInSeconds * frameRate;
-                 //pastSecondsFor2 = timeInSeconds * frameRate;
-                 return;
-             }
-
-             //check to drop the first second of the command
-             if (timeInSeconds == pastSecondsFor1)
-                 return;
-
-             List<float> user11Displacement = new List<float>();
-             List<float> user12Displacement = new List<float>();
-             for (int i = (pastSecondsFor1 + 1) * frameRate; i < user11.Positions.Count; i++)
-                 user11Displacement.Add(user11.Positions[i]);
-
-             for (int i = (pastSecondsFor1 + 1) * frameRate; i < user12.Positions.Count; i++)
-                 user12Displacement.Add(user12.Positions[i]);
-
-             //a condition in order not to get an OutOfBounds if the kinect sent wrong data
-             if ((user11Displacement.Count < 2) || (user12Displacement.Count < 2))
-                 return;
-
-             //here the command is checked pver the two players to see if any of them got disqualified
-             if (!CommandSatisfied(currentCommands[user11.ActiveCommand], user11Displacement, tolerance,user11.Velocitylist))
-             {
-                 user11.Disqualified = true;
-                 user11.DisqualificationTime = timeInSeconds;
-                 spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "User 1 got Disqualified", new Vector2(50.0f, 50.0f), Color.Red);
-                 spriteBatch.End();
-                 Console.Write("User1 1 got Disqualified");
-             }
-             if (!CommandSatisfied(currentCommands[user12.ActiveCommand], user12Displacement, tolerance, user12.Velocitylist))
-             {
-                 user12.Disqualified = true;
-                 user12.DisqualificationTime = timeInSeconds;
-                 spriteBatch.Begin();
-                 spriteBatch.DrawString(spFont, "User 2 got Disqualified", new Vector2(50.0f, 50.0f), Color.Blue);
-                 spriteBatch.End();
                  Console.Write("User 2 got Disqualified");
              }
          }
@@ -478,11 +398,10 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
          public static bool ConstantVelocity(List<float> velocities, float currentTolerance)
          {
-             bool result = true;
              for (int i = 1; i < velocities.Count; i++)
              {
                  if (!((velocities[i] >= (velocities[i - 1] - currentTolerance)) &&
@@ -491,7 +410,7 @@ namespace Mechanect.Exp1
                      return false;
                  }
              }
-             return result;
+             return true;
          }
          
          /// <summary>
@@ -503,14 +422,13 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
          public static bool ConstantAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
 
              List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
-             bool result = true;
              for (int i = 1; i < accelerations.Count; i++)
              {
                  if (!((accelerations[i] >= (accelerations[i - 1] - currentTolerance)) && 
@@ -519,7 +437,7 @@ namespace Mechanect.Exp1
                      return false;
                  }
              }
-             return result;
+             return true;
          }
 
          /// <summary>
@@ -531,11 +449,11 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 18/5/12 </para>
+         /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
          public static bool ConstantDisplacement(List<float> velocities, float currentTolerance)
          {
-             return (velocities.Count == 0);
+             return (velocities.Count <= 1);
          }
 
          /// <summary>
