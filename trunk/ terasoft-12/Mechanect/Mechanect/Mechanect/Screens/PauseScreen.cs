@@ -205,10 +205,10 @@ namespace Mechanect.Screens
         {
 
 
-            button.Draw(spriteBatch);
+           
 
             spriteBatch.Begin();
-
+            button.Draw(spriteBatch);
             spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.7f, SpriteEffects.None, 0);
             spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
             for (int i = 0; i < fills.Count; i++)
