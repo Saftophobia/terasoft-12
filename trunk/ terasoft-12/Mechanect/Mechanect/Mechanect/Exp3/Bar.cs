@@ -139,7 +139,7 @@ namespace Mechanect.Exp3
 
             offset = (Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos)) > 1 ? 1 : Vector2.Distance(initialPos, currentPos) / Vector2.Distance(initialPos, shootingPos);
 
-          
+            spriteBatch.Begin();
             spriteBatch.Draw(bar,
             drawingPosition,
             null,
@@ -158,6 +158,7 @@ namespace Mechanect.Exp3
              1,
              SpriteEffects.None,
              0);
+            spriteBatch.End();
         }
 
     }

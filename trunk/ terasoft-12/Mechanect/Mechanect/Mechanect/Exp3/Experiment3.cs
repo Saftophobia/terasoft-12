@@ -15,6 +15,7 @@ namespace Mechanect.Exp3
     public class Experiment3 : Mechanect.Common.GameScreen
     {
         private Ball ball;
+        private Bar bar;
         private Vector3 intialPosition;
         private Vector3 shootPosition;
         private float arriveVelocity;
@@ -52,7 +53,7 @@ namespace Mechanect.Exp3
 
             environment = new Environment3(intialPosition, intialVelocity,
                 ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
-            
+            bar = new Bar(new Vector2(500,200), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(shootPosition.X, shootPosition.Z), ScreenManager.Game.Content);
             environment.arriveVelocity = arriveVelocity;
             
             //environment.LoadContent();
@@ -79,7 +80,7 @@ namespace Mechanect.Exp3
                     pauseScreenShowed = true;
                     //add pause screen
                 }
-                //update distance bar
+                bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
                 if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
@@ -174,7 +175,7 @@ namespace Mechanect.Exp3
             ball.Draw(camera);
             if (firstAnimation)
             {
-                //draw distance bar
+                bar.Draw();
             }
             if (simulation != null)
             {
