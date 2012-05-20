@@ -24,8 +24,7 @@ namespace Mechanect.Exp2
         private float aquariumScaling;
         private float windowWidth;
         private float windowHeight;
-        private float pixelsPerMeterX;
-        private float pixelsPerMeterY;
+        private Vector2 pixelsPerMeter;
         private Vector2 windowStartPosition;
         #endregion
         public Prey Prey { get; set; }
@@ -219,7 +218,7 @@ namespace Mechanect.Exp2
         ///<param name="mySpriteBatch">The MySpriteBatch that will be used in drawing</param>
         ///<param name="rectangle">A rectangle that represents the size of the window that will contain the basic experiment elements</param>
         /// <param name="viewPort"> A viewPort to coorectly calculate were should the objects appear</param>
-        public void Draw(Rectangle rectangle, ContentManager contentManager, MySpriteBatch mySpriteBatch,Viewport viewPort)
+        public void Draw(Rectangle rectangle, ContentManager contentManager, MySpriteBatch mySpriteBatch, Viewport viewPort)
         {
             ConfigureWindowSize(rectangle, viewPort);
             DrawObjects(mySpriteBatch);
@@ -240,9 +239,9 @@ namespace Mechanect.Exp2
         private void DrawObjects(MySpriteBatch mySpriteBatch)
         {
             mySpriteBatch.DrawTexture(xyAxisTexture, new Vector2(windowWidth / 2, windowHeight / 2), 0, 1);
-            Predator.Draw(mySpriteBatch, PositionInverter(PositionMapper(Predator.Location)), predatorScaling);
-            Prey.Draw(mySpriteBatch, PositionInverter(PositionMapper(Prey.Location)), preyScaling);
-            Aquarium.Draw(mySpriteBatch, PositionInverter(PositionMapper(Aquarium.Location)), aquariumScaling);
+            Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
+            Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
+            Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
         }
 
         /// <summary>
@@ -268,8 +267,8 @@ namespace Mechanect.Exp2
             float maxDifferenceY = Math.Max(Prey.Location.Y, Math.Max(Aquarium.Location.Y, Predator.Location.Y));
 
             // Mapping the meters to pixels to configure how will the real world be mapped to the screen
-            pixelsPerMeterY = windowHeight / maxDifferenceY;
-            pixelsPerMeterX = windowWidth / maxDifferenceX;
+            pixelsPerMeter.Y = windowHeight / maxDifferenceY;
+            pixelsPerMeter.X = windowWidth / maxDifferenceX;
 
 
         }
@@ -278,24 +277,16 @@ namespace Mechanect.Exp2
         /// Maps The position of a general real world value to be drawn inside the drawing window
         /// </summary>
         /// <param name="unMappedPosition">The real world position</param>
-        /// <returns> The mapped but non y-inversed vector</returns>
+        /// <returns> The mapped position vector</returns>
         public Vector2 PositionMapper(Vector2 unMappedPosition)
         {
-            return new Vector2(unMappedPosition.X * pixelsPerMeterX + windowStartPosition.X, unMappedPosition.Y * pixelsPerMeterY + windowStartPosition.Y);
+            Vector2 mappedPosition;
+            mappedPosition = unMappedPosition * pixelsPerMeter;
+            mappedPosition.Y = windowHeight - mappedPosition.Y;
+            mappedPosition += windowStartPosition;
+            return mappedPosition;
 
         }
-        /// <summary>
-        /// Inverts the Y coordinate to have the points mapped correctly
-        /// </summary>
-        /// <param name="unInvertedPosition">The world compaitable position</param>
-        /// <returns>The XNA compaitable position</returns>
-        public Vector2 PositionInverter(Vector2 unInvertedPosition)
-        {
-            return new Vector2(unInvertedPosition.X, windowHeight - unInvertedPosition.Y);
-        }
-
-
-       
 
 
     }
