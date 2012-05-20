@@ -183,7 +183,7 @@ namespace Mechanect.Screens
             }
             else
             {
-                countdown.DrawCountdown(SpriteBatch);
+                countdown.DrawCountdown(SpriteBatch,ViewPort.Width,ViewPort.Height);
                 countdown.PlaySoundEffects();
                 if (timer > 0)
                 {

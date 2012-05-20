@@ -111,7 +111,8 @@ namespace Mechanect.Exp1
             this.disqualified = false;
             this.positions = new List<float>();
             this.kneepos = new List<float>();
-            
+            this.kneeposr = new List<float>();
+            this.velocitylist = new List<float[]>();
             
         }
 

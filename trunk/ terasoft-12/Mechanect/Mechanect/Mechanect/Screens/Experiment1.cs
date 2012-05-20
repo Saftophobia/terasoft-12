@@ -548,7 +548,7 @@ namespace Mechanect.Screens
             {
                // SpriteBatch.Begin();
                 background1.Draw(SpriteBatch);
-                countdown.DrawCountdown(SpriteBatch);
+                countdown.DrawCountdown(SpriteBatch,ViewPort.Width,ViewPort.Height);
               //  SpriteBatch.End();
             }
 

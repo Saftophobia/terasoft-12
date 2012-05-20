@@ -138,27 +138,30 @@ namespace Mechanect.Exp1
         /// The function DrawCountdown is used to draw the numbers on the screen.
         /// </summary>  
         /// <returns>void</returns>
-        public void DrawCountdown(SpriteBatch spriteBatch)
+        public void DrawCountdown(SpriteBatch spriteBatch,int x, int y)
         {
-            spriteBatch.Begin();
-            Rectangle r = new Rectangle(450, 280, 140, 140);
-            if (counter >= 0 && counter < 50)
-            {
-                spriteBatch.Draw(three, r, Color.White);
-            }
-            if (counter >= 50 && counter < 100)
-            {
-                spriteBatch.Draw(two, r, Color.White);
-            }
-            if (counter >= 100 && counter < 150)
-            {
-                spriteBatch.Draw(one, r, Color.White);
-            }
-            if (counter >= 150)
-            {
-                spriteBatch.Draw(go, r, Color.White);
-            }
-            spriteBatch.End();
+            
+            Rectangle r = new Rectangle(x, y, 140, 140);
+           //if (counter < 170)
+            //{
+                if (counter >= 0 && counter < 50)
+                {
+                    spriteBatch.Draw(three, r, Color.White);
+                }
+                if (counter >= 50 && counter < 100)
+                {
+                    spriteBatch.Draw(two, r, Color.White);
+                }
+                if (counter >= 100 && counter < 150)
+                {
+                    spriteBatch.Draw(one, r, Color.White);
+                }
+                if (counter >= 150)
+                {
+                    spriteBatch.Draw(go, r, Color.White);
+                }
+            //}
+            
         }
     }
 }
