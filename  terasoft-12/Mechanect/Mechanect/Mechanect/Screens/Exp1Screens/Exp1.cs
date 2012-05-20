@@ -8,11 +8,16 @@ using Microsoft.Xna.Framework.Content;
 using Mechanect.Exp1;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Kinect;
+using Microsoft.Xna.Framework;
 
 namespace Mechanect.Screens.Exp1Screens
 {
     class Exp1 : Mechanect.Common.GameScreen
     {
+        List<String> gCommands = new List<string>() { "constantDisplacement", "constantAcceleration", "increasingAcceleration", "decreasingAcceleration", "constantVelocity" };
+        SpriteFont spritefont1;
+        List<string> racecommands = new List<string>();
+        List<int> timeslice = new List<int>();
         int avatarconst;
         #region KeeVariables
         float firstframe = 5000;
@@ -43,6 +48,7 @@ namespace Mechanect.Screens.Exp1Screens
         int timecounter;
         #endregion
         MKinect kinect;
+        bool talking = false;
         Viewport ViewPort
         {
             get
@@ -82,13 +88,17 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void LoadContent()
         {
+            spritefont1 = Content.Load<SpriteFont>("SpriteFont1");
             graphics = this.ScreenManager.GraphicsDevice;
-           // Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice, this.SpriteBatch);
-            //Environment1.LoadContent();
             environ1 = new Environ1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice,this.SpriteBatch);
             environ1.LoadContent();
             loadcountdown();
             avatarconst = (int)(graphics.DisplayMode.Height * 0.1);
+            this.comm_and_timeslice();
+            
+               
+
+
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
@@ -109,6 +119,9 @@ namespace Mechanect.Screens.Exp1Screens
                 user1.Velocitylist.Clear();
                 user2.Velocitylist.Clear();
                 user1.Disqualified = user2.Disqualified = user1.Winner = user2.Winner = false;
+
+                //UI.UILib.SayText("Constant Velocity");
+
             }
             else
             {
@@ -122,7 +135,6 @@ namespace Mechanect.Screens.Exp1Screens
 
                 timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 countdown.Update();
-                //Environment1.TargetCam();
                 if (timer > 0)
                 {
                     
@@ -131,12 +143,10 @@ namespace Mechanect.Screens.Exp1Screens
                         fill_Knee_pos();
                         getspeedleft();
                         getspeedleft2();
-                        //   getspeedright();
-                        //  getspeedright2();
                         firstframe = (user1.skeleton.Joints[JointType.KneeLeft].Position.Y);
                     }
 
-                   //Tools1.CheckTheCommand(timer, user1, user2);
+                   Tools1.CheckTheCommand((int)timer, user1, user2, timeslice, racecommands,1);
                    Tools1.GetWinner(user1,user2, (float)(graphics.DisplayMode.Height * 0.91)); // with respect to the track
 
                     
@@ -163,16 +173,24 @@ namespace Mechanect.Screens.Exp1Screens
             environ1.Draw();
             if (user1.skeleton == null || user2.skeleton == null)
             {
+             
+                SpriteBatch.Begin();
+                SpriteBatch.DrawString(spritefont1, "ConstantVelocity", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
+                SpriteBatch.DrawString(spritefont1, "ConstantVelocity", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
+                SpriteBatch.DrawString(spritefont1, "ConstantVelocity", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
+                SpriteBatch.DrawString(spritefont1, "ConstantVelocity", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
+                
+                SpriteBatch.End();
             }
             else
             {
                 SpriteBatch.Begin();
                 countdown.DrawCountdown(SpriteBatch,(int)(graphics.DisplayMode.Width*0.44) ,(int)(graphics.DisplayMode.Height*0.44 ));
                 SpriteBatch.End();
+
                 countdown.PlaySoundEffects();
                 if (timer > 4)
                 {
-
                 }
             }
 
@@ -189,6 +207,7 @@ namespace Mechanect.Screens.Exp1Screens
             countdown = new CountDown();
             countdown.InitializeCountDown(Texthree, Textwo, Texone, Texgo, Seffect1, Seffect2);//initializes the Countdown 
         }
+        #region kneespeedcalc
         public void fill_Knee_pos()
         {
 
@@ -211,6 +230,7 @@ namespace Mechanect.Screens.Exp1Screens
                 user1.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
             }
         }
+       
         public void getspeedleft2()
         {
 
@@ -532,7 +552,41 @@ namespace Mechanect.Screens.Exp1Screens
                 }
             }
         }
+        #endregion
+        public void comm_and_timeslice()
+        {
+            for (int i = 0; i < 10; i++) //make commandlist
+            {
+                List<string> racecommandshuf = this.gCommands;
+                Tools1.shuffle<string>(racecommandshuf);
+                racecommands = racecommands.Concat<string>(racecommandshuf).ToList<string>();
 
+            }
+
+            Random rand = new Random();
+            foreach (string command in racecommands)
+            {
+                switch (command)
+                {
+                    case "constantDisplacement":
+                        timeslice.Add(rand.Next(4, 6));
+                        break;
+                    case "constantAcceleration":
+                        timeslice.Add(rand.Next(3, 5));
+                        break;
+                    case "increasingAcceleration":
+                        timeslice.Add(rand.Next(3, 5));
+                        break;
+                    case "decreasingAcceleration":
+                        timeslice.Add(rand.Next(4, 5));
+                        break;
+                    case "constantVelocity":
+                        timeslice.Add(rand.Next(6, 9));
+                        break;
+
+                }
+            }
+        }
 
     }
 }
