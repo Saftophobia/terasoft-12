@@ -815,7 +815,7 @@ namespace Mechanect.Exp3
 
             float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
-            return normalizedVector * finalVelocity;
+            return normalizedVector * finalVelocity * 20;
         }
 
         #endregion
