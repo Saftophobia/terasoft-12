@@ -11,7 +11,7 @@ namespace ButtonsAndSliders
 
         private Vector2 position;
         private GifAnimation.GifAnimation texture, animation, stopped;
-        private int screenW, ScreenH;
+        private int screenW, screenH;
 
         private User user;
         private Texture2D hand;
@@ -30,23 +30,24 @@ namespace ButtonsAndSliders
         /// <summary>
         /// The constructor used to initialize the button. First Button to be created must be last button to be drawn.
         /// </summary>
-        /// <param name="t">the gif texture of the button not moving</param>
-        /// <param name="tt">the gif texture of the button moving</param>
-        /// <param name="p">the position of the button, where the center is top left corner</param>
-        /// <param name="sw">screen width</param>
-        /// <param name="sh">screen height</param>
-        /// <param name="h">the picture of the hand</param>
-        /// <param name="u">the user instance</param>
-        public Button(GifAnimation.GifAnimation t, GifAnimation.GifAnimation tt, Vector2 p, int sw, int sh, Texture2D h, User u)
+        /// <param name="texture">the gif texture of the button not moving</param>
+        /// <param name="animation">the gif texture of the button moving</param>
+        /// <param name="position">the position of the button, where the center is top left corner</param>
+        /// <param name="screenW">screen width</param>
+        /// <param name="screenH">screen height</param>
+        /// <param name="hand">the picture of the hand</param>
+        /// <param name="user">the user instance</param>
+        public Button(GifAnimation.GifAnimation texture, GifAnimation.GifAnimation animation,
+            Vector2 position, int screenW, int screenH, Texture2D hand, User user)
         {
-            position = p;
-            texture = t;
-            stopped = t;
-            animation = tt;
-            screenW = sw;
-            ScreenH = sh;
-            hand = h;
-            user = u;
+            this.position = position;
+            this.texture = texture;
+            this.stopped = texture;
+            this.animation = animation;
+            this.screenW = screenW;
+            this.screenH = screenH;
+            this.hand = hand;
+            this.user = user;
             timer = new Timer1();
 
             if (drawHand == -1)
@@ -124,8 +125,8 @@ namespace ButtonsAndSliders
             Skeleton skeleton = user.USER;
             if (skeleton != null)
             {
-                handPosition.X = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).X;
-                handPosition.Y = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH).Y;
+                handPosition.X = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH).X;
+                handPosition.Y = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH).Y;
             }
         }
 
@@ -169,9 +170,10 @@ namespace ButtonsAndSliders
             Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
             {
-                Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
+                Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 50, 50);
-                Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, texture.GetTexture().Width, texture.GetTexture().Height);
+                Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, 
+                    texture.GetTexture().Width, texture.GetTexture().Height);
 
                 return r1.Intersects(r2);
             }
