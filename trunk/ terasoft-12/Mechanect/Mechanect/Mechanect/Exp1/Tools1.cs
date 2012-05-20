@@ -137,27 +137,27 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 17/5/12 </para>
          /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
-         public static void GetWinner(User1 user1, User1 user2)
+         public static void GetWinner(User1 user1, User1 user2, float raceLength)
          {
-             if ((user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
+             if ((user1.Positions[user1.Positions.Count - 1] >= raceLength) && !(user1.Disqualified))
              {
                  user1.Winner = true;
                  return;
              }
              else
              {
-                 if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified))
+                 if ((user2.Positions[user2.Positions.Count - 1] >= raceLength) && !(user2.Disqualified))
                  {
                      user2.Winner = true;
                      return;
                  }
                  else
-                     if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && (user2.Disqualified)
-                         && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && (user1.Disqualified))
+                     if ((user2.Positions[user2.Positions.Count - 1] >= raceLength) && (user2.Disqualified)
+                         && (user1.Positions[user1.Positions.Count - 1] >= raceLength) && (user1.Disqualified))
                          return;
                      else
-                         if ((user2.Positions[user2.Positions.Count - 1] >= 1000.0) && !(user2.Disqualified)
-                            && (user1.Positions[user1.Positions.Count - 1] >= 1000.0) && !(user1.Disqualified))
+                         if ((user2.Positions[user2.Positions.Count - 1] >= raceLength) && !(user2.Disqualified)
+                            && (user1.Positions[user1.Positions.Count - 1] >= raceLength) && !(user1.Disqualified))
                          {
                              user1.Winner = true;
                              user2.Winner = true;
