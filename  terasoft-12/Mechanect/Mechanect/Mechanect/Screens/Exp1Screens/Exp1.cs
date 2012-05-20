@@ -13,6 +13,7 @@ namespace Mechanect.Screens.Exp1Screens
 {
     class Exp1 : Mechanect.Common.GameScreen
     {
+        int avatarconst = 15;
         #region KeeVariables
         float firstframe = 5000;
         float speed = 5000;
@@ -110,13 +111,20 @@ namespace Mechanect.Screens.Exp1Screens
             }
             else
             {
+                if (user1.skeleton.Position.X > user2.skeleton.Position.X)
+                {
+                    Skeleton temp = new Skeleton();
+                    temp = user2.skeleton;
+                    user2.skeleton = user1.skeleton;
+                    user1.skeleton = temp;
+                }
 
-                timer += (float)gameTime.ElapsedGameTime.TotalSeconds - 4;
+                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 countdown.Update();
                 //Environment1.TargetCam();
                 if (timer > 0)
                 {
-                    fill_Knee_pos();
+                    
                     //I commented these to have a compilation-error free repo
                     //Tools1.getspeedl(user1, speed, speedlist, calculatespeedbool, max, min, timer,this.Environment1);
                     //Tools1.getspeedr(user1, speedr, speedlistr, calculatespeedboolr, maxr, minr, timer, this.Environment1);
@@ -131,7 +139,7 @@ namespace Mechanect.Screens.Exp1Screens
                         //  getspeedright2();
                         firstframe = (user1.skeleton.Joints[JointType.KneeLeft].Position.Y);
                     }
-                    if (timer > 29)
+                    if (timer > 10)
                     {
                         int b = 0;
                     }
@@ -159,9 +167,11 @@ namespace Mechanect.Screens.Exp1Screens
             }
             else
             {
-                countdown.DrawCountdown(SpriteBatch);
+                SpriteBatch.Begin();
+                countdown.DrawCountdown(SpriteBatch,(int)(graphics.Viewport.Width*0.44) ,(int)(graphics.Viewport.Height*0.44 ));
+                SpriteBatch.End();
                 countdown.PlaySoundEffects();
-                if (timer > 0)
+                if (timer > 4)
                 {
 
                 }
@@ -183,23 +193,23 @@ namespace Mechanect.Screens.Exp1Screens
         public void fill_Knee_pos()
         {
 
-            if (user1.skeleton.Position.X > user2.skeleton.Position.X)
+            if (user1.skeleton.Position.X < user2.skeleton.Position.X)
             {
-                user1.Kneepos.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeLeft].Position.Y), 2));
-                user2.Kneepos.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeLeft].Position.Y), 2));
+                user1.Kneepos.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
+                user2.Kneepos.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
 
-                user1.Kneeposr.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeRight].Position.Y), 2));
-                user2.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 2));
+                user1.Kneeposr.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
+                user2.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
 
 
             }
             else
             {
-                user2.Kneepos.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeLeft].Position.Y), 2));
-                user1.Kneepos.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeLeft].Position.Y), 2));
+                user2.Kneepos.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
+                user1.Kneepos.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
 
-                user2.Kneeposr.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeRight].Position.Y), 2));
-                user1.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 2));
+                user2.Kneeposr.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
+                user1.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
             }
         }
         public void getspeedleft2()
@@ -260,7 +270,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                    // this.Environment1.MoveAvatar(2, (int)speed2 * 15);
-                                    this.environ1.bike2.Move((int)speed2);
+                                    this.environ1.bike2.Move((int)speed2* avatarconst);
 
                                     calculatespeedbool2 = false;
                                 }
@@ -338,7 +348,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                  //   this.Environment1.MoveAvatar(2, (int)speedr2 * 15);
-                                    this.environ1.bike2.Move((int)speedr2);
+                                    this.environ1.bike2.Move((int)speedr2 * avatarconst);
 
                                     calculatespeedboolr2 = false;
                                 }
@@ -419,7 +429,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                    // this.Environment1.MoveAvatar(1, (int)speed * 15);
-                                    this.environ1.bike1.Move((int)speed);
+                                    this.environ1.bike1.Move((int)speed * avatarconst);
 
 
                                     calculatespeedbool = false;
@@ -501,7 +511,7 @@ namespace Mechanect.Screens.Exp1Screens
                                         string x = "";
                                     }
                                    // this.Environment1.MoveAvatar(1, (int)speedr * 15);
-                                    this.environ1.bike1.Move((int)speedr);
+                                    this.environ1.bike1.Move((int)speedr * avatarconst);
 
 
                                     calculatespeedboolr = false;
