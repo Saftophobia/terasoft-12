@@ -8,16 +8,26 @@ namespace Mechanect.Exp2
 {
     public class Environment2
     {
-
+        /// <summary>
+        /// region for generating the basic environment elements
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: May, 18 </para>
+        /// <para>DATE MODIFIED: May, 18  </para>
+        /// </remarks>
+        #region
         private Texture2D xyAxisTexture;
         private Texture2D lineConnector;
         private float predatorScaling;
         private float preyScaling;
-        private float aquariumScalin;
+        private float aquariumScaling;
         private float windowWidth;
         private float windowHeight;
+        private float pixelsPerMeterX;
+        private float pixelsPerMeterY;
         private Vector2 windowStartPosition;
-
+        #endregion
         public Prey Prey { get; set; }
         public Predator Predator { get; set; }
         public Aquarium Aquarium { get; set; }
@@ -178,7 +188,6 @@ namespace Mechanect.Exp2
             return (max - min) * _rand.NextDouble() + min;
         }
 
-
         // <summary>
         /// Sets the texture for the X, Y axises
         /// </summary>
@@ -209,20 +218,32 @@ namespace Mechanect.Exp2
         /// <param name="contentManager">A content Manager to get the texture from the directories</param>
         ///<param name="mySpriteBatch">The MySpriteBatch that will be used in drawing</param>
         ///<param name="rectangle">A rectangle that represents the size of the window that will contain the basic experiment elements</param>
-        void Draw(Rectangle rectangle, ContentManager contentManager, MySpriteBatch mySpriteBatch)
+        /// <param name="viewPort"> A viewPort to coorectly calculate were should the objects appear</param>
+        public void Draw(Rectangle rectangle, ContentManager contentManager, MySpriteBatch mySpriteBatch,Viewport viewPort)
         {
-            ConfigureWindowSize(rectangle);
+            ConfigureWindowSize(rectangle, viewPort);
             DrawObjects(mySpriteBatch);
 
 
         }
-
+        /// <summary>
+        /// Draw the basic elements of the experiment (x and y axises, predator, prey, aquariums, connectors)
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Alzayat </para>   
+        /// <para>DATE WRITTEN: May, 18 </para>
+        /// <para>DATE MODIFIED: May, 19  </para>
+        /// </remarks>
+        /// <param name="contentManager">A content Manager to get the texture from the directories</param>
+        ///<param name="mySpriteBatch">The MySpriteBatch that will be used in drawing</param>
+        ///<param name="rectangle">A rectangle that represents the size of the window that will contain the basic experiment elements</param>
         private void DrawObjects(MySpriteBatch mySpriteBatch)
         {
             mySpriteBatch.DrawTexture(xyAxisTexture, new Vector2(windowWidth / 2, windowHeight / 2), 0, 1);
+            Predator.Draw(mySpriteBatch, PositionInverter(PositionMapper(Predator.Location)), predatorScaling);
+            Prey.Draw(mySpriteBatch, PositionInverter(PositionMapper(Prey.Location)), preyScaling);
+            Aquarium.Draw(mySpriteBatch, PositionInverter(PositionMapper(Aquarium.Location)), aquariumScaling);
         }
-
-
 
         /// <summary>
         /// Configure the size of the window that the basic objects will be drawn in.
@@ -233,14 +254,48 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 18  </para>
         /// </remarks>
         /// <param name="rectangle">A rectangle that represents the size of the window that will contain the basic experiment elements</param>
-        public void ConfigureWindowSize(Rectangle rectangle)
+        /// <param name="viewPort"> A viewPort to coorectly calculate were should the objects appear</param>
+        public void ConfigureWindowSize(Rectangle rectangle, Viewport viewPort)
         {
+            //Setting the window size and start point
             windowWidth = rectangle.Width;
             windowHeight = rectangle.Height;
             windowStartPosition.X = rectangle.X;
             windowStartPosition.Y = rectangle.Y;
+
+            // Getting the maximum possible difference between the experiment objects
+            float maxDifferenceX = Aquarium.Location.X - Predator.Location.X;
+            float maxDifferenceY = Math.Max(Prey.Location.Y, Math.Max(Aquarium.Location.Y, Predator.Location.Y));
+
+            // Mapping the meters to pixels to configure how will the real world be mapped to the screen
+            pixelsPerMeterY = windowHeight / maxDifferenceY;
+            pixelsPerMeterX = windowWidth / maxDifferenceX;
+
+
         }
 
+        /// <summary>
+        /// Maps The position of a general real world value to be drawn inside the drawing window
+        /// </summary>
+        /// <param name="unMappedPosition">The real world position</param>
+        /// <returns> The mapped but non y-inversed vector</returns>
+        public Vector2 PositionMapper(Vector2 unMappedPosition)
+        {
+            return new Vector2(unMappedPosition.X * pixelsPerMeterX + windowStartPosition.X, unMappedPosition.Y * pixelsPerMeterY + windowStartPosition.Y);
+
+        }
+        /// <summary>
+        /// Inverts the Y coordinate to have the points mapped correctly
+        /// </summary>
+        /// <param name="unInvertedPosition">The world compaitable position</param>
+        /// <returns>The XNA compaitable position</returns>
+        public Vector2 PositionInverter(Vector2 unInvertedPosition)
+        {
+            return new Vector2(unInvertedPosition.X, windowHeight - unInvertedPosition.Y);
+        }
+
+
+       
 
 
     }

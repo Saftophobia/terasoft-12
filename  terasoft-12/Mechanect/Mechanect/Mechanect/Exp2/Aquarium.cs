@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Mechanect.Exp2
 {
     public class Aquarium
     {
-    
+
         Vector2 location;
         Texture2D aquariumTexture;
         float angle;
@@ -116,6 +116,7 @@ namespace Mechanect.Exp2
             aquariumTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/Fishbowl");
         }
 
+
         // <summary>
         /// Draws The scaled sprite batch
         /// </summary>
@@ -125,8 +126,10 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
         /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
+        /// <param name="location">The location of the drawing origin</param>
         /// <param name="scale"> The scaling of the texture</param>
-        void Draw(MySpriteBatch mySpriteBatch, float scale)
+
+        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, float scale)
         {
             mySpriteBatch.DrawTexture(aquariumTexture, location, angle, scale);
         }
