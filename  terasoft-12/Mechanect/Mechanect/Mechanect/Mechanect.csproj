@@ -95,6 +95,7 @@
     <Reference Include="mscorlib">
       <Private>False</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System">
@@ -166,10 +167,22 @@
     <Compile Include="Exp3\Simulation.cs" />
     <Compile Include="Exp3\Tools3.cs" />
     <Compile Include="Exp3\User3.cs" />
+    <Compile Include="Screens\AdjustPosition.cs" />
+    <Compile Include="Screens\AllExperiments.cs" />
+    <Compile Include="Screens\CommonPauseScreen.cs" />
+    <Compile Include="Screens\DepthBar.cs" />
+    <Compile Include="Screens\Experiment1.cs" />
+    <Compile Include="Screens\Experiment2.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
+    <Compile Include="Screens\InstructionsScreen2.cs" />
+    <Compile Include="Screens\InstructionsScreen3.cs" />
+    <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\ITWorxScreen.cs" />
+    <Compile Include="Screens\LastScreen.cs" />
     <Compile Include="Screens\Settings2.cs" />
+    <Compile Include="Screens\Settings3.cs" />
+    <Compile Include="Screens\StatisticScreen2.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
     <Compile Include="Screens\UserAvatarScreen.cs" />
     <Compile Include="Common\GameScreen.cs" />
