@@ -101,11 +101,11 @@ namespace Mechanect.Exp3
             this.device = device;
             this.ball = ball;
            // ball = new Ball(10000.0f, 10001.0f, device, Content);
-            user.ShootingPosition = new Vector3(0f, 3, 62f);
+            user.shootingPosition = new Vector3(0f, 3, 62f);
             //friction = 0.5f/3600;
             wind = 0f;
             //ball.InitialVelocity = new Vector3(11.25f, 0, 11.25f)/60;
-            user.AssumedLegMass = 0.01;
+            user.assumedLegMass = 0.01;
             
             #endregion
             sprite = spriteBatch;
@@ -114,7 +114,7 @@ namespace Mechanect.Exp3
             ballInitialPosition = initialBallPosition;
             ballInitialVelocity = initialBallVelocity;
 
-            Vector3 shootingPos = user.ShootingPosition;
+            Vector3 shootingPos = user.shootingPosition;
             distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitialPosition.X, ballInitialPosition.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
             friction = 1.0f;
 
@@ -141,10 +141,10 @@ namespace Mechanect.Exp3
                 return Constants3.negativeBMass;
             if (hole.Radius <= 0)
                 return Constants3.negativeHRadius;
-            if (user.AssumedLegMass <= 0)
+            if (user.assumedLegMass <= 0)
                 return Constants3.negativeLMass;
             //hole position not before the leg position
-            if (hole.Position.Z - user.ShootingPosition.Z > 0)
+            if (hole.Position.Z - user.shootingPosition.Z > 0)
                 return Constants3.negativeHPosZ;
             if (friction <= 0)
                 return Constants3.negativeFriction;
@@ -154,12 +154,12 @@ namespace Mechanect.Exp3
             var finalPos = Vector3.Zero;
             finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
 
-            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(hole.Position, user.ShootingPosition))
+            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(hole.Position, user.shootingPosition))
                 return Constants3.holeOutOfFarRange;
 
             finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
 
-            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(hole.Position, user.ShootingPosition)) //length squared used for better performance than length
+            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(hole.Position, user.shootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
             else
                 return Constants3.solvableExperiment;
@@ -177,7 +177,7 @@ namespace Mechanect.Exp3
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
             if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX - hole.Radius)
                 hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
-            if (hole.Position.Z <= user.ShootingPosition.Z)
+            if (hole.Position.Z <= user.shootingPosition.Z)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
        
             var x = Constants3.solvableExperiment;
@@ -194,7 +194,7 @@ namespace Mechanect.Exp3
                             wind--;
                         else hole.Position = new Vector3(hole.Position.X/2, hole.Position.Y, hole.Position.Z+1); break; 
                     case Constants3.negativeRDifference: int tmp = (int)ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
-                    case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
+                    case Constants3.negativeLMass: user.assumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
@@ -274,7 +274,7 @@ namespace Mechanect.Exp3
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
             //InitializeHole(10);
-            hole = new Hole(Content, device, terrainWidth, terrainHeight, 10, user.ShootingPosition);
+            hole = new Hole(Content, device, terrainWidth, terrainHeight, 10, user.shootingPosition);
             CreateHole();
             SetUpVertices();
             LoadEnvironmentContent();
@@ -720,7 +720,7 @@ namespace Mechanect.Exp3
         
         protected void InitializeHole(int radius)
         {
-            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,radius ,user.ShootingPosition);
+            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,radius ,user.shootingPosition);
         }
 
 
@@ -833,7 +833,7 @@ namespace Mechanect.Exp3
 
             initialLegVelocity = initialVelocity.Length();
             ballMass = ball.Mass;
-            legMass = user.AssumedLegMass;
+            legMass = user.assumedLegMass;
 
             float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
