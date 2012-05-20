@@ -20,15 +20,14 @@ namespace Mechanect.Exp3
             : base(ball, velocity, friction, LinearMotion.CalculateTime(velocity.Length(), 0, friction))
         {
             this.ball = ball;
-            this.holeRadius = holeRadius;
             Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
+            this.holeRadius = holeRadius;
 
-            if (Vector3.Distance(stopPosition, holePosition) < (ball.Radius + holeRadius))
-            {
-                fallAnimation = new ModelFramedAnimation(ball);
-
-                if (stopPosition.X < holePosition.X)
+            //if (Vector3.Distance(stopPosition, holePosition) < (ball.Radius + holeRadius))
+            //{
+                //fallAnimation = new ModelFramedAnimation(ball);
+                /*if (stopPosition.X < holePosition.X)
                     fallAnimation.AddFrame(new Vector3(holePosition.X + holeRadius, holePosition.Y, holePosition.Z), Vector3.Zero, TimeSpan.FromSeconds(0.5));
                 else
                 {
@@ -36,16 +35,17 @@ namespace Mechanect.Exp3
                         fallAnimation.AddFrame(new Vector3(holePosition.X - holeRadius, holePosition.Y, holePosition.Z), Vector3.Zero, TimeSpan.FromSeconds(0.5));
                     else
                         fallAnimation.AddFrame(new Vector3(holePosition.X, holePosition.Y, holePosition.Z + 10), Vector3.Zero, TimeSpan.FromSeconds(0.5));
-                }
-                fallAnimation.AddFrame(holePosition, Vector3.Zero, TimeSpan.FromSeconds(1));
-                fallAnimation.AddFrame(new Vector3(holePosition.X, holePosition.Y - 20, holePosition.Z), Vector3.Zero, TimeSpan.FromSeconds(1.5));
-            }
+                }*/
+                //fallAnimation.AddFrame((totalDisplacement.Length() - holeRadius) * Vector3.Normalize(totalDisplacement), Vector3.Zero, TimeSpan.FromSeconds(0));
+                //fallAnimation.AddFrame(holePosition, Vector3.Zero, TimeSpan.FromSeconds(2));
+                //fallAnimation.AddFrame(new Vector3(holePosition.X, holePosition.Y - 20, holePosition.Z), Vector3.Zero, TimeSpan.FromSeconds(2));
+            //}
 
         }
 
         public override void Update(TimeSpan elapsed)
         {
-            if (fallAnimation == null || totalDisplacement.Length() - Displacement.Length() > holeRadius)
+            if (fallAnimation == null || Displacement.Length() < totalDisplacement.Length())
             {
                 base.Update(elapsed);
                 ball.Rotate(Displacement);

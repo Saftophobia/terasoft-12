@@ -81,6 +81,13 @@ namespace Mechanect.Exp3
         Texture2D cloudStaticMap;
         VertexPositionTexture[] fullScreenVertices;
 
+        public Environment3(ContentManager content, GraphicsDevice device, User3 user)
+        {
+            Content = content;
+            this.device = device;
+            this.user = user;
+            friction = -2f;
+        }
 
         public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user, Ball ball)
         {
@@ -259,6 +266,10 @@ namespace Mechanect.Exp3
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadContent()
         {
+            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 3, 68),
+                new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            PlayerAnimation = new KineckAnimation(PlayerModel, user);
+
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
@@ -283,6 +294,7 @@ namespace Mechanect.Exp3
         {
             DrawEnvironment(c, gameTime);
             DrawHole(c);
+            PlayerModel.Draw(gameTime, c.View, c.Projection);
         }
 
         #region Environment Generation Code

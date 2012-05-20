@@ -24,11 +24,17 @@ namespace Mechanect.Exp3
 
         public double Mass { get; set; }
 
-        public Ball(Vector3 intialPosition, float radius,  GraphicsDevice device, ContentManager content)
-            : base(content.Load<Model>(@"Models/ball"), intialPosition, Vector3.Zero, Vector3.One, device)
+        public Ball(float radius,  GraphicsDevice device, ContentManager content)
+            : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One, device)
         {
             Radius = radius;
             Mass = 0.001;
+        }
+
+        public void GenerateIntialPosition(float terrainWidth, float terrainHeight)
+        {
+            double number = new Random().NextDouble();
+            Position = new Vector3(-terrainWidth / 2, 0, -(float)(0.75 + number / 4) * terrainHeight);
         }
 
         public void Rotate(Vector3 displacement)
