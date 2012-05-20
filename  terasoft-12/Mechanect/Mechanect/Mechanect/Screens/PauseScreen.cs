@@ -131,7 +131,7 @@ namespace Mechanect.Screens
             button.Update(gameTime);
             if (!voiceCommands.getHeared("go") && !button.IsClicked())
             {
-                if (!user.HasShot())
+                if (!user.HasShot()&&!user.hasMissed)
                 {
 
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
@@ -152,7 +152,7 @@ namespace Mechanect.Screens
                     }
                     arrowAngle = (float)user.Angle;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                       + (Math.Truncate(legMass * 1000) / 1000);
+                     + (Math.Truncate(legMass * 1000) / 1000);
                 }
                 else
                 {
@@ -160,38 +160,31 @@ namespace Mechanect.Screens
                     user.velocity = velocity;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
                         + Math.Truncate(legMass * 1000) / 1000 +'\n' + "Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
-                        + '\n' + "Shooting angle: " + Math.Truncate((user.Angle * 180 / Math.PI) * 1000) / 1000 +" deg";
-
-                    if (framesToWait > 240) // after 4 seconds
-                    {
-
-                        fillsPositions.Clear();
-                        fills.Clear();
-                        fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
-                        arrowAngle = 0;
-                        framesToWait = 0;
-                        user.ResetUserForShootingOrTryingAgain();
-                        count = "";
-                        countColor = Color.Red;
-                        countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
-                        countScale = 1;
-                    }
+                        + '\n' + "Shooting angle: " + Math.Truncate((user.Angle * 180 / Math.PI) * 1000) / 1000 + " deg";
+                    if (user.hasMissed)
+                        Clear();
                     else
                     {
-                        if (framesToWait >= 0 && framesToWait <= 60)
-                            count = "3";
-                        if (framesToWait > 60 && framesToWait <= 120)
-                            count = "2";
-                        if (framesToWait > 120 && framesToWait <= 180)
-                            count = "1";
-                        if (framesToWait > 180 && framesToWait <= 240)
+                        if (framesToWait > 240) // after 4 seconds
+                            Clear();
+
+                        else
                         {
-                            count = "Try Again";
-                            countColor = Color.DarkGreen;
-                            countPosition = new Vector2(viewPort.Width / 8, (1 * viewPort.Height) / 3);
-                            countScale = 0.8f;
+                            if (framesToWait >= 0 && framesToWait <= 60)
+                                count = "3";
+                            if (framesToWait > 60 && framesToWait <= 120)
+                                count = "2";
+                            if (framesToWait > 120 && framesToWait <= 180)
+                                count = "1";
+                            if (framesToWait > 180 && framesToWait <= 240)
+                            {
+                                count = "Try Again";
+                                countColor = Color.DarkGreen;
+                                countPosition = new Vector2(viewPort.Width / 8, (1 * viewPort.Height) / 3);
+                                countScale = 0.8f;
+                            }
+                            framesToWait++;
                         }
-                        framesToWait++;
                     }
                 }
             }
@@ -234,6 +227,19 @@ namespace Mechanect.Screens
 
         }
 
+        public void Clear()
+        {
+            fillsPositions.Clear();
+            fills.Clear();
+            fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
+            arrowAngle = 0;
+            framesToWait = 0;
+            user.ResetUserForShootingOrTryingAgain();
+            count = "";
+            countColor = Color.Red;
+            countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
+            countScale = 1;
+        }
 
 
         public override void Remove()
