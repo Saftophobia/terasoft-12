@@ -150,7 +150,7 @@ namespace Mechanect.Screens
                         fills.Add(content.Load<Texture2D>("Textures/Vfill"));
                         fillPosition.Y -= 8;
                     }
-                    arrowAngle = (float)user.Angle;
+                    arrowAngle = (float)user.angle;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
                      + (Math.Truncate(legMass * 1000) / 1000);
                 }
@@ -160,7 +160,7 @@ namespace Mechanect.Screens
                     user.velocity = velocity;
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
                         + Math.Truncate(legMass * 1000) / 1000 +'\n' + "Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
-                        + '\n' + "Shooting angle: " + Math.Truncate((user.Angle * 180 / Math.PI) * 1000) / 1000 + " deg";
+                        + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     if (user.hasMissed)
                         Clear();
                     else
@@ -192,7 +192,7 @@ namespace Mechanect.Screens
             {
 
                 user.ResetUserForShootingOrTryingAgain();
-                user.Trying = false;
+               
                 ExitScreen();
             }
 
