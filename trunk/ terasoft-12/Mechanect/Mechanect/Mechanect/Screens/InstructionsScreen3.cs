@@ -6,7 +6,7 @@ namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-        private string instructions = " Welcome to football Mechanect game made by terasoft, The point of this game is to shoot the ball such that it reaches the hole with zero velocity, in the beginning you're shown a screen where you can test shooting and see your angle and velocity, press Ok when you're ready";
+        private string instructions = " Welcome to football Mechanect game made by terasoft \n \nThe point of this game is to shoot the ball such that it reaches the hole with zero velocity, in the beginning you're shown a screen where you can test shooting and see your angle and velocity, press Ok when you're ready";
         private Instruction instruction;
         private User3 user3;
 
@@ -26,20 +26,14 @@ namespace Mechanect.Screens
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
-        /// </remarks>
-        
-        
+        /// </remarks
         public override void LoadContent()
-
         {
-            //I commented this line to have a compilation-error free repo
-            //instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
-            //    ScreenManager.GraphicsDevice, user3);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
+                ScreenManager.GraphicsDevice, user3);
             instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
-           
         }
-
 
         /// <summary>
         /// Allows the game screen to run logic such as updating the world,
@@ -56,12 +50,10 @@ namespace Mechanect.Screens
         {
             if (instruction.Button.IsClicked())
             {
-                ExitScreen();
                 ScreenManager.AddScreen(new Settings3(user3));
                 Remove();
             }
             instruction.Button.Update(gameTime);
-            base.Update(gameTime, false);
         }
 
         /// <summary>
@@ -73,7 +65,6 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
-
             instruction.Draw(gameTime);
         }
         /// <summary>
