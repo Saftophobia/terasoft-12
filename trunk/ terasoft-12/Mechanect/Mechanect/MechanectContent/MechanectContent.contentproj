@@ -661,7 +661,6 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-<<<<<<< .mine
   <ItemGroup>
     <Compile Include="Models\dome.x">
       <Name>dome</Name>
@@ -683,7 +682,6 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-=======
   <ItemGroup>
     <Compile Include="Models\dome.x">
       <Name>dome</Name>
@@ -691,7 +689,6 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
->>>>>>> .r1222
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
