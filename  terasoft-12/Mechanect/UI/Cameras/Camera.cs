@@ -35,7 +35,8 @@ namespace UI.Cameras
         public Camera(GraphicsDevice graphicsDevice)
         {
             this.GraphicsDevice = graphicsDevice;
-            this.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), graphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
+            this.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 
+                graphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
         }
 
         /// <summary>
