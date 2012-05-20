@@ -129,7 +129,7 @@ namespace Mechanect.Exp2
         /// <param name="location">The location of the drawing origin</param>
         /// <param name="scale"> The scaling of the texture</param>
 
-        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, float scale)
+        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, Vector2 scale)
         {
             mySpriteBatch.DrawTexture(aquariumTexture, location, angle, scale);
         }

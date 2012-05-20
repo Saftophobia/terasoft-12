@@ -111,7 +111,8 @@ namespace Mechanect.Exp2
         /// <para>DATE WRITTEN: May, 17 </para>
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
-        /// <param name="contentManager">A content Manager to get the texture from the directories</param>       
+        /// <param name="contentManager">A content Manager to get the texture from the directories</param>     
+        
         public void setTexture(ContentManager contentManager)
         {
             preyTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/worm");
@@ -128,7 +129,7 @@ namespace Mechanect.Exp2
         /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
         /// <param name="location">The location of the drawing origin</param>
         /// <param name="scale"> The scaling of the texture</param>
-        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, float scale)
+        public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, Vector2 scale)
         {
             mySpriteBatch.DrawTexture(preyTexture, location, angle, scale);
         }

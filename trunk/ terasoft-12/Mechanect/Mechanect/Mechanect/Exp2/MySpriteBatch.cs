@@ -18,7 +18,7 @@ namespace Mechanect.Exp2
         /// A constructor that initializes the customized spriteBatch 
         /// </summary>
         /// <param name="SpriteBatch">The original sprite Batch used </param>
-        MySpriteBatch(SpriteBatch SpriteBatch)
+        public MySpriteBatch(SpriteBatch SpriteBatch)
         {
             this.SpriteBatch = SpriteBatch;
         }
@@ -33,9 +33,11 @@ namespace Mechanect.Exp2
         /// <param name="position">The position of drawing on screen (origin of drawing)</param>
         /// <param name="angle">The rotation angle of your texture</param>
         /// <param name="scale">The scaling of the texture</param>
-        public void DrawTexture(Texture2D texture2D, Vector2 position, float angle,float scale)
+        public void DrawTexture(Texture2D texture2D, Vector2 position, float angle, Vector2 scale)
         {
+            SpriteBatch.Begin();
             SpriteBatch.Draw(texture2D, position, null, Color.White, angle, new Vector2(position.X,position.Y), scale, SpriteEffects.None, 0);
+            SpriteBatch.End();
         }
       
        
