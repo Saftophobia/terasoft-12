@@ -71,6 +71,7 @@ namespace Mechanect.Exp3
         public override void Update(GameTime gameTime)
         {
             environment.PlayerModel.Update();
+            environment.PlayerAnimation.Update();
             if (firstAnimation)
             {
                 float distance = animation.Displacement.Length();

@@ -69,6 +69,7 @@ namespace Mechanect.Exp3
         private SpriteBatch sprite;
 
         public SkinnedCustomModel PlayerModel { get; private set; }
+        public KineckAnimation PlayerAnimation { get; private set; }
 
         private Vector3 ballInitialPosition, ballInitialVelocity;
         public float arriveVelocity { get; set; }
@@ -112,6 +113,7 @@ namespace Mechanect.Exp3
 
             PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), new Vector3(0,3,68), 
                 new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            PlayerAnimation = new KineckAnimation(PlayerModel, user);
             
         }
 
