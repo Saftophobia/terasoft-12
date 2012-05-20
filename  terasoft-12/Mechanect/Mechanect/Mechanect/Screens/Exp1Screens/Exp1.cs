@@ -63,7 +63,8 @@ namespace Mechanect.Screens.Exp1Screens
                 return ScreenManager.SpriteBatch;
             }
         }
-        Environment1 Environment1;
+        //Environment1 Environment1;
+        Environ1 environ1;
         GraphicsDevice graphics;
         User1 user1, user2;
         float timer = 0;
@@ -81,17 +82,20 @@ namespace Mechanect.Screens.Exp1Screens
         public override void LoadContent()
         {
             graphics = this.ScreenManager.GraphicsDevice;
-            Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice, this.SpriteBatch);
-            Environment1.LoadContent();
+           // Environment1 = new Environment1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice, this.SpriteBatch);
+            //Environment1.LoadContent();
+            environ1 = new Environ1(ScreenManager.Game.Content, ScreenManager.Game.GraphicsDevice,this.SpriteBatch);
+            environ1.LoadContent();
             loadcountdown();
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
-            Environment1.update(gameTime);
+            //Environment1.update(gameTime);
+            environ1.Update();
             if (user1.skeleton == null || user2.skeleton == null)
             {
-                Environment1.ChaseCam();
+              //  Environment1.ChaseCam();
                 kinect.requestSkeleton();
                 user1.skeleton = kinect.globalSkeleton;
                 kinect.request2ndSkeleton();
@@ -109,7 +113,7 @@ namespace Mechanect.Screens.Exp1Screens
 
                 timer += (float)gameTime.ElapsedGameTime.TotalSeconds - 4;
                 countdown.Update();
-                Environment1.TargetCam();
+                //Environment1.TargetCam();
                 if (timer > 0)
                 {
                     fill_Knee_pos();
@@ -148,7 +152,8 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            Environment1.Draw(gameTime);
+            //Environment1.Draw(gameTime);
+            environ1.Draw();
             if (user1.skeleton == null || user2.skeleton == null)
             {
             }
@@ -254,8 +259,8 @@ namespace Mechanect.Screens.Exp1Screens
                                     user2.Velocitylist.Add(speedlist2);
 
 
-                                    this.Environment1.MoveAvatar(2, (int)speed2 * 15);
-
+                                   // this.Environment1.MoveAvatar(2, (int)speed2 * 15);
+                                    this.environ1.bike2.Move((int)speed2);
 
                                     calculatespeedbool2 = false;
                                 }
@@ -332,8 +337,8 @@ namespace Mechanect.Screens.Exp1Screens
                                     user2.Velocitylist.Add(speedlistr2);
 
 
-                                    this.Environment1.MoveAvatar(2, (int)speedr2 * 15);
-
+                                 //   this.Environment1.MoveAvatar(2, (int)speedr2 * 15);
+                                    this.environ1.bike2.Move((int)speedr2);
 
                                     calculatespeedboolr2 = false;
                                 }
@@ -413,8 +418,8 @@ namespace Mechanect.Screens.Exp1Screens
 
 
 
-                                    this.Environment1.MoveAvatar(1, (int)speed * 15);
-
+                                   // this.Environment1.MoveAvatar(1, (int)speed * 15);
+                                    this.environ1.bike1.Move((int)speed);
 
 
                                     calculatespeedbool = false;
@@ -495,8 +500,8 @@ namespace Mechanect.Screens.Exp1Screens
                                     {
                                         string x = "";
                                     }
-                                    this.Environment1.MoveAvatar(1, (int)speedr * 15);
-
+                                   // this.Environment1.MoveAvatar(1, (int)speedr * 15);
+                                    this.environ1.bike1.Move((int)speedr);
 
 
                                     calculatespeedboolr = false;
