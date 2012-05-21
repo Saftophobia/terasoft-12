@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using UI.Cameras;
+using UI.Components;
 using Mechanect.Common;
 namespace Mechanect.Exp3
 {
