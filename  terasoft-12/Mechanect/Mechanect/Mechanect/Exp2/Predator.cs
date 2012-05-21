@@ -82,6 +82,7 @@ namespace Mechanect.Exp2
         public Predator(Vector2 location)
         {
             this.location = location;
+            Movable = true;
 
         }
 
