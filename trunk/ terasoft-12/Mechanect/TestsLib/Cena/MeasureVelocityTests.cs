@@ -2,13 +2,11 @@
 using NUnit.Framework;
 using Mechanect;
 using Mechanect.Exp3;
-using Microsoft.Kinect;
-using System.Threading;
 
 namespace TestsLib
 {
     [TestFixture]
-    public class Cena
+    public class MeasureVelocityTests
     {
         #region InstanceVariables
         User3 user;
@@ -258,6 +256,7 @@ namespace TestsLib
                 user.previousLeftLegPositionZ = user.currentLeftLegPositionZ;
                 user.currentLeftLegPositionX -= step;
                 user.currentLeftLegPositionZ -= step;
+                
             }
             else
             {
