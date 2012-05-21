@@ -1,9 +1,11 @@
 using System;
+using System.Windows;
 using Mechanect.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using System.Windows;
+using NUnit.Framework.Constraints;
+using Point = Microsoft.Xna.Framework.Point;
 
 namespace Mechanect.Exp2
 {
@@ -34,41 +36,37 @@ namespace Mechanect.Exp2
         private GraphicsDevice graphicsDevice;
         private Viewport viewPort;
         #endregion
+       
+        #region InstanceVariables + gettersAndSetters/Tamer
         public Prey Prey { get; set; }
         public Predator Predator { get; set; }
         public Aquarium Aquarium { get; set; }
         public Aquarium StartAquarium { get; set; }
-        private readonly Random _rand;
-        private double _velocity;
+        private readonly Random random;
+        private double velocity;
         public double Velocity
         {
-            get { return _velocity; }
-            set { _velocity = value; }
+            get { return velocity; }
+            set { velocity = value; }
         }
-        private double _angle;
-        private int _tolerance;
-        /// <summary>
-        /// getterMethod for tolerance
-        /// setterMethod for tolerance
-        /// </summary>
-        public int Tolerance
-        {
-            get { return _tolerance; }
-            set { _tolerance = value; }
-        }
+        private double angle;
+        
         /// <summary>
         /// getAngle,returns the angle in degree.
         /// </summary>
         public double Angle
         {
-            get { return _angle * (180 / Math.PI); }
+            get { return angle * (180 / Math.PI); }
         }
-        public Environment2(int tolerance)
+        #endregion 
+
+        #region Constructor + generatingSolvablePoints/Tamer
+
+        public Environment2()
         {
-            _rand = new Random();
-            _tolerance = tolerance;
-            _velocity = 0;
-            _angle = 0;
+            random = new Random();
+            velocity = 0;
+            angle = 0;
             GetSolvablePoints();
         }
         /// <summary>
@@ -81,12 +79,29 @@ namespace Mechanect.Exp2
         /// <param name="prey">represents x and y coordinates for prey + length + width</param>
         /// <param name="aquriaum">represents x and y coordinates for aquarium + length + width</param>
 
+        public Environment2(Vector2 position, Rectangle prey, Rectangle aquriaum)
+        {
+            Predator = new Predator(position);
+            Prey = new Prey(new Vector2(prey.X, prey.Y), prey.Width, prey.Height);
+            Aquarium = new Aquarium(new Vector2(aquriaum.X, aquriaum.Y), aquriaum.Width, aquriaum.Height);
+            StartAquarium = new Aquarium(new Vector2(position.X, position.Y), aquriaum.Width, aquriaum.Height);
+        }
+
+        /// <summary>
+        /// Constructor that assigns Predator,prey and aquarium positions,length and width
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="position">represents position for predator</param>
+        /// <param name="prey">represents x and y coordinates for prey + length + width</param>
+        /// <param name="aquriaum">represents x and y coordinates for aquarium + length + width</param>
         public Environment2(Vector2 position, Rect prey, Rect aquriaum)
         {
             Predator = new Predator(position);
-            Prey = new Prey(new Vector2((float)prey.X,(float) prey.Y), (float)prey.Width,(float) prey.Height);
+            Prey = new Prey(new Vector2((float)prey.X, (float)prey.Y), (float)prey.Width, (float)prey.Height);
             Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y), (float)aquriaum.Width, (float)aquriaum.Height);
-            StartAquarium = new Aquarium(new Vector2((float)position.X, (float)position.Y), (float)aquriaum.Width, (float)aquriaum.Height);
+            StartAquarium = new Aquarium(new Vector2(position.X, position.Y), (float)aquriaum.Width, (float)aquriaum.Height);
         }
         /// <summary>
         /// generates random angle between 20 and 70
@@ -123,30 +138,31 @@ namespace Mechanect.Exp2
             var predatorLocation = new Vector2();
             var aquariumLocation = new Vector2();
             predatorLocation.X = 0;
-            predatorLocation.Y = _rand.Next(0, 20);
+            predatorLocation.Y = random.Next(0, 20);
             double angleInDegree = GetRandomAngle();
-            _angle = angleInDegree * (Math.PI / 180);
-            _velocity = GetRandomVelocity();
+            angle = angleInDegree * (Math.PI / 180);
+            velocity = GetRandomVelocity();
             double totalTime = GetTotalTime(predatorLocation.Y);
 
+            
             double timeSlice = totalTime / 3;
-            double timePrey = GetRandomNumber(timeSlice - 10 / 100, (timeSlice * 2) - (timeSlice + timeSlice * Tolerance * 2 / 100));
-            double timeAquarium = GetRandomNumber(timePrey + (timePrey * Tolerance * 2 / 100), totalTime);
+            double timePrey = GetRandomNumber(timeSlice - 10 / 100, (timeSlice * 2) - (timeSlice + timeSlice * Tools2.tolerance * 2 / 100));
+            double timeAquarium = GetRandomNumber(timePrey + (timePrey * Tools2.tolerance * 2 / 100), totalTime);
 
             preyLocation.X = GetX(timePrey);
-            preyLocation.Y = (float)((_velocity * Math.Sin(_angle) * timePrey) - (0.5 * 9.8 * Math.Pow(timePrey, 2)) + predatorLocation.Y);
+            preyLocation.Y = (float)((velocity * Math.Sin(angle) * timePrey) + (0.5 * Tools2.gravity * Math.Pow(timePrey, 2)) + predatorLocation.Y);
 
             aquariumLocation.X = GetX(timeAquarium);
-            aquariumLocation.Y = (float)((_velocity * Math.Sin(_angle) * timeAquarium) - (0.5 * 9.8 * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
+            aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * timeAquarium) + (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
 
-            float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y - aquariumLocation.Y * ((float)_tolerance / 100));
+            float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y - aquariumLocation.Y * ((float)Tools2.tolerance / 100));
             predatorLocation.Y = predatorLocation.Y - minimumHeight;
             preyLocation.Y = preyLocation.Y - minimumHeight;
             aquariumLocation.Y = aquariumLocation.Y - minimumHeight;
 
 
             Predator = new Predator(predatorLocation);
-            Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)_tolerance / 100), aquariumLocation.Y * ((float)_tolerance / 100));
+            Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)Tools2.tolerance / 100), aquariumLocation.Y * ((float)Tools2.tolerance / 100));
             Prey = new Prey(preyLocation, Aquarium.Length * 2 / 5, Aquarium.Width * 2 / 5);
         }
 
@@ -160,11 +176,11 @@ namespace Mechanect.Exp2
         /// <returns>returns total time needed for the projectile</returns>
         private double GetTotalTime(float predatorLocationY)
         {
-            var secondqudrantInFormula = _velocity * Math.Sin(_angle);
+            var secondqudrantInFormula = velocity * Math.Sin(angle);
             //solving quadratic formula for time
-            double totalTime = (-secondqudrantInFormula + Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * -9.8 * predatorLocationY))) / (2 * 0.5 * -9.8);
+            double totalTime = (-secondqudrantInFormula + Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
             if (totalTime < 0)
-                totalTime = (-secondqudrantInFormula - Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * -9.8 * predatorLocationY))) / (2 * 0.5 * -9.8);
+                totalTime = (-secondqudrantInFormula - Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
             return totalTime;
         }
         /// <summary>
@@ -177,7 +193,7 @@ namespace Mechanect.Exp2
         /// <returns>x position at certain time in float</returns>
         private float GetX(double time)
         {
-            var xPosition = (float)(_velocity * (Math.Cos(_angle)) * time);
+            var xPosition = (float)(velocity * (Math.Cos(angle)) * time);
             if (xPosition >= 0)
                 return xPosition;
             return xPosition * -1;
@@ -193,8 +209,9 @@ namespace Mechanect.Exp2
         /// <returns>returns random number in double </returns>
         private double GetRandomNumber(double min, double max)
         {
-            return (max - min) * _rand.NextDouble() + min;
+            return (max - min) * random.NextDouble() + min;
         }
+        #endregion
 
 
         #region Update
@@ -269,8 +286,8 @@ namespace Mechanect.Exp2
         {
 
             this.graphicsDevice = graphicsDevice;
+            axisesPercentage = 0.04f;
 
-            this.axisesPercentage = 0.04f;
 
 
             this.viewPort = viewPort;
@@ -314,14 +331,12 @@ namespace Mechanect.Exp2
                 this.mySpriteBatch = new MySpriteBatch(spriteBatch);
             if (this.spriteBatch == null)
                 this.spriteBatch = spriteBatch;
-
-            rectangle = new Rectangle(rectangle.X+80, rectangle.Y, Math.Min(rectangle.Width, viewPort.Width), Math.Min(rectangle.Height, viewPort.Height));
-
+            
             spriteBatch.Begin();
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
             spriteBatch.End();
 
-            Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + 0.8f*rectangle.Width * axisesPercentage),(int) (rectangle.Y + rectangle.Height *4.15f*axisesPercentage),(int) (rectangle.Width - rectangle.Width * 5.5f * axisesPercentage),(int)  (rectangle.Height - rectangle.Height * 5 * axisesPercentage));
+            Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + rectangle.Width * axisesPercentage),(int) (rectangle.Y + rectangle.Height *3*axisesPercentage),(int) (rectangle.Width - rectangle.Width * 2 * axisesPercentage),(int)  (rectangle.Height - rectangle.Height * 4 * axisesPercentage));
 
             ConfigureWindowSize(smallerRrectangle, viewPort);
             DrawObjects(smallerRrectangle,mySpriteBatch);
@@ -339,7 +354,7 @@ namespace Mechanect.Exp2
         private void DrawObjects(Rectangle rectangle, MySpriteBatch mySpriteBatch)
         {
             
-            if(rectangle.Contains(new Microsoft.Xna.Framework.Point((int)PositionMapper(Predator.Location).X,(int)PositionMapper(Predator.Location).Y)));
+            if(rectangle.Contains(new Point((int)PositionMapper(Predator.Location).X,(int)PositionMapper(Predator.Location).Y)));
             Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
             // if(!Prey.IsEaten)
             Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
@@ -374,8 +389,7 @@ namespace Mechanect.Exp2
 
             // Mapping the meters to pixels to configure how will the real world be mapped to the screen
             pixelsPerMeter.Y = windowHeight / maxDifferenceY;
-            pixelsPerMeter.X =Math.Min( windowWidth / maxDifferenceX, pixelsPerMeter.Y);
-            pixelsPerMeter.Y = Math.Min(pixelsPerMeter.X, pixelsPerMeter.Y);
+            pixelsPerMeter.X = windowWidth / maxDifferenceX;
 
 
         }
@@ -442,22 +456,22 @@ namespace Mechanect.Exp2
             Vector2 aquariumPosition = PositionMapper(Aquarium.Location);
             Vector2 axis = PositionMapper(Vector2.Zero);
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, new Vector2(predatorPosition.X, axis.Y + 3*axisesPercentage * rectangle.Y));
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, new Vector2(axis.X - 4*axisesPercentage * rectangle.X, predatorPosition.Y));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, new Vector2(axis.X - 3*axisesPercentage * rectangle.X, predatorPosition.Y));
 
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(preyPosition.X, axis.Y + 3*axisesPercentage * rectangle.Y));
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(axis.X - 4*axisesPercentage * rectangle.X, preyPosition.Y));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(axis.X - 3*axisesPercentage * rectangle.X, preyPosition.Y));
 
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(aquariumPosition.X, axis.Y + 3*axisesPercentage * rectangle.Y));
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(axis.X -4* axisesPercentage * rectangle.X, aquariumPosition.Y));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(axis.X -3* axisesPercentage * rectangle.X, aquariumPosition.Y));
 
             spriteBatch.DrawString(spriteFont, (Math.Round(Predator.Location.X, 2) + ""), new Vector2(predatorPosition.X - spriteFont.MeasureString((Math.Round(Predator.Location.X, 2) + "")).X/2, axis.Y + 3 * axisesPercentage * rectangle.Y), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(spriteFont, (Math.Round(Predator.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y - spriteFont.MeasureString((Math.Round(Predator.Location.Y, 2) + "")).X, predatorPosition.Y - spriteFont.MeasureString((Math.Round(Predator.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(spriteFont, (Math.Round(Predator.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y, predatorPosition.Y - spriteFont.MeasureString((Math.Round(Predator.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             spriteBatch.DrawString(spriteFont, (Math.Round(Prey.Location.X, 2) + ""), new Vector2(preyPosition.X - spriteFont.MeasureString((Math.Round(Prey.Location.X, 2) + "")).X/2, axis.Y + 3 * axisesPercentage * rectangle.Y), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(spriteFont, (Math.Round(Prey.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y - spriteFont.MeasureString((Math.Round(Prey.Location.Y, 2) + "")).X, preyPosition.Y - spriteFont.MeasureString((Math.Round(Prey.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(spriteFont, (Math.Round(Prey.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y, preyPosition.Y - spriteFont.MeasureString((Math.Round(Prey.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             spriteBatch.DrawString(spriteFont, (Math.Round(Aquarium.Location.X, 2) + ""), new Vector2(aquariumPosition.X - spriteFont.MeasureString((Math.Round(Aquarium.Location.X, 2) + "")).X/2, axis.Y + 3 * axisesPercentage * rectangle.Y), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            spriteBatch.DrawString(spriteFont, (Math.Round(Aquarium.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y - spriteFont.MeasureString((Math.Round(Aquarium.Location.Y, 2) + "")).X, aquariumPosition.Y - spriteFont.MeasureString((Math.Round(Aquarium.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.DrawString(spriteFont, (Math.Round(Aquarium.Location.Y, 2) + ""), new Vector2(axis.X - 10 * axisesPercentage * rectangle.Y, aquariumPosition.Y - spriteFont.MeasureString((Math.Round(Aquarium.Location.Y, 2) + "")).Y / 2), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
         }
 
