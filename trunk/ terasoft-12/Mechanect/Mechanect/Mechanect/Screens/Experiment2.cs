@@ -122,7 +122,7 @@ namespace Mechanect.Screens
         /// <param name="mKinect">takes an instance of mKinect</param>
         public Experiment2(User2 user)
         {
-            tolerance = 20;
+            
             //environment = new Environment2();
 
             this.user = user;
@@ -160,7 +160,7 @@ namespace Mechanect.Screens
             velAngleFont = Content.Load<SpriteFont>("Ariel");
             spriteFont = Content.Load<SpriteFont>("Ariel");
 
-            environment = new Environment2(new Vector2(0, (screenHeight * velocityAngleShift + velocityTexture.Height * velocityTextureScaling)), new Rect(5, 5, 10, 10), new Rect(0, 10, 10, 10));
+            environment = new Environment2(Vector2.Zero, new Rectangle(5, 5, 1, 1), new Rectangle(10, 3, 2, 2));
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
 
@@ -214,7 +214,7 @@ namespace Mechanect.Screens
                 DrawGrayScreen();
             }
             if (ended && milliSeconds > 1000)
-                Tools3.DislayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2, ViewPort.Height / 2), aquariumReached && preyEaten);
+                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2, ViewPort.Height / 2), aquariumReached && preyEaten);
 
 
         }
@@ -278,52 +278,6 @@ namespace Mechanect.Screens
         }
 
         /// <summary>
-        /// determines whether the predator eats the prey or not
-        /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        ///<returns>a boolean flag which is true if the prey is eating and false otherwise</returns>
-        private Boolean isPreyEaten()
-        {
-            Boolean isHit = false;
-            Vector2 position = environment.Predator.getLocation();
-            Prey prey = environment.Prey;
-            if (position.X >= prey.Location.X - prey.Width / 2
-                && position.X <= prey.Location.X + prey.Width / 2
-                && position.Y >= prey.Location.Y - prey.Length / 2
-                && position.Y <= prey.Location.Y + prey.Length / 2)
-                isHit = true;
-            return isHit;
-        }
-
-
-        /// <summary>
-        /// determines whether the predator reached the aquarium or not
-        /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        ///<returns>returns true if the predator reached the aquarium</returns>
-        private Boolean isAquariumReached()
-        {
-            Boolean isReached = false;
-            Vector2 position = environment.Predator.getLocation();
-            Aquarium aquarium = environment.Aquarium;
-            if (position.X >= aquarium.Location.X - aquarium.Width / 2
-                && position.X <= aquarium.Location.X + aquarium.Width / 2
-                && position.Y >= aquarium.Location.Y - aquarium.Length / 2
-                && position.Y <= aquarium.Location.Y + aquarium.Length / 2)
-                isReached = true;
-            return isReached;
-        }
-
-
-        /// <summary>
         /// Runs at every frame, Updates game parameters and checks for user's actions
         /// </summary>
         /// <remarks>
@@ -331,71 +285,78 @@ namespace Mechanect.Screens
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">determines whether there exist another screen covering this one or not.</param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
-            //TBC
-            //if (ended)
-            //{
-            //    milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
-            //    if (milliSeconds > 3000)
-            //    {
-            //        this.ExitScreen();
-            //        ScreenManager.AddScreen(new LastScreen(user, 2));
-            //        this.Remove();
-            //    }
-            //}
-            //else
-            //{
-            //    if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
-            //    {
-            //        if (!isCopied)
-            //        {
-            //            isCopied = true;
-            //            //I commented this line to have a compilation-error free repo
-            //            //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
-            //        }
-            //        environment.Predator.UpdatePosition(gameTime);
-            //        if (!preyEaten) preyEaten = isPreyEaten();
-            //        if (!aquariumReached) aquariumReached = isAquariumReached();
-            //        if (aquariumReached)
-            //        {
-            //            environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
-            //            environment.Predator.Velocity = Vector2.Zero;
-            //            ended = true;
-            //        }
-            //        else if (environment.Predator.Location.Y <= 0)
-            //        {
-            //            environment.Predator.Velocity = Vector2.Zero;
-            //            ended = true;
-            //        }
+            if (ended)
+            {
+                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
+                if (milliSeconds > 3000)
+                {
+                    this.Remove();
+                    ScreenManager.AddScreen(new StatisticScreen2());
+                }
+            }
+            if (!isCopied)
+            {
+                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
+                if (milliSeconds > 3000)
+                {
+                    milliSeconds = 0;
+                    isCopied = true;
+                    environment.Predator.Velocity = new Vector2((float)(12 * Math.Cos(60 * Math.PI / 180)), (float)(12 * Math.Sin(60 * Math.PI / 180)));
+                }
+            }
+            else
+            {
+                ended = !environment.Update(gameTime);
+                preyEaten = environment.Prey.Eaten;
+                aquariumReached = !environment.Predator.Movable && environment.Predator.Location.X > 0;
+            }
+            /*
+            if (ended)
+            {
+                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
+                if (milliSeconds > 3000)
+                {
+                    this.Remove();
+                    ScreenManager.AddScreen(new LastScreen(user, 2));
+                }
+            }
+            else
+            {
+                if (!grayScreen && user.MeasuredVelocity != 0)
+                {
+                    if (!isCopied)
+                    {
+                        isCopied = true;
+                        //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredFinalAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredFinalAngle * Math.PI / 180)));
+                    }
+                    ended = environment.Update(gameTime);
 
-            //    }
+                }
 
-            //    else
-            //    {
-            //        if (button != null)
-            //        {
-            //            button.Update(gameTime);
-            //            if (button.IsClicked() || voiceCommand.getHeared("go"))
-            //            {
-            //                grayScreen = false;
-            //                button = null;
-            //                voiceCommand = null;
-            //                user.Reset();
-            //            }
-            //        }
-            //        user.setSkeleton();
-            //        if (user.USER != null && user.USER.Position.Z != 0)
-            //        {
-            //            //I commented this line to have a compilation-error free repo
-            //         //   user.MeasureVelocityAndAngle(gameTime);
-            //        }
-            //    }
-            //    //I commented this line to have a compilation-error free repo
-            //    //base.Update(gameTime, covered);
+                else
+                {
+                    user.setSkeleton();
+                    if (button != null)
+                    {
+                        button.Update(gameTime);
+                        if (button.IsClicked())// || voiceCommand.GetHeared("go"))
+                        {
+                            grayScreen = false;
+                            button = null;
+                            voiceCommand = null;
+                            user.Reset();
+                        }
+                    }
+                    if (user.USER != null && user.USER.Position.Z != 0)
+                    {
 
-            //}
-
+                        //user.MeasureVelocityAndAngle(gameTime);
+                    }
+                }
+            }
+             */ 
         }
 
     }

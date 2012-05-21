@@ -71,6 +71,9 @@ namespace Mechanect.Exp2
             velocity = 0;
             angle = 0;
             GetSolvablePoints();
+            initialPredatorLocation = new Vector2(Predator.Location.X, Predator.Location.Y);  
+            StartAquarium = new Aquarium(initialPredatorLocation, Aquarium.Width, Aquarium.Length);
+            
         }
         /// <summary>
         /// Constructor that assigns Predator,prey and aquarium positions,length and width
@@ -277,7 +280,7 @@ namespace Mechanect.Exp2
             {
                 Predator.UpdatePosition(gameTime);
                 if (!Prey.Eaten) Prey.Eaten = isPreyEaten();
-                Predator.Movable = isAquariumReached() || Predator.Location.Y < 0;
+                Predator.Movable = !(isAquariumReached() || Predator.Location.Y < 0);
                 return true;
             }
             return false;
@@ -354,6 +357,8 @@ namespace Mechanect.Exp2
             ConfigureWindowSize(smallerRrectangle, viewPort);
             DrawObjects(smallerRrectangle, mySpriteBatch);
         }
+
+        
         /// <summary>
         /// Draw the basic elements of the experiment (x and y axises, predator, prey, aquariums, connectors)
         /// </summary>
@@ -398,7 +403,7 @@ namespace Mechanect.Exp2
             windowStartPosition.Y = rectangle.Y;
 
             // Getting the maximum possible difference between the experiment objects
-            float maxDifferenceX = Aquarium.Location.X - Predator.Location.X;
+            float maxDifferenceX = Math.Max(Aquarium.Location.X, Predator.Location.X);
             float maxDifferenceY = Math.Max(Prey.Location.Y, Math.Max(Aquarium.Location.Y, Predator.Location.Y));
 
             // Mapping the meters to pixels to configure how will the real world be mapped to the screen

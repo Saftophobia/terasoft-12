@@ -17,22 +17,26 @@ namespace Mechanect.Exp2
         private bool simulationRunning;
         private float milliseconds;
         private SpriteFont font;
+        private float velocity;
+        private float angle;
 
         public Simulation(Vector2 predatorPosition, Rectangle preyPosition, Rectangle aquariumPosition, float velocity, float angle)
         {
-            //environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
+            environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
             initialPredatorVelocity = velocity * 
                 new Vector2((float)Math.Cos(MathHelper.ToRadians(angle)), 
                     (float)Math.Sin(MathHelper.ToRadians(angle)));
             initialPredatorPosition = predatorPosition;
             simulationRunning = false;
             predatorInitialized = false;
+            this.velocity = velocity;
+            this.angle = angle;
         }
 
-        public void LoadContent(ContentManager contentManager, Viewport viewport)
+        public void LoadContent(ContentManager contentManager, Viewport viewport, GraphicsDevice graphicsDevice)
         {
             font = contentManager.Load<SpriteFont>("Ariel");
-            //environment.LoadContent(contentManager, viewport);
+            environment.LoadContent(contentManager, graphicsDevice, viewport);
         }
 
         public void Update(GameTime gameTime)
@@ -49,6 +53,8 @@ namespace Mechanect.Exp2
                 {
                     environment.Predator.Location = initialPredatorPosition;
                     environment.Predator.Velocity = initialPredatorVelocity;
+                    environment.Predator.Movable = true;
+                    environment.Prey.Eaten = false;
                     predatorInitialized = true;
                 }
             }
@@ -60,12 +66,8 @@ namespace Mechanect.Exp2
 
         public void Draw(Rectangle rectangle, ContentManager contentManager, SpriteBatch spriteBatch, Viewport viewport)
         {
-            //environment.Draw(new Rectangle(rectangle.X, rectangle.Y + 50, rectangle.Width, rectangle.Height), contentManager, spriteBatch, viewport);
-            string data = string.Empty;
-            data += "Velocity = ";
-            data += Math.Round(initialPredatorVelocity.Length(), 2);
-            data += ", Angle = ";
-            data += Math.Round(MathHelper.ToDegrees((float)Math.Tan(initialPredatorVelocity.Y / initialPredatorVelocity.X)), 2);
+            environment.Draw(rectangle,spriteBatch);
+            string data = "Velocity = " + velocity +  ", Angle = " + angle;
             spriteBatch.DrawString(font, data, new Vector2(rectangle.X, rectangle.Y), Color.Black);
         }
     }
