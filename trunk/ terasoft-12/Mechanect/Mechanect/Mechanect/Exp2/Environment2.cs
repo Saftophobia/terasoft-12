@@ -21,7 +21,9 @@ namespace Mechanect.Exp2
         /// </remarks>
         #region: For generating the GUI
         private Texture2D xyAxisTexture;
+        private Texture2D backgroundTexture;
         private Texture2D lineConnector;
+        public bool DrawBackground { set; get; }
         private Vector2 predatorScaling;
         private Vector2 preyScaling;
         private Vector2 aquariumScaling;
@@ -103,10 +105,9 @@ namespace Mechanect.Exp2
         {
             Predator = new Predator(position);
             Prey = new Prey(new Vector2((float)prey.X, (float)prey.Y), (float)prey.Width, (float)prey.Height);
-            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y),
-            (float)aquriaum.Width, (float)aquriaum.Height);
-            StartAquarium = new Aquarium(new Vector2(position.X, position.Y),
-            (float)aquriaum.Width, (float)aquriaum.Height);
+            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y), (float)aquriaum.Width, (float)aquriaum.Height);
+            initialPredatorLocation = new Vector2(position.X, position.Y);  
+            StartAquarium = new Aquarium(initialPredatorLocation,(float)aquriaum.Width, (float)aquriaum.Height);
         }
         /// <summary>
         /// generates random angle between 20 and 70
@@ -303,6 +304,7 @@ namespace Mechanect.Exp2
             this.viewPort = viewPort;
 
             xyAxisTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/xyAxis");
+            backgroundTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
             lineConnector = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             lineConnector.SetData(new[] { Color.Gray });
             spriteFont = contentManager.Load<SpriteFont>("Ariel");
@@ -344,7 +346,8 @@ namespace Mechanect.Exp2
             rectangle = new Rectangle(rectangle.X + 80, rectangle.Y, Math.Min(rectangle.Width, viewPort.Width), Math.Min(rectangle.Height, viewPort.Height));
 
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
-
+            if(DrawBackground)
+            spriteBatch.Draw(backgroundTexture, rectangle, Color.White);
             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + 0.8f * rectangle.Width * axisesPercentage), (int)(rectangle.Y + rectangle.Height * 4.15f * axisesPercentage), (int)(rectangle.Width - rectangle.Width * 5.5f * axisesPercentage), (int)(rectangle.Height - rectangle.Height * 5 * axisesPercentage));
 
             ConfigureWindowSize(smallerRrectangle, viewPort);
