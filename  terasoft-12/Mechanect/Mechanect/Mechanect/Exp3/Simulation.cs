@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -26,7 +23,6 @@ namespace Mechanect.Exp3
         private Vector3 optimalVelocity;
 
         private SpriteFont font;
-        private Color fontColor;
 
         private BallAnimation animation1;
         private BallAnimation animation2;
@@ -60,7 +56,6 @@ namespace Mechanect.Exp3
             ball.Position = shootPosition;
 
             font = content.Load<SpriteFont>("SpriteFont1");
-            fontColor = Color.Black;
 
             optimalVelocity = LinearMotion.CalculateIntialVelocity(holePosition - shootPosition, 0, friction);
 
@@ -68,8 +63,8 @@ namespace Mechanect.Exp3
             animation2 = new BallAnimation(ball, optimalVelocity, friction, holePosition, 1);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
-            velocity1 = shootVelocity.ToString();
-            velocity2 = optimalVelocity.ToString();
+            velocity1 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", shootVelocity.X, shootVelocity.Y, shootVelocity.Z);
+            velocity2 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", optimalVelocity.X, optimalVelocity.Y, optimalVelocity.Z);
         }
 
         /// <summary>
@@ -90,7 +85,6 @@ namespace Mechanect.Exp3
                 current = animation2;
             }
             current.Update(gameTime.ElapsedGameTime);
-            //ball.Rotate(current.Displacement);
             Camera.Move(ball.Position);
             Camera.Rotate(new Vector3(0, 0.005f, 0));
             Camera.Update();
@@ -101,9 +95,36 @@ namespace Mechanect.Exp3
         /// </summary>
         public void Draw()
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise);
-            spriteBatch.DrawString(font, velocity1, new Vector2(5, 0), (!secondAnimationStarted) ? Color.Red : fontColor, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0.5f);
-            spriteBatch.DrawString(font, velocity2, new Vector2(5, font.MeasureString(velocity2).Y * 0.5f), (secondAnimationStarted) ? Color.Red : fontColor, 0, Vector2.Zero, 0.5f, SpriteEffects.None, 0.5f);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, 
+                SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
+            if (secondAnimationStarted)
+            {
+                spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Black, 0, 
+                    Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+                if ((int)(animation2.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
+                {
+                    spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
+                        Color.Red, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+                }
+            }
+            else
+            {
+                if ((int)(animation1.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
+                {
+                    spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Red, 0, 
+                        Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+                }
+                spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
+                    Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            }
+
+            spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X, 0),
+                (!secondAnimationStarted) ? Color.Red : Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+
+            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X, font.MeasureString(velocity2).Y),
+                (secondAnimationStarted) ? Color.Red : Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+
             spriteBatch.End();
         }
 
