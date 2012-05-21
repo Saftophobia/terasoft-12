@@ -72,22 +72,22 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-                /*if (distance / totalDistance > 1)
+                if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     this.shootVelocity = new Vector3(10, 0, -10);
-                    animation = new BallAnimation(ball, this.shootVelocity, environment.Friction, Vector3.Zero, 0);
-                }*/
-                if (environment.hasBallEnteredShootRegion())
+                    animation = new BallAnimation(ball, this.shootVelocity, environment.Friction, environment.HoleProperty.Position, environment.HoleProperty.Radius);
+                }
+                /*if (environment.hasBallEnteredShootRegion())
                 {
-                    Vector3 shootVelocity = 8 * environment.Shoot(gameTime);
+                    Vector3 shootVelocity = environment.Shoot(gameTime);
                     if (user.hasShot && shootVelocity.Length() != 0)
                     {
                         firstAnimation = false;
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
-                        animation = new BallAnimation(ball, this.shootVelocity, environment.Friction, Vector3.Zero, 0);
+                        new BallAnimation(ball, this.shootVelocity, environment.Friction, environment.HoleProperty.Position, environment.HoleProperty.Radius);
                     }
-                }
+                }*/
                 if (animation.Finished())
                 {
                     //add final screen
@@ -108,8 +108,9 @@ namespace Mechanect.Exp3
             }
 
             targetCamera.Update();
-            animation.Update(gameTime.ElapsedGameTime);
+
             ball.SetHeight(environment.GetHeight(ball.Position));
+            animation.Update(gameTime.ElapsedGameTime);
 
             base.Update(gameTime);
         }
