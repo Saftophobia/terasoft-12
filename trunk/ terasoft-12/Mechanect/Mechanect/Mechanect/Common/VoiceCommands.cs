@@ -16,11 +16,11 @@ namespace Mechanect.Common
     /// </remarks>
    public class VoiceCommands
     {     
-        KinectAudioSource _kinectAudio;
-        SpeechRecognitionEngine _speechRecognitionEngine;
-        Stream _stream;
-        readonly KinectSensor _kinect;
-        string _hearedString= " ";  
+        KinectAudioSource kinectAudio;
+        SpeechRecognitionEngine speechRecognitionEngine;
+        Stream stream;
+        readonly KinectSensor kinect;
+        string hearedString= " ";  
         /// <summary>
         /// Constructor takes as input Kinect Sensor and use it to initialize the instance variable 
         ///"Kinect" and call InitalizeKinectAudio() to initiate the audio and string Command contains commands.
@@ -34,7 +34,7 @@ namespace Mechanect.Common
    
         public VoiceCommands(KinectSensor kinect,string commands)
         {
-            _kinect = kinect;
+            this.kinect = kinect;
             InitalizeKinectAudio(commands);
         }  
        /// <summary>
@@ -51,7 +51,7 @@ namespace Mechanect.Common
             string [] arrayOfCommands = commands.Split(',');
           //  KinectAudio = Kinect.AudioSource;
             RecognizerInfo recognizerInfo = GetKinectRecognizer();
-            _speechRecognitionEngine = new SpeechRecognitionEngine(recognizerInfo.Id);
+            speechRecognitionEngine = new SpeechRecognitionEngine(recognizerInfo.Id);
             var choices = new Choices();
             foreach (var command in arrayOfCommands)
            {
@@ -60,8 +60,8 @@ namespace Mechanect.Common
            var grammarBuilder = new GrammarBuilder { Culture = recognizerInfo.Culture};
            grammarBuilder.Append(choices);
            var grammar = new Grammar(grammarBuilder);
-            _speechRecognitionEngine.LoadGrammar(grammar);
-            _speechRecognitionEngine.SpeechRecognized += SpeechRecognitionEngineSpeechRecognized;
+            speechRecognitionEngine.LoadGrammar(grammar);
+            speechRecognitionEngine.SpeechRecognized += SpeechRecognitionEngineSpeechRecognized;
         }
         /// <summary>
         /// StartAudioStream is amethod that the engine start listening to the user.
@@ -72,10 +72,20 @@ namespace Mechanect.Common
 
         public void StartAudioStream()
         {
-            _kinectAudio = _kinect.AudioSource;
-            _stream = _kinectAudio.Start();
-            _speechRecognitionEngine.SetInputToAudioStream(_stream, new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1, 32000, 2, null));
-            _speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);   
+            try
+            {
+                kinectAudio = kinect.AudioSource;
+                stream = kinectAudio.Start();
+                speechRecognitionEngine.SetInputToAudioStream(stream,
+                                                              new SpeechAudioFormatInfo(EncodingFormat.Pcm, 16000, 16, 1,
+                                                                                        32000, 2, null));
+                speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);
+            }
+            catch
+            {
+                
+            }
+
         }
          
         /// <summary>
@@ -90,13 +100,13 @@ namespace Mechanect.Common
 
         public bool GetHeared(string expectedString)
         {
-            return expectedString.Equals(_hearedString);
+            return expectedString.Equals(hearedString);
         }
 
         [Obsolete("getHeared is deprecated, please use GetHeared instead.")]
-         public Boolean getHeared(string expectedString)
+        public Boolean getHeared(string expectedString)
         {
-            return expectedString.Equals(_hearedString);
+            return expectedString.Equals(hearedString);
         }
 
         /// <summary>
@@ -106,12 +116,12 @@ namespace Mechanect.Common
          /// <remarks>
            /// <para>AUTHOR: Tamer Nabil </para>
            /// </remarks>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">sender</param>
+        /// <param name="e">Event argument</param>
         private void SpeechRecognitionEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             if (e.Result.Confidence > 0.4)
-                _hearedString = e.Result.Text;
+                hearedString = e.Result.Text;
         }
 
         /// <summary>
@@ -137,6 +147,3 @@ namespace Mechanect.Common
 
     }
 }
-
-
-
