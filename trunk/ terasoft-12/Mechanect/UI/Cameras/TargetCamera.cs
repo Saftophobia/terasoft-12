@@ -23,7 +23,7 @@ namespace UI.Cameras
         public TargetCamera(Vector3 position, Vector3 target, GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
         {
-            this.Position = position;
+            Position = position;
             this.target = target;
         }
 
@@ -32,7 +32,7 @@ namespace UI.Cameras
         /// </summary>
         public override void Update()
         {
-            this.View = Matrix.CreateLookAt(Position, target, Vector3.Up);
+            View = Matrix.CreateLookAt(Position, target, Vector3.Up);
         }
 
     }
