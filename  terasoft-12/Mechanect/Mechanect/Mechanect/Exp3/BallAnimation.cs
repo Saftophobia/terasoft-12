@@ -15,6 +15,16 @@ namespace Mechanect.Exp3
         private bool willFall;
         private int fallFactor;
 
+        /// <summary>
+        /// constructs a new BallAnimation instance 
+        /// </summary>
+        /// <param name="ball">ball</param>
+        /// <param name="hole">hole</param>
+        /// <param name="velocity">intial velocity vector</param>
+        /// <param name="friction">friction magnitude</param>
+        /// <remarks>
+        /// Author : Bishoy Bassem, Omar Abdulaal
+        /// </remarks>
         public BallAnimation(Ball ball, Hole hole, Vector3 velocity, float friction)
             : base(ball, velocity, friction, LinearMotion.CalculateTime(velocity.Length(), 0, friction))
         {
