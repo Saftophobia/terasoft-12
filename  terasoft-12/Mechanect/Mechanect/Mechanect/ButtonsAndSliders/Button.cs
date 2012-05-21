@@ -21,14 +21,13 @@ namespace ButtonsAndSliders
 
         private bool status;
 
-        static int drawHand = -1;
         ///<remarks>
         ///<para>
         ///Author: HegazY
         ///</para>
         ///</remarks>
         /// <summary>
-        /// The constructor used to initialize the button. First Button to be created must be last button to be drawn.
+        /// The constructor used to initialize the button.
         /// </summary>
         /// <param name="texture">the gif texture of the button not moving</param>
         /// <param name="animation">the gif texture of the button moving</param>
@@ -50,8 +49,6 @@ namespace ButtonsAndSliders
             this.user = user;
             timer = new Timer1();
 
-            if (drawHand == -1)
-                drawHand = this.GetHashCode();
         }
 
         ///<remarks>
@@ -67,8 +64,6 @@ namespace ButtonsAndSliders
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
-            if (drawHand == this.GetHashCode())
-                spriteBatch.Draw(hand, handPosition, Color.White);
         }
 
         ///<remarks>
@@ -96,7 +91,6 @@ namespace ButtonsAndSliders
                     Animate();
                     if (timer.GetDuration(gameTime) >= (2000))
                     {
-                        drawHand = -1;
                         status = true;
                         timer.Stop();
                     }
@@ -125,8 +119,10 @@ namespace ButtonsAndSliders
             Skeleton skeleton = user.USER;
             if (skeleton != null)
             {
-                handPosition.X = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH).X;
-                handPosition.Y = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH).Y;
+                handPosition.X = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], 
+                    screenW, screenH).X;
+                handPosition.Y = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], 
+                    screenW, screenH).Y;
             }
         }
 
