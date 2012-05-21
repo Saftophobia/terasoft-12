@@ -151,7 +151,7 @@ namespace Mechanect.Screens
         public Experiment2(User2 user)
         {
             tolerance = 20;
-            environment = new Environment2(tolerance);
+            environment = new Environment2();
 
             this.user = user;
             this.mKinect = user.Kinect;
