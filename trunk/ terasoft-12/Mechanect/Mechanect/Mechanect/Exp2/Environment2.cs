@@ -19,12 +19,13 @@ namespace Mechanect.Exp2
         /// <para>DATE WRITTEN: May, 18 </para>
         /// <para>DATE MODIFIED: May, 18  </para>
         /// </remarks>
-        #region
+        #region: For generating the GUI
         private Texture2D xyAxisTexture;
         private Texture2D lineConnector;
         private Vector2 predatorScaling;
         private Vector2 preyScaling;
         private Vector2 aquariumScaling;
+        private Vector2 initialPredatorLocation;
         private float windowWidth;
         private float windowHeight;
         private Vector2 pixelsPerMeter;
@@ -84,7 +85,9 @@ namespace Mechanect.Exp2
             Predator = new Predator(position);
             Prey = new Prey(new Vector2(prey.X, prey.Y), prey.Width, prey.Height);
             Aquarium = new Aquarium(new Vector2(aquriaum.X, aquriaum.Y), aquriaum.Width, aquriaum.Height);
-            StartAquarium = new Aquarium(new Vector2(position.X, position.Y), aquriaum.Width, aquriaum.Height);
+            initialPredatorLocation = new Vector2(position.X, position.Y);
+            StartAquarium = new Aquarium(initialPredatorLocation, aquriaum.Width, aquriaum.Height);
+            
         }
 
         /// <summary>
@@ -340,9 +343,7 @@ namespace Mechanect.Exp2
 
             rectangle = new Rectangle(rectangle.X + 80, rectangle.Y, Math.Min(rectangle.Width, viewPort.Width), Math.Min(rectangle.Height, viewPort.Height));
 
-            spriteBatch.Begin();
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
-            spriteBatch.End();
 
             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + 0.8f * rectangle.Width * axisesPercentage), (int)(rectangle.Y + rectangle.Height * 4.15f * axisesPercentage), (int)(rectangle.Width - rectangle.Width * 5.5f * axisesPercentage), (int)(rectangle.Height - rectangle.Height * 5 * axisesPercentage));
 
@@ -361,16 +362,17 @@ namespace Mechanect.Exp2
         ///<param name="mySpriteBatch">The MySpriteBatch that will be used in drawing</param>
         private void DrawObjects(Rectangle rectangle, MySpriteBatch mySpriteBatch)
         {
-            StartAquarium.Draw(mySpriteBatch, PositionMapper(Predator.Location), aquariumScaling);
+            StartAquarium.Draw(mySpriteBatch, PositionMapper(initialPredatorLocation), aquariumScaling);
+
             if (rectangle.Contains(new Microsoft.Xna.Framework.Point((int)PositionMapper(Predator.Location).X, (int)PositionMapper(Predator.Location).Y))) ;
             Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
             if (!Prey.Eaten)
                 Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
             Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
 
-            spriteBatch.Begin();
+
             DrawConnectors(rectangle);
-            spriteBatch.End();
+
         }
 
         /// <summary>
