@@ -22,6 +22,7 @@ namespace Mechanect.Exp3
             Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
+
             if (Vector3.Distance(stopPosition, holePosition) < (ball.Radius + holeRadius))
             {
                 willFall = true;
@@ -32,11 +33,12 @@ namespace Mechanect.Exp3
         {
             base.Update(elapsed);
             ball.Rotate(Displacement);
+
             if (!base.Finished())
             {
                 if (willFall)
                 {
-                    if (ElapsedTime > Duration - TimeSpan.FromSeconds(3))
+                    if (ElapsedTime > Duration - TimeSpan.FromSeconds(3.2))
                     {
                         if (fallFactor < 120)
                         {
