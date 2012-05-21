@@ -27,8 +27,8 @@ namespace UI.Cameras
         /// <param name="positionOffset">offset between the object and the camera positions</param>
         /// <param name="relativeCameraRotation">start orientation of the camera</param>
         /// <param name="targetOffset">offset between the object and the camera's target positions</param>
-        public ChaseCamera(Vector3 positionOffset, Vector3 targetOffset, Vector3 relativeCameraRotation, GraphicsDevice graphicsDevice)
-            : base(graphicsDevice)
+        public ChaseCamera(Vector3 positionOffset, Vector3 targetOffset, Vector3 relativeCameraRotation, 
+            GraphicsDevice graphicsDevice) : base(graphicsDevice)
         {
             this.positionOffset = positionOffset;
             this.targetOffset = targetOffset;
@@ -54,11 +54,13 @@ namespace UI.Cameras
         }
 
         /// <summary>
-        /// causes the camera to update its view and projection matrices according to the new object's position and camera orientation
+        /// causes the camera to update its view and projection matrices 
+        /// according to the new object's position and camera orientation
         /// </summary>
         public override void Update()
         {
-            Matrix rotation = Matrix.CreateFromYawPitchRoll(relativeCameraRotation.Y, relativeCameraRotation.X, relativeCameraRotation.Z);
+            Matrix rotation = Matrix.CreateFromYawPitchRoll(relativeCameraRotation.Y, 
+                relativeCameraRotation.X, relativeCameraRotation.Z);
             Vector3 desiredPosition = followTargetPosition + Vector3.Transform(positionOffset, rotation);
             Position = Vector3.Lerp(Position, desiredPosition, .15f);
             target = followTargetPosition + Vector3.Transform(targetOffset, rotation);
