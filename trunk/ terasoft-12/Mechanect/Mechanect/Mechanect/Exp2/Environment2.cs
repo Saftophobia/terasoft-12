@@ -105,7 +105,8 @@ namespace Mechanect.Exp2
         {
             Predator = new Predator(position);
             Prey = new Prey(new Vector2((float)prey.X, (float)prey.Y), (float)prey.Width, (float)prey.Height);
-            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y), (float)aquriaum.Width, (float)aquriaum.Height);
+            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y),
+            (float)aquriaum.Width, (float)aquriaum.Height);
             initialPredatorLocation = new Vector2(position.X, position.Y);  
             StartAquarium = new Aquarium(initialPredatorLocation,(float)aquriaum.Width, (float)aquriaum.Height);
         }
@@ -337,7 +338,9 @@ namespace Mechanect.Exp2
         ///<param name="spriteBatch">The spriteBatch that will be used in drawing</param>
         public void Draw(Rectangle rectangle, SpriteBatch spriteBatch)
         {
-
+            if (DrawBackground)
+                spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
+           
             if (this.mySpriteBatch == null)
                 this.mySpriteBatch = new MySpriteBatch(spriteBatch);
             if (this.spriteBatch == null)
@@ -346,9 +349,7 @@ namespace Mechanect.Exp2
             rectangle = new Rectangle(rectangle.X + 80, rectangle.Y, Math.Min(rectangle.Width, viewPort.Width), Math.Min(rectangle.Height, viewPort.Height));
 
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
-            if(DrawBackground)
-            spriteBatch.Draw(backgroundTexture, rectangle, Color.White);
-            Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + 0.8f * rectangle.Width * axisesPercentage), (int)(rectangle.Y + rectangle.Height * 4.15f * axisesPercentage), (int)(rectangle.Width - rectangle.Width * 5.5f * axisesPercentage), (int)(rectangle.Height - rectangle.Height * 5 * axisesPercentage));
+             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + 0.8f * rectangle.Width * axisesPercentage), (int)(rectangle.Y + rectangle.Height * 4.15f * axisesPercentage), (int)(rectangle.Width - rectangle.Width * 5.5f * axisesPercentage), (int)(rectangle.Height - rectangle.Height * 5 * axisesPercentage));
 
             ConfigureWindowSize(smallerRrectangle, viewPort);
             DrawObjects(smallerRrectangle, mySpriteBatch);
