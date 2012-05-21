@@ -56,14 +56,17 @@ namespace Mechanect.Exp3
 
             font = content.Load<SpriteFont>("SpriteFont1");
 
-            Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(hole.Position - shootPosition, 0, friction);
+            Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(hole.Position - 
+                shootPosition, 0, friction);
 
             animation1 = new BallAnimation(ball, hole, shootVelocity, friction);
             animation2 = new BallAnimation(ball, hole, optimalVelocity, friction);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
-            velocity1 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", shootVelocity.X, shootVelocity.Y, shootVelocity.Z);
-            velocity2 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", optimalVelocity.X, optimalVelocity.Y, optimalVelocity.Z);
+            velocity1 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", shootVelocity.X, 
+                shootVelocity.Y, shootVelocity.Z);
+            velocity2 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", optimalVelocity.X, 
+                optimalVelocity.Y, optimalVelocity.Z);
         }
 
         /// <summary>
@@ -121,8 +124,9 @@ namespace Mechanect.Exp3
             spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X, 0),
                 (!secondAnimationStarted) ? Color.Red : Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
-            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X, font.MeasureString(velocity2).Y),
-                (secondAnimationStarted) ? Color.Red : Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X, 
+                font.MeasureString(velocity2).Y), (secondAnimationStarted) ? Color.Red : Color.Black, 0, 
+                Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
             spriteBatch.End();
         }
