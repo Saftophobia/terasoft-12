@@ -649,53 +649,6 @@ namespace Mechanect.Screens
 
 
 
-
-        /// <summary>
-        /// determines whether the predator eats the prey or not
-        /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        ///<returns>a boolean flag which is true if the prey is eating and false otherwise</returns>
-        private Boolean isPreyEaten()
-        {
-            Boolean isHit = false;
-            Vector2 position = environment.Predator.getLocation();
-            Prey prey = environment.Prey;
-            if (position.X >= prey.Location.X - prey.Width / 2
-                && position.X <= prey.Location.X + prey.Width / 2
-                && position.Y >= prey.Location.Y - prey.Length / 2
-                && position.Y <= prey.Location.Y + prey.Length / 2)
-                isHit = true;
-            return isHit;
-        }
-
-
-        /// <summary>
-        /// determines whether the predator reached the aquarium or not
-        /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        ///<returns>returns true if the predator reached the aquarium</returns>
-        private Boolean isAquariumReached()
-        {
-            Boolean isReached = false;
-            Vector2 position = environment.Predator.getLocation();
-            Aquarium aquarium = environment.Aquarium;
-            if (position.X >= aquarium.Location.X - aquarium.Width / 2
-                && position.X <= aquarium.Location.X + aquarium.Width / 2
-                && position.Y >= aquarium.Location.Y - aquarium.Length / 2
-                && position.Y <= aquarium.Location.Y + aquarium.Length / 2)
-                isReached = true;
-            return isReached;
-        }
-
-
         /// <summary>
         /// Runs at every frame, Updates game parameters and checks for user's actions
         /// </summary>
@@ -704,51 +657,37 @@ namespace Mechanect.Screens
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">determines whether there exist another screen covering this one or not.</param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         { 
             if (ended)
             {
-                milliSeconds += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
                 if (milliSeconds > 3000)
                 {
-                    this.ExitScreen();
-                    ScreenManager.AddScreen(new LastScreen(user, 2));
                     this.Remove();
+                    ScreenManager.AddScreen(new LastScreen(user, 2));
                 }
             }
             else
             {
-                if (!grayScreen && user.MeasuredVelocity != 0 && !aquariumReached)
+                if (!grayScreen && user.MeasuredVelocity != 0)
                 {
                     if (!isCopied)
                     {
                         isCopied = true;
-                        //I commented this line to have a compilation-error free repo
-                        //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
+                        //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos(user.MeasuredFinalAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredFinalAngle * Math.PI / 180)));
                     }
-                    environment.Predator.UpdatePosition(gameTime);
-                    if (!preyEaten) preyEaten = isPreyEaten();
-                    if (!aquariumReached) aquariumReached = isAquariumReached();
-                    if (aquariumReached)
-                    {
-                        environment.Predator.Location = new Vector2(environment.Aquarium.Location.X, environment.Aquarium.Location.Y);
-                        environment.Predator.Velocity = Vector2.Zero;
-                        ended = true;
-                    }
-                    else if (environment.Predator.Location.Y <= 0)
-                    {
-                        environment.Predator.Velocity = Vector2.Zero;
-                        ended = true;
-                    }
+                    ended = environment.Update(gameTime);
 
                 }
 
                 else
                 {
+                    user.setSkeleton();
                     if (button != null)
                     {
                         button.Update(gameTime);
-                        if (button.IsClicked() || voiceCommand.getHeared("go"))
+                        if (button.IsClicked() || voiceCommand.GetHeared("go"))
                         {
                             grayScreen = false;
                             button = null;
@@ -756,11 +695,10 @@ namespace Mechanect.Screens
                             user.Reset();
                         }
                     }
-                    user.setSkeleton();
                     if (user.USER != null && user.USER.Position.Z != 0)
                     {
-                        //I commented this line to have a compilation-error free repo
-                     //   user.MeasureVelocityAndAngle(gameTime);
+                        
+                        //user.MeasureVelocityAndAngle(gameTime);
                     }
                 }
                 //I commented this line to have a compilation-error free repo
