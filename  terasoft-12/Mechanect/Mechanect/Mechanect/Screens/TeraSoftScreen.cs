@@ -1,8 +1,6 @@
-﻿using System.Threading;
-using Mechanect.Common;
+﻿using Mechanect.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Mechanect.Screens
 {

@@ -2,7 +2,6 @@
 using Mechanect.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace Mechanect.Screens
 {
@@ -18,8 +17,8 @@ namespace Mechanect.Screens
         private string path;
         private float scale;
         private float rotation;
-        private float xPositionOffset;
-        private float yPositionOffset;
+        private float xPositionPercentOffset;
+        private float yPositionPercentOffset;
         private bool done;
     
         public bool Done
@@ -45,14 +44,14 @@ namespace Mechanect.Screens
         /// <param name="path">path of the image that will be added to the middle of the screen.</param>
         /// <param name="logoScale">scaling ratio of the image.</param>
         /// <param name="rotation">rotation for the image.</param>
-        /// <param name="xPositionOffset">X-axis position offset of the image.</param>
-        /// <param name="yPositionOffset">Y-axis position offset of the image.</param>
-        public FadingScreen(string path, float logoScale,float rotation,float xPositionOffset, float yPositionOffset)
+        /// <param name="xPositionPercentOffset">X-axis position offset of the image.</param>
+        /// <param name="yPositionPercentOffset">Y-axis position offset of the image.</param>
+        public FadingScreen(string path, float logoScale,float rotation,float xPositionPercentOffset, float yPositionPercentOffset)
         {
             this.path = path;
             this.rotation = rotation;
-            this.xPositionOffset = xPositionOffset;
-            this.yPositionOffset = yPositionOffset;
+            this.xPositionPercentOffset = xPositionPercentOffset;
+            this.yPositionPercentOffset = yPositionPercentOffset;
             first = true;
             fading = 1f;
             scale = logoScale;
@@ -66,8 +65,8 @@ namespace Mechanect.Screens
         {
             black = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/black");
             logo = ScreenManager.Game.Content.Load<Texture2D>(@""+path);
-            this.xPositionOffset = ScreenManager.GraphicsDevice.Viewport.Width * xPositionOffset;
-            this.yPositionOffset = ScreenManager.GraphicsDevice.Viewport.Height * yPositionOffset;
+            this.xPositionPercentOffset = ScreenManager.GraphicsDevice.Viewport.Width * xPositionPercentOffset;
+            this.yPositionPercentOffset = ScreenManager.GraphicsDevice.Viewport.Height * yPositionPercentOffset;
         }
 
        /// <summary>
@@ -77,7 +76,7 @@ namespace Mechanect.Screens
        /// <param name="covered">specifies wether the screen is covered.</param>
         public override void Update(GameTime gameTime, bool covered)
         {
-            if (fading <= 0.01f || !first)
+            if ((fading <= 0.01f) || !first)
             {
                 if (first)
                 {
@@ -98,10 +97,9 @@ namespace Mechanect.Screens
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
-           // ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(logo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2) + xPositionOffset,
-                ((ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height) * scale) / 2) + yPositionOffset),
+            ScreenManager.SpriteBatch.Draw(logo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2) + xPositionPercentOffset,
+                ((ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height) * scale) / 2) + yPositionPercentOffset),
                 null, Color.White, rotation, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
 
             ScreenManager.SpriteBatch.Draw(black, Vector2.Zero, null, Color.White * fading, 0, new Vector2(0, 0),
