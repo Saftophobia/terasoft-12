@@ -170,7 +170,6 @@
     <Compile Include="Screens\AdjustPosition.cs" />
     <Compile Include="Screens\AllExperiments.cs" />
     <Compile Include="Screens\CommonPauseScreen.cs" />
-    <Compile Include="Screens\DepthBar.cs" />
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experiment2.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
