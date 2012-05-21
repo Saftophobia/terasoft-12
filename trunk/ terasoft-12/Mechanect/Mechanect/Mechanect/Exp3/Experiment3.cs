@@ -51,7 +51,7 @@ namespace Mechanect.Exp3
 
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
-            animation = new BallAnimation(ball, intialVelocity, environment.Friction, Vector3.Zero, 4);
+            animation = new BallAnimation(ball, environment.HoleProperty, intialVelocity, environment.Friction);
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.95f, ScreenManager.GraphicsDevice.Viewport.Width * 0.35f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
@@ -62,6 +62,7 @@ namespace Mechanect.Exp3
         {
             environment.PlayerModel.Update();
             environment.PlayerAnimation.Update();
+            ball.SetHeight(environment.GetHeight(ball.Position));
             if (firstAnimation)
             {
                 float distance = animation.Displacement.Length();
@@ -72,22 +73,22 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-                if (distance / totalDistance > 1)
+                /*if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     this.shootVelocity = new Vector3(10, 0, -10);
-                    animation = new BallAnimation(ball, this.shootVelocity, environment.Friction, environment.HoleProperty.Position, environment.HoleProperty.Radius);
-                }
-                /*if (environment.hasBallEnteredShootRegion())
+                    animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+                }*/
+                if (environment.hasBallEnteredShootRegion())
                 {
                     Vector3 shootVelocity = environment.Shoot(gameTime);
                     if (user.hasShot && shootVelocity.Length() != 0)
                     {
                         firstAnimation = false;
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
-                        new BallAnimation(ball, this.shootVelocity, environment.Friction, environment.HoleProperty.Position, environment.HoleProperty.Radius);
+                        new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
                     }
-                }*/
+                }
                 if (animation.Finished())
                 {
                     //add final screen
@@ -95,9 +96,9 @@ namespace Mechanect.Exp3
             }
             else if (animation.Finished() && simulation == null)
             {
-                simulation = new Simulation(ball, user.shootingPosition, environment.HoleProperty.Position, shootVelocity, environment.Friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                simulation = new Simulation(ball, environment.HoleProperty, user.shootingPosition, shootVelocity, environment.Friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             }
-
+            
             if (simulation != null)
             {
                 simulation.Update(gameTime);
@@ -106,12 +107,12 @@ namespace Mechanect.Exp3
                     //add final screen
                 }
             }
-
+            else
+            {
+                animation.Update(gameTime.ElapsedGameTime);
+            }
+            
             targetCamera.Update();
-
-            ball.SetHeight(environment.GetHeight(ball.Position));
-            animation.Update(gameTime.ElapsedGameTime);
-
             base.Update(gameTime);
         }
 
