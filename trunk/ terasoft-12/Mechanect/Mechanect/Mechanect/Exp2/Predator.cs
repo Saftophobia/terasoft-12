@@ -14,7 +14,12 @@ namespace Mechanect.Exp2
     {
 
         Vector2 location;
+        public bool Movable { get; set; }
+
         Texture2D fishTexture;
+
+
+
         public Vector2 Location
         {
             get
