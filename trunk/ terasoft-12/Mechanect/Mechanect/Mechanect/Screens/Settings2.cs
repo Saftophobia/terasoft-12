@@ -32,7 +32,8 @@ namespace Mechanect.Screens
              ScreenManager.GraphicsDevice.Viewport.Width,
              ScreenManager.GraphicsDevice.Viewport.Height, user);
             levelAndTheme = new ThemeAndLevel(new Vector2(150, 150), user);
-            levelAndTheme.LoadContent(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height,ScreenManager.Game.Content);
+            levelAndTheme.LoadContent(ScreenManager.GraphicsDevice.Viewport.Width,
+            ScreenManager.GraphicsDevice.Viewport.Height,ScreenManager.Game.Content);
 
         }
 
