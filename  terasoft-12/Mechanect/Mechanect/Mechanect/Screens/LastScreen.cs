@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mechanect.Common;
+﻿using Mechanect.Common;
 using Microsoft.Xna.Framework;
-using Mechanect.Classes;
+using Microsoft.Xna.Framework.Content;
 using ButtonsAndSliders;
-using Mechanect.Exp3;
-using Mechanect.Exp2;
 using Mechanect.Exp1;
-
+using Mechanect.Exp2;
+using Mechanect.Exp3;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Screens
 {
@@ -43,15 +39,15 @@ namespace Mechanect.Screens
         /// </summary>
         public override void LoadContent()
         {
-            mainMenu = Tools3.MainMenuButton(this.ScreenManager.Game.Content,
-            new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width-200 , this.ScreenManager.GraphicsDevice.Viewport.Height-250),
-            this.ScreenManager.GraphicsDevice.Viewport.Width,
-            this.ScreenManager.GraphicsDevice.Viewport.Height,user);
+            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
+            ContentManager contentManager = this.ScreenManager.Game.Content;
 
-            newGame = Tools3.NewGameButton(this.ScreenManager.Game.Content,
-              new Vector2(this.ScreenManager.GraphicsDevice.Viewport.Width - 500, this.ScreenManager.GraphicsDevice.Viewport.Height - 250),
-              this.ScreenManager.GraphicsDevice.Viewport.Width,
-              this.ScreenManager.GraphicsDevice.Viewport.Height, user);
+            mainMenu = Tools3.MainMenuButton(contentManager, new Vector2(screenWidth - 200, 
+                screenHeight - 250), screenWidth, screenHeight, user);
+
+            newGame = Tools3.NewGameButton(contentManager, new Vector2(screenWidth - 500, 
+                screenHeight - 250), screenWidth, screenHeight, user);
         }
 
 
@@ -65,29 +61,27 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="covered"></param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (mainMenu.IsClicked())
             {
-
-                Remove();
                 ScreenManager.AddScreen(new AllExperiments(user));
-                this.Remove();
+                Remove();
             }
             if (newGame.IsClicked())
             {
-                Remove();
                 switch(experemintNumber)
                 {
-                    //case 1: ScreenManager.AddScreen(new Experiment1(new User1(1), new User1(2), new MKinect())); break;
+                    case 1: ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect())); break;
                     case 2: ScreenManager.AddScreen(new InstructionsScreen2(new User2())); break;
                     case 3: ScreenManager.AddScreen(new InstructionsScreen3(new User3())); break;
                     default: break;
                 }
-                this.Remove();
+                Remove();
             }
             mainMenu.Update(gameTime);
             newGame.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -103,9 +97,11 @@ namespace Mechanect.Screens
         /// <param name="gameTime"></param>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            
             this.ScreenManager.SpriteBatch.Begin();
             newGame.Draw(this.ScreenManager.SpriteBatch);
             mainMenu.Draw(this.ScreenManager.SpriteBatch);
+            mainMenu.DrawHand(this.ScreenManager.SpriteBatch);
             this.ScreenManager.SpriteBatch.End();
         }
     }
