@@ -12,6 +12,7 @@ namespace Mechanect.Exp2
     public class Prey
     {
         Vector2 location;
+        public bool Eaten {get; set;}
         Texture2D preyTexture;
         float angle;
         public float Angle
