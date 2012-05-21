@@ -29,6 +29,13 @@ namespace Mechanect.Exp3
         private float arriveVelocity;
         private Vector3 shootVelocity;
 
+        /// <summary>
+        /// constructs a new Experiment3 screen
+        /// </summary>
+        /// <param name="user">user</param>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         public Experiment3(User3 user)
         {
             arriveVelocity = 10;
@@ -37,6 +44,12 @@ namespace Mechanect.Exp3
             this.user = user;
         }
 
+        /// <summary>
+        /// loads the experiment's content
+        /// </summary>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         public override void LoadContent()
         {
             targetCamera = new TargetCamera(new Vector3(0, 140, 250), new Vector3(0,80,0), ScreenManager.GraphicsDevice);
@@ -58,6 +71,13 @@ namespace Mechanect.Exp3
             //environment = new Environment3(ball.Position, intialVelocity, ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
         }
 
+        /// <summary>
+        /// updates the experiment's screen
+        /// </summary>
+        /// <param name="gameTime">GameTime instance</param>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         public override void Update(GameTime gameTime)
         {
             environment.PlayerModel.Update();
@@ -73,13 +93,13 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-                /*if (distance / totalDistance > 1)
+                if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     this.shootVelocity = new Vector3(10, 0, -10);
                     animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
-                }*/
-                if (environment.hasBallEnteredShootRegion())
+                }
+                /*if (environment.hasBallEnteredShootRegion())
                 {
                     Vector3 shootVelocity = environment.Shoot(gameTime);
                     if (user.hasShot && shootVelocity.Length() != 0)
@@ -88,7 +108,7 @@ namespace Mechanect.Exp3
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
                         new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
                     }
-                }
+                }*/
                 if (animation.Finished())
                 {
                     //add final screen
@@ -116,6 +136,13 @@ namespace Mechanect.Exp3
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// draws the experiment's screen
+        /// </summary>
+        /// <param name="gameTime">GameTime instance</param>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         public override void Draw(GameTime gameTime)
         {
             Camera camera = targetCamera;
