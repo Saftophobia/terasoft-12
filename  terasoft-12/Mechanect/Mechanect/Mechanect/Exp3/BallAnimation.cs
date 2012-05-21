@@ -15,15 +15,14 @@ namespace Mechanect.Exp3
         private bool willFall;
         private int fallFactor;
 
-        public BallAnimation(Ball ball, Vector3 velocity, float friction, Vector3 holePosition, float holeRadius)
+        public BallAnimation(Ball ball, Hole hole, Vector3 velocity, float friction)
             : base(ball, velocity, friction, LinearMotion.CalculateTime(velocity.Length(), 0, friction))
         {
             this.ball = ball;
             Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
-
-            if (Vector3.Distance(stopPosition, holePosition) < (ball.Radius + holeRadius))
+            if (Vector3.Distance(stopPosition, hole.Position) < (ball.Radius + hole.Radius))
             {
                 willFall = true;
             }
