@@ -37,7 +37,7 @@ namespace Tests
         [Test]
         public void TestsHoleAfterShootingPosition()
         {
-            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.user.ShootingPosition.Z);
+            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.user.shootingPosition.Z);
         }
     }
 }
