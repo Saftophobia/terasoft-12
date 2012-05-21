@@ -32,8 +32,8 @@ namespace Mechanect.Common
         {
             switch (ID)
             {
-                case 0: kinect.requestSkeleton(); break;
-                case 1: kinect.request2ndSkeleton(); break;
+                case 0: user = kinect.requestSkeleton(); break;
+                case 1: user = kinect.request2ndSkeleton(); break;
             }
         }
 
