@@ -54,15 +54,18 @@ namespace Mechanect.Exp2
             }
             else
             {
-                //environment.Update(gameTime);
+                simulationRunning = environment.Update(gameTime);
             }
         }
 
         public void Draw(Rectangle rectangle, ContentManager contentManager, SpriteBatch spriteBatch, Viewport viewport)
         {
             //environment.Draw(new Rectangle(rectangle.X, rectangle.Y + 50, rectangle.Width, rectangle.Height), contentManager, spriteBatch, viewport);
-            string data = "Velocity = " + Math.Round(initialPredatorVelocity.Length(), 2) + ", Angle = " 
-                + Math.Round(MathHelper.ToDegrees((float)Math.Tan(initialPredatorVelocity.Y / initialPredatorVelocity.X)), 2);
+            string data = string.Empty;
+            data += "Velocity = ";
+            data += Math.Round(initialPredatorVelocity.Length(), 2);
+            data += ", Angle = ";
+            data += Math.Round(MathHelper.ToDegrees((float)Math.Tan(initialPredatorVelocity.Y / initialPredatorVelocity.X)), 2);
             spriteBatch.DrawString(font, data, new Vector2(rectangle.X, rectangle.Y), Color.Black);
         }
     }
