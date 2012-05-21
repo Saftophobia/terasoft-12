@@ -14,18 +14,7 @@ namespace Mechanect.Exp2
         Vector2 location;
         public bool Eaten {get; set;}
         Texture2D preyTexture;
-        float angle;
-        public float Angle
-        {
-            set
-            {
-                angle = value;
-            }
-            get
-            {
-                return angle;
-            }
-        }
+       
 
         public Vector2 Location
         {
@@ -132,7 +121,7 @@ namespace Mechanect.Exp2
         /// <param name="scale"> The scaling of the texture</param>
         public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, Vector2 scale)
         {
-            mySpriteBatch.DrawTexture(preyTexture, location, angle, scale);
+            mySpriteBatch.DrawTexture(preyTexture, location, 0, scale);
         }
     }
 }

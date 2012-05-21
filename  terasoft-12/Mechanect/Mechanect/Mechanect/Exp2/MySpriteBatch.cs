@@ -11,7 +11,7 @@ namespace Mechanect.Exp2
     /// <summary>
     /// This class was created just to eliminate the duplication of the customized Draw method.
     /// </summary>
-    public class MySpriteBatch 
+    public class MySpriteBatch
     {
         SpriteBatch SpriteBatch;
         /// <summary>
@@ -36,10 +36,10 @@ namespace Mechanect.Exp2
         public void DrawTexture(Texture2D texture2D, Vector2 position, float angle, Vector2 scale)
         {
             SpriteBatch.Begin();
-            SpriteBatch.Draw(texture2D, position, null, Color.White, angle, new Vector2(position.X,position.Y), scale, SpriteEffects.None, 0);
+            SpriteBatch.Draw(texture2D, position, null, Color.White, angle, new Vector2(texture2D.Width, texture2D.Height)/2, scale, SpriteEffects.None, 0);
             SpriteBatch.End();
         }
-      
-       
+
+
     }
 }
