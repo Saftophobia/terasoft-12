@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using SkinnedModel;
 
 
-namespace Mechanect.Common
+namespace UI.Components
 {
     public class SkinnedCustomModel
     {
@@ -41,7 +41,7 @@ namespace Mechanect.Common
         {
             this.model = model;
             this.skinningData = model.Tag as SkinningData;
-            
+
             this.originalBones = new Matrix[skinningData.BindPose.Count];
             this.skinningData.CopyBindPose(originalBones);
 
@@ -125,7 +125,7 @@ namespace Mechanect.Common
             // Render the skinned mesh.
             foreach (ModelMesh mesh in model.Meshes)
             {
-                Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, 
+                Matrix world = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y,
                     Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position);
                 foreach (SkinnedEffect effect in mesh.Effects)
                 {

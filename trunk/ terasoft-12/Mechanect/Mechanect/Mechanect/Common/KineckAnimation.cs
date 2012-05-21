@@ -1,5 +1,6 @@
 ﻿using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
+using UI.Components;
 
 namespace Mechanect.Common
 {

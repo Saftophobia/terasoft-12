@@ -129,7 +129,6 @@
     <Compile Include="Common\KineckAnimation.cs" />
     <Compile Include="Common\PositionAdjustment.cs" />
     <Compile Include="Common\Program.cs" />
-    <Compile Include="Common\SkinnedCustomModel.cs" />
     <Compile Include="Common\User.cs" />
     <Compile Include="Common\VoiceCommands.cs" />
     <Compile Include="Exp1\AvatarprogUI.cs" />
