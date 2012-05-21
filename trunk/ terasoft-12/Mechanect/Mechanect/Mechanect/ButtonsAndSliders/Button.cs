@@ -212,7 +212,6 @@ namespace ButtonsAndSliders
         /// <summary>
         /// draw the hand on the screen. It must be called after beginning the SpriteBatch.
         /// </summary>
-        [System.Obsolete("This method will not be needed any more", false)]
         public void DrawHand(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(hand, handPosition, Color.White);
