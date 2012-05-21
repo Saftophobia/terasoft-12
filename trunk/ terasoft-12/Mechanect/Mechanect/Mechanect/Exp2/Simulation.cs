@@ -20,7 +20,7 @@ namespace Mechanect.Exp2
 
         public Simulation(Vector2 predatorPosition, Rectangle preyPosition, Rectangle aquariumPosition, float velocity, float angle)
         {
-            environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
+            //environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
             initialPredatorVelocity = velocity * 
                 new Vector2((float)Math.Cos(MathHelper.ToRadians(angle)), 
                     (float)Math.Sin(MathHelper.ToRadians(angle)));
