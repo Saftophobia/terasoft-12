@@ -149,7 +149,7 @@ namespace Mechanect.Exp3
                  if (GameScreen.frameNumber % 3 == 0)
                  {
                      StoreTime(gameTime);
-                     if (!hasShot && !hasMissed) 
+                     if (!hasShot && !hasMissed)  
                      {
                          if (hasJustStarted)
                          {
@@ -173,13 +173,16 @@ namespace Mechanect.Exp3
                                  }
                                  else
                                  {
-                                     if (HasAlreadyMovedForward() && HasMovedMinimumDistance())
+                                     if (HasAlreadyMovedForward()&&HasMovedMinimumDistance())
                                          hasShot = true;
+                                     if (HasAlreadyMovedForward() && !HasMovedMinimumDistance())
+                                     {
+                                         hasMissed = true;
+                                         velocity = Vector3.Zero;
+                                         angle = 0;
+                                     }
                                      else
-                                         if (HasAlreadyMovedForward() && !HasMovedMinimumDistance())
-                                             hasMissed = true;
-                                         else
-                                             StoreInitialTime(gameTime);
+                                         StoreInitialTime(gameTime);
 
                                  }
                              }
@@ -223,33 +226,39 @@ namespace Mechanect.Exp3
          {
                  double currentZ = currentLeftLegPositionZ;
                  double previousZ = previousLeftLegPositionZ;
+                 double startZ = startLeftLegPositionZ;
                  if (rightLeg)
                  {
                      currentZ = currentRightLegPositionZ;
                      previousZ = previousRightLegPositionZ;
+                     startZ = startRightLegPositionZ;
                  }
-
-                 if (currentZ - previousZ < (-1 * Constants3.movingForwardTolerance))
+                 if (startZ >= currentZ)
                  {
-                     movedForward = true;
-                     return true;
 
+                     if (currentZ - previousZ < (-1 * Constants3.movingForwardTolerance))
+                     {
+                         movedForward = true;
+                         return true;
+
+                     }
                  }
-                 if (!movedForward)
-                 {
-                     if (rightLeg)
+                 else{
+                     if (!movedForward)
                      {
-                         initialRightLegPositionZ = currentRightLegPositionZ;
-                         initialRightLegPositionX = currentRightLegPositionX;
+                         if (rightLeg)
+                         {
+                             initialRightLegPositionZ = currentRightLegPositionZ;
+                             initialRightLegPositionX = currentRightLegPositionX;
+                         }
+                         else
+                         {
+                             initialLeftLegPositionZ = currentLeftLegPositionZ;
+                             initialLeftLegPositionX = currentLeftLegPositionX;
+                         }
                      }
-                     else
-                     {
-                         initialLeftLegPositionZ = currentLeftLegPositionZ;
-                         initialLeftLegPositionX = currentLeftLegPositionX;
-                     }
-                 
 
-             }
+                     }
              return false;
          }
 
