@@ -10,9 +10,9 @@ namespace Mechanect.Screens
 {
     class Settings2 : GameScreen
     {
-        private Button _oKbutton;
+        private Button oKbutton;
         User2 user;
-        private ThemeAndLevel _level;
+        private ThemeAndLevel levelAndTheme;
 
         public Settings2(User2 user)
         {
@@ -26,12 +26,13 @@ namespace Mechanect.Screens
         /// </remarks>
         public override void LoadContent()
         {
-            _oKbutton = Tools3.OKButton(ScreenManager.Game.Content,
-              new Vector2(ScreenManager.GraphicsDevice.Viewport.Width + 100, ScreenManager.GraphicsDevice.Viewport.Height + 50),
+            oKbutton = Tools3.OKButton(ScreenManager.Game.Content,
+              new Vector2(ScreenManager.GraphicsDevice.Viewport.Width + 100, 
+                          ScreenManager.GraphicsDevice.Viewport.Height + 50),
              ScreenManager.GraphicsDevice.Viewport.Width,
              ScreenManager.GraphicsDevice.Viewport.Height, user);
-            _level = new ThemeAndLevel(ScreenManager.Game, new Vector2(150, 150), ScreenManager.SpriteBatch, user);
-            _level.Initialize(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height);
+            levelAndTheme = new ThemeAndLevel(new Vector2(150, 150), user);
+            levelAndTheme.LoadContent(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height,ScreenManager.Game.Content);
 
         }
 
@@ -44,14 +45,14 @@ namespace Mechanect.Screens
         /// <param name="gameTime">gameTime</param>
         public override void Update(GameTime gameTime)
         {
-            if (_oKbutton.IsClicked())
+            if (oKbutton.IsClicked())
             {
 
                 //  ScreenManager.AddScreen(new InstructionsScreen2(user));
                 Remove();
             }
-            _oKbutton.Update(gameTime);
-            _level.Update(gameTime);
+            oKbutton.Update(gameTime);
+            levelAndTheme.Update(gameTime);
             base.Update(gameTime);
         }
         /// <summary>
@@ -64,9 +65,12 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
 
-            _level.Draw(gameTime);
+            levelAndTheme.Draw(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.Begin();
-            _oKbutton.Draw(ScreenManager.SpriteBatch);
+            oKbutton.Draw(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.End();
+            ScreenManager.SpriteBatch.Begin();
+            oKbutton.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
 
 
