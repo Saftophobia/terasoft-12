@@ -33,7 +33,7 @@ namespace Mechanect.Exp3
         {
             arriveVelocity = 10;
             firstAnimation = true;
-            user.ShootingPosition = new Vector3(0, 3, 62);
+            user.shootingPosition = new Vector3(0, 3, 62);
             this.user = user;
         }
 
@@ -49,11 +49,11 @@ namespace Mechanect.Exp3
 
             environment.ball = ball;
 
-            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.ShootingPosition - ball.Position, arriveVelocity, environment.Friction);
+            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
             animation = new BallAnimation(ball, intialVelocity, environment.Friction, Vector3.Zero, 4);
 
-            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.95f, ScreenManager.GraphicsDevice.Viewport.Width * 0.35f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.ShootingPosition.X, user.ShootingPosition.Z), ScreenManager.Game.Content);
+            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.95f, ScreenManager.GraphicsDevice.Viewport.Width * 0.35f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
             //environment = new Environment3(ball.Position, intialVelocity, ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
         }
@@ -65,7 +65,7 @@ namespace Mechanect.Exp3
             if (firstAnimation)
             {
                 float distance = animation.Displacement.Length();
-                float totalDistance = (user.ShootingPosition - animation.StartPosition).Length();
+                float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
                 if (distance / totalDistance > 0.5 && !pauseScreenShowed)
                 {
                     pauseScreenShowed = true;
@@ -95,7 +95,7 @@ namespace Mechanect.Exp3
             }
             else if (animation.Finished() && simulation == null)
             {
-                simulation = new Simulation(ball, user.ShootingPosition, environment.HoleProperty.Position, shootVelocity, environment.Friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                simulation = new Simulation(ball, user.shootingPosition, environment.HoleProperty.Position, shootVelocity, environment.Friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             }
 
             if (simulation != null)
