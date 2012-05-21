@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework;
 using UI.Cameras;
 using Mechanect.Exp3;
 using Microsoft.Kinect;
-using Mechanect.Common;
-using Mechanect.Exp3;
 using ButtonsAndSliders;
 
 namespace Mechanect.Screens
@@ -18,7 +16,7 @@ namespace Mechanect.Screens
     class PauseScreen : Mechanect.Common.GameScreen
     {
 
-
+        #region InstanceVariables
         ContentManager content;
         Viewport viewPort;
         SpriteBatch spriteBatch;
@@ -62,7 +60,10 @@ namespace Mechanect.Screens
         float countScale;
 
         Button button;
-        Texture2D ok;
+        string missed;
+        Vector2 missedPosition;
+        SpriteFont font2;
+        #endregion
 
         public PauseScreen(User3 user, MKinect kinect, double ballVelocity, double ballMass, double legMass)
         {
@@ -81,7 +82,8 @@ namespace Mechanect.Screens
             count = "";
             countScale = 1;
             countColor = Color.Red;
-            
+            missed = "";
+            missedPosition = Vector2.Zero;
 
 
         }
@@ -97,6 +99,7 @@ namespace Mechanect.Screens
 
             font = content.Load<SpriteFont>("SpriteFont1");
             countFont = content.Load<SpriteFont>("SpriteFont2");
+            font2 = content.Load<SpriteFont>("SpriteFont3");
             velocityBar = content.Load<Texture2D>("Textures/VBar");
             vBarPosition = new Vector2((velocityBar.Width / 2) + 20, viewPort.Height - (velocityBar.Height / 2));
             fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
@@ -110,9 +113,9 @@ namespace Mechanect.Screens
             arrowPosition = new Vector2(viewPort.Width - (float)((Math.Sqrt(arrowScale) * arrow.Width)), viewPort.Height / 2 + (float)((Math.Sqrt(arrowScale) * arrow.Height / 2)));
             arrowAngle = 0;
 
-            countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
-
-
+            countPosition = new Vector2(3 * (viewPort.Width / 7), viewPort.Height / 2);
+            missedPosition = new Vector2(viewPort.Width / 3, viewPort.Height / 3);
+           
             button = Tools3.OKButton(content, new Vector2(viewPort.Width - 255, 0), viewPort.Width, viewPort.Height, user);
             
 
@@ -129,43 +132,52 @@ namespace Mechanect.Screens
         {
 
             button.Update(gameTime);
-            if (!voiceCommands.getHeared("go") && !button.IsClicked())
+            if (!button.IsClicked())
             {
                 if (!user.HasShot()&&!user.hasMissed)
                 {
 
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
-                    // truncate max velocity
-                    velocity = user.SetVelocityRelativeToGivenMass();
-
-                    int draw;
-                    if (velocity.Length() > 31)
-                        draw = 31;
-                    else
-                        draw = (int)velocity.Length();
-
-                    for (int i = fills.Count() - 1; i < draw; i++)
-                    {
-                        fillsPositions.Add(fillPosition);
-                        fills.Add(content.Load<Texture2D>("Textures/Vfill"));
-                        fillPosition.Y -= 8;
-                    }
-                    arrowAngle = (float)user.angle;
+                    
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
                      + (Math.Truncate(legMass * 1000) / 1000);
                 }
                 else
                 {
-
-                    user.velocity = velocity;
+                    #region GivensString
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + Math.Truncate(legMass * 1000) / 1000 +'\n' + "Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
+                        + Math.Truncate(legMass * 1000) / 1000;
+                    string shootingValues ="Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
-                    if (user.hasMissed)
-                        Clear();
-                    else
+                    #endregion
+
+                    #region DrawingBarAndArrowInfo
+                    if (!user.hasMissed)
                     {
-                        if (framesToWait > 240) // after 4 seconds
+                        velocity = user.SetVelocityRelativeToGivenMass();
+                        int draw;
+                        if (velocity.Length() > 31)
+                            draw = 31;
+                        else
+                            draw = (int)velocity.Length();
+
+                        for (int i = fills.Count() - 1; i < draw; i++)
+                        {
+                            fillsPositions.Add(fillPosition);
+                            fills.Add(content.Load<Texture2D>("Textures/Vfill"));
+                            fillPosition.Y -= 8;
+                        }
+
+                        user.velocity = velocity;
+                        arrowAngle = (float)user.angle;
+                        displayedGivens += ('\n' + shootingValues);
+                    }
+                    else
+                        missed = "Missed!";
+                    #endregion
+
+                    #region CountDown And Clear
+                    if (framesToWait > 240) // after 4 seconds
                             Clear();
 
                         else
@@ -178,21 +190,20 @@ namespace Mechanect.Screens
                                 count = "1";
                             if (framesToWait > 180 && framesToWait <= 240)
                             {
-                                count = "Try Again";
-                                countColor = Color.DarkGreen;
-                                countPosition = new Vector2(viewPort.Width / 8, (1 * viewPort.Height) / 3);
+                                count = "GO!";
+                                countColor = Color.BlueViolet;
                                 countScale = 0.8f;
                             }
                             framesToWait++;
+
                         }
-                    }
+                    #endregion
                 }
             }
             else
             {
 
-                user.ResetUserForShootingOrTryingAgain();
-               
+                user.ResetUserForShootingOrTryingAgain();  
                 ExitScreen();
             }
 
@@ -218,6 +229,7 @@ namespace Mechanect.Screens
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.Black);
             spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font2, missed, missedPosition, Color.Red);
             button.DrawHand(spriteBatch);
 
             spriteBatch.End();
@@ -237,8 +249,9 @@ namespace Mechanect.Screens
             user.ResetUserForShootingOrTryingAgain();
             count = "";
             countColor = Color.Red;
-            countPosition = new Vector2(viewPort.Width / 2, viewPort.Height / 2);
+            countPosition = new Vector2(3 * (viewPort.Width / 7), viewPort.Height / 2);
             countScale = 1;
+            missed = "";
         }
 
 
