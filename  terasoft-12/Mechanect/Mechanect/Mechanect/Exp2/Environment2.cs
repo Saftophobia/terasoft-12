@@ -100,8 +100,10 @@ namespace Mechanect.Exp2
         {
             Predator = new Predator(position);
             Prey = new Prey(new Vector2((float)prey.X, (float)prey.Y), (float)prey.Width, (float)prey.Height);
-            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y), (float)aquriaum.Width, (float)aquriaum.Height);
-            StartAquarium = new Aquarium(new Vector2(position.X, position.Y), (float)aquriaum.Width, (float)aquriaum.Height);
+            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y),
+            (float)aquriaum.Width, (float)aquriaum.Height);
+            StartAquarium = new Aquarium(new Vector2(position.X, position.Y),
+            (float)aquriaum.Width, (float)aquriaum.Height);
         }
         /// <summary>
         /// generates random angle between 20 and 70
@@ -146,23 +148,30 @@ namespace Mechanect.Exp2
 
             
             double timeSlice = totalTime / 3;
-            double timePrey = GetRandomNumber(timeSlice - 10 / 100, (timeSlice * 2) - (timeSlice + timeSlice * Tools2.tolerance * 2 / 100));
-            double timeAquarium = GetRandomNumber(timePrey + (timePrey * Tools2.tolerance * 2 / 100), totalTime);
+            double timePrey = GetRandomNumber(timeSlice - 10 / 100, (timeSlice * 2) - 
+            (timeSlice + timeSlice * Tools2.tolerance * 2 / 100));
+            double timeAquarium = GetRandomNumber(timePrey + 
+            (timePrey * Tools2.tolerance * 2 / 100), totalTime);
 
             preyLocation.X = GetX(timePrey);
-            preyLocation.Y = (float)((velocity * Math.Sin(angle) * timePrey) + (0.5 * Tools2.gravity * Math.Pow(timePrey, 2)) + predatorLocation.Y);
+            preyLocation.Y = (float)((velocity * Math.Sin(angle) * timePrey) +
+            (0.5 * Tools2.gravity * Math.Pow(timePrey, 2)) + predatorLocation.Y);
 
             aquariumLocation.X = GetX(timeAquarium);
-            aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * timeAquarium) + (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
+            aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * timeAquarium) +
+            (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
 
-            float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y - aquariumLocation.Y * ((float)Tools2.tolerance / 100));
+            float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y - 
+            aquariumLocation.Y * ((float)Tools2.tolerance / 100));
+            
             predatorLocation.Y = predatorLocation.Y - minimumHeight;
             preyLocation.Y = preyLocation.Y - minimumHeight;
             aquariumLocation.Y = aquariumLocation.Y - minimumHeight;
 
 
             Predator = new Predator(predatorLocation);
-            Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)Tools2.tolerance / 100), aquariumLocation.Y * ((float)Tools2.tolerance / 100));
+            Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)Tools2.tolerance / 100),
+            aquariumLocation.Y * ((float)Tools2.tolerance / 100));
             Prey = new Prey(preyLocation, Aquarium.Length * 2 / 5, Aquarium.Width * 2 / 5);
         }
 
@@ -178,9 +187,11 @@ namespace Mechanect.Exp2
         {
             var secondqudrantInFormula = velocity * Math.Sin(angle);
             //solving quadratic formula for time
-            double totalTime = (-secondqudrantInFormula + Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
-            if (totalTime < 0)
-                totalTime = (-secondqudrantInFormula - Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
+            double totalTime = (-secondqudrantInFormula + Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) -
+            (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
+          if (totalTime < 0){
+                totalTime = (-secondqudrantInFormula - Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) - 
+                  (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);}
             return totalTime;
         }
         /// <summary>
