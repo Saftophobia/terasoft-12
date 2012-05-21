@@ -99,6 +99,7 @@ namespace Mechanect.Screens
             OKbutton.Draw(spriteBatch);
             velocity.Draw(spriteBatch);
             angle.Draw(spriteBatch);
+            OKbutton.DrawHand(spriteBatch);
             spriteBatch.End();
         }
 
