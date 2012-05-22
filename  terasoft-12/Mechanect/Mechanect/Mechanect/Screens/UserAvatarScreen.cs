@@ -56,12 +56,14 @@ namespace Mechanect.Screens
         public  void LoadContent()
         {
             font = content.Load<SpriteFont>("spriteFont1");
-        
+
             for (int i = 0; i < avatar.Length; i++)
             {
                 avatar[i] = content.Load<Texture2D>(@"Textures/avatar-white");
-                avatarPosition[i] = new Vector2(screenWidth/2,screenHeight/2);
             }
+            avatarPosition[0] = new Vector2(screenWidth / 8, screenHeight / 2.2f);
+            if(avatarPosition.Length==2)
+            avatarPosition[1] = new Vector2(screenWidth, screenHeight / 2.2f);
         }
 
         public void Initialize()
@@ -199,7 +201,6 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public void Draw(GameTime gameTime)
         {
-           
             spriteBatch.Begin();
             for (int i = 0; i < avatar.Length; i++)
             {
@@ -254,13 +255,5 @@ namespace Mechanect.Screens
             }
             texture.SetData(data);
         }
-
-        /// <summary>
-        /// This is called when you want to exit the screen.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>  
-   
     }
 }
