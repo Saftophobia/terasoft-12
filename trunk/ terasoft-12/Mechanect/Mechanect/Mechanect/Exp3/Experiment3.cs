@@ -52,7 +52,7 @@ namespace Mechanect.Exp3
         /// </remarks>
         public override void LoadContent()
         {
-            targetCamera = new TargetCamera(new Vector3(0, 140, 250), new Vector3(0,80,0), ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 100, 200), new Vector3(0,50,0), ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
@@ -91,7 +91,7 @@ namespace Mechanect.Exp3
                 {
                     pauseScreenShowed = true;
                     FreezeScreen();
-                    ScreenManager.LoadScreen("pausescreen");
+                    //ScreenManager.LoadScreen("pausescreen");
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));

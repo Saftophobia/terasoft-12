@@ -50,8 +50,8 @@ namespace Mechanect.Exp3
         /// <param name="terrainHeight">terrain height</param>
         public void GenerateIntialPosition(float terrainWidth, float terrainHeight)
         {
-            double number = new Random().NextDouble();
-            Position = new Vector3(-terrainWidth / 2, 0, -(float)(0.75 + number / 4) * terrainHeight);
+            float number = (float)new Random().NextDouble();
+            Position = new Vector3(-terrainWidth / 2, 0, -(0.25f + number / 2) * terrainHeight / 2);
         }
 
         /// <summary>
