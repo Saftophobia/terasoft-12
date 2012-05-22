@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5o5a\HoleTests.cs" />
     <Compile Include="badr\SolvabilityTests.cs" />
     <Compile Include="Cena\MeasureVelocityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
