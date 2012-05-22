@@ -69,6 +69,7 @@ namespace Mechanect.Exp3
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.99f, ScreenManager.GraphicsDevice.Viewport.Width * 0.3f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
             //environment = new Environment3(ball.Position, intialVelocity, ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
+            base.LoadContent();
         }
 
         /// <summary>
@@ -162,6 +163,7 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
             }
+            base.Draw(gameTime);
         }
 
         public override void UnloadContent()
