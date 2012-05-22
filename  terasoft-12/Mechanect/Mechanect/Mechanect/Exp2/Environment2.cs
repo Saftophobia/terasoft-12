@@ -277,6 +277,14 @@ namespace Mechanect.Exp2
             return false;
         }
 
+        public bool Win
+        {
+            get
+            {
+                return !Predator.Movable && Prey.Eaten && Predator.Location.Y > 0;
+            }
+        }
+
         public bool Update(GameTime gameTime)
         {
             if (Predator.Movable)
