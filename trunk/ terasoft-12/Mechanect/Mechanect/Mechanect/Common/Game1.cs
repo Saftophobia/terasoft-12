@@ -24,7 +24,19 @@ namespace Mechanect
         }
         SpriteBatch spriteBatch;
         ScreenManager screenManager;
-         Boolean fullScreen = true; //this one is false
+        static User user;
+        public static User User
+        {
+            get {return user;}
+            set {;}
+        }
+        public static User User2
+        {
+            get { return user2; }
+            set { ;}
+        }
+        static User user2;
+         Boolean fullScreen = false; //this one is false
 
         public Game1()
         {
@@ -35,7 +47,8 @@ namespace Mechanect
             Window.AllowUserResizing = true;
             if (fullScreen)
              Graphics.IsFullScreen = true;
-
+            user = new User3();
+            user2 = new User();
             Constants3.game1 = this;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
@@ -65,9 +78,10 @@ namespace Mechanect
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
             //screenManager.AddScreen(new InstructionsScreen3());
-            screenManager.AddScreen(new TeraSoftScreen());
-            //screenManager.AddScreen(new Experiment3(new User3()));
-            //screenManager.AddScreen(new UserAvatarScreen( new User(), new User(), new MKinect()));
+           // screenManager.AddScreen(new TeraSoftScreen());
+            screenManager.AddScreen(new Experiment3((User3)user));
+          //  screenManager.AddScreen(new UserAvatarScreen( new User(), new User(), new MKinect()));
+            //screenManager.AddScreen(new UserAvatarScreen(new User(),new MKinect()));
             //screenManager.AddScreen(new Experiment2(new User2()));
             //screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
             //screenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
