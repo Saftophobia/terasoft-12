@@ -30,6 +30,7 @@ namespace Mechanect.Screens
         public AllExperiments()
         {
 
+            user = new User();
         }
         /// <summary>
         /// Creates a new instance of AllExperiments
@@ -37,6 +38,7 @@ namespace Mechanect.Screens
         /// <param name="user">The user that will be tracked when this screen is active</param>
         public AllExperiments(User user)
         {
+            ScreenName = "allexperiments";
             this.user = user;
         }
         /// <summary>
@@ -78,12 +80,13 @@ namespace Mechanect.Screens
             if (experiment2.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Settings2(new User2()));
+                //ScreenManager.AddScreen(new Settings2(new User2()));
             }
             if (experiment3.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
+                ScreenManager.LoadScreen("experiment3");
+                //ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
             }
         }
 
@@ -96,14 +99,11 @@ namespace Mechanect.Screens
             ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height), Color.White);
-            experiment1.DrawHand(ScreenManager.SpriteBatch);
-            experiment2.DrawHand(ScreenManager.SpriteBatch);
-            experiment3.DrawHand(ScreenManager.SpriteBatch);
-            ScreenManager.SpriteBatch.End();
             experiment1.Draw(ScreenManager.SpriteBatch);
             experiment2.Draw(ScreenManager.SpriteBatch);
             experiment3.Draw(ScreenManager.SpriteBatch);
-
+            experiment1.DrawHand(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.End();
         }
 
         /// <summary>

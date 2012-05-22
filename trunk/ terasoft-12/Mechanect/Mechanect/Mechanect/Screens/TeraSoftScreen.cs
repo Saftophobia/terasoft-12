@@ -18,6 +18,7 @@ namespace Mechanect.Screens
             : base("Resources/Images/Terasoft", 0.5f,0,0,-0.06f)
         {
             scale = 0.3f;
+            ScreenName = "terasoftscreen";
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Mechanect.Screens
             if (Done)
             {
                 base.Remove();
-                ScreenManager.AddScreen(new ITworxScreen());
+                ScreenManager.LoadScreen("itworxscreen");
             }
         }
 
