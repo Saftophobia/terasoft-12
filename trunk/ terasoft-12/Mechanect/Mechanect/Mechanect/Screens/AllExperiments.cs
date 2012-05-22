@@ -38,7 +38,7 @@ namespace Mechanect.Screens
         /// <param name="user">The user that will be tracked when this screen is active</param>
         public AllExperiments(User user)
         {
-            ScreenName = "allexperiments";
+            
             this.user = user;
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Mechanect.Screens
             if (experiment3.IsClicked())
             {
                 Remove();
-                ScreenManager.LoadScreen("experiment3");
+                ScreenManager.AddScreen(new Experiment3(new User3()));
                 //ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
             }
         }

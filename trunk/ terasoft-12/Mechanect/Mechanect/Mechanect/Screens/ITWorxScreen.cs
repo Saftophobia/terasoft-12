@@ -14,7 +14,7 @@ namespace Mechanect.Screens
         public ITworxScreen()
             : base("Resources/Images/ITWorx", 1f, 0, 0, -0.06f)
         {
-            ScreenName = "itworxscreen";
+            
         }
         /// <summary>
         /// Updates this screen
@@ -27,7 +27,7 @@ namespace Mechanect.Screens
             if (Done)
             {
                 base.Remove();
-                ScreenManager.LoadScreen("allexperiments");
+                ScreenManager.AddScreen(new AllExperiments());
             }
         }
         /// <summary>

@@ -67,7 +67,6 @@ namespace Mechanect.Screens
 
         public PauseScreen(User3 user, MKinect kinect, double ballVelocity, double ballMass, double legMass)
         {
-            ScreenName = "pausescreen";
             this.user = user;
             this.kinect = kinect;
             this.ballVelocity = ballVelocity;
