@@ -50,12 +50,12 @@ namespace Mechanect.Exp1
         /// <param name="size">The number of frames assigned to the current command.</param>  
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void OptimumConstantAcceleration(int size, PerformanceGraph g)
+        public static void OptimumConstantAcceleration(int round, int size, PerformanceGraph g)
         {
             float acceleration = g.getPreviousA();
             if (acceleration == 0)
             {
-                acceleration = 5;
+                acceleration = round * 0.5F;
             }
             float accumulator = g.getPreviousV();
             float z = g.getPreviousV() + acceleration;
@@ -82,7 +82,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 17/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command.
@@ -95,16 +95,16 @@ namespace Mechanect.Exp1
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void OptimumIncreasingAcceleration(int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
+        public static void OptimumIncreasingAcceleration(int round, int size, PerformanceGraph g)
         {
-            double value = 0.6;
+            double value = round * 0.5;
             List<float> accelerationTrial = new List<float>();
             List<float> velocityTest = new List<float>();
             float accumulatorAcc = g.getPreviousA();
             float accumulatorVel = g.getPreviousV();
             float accumulatorDis = g.getPreviousD();
             float adder = (float)value;
-            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            for (int i = 0; i <= size - 1; i++)
             {
                 float z0 = accumulatorAcc + (float)value;
                 accelerationTrial.Add(z0);
@@ -133,7 +133,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 17/5/2012</para>
+        /// <para>Date Modified 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumDeccreasingAcceleration derives the optimum values for the "decreasingAcceleration" command.
@@ -146,7 +146,7 @@ namespace Mechanect.Exp1
         /// <param name="accelerationTest2">A list representing Player 2's acceleration during the race.</param>
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void OptimumDecreasingAcceleration(int start, int end, List<float> accelerationTest1, List<float> accelerationTest2, PerformanceGraph g)
+        public static void OptimumDecreasingAcceleration(int size, PerformanceGraph g)
         {
             double value = 0.1;
             List<float> accelerationTrial = new List<float>();
@@ -154,7 +154,7 @@ namespace Mechanect.Exp1
             float accumulatorAcc = g.getPreviousA();
             float accumulatorVel = g.getPreviousV();
             float accumulatorDis = g.getPreviousD();
-            for (int i = 0; i <= accelerationTest1.Count - 1; i++)
+            for (int i = 0; i <= size - 1; i++)
             {
                 float z0 = accumulatorAcc - (float)value;
                 if (z0 >= 0)
@@ -210,7 +210,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Created: 19/4/2012</para>
-        /// <para>Date Modified: 17/5/2012</para>
+        /// <para>Date Modified: 14/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The GetOptimum funciton is used to derive the optimum accelerations/velocities/displacements during the race by calling the necessary functions.
@@ -219,106 +219,68 @@ namespace Mechanect.Exp1
         /// <param name="player2disq">The instance when player 2 was disqualified.</param>
         /// <param name="g">An instance of the PerformanceGraph.</param>
         /// <returns>void</returns>
-        public static void GetOptimum(double player1disq, double player2disq, PerformanceGraph g)
+        public static void GetOptimum(int round, PerformanceGraph g)
         {
             int start = 0;
             int end = 0;
             g.setPreviousD(g.getTrackLength());
             g.setPreviousV(0);
             g.setPreviousA(0);
+            g.getOptD().Add(g.getTrackLength());
+            g.getOptV().Add(0);
+            g.getOptA().Add(0);
             for (int i = 0; i <= g.getTimeSpaces().Count - 1; i++)
             {
                 List<float> tempList = new List<float>();
-                end = start + (int)(g.getTimeSpaces()[i] * 24);
-                List<float> velocityTest1 = new List<float>();
-                List<float> velocityTest2 = new List<float>();
-                List<float> accelerationTest1 = new List<float>();
-                List<float> accelerationTest2 = new List<float>();
-                for (int j = start; j <= end; j++)
+                end = start + (int)(g.getTimeSpaces()[i]);
+                int size = 0;
+                for (int j = start; j <= end - 1; j++)
                 {
-                    try
-                    {
-                        velocityTest1.Add(g.getP1Vel()[j]);
-                        velocityTest2.Add(g.getP2Vel()[j]);
-                        accelerationTest1.Add(g.getP1Acc()[j]);
-                        accelerationTest2.Add(g.getP2Acc()[j]);
-                    }
-                    catch (Exception e)
-                    {
-                    }
+                    size++;
                 }
                 if (g.getCommands()[i].Equals("constantVelocity"))
                 {
-                    int x = end - start;
-                    OptimumConstantVelocity(x, g);
+                    OptimumConstantVelocity(size, g);
                 }
                 if (g.getCommands()[i].Equals("constantAcceleration"))
                 {
-                    int x = end - start;
-                    OptimumConstantAcceleration(x, g);
+                    OptimumConstantAcceleration(round, size, g);
                 }
                 if (g.getCommands()[i].Equals("increasingAcceleration"))
                 {
-                    OptimumIncreasingAcceleration(start, end, accelerationTest1, accelerationTest2, g);
+                    OptimumIncreasingAcceleration(round, size, g);
                 }
                 if (g.getCommands()[i].Equals("decreasingAcceleration"))
                 {
-                    OptimumDecreasingAcceleration(start, end, accelerationTest1, accelerationTest2, g);
+                    OptimumDecreasingAcceleration(size, g);
                 }
                 if (g.getCommands()[i].Equals("constantDisplacement"))
                 {
-                    int size = end - start;
                     OptimumConstantDisplacement(size, g);
                 }
                 g.setPreviousA(g.getOptA()[g.getOptA().Count - 1]);
                 g.setPreviousV(g.getOptV()[g.getOptV().Count - 1]);
                 g.setPreviousD(g.getOptD()[g.getOptD().Count - 1]);
-                velocityTest1.Clear();
-                velocityTest2.Clear();
-                accelerationTest1.Clear();
-                accelerationTest2.Clear();
                 start = end;
                 tempList.Clear();
             }
-            CompleteList(g);
+            if (!CheckOptimum(g))
+            {
+                g.getOptD().Clear();
+                g.getOptV().Clear();
+                g.getOptA().Clear();
+                GetOptimum(round + 1, g);
+            }
         }
 
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Written 14/5/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function CompleteList is used to equalize the length of the optimum lists and the players' lists.
-        /// </summary>
-        /// <param name="g">An instance of the PerformanceGraph.</param
-        /// <returns>void.</returns>
-        public static void CompleteList(PerformanceGraph g)
+        public static Boolean CheckOptimum(PerformanceGraph g)
         {
-            if (g.getOptD().Count < g.getP1Disp().Count)
+            Boolean x = false;
+            if (g.getOptD()[g.getOptD().Count - 1] == 0)
             {
-                int difference = g.getP1Disp().Count - g.getOptD().Count;
-                for (int i = 0; i <= difference - 1; i++)
-                {
-                    g.getOptD().Add(g.getPreviousD());
-                }
+                x = true;
             }
-            if (g.getOptV().Count < g.getP1Vel().Count)
-            {
-                int difference = g.getP1Vel().Count - g.getOptV().Count;
-                for (int i = 0; i <= difference - 1; i++)
-                {
-                    g.getOptV().Add(g.getPreviousV());
-                }
-            }
-            if (g.getOptA().Count < g.getP1Acc().Count)
-            {
-                int difference = g.getP1Acc().Count - g.getOptA().Count;
-                for (int i = 0; i <= difference - 1; i++)
-                {
-                    g.getOptA().Add(g.getPreviousA());
-                }
-            }
+            return x;
         }
     }
 }

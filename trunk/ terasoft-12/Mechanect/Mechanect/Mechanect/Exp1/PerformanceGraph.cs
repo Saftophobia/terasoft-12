@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Mechanect.Classes;
 
 namespace Mechanect.Exp1
 {
@@ -18,7 +18,7 @@ namespace Mechanect.Exp1
         private Vector2 point1;
         private Vector2 point2;
         private Color curveColor;
-        private List<float> player1Displacement=new List<float>();
+        private List<float> player1Displacement = new List<float>();
         private List<float> player2Displacement = new List<float>();
         private List<float> player1Velocity;
         private List<float> player2Velocity;
@@ -33,7 +33,7 @@ namespace Mechanect.Exp1
         private int[] chosenTimings;
         private int samples;
         private int distance;
-        private float[,] chosen;
+        public float[,] chosen;
         private PerformanceGraph[] disp1;
         private PerformanceGraph[] disp2;
         private PerformanceGraph[] velo1;
@@ -62,6 +62,9 @@ namespace Mechanect.Exp1
         private double player2Win;
         private double player3Win;
         private int trackLength;
+        private List<double> timings1;
+        private List<double> timings2;
+        private List<double> timings3;//optimum
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -79,9 +82,58 @@ namespace Mechanect.Exp1
 
         }
 
+        public List<double> GetTimings1()
+        {
+            return timings1;
+        }
+
+        public List<double> GetTimings2()
+        {
+            return timings2;
+        }
+        public List<double> GetTimings3()
+        {
+            return timings3;
+        }
+
+        public void SetTimings1(List<double> l)
+        {
+            timings1 = l;
+        }
+
+        public void SetTimings2(List<double> l)
+        {
+            timings2 = l;
+        }
+        public void SetTimings3(List<double> l)
+        {
+            timings3 = l;
+        }
         public Vector2 getPoint1()
         {
             return point1;
+        }
+        public List<double> GetCum1()
+        {
+            double acc = 0;
+            List<double> res = new List<double>();
+            for (int i = 0; i <= GetTimings1().Count - 1; i++)
+            {
+                acc += GetTimings1()[i];
+                res.Add(acc);
+            }
+            return res;
+        }
+        public List<double> GetCum2()
+        {
+            double acc = 0;
+            List<double> res = new List<double>();
+            for (int i = 0; i <= GetTimings2().Count - 1; i++)
+            {
+                acc += GetTimings2()[i];
+                res.Add(acc);
+            }
+            return res;
         }
         public Vector2 getPoint2()
         {
