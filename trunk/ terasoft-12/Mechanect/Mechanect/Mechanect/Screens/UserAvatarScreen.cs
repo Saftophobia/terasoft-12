@@ -7,7 +7,7 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Screens
 {
-    public class UserAvatarScreen : GameScreen
+    public class UserAvatar
     {
         GraphicsDevice graphics;
         SpriteBatch spriteBatch;
@@ -23,40 +23,47 @@ namespace Mechanect.Screens
         const int minDepth = 120;
         const int maxDepth = 350;
         int[] depth;
-        public UserAvatarScreen(User user, MKinect kinect)
+        public UserAvatar(User user, MKinect kinect, ContentManager content, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[1];
             this.kinect = kinect;
             this.users[0] = user;
-            Initialize();
+            this.graphics = graphicsDevice;
+            screenWidth = graphics.Viewport.Width;
+            screenHeight = graphics.Viewport.Height;
+            this.spriteBatch = spriteBatch;
+            this.content = content;
+            Initialize(); 
         }
-        public UserAvatarScreen(User user, User user2, MKinect kinect)
+        public UserAvatar(User user, User user2, MKinect kinect, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[2];
             this.users[0] = user;
             this.users[1] = user2;
             this.kinect = kinect;
+            this.graphics = graphicsDevice;
+            screenWidth = graphics.Viewport.Width;
+            screenHeight = graphics.Viewport.Height;
+            this.spriteBatch = spriteBatch;
+            this.content = content;
+       
             Initialize();
         }
         /// <summary>
         /// LoadContent will be called only once before drawing and its the place to load
-        /// all of your content.
+        /// all of your content.5
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>
-        public override void LoadContent()
+        public  void LoadContent()
         {
-            graphics = ScreenManager.GraphicsDevice;
-            screenWidth = graphics.Viewport.Width;
-            screenHeight = graphics.Viewport.Height;
-            spriteBatch = ScreenManager.SpriteBatch;
-            content = ScreenManager.Game.Content;
             font = content.Load<SpriteFont>("spriteFont1");
+        
             for (int i = 0; i < avatar.Length; i++)
             {
                 avatar[i] = content.Load<Texture2D>(@"Textures/avatar-white");
-                avatarPosition[i] = new Vector2(screenWidth / (i + 1), screenHeight);
+                avatarPosition[i] = new Vector2(screenWidth/2,screenHeight/2);
             }
         }
 
@@ -83,7 +90,7 @@ namespace Mechanect.Screens
             if (depth[ID] == 0)
             {
                 avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-dead");
-                command[ID] = "No player detected" + depth[ID];
+                command[ID] = "No player detected";
             }
             else
             {
@@ -93,8 +100,8 @@ namespace Mechanect.Screens
                     avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-white");
                 else if (depth[ID] < maxDepth)
                     avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-green");
+                command[ID] = "You're standing at" + depth[ID];
             }
-            command[ID] = "You're standing at" + depth[ID];
         }
         /// <summary>
         /// Takes a 2D texture as a parameter and colors it according to user's distance from the kinect device.
@@ -166,7 +173,7 @@ namespace Mechanect.Screens
         ///</remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
-        public override void Update(GameTime gameTime, bool covered)
+        public void Update(GameTime gameTime)
         {
 
             if (users.Length == 1)
@@ -192,9 +199,9 @@ namespace Mechanect.Screens
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
-            graphics.Clear(Color.Transparent);
+           
             spriteBatch.Begin();
             for (int i = 0; i < avatar.Length; i++)
             {
@@ -203,7 +210,7 @@ namespace Mechanect.Screens
             }
             for (int i = 0; i < users.Length; i++)
             {
-                ScreenManager.SpriteBatch.DrawString(font, "Player " + i + " : " + command[i],
+                spriteBatch.DrawString(font, "Player " + i + " : " + command[i],
                     new Vector2(100, 320 + 100 * i), Color.OrangeRed);
             }
             spriteBatch.End();
@@ -256,9 +263,6 @@ namespace Mechanect.Screens
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>  
-        public override void Remove()
-        {
-            base.Remove();
-        }
+   
     }
 }
