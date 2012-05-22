@@ -57,7 +57,7 @@ namespace Mechanect.Common
         #region Initialization
 
         public virtual void LoadContent() {
-            userAvatar = new UserAvatar(Game1.User, Game1.User.Kinect, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+            //userAvatar = new UserAvatar(Game1.User, Game1.User.Kinect, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             userAvatar.LoadContent();
   
         }
