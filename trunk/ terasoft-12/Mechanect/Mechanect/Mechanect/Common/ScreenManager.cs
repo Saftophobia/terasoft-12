@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Screens;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Common
 {
@@ -52,7 +48,7 @@ namespace Mechanect.Common
         protected override void LoadContent()
         {
             ContentManager content = Game.Content;
-
+            
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //load screen dedicated content
