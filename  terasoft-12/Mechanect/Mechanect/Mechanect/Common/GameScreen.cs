@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Mechanect.Classes;
-using Mechanect.Screens;
+﻿using Microsoft.Xna.Framework;
 namespace Mechanect.Common
 {
     /// <summary>
@@ -26,9 +19,7 @@ namespace Mechanect.Common
     {
         #region Fields and Properties
 
-        public static int frameNumber { get; set; }
-
-        User user;
+        public static int frameNumber;
 
         private bool isFrozen;
         public bool IsFrozen
