@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Windows;
 
 namespace Mechanect.Exp2
 {
@@ -20,6 +21,7 @@ namespace Mechanect.Exp2
         private float velocity;
         private float angle;
 
+        [System.Obsolete("use Rect instead of Rectangle", true)]
         public Simulation(Vector2 predatorPosition, Rectangle preyPosition, Rectangle aquariumPosition, float velocity, float angle)
         {
             environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
@@ -34,13 +36,32 @@ namespace Mechanect.Exp2
             
         }
 
+        public Simulation(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float velocity, float angle)
+        {
+            environment = new Environment2(predatorPosition, preyPosition, aquariumPosition);
+            initialPredatorVelocity = velocity *
+                new Vector2((float)Math.Cos(MathHelper.ToRadians(angle)),(float)Math.Sin(MathHelper.ToRadians(angle)));
+            initialPredatorPosition = predatorPosition;
+            simulationRunning = false;
+            predatorInitialized = false;
+            this.velocity = velocity;
+            this.angle = angle;
+
+        }
+
+        public void LoadContent(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        {
+            font = contentManager.Load<SpriteFont>("Ariel");
+            environment.LoadContent(contentManager, graphicsDevice,graphicsDevice.Viewport);
+            
+        }
+        [System.Obsolete("use LoadContent(ContentManager, GraphicsDevice)", true)]
         public void LoadContent(ContentManager contentManager, Viewport viewport, GraphicsDevice graphicsDevice)
         {
             font = contentManager.Load<SpriteFont>("Ariel");
-            environment.LoadContent(contentManager, graphicsDevice, viewport);
-            
-        }
+            environment.LoadContent(contentManager, graphicsDevice, graphicsDevice.Viewport);
 
+        }
         public void Update(GameTime gameTime)
         {
             if (!simulationRunning)
@@ -67,10 +88,18 @@ namespace Mechanect.Exp2
            
         }
 
+        public void Draw(Rectangle rectangle, SpriteBatch spriteBatch)
+        {
+            environment.Draw(rectangle, spriteBatch);
+            string data = "Velocity = " + velocity + ", Angle = " + angle;
+            spriteBatch.DrawString(font, data, new Vector2(rectangle.X, rectangle.Y), Color.Black);
+        }
+
+        [System.Obsolete("use Draw(Rectangle, SpriteBatch)", true)]
         public void Draw(Rectangle rectangle, ContentManager contentManager, SpriteBatch spriteBatch, Viewport viewport)
         {
-            environment.Draw(rectangle,spriteBatch);
-            string data = "Velocity = " + velocity +  ", Angle = " + angle;
+            environment.Draw(rectangle, spriteBatch);
+            string data = "Velocity = " + velocity + ", Angle = " + angle;
             spriteBatch.DrawString(font, data, new Vector2(rectangle.X, rectangle.Y), Color.Black);
         }
     }
