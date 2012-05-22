@@ -28,10 +28,10 @@ namespace UI
             if (speechSynthesizer == null)
             {
                 speechSynthesizer = new SpeechSynthesizer();
+                speechSynthesizer.Volume = 100;
             }
             try
             {
-                speechSynthesizer.Volume = 100;
                 speechSynthesizer.SpeakAsync(text);
                 return true;
             }
