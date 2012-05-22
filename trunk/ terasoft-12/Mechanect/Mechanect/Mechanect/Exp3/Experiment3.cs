@@ -90,6 +90,8 @@ namespace Mechanect.Exp3
                 if (distance / totalDistance > 0.5 && !pauseScreenShowed)
                 {
                     pauseScreenShowed = true;
+                    FreezeScreen();
+                    ScreenManager.LoadScreen("pausescreen");
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
