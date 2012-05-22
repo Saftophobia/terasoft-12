@@ -34,7 +34,7 @@ namespace Mechanect.Exp1
             float angle = (float)Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
             float length = Vector2.Distance(point1, point2);
             batch.Draw(blank, point1, null, color, angle, Vector2.Zero, new Vector2(length, width), SpriteEffects.None, 0);
-        }   
+        }
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
@@ -57,7 +57,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawRange loops over each instance of the PerformanceGraph class initialized in the function
@@ -69,19 +69,45 @@ namespace Mechanect.Exp1
         /// <returns>void</returns>
         public static void DrawRange(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, PerformanceGraph g)
         {
-            for (int i = 0; i <= g.getDisplacement1().Length - 1; i++)
+            for (int n = 0; n <= 8; n++)
             {
-                Draw(g.getDisplacement1()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getDisplacement2()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getVelocity1()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getVelocity2()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getAcceleration1()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getAcceleration2()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getOptimumDisplacement()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getOptimumVelocity()[i], spriteBatch, GraphicsDevice);
-                Draw(g.getOptimumAcceleration()[i], spriteBatch, GraphicsDevice);
+                PerformanceGraph[] temp = new PerformanceGraph[10];
+                switch (n)
+                {
+                    case 0: temp = g.getDisplacement1(); break;
+                    case 1: temp = g.getDisplacement2(); break;
+                    case 2: temp = g.getVelocity1(); break;
+                    case 3: temp = g.getVelocity2(); break;
+                    case 4: temp = g.getAcceleration1(); break;
+                    case 5: temp = g.getAcceleration2(); break;
+                    case 6: temp = g.getOptimumDisplacement(); break;
+                    case 7: temp = g.getOptimumVelocity(); break;
+                    case 8: temp = g.getOptimumAcceleration(); break;
+                }
+                for (int i = 0; i <= temp.Length - 1; i++)
+                {
+                    Draw(temp[i], spriteBatch, GraphicsDevice);
+                }
             }
         }
+
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 22/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function is used to determine the position where the texture/line/etc will be drawn.
+        /// </summary>
+        /// <param name="size">Width or Height of the screen.</param>
+        /// <param name="value">Percentage to be multiplied by the size.</param>
+        /// <returns>void</returns>
+        public static int Percentage(int size, double value)
+        {
+            return (int)(size * (value / 100));
+        }
+
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
@@ -96,6 +122,8 @@ namespace Mechanect.Exp1
         /// <returns>void</returns>
         public static void DrawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font)
         {
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
             spriteBatch.DrawString(font, "Displacement", new Vector2(5, 20), Color.Black);
             spriteBatch.DrawString(font, "Velocity", new Vector2(340, 20), Color.Black);
             spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 20), Color.Black);
@@ -126,12 +154,12 @@ namespace Mechanect.Exp1
                 new Vector2(380, 570));
             DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 50),
                 new Vector2(710, 570));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 300),
-                new Vector2(316, 300));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 300),
-                new Vector2(646, 300));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 300),
-                new Vector2(976, 300));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 299),
+                new Vector2(316, 299));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 299),
+                new Vector2(646, 299));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 299),
+                new Vector2(976, 299));
         }
 
         /// <remarks>
@@ -177,7 +205,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawXLabels is used to add the values to be displayed on the X-axis.
@@ -211,7 +239,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 25/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawYLabels is used to add the values to be displayed on the Y-axis.
@@ -225,20 +253,20 @@ namespace Mechanect.Exp1
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             //+ve part of the y-axis
-            int y = 0;
+            int y = 10;
             double[] current = g.YAxisDis(); ;
             for (int i = 0; i <= 2; i++)
             {
                 int counter = 60;
                 switch (i)
                 {
-                    case 1: y = 320; current = g.YAxisVel(); break;
-                    case 2: y = 650; current = g.YAxisAcc(); break;
-                    default: y = 0; current = g.YAxisDis(); break;
+                    case 1: y = 335; current = g.YAxisVel(); break;
+                    case 2: y = 665; current = g.YAxisAcc(); break;
+                    default: y = 10; current = g.YAxisDis(); break;
                 }
                 for (int j = 4; j >= 1; j--)
                 {
-                    spriteBatch.DrawString(font2, (int)current[j] + "", new Vector2(y, counter), Color.Black);
+                    spriteBatch.DrawString(font2, current[j].ToString("N2") + "", new Vector2(y, counter), Color.Black);
                     counter += 60;
                 }
             }
@@ -248,13 +276,14 @@ namespace Mechanect.Exp1
                 int counter = 350;
                 switch (i)
                 {
-                    case 1: y = 320; current = g.YAxisVel(); break;
-                    case 2: y = 650; current = g.YAxisAcc(); break;
-                    default: y = 0; current = g.YAxisDis(); break;
+                    case 1: y = 335; current = g.YAxisVel(); break;
+                    case 2: y = 665; current = g.YAxisAcc(); break;
+                    default: y = 10; current = g.YAxisDis(); break;
                 }
                 for (int j = 1; j <= 4; j++)
                 {
-                    spriteBatch.DrawString(font2, -1 * (int)current[j] + "", new Vector2(y, counter), Color.Black);
+                    double n = -1 * current[j];
+                    spriteBatch.DrawString(font2, n.ToString("N2") + "", new Vector2(y, counter), Color.Black);
                     counter += 60;
                 }
             }
@@ -330,7 +359,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawDisqualification is used to add a mark on the point where a player got disqualified, the function
@@ -344,7 +373,7 @@ namespace Mechanect.Exp1
         /// <param name="player1disqtime">The instance when player 1 was disqualified.</param>
         /// <param name="player2disqtime">The instance when player 2 was disqualified</param>
         /// <returns>void</returns>
-        public static void DrawDisqualification(PerformanceGraph g, SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
+        public static void DrawDisqualification(PerformanceGraph g, GraphicsDevice GraphicsDevice, SpriteBatch spriteBatch, int dwidth, int dheight, Texture2D P1Tex, Texture2D P2Tex, double player1disqtime, double player2disqtime)
         {
             if (player1disqtime > 0 || player2disqtime > 0)
             {
@@ -352,56 +381,57 @@ namespace Mechanect.Exp1
                 {
                     Boolean t = false;
                     double n = 0;
+                    List<double> timings = new List<double>();
                     switch (j)
                     {
-                        case 0: n = player1disqtime; if (n >= 0) { t = true; }; break;
-                        case 1: n = player2disqtime; if (n >= 0) { t = true; }; break;
+                        case 0: n = player1disqtime; timings = g.GetCum1(); if (n >= 0) { t = true; }; break;
+                        case 1: n = player2disqtime; timings = g.GetCum2(); if (n >= 0) { t = true; }; break;
                     }
                     if (t)
                     {
                         double time = g.getTotalTime();
                         int index = 8;
-                        for (int i = 0; i <= g.getChosen().Length - 1; i++)
+                        for (int i = 0; i <= timings.Count - 1; i++)
                         {
-                            if (i < g.getChosen().Length - 1)
+                            if (i < timings.Count - 1)
                             {
-                                double d1 = ((double)g.getChosen()[i] / (double)24);
-                                double d2 = ((double)g.getChosen()[i + 1] / (double)24);
+                                double d1 = timings[i];
+                                double d2 = timings[i + 1];
                                 if (n >= d1 && n < d2)
                                 {
                                     double x = d1 + ((double)(d2 - d1) / (double)2);
                                     if (n < x)
                                     {
-                                        time = (double)g.getChosen()[i] / (double)24;
+                                        time = timings[i];
                                         index = i;
                                     }
                                     else
                                     {
-                                        time = (double)g.getChosen()[i + 1] / (double)24;
+                                        time = timings[i + 1];
                                         index = i + 1;
                                     }
                                 }
                             }
                         }
                         int y1 = 0; int y2 = 0; int y3 = 0;
-                        double r1 = (double)g.getTotalTime() / (double)256;
-                        double r2 = (double)(time) / (double)r1;
-                        int r3 = 40 + (int)r2;
+                        double r1 = ((double)g.getTotalTime() / (double)GraphUI.Percentage(dwidth, 25));
                         Texture2D texture = null;
                         switch (j)
                         {
-                            case 0: y1 = g.getP1DispGraph()[index] - 8; y2 = g.getP1VelGraph()[index] - 8; y3 = g.getP1AccGraph()[index] - 8; texture = P1Tex; break;
-                            case 1: y1 = g.getP2DispGraph()[index] - 8; y2 = g.getP2VelGraph()[index] - 8; y3 = g.getP2AccGraph()[index] - 8; texture = P2Tex; break;
+                            case 0: y1 = g.getP1DispGraph()[index + 1] - 8; y2 = g.getP1VelGraph()[index + 1] - 8; y3 = g.getP1AccGraph()[index + 1] - 8; texture = P1Tex; break;
+                            case 1: y1 = g.getP2DispGraph()[index + 1] - 8; y2 = g.getP2VelGraph()[index + 1] - 8; y3 = g.getP2AccGraph()[index + 1] - 8; texture = P2Tex; break;
                         }
                         CountDown xDP = new CountDown();
                         CountDown xVP = new CountDown();
                         CountDown xAP = new CountDown();
+
+                        int r3 = GraphUI.Percentage(dwidth, 4.88) + (int)(time / r1) - 10;
                         xDP = new CountDown(texture, r3, y1, 20, 20);
                         xDP.Draw(spriteBatch);
-                        r3 = 370 + (int)r2;
+                        r3 = GraphUI.Percentage(dwidth, 37.1) + (int)(time / r1) - 10;
                         xVP = new CountDown(texture, r3, y2, 20, 20);
                         xVP.Draw(spriteBatch);
-                        r3 = 700 + (int)r2;
+                        r3 = GraphUI.Percentage(dwidth, 69.3) + (int)(time / r1) - 10;
                         xAP = new CountDown(texture, r3, y3, 20, 20);
                         xAP.Draw(spriteBatch);
                     }
