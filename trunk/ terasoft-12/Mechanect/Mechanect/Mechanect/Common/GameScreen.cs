@@ -108,7 +108,7 @@ namespace Mechanect.Common
             }
             catch (Exception)
             {
-                //throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
+                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your load, draw,update methods in each of your screens...");
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
