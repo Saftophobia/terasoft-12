@@ -31,12 +31,14 @@ namespace Mechanect.Exp2
             predatorInitialized = false;
             this.velocity = velocity;
             this.angle = angle;
+            
         }
 
         public void LoadContent(ContentManager contentManager, Viewport viewport, GraphicsDevice graphicsDevice)
         {
             font = contentManager.Load<SpriteFont>("Ariel");
             environment.LoadContent(contentManager, graphicsDevice, viewport);
+            
         }
 
         public void Update(GameTime gameTime)
@@ -62,6 +64,7 @@ namespace Mechanect.Exp2
             {
                 simulationRunning = environment.Update(gameTime);
             }
+           
         }
 
         public void Draw(Rectangle rectangle, ContentManager contentManager, SpriteBatch spriteBatch, Viewport viewport)

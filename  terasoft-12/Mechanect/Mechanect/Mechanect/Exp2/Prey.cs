@@ -114,7 +114,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
         /// <para>DATE WRITTEN: May, 17 </para>
-        /// <para>DATE MODIFIED: May, 17  </para>
+        /// <para>DATE MODIFIED: May, 22  </para>
         /// </remarks>
         /// <param name="mySpriteBatch"> The MySpriteBatch that will be used in drawing</param>
         /// <param name="location">The location of the drawing origin</param>
