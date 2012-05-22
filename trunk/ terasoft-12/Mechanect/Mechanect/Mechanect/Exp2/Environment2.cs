@@ -382,12 +382,12 @@ namespace Mechanect.Exp2
         private void DrawObjects(Rectangle rectangle, MySpriteBatch mySpriteBatch)
         {
             StartAquarium.Draw(mySpriteBatch, PositionMapper(initialPredatorLocation), aquariumScaling);
-
+            Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
             if (rectangle.Contains(new Microsoft.Xna.Framework.Point((int)PositionMapper(Predator.Location).X, (int)PositionMapper(Predator.Location).Y))) ;
             Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
             if (!Prey.Eaten)
                 Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
-            Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
+            
 
 
             DrawConnectors(rectangle);
