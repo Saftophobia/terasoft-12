@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
-using Mechanect.Common;
-using Mechanect.Classes;
-
 
 namespace Mechanect.Exp2
 {
@@ -21,51 +18,48 @@ namespace Mechanect.Exp2
 
         /// <summary>
         /// Instance Variables
-        /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-
+        /// </summary>
         private int currentTime;
         private int startTime;
-        private int counter;
-        private int listCounter;
         private bool shooting;
         private bool beforeHip;
         private double previousAngle;
-        private double angleBeingMeasured;
+        int counter = 0;
+
         private double measuredVelocity;
-        private double measuredFinalAngle;
-        private List<Vector2> angleAndTime = new List<Vector2>();
-      
+        private double measuredAngle;
         /// <summary>
-        /// Setter and Getter for Instance variable "measuredFinalAngle"
+        /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>double, The value of the measuredFinalAngle</returns>
+        /// <returns> the measured angle</returns>
 
-        public double MeasuredFinalAngle
+        public double MeasuredAngle
         {
             get
             {
-                return measuredFinalAngle;
+                return measuredAngle;
             }
             set
             {
-                measuredFinalAngle = value;
+                measuredAngle = value;
             }
         }
 
         /// <summary>
-        /// Setter and Getter for Instance variable "measuredVelocity"
+        /// Getter and setter for the MeasuredVelocity Value
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>double, The value of the measuredVelocity</returns>
-        /// 
+        /// <returns> the measured velocity</returns>
+
+
         public double MeasuredVelocity
         {
             get
@@ -78,39 +72,40 @@ namespace Mechanect.Exp2
             }
         }
 
-
         /// <summary>
-        /// Constructor for User2 class, that sets the value of the counter and listCounter
+        /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
-        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
-        public User2()
-        {
-            this.counter = 0;
-            this.listCounter = 0;
+        /// <remarks>
+        /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
 
+        public void MeasureVelocityAndAngle(GameTime gameTime)
+        {
+            MeasureAngle(gameTime);
+            MeasureVelocity();
         }
 
-
-      
         /// <summary>
         /// Resets all instance variables to their intitial values
         /// </summary>
-        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
-
+     
         public void Reset()
         {
             shooting = false;
             beforeHip = false;
-            measuredFinalAngle = 0;
+            measuredAngle = 0;
             previousAngle = 0;
         }
 
+
+
+
         /// <summary>
-        /// Calculate the angle between two planes, one is a vertical plane containing: left shoulder, right shoulder,
-        /// and center hip, and another plane that is inclined containing: left shoulder, right shoulder, and left hand
+        /// Gets the angle between two Vectors, from left hip to left shoulder and from left shoulder to left hand
+        /// and convert it to degrees.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// <param name ="gametime">Takes the gametime to make time calculations </param>
         private void MeasureAngle(GameTime gametime)
@@ -139,61 +134,22 @@ namespace Mechanect.Exp2
                     return;
                 counter = 0;
 
-                Vector3 centerHipToLeftShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.HipCenter].Position.X,
-                    USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.HipCenter].Position.Y,
-                    USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.HipCenter].Position.Z);
+                Vector2 hand = new Vector2(USER.Joints[JointType.HandLeft].Position.X - USER.Joints[JointType.ShoulderLeft].Position.X
+                    , USER.Joints[JointType.HandLeft].Position.Y - USER.Joints[JointType.ShoulderLeft].Position.Y);
 
-                Vector3 centerHiptoRightShoulder = new Vector3(USER.Joints[JointType.ShoulderRight].Position.X - USER.Joints[JointType.HipCenter].Position.X,
-                    USER.Joints[JointType.ShoulderRight].Position.Y - USER.Joints[JointType.HipCenter].Position.Y,
-                    USER.Joints[JointType.ShoulderRight].Position.Z - USER.Joints[JointType.HipCenter].Position.Z);
-
-                Vector3 leftShoulderToRightShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.ShoulderRight].Position.X,
-                    USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.ShoulderRight].Position.Y,
-                    USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.ShoulderRight].Position.Z);
-
-                Vector3 leftShoulderToLeftHand = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X - USER.Joints[JointType.ShoulderRight].Position.X,
-                    USER.Joints[JointType.ShoulderLeft].Position.Y - USER.Joints[JointType.ShoulderRight].Position.Y,
-                    USER.Joints[JointType.ShoulderLeft].Position.Z - USER.Joints[JointType.ShoulderRight].Position.Z);
-
-                Vector3 normalToShouldersHipPlane = Vector3.Cross(centerHipToLeftShoulder, centerHiptoRightShoulder);
-
-                Vector3 normalToShoulderHandPlane = Vector3.Cross(leftShoulderToLeftHand, leftShoulderToRightShoulder);
-
-                double angle = (double)Math.Acos(Vector3.Dot(normalToShoulderHandPlane, normalToShouldersHipPlane));
+                double angle = (float)Math.Atan(hand.Y / hand.X);
                 angle = angle * 180 / Math.PI;
-                angle += 90; angle /= 2;
+                angle += 90;
+                angle /= 2;
+
                 if (angle - previousAngle > 0.5)
                 {
                     previousAngle = angle;
                     return;
                 }
                 currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
-
-                measuredFinalAngle = (int)(10 * angle) / 10f;
+                measuredAngle = (int)(10 * angle) / 10f;
                 shooting = false;
-
-                if (shooting)
-                {
-                    if (listCounter == 5)
-                        listCounter = 0;
-                    if (angleAndTime.Count >= 0 && angleAndTime.Count < angleAndTime.Capacity)
-                    {
-                        angleAndTime.Add(new Vector2((float)angleBeingMeasured, (float)currentTime));
-                    }
-                    else
-                    {
-                        if (angleAndTime.Count == angleAndTime.Capacity)
-                        {
-                            angleAndTime.RemoveAt(this.listCounter);
-                            angleAndTime.Insert(this.listCounter, new Vector2((float)angleBeingMeasured, (float)currentTime));
-                        }
-                    }
-                    listCounter++;
-
-                }
-
-
-
             }
 
         }
@@ -203,7 +159,7 @@ namespace Mechanect.Exp2
         /// Calculate the angular velocity and then the linear velocity
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// <returns>Returns the linear velocity of the arm</returns>
         private void MeasureVelocity()
@@ -215,13 +171,11 @@ namespace Mechanect.Exp2
                 return;
             }
 
-            measuredVelocity = (this.angleAndTime[this.listCounter].X - this.angleAndTime[0].X) /
-                (this.angleAndTime[this.listCounter].Y - this.angleAndTime[0].Y);
-
+            measuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
         }
 
-
-
+       
+    
     }
 
 }
