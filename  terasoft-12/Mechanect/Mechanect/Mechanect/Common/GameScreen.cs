@@ -52,7 +52,7 @@ namespace Mechanect.Common
             }
         }
         public bool showAvatar=true;
-
+        public bool isTwoPlayers = false;
         #endregion
 
         #region Initialization
@@ -60,6 +60,9 @@ namespace Mechanect.Common
         public virtual void LoadContent() {
             if (showAvatar)
             {
+                if(isTwoPlayers)
+                    userAvatar = new UserAvatar(Game1.User, Game1.User2,ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                else
                 userAvatar = new UserAvatar(Game1.User, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
                 userAvatar.LoadContent();
             }
