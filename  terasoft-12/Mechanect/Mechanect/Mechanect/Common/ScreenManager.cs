@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Screens;
+using System.Collections;
+using Mechanect.Exp3;
+using System.Threading;
 
 namespace Mechanect.Common
 {
@@ -12,7 +16,7 @@ namespace Mechanect.Common
     public class ScreenManager : DrawableGameComponent
     {
         #region Fields
-        List<GameScreen> screens = new List<GameScreen>();
+        Dictionary<string,GameScreen> screens = new Dictionary<string,GameScreen>();
         public List<GameScreen> screensToUpdate = new List<GameScreen>();
 
         SpriteBatch spriteBatch;
@@ -50,10 +54,14 @@ namespace Mechanect.Common
             ContentManager content = Game.Content;
             
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //load screen dedicated content
-            foreach (GameScreen screen in screens)
-                screen.LoadContent();
+            User user = new User();
+            User3 user3 = new User3();
+            AddScreen("terasoftscreen", new TeraSoftScreen());
+            AddScreen("itworxscreen", new ITworxScreen());
+            AddScreen("allexperiments", new AllExperiments(user));
+            AddScreen("experiment3", new Experiment3(user3));
+            AddScreen("pausescreen", new PauseScreen(user3, user3.Kinect, 7, 7, 0.01));
+            //add your screens here
         }
 
         /// <summary>
@@ -61,8 +69,9 @@ namespace Mechanect.Common
         /// </summary>
         protected override void UnloadContent()
         {
-            foreach (GameScreen screen in screens)
-                screen.UnloadContent();
+            foreach(string key in screens.Keys) {
+                screens[key].UnloadContent();
+            }
         }
         #endregion
 
@@ -76,20 +85,17 @@ namespace Mechanect.Common
             //clear out the screensToUpdate list to copy the screens list
             //this allows us to add or remove screens without complaining.
             screensToUpdate.Clear();
-          
-            
-            foreach (GameScreen screen in screens)
+            foreach (string key in screens.Keys)
             {
-                if(!screen.IsFrozen)
-                screensToUpdate.Add(screen);
+                if (screens[key].IsActive)
+                    screensToUpdate.Add(screens[key]);   
             }
 
             if (screensToUpdate.Count == 0)
-                foreach (GameScreen screen in screens)
-                {
-                    screen.UnfreezeScreen();
-                    screensToUpdate.Add(screen);
-                }
+            foreach (string key in screens.Keys)
+            {
+                screens[key].UnfreezeScreen();
+            }
             else
             {
                 while (screensToUpdate.Count > 0)
@@ -109,12 +115,12 @@ namespace Mechanect.Common
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
-            foreach (GameScreen screen in screens)
+            foreach (string key in screens.Keys)
             {
-                if (screen.ScreenState == ScreenState.Hidden)
+                if (screens[key].ScreenState == ScreenState.Hidden || !screens[key].IsActive)
                     continue;
 
-                screen.Draw(gameTime);
+                screens[key].Draw(gameTime);
             }
         }
         #endregion
@@ -124,15 +130,18 @@ namespace Mechanect.Common
         /// Adds a screen to the list of screens that are managed by the screenManager.
         /// </summary>
         /// <param name="screen">Represents the screen that should be managed by the screenManager</param>
-        public void AddScreen(GameScreen screen)
+        public void AddScreen(string screenName, GameScreen screen)
         {
             screen.ScreenManager = this;
-            if (this.isInitialized)
-            {
                 screen.LoadContent();
                 screen.Initialize();
-            }
-            screens.Add(screen);
+                screen.IsActive = false;
+            screens.Add(screenName, screen);
+            Thread.Sleep(200);
+        }
+
+        public void LoadScreen(string screenName){
+            screens[screenName].IsActive = true;
         }
 
         /// <summary>
@@ -140,13 +149,14 @@ namespace Mechanect.Common
         /// </summary>
         /// <param name="screen">Represents the screen that should be removed from the list
         /// of managed screens by the screenManager</param>
-        public void RemoveScreen(GameScreen screen)
+        public void RemoveScreen(string screenName)
         {
+            GameScreen screen = screens[screenName];
             if (this.isInitialized)
             {
                 screen.UnloadContent();
             }
-            screens.Remove(screen);
+            screens.Remove(screenName);
             screensToUpdate.Remove(screen);
         }
         #endregion

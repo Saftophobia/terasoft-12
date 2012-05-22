@@ -11,7 +11,8 @@ namespace Mechanect.Common
     {
         Active,
         Frozen,
-        Hidden
+        Hidden,
+        InActive
     }
     /// <summary>
     /// This class represents the screen of the game
@@ -23,7 +24,18 @@ namespace Mechanect.Common
 
         public static int frameNumber;
         public UserAvatar userAvatar;
-
+        private string screenName;
+        public string ScreenName
+        {
+            get
+            {
+                return screenName;
+            }
+            set
+            {
+                screenName = value;
+            }
+        }
         private bool isFrozen;
         public bool IsFrozen
         {
@@ -31,7 +43,7 @@ namespace Mechanect.Common
             set { isFrozen = value; }
         }
 
-        private ScreenState screenState;
+        private ScreenState screenState = ScreenState.InActive;
         public ScreenState ScreenState
         {
             get { return screenState; }
@@ -50,8 +62,12 @@ namespace Mechanect.Common
             {
                 return screenState == ScreenState.Active;
             }
+            set
+            {
+                screenState = value == true ? ScreenState.Active : ScreenState.InActive;
+            }
         }
-
+        
         #endregion
 
         #region Initialization
@@ -93,7 +109,7 @@ namespace Mechanect.Common
             }
             catch (Exception)
             {
-                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
+                //throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
@@ -107,7 +123,7 @@ namespace Mechanect.Common
         /// </summary>
         public virtual void Remove()
         {
-            screenManager.RemoveScreen(this);
+            screenManager.RemoveScreen(screenName);
         }
         /// <summary>
         /// Draws the screen.

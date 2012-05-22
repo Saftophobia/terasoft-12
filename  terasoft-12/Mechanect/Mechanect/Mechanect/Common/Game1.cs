@@ -36,7 +36,7 @@ namespace Mechanect
             set { ;}
         }
         static User user2;
-         Boolean fullScreen = false; //this one is false
+         Boolean fullScreen = true; //this one is false
 
         public Game1()
         {
@@ -79,7 +79,8 @@ namespace Mechanect
             //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
             //screenManager.AddScreen(new InstructionsScreen3());
            // screenManager.AddScreen(new TeraSoftScreen());
-            screenManager.AddScreen(new Experiment3((User3)user));
+            //screenManager.AddScreen(new Experiment3(new User3()));
+            screenManager.LoadScreen("terasoftscreen");
           //  screenManager.AddScreen(new UserAvatarScreen( new User(), new User(), new MKinect()));
             //screenManager.AddScreen(new UserAvatarScreen(new User(),new MKinect()));
             //screenManager.AddScreen(new Experiment2(new User2()));
