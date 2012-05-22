@@ -39,8 +39,8 @@ namespace Mechanect.Screens
 
         public override void LoadContent()
         {
-            s = new Simulation(Vector2.Zero, new Rectangle(5, 5, 1, 1), new Rectangle(10, 3, 2, 2), 12, 60);
-            s.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, ScreenManager.GraphicsDevice);
+            //s = new Simulation(Vector2.Zero, new Rectangle(5, 5, 1, 1), new Rectangle(10, 3, 2, 2), 12, 60);
+            //s.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, ScreenManager.GraphicsDevice);
 
             
         }
@@ -65,7 +65,7 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.Begin();
 
             // TODO: Add your update code here
-            s.Draw(new Rectangle(100, 50, 500, 300),ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice.Viewport);
+            //s.Draw(new Rectangle(100, 50, 500, 300),ScreenManager.Game.Content, ScreenManager.SpriteBatch, ScreenManager.GraphicsDevice.Viewport);
             ScreenManager.SpriteBatch.End();
         }
     }
