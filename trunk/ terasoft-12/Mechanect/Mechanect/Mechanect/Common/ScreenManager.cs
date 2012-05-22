@@ -129,8 +129,8 @@ namespace Mechanect.Common
             screen.ScreenManager = this;
             if (this.isInitialized)
             {
-                screen.LoadContent();
                 screen.Initialize();
+                screen.LoadContent();
             }
             screens.Add(screen);
         }
