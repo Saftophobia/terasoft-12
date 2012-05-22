@@ -453,7 +453,7 @@ namespace Mechanect.Exp1
                     return false;
                  }
              }
-             return true;
+             return (accelerations.Count != 0);
          }
 
          /// <summary>
