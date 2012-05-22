@@ -168,9 +168,19 @@ namespace Mechanect.Exp2
             aquariumLocation.X = GetX(timeAquarium);
             aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * timeAquarium) +
             (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
+            
+            if (preyLocation.X <= 0 || preyLocation.Y < 0 || aquariumLocation.Y < 0)
+            {
+                GetSolvablePoints();
+            }
+            if (aquariumLocation.X <= 0 || float.IsNaN(aquariumLocation.Y) || float.IsNaN(aquariumLocation.X))
+                GetSolvablePoints();
+            if (float.IsNaN(preyLocation.Y) || float.IsNaN(preyLocation.X))
+                GetSolvablePoints();
 
             float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y - 
             aquariumLocation.Y * ((float)Tools2.tolerance / 100));
+            
             
             predatorLocation.Y = predatorLocation.Y - minimumHeight;
             preyLocation.Y = preyLocation.Y - minimumHeight;
