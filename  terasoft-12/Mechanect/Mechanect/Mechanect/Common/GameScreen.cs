@@ -51,14 +51,18 @@ namespace Mechanect.Common
                 return screenState == ScreenState.Active;
             }
         }
+        public bool showAvatar=true;
 
         #endregion
 
         #region Initialization
 
         public virtual void LoadContent() {
-            //userAvatar = new UserAvatar(Game1.User, Game1.User.Kinect, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
-            userAvatar.LoadContent();
+            if (showAvatar)
+            {
+                userAvatar = new UserAvatar(Game1.User, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                userAvatar.LoadContent();
+            }
   
         }
 
@@ -87,13 +91,16 @@ namespace Mechanect.Common
         /// <param name="gameTime">represents the time of the game.</param>
         /// khaled salah
         public virtual void Update(GameTime gameTime) {
-            try
+            if (showAvatar)
             {
-                userAvatar.Update(gameTime);
-            }
-            catch (Exception)
-            {
-                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
+                try
+                {
+                    userAvatar.Update(gameTime);
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
+                }
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
@@ -115,6 +122,7 @@ namespace Mechanect.Common
         /// <param name="gameTime">represents the time of the game.</param>
         public virtual void Draw(GameTime gameTime)
         {
+            if(showAvatar)
             userAvatar.Draw(gameTime);
         }
         #endregion
