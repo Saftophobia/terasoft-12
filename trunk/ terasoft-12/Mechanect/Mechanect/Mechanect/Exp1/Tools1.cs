@@ -156,16 +156,16 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 18/5/12 </para>
-         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 22/5/12 </para>
          /// </remarks>
-         public static void CheckTheCommand(int timeInSeconds, User1 user1, User1 user2, List<int> timeOfCommands, List<string> currentCommands, float tolerance)
+         public static void CheckTheCommand(float timeInSeconds, User1 user1, User1 user2, List<int> timeOfCommands, List<string> currentCommands, float tolerance)
          {
              //get the accumulative time of current command
-             int accumulativeTime = 0;
+             float accumulativeTime = 0;
              for (int i = 0; i < user1.ActiveCommand; i++)
                  accumulativeTime += timeOfCommands[i];
 
-             if (accumulativeTime != timeInSeconds)
+             if ((accumulativeTime >= timeInSeconds) && (accumulativeTime <= timeInSeconds + 0.1))
                  return;
 
              //get the start index of speed list
@@ -209,14 +209,14 @@ namespace Mechanect.Exp1
              if (!CommandSatisfied(currentCommands[user1.ActiveCommand], speedsOf1, tolerance, velocitiesWithTimeOf1))
              {
                  user1.Disqualified = true;
-                 user1.DisqualificationTime = timeInSeconds;
+                 user1.DisqualificationTime = (int) timeInSeconds;
                  s += "User 1 got Disqualified \n";
                  Console.Write("User1 1 got Disqualified");
              }
              if (!CommandSatisfied(currentCommands[user2.ActiveCommand], speedsOf2, tolerance, velocitiesWithTimeOf2))
              {
                  user2.Disqualified = true;
-                 user2.DisqualificationTime = timeInSeconds;
+                 user2.DisqualificationTime = (int) timeInSeconds;
                  s += "User 2 got Disqualified";
                  Console.Write("User 2 got Disqualified");
              }
@@ -440,7 +440,7 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 22/5/12 </para>
          /// </remarks>
          public static bool IncreasingAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
