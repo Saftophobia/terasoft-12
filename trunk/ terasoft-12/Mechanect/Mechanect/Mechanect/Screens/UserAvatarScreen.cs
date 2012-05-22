@@ -23,10 +23,9 @@ namespace Mechanect.Screens
         const int minDepth = 120;
         const int maxDepth = 350;
         int[] depth;
-        public UserAvatar(User user, MKinect kinect, ContentManager content, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
+        public UserAvatar(User user, ContentManager content, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[1];
-            this.kinect = kinect;
             this.users[0] = user;
             this.graphics = graphicsDevice;
             screenWidth = graphics.Viewport.Width;
@@ -35,18 +34,16 @@ namespace Mechanect.Screens
             this.content = content;
             Initialize(); 
         }
-        public UserAvatar(User user, User user2, MKinect kinect, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
+        public UserAvatar(User user, User user2, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[2];
             this.users[0] = user;
             this.users[1] = user2;
-            this.kinect = kinect;
             this.graphics = graphicsDevice;
             screenWidth = graphics.Viewport.Width;
             screenHeight = graphics.Viewport.Height;
             this.spriteBatch = spriteBatch;
             this.content = content;
-       
             Initialize();
         }
         /// <summary>
@@ -73,6 +70,7 @@ namespace Mechanect.Screens
             this.command = new String[users.Length];
             avatar = new Texture2D[users.Length];
             avatarPosition = new Vector2[users.Length];
+            kinect = users[0].Kinect;
         }
 
         /// <summary>
