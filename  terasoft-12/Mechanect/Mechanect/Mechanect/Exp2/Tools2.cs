@@ -13,7 +13,7 @@ namespace Mechanect.Exp2
         //gravity of projectile motion
          public static double gravity = -9.8;
         //tolerance that indicate level
-         public static int tolerance = 10;
+         public static int tolerance = 20;
 
        
 
