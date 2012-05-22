@@ -36,6 +36,7 @@ namespace Mechanect.Common
                 screenName = value;
             }
         }
+        public bool isTwoPlayers = false;
         private bool isFrozen;
         public bool IsFrozen
         {
@@ -73,6 +74,9 @@ namespace Mechanect.Common
         #region Initialization
 
         public virtual void LoadContent() {
+            if(isTwoPlayers)
+                userAvatar = new UserAvatar(Game1.User, Game1.User2, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+            else
             userAvatar = new UserAvatar(Game1.User, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             userAvatar.LoadContent();
         }
@@ -108,7 +112,7 @@ namespace Mechanect.Common
             }
             catch (Exception)
             {
-                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your load, draw,update methods in each of your screens...");
+                //throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your load, draw,update methods in each of your screens...");
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
