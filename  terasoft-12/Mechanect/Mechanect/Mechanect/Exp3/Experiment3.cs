@@ -91,7 +91,7 @@ namespace Mechanect.Exp3
                 {
                     pauseScreenShowed = true;
                     FreezeScreen();
-                    //ScreenManager.LoadScreen("pausescreen");
+                    //ScreenManager.AddScreen("pausescreen");
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
