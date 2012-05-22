@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Mechanect.Screens;
+using System;
 namespace Mechanect.Common
 {
     /// <summary>
@@ -84,8 +85,16 @@ namespace Mechanect.Common
         /// Updates the screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
+        /// khaled salah
         public virtual void Update(GameTime gameTime) {
-            userAvatar.Update(gameTime);
+            try
+            {
+                userAvatar.Update(gameTime);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
+            }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
         //{
