@@ -145,7 +145,7 @@ namespace Mechanect.Exp2
         /// <param name="scale"> The scaling of the texture</param>
         public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, Vector2 scale)
         {
-            mySpriteBatch.DrawTexture(fishTexture, location, MathHelper.ToRadians(-1 * (float)Angle), scale);
+            mySpriteBatch.DrawTexture(fishTexture, location, MathHelper.ToRadians(-1 * (float)Angle), scale/fishTexture.Width);
         }
     }
 }

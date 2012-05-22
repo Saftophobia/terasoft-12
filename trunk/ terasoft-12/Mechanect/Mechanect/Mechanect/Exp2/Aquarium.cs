@@ -131,7 +131,7 @@ namespace Mechanect.Exp2
 
         public void Draw(MySpriteBatch mySpriteBatch, Vector2 location, Vector2 scale)
         {
-            mySpriteBatch.DrawTexture(aquariumTexture, location, angle, scale);
+            mySpriteBatch.DrawTexture(aquariumTexture, location, angle, scale/aquariumTexture.Width);
         }
     }
 }
