@@ -149,34 +149,24 @@ namespace Mechanect.Exp2
             var aquariumLocation = new Vector2();
             predatorLocation.X = 0;
             predatorLocation.Y = random.Next(0, 20);
-            double angleInDegree = GetRandomAngle();
+            int angleInDegree = GetRandomAngle();
             angle = angleInDegree * (Math.PI / 180);
             velocity = GetRandomVelocity();
             double totalTime = GetTotalTime(predatorLocation.Y);
 
 
-            double timeSlice = totalTime / 3;
-            double timePrey = GetRandomNumber(timeSlice - 10 / 100, (timeSlice * 2) -
-            (timeSlice + timeSlice * Tools2.tolerance * 2 / 100));
-            double timeAquarium = GetRandomNumber(timePrey +
-            (timePrey * Tools2.tolerance * 2 / 100), totalTime);
+            double timeSlice = totalTime / 5;
+            double timePrey = GetRandomNumber(timeSlice, 3 * timeSlice);
+            double timeAquarium = GetRandomNumber(timePrey + timeSlice, timeSlice * 5);
 
-            preyLocation.X = GetX(timePrey);
-            preyLocation.Y = (float)((velocity * Math.Sin(angle) * timePrey) +
-            (0.5 * Tools2.gravity * Math.Pow(timePrey, 2)) + predatorLocation.Y);
+            preyLocation.X = (float)Math.Round(GetX(timePrey), 2);
+            preyLocation.Y = (float)(Math.Round(((velocity * Math.Sin(angle) * timePrey) +
+            (0.5 * Tools2.gravity * Math.Pow(timePrey, 2)) + predatorLocation.Y), 2));
 
-            aquariumLocation.X = GetX(timeAquarium);
-            aquariumLocation.Y = (float)((velocity * Math.Sin(angle) * timeAquarium) +
-            (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y);
+            aquariumLocation.X = (float)Math.Round(GetX(timeAquarium));
+            aquariumLocation.Y = (float)(Math.Round(((velocity * Math.Sin(angle) * timeAquarium) +
+            (0.5 * Tools2.gravity * Math.Pow(timeAquarium, 2)) + predatorLocation.Y), 2));
 
-            if (preyLocation.X <= 0 || preyLocation.Y < 0 || aquariumLocation.Y < 0)
-            {
-                GetSolvablePoints();
-            }
-            if (aquariumLocation.X <= 0 || float.IsNaN(aquariumLocation.Y) || float.IsNaN(aquariumLocation.X))
-                GetSolvablePoints();
-            if (float.IsNaN(preyLocation.Y) || float.IsNaN(preyLocation.X))
-                GetSolvablePoints();
 
             float minimumHeight = Math.Min(predatorLocation.Y, aquariumLocation.Y -
             aquariumLocation.Y * ((float)Tools2.tolerance / 100));
@@ -186,11 +176,12 @@ namespace Mechanect.Exp2
             preyLocation.Y = preyLocation.Y - minimumHeight;
             aquariumLocation.Y = aquariumLocation.Y - minimumHeight;
 
+            float aquariumWidth = Math.Min(aquariumLocation.X * ((float)Tools2.tolerance / 100), GetX(timeSlice));
+            float preyWidth = aquariumWidth / 3;
 
             Predator = new Predator(predatorLocation);
-            Aquarium = new Aquarium(aquariumLocation, aquariumLocation.X * ((float)Tools2.tolerance / 100),
-            aquariumLocation.Y * ((float)Tools2.tolerance / 100));
-            Prey = new Prey(preyLocation, Aquarium.Length * 2 / 5, Aquarium.Width * 2 / 5);
+            Aquarium = new Aquarium(aquariumLocation, aquariumWidth, aquariumWidth);
+            Prey = new Prey(preyLocation, preyWidth, preyWidth);
         }
 
         /// <summary>
@@ -207,7 +198,7 @@ namespace Mechanect.Exp2
             //solving quadratic formula for time
             double totalTime = (-secondqudrantInFormula + Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) -
             (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
-            if (totalTime < 0)
+            if (totalTime <= 0)
             {
                 totalTime = (-secondqudrantInFormula - Math.Sqrt(Math.Pow(secondqudrantInFormula, 2) -
                   (4 * 0.5 * Tools2.gravity * predatorLocationY))) / (2 * 0.5 * Tools2.gravity);
