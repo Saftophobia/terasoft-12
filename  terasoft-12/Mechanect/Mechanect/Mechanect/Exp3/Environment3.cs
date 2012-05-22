@@ -753,7 +753,7 @@ namespace Mechanect.Exp3
             //        int a = (int)Math.Round(radius + radius * Math.Cos(angle));
             //        int b = (int)Math.Round(radius + radius * Math.Sin(angle));
             //    }
-            for (float x = hole.Position.X - radius*2; x <= hole.Position.X + radius; x++)
+            for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
             {
                 for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
                 {
