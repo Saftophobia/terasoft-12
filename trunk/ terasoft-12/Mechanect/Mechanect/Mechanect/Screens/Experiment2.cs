@@ -100,8 +100,8 @@ namespace Mechanect.Screens
         // Variables that will change how the Gui will look
 
         // Variables defining the appearence of some objects
-        private Boolean grayScreen ;
-        private Boolean preyEaten ;
+        private Boolean grayScreen;
+        private Boolean preyEaten;
 
 
         // Variables defining the screen Width and Height that will be used in drawing the objects of the experiment
@@ -123,7 +123,29 @@ namespace Mechanect.Screens
         public Experiment2(User2 user)
         {
 
-            //environment = new Environment2();
+            environment = new Environment2();
+
+            this.user = user;
+            this.mKinect = user.Kinect;
+            isCopied = false;
+
+
+        }
+
+        /// <summary>
+        /// A constructor that specifies a special setup to the game
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim </para>
+        /// </remarks>
+        /// <param name="user">Takes an instance of User2 </param>
+        /// <param name="predatorPosition">Vector2, the center point of the predator</param>
+        /// <param name="preyPosition">Rect, the rectangle that represents the position of the prey</param>
+        /// <param name="aquariumPosition">Rect, the rectangle that represents the position of the aquarium</param>
+        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
+        {
+
+            environment = new Environment2(predatorPosition, preyPosition, AquariumPosition);
 
             this.user = user;
             this.mKinect = user.Kinect;
@@ -161,7 +183,7 @@ namespace Mechanect.Screens
             //Loading Fonts
             velAngleFont = Content.Load<SpriteFont>("Ariel");
             spriteFont = Content.Load<SpriteFont>("ArielBig");
-            
+
             //creating a test environment
             environment = new Environment2(Vector2.Zero, new Rect(5, 10, 0.8, 0.8), new Rect(10, 3, 2, 2));
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
@@ -224,7 +246,7 @@ namespace Mechanect.Screens
             DrawAngVelLabels();
 
             if (ended && milliSeconds > 1000)
-                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2, 
+                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2,
                     ViewPort.Height / 2), aquariumReached && preyEaten);
 
 
@@ -264,7 +286,7 @@ namespace Mechanect.Screens
 
             SpriteBatch.End();
 
-           //TBC
+            //TBC
             //button.Draw(SpriteBatch);
         }
 
@@ -335,74 +357,43 @@ namespace Mechanect.Screens
                 if (milliSeconds > 3000)
                 {
                     this.Remove();
-                    ScreenManager.AddScreen(new StatisticScreen2());
+                    //ScreenManager.AddScreen(new StatisticScreen2());
                 }
             }
-            if (!isCopied)
+            else if (!grayScreen && user.MeasuredVelocity != 0)
             {
-                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
-                if (milliSeconds > 3000)
+                if (!isCopied)
                 {
-                    milliSeconds = 0;
                     isCopied = true;
-                    environment.Predator.Velocity = new Vector2((float)(12 * Math.Cos(60 * Math.PI / 180)),
-                        (float)(12 * Math.Sin(60 * Math.PI / 180)));
+                    environment.Predator.Velocity = new Vector2(
+                        (float)(user.MeasuredVelocity * Math.Cos(user.MeasuredAngle * Math.PI / 180)),
+                        (float)(user.MeasuredVelocity * Math.Sin(user.MeasuredAngle * Math.PI / 180)));
                 }
-            }
-            else
-            {
                 ended = !environment.Update(gameTime);
                 preyEaten = environment.Prey.Eaten;
                 aquariumReached = !environment.Predator.Movable && environment.Predator.Location.Y > 0;
             }
-            /*
-            if (ended)
-            {
-                milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
-                if (milliSeconds > 3000)
-                {
-                    this.Remove();
-                    ScreenManager.AddScreen(new LastScreen(user, 2));
-                }
-            }
             else
             {
-                if (!grayScreen && user.MeasuredVelocity != 0)
+                user.setSkeleton();
+                if (button != null)
                 {
-                    if (!isCopied)
+                    button.Update(gameTime);
+                    if (button.IsClicked())// || voiceCommand.GetHeared("go"))
                     {
-                        isCopied = true;
-                        //environment.Predator.Velocity = new Vector2((float)(user.MeasuredVelocity * Math.Cos
-             * (user.MeasuredFinalAngle * Math.PI / 180)), (float)(user.MeasuredVelocity * Math.Sin
-             * (user.MeasuredFinalAngle * Math.PI / 180)));
+                        grayScreen = false;
+                        button = null;
+                        voiceCommand = null;
+                        user.Reset();
                     }
-                    ended = environment.Update(gameTime);
-
                 }
-
                 else
-                {
-                    user.setSkeleton();
-                    if (button != null)
-                    {
-                        button.Update(gameTime);
-                        if (button.IsClicked())// || voiceCommand.GetHeared("go"))
-                        {
-                            grayScreen = false;
-                            button = null;
-                            voiceCommand = null;
-                            user.Reset();
-                        }
-                    }
-                    if (user.USER != null && user.USER.Position.Z != 0)
-                    {
-
-                        //user.MeasureVelocityAndAngle(gameTime);
-                    }
-                }
+                    user.MeasureAngleAndVelocity(gameTime);
             }
-             */
         }
-
     }
+
 }
+
+    
+
