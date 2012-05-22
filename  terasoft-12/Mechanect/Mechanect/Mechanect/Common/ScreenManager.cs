@@ -61,6 +61,7 @@ namespace Mechanect.Common
             AddScreen("allexperiments", new AllExperiments(user));
             AddScreen("experiment3", new Experiment3(user3));
             AddScreen("pausescreen", new PauseScreen(user3, user3.Kinect, 7, 7, 0.01));
+            AddScreen("instructions screen 3", new InstructionsScreen3(user3));
             //add your screens here
         }
 

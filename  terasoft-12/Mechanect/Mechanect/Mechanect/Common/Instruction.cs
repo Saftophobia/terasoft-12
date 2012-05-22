@@ -208,6 +208,7 @@ namespace Mechanect
             string output = WrapText(this.instructions);
             spriteBatch.Begin();
             button.Draw(spriteBatch);
+            button.DrawHand(spriteBatch);
             spriteBatch.DrawString(spriteFont, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
