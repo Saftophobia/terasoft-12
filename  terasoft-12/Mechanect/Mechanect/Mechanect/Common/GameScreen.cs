@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Mechanect.Screens;
 namespace Mechanect.Common
 {
     /// <summary>
@@ -20,6 +21,7 @@ namespace Mechanect.Common
         #region Fields and Properties
 
         public static int frameNumber;
+        public UserAvatar userAvatar;
 
         private bool isFrozen;
         public bool IsFrozen
@@ -53,9 +55,16 @@ namespace Mechanect.Common
 
         #region Initialization
 
-        public virtual void LoadContent() { }
+        public virtual void LoadContent() {
+            userAvatar = new UserAvatar(Game1.User, Game1.User.Kinect, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+            userAvatar.LoadContent();
+  
+        }
 
-        public virtual void Initialize() { }
+        public virtual void Initialize() {
+
+           
+        }
 
         public virtual void UnloadContent() { }
         #endregion
@@ -65,22 +74,8 @@ namespace Mechanect.Common
         [System.Obsolete("will be replaced by Update(gameTime)", false)]
         public virtual void Update(GameTime gameTime, bool covered)
         {
-         /*   user.setSkeleton();
-            if (user.USER == null)
-            {
-                if (pausescreenappeared == false)
-                {
-                    FreezeScreen();
-                    screenManager.AddScreen(new CommonPauseScreen(user));
-                    pausescreenappeared = true;
-                }
-            }
-            else if (pausescreenappeared == true)
-            {
-                Remove();
-                pausescreenappeared = false;
-                UnfreezeScreen();
-            }*/
+       
+            
              
             if (IsFrozen)
                 return;
@@ -89,13 +84,15 @@ namespace Mechanect.Common
         /// Updates the screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
-        public virtual void Update(GameTime gameTime) { }
+        public virtual void Update(GameTime gameTime) {
+            userAvatar.Update(gameTime);
+        }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
         //{
         //    if (IsFrozen)
         //        return;
         //}
-
+        
         /// <summary>
         /// Removes the current screen.
         /// </summary>
@@ -107,7 +104,10 @@ namespace Mechanect.Common
         /// Draws the screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
-        public abstract void Draw(GameTime gameTime);
+        public virtual void Draw(GameTime gameTime)
+        {
+            userAvatar.Draw(gameTime);
+        }
         #endregion
 
         #region Methods
