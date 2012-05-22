@@ -13,10 +13,12 @@ namespace Mechanect.Screens
         public InstructionsScreen3(User3 user3)
         {
             this.user3 = user3;
+            ScreenName = "instructions screen3";
         }
         public InstructionsScreen3(string instructions, User3 user)
             
         {
+            ScreenName = "instructions screen3";
             this.instructions = instructions;
             user3 = user;
         }
@@ -50,7 +52,7 @@ namespace Mechanect.Screens
         {
             if (instruction.Button.IsClicked())
             {
-                ScreenManager.AddScreen(new Settings3(user3));
+                ScreenManager.LoadScreen("settings3");
                 Remove();
             }
             instruction.Button.Update(gameTime);
