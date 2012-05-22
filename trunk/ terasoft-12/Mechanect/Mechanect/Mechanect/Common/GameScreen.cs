@@ -11,8 +11,7 @@ namespace Mechanect.Common
     {
         Active,
         Frozen,
-        Hidden,
-        InActive
+        Hidden
     }
     /// <summary>
     /// This class represents the screen of the game
@@ -24,19 +23,7 @@ namespace Mechanect.Common
 
         public static int frameNumber;
         public UserAvatar userAvatar;
-        private string screenName;
-        public string ScreenName
-        {
-            get
-            {
-                return screenName;
-            }
-            set
-            {
-                screenName = value;
-            }
-        }
-        public bool isTwoPlayers = false;
+
         private bool isFrozen;
         public bool IsFrozen
         {
@@ -44,7 +31,7 @@ namespace Mechanect.Common
             set { isFrozen = value; }
         }
 
-        private ScreenState screenState = ScreenState.InActive;
+        private ScreenState screenState;
         public ScreenState ScreenState
         {
             get { return screenState; }
@@ -63,22 +50,16 @@ namespace Mechanect.Common
             {
                 return screenState == ScreenState.Active;
             }
-            set
-            {
-                screenState = value == true ? ScreenState.Active : ScreenState.InActive;
-            }
         }
-        
+
         #endregion
 
         #region Initialization
 
         public virtual void LoadContent() {
-            if(isTwoPlayers)
-                userAvatar = new UserAvatar(Game1.User, Game1.User2, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
-            else
-            userAvatar = new UserAvatar(Game1.User, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+            userAvatar = new UserAvatar(Game1.User, Game1.User.Kinect, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             userAvatar.LoadContent();
+  
         }
 
         public virtual void Initialize() {
@@ -112,7 +93,7 @@ namespace Mechanect.Common
             }
             catch (Exception)
             {
-                //throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your load, draw,update methods in each of your screens...");
+                throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
@@ -126,7 +107,7 @@ namespace Mechanect.Common
         /// </summary>
         public virtual void Remove()
         {
-            screenManager.RemoveScreen(screenName);
+            screenManager.RemoveScreen(this);
         }
         /// <summary>
         /// Draws the screen.
