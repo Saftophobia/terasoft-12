@@ -247,7 +247,7 @@ namespace Mechanect.Screens
 
             if (ended && milliSeconds > 1000)
                 Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2,
-                    ViewPort.Height / 2), aquariumReached && preyEaten);
+                    ViewPort.Height / 2), environment.Win);
 
 
         }
