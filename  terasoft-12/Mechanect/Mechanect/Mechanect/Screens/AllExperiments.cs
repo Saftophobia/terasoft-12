@@ -124,11 +124,11 @@ namespace Mechanect.Screens
             experiment3Button.Draw(ScreenManager.SpriteBatch, (screenWidth * 0.65f) / 1024f);
             experiment1Button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133),
-                (int)(screenHeight * 0.52), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
+                (int)((screenHeight * 0.52) + ((screenWidth / 1024) * screenHeight * 0.05)), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             ScreenManager.SpriteBatch.Draw(Two, new Rectangle((int)(screenWidth * 0.423),
-                (int)(screenHeight * 0.625), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
+                (int)((screenHeight * 0.625) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             ScreenManager.SpriteBatch.Draw(Three, new Rectangle((int)(screenWidth * 0.733),
-                (int)(screenHeight * 0.52), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
+                (int)((screenHeight * 0.52) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             
             ScreenManager.SpriteBatch.End();
         }
