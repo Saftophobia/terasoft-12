@@ -42,7 +42,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumConstantAcceleration derives the optimum values for the "constantAcceleration" command.
@@ -82,7 +82,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 19/4/2012</para>
-        /// <para>Date Modified 14/5/2012</para>
+        /// <para>Date Modified 22/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function OptimumIncreasingAcceleration derives the optimum values for the "increasingAcceleration" command.
@@ -271,8 +271,74 @@ namespace Mechanect.Exp1
                 g.getOptA().Clear();
                 GetOptimum(round + 1, g);
             }
+            Traverse(g);
+            List<float> l = g.getOptD();
         }
 
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Created: 23/5/2012</para>
+        /// <para>Date Modified: 23/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function Traverse is used to discard un-necessary values from the optimal curve.
+        /// </summary>
+        /// <param name="g">Aninstance of the PerformanceGraph.</param>
+        /// <returns>List: The generated list.</returns>
+        public static void Traverse(PerformanceGraph g)
+        {
+            int flag = 0; Boolean found = false;
+            for (int i = 0; i <= g.getOptD().Count - 1; i++)
+            {
+                if (g.getOptD()[i] == 0 && !found)
+                {
+                    flag = i;
+                    found = true;
+                }
+            }
+            try
+            {
+                g.setOptD(Cut(flag + 1, g.getOptD()));
+                g.setOptV(Cut(flag + 1, g.getOptV()));
+                g.setOptA(Cut(flag + 1, g.getOptA()));
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Created: 23/5/2012</para>
+        /// <para>Date Modified: 23/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function Cut is used to return the first n-th elements from a list.
+        /// </summary>
+        /// <param name="list">The list to be traversed.</param>
+        /// <param name="n">The required size.</param>
+        /// <returns>List: The generated list.</returns>
+        public static List<float> Cut(int n, List<float> list)
+        {
+            List<float> temp = new List<float>();
+            for (int i = 0; i <= n - 1; i++)
+            {
+                temp.Add(list[i]);
+            }
+            return temp;
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Created: 22/5/2012</para>
+        /// <para>Date Modified: 22/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function CheckOptimum is used to check whether the optimum player has reached the end line or not.
+        /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
+        /// <returns>Boolean: A boolean representing the state of the optimum player.</returns>
         public static Boolean CheckOptimum(PerformanceGraph g)
         {
             Boolean x = false;
@@ -282,5 +348,7 @@ namespace Mechanect.Exp1
             }
             return x;
         }
+
+
     }
 }

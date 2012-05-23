@@ -57,7 +57,7 @@ namespace Mechanect.Exp1
         private int trackLength;
         private List<double> timings1;
         private List<double> timings2;
-        private List<double> timings3;//optimum
+        private List<double> timings3=new List<double>();//optimum
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -97,10 +97,6 @@ namespace Mechanect.Exp1
         public void SetTimings2(List<double> l)
         {
             timings2 = l;
-        }
-        public void SetTimings3(List<double> l)
-        {
-            timings3 = l;
         }
         public Vector2 getPoint1()
         {
@@ -332,9 +328,17 @@ namespace Mechanect.Exp1
         {
             this.player2Acceleration = L;
         }
-        public void setOpdD(List<float> L)
+        public void setOptD(List<float> L)
         {
-            this.optimumDisplacement = L;
+            optimumDisplacement = L;
+        }
+        public void setOptV(List<float> L)
+        {
+            optimumVelocity = L;
+        }
+        public void setOptA(List<float> L)
+        {
+            optimumAcceleration = L;
         }
         public void clearTimeSpaces()
         {
