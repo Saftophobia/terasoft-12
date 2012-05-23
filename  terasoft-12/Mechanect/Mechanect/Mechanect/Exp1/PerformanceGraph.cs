@@ -12,7 +12,7 @@ using Mechanect.Classes;
 
 namespace Mechanect.Exp1
 {
-    class PerformanceGraph
+    public class PerformanceGraph
     {
         private int stageWidth, stageHeight;
         private Vector2 point1;
@@ -30,23 +30,8 @@ namespace Mechanect.Exp1
         private List<String> commandsList;
         private List<double> timeSpaces;
         private double totalTime;
-        private PerformanceGraph[] disp1;
-        private PerformanceGraph[] disp2;
-        private PerformanceGraph[] velo1;
-        private PerformanceGraph[] velo2;
-        private PerformanceGraph[] acc1;
-        private PerformanceGraph[] acc2;
-        private PerformanceGraph[] optD;
-        private PerformanceGraph[] optV;
-        private PerformanceGraph[] optA;
         private float maxVelocity;
         private float maxAcceleration;
-        private List<int> p1DispGraph = new List<int>();
-        private List<int> p2DispGraph = new List<int>();
-        private List<int> p1VeloGraph = new List<int>();
-        private List<int> p2VeloGraph = new List<int>();
-        private List<int> p1AccGraph = new List<int>();
-        private List<int> p2AccGraph = new List<int>();
         private double[] xAxis = new double[5];
         private double[] yAxisDisplacement = new double[5];
         private double[] yAxisVelocity = new double[5];
@@ -57,7 +42,7 @@ namespace Mechanect.Exp1
         private int trackLength;
         private List<double> timings1;
         private List<double> timings2;
-        private List<double> timings3=new List<double>();//optimum
+        private List<double> timings3 = new List<double>();
 
         public PerformanceGraph(int start1, int start2, int finishx, int finishy, int a, int b, Color col)
         {
@@ -163,66 +148,6 @@ namespace Mechanect.Exp1
         public void setTotalTime(double value)
         {
             totalTime = value;
-        }
-        public List<int> getP1DispGraph()
-        {
-            return p1DispGraph;
-        }
-        public List<int> getP2DispGraph()
-        {
-            return p2DispGraph;
-        }
-        public List<int> getP1VelGraph()
-        {
-            return p1VeloGraph;
-        }
-        public List<int> getP2VelGraph()
-        {
-            return p2VeloGraph;
-        }
-        public List<int> getP1AccGraph()
-        {
-            return p1AccGraph;
-        }
-        public List<int> getP2AccGraph()
-        {
-            return p2AccGraph;
-        }
-        public PerformanceGraph[] getDisplacement1()
-        {
-            return disp1;
-        }
-        public PerformanceGraph[] getDisplacement2()
-        {
-            return disp2;
-        }
-        public PerformanceGraph[] getVelocity1()
-        {
-            return velo1;
-        }
-        public PerformanceGraph[] getVelocity2()
-        {
-            return velo2;
-        }
-        public PerformanceGraph[] getAcceleration1()
-        {
-            return acc1;
-        }
-        public PerformanceGraph[] getAcceleration2()
-        {
-            return acc2;
-        }
-        public PerformanceGraph[] getOptimumDisplacement()
-        {
-            return optD;
-        }
-        public PerformanceGraph[] getOptimumVelocity()
-        {
-            return optV;
-        }
-        public PerformanceGraph[] getOptimumAcceleration()
-        {
-            return optA;
         }
         public double[] GetXAxis()
         {
@@ -347,42 +272,6 @@ namespace Mechanect.Exp1
         public void clearCommands()
         {
             commandsList = new List<string>();
-        }
-        public void setDisp1(int x)
-        {
-            disp1 = new PerformanceGraph[x];
-        }
-        public void setDisp2(int x)
-        {
-            disp2 = new PerformanceGraph[x];
-        }
-        public void setVel1(int x)
-        {
-            velo1 = new PerformanceGraph[x];
-        }
-        public void setVel2(int x)
-        {
-            velo2 = new PerformanceGraph[x];
-        }
-        public void setAcc1(int x)
-        {
-            acc1 = new PerformanceGraph[x];
-        }
-        public void setAcc2(int x)
-        {
-            acc2 = new PerformanceGraph[x];
-        }
-        public void setOptimumD(int x)
-        {
-            optD = new PerformanceGraph[x];
-        }
-        public void setOptimumV(int x)
-        {
-            optV = new PerformanceGraph[x];
-        }
-        public void setOptimumA(int x)
-        {
-            optA = new PerformanceGraph[x];
         }
         public void setMaxVelocity(float x)
         {
