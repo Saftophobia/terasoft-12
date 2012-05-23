@@ -42,11 +42,11 @@ namespace Mechanect.Screens
         /// Creates a new instance of FadingScreen.
         /// </summary>
         /// <param name="path">path of the image that will be added to the middle of the screen.</param>
-        /// <param name="logoScale">scaling ratio of the image.</param>
+        /// <param name="logoScale">scaling ratio of the image according to the screen's width.</param>
         /// <param name="rotation">rotation for the image.</param>
         /// <param name="xPositionPercentOffset">X-axis position offset of the image.</param>
         /// <param name="yPositionPercentOffset">Y-axis position offset of the image.</param>
-        public FadingScreen(string path, float logoScale,float rotation,float xPositionPercentOffset, float yPositionPercentOffset)
+        public FadingScreen(string path, float logoScalePercentage,float rotation,float xPositionPercentOffset, float yPositionPercentOffset)
         {
             this.path = path;
             this.rotation = rotation;
@@ -54,7 +54,7 @@ namespace Mechanect.Screens
             this.yPositionPercentOffset = yPositionPercentOffset;
             first = true;
             fading = 1f;
-            scale = logoScale;
+            scale = logoScalePercentage;
             done = false;
             showAvatar = false;
         }
@@ -65,6 +65,7 @@ namespace Mechanect.Screens
         {
             black = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/black");
             logo = ScreenManager.Game.Content.Load<Texture2D>(@""+path);
+            scale = ScreenManager.GraphicsDevice.Viewport.Width * scale / logo.Width;
             this.xPositionPercentOffset = ScreenManager.GraphicsDevice.Viewport.Width * xPositionPercentOffset;
             this.yPositionPercentOffset = ScreenManager.GraphicsDevice.Viewport.Height * yPositionPercentOffset;
         }

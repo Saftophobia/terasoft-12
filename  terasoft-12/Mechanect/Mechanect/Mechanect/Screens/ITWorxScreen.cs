@@ -12,7 +12,7 @@ namespace Mechanect.Screens
         /// Creates a new instance of ITWorxScreen.
         /// </summary>
         public ITworxScreen()
-            : base("Resources/Images/ITWorx", 1f, 0, 0, -0.06f)
+            : base("Resources/Images/ITWorx", 0.6f, 0, 0, -0.06f)
         {
             
         }
