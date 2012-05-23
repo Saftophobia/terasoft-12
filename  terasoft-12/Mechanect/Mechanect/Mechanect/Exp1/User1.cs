@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
+using Mechanect.Common;
 
 namespace Mechanect.Exp1
 {
 
-    public class User1
+    public class User1:User
     {
 
         public Skeleton skeleton;
