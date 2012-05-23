@@ -1,41 +1,57 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Windows;
 
 namespace Mechanect.Common
 {
+    /// <summary>
+    /// A bar that displays Users' current position and the correct range to stand in
+    /// </summary>
     class DepthBar
     {
 
         #region Variables And Fields
 
-        User[] users;
+        User[] user;
         int minDepth;
         int maxDepth;
-        int width;
-        int height;
-        Color accept;
-        Color reject;
-        Color[] playerColors;
+        Color acceptColor;
+        Color rejectColor;
+        Color[] playerColor;
 
-        Texture2D gradient;
-        Texture2D playerIndicator; 
-        
+        Texture2D bar;
+        int barWidth;
+        int barHeight;
+
+        Texture2D playerIndicator;
+
+        /// <summary>
+        /// Getter for the Users' State
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <returns>bool, Returns true if all users are standing in the correct region</returns>
         public bool Accepted
         {
             get
             {
-                for (int i = 0; i < users.Length; i++)
+                for (int i = 0; i < user.Length; i++)
                     if (Depth(i) >= maxDepth || Depth(i) <= minDepth)
                         return false;
                 return true;
             }
         }
 
+        /// <summary>
+        /// Getter for the Rule that should be visibile to the user
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <returns>string, returns the Rule that should be followed by the user</returns>
         public string Rule
         {
             get
@@ -48,80 +64,98 @@ namespace Mechanect.Common
 
         #region LoadTextures
 
-        public DepthBar(User[] users, int minDepth, int maxDepth, int width, int height, Color accept, Color reject, Color[] playerColors)
+        /// <summary>
+        /// Generates a Depth Bar that displays users state regarding his position with respect to the correct standing region
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="user">Array of users that be tracked by the depth bar</param>
+        /// <param name ="minDepth">the minimum depth the users should stand at</param>
+        /// <param name ="maxDepth">the maximum depth the users should stand at</param>
+        /// <param name ="barWidth">the width of the depth bar</param>
+        /// <param name ="barHeight">the height of the depth bar</param>
+        /// <param name ="acceptColor">the color representing the accepted standing region</param>
+        /// <param name ="rejectColor">the color represention the rejected standing region</param>
+        /// <param name ="playerColor">Array of colors representing each user</param>
+        public DepthBar(User[] user, int minDepth, int maxDepth, int barWidth, int barHeight, Color acceptColor, Color rejectColor, Color[] playerColor)
         {
-            this.users = users;
+            this.user = user;
             this.minDepth = minDepth;
             this.maxDepth = maxDepth;
-            this.width = width;
-            this.height = height;
-            this.accept = accept;
-            this.reject = reject;
-            this.playerColors = playerColors;
+            this.barWidth = barWidth;
+            this.barHeight = barHeight;
+            this.acceptColor = acceptColor;
+            this.rejectColor = rejectColor;
+            this.playerColor = playerColor;
         }
 
-
+        /// <summary>
+        /// Loads the textures of the depth bar
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="graphicsDevice">The graphics device of the screen manager</param>
         public void LoadContent(GraphicsDevice graphicsDevice)
         {
-            gradient = CreateGradient(graphicsDevice);
-            playerIndicator = new Texture2D(graphicsDevice, width, 5);
-            Color[] fillColor = new Color[width * 5];
+            bar = CreateBar(graphicsDevice);
+            playerIndicator = new Texture2D(graphicsDevice, barWidth, 5);
+            Color[] fillColor = new Color[barWidth * 5];
             for (int j = 0; j < fillColor.Length; j++)
                 fillColor[j] = Color.White;
             playerIndicator.SetData<Color>(fillColor);
         }
 
         #region CreateGradient
+
         /// <summary>
         /// The method gets the suitable color to fit in the gradient.
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        /// <param name="start"> the start position of the gradient</param>
-        /// <param name="end"> the end position of the gradient</param>
-        /// <param name="index"> the pixel's position</param>
-        /// <param name="top"> the color at the top of the gradient</param>
-        /// <param name="bot"> the color at the bottom of the gradient</param>
-        /// <returns>returns a color according to the location with respect to the start and end points of the gradient. </returns>
-        public Color GradientColor(int start, int end, int index, Color top, Color bot)
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="start">the start position of the gradient</param>
+        /// <param name="end">the end position of the gradient</param>
+        /// <param name="currentPosition">the pixel's position</param>
+        /// <param name="startColor">the color at the top of the gradient</param>
+        /// <param name="endColor">the color at the bottom of the gradient</param>
+        /// <returns>returns a color according to the location with respect to the start and end points of the gradient.</returns>
+        public Color GradientColor(int start, int end, int currentPosition, Color startColor, Color endColor)
         {
-            int R = (bot.R * (index - start) + top.R * (end - index)) / (end - start);
-            int G = (bot.G * (index - start) + top.G * (end - index)) / (end - start);
-            int B = (bot.B * (index - start) + top.B * (end - index)) / (end - start);
+            int R = (endColor.R * (currentPosition - start) + startColor.R * (end - currentPosition)) / (end - start);
+            int G = (endColor.G * (currentPosition - start) + startColor.G * (end - currentPosition)) / (end - start);
+            int B = (endColor.B * (currentPosition - start) + startColor.B * (end - currentPosition)) / (end - start);
             return new Color(R, G, B);
         }
 
         /// <summary>
-        /// updates the gradient in the Depth bar to represent the players
+        /// Creates the bar texture, with a gradient representing the accepted and rejected regions
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        public Texture2D CreateGradient(GraphicsDevice graphicsDevice)
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="graphicsDevice">The graphics device of the screen manager</param>
+        public Texture2D CreateBar(GraphicsDevice graphicsDevice)
         {
-            Texture2D gradient = new Texture2D(graphicsDevice, width, height);
-            Color[] data = new Color[height];
+            Texture2D gradient = new Texture2D(graphicsDevice, barWidth, barHeight);
+            Color[] data = new Color[barHeight];
             int avgDepth = (minDepth + maxDepth) / 2;
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < barHeight; i++)
             {
-                if ((400 / height) * i + 50 <= minDepth || (400 / height) * i + 50 >= maxDepth)
-                    data[i] = reject;
-                else if ((400 / height) * i + 50 > (avgDepth + minDepth) / 2 && (400 / height) * i + 50 < (avgDepth + maxDepth) / 2)
-                    data[i] = accept;
-                else if ((400 / height) * i + 50 < avgDepth)
-                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, (400 / height) * i + 50, reject, accept);
-                else if ((400 / height) * i + 50 > avgDepth)
-                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, (400 / height) * i + 50, accept, reject);
+                if ((400 / barHeight) * i + 50 <= minDepth || (400 / barHeight) * i + 50 >= maxDepth)
+                    data[i] = rejectColor;
+                else if ((400 / barHeight) * i + 50 > (avgDepth + minDepth) / 2 && (400 / barHeight) * i + 50 < (avgDepth + maxDepth) / 2)
+                    data[i] = acceptColor;
+                else if ((400 / barHeight) * i + 50 < avgDepth)
+                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, (400 / barHeight) * i + 50, rejectColor, acceptColor);
+                else if ((400 / barHeight) * i + 50 > avgDepth)
+                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, (400 / barHeight) * i + 50, acceptColor, rejectColor);
             }
-            Color[] finalData = new Color[height * width];
+            Color[] finalData = new Color[barHeight * barWidth];
             for (int j = 0; j < finalData.Length; j++)
             {
-                finalData[j] = data[j / width];
+                finalData[j] = data[j / barWidth];
             }
             gradient.SetData(finalData);
             return gradient;
@@ -132,6 +166,14 @@ namespace Mechanect.Common
 
         #region Functions
 
+        /// <summary>
+        /// A getter to the command that should be visible to the user
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="id">an int representing the ID of the user</param>
+        /// <returns>string, returns the command that should be applied by the user to reach the correct position.</returns>
         public string Command(int ID)
         {
             if (Depth(ID) == 0)
@@ -143,20 +185,19 @@ namespace Mechanect.Common
             return "OK!";
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// <returns>returns the distance of users[ID] from the kinect sensor</returns>
+        /// Calculates the Depth of the user specified by the ID
         /// </summary>
-        /// <param name="ID"> the index of the User in the users array</param>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="ID">the index of the User in the users array</param>
+        /// <returns>returns the distance of users[ID] from the kinect sensor</returns>
         public int Depth(int ID)
         {
             try
             {
-                return (int)(100 * users[ID].USER.Joints[JointType.HipCenter].Position.Z);
+                return (int)(100 * user[ID].USER.Joints[JointType.HipCenter].Position.Z);
             }
             catch (NullReferenceException)
             {
@@ -168,14 +209,19 @@ namespace Mechanect.Common
 
         #region Draw
 
+        /// <summary>
+        /// Draws the depth bar
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="spriteBatch">The sprite batch of the screen manager</param>
+        /// <param name ="position">The potition the bar should be drawn at</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(gradient, position, Color.White);
-            for (int i = 0; i < users.Length; i++)
-            {
-                spriteBatch.Draw(playerIndicator, position + new Vector2(0, Depth(i)), playerColors[i]);
-            }
-
+            spriteBatch.Draw(bar, position, Color.White);
+            for (int i = 0; i < user.Length; i++)
+                spriteBatch.Draw(playerIndicator, position + new Vector2(0, Depth(i)), playerColor[i]);
         }
 
         #endregion
