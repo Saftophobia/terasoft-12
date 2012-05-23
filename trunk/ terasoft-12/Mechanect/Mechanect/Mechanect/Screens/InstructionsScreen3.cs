@@ -19,8 +19,11 @@ private string instructions = "";
             +"\n4-When you are done with your calculations, you should press the ok button to resume the game and \nbe able to shoot the ball with the calculated velocity "
             +"\n5- Settings: The next screen allows you to choose a level, which changes the friction, and to adjust \nthe hole size using the angle tolerance slider."
             +"\n6 Tip: Shoot the ball when you hear the whistle just before the bar is empty.";
-        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n * The avatar on the top right represents your distance from the screen."
-           +"\ngreen: Good.\n2- White: Too Far.\n3- Red: Too Near.\n4- Crossed: Not Detected.";
+        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n * The avatar on the top right represents your distance from the screen.";
+        private string green = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n green: Good.";
+        private string white = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n white: Too Far.";
+        private string red = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Red: Too Near.";
+        private string crossed = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Crossed: Not Detected.";
         //private Instruction instruction;
         private User3 user3;
         private Texture2D myTexture;
@@ -105,6 +108,10 @@ private string instructions = "";
             ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, text1, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, text2, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, green, Vector2.Zero, Color.DarkGreen, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, white, Vector2.Zero, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, red, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.Gray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.End();
             //instruction.Draw(gameTime);
             base.Draw(gameTime);
