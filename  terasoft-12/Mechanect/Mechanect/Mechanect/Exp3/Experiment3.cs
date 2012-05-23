@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using UI.Cameras;
 using UI.Animation;
+using UI.Components;
 using Mechanect.Classes;
 using Physics;
 using Mechanect.Screens;
