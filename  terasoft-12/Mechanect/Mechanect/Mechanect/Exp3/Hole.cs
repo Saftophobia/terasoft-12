@@ -38,10 +38,10 @@ namespace Mechanect.Exp3
 
         public static Vector3 GeneratePosition(int radius,int terrainWidth, int terrainHeight,Vector3 shootingPosition)
         {
-            float X = Tools3.GenerateRandomValue(-(terrainWidth / 4)+radius, (terrainWidth / 4)-radius);
-            float Y = 0;
-            float Z = Tools3.GenerateRandomValue(-(terrainHeight- radius)/2, (shootingPosition.Z - radius));
-              return new Vector3(X, Y, Z);
+         float X = Tools3.GenerateRandomValue(-(terrainWidth)/4+3*radius,(terrainWidth)/4-3*radius);
+         float Y = 0;
+         float Z = Tools3.GenerateRandomValue(-(terrainHeight/2)+(3*radius),-(terrainHeight/4)+3*radius);
+            return new Vector3(X, Y, Z);
         }
     }
 }
