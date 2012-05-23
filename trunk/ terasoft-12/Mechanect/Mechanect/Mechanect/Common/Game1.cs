@@ -34,7 +34,7 @@ namespace Mechanect
             set { ;}
         }
         static User user2;
-         Boolean fullScreen = false; //this one is false
+         Boolean fullScreen = true; //this one is false
 
         public Game1()
         {
@@ -42,7 +42,9 @@ namespace Mechanect
             Content.RootDirectory = "Content";
             #region view
             Window.AllowUserResizing = true;
-            Graphics.IsFullScreen = false;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
+            Graphics.IsFullScreen = true;
             #endregion
             user = new User3();
             user2 = new User();
