@@ -56,7 +56,7 @@ namespace Mechanect.Screens
             fading = 1f;
             scale = logoScale;
             done = false;
-            
+            showAvatar = false;
         }
         /// <summary>
         /// Loads the content of this screen.
