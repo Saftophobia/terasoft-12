@@ -10,19 +10,17 @@ namespace Mechanect.Screens
         private string instructions = "\n\n\n\n Welcome to Mechanect football game made by terasoft \n The point of this game is to shoot the ball such that it reaches the hole with zero velocity. \n In the beginning you're shown a screen where you can test shooting and see your angle and velocity. \n The avatar on the right represents your distance from the kinect device, below is the color code \n Green: you're standing in the correct position, White: you're almost too far, Red: Not all your skeleton is detected.";
         private Instruction instruction;
         private User3 user3;
-        Texture2D myTexture;
-        Rectangle rect;
-        Button button;
-        float scale;
+        private Texture2D myTexture;
+        private Rectangle rect;
+        private Button button;
+        private float scale;
         public InstructionsScreen3(User3 user3)
         {
             this.user3 = user3;
-            }
-        public InstructionsScreen3(string instructions, User3 user)
-            
+        }
+        public InstructionsScreen3(string instructions, User3 user):this(user3)
         {
             this.instructions = instructions;
-            user3 = user;
         }
         /// <summary>
         /// LoadContent will be called only once before drawing and its the place to load
