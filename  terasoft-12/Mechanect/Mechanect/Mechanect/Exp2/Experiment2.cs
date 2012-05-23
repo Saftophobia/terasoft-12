@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Mechanect.Common;
 using Mechanect.Exp3;
+using Mechanect.Exp2;
 using ButtonsAndSliders;
 
 namespace Mechanect.Exp2
@@ -77,8 +78,8 @@ namespace Mechanect.Exp2
         private Environment2 environment;
 
         // Variables for fontSprites
-        private SpriteFont spriteFont;
         private SpriteFont velAngleFont;
+        //private velAngleFont velAngleFont;
 
         // Variables Contaiing the Textures Definintion 
         private Texture2D grayTexture;
@@ -178,9 +179,8 @@ namespace Mechanect.Exp2
             angleTextureScaling = 0.65f;
             velocityAngleShift = 0.05f;
             //Loading Fonts
-            velAngleFont = Content.Load<SpriteFont>("Ariel");
-            spriteFont = Content.Load<SpriteFont>("Ariel");
-
+            velAngleFont = Content.Load<SpriteFont>("ArielBig");
+            
             //creating a test environment
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
@@ -229,8 +229,9 @@ namespace Mechanect.Exp2
             environment.DrawBackground = true;
             //Drawing the test environment
             SpriteBatch.Begin();
-            environment.Draw(new Rectangle(40, (int)(screenHeight * 0.4f), (int)(screenWidth * 0.6f), (int)
-            (screenHeight * 0.6f)), SpriteBatch);
+            //environment.Draw(new Rectangle(40, (int)(screenHeight * 0.4f), (int)(screenWidth * 0.6f), (int)
+            //(screenHeight * 0.6f)), SpriteBatch);
+            environment.Draw(new Rectangle(0, 0,ViewPort.Width,ViewPort.Height), SpriteBatch);
             //another test
             //environment.Draw(new Rectangle(0, 0, ViewPort.Width, ViewPort.Height), SpriteBatch);
             SpriteBatch.End();
@@ -274,10 +275,10 @@ namespace Mechanect.Exp2
             string testString = "Test angle and Velocity";
             string sayString = "Say 'GO' or press OK";
 
-            SpriteBatch.DrawString(spriteFont, testString, new Vector2((screenWidth / 2), 0), Color.Red, 0f,
+            SpriteBatch.DrawString(velAngleFont, testString, new Vector2((screenWidth / 2), 0), Color.Red, 0f,
                 new Vector2((screenWidth / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
-            SpriteBatch.DrawString(spriteFont, sayString, new Vector2((screenWidth / 2), spriteFont.MeasureString
+            SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((screenWidth / 2), velAngleFont.MeasureString
                 (testString).Y), Color.Red, 0f, new Vector2((screenWidth / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
             SpriteBatch.End();
@@ -304,34 +305,34 @@ namespace Mechanect.Exp2
 
             if (grayScreen)
             {
-                SpriteBatch.DrawString(spriteFont, velString, new Vector2(screenWidth * velocityAngleShift +
-                    velocityTexture.Width * velocityTextureScaling - spriteFont.MeasureString(velString).X *
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * velocityAngleShift +
+                    velocityTexture.Width * velocityTextureScaling - velAngleFont.MeasureString(velString).X *
                     velocityTextureScaling, screenHeight * velocityAngleShift + velocityTexture.Height *
-                    velocityTextureScaling - (spriteFont.MeasureString(velString).Y * velocityTextureScaling) / 2),
+                    velocityTextureScaling - (velAngleFont.MeasureString(velString).Y * velocityTextureScaling) / 2),
                     Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2,
                         velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling,
                         SpriteEffects.None, 0f);
 
 
-                SpriteBatch.DrawString(spriteFont, angString, new Vector2(screenWidth - (screenWidth *
-                    velocityAngleShift + angleTexture.Width * angleTextureScaling - spriteFont.MeasureString
+                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth *
+                    velocityAngleShift + angleTexture.Width * angleTextureScaling - velAngleFont.MeasureString
                     (angString).X * velocityTextureScaling / 2), screenHeight * velocityAngleShift + angleTexture.Height
-                    * angleTextureScaling - spriteFont.MeasureString(angString).Y * velocityTextureScaling / 4),
+                    * angleTextureScaling - velAngleFont.MeasureString(angString).Y * velocityTextureScaling / 4),
                     Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height *
                         angleTextureScaling / 2), velocityTextureScaling, SpriteEffects.None, 0f);
             }
             else
             {
 
-                SpriteBatch.DrawString(spriteFont, velString + Math.Round(environment.Velocity, 2), new Vector2
-                    (screenWidth - spriteFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f,
-                    new Vector2(spriteFont.MeasureString(velString +
+                SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity, 2), new Vector2
+                    (screenWidth - velAngleFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f,
+                    new Vector2(velAngleFont.MeasureString(velString +
                         environment.Velocity + "                    ").X / 2, 0), velocityTextureScaling,
                         SpriteEffects.None, 0f);
 
-                SpriteBatch.DrawString(spriteFont, angString + Math.Round(environment.Angle, 2),
-                    new Vector2(screenWidth - spriteFont.MeasureString(angString).X / 2, 0), Color.Red, 0f,
-                    new Vector2(spriteFont.MeasureString(velString + environment.Velocity).X / 2, 0),
+                SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle, 2),
+                    new Vector2(screenWidth - velAngleFont.MeasureString(angString).X / 2, 0), Color.Red, 0f,
+                    new Vector2(velAngleFont.MeasureString(velString + environment.Velocity).X / 2, 0),
                     velocityTextureScaling, SpriteEffects.None, 0f);
             }
             SpriteBatch.End();
