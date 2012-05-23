@@ -14,20 +14,19 @@ namespace Mechanect.Exp3
     public class Tools3
     {
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// Used to get the customized button with OKButton
+        /// Creates a pre-customized OKButton.
         /// </summary>
-        /// <param name="contentManager">content managaer to load pictures</param>
-        /// <param name="position">position of the button</param>
-        /// <param name="screenWidth">screen width</param>
-        /// <param name="screenHeight">screen height</param>
-        /// <param name="user">instance of user<param>
-        /// <returns>returns NewGame button</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="contentManager">Content managaer to load the pictures.</param>
+        /// <param name="position">The Position of the button.</param>
+        /// <param name="screenWidth">The width of the screen.</param>
+        /// <param name="screenHeight">The height of the screen.</param>
+        /// <param name="user">The instance of the user.</param>
+        /// <returns>returns OKButton button</returns>
         public static Button OKButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
@@ -37,20 +36,18 @@ namespace Mechanect.Exp3
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// Used to get the customized button with MainMenu
+        /// Creates a pre-customized MainMenuButton.
         /// </summary>
-        /// <param name="contentManager">content managaer to load pictures</param>
-        /// <param name="position">position of the button</param>
-        /// <param name="screenWidth">screen width</param>
-        /// <param name="screenHeight">screen height</param>
-        /// <param name="user">instance of user<param>
-        /// <returns>returns NewGame button</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="contentManager">Content managaer to load the pictures.</param>
+        /// <param name="position">The Position of the button.</param>
+        /// <param name="screenWidth">The width of the screen.</param>
+        /// <param name="screenHeight">The height of the screen.</param>
+        /// <param name="user">The instance of the user.</param>
+        /// <returns>returns MainMenu button</returns>
         public static Button MainMenuButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
@@ -60,19 +57,17 @@ namespace Mechanect.Exp3
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// Used to get the customized button with NewGame
+        /// Creates a pre-customized NewGame.
         /// </summary>
-        /// <param name="contentManager">content managaer to load pictures</param>
-        /// <param name="position">position of the button</param>
-        /// <param name="screenWidth">screen width</param>
-        /// <param name="screenHeight">screen height</param>
-        /// <param name="user">instance of user<param>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="contentManager">Content managaer to load the pictures.</param>
+        /// <param name="position">The Position of the button.</param>
+        /// <param name="screenWidth">The width of the screen.</param>
+        /// <param name="screenHeight">The height of the screen.</param>
+        /// <param name="user">The instance of the user.</param>
         /// <returns>returns NewGame button</returns>
         public static Button NewGameButton(ContentManager contentManager, Vector2 position, 
             int screenWidth, int screenHeight, User user)
@@ -83,18 +78,16 @@ namespace Mechanect.Exp3
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// displaying the wining word on the screen.
+        /// Displays the wining or losing word on the screen.
         /// </summary>
-        /// <param name="spriteBatch">used to draw images on the screen</param>
-        /// <param name="content">used to load the images</param>
-        /// <param name="position">the desired position</param>
-        /// <param name="status">true: if the user won, false: if the user lost</param>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="spriteBatch">Draws the image on the screen</param>
+        /// <param name="content">Loads the images.</param>
+        /// <param name="position">The position of the word.</param>
+        /// <param name="status">The user has won or not.</param>
         [System.Obsolete("use method DisplayIsWin instead, typoo", false)]
         public static void DislayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, bool status)
         {
@@ -126,6 +119,40 @@ namespace Mechanect.Exp3
             {
                 Texture2D losingPicture = content.Load<Texture2D>("Textures/WorL/looser");
                 spriteBatch.Draw(losingPicture, position, Color.White);
+            }
+            spriteBatch.End();
+        }
+
+
+        /// <summary>
+        /// Displays the wining or losing word on the screen.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="spriteBatch">Draws the image on the screen</param>
+        /// <param name="content">Loads the images.</param>
+        /// <param name="position">The position of the word.</param>
+        /// <param name="scale">Scales the size of the word.</param>
+        /// <param name="status">The user has won or not.</param>
+        public static void DisplayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, 
+            float scale, bool status)
+        {
+
+            spriteBatch.Begin();
+            if (status)
+            {
+                Texture2D winningPicture = content.Load<Texture2D>("Textures/WorL/winner");
+                Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
+                (int)(scale * winningPicture.Width), (int)(scale * winningPicture.Height));
+                spriteBatch.Draw(winningPicture, rectangle, Color.White);
+            }
+            else
+            {
+                Texture2D losingPicture = content.Load<Texture2D>("Textures/WorL/looser");
+                Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
+                (int)(scale * losingPicture.Width), (int)(scale * losingPicture.Height));
+                spriteBatch.Draw(losingPicture, rectangle, Color.White);
             }
             spriteBatch.End();
         }
