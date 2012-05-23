@@ -751,12 +751,14 @@ namespace Mechanect.Exp3
                 return 0;
         }
 
-
+        ///<remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
         /// <summary>
-        /// Calculates Velocity after collision using conservation of momentum laws.
+        /// Calculates velocity after collision using conservation of momentum laws.
         /// </summary>
         /// <param name="initialVelocity">Initial velocity before collision.</param>
-        /// <returns>Vector3 velocity after collision</returns>
+        /// <returns>Vector3 velocity after collision.</returns>
         public Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
             double ballMass, legMass, initialLegVelocity;
