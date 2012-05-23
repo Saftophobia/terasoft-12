@@ -56,7 +56,7 @@ namespace Mechanect.Common
         }
         /// <summary>
         /// LoadContent will be called only once before drawing and its the place to load
-        /// all of your content.5
+        /// all of your content.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
@@ -104,7 +104,6 @@ namespace Mechanect.Common
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
         public void Update(GameTime gameTime)
         {
             if (users.Length == 1)
@@ -175,7 +174,31 @@ namespace Mechanect.Common
                 return 0;
             }
         }
+        /// <summary>
+        /// Takes a user as a parameter and returns his index in the array of users.
+        /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <param name="user">
+        /// The user.
+        /// </param>
+        /// <returns>
+        /// Int number which is the index of this user in the array.
+        /// </returns>
+        public int getUserindex(User user)
+        {
+            int userindex = 0;
+            for (int i = 0; i < users.Length; i++)
+            {
+                if (users[i].Equals(user))
+                    userindex = i;
+            }
+            return userindex;
+        }
 
+        
+        #region unused methods used in old design
         /// <summary>
         /// Takes a 2D texture as a parameter and colors it according to user's distance from the kinect device.
         /// </summary>
@@ -201,18 +224,6 @@ namespace Mechanect.Common
             }
             else ChangeTextureColor(texture, "Green");
         }
-
-        public int getUserindex(User user)
-        {
-            int userindex = 0;
-            for (int i = 0; i < users.Length; i++)
-            {
-                if (users[i].Equals(user))
-                    userindex = i;
-            }
-            return userindex;
-        }
-
         /// <summary>
         /// Takes as parameters a 2D texture and a color and changes the texture's color to the specified color.
         /// </summary>
@@ -253,5 +264,6 @@ namespace Mechanect.Common
             }
             texture.SetData(data);
         }
+        #endregion
     }
 }
