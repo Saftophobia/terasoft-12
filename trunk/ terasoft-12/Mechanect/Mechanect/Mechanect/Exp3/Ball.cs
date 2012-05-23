@@ -94,8 +94,8 @@ namespace Mechanect.Exp3
         {
             float ballPosX = Position.X;
             float ballPosZ = Position.Z;
-            return ballPosX <= Constants3.maxShootingX && ballPosX >= Constants3.minShootingX &&
-                ballPosZ <= Constants3.maxShootingZ && ballPosZ >= Constants3.minShootingZ;
+            return (ballPosX <= Constants3.maxShootingX) && (ballPosX >= Constants3.minShootingX) &&
+                (ballPosZ <= Constants3.maxShootingZ) && (ballPosZ >= Constants3.minShootingZ);
 
         }
         
