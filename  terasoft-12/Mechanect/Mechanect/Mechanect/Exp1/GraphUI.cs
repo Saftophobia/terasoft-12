@@ -359,7 +359,7 @@ namespace Mechanect.Exp1
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
         /// <para>Date Written 22/4/2012</para>
-        /// <para>Date Modified 22/5/2012</para>
+        /// <para>Date Modified 23/5/2012</para>
         /// </remarks>
         /// <summary>
         /// The function DrawDisqualification is used to add a mark on the point where a player got disqualified, the function
@@ -402,12 +402,12 @@ namespace Mechanect.Exp1
                                     double x = d1 + ((double)(d2 - d1) / (double)2);
                                     if (n < x)
                                     {
-                                        time = timings[i+1];
+                                        time = timings[i];
                                         index = i;
                                     }
                                     else
                                     {
-                                        time = timings[i+2];
+                                        time = timings[i+1];
                                         index = i + 1;
                                     }
                                 }
@@ -418,8 +418,8 @@ namespace Mechanect.Exp1
                         Texture2D texture = null;
                         switch (j)
                         {
-                            case 0: y1 = g.getP1DispGraph()[index + 1] - 8; y2 = g.getP1VelGraph()[index + 1] - 8; y3 = g.getP1AccGraph()[index + 1] - 8; texture = P1Tex; break;
-                            case 1: y1 = g.getP2DispGraph()[index + 1] - 8; y2 = g.getP2VelGraph()[index + 1] - 8; y3 = g.getP2AccGraph()[index + 1] - 8; texture = P2Tex; break;
+                            case 0: y1 = g.getP1DispGraph()[index] - 8; y2 = g.getP1VelGraph()[index] - 8; y3 = g.getP1AccGraph()[index] - 8; texture = P1Tex; break;
+                            case 1: y1 = g.getP2DispGraph()[index] - 8; y2 = g.getP2VelGraph()[index] - 8; y3 = g.getP2AccGraph()[index] - 8; texture = P2Tex; break;
                         }    
                         CountDown xDP = new CountDown();
                         CountDown xVP = new CountDown();
