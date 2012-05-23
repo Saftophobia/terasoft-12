@@ -85,7 +85,7 @@ namespace Mechanect.Exp3
         ///<para>AUTHOR: Omar Abdulaal </para>
         ///</remarks>
         /// <summary>
-        /// Checks whether the ball entered the region user can shoot in.
+        /// Checks whether the ball entered the shooting region.
         /// </summary>
         /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
         public bool hasBallEnteredShootRegion()
