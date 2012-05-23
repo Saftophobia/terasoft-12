@@ -250,7 +250,7 @@ namespace Mechanect.Screens
             spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.Black);
             spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font2, missed, missedPosition, Color.Red);
-            button.Draw(spriteBatch);
+            button.Draw(spriteBatch, ((float)viewPort.Width / 1024f) * 0.85f);
             button.DrawHand(spriteBatch);
 
             spriteBatch.End();
