@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
-using Mechanect.Classes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -11,13 +10,11 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using UI.Cameras;
 using Mechanect.Common;
 using Mechanect.Exp3;
 using ButtonsAndSliders;
-using Mechanect.Exp2;
 
-namespace Mechanect.Screens
+namespace Mechanect.Exp2
 {
 
     /// <summary>
@@ -182,10 +179,9 @@ namespace Mechanect.Screens
             velocityAngleShift = 0.05f;
             //Loading Fonts
             velAngleFont = Content.Load<SpriteFont>("Ariel");
-            spriteFont = Content.Load<SpriteFont>("ArielBig");
+            spriteFont = Content.Load<SpriteFont>("Ariel");
 
             //creating a test environment
-            environment = new Environment2(Vector2.Zero, new Rect(5, 10, 0.8, 0.8), new Rect(10, 3, 2, 2));
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
             buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
@@ -356,8 +352,11 @@ namespace Mechanect.Screens
                 milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
                 if (milliSeconds > 3000)
                 {
-                    this.Remove();
-                    //ScreenManager.AddScreen(new StatisticScreen2());
+                    //this.Remove();
+                    //if (environment.win)
+                    //    screenmanager.addscreen(new exp2.statisticsscreen());
+                    //else
+                    //    screenmanager.addscreen(new exp2.statisticsscreen());
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
