@@ -23,6 +23,7 @@ namespace Mechanect.Exp3
         private Vector3 shootPosition;
 
         private SpriteFont font;
+        Texture2D box;
 
         private BallAnimation animation1;
         private BallAnimation animation2;
@@ -55,6 +56,7 @@ namespace Mechanect.Exp3
             ball.Position = shootPosition;
 
             font = content.Load<SpriteFont>("SpriteFont1");
+            box = content.Load<Texture2D>("Textures/screen");
 
             Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(environment.HoleProperty.Position -
                 shootPosition, 0, environment.Friction);
@@ -105,6 +107,8 @@ namespace Mechanect.Exp3
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, 
                 SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullCounterClockwise);
+
+            spriteBatch.Draw(box, new Rectangle(-20 ,-130, 360, 205), Color.White);
 
             if (secondAnimationStarted)
             {
