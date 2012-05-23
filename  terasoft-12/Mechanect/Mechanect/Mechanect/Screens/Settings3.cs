@@ -48,13 +48,13 @@ namespace Mechanect.Screens
             ContentManager contentManager = this.ScreenManager.Game.Content;
 
             OKbutton = Tools3.OKButton(contentManager,
-            new Vector2(screenWidth - 496, screenHeight - 196), screenWidth,
+            new Vector2((int)(screenWidth * 0.38), (int)(screenHeight * 0.68)), screenWidth,
             screenHeight, user);
 
-            velocity = new Slider(new Vector2(280, 300), screenWidth, screenHeight,
+            velocity = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.5)), screenWidth, screenHeight,
             contentManager, user);
 
-            angle = new Slider(new Vector2(280, 360), screenWidth, screenHeight,
+            angle = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.6)), screenWidth, screenHeight,
             contentManager, user);
 
 
