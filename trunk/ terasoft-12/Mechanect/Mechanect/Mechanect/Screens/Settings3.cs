@@ -18,8 +18,7 @@ namespace Mechanect.Screens
         private levelSelect level;
 
         private Texture2D backGround;
-        private float scaleW;
-        private float scaleH;
+        private float scale;
 
         public Settings3(User user)
         {
@@ -41,28 +40,27 @@ namespace Mechanect.Screens
             ContentManager contentManager = this.ScreenManager.Game.Content;
 
             OKbutton = Tools3.OKButton(contentManager,
-            new Vector2((int)(screenWidth * 0.38), (int)(screenHeight * 0.68)), screenWidth,
+            new Vector2(screenWidth - 496, screenHeight - 196), screenWidth,
             screenHeight, user);
 
-            velocity = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.5)), screenWidth, screenHeight,
+            velocity = new Slider(new Vector2(280, 300), screenWidth, screenHeight,
             contentManager, user);
 
-            angle = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.6)), screenWidth, screenHeight,
+            angle = new Slider(new Vector2(280, 360), screenWidth, screenHeight,
             contentManager, user);
 
 
-            level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), 
-              this.ScreenManager.SpriteBatch, user);
+            level = new levelSelect(this.ScreenManager.Game, new Vector2(110, 125), user);
 
-            level.Initialize(screenWidth, screenHeight);
 
             velocity.LoadContent();
             angle.LoadContent();
 
             backGround = contentManager.Load<Texture2D>("Textures/Screens/settings");
 
-            scaleW = ((float) screenWidth / (float) backGround.Width);
-            scaleH = ((float)screenHeight / (float)backGround.Height);
+            scale = ((float) screenWidth / (float) backGround.Width);
+
+            level.Initialize(screenWidth, screenHeight, scale);
 
             base.LoadContent();
         }
@@ -107,16 +105,20 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
-            //level.Draw(gameTime);
-            Rectangle rect = new Rectangle(0, 0, (int)(scaleW * backGround.Width), (int)(scaleH * backGround.Height));
+            Rectangle rect = new Rectangle(0, 0, (int)(scale * backGround.Width), (int)(scale * backGround.Height));
             spriteBatch.Begin();
             spriteBatch.Draw(backGround, rect, Color.White);
-            OKbutton.Draw(spriteBatch, scaleW, scaleH);
-            velocity.Draw(spriteBatch, scaleW, scaleH);
-            angle.Draw(spriteBatch, scaleW, scaleH);
+            OKbutton.Draw(spriteBatch, scale);
+            velocity.Draw(spriteBatch, scale);
+            angle.Draw(spriteBatch, scale);
             OKbutton.DrawHand(spriteBatch);
             spriteBatch.End();
-            
+
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            level.Draw(spriteBatch, scale);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
 
