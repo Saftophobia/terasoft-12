@@ -40,7 +40,18 @@ namespace Mechanect.Screens
             get { return ScreenManager.GraphicsDevice.Viewport; }
         }
 
-
+        /// <summary>
+        /// Constructor to initialize the instance variables
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="predatorPosition"></param>
+        /// <param name="preyPosition"></param>
+        /// <param name="aquariumPosition"></param>
+        /// <param name="userVelocity"></param>
+        /// <param name="userAngle"></param>
+        /// <param name="user"></param>
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, User2 user)
         {
@@ -52,7 +63,20 @@ namespace Mechanect.Screens
             this.aquariumPosition = aquariumPosition;
             correctAnswer = true;
         }
-
+        /// <summary>
+        /// Constructor to initialize the instance variables
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="predatorPosition"></param>
+        /// <param name="preyPosition"></param>
+        /// <param name="aquariumPosition"></param>
+        /// <param name="userVelocity"></param>
+        /// <param name="userAngle"></param>
+        /// <param name="optimalVelocity"></param>
+        /// <param name="optimalAngle"></param>
+        /// <param name="user"></param>
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, float optimalVelocity, float optimalAngle, User2 user)
         {
@@ -64,7 +88,12 @@ namespace Mechanect.Screens
             this.aquariumPosition = aquariumPosition;
             correctAnswer = false;
         }
-
+        /// <summary>
+        /// Initialize the positions of the buttons and simulation graphs
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// </summary>
         public override void Initialize()
         {
             mainMenuButtonPosition = new Vector2((float)0.01*ScreenManager.GraphicsDevice.Viewport.Width,
@@ -79,12 +108,20 @@ namespace Mechanect.Screens
             seeResultsButtonPosition = new Vector2((float)0.84 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            rightSimulationPosition = new Rectangle(7*ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10); ///
-            centerSimulationPosition = new Rectangle(ViewPort.Width / 3, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10);
-            leftSimulationPosition = new Rectangle(ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10); ///
+            rightSimulationPosition = new Rectangle(7*ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3,
+                4 * ViewPort.Height / 10); ///
+            centerSimulationPosition = new Rectangle(ViewPort.Width / 3, ViewPort.Height / 10, ViewPort.Width / 3,
+                4 * ViewPort.Height / 10);
+            leftSimulationPosition = new Rectangle(ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3,
+                4 * ViewPort.Height / 10); ///
             currentUserSimulationPosition = centerSimulationPosition; ///
         }
-        //Still waiting for Hegazy to do the buttons for me.
+        /// <summary>
+        /// Load the simulation and the buttons
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// </summary>
         public override void LoadContent()
         {
             userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
@@ -95,7 +132,7 @@ namespace Mechanect.Screens
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
 
-            retry = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, retryButtonPosition,
+            retry = Mechanect.Exp3.Tools3.RetryButton(ScreenManager.Game.Content, retryButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
 
@@ -105,15 +142,20 @@ namespace Mechanect.Screens
             
 
             if (!correctAnswer)
-                solution = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, seeResultsButtonPosition,
+                solution = Mechanect.Exp3.Tools3.SolutionButton(ScreenManager.Game.Content, seeResultsButtonPosition,
                     ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
         }
 
+        /// <summary>
+        /// Draw the Simulation and Buttons
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-         
-             
             ScreenManager.SpriteBatch.Begin();
             mainMenu.Draw(ScreenManager.SpriteBatch,0.5f);
             retry.Draw(ScreenManager.SpriteBatch, 0.5f);
@@ -129,7 +171,13 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.End();
 
         }
-
+        /// <summary>
+        /// Update the objects drawns on the screen
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="gametime"></param>
         public override void Update(GameTime gametime)
         {
             
