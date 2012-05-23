@@ -357,9 +357,11 @@ namespace Mechanect.Exp2
 
             this.axisesPercentage = 0.055f;
 
-            rectangle = new Rectangle(rectangle.X + 70, Math.Max(0,rectangle.Y), Math.Min(rectangle.Width, 
-                viewPort.Width-rectangle.X-70), (int)Math.Min(rectangle.Height, viewPort.Height-
-                rectangle.Y-2*labelsFont.MeasureString("0").Y));
+            rectangle = new Rectangle((int)(Math.Max(0, rectangle.X) + 2.5 * labelsFont.MeasureString("99.9").X),
+                Math.Max(0, rectangle.Y), Math.Min(rectangle.Width,
+                viewPort.Width - rectangle.X - (int)(3 * axisesPercentage * viewPort.Width)),
+                (int)(Math.Min(rectangle.Height, viewPort.Height -
+                rectangle.Y) - 3 * labelsFont.MeasureString("0").Y));
 
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
 
@@ -501,42 +503,67 @@ namespace Mechanect.Exp2
         ///experiment elements</param>
         private void DrawConnectors(Rectangle rectangle)
         {
+            Vector2 startAquariumPosition = PositionMapper(StartAquarium.Location);
             Vector2 predatorPosition = PositionMapper(Predator.Location);
             Vector2 preyPosition = PositionMapper(Prey.Location);
             Vector2 aquariumPosition = PositionMapper(Aquarium.Location);
             Vector2 axis = PositionMapper(Vector2.Zero);
 
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, new Vector2(predatorPosition.X,
-                axis.Y + 2 * axisesPercentage * rectangle.Y));
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, new Vector2(axis.X - 2 * 
-                axisesPercentage * rectangle.X, predatorPosition.Y));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, startAquariumPosition, 
+                new Vector2(startAquariumPosition.X,axis.Y +  axisesPercentage*rectangle.Height ));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, startAquariumPosition,
+                new Vector2(axis.X - 2 *axisesPercentage * rectangle.X, startAquariumPosition.Y));
 
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(preyPosition.X, axis.Y + 
-                2 * axisesPercentage * rectangle.Y));
+             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition, 
+                 new Vector2(predatorPosition.X,axis.Y +  axisesPercentage*rectangle.Height ));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition,
+                new Vector2(axis.X - 2 * axisesPercentage * rectangle.X, predatorPosition.Y));
+
+
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(preyPosition.X, axis.Y +
+                 axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(axis.X - 2 * 
                 axisesPercentage * rectangle.X, preyPosition.Y));
 
-            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(aquariumPosition.X, 
-                axis.Y + 2 * axisesPercentage * rectangle.Y));
+            DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(aquariumPosition.X,
+                axis.Y +  axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(axis.X - 2 * 
                 axisesPercentage * rectangle.X, aquariumPosition.Y));
 
+
+            spriteBatch.DrawString(labelsFont, (Math.Round(StartAquarium.Location.X, 1) + ""),
+             new Vector2(startAquariumPosition.X - 
+              labelsFont.MeasureString((Math.Round(StartAquarium.Location.X, 1) + "")).X /
+              2, axis.Y + axisesPercentage * rectangle.Height +
+              (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).Y,
+             labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).Y))),
+             Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+            spriteBatch.DrawString(labelsFont, (Math.Round(StartAquarium.Location.Y, 1) + ""), new Vector2(axis.X - 2 *
+                axisesPercentage * rectangle.Height -
+                labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) + "")).X -
+                1.3f * (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X,
+                labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X)), predatorPosition.Y -
+                labelsFont.MeasureString((Math.Round(Predator.Location.Y, 1) + "")).Y / 2), Color.Red, 0f,
+                Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+            
             spriteBatch.DrawString(labelsFont, (Math.Round(Predator.Location.X, 1) + ""), 
                 new Vector2(predatorPosition.X- labelsFont.MeasureString((Math.Round(Predator.Location.X, 1) + "")).X / 
-                 2, axis.Y + 2 *  axisesPercentage * 
-                rectangle.Height + (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).Y, 
+                 2, axis.Y +  axisesPercentage * rectangle.Height + 
+                 (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).Y, 
                 labelsFont.MeasureString
                 ((Math.Round(Aquarium.Location.X, 1) + "")).Y))), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 
                 0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(Predator.Location.Y, 1) + ""), new Vector2(axis.X - 2 * 
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(Predator.Location.Y, 1) + 
-                "")).X - (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X, 
+                "")).X - 1.3f*(Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X, 
                 labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X)), predatorPosition.Y - 
                 labelsFont.MeasureString((Math.Round(Predator.Location.Y, 1) + "")).Y / 2), Color.Red, 0f, 
                 Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             spriteBatch.DrawString(labelsFont, (Math.Round(Prey.Location.X, 1) + ""), new Vector2(preyPosition.X - 
-                labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X / 2, axis.Y + 2 * axisesPercentage * 
+                labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X / 2, axis.Y +  axisesPercentage * 
                 rectangle.Height), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(Prey.Location.Y, 1) + ""), new Vector2(axis.X - 2 * 
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(Prey.Location.Y, 1) + "")).X,
@@ -544,7 +571,7 @@ namespace Mechanect.Exp2
                 Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             spriteBatch.DrawString(labelsFont, (Math.Round(Aquarium.Location.X, 1) + ""), new Vector2(aquariumPosition.X
-                - labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X / 2, axis.Y + 2 * 
+                - labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X / 2, axis.Y +  
                 axisesPercentage * rectangle.Height), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(Aquarium.Location.Y, 1) + ""), new Vector2(axis.X - 2 * 
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(Aquarium.Location.Y, 1) + 
