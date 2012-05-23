@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 namespace UI.Cameras
 {
     /// <summary>
-    /// represents the target camera type
+    /// Represents the target camera type.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public class TargetCamera : Camera
     {
@@ -15,11 +15,11 @@ namespace UI.Cameras
         private Vector3 target;
 
         /// <summary>
-        /// constructs a TargetCamera instance
+        /// Constructs a TargetCamera instance.
         /// </summary>
         /// <param name="graphicsDevice"></param>
-        /// <param name="position">is the position of the camera</param>
-        /// <param name="target">is the postion the camera is looking at</param>
+        /// <param name="position">Position of the camera</param>
+        /// <param name="target">The postion the camera is looking at</param>
         public TargetCamera(Vector3 position, Vector3 target, GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
         {
@@ -28,7 +28,7 @@ namespace UI.Cameras
         }
 
         /// <summary>
-        /// causes the camera to update its view and projection matrices
+        /// Causes the camera to update its view and projection matrices.
         /// </summary>
         public override void Update()
         {

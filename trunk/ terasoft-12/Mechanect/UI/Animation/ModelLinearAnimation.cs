@@ -6,10 +6,10 @@ using Physics;
 namespace UI.Animation
 {
     /// <summary>
-    /// represents 3d model linear animation with acceleration
+    /// Represents 3d model linear animation with acceleration.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public class ModelLinearAnimation : Animation
     {
@@ -28,12 +28,12 @@ namespace UI.Animation
         private float acceleration;
 
         /// <summary>
-        /// constructs a ModelLinearAnimation instance
+        /// Creates a ModelLinearAnimation instance.
         /// </summary>
-        /// <param name="model">the 3d custom model</param>
-        /// <param name="velocity">the object's velocity vector</param>
-        /// <param name="acceleration">the object's acceleration vector</param>
-        /// <param name="duration">animation duration</param>
+        /// <param name="model">3D custom model</param>
+        /// <param name="velocity">Object's velocity vector</param>
+        /// <param name="acceleration">Object's acceleration vector</param>
+        /// <param name="duration">Animation duration</param>
         public ModelLinearAnimation(CustomModel model, Vector3 velocity, float acceleration, TimeSpan duration)
             : base(model)
         {
@@ -45,9 +45,9 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// updates the model position according to the time elapsed
+        /// Updates the model position according to the time elapsed.
         /// </summary>
-        /// <param name="elapsed">time offset from the last update</param>
+        /// <param name="elapsed">Time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
             if (ElapsedTime > Duration)
