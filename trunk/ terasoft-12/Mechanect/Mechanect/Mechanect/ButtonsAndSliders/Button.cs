@@ -21,21 +21,20 @@ namespace ButtonsAndSliders
 
         private bool status;
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
         /// The constructor used to initialize the button.
         /// </summary>
-        /// <param name="texture">the gif texture of the button not moving</param>
-        /// <param name="animation">the gif texture of the button moving</param>
-        /// <param name="position">the position of the button, where the center is top left corner</param>
-        /// <param name="screenW">screen width</param>
-        /// <param name="screenH">screen height</param>
-        /// <param name="hand">the picture of the hand</param>
-        /// <param name="user">the user instance</param>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="texture">The picture of the button when it is not hoverd on.</param>
+        /// <param name="animation">The picture of the button when it is hovered on.</param>
+        /// <param name="position">The position of the button, where the center is in the top left corner</param>
+        /// <param name="screenW">The width of the screen.</param>
+        /// <param name="screenH">The height of the screen.</param>
+        /// <param name="hand">The picture of the hand.</param>
+        /// <param name="user">The instance of the user.</param>
         public Button(GifAnimation.GifAnimation texture, GifAnimation.GifAnimation animation,
             Vector2 position, int screenW, int screenH, Texture2D hand, User user)
         {
@@ -51,23 +50,29 @@ namespace ButtonsAndSliders
 
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// drawing the button and the hand
+        /// Draws the button.
         /// </summary>
-        /// <param name="spriteBatch">used to draw the texture</param>
-        [System.Obsolete("add screen width, to scale the button", false)]
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            /*
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
-            */
         }
 
+
+        /// <summary>
+        /// Draws the button.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
+        /// <param name="scale">The ratio to scale the width and the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
 
@@ -76,6 +81,16 @@ namespace ButtonsAndSliders
             spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
         }
 
+
+        /// <summary>
+        /// Draws the button.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
+        /// <param name="scaleW">The ratio to scale the width of the button.</param>
+        /// <param name="scaleW">The ratio to scale the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scaleW, float scaleH)
         {
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
@@ -83,16 +98,14 @@ namespace ButtonsAndSliders
             spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// checks if the hand of the user has been hovered on the button and starts
-        /// the timer and activating the pointer to be moved.
+        /// Checks if the user's hand is hovered on the button.
         /// </summary>
-        /// <param name="gameTime">takes the object gametime which tracks the time of the game</param>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime)
         {
             user.setSkeleton();
@@ -123,14 +136,13 @@ namespace ButtonsAndSliders
 
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// used to track the user's hand
+        /// Used to track the user's hand.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         private void MoveHand()
         {
             Skeleton skeleton = user.USER;
@@ -143,41 +155,38 @@ namespace ButtonsAndSliders
             }
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// changing the button to the animated picture
+        /// Changing the button to the animated picture.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         private void Animate()
         {
             texture = animation;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// changing the button to the stopped picture
+        /// Changing the button to the stopped picture.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         private void Stop()
         {
             texture = stopped;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// checks if the hand of the user is over the button or not
+        /// Checks if the hand of the user's hand is over the button or not.
         /// </summary>
-        /// <returns>returns true if the user is hovering the button</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <returns>Returns true if the user's hand is hovering the button.</returns>
         private bool CheckCollision()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
@@ -193,42 +202,38 @@ namespace ButtonsAndSliders
             return false;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// used to check if the button has been clicked or not
+        /// Checks if the button was clicked or not.
         /// </summary>
-        /// <returns>returns true if the user clicked the button</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <returns>Returns true if the user clicked on the button.</returns>
         public bool IsClicked()
         {
             return status;
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// used to reset the status variable to false, which means the button is not clicked
+        /// Resets the status variable to false, which means the button is not clicked.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         public void Reset()
         {
             status = false;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// draw the hand on the screen. It must be called after beginning the SpriteBatch.
+        /// Draws the hand on the screen. It must be called after beginning the SpriteBatch.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         public void DrawHand(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(hand, handPosition, Color.White);
