@@ -686,12 +686,12 @@ namespace Mechanect.Exp3
         {
             switch (angletolerance)
             {
-                case 1:  return 17; 
-                case 2:  return 20; 
-                case 3:  return 25; 
-                case 4:  return 30; 
-                case 5:  return 35; 
-                default: return 17;
+                case 1:  return 10; 
+                case 2:  return 15; 
+                case 3:  return 20; 
+                case 4:  return 25; 
+                case 5:  return 30; 
+                default: return 10;
             }
 
         }
@@ -710,13 +710,21 @@ namespace Mechanect.Exp3
             //        int a = (int)Math.Round(radius + radius * Math.Cos(angle));
             //        int b = (int)Math.Round(radius + radius * Math.Sin(angle));
             //    }
-            for (float x = position.X - radius; x <= position.X + radius; x++)
+            try
             {
-                for (float z = position.Z - radius; z <= position.Z + radius; z++)
+                for (float x = position.X - radius; x <= position.X + radius; x++)
                 {
-                    heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] - 20;
+                    for (float z = position.Z - radius; z <= position.Z + radius; z++)
+                    {
+                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] - 20;
+                    }
                 }
             }
+            catch (IndexOutOfRangeException)
+            {
+                CreateHole(position, radius);
+            }
+
             
         }
         #endregion
