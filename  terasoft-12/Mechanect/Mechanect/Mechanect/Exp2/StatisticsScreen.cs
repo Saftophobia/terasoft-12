@@ -30,8 +30,11 @@ namespace Mechanect.Screens
         Vector2 seeResultsButtonPosition;
 
         private bool correctAnswer;
+        private bool solutionVisible;
 
-
+        private Vector2 predatorPosition;
+        private Rect preyPosition;
+        private Rect aquariumPosition;
 
         private Button mainMenu;
         private Button retry;
@@ -50,6 +53,9 @@ namespace Mechanect.Screens
 
             this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
             this.user = user;
+            this.predatorPosition = predatorPosition;
+            this.preyPosition = preyPosition;
+            this.aquariumPosition = aquariumPosition;
             correctAnswer = true;
         }
 
@@ -59,6 +65,9 @@ namespace Mechanect.Screens
             this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
             this.optimalSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, optimalVelocity, optimalAngle);
             this.user = user;
+            this.predatorPosition = predatorPosition;
+            this.preyPosition = preyPosition;
+            this.aquariumPosition = aquariumPosition;
             correctAnswer = false;
         }
 
@@ -76,10 +85,10 @@ namespace Mechanect.Screens
             seeResultsButtonPosition = new Vector2((float)0.84 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            rightSimulationPosition = new Rectangle(); ///
-            centerSimulationPosition = new Rectangle(); ///
-            leftSimulationPosition = new Rectangle(); ///
-            currentUserSimulationPosition = new Rectangle(); ///
+            rightSimulationPosition = new Rectangle(7*ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10); ///
+            centerSimulationPosition = new Rectangle(ViewPort.Width / 3, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10);
+            leftSimulationPosition = new Rectangle(ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3, 4 * ViewPort.Height / 10); ///
+            currentUserSimulationPosition = centerSimulationPosition; ///
         }
         //Still waiting for Hegazy to do the buttons for me.
         public override void LoadContent()
@@ -114,14 +123,14 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.Begin();
             mainMenu.Draw(ScreenManager.SpriteBatch,0.5f);
             retry.Draw(ScreenManager.SpriteBatch, 0.5f);
-            newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
-            
-
-           // if (!correctAnswer)
-             //   newGame.Draw(ScreenManager.SpriteBatch);
-            //else
-
-                newGame.DrawHand(ScreenManager.SpriteBatch);
+            userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
+            mainMenu.DrawHand(ScreenManager.SpriteBatch);
+            if (correctAnswer || solutionVisible)
+                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
+            else
+                solution.Draw(ScreenManager.SpriteBatch, 0.5f);
+            if (currentUserSimulationPosition.X <= leftSimulationPosition.X)
+                optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
 
             ScreenManager.SpriteBatch.End();
 
@@ -129,9 +138,52 @@ namespace Mechanect.Screens
 
         public override void Update(GameTime gametime)
         {
+            
             mainMenu.Update(gametime);
             retry.Update(gametime);
             userSimulation.Update(gametime);
+            if (mainMenu.IsClicked())
+            {
+                this.Remove();
+                ScreenManager.AddScreen(new AllExperiments(user));
+            }
+            if (retry.IsClicked())
+            {
+                this.Remove();
+                ScreenManager.AddScreen(new Experiment2(user, predatorPosition, preyPosition, aquariumPosition));
+            }
+
+            if (correctAnswer || solutionVisible)
+            {
+                newGame.Update(gametime);
+                if (newGame.IsClicked())
+                {
+
+                    this.Remove();
+                    ScreenManager.AddScreen(new Experiment2(user));
+                }
+                if (!correctAnswer)
+                {
+                    if (currentUserSimulationPosition.X > leftSimulationPosition.X)
+                    {
+                        currentUserSimulationPosition.Offset(-2, 0);
+                        if (currentUserSimulationPosition.X < leftSimulationPosition.X)
+                            currentUserSimulationPosition = leftSimulationPosition;
+                    }
+                    else
+                    {
+                        optimalSimulation.Update(gametime);
+                    }
+                }
+            }
+            else
+            {
+                solution.Update(gametime);
+                if (solution.IsClicked())
+                {
+                    solutionVisible = true;
+                }
+            }
         }
 
     }
