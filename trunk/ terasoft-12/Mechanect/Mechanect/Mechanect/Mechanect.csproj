@@ -149,6 +149,7 @@
     <Compile Include="Exp2\Aquarium.cs" />
     <Compile Include="Exp2\Environment2.cs" />
     <Compile Include="Exp2\Experiment2.cs" />
+    <Compile Include="Exp2\InstructionsScreen2.cs" />
     <Compile Include="Exp2\MySpriteBatch.cs" />
     <Compile Include="Exp2\Predator.cs" />
     <Compile Include="Exp2\Prey.cs" />
@@ -174,12 +175,11 @@
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
-    <Compile Include="Screens\InstructionsScreen2.cs" />
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\ITWorxScreen.cs" />
     <Compile Include="Screens\LastScreen.cs" />
-    <Compile Include="Screens\Settings2.cs" />
+    <Compile Include="Exp2\Settings2.cs" />
     <Compile Include="Screens\Settings3.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
     <Compile Include="Common\GameScreen.cs" />
