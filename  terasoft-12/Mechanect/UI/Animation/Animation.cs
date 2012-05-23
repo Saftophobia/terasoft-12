@@ -4,10 +4,10 @@ using UI.Components;
 namespace UI.Animation
 {
     /// <summary>
-    /// represents a generic type for all Animation types
+    /// Represents a generic type for all animation types.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public abstract class Animation
     {
@@ -16,7 +16,7 @@ namespace UI.Animation
         public bool Finished { get; set; }
 
         /// <summary>
-        /// intializes the animation's model
+        /// Intializes the animation's attributes.
         /// </summary>
         /// <param name="model">model</param>
         protected Animation(CustomModel model)
@@ -26,9 +26,9 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// updates the model position and orientation according to the time elapsed
+        /// Updates the model position and orientation according to the time elapsed.
         /// </summary>
-        /// <param name="elapsed">time offset from the last update</param>
+        /// <param name="elapsed">Time offset from the last update</param>
         public abstract void Update(TimeSpan elapsed);
 
     }

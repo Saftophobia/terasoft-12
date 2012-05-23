@@ -5,10 +5,10 @@ using UI.Cameras;
 namespace UI.Components
 {
     /// <summary>
-    /// represents a 3d model with its  position, orientation and scale
+    /// Represents a 3d model with its  position, orientation and scale.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public class CustomModel
     {
@@ -32,12 +32,12 @@ namespace UI.Components
         }
         
         /// <summary>
-        /// constructs a CustomModel instance 
+        /// Creates a new CustomModel instance.
         /// </summary>
-        /// <param name="model">the 3d model</param>
-        /// <param name="position">the model's position</param>
-        /// <param name="rotation">the model's orientation</param>
-        /// <param name="scale">the model's scale</param>
+        /// <param name="model">3D model</param>
+        /// <param name="position">Model's position</param>
+        /// <param name="rotation">Model's orientation</param>
+        /// <param name="scale">Model's scale</param>
         /// <param name="graphicsDevice"></param>
         public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale){
             this.Position = position;
@@ -50,9 +50,9 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// draws the 3d model
+        /// Draws the 3D model.
         /// </summary>
-        /// <param name="camera">a camera instance</param>
+        /// <param name="camera">Camera instance</param>
         public virtual void Draw(Camera camera)
         {
             Matrix world = Matrix.CreateScale(Scale) 
@@ -75,7 +75,7 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// creates the intial Bounding Sphere instance
+        /// Creates the intial Bounding Sphere instance.
         /// </summary>
         private void createBoundingSphere()
         {

@@ -6,10 +6,10 @@ using UI.Components;
 namespace UI.Animation
 {
     /// <summary>
-    /// represents 3d model framed animation
+    /// Represents 3D model's framed animation.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public class ModelFramedAnimation : Animation
     {
@@ -17,9 +17,9 @@ namespace UI.Animation
         private List<AnimationFrame> frames = new List<AnimationFrame>();
 
         /// <summary>
-        /// constructs a ModelFramedAnimation instance
+        /// Creates a ModelFramedAnimation instance.
         /// </summary>
-        /// <param name="model">the 3d custom model</param>
+        /// <param name="model">The 3d custom model</param>
         public ModelFramedAnimation(CustomModel model)
             : base(model)
         {
@@ -27,9 +27,9 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// updates the model position and orientation according to the time elapsed
+        /// Updates the model's position and orientation according to the time elapsed.
         /// </summary>
-        /// <param name="elapsed">time offset from the last update</param>
+        /// <param name="elapsed">Time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
             if (ElapsedTime > frames[frames.Count - 1].Time)
@@ -59,10 +59,10 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// wraps the value to be between 0 and max
+        /// Wraps the value between 0 and max.
         /// </summary>
-        /// <param name="max">the maximum number the value can reach </param>
-        /// <param name="value">number to be wraped</param>
+        /// <param name="max">The maximum number the value can reach</param>
+        /// <param name="value">Number to be wraped</param>
         private int Wrap(int value, int max)
         {
             while (value > max)
@@ -77,11 +77,11 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// adds an AnimationFrame to sequence of frames
+        /// Adds an AnimationFrame to the sequence of frames.
         /// </summary>
-        /// <param name="position">object's position</param>
-        /// <param name="rotation">object's orientation</param>
-        /// <param name="time">frame's time offset from the start of the animation</param>
+        /// <param name="position">Object's position</param>
+        /// <param name="rotation">Object's orientation</param>
+        /// <param name="time">Frame's time offset from the start of the animation</param>
         public void AddFrame(Vector3 position, Vector3 rotation, TimeSpan time)
         {
             frames.Add(new AnimationFrame(position, rotation, time));

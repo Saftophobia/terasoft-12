@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 namespace UI.Cameras
 {
     /// <summary>
-    /// represents a generic type for all camera types
+    /// Represents a generic type for all camera types.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public abstract class Camera
     {
@@ -19,9 +19,9 @@ namespace UI.Cameras
         protected GraphicsDevice GraphicsDevice { get; set; }
 
         /// <summary>
-        /// takes a GraphicsDevice as a parameter
+        /// Intializes the camera's attributes.
         /// </summary>
-        /// <param name="graphicsDevice"></param>
+        /// <param name="graphicsDevice">Graphics device</param>
         public Camera(GraphicsDevice graphicsDevice)
         {
             this.GraphicsDevice = graphicsDevice;
@@ -30,7 +30,7 @@ namespace UI.Cameras
         }
 
         /// <summary>
-        /// causes the camera to update its view and projection matrices
+        /// Causes the camera to update its view and projection matrices.
         /// </summary>
         public abstract void Update();
 
