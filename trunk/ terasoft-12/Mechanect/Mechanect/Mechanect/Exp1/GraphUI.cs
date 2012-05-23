@@ -84,7 +84,7 @@ namespace Mechanect.Exp1
                     case 7: temp = g.getOptimumVelocity(); break;
                     case 8: temp = g.getOptimumAcceleration(); break;
                 }
-                for (int i = 0; i <= temp.Length - 1; i++)
+                for (int i = 0; i <= temp.Length - 2; i++)
                 {
                     Draw(temp[i], spriteBatch, GraphicsDevice);
                 }
@@ -407,7 +407,7 @@ namespace Mechanect.Exp1
                                     }
                                     else
                                     {
-                                        time = timings[i + 1];
+                                        time = timings[i+1];
                                         index = i + 1;
                                     }
                                 }
@@ -420,18 +420,18 @@ namespace Mechanect.Exp1
                         {
                             case 0: y1 = g.getP1DispGraph()[index + 1] - 8; y2 = g.getP1VelGraph()[index + 1] - 8; y3 = g.getP1AccGraph()[index + 1] - 8; texture = P1Tex; break;
                             case 1: y1 = g.getP2DispGraph()[index + 1] - 8; y2 = g.getP2VelGraph()[index + 1] - 8; y3 = g.getP2AccGraph()[index + 1] - 8; texture = P2Tex; break;
-                        }
+                        }    
                         CountDown xDP = new CountDown();
                         CountDown xVP = new CountDown();
-                        CountDown xAP = new CountDown();
+                        CountDown xAP = new CountDown();                    
 
-                        int r3 = GraphUI.Percentage(dwidth, 4.88) + (int)(time / r1) - 10;
+                        int r3 = GraphUI.Percentage(dwidth, 4.88) +(int)(time / r1)-10;
                         xDP = new CountDown(texture, r3, y1, 20, 20);
                         xDP.Draw(spriteBatch);
-                        r3 = GraphUI.Percentage(dwidth, 37.1) + (int)(time / r1) - 10;
+                        r3 = GraphUI.Percentage(dwidth, 37.1) +(int)(time / r1)-10;
                         xVP = new CountDown(texture, r3, y2, 20, 20);
                         xVP.Draw(spriteBatch);
-                        r3 = GraphUI.Percentage(dwidth, 69.3) + (int)(time / r1) - 10;
+                        r3 = GraphUI.Percentage(dwidth, 69.3) + (int)(time / r1)-10; 
                         xAP = new CountDown(texture, r3, y3, 20, 20);
                         xAP.Draw(spriteBatch);
                     }

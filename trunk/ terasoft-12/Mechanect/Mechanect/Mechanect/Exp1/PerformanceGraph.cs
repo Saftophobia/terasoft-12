@@ -30,10 +30,6 @@ namespace Mechanect.Exp1
         private List<String> commandsList;
         private List<double> timeSpaces;
         private double totalTime;
-        private int[] chosenTimings;
-        private int samples;
-        private int distance;
-        public float[,] chosen;
         private PerformanceGraph[] disp1;
         private PerformanceGraph[] disp2;
         private PerformanceGraph[] velo1;
@@ -58,9 +54,6 @@ namespace Mechanect.Exp1
         private float previousDisp;
         private float previousVelo;
         private float previousAcc;
-        private double player1Win;
-        private double player2Win;
-        private double player3Win;
         private int trackLength;
         private List<double> timings1;
         private List<double> timings2;
@@ -174,10 +167,6 @@ namespace Mechanect.Exp1
         public void setTotalTime(double value)
         {
             totalTime = value;
-        }
-        public int[] getChosen()
-        {
-            return chosenTimings;
         }
         public List<int> getP1DispGraph()
         {
@@ -355,38 +344,6 @@ namespace Mechanect.Exp1
         {
             commandsList = new List<string>();
         }
-        public void setWin1(double d)
-        {
-            player1Win = d;
-        }
-        public void setWin2(double d)
-        {
-            player2Win = d;
-        }
-        public void setWin3(double d)
-        {
-            player3Win = d;
-        }
-        public int getSamples()
-        {
-            return samples;
-        }
-        public void setSamples(int x)
-        {
-            samples = x;
-        }
-        public void setDistance(int x)
-        {
-            distance = x;
-        }
-        public int getDistance()
-        {
-            return distance;
-        }
-        public void setChosen(int a, int b)
-        {
-            chosen = new float[a, b];
-        }
         public void setDisp1(int x)
         {
             disp1 = new PerformanceGraph[x];
@@ -423,18 +380,6 @@ namespace Mechanect.Exp1
         {
             optA = new PerformanceGraph[x];
         }
-        public void setChosenTimings(int x)
-        {
-            chosenTimings = new int[x];
-        }
-        public int[] getChosenTimings()
-        {
-            return chosenTimings;
-        }
-        public void setChosenGraph(int a, int b, float f)
-        {
-            chosen[a, b] = f;
-        }
         public void setMaxVelocity(float x)
         {
             maxVelocity = x;
@@ -450,22 +395,6 @@ namespace Mechanect.Exp1
         public float getMaxVelocity()
         {
             return maxVelocity;
-        }
-        public double getWin1()
-        {
-            return player1Win;
-        }
-        public double getWin2()
-        {
-            return player2Win;
-        }
-        public double getWin3()
-        {
-            return player3Win;
-        }
-        public float getChosenValue(int a, int b)
-        {
-            return chosen[a, b];
         }
         public void setVel1(List<float> x)
         {

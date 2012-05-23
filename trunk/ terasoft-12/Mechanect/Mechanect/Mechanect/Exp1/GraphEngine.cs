@@ -96,14 +96,14 @@ namespace Mechanect.Exp1
             g.setVel2(vel2);
             g.setAcc1(Differentiate(g.getP1Vel(), timings1));
             g.setAcc2(Differentiate(g.getP2Vel(), timings2));
-            g.setP1Disp(Integral(g, vel1, timings1));
-            g.setP2Disp(Integral(g, vel2, timings2));
+            g.setP1Disp(Integral(g,vel1, timings1));
+            g.setP2Disp(Integral(g,vel2, timings2));
             g.SetTimings1(timings1);
             g.SetTimings2(timings2);
             g.setTrackLength(length);
             g.setCommandsList(Commands);
             g.setTimeSlices(time);
-            OptimumEngine.GetOptimum(1, g);
+            OptimumEngine.GetOptimum(1,g);
             ReflexOptimum(g);
             SetMaximum(g);
             g.setDisp1(g.GetTimings1().Count);
@@ -220,7 +220,7 @@ namespace Mechanect.Exp1
                     case 8: timing = g.GetTimings3(); temporary = g.getOptA(); counter1 = GraphUI.Percentage(Width, 69.33); value = g.getMaxAcceleration(); current = g.getOptimumAcceleration(); color = Color.Yellow; break;
                 }
                 r = (double)value / (double)GraphUI.Percentage(Height, 35.69);
-                for (int i = 0; i <= temporary.Count - 1; i++)
+                for (int i = 0; i <= temporary.Count - 2; i++)
                 {
                     int a1 = GraphUI.Percentage(Height, 10.46);
                     int a2 = GraphUI.Percentage(Height, 10.46);
@@ -228,13 +228,13 @@ namespace Mechanect.Exp1
                     {
                         if (temporary[i] < 0)
                         {
-                            a1 = GraphUI.Percentage(Height, 12.92);
+                            a1 = GraphUI.Percentage(Height, 12.92); 
                         }
                         try
                         {
                             if (temporary[i + 1] < 0)
                             {
-                                a2 = GraphUI.Percentage(Height, 12.92);
+                                a2 = GraphUI.Percentage(Height, 12.92); 
                             }
                         }
                         catch (Exception e)
@@ -282,27 +282,27 @@ namespace Mechanect.Exp1
                     int r3 = a1 + (int)r2;
                     int r5 = a2 + (int)r4;
                     int distance = 0;
-                    double x = ((double)g.getTotalTime() / (double)GraphUI.Percentage(Width, 25));
-                    switch (j)
-                    {
-                        case 2:
-                        case 5:
-                        case 8: distance = (int)((g.getTotalTime() / g.getOptD().Count) / x); break;
-                        case 0:
-                        case 3:
-                        case 6: distance = (int)((g.GetTimings1()[i]) / x); break;
-                        default: distance = (int)((g.GetTimings2()[i]) / x); break;
-                    }
-
+                    double x = ((double)g.getTotalTime() / (double)GraphUI.Percentage(Width,25));
+                        switch (j)
+                        {
+                            case 2:
+                            case 5:
+                            case 8: distance = (int)((g.getTotalTime() / g.getOptD().Count) / x); break;
+                            case 0:
+                            case 3:
+                            case 6: distance = (int)((g.GetTimings1()[i+1]) / x); break;
+                            default: distance = (int)((g.GetTimings2()[i+1]) / x); break;
+                        }
+                    
                     current[i] = new PerformanceGraph(counter1, r3 - 1, counter1 + distance, r5 - 1, Width, Height, color);
                     counter1 = counter1 + distance;
                     if (j != 2 && j != 5 && j != 8)
                     {
                         if (i == 0)
                         {
-                            disqList.Add(r3 - 1);
+                            disqList.Add(r3-1);
                         }
-                        disqList.Add(r5 - 1);
+                        disqList.Add(r5-1);
                     }
                 }
             }
