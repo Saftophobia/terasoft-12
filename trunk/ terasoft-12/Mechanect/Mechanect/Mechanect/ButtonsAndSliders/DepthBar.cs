@@ -48,7 +48,7 @@ namespace Mechanect.Common
 
         #region LoadTextures
 
-        public DepthBar(User[] users, int minDepth, int maxDepth, int width, int height, Color accept, Color reject, Color[] playerColors, GraphicsDevice graphicsDevice)
+        public DepthBar(User[] users, int minDepth, int maxDepth, int width, int height, Color accept, Color reject, Color[] playerColors)
         {
             this.users = users;
             this.minDepth = minDepth;
@@ -58,7 +58,6 @@ namespace Mechanect.Common
             this.accept = accept;
             this.reject = reject;
             this.playerColors = playerColors;
-            LoadContent(graphicsDevice);
         }
 
 
