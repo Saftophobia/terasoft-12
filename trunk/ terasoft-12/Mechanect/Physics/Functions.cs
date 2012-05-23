@@ -76,7 +76,7 @@ namespace Physics
         /// Float number which is the generated random value.
         /// </returns>
 
-        public float GenerateRandomValue(float min, float max)
+        public static float GenerateRandomValue(float min, float max)
         {
             if (max > min)
             {
@@ -85,6 +85,28 @@ namespace Physics
                 return value;
             }
             else throw new ArgumentException("max value has to be greater than min value");
+        }
+
+        /// <summary>
+        /// Generates a position for the hole according to certain constraints, given the terrain width, terrain height, shooting position and the hole radius.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// <param name="radius">The radius of the hole.</param>
+        /// <param name="terrainWidth">The width of the terrain where the hole should be generated within.</param>
+        /// <param name="terrainHeight">The height of the terrain where the hole should be generated within.</param>
+        /// <param name="shootingPosition">The shooting position of the user.</param>
+        /// </remarks>
+        /// <returns>
+        /// Vector which is the randomly generated position of the hole.
+        /// </returns>
+
+        public static Vector3 GeneratePosition(int radius, int terrainWidth, int terrainHeight, Vector3 shootingPosition)
+        {
+            float X = GenerateRandomValue(-(terrainWidth) / 4 + 3 * radius, (terrainWidth) / 4 - 3 * radius);
+            float Y = 0;
+            float Z = GenerateRandomValue(-(terrainHeight / 2) + (3 * radius), -(terrainHeight / 4) + 3 * radius);
+            return new Vector3(X, Y, Z);
         }
 
     }
