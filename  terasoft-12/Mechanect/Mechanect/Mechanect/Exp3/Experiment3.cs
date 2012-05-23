@@ -118,9 +118,10 @@ namespace Mechanect.Exp3
                     this.shootVelocity = new Vector3(10, 0, -10);
                     animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
                 }*/
-                if (environment.hasBallEnteredShootRegion())
+                if (ball.hasBallEnteredShootRegion())
                 {
-                    Vector3 shootVelocity = environment.Shoot(gameTime);
+                    user.UpdateMeasuringVelocityAndAngle(gameTime);
+                    Vector3 shootVelocity = user.velocity;
                     if (user.hasShot && shootVelocity.Length() != 0)
                     {
                         firstAnimation = false;

@@ -763,38 +763,7 @@ namespace Mechanect.Exp3
         #endregion
 
         #region Ball Control Methods
-
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Returns the balls velocity according to the speed and angle the user shot with.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <returns>Vector3 Ball velocity after collision.</returns>
-        public Vector3 Shoot(GameTime gameTime)
-        {
-            user.UpdateMeasuringVelocityAndAngle(gameTime);
-            Vector3 legVelocity = user.velocity;
-            return legVelocity;
-        }
-
-        /// <remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
-        /// <summary>
-        /// Checks whether the ball entered the region user can shoot in.
-        /// </summary>
-        /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
-        public bool hasBallEnteredShootRegion()
-        {
-            float ballPosX = ball.Position.X;
-            float ballPosZ = ball.Position.Z;
-            return ballPosX <= Constants3.maxShootingX && ballPosX >= Constants3.minShootingX && ballPosZ <= Constants3.maxShootingZ && ballPosZ >= Constants3.minShootingZ;
-
-        }
-
-   
+  
 
         /// <summary>
         /// Gets the height of the terrain at any point.
