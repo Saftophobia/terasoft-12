@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Screens
 {
+    [System.Obsolete("This screen will be deleted. Please add the mainMemu and NewGame buttons in your" +
+    "last screens", false)]
     class LastScreen : GameScreen
     {
         private Button mainMenu;
