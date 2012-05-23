@@ -24,8 +24,8 @@ namespace Mechanect.Exp3
         public Ball ball;
         public User3 user;
         private float wind;
-        private float friction;
-        public float Friction
+        private static float friction;
+        public static float Friction
         {
            
             set
