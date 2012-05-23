@@ -43,7 +43,6 @@ namespace Mechanect.Exp3
             Mass = 0.004f;
         }
 
-
         ///<remarks>
         ///<para>
         ///Author: Cena
@@ -53,13 +52,12 @@ namespace Mechanect.Exp3
         /// generates a random mass for the ball within a certain given range
         /// </summary>
         /// <returns> returns the generated mass</returns>
-        public float GenerateBallMass(float minMass,float maxMass)
+        public float GenerateBallMass(float minMass, float maxMass)
         {
             Random random = new Random();
             float generatedMass = ((float)(random.NextDouble() * (maxMass - minMass))) + minMass;
             return generatedMass;
         }
-
 
         /// <summary>
         /// sets the ball position to a random one
@@ -108,6 +106,11 @@ namespace Mechanect.Exp3
             Position = new Vector3(Position.X, height + radius, Position.Z);
         }
 
+        /// <summary>
+        /// checks whether the ball is inside the terrain
+        /// </summary>
+        /// <param name="terrainWidth">terrain width</param>
+        /// <param name="terrainHeight">terrain height</param>
         public bool InsideTerrain(float terrainWidth, float terrainHeight)
         {
             return Position.X > -terrainWidth / 3 && Position.X < terrainWidth / 3 && Position.Z > (-terrainHeight / 2 + 45);
