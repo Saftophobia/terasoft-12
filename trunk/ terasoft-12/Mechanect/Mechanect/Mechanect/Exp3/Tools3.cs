@@ -13,27 +13,6 @@ namespace Mechanect.Exp3
 {
     public class Tools3
     {
-      
-        ///<remarks>
-        ///<para>
-        ///Author: Cena
-        ///</para>
-        ///</remarks>
-        /// <summary>
-        /// calculates the final velocity using Vf = Vi + a*t
-        /// </summary>
-        /// <param name="acceleration">acceleration of the body</param>
-        /// <param name="velocityInitial">initial veloctiy of the body</param>
-        /// <param name="totalTime">the total time the body moved</param>
-        /// <returns></returns>
-
-        public static Vector3 GetVelocity(Vector3 position, double totalTime)
-        {
-            return new Vector3(position.X / (float)totalTime, 0, position.Z / (float)totalTime);
-        }
-
-
-
 
         ///<remarks>
         ///<para>
