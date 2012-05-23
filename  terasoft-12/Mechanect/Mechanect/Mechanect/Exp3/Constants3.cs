@@ -32,11 +32,11 @@ namespace Mechanect.Exp3
         public const float legMovementTolerance = 0.15f; //meters
         public const float minimumShootingDistance = 0.25f;//meters
         public const float movingForwardTolerance = 0.09f;
-        public const float velocityScale = 4;
+        public const float velocityScale = 2;
 
         public const int minShootingX = -10;
         public const int maxShootingX = 10;
-        public const int minShootingZ = 35;
+        public const int minShootingZ = 25;
         public const int maxShootingZ = 45;
     }
 }
