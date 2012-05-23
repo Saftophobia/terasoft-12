@@ -110,7 +110,7 @@ namespace Mechanect.Exp3
 
         public bool InsideTerrain(float terrainWidth, float terrainHeight)
         {
-            return Position.X > -terrainWidth / 2 && Position.X < terrainWidth / 2 && Position.Z > (-terrainHeight / 2 + 100);
+            return Position.X > -terrainWidth / 2 && Position.X < terrainWidth / 2 && Position.Z > (-terrainHeight / 2);
         }
 
     }

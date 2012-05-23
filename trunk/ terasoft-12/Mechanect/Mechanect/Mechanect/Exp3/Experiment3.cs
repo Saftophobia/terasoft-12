@@ -111,14 +111,19 @@ namespace Mechanect.Exp3
                 if (distance / totalDistance > 0.5 && !pauseScreenShowed)
                 {
                     pauseScreenShowed = true;
-                    FreezeScreen();
-                    ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
+                    //FreezeScreen();
+                    //ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
                    
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
 
-
-                if (ball.hasBallEnteredShootRegion())
+                if (distance / totalDistance > 1)
+                {
+                    firstAnimation = false;
+                    shootVelocity = new Vector3(50, 0, -50);
+                    animation = new BallAnimation(ball, environment, this.shootVelocity);
+                }
+                /*if (ball.hasBallEnteredShootRegion())
                 {
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
                     Vector3 shootVelocity = user.velocity;
@@ -131,7 +136,7 @@ namespace Mechanect.Exp3
 
                     }
 
-                }
+                }*/
                 if (animation.Finished)
                 {
                     UpdateButtons(gameTime);
@@ -145,10 +150,7 @@ namespace Mechanect.Exp3
             if (simulation != null)
             {
                 UpdateButtons(gameTime);
-                if (ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
-                {
-                    simulation.Update(gameTime);
-                }
+                simulation.Update(gameTime);
             }
             else
             {
