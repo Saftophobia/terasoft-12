@@ -137,5 +137,9 @@ namespace Mechanect.Exp3
             spriteBatch.End();
         }
 
+        public bool HasFinished()
+        {
+            return animation1.Finished && animation2.Finished;
+        }
     }
 }

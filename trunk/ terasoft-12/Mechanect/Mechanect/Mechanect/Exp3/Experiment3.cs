@@ -151,6 +151,12 @@ namespace Mechanect.Exp3
             {
                 UpdateButtons(gameTime);
                 simulation.Update(gameTime);
+                if (simulation.HasFinished())
+                {
+                    //FreezeScreen();
+                    Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
+                    Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
+                }
             }
             else
             {

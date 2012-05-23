@@ -14,6 +14,7 @@ namespace Mechanect.Exp3
         private Ball ball;
         public bool willFall;
         private int fallFactor;
+        private Environment3 environment;
 
         /// <summary>
         /// constructs a new BallAnimation instance 
@@ -29,6 +30,7 @@ namespace Mechanect.Exp3
             : base(ball, velocity, environment.Friction, LinearMotion.CalculateTime(velocity.Length(), 0, environment.Friction))
         {
             this.ball = ball;
+            this.environment = environment;
             Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, environment.Friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
@@ -43,23 +45,29 @@ namespace Mechanect.Exp3
             base.Update(elapsed);
             ball.Rotate(Displacement);
 
+            ball.SetHeight(environment.GetHeight(ball.Position) - fallFactor*0.15f);
             if (!base.Finished)
             {
-                if (willFall)
+                if (fallFactor < 50)
                 {
-                    if (ElapsedTime > Duration - TimeSpan.FromSeconds(3.2))
+                    if (willFall)
                     {
-                        if (fallFactor < 120)
+                        if (ElapsedTime > Duration - TimeSpan.FromSeconds(4))
                         {
-                            ball.SetHeight(ball.Position.Y - ball.Radius - (fallFactor * 0.15f));
                             fallFactor++;
-                        }
-                        else
-                        {
                             ball.SetHeight(ball.Position.Y - ball.Radius - (fallFactor * 0.15f));
                         }
                     }
                 }
+                else
+                {
+                    ball.SetHeight(ball.Position.Y - ball.Radius - fallFactor * 0.15f);
+                    Finished = true;
+                }
+            }
+            else
+            {
+                ball.SetHeight(ball.Position.Y - ball.Radius - fallFactor * 0.15f);
             }
         }
 
