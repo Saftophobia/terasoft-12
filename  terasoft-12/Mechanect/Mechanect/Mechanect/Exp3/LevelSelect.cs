@@ -58,16 +58,16 @@ namespace Mechanect.Exp3
 
             level = 1;
 
-            int ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width * (int)scale;
+            float ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width * scale;
             //Create and Initialize all Buttons.
 
             Vector2 leftArrowPos = new Vector2(position.X, position.Y + 15);
-            Vector2 firstButtonPos = new Vector2(leftArrowPos.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 73, position.Y + 33);
-            Vector2 secondButtonPos = new Vector2(firstButtonPos.X + ButtonWidth + 8, position.Y + 33);
-            Vector2 thirdButtonPos = new Vector2(secondButtonPos.X + ButtonWidth + 8, position.Y + 33);
+            Vector2 firstButtonPos = new Vector2(leftArrowPos.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width*scale + 72*scale, position.Y + 28);
+            Vector2 secondButtonPos = new Vector2(firstButtonPos.X + ButtonWidth + 8, position.Y + 28);
+            Vector2 thirdButtonPos = new Vector2(secondButtonPos.X + ButtonWidth + 8, position.Y + 28);
 
             rightArrow = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"), Content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-                new Vector2(position.X + ButtonWidth + 65 + width, position.Y + 15), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
+                new Vector2((position.X + ButtonWidth + 65 * scale + width * scale), position.Y + 15), screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             leftArrow = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"), Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
                 leftArrowPos, screenW, screenH, Content.Load<Texture2D>("Textures/Buttons/Hand"), user);
             firstButton = new Button(Content.Load<GifAnimation.GifAnimation>("Textures/dummy"), Content.Load<GifAnimation.GifAnimation>("Textures/dummySelected"),
@@ -183,8 +183,9 @@ namespace Mechanect.Exp3
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
             //Draw the texture and textureStrip according to the frame
-            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width*scale + 70*scale, position.Y + 30), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
-            spriteBatch.Draw(texture,  position, new Rectangle(0,0, texture.Width, texture.Height), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width*scale + 70*scale, position.Y + 25), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            
             //Draw each Button in the list
             foreach (Button b in Buttons)
                 b.Draw(spriteBatch, scale);
