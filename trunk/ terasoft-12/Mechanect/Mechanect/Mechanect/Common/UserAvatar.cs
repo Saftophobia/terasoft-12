@@ -8,20 +8,28 @@ namespace Mechanect.Common
 {
     public class UserAvatar
     {
-        GraphicsDevice graphics;
-        SpriteBatch spriteBatch;
-        int screenWidth;
-        int screenHeight;
-        ContentManager content;
-        Texture2D[] avatar;
-        Vector2[] avatarPosition;
-        SpriteFont font;
-        User[] users;
-        MKinect kinect;
-        String[] command;
+        private GraphicsDevice graphics;
+        private SpriteBatch spriteBatch;
+        private int screenWidth;
+        private int screenHeight;
+        private ContentManager content;
+        private Texture2D[] avatar;
+        private Vector2[] avatarPosition;
+        private SpriteFont font;
+        private User[] users;
+        private MKinect kinect;
+        private String[] command;
         const int minDepth = 120;
         const int maxDepth = 350;
-        int[] depth;
+        private int[] depth;
+        private Texture2D[] allAvatars;
+
+        /// <summary>
+        /// Class constructor for 1 player mode.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         public UserAvatar(User user, ContentManager content, GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[1];
@@ -33,19 +41,26 @@ namespace Mechanect.Common
             this.content = content;
             Initialize(); 
         }
-        public UserAvatar(User user, User user2, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
+
+        /// <summary>
+        /// Class constructor for 2 player mode.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
+        public UserAvatar(User user, User user2, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch): this(user,content,graphicsDevice,spriteBatch)
         {
             this.users = new User[2];
             this.users[0] = user;
             this.users[1] = user2;
-            this.graphics = graphicsDevice;
-            screenWidth = graphics.Viewport.Width;
-            screenHeight = graphics.Viewport.Height;
-            this.spriteBatch = spriteBatch;
-            this.content = content;
-            Initialize();
         }
-
+        /// <summary>
+        /// Initializes the kinect sensor and the arrays that keep track of user's information like avatars, avatar positions, depth and notification messages.
+        /// all of your content.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         public void Initialize()
         {
             this.depth = new int[users.Length];
@@ -53,9 +68,10 @@ namespace Mechanect.Common
             avatar = new Texture2D[users.Length];
             avatarPosition = new Vector2[users.Length];
             kinect = users[0].Kinect;
+            allAvatars = new Texture2D[4];
         }
         /// <summary>
-        /// LoadContent will be called only once before drawing and its the place to load
+        /// LoadContent will be called only once before drawing and it's the place to load
         /// all of your content.
         /// </summary>
         /// <remarks>
@@ -64,9 +80,13 @@ namespace Mechanect.Common
         public void LoadContent()
         {
             font = content.Load<SpriteFont>("spriteFont1");
+            allAvatars[0] = content.Load<Texture2D>(@"Textures/avatar-dead");
+            allAvatars[1] = content.Load<Texture2D>(@"Textures/avatar-white");
+            allAvatars[2] = content.Load<Texture2D>(@"Textures/avatar-green");
+            allAvatars[3] = content.Load<Texture2D>(@"Textures/avatar-red");
             for (int i = 0; i < avatar.Length; i++)
             {
-                avatar[i] = content.Load<Texture2D>(@"Textures/avatar-dead");
+                avatar[i] = allAvatars[0];
             }
             avatarPosition[0] = new Vector2(screenWidth+25, screenHeight / 2.6f);
             if (avatarPosition.Length == 2)
@@ -123,11 +143,11 @@ namespace Mechanect.Common
         }
         
         /// <summary>
-        /// Takes player index in the array and updates his distance from the kinect device, and adds a message to be printed if not detected or too far away.
+        /// Takes the user's index in the users array and calculates the player's distance from the kinect device, and updates the notification message that should be printed if the user is not detected or too far away.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         /// <param name="ID">
         /// The user's index in users array.
         /// </param>
@@ -136,17 +156,17 @@ namespace Mechanect.Common
             depth[ID] = GenerateDepth(ID);
             if (depth[ID] == 0)
             {
-                avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-dead");
+                avatar[ID] = allAvatars[0];
                 command[ID] = "Player " + (ID+1) + " : No player detected";
             }
             else
             {
                 if (depth[ID] < minDepth)
-                    avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-red");
+                    avatar[ID] = allAvatars[3];
                 else if (depth[ID] > maxDepth)
-                    avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-white");
+                    avatar[ID] = allAvatars[1];
                 else if (depth[ID] < maxDepth)
-                    avatar[ID] = content.Load<Texture2D>(@"Textures/avatar-green");
+                    avatar[ID] = allAvatars[2];
                 command[ID] = "";
             }
         }
@@ -155,8 +175,8 @@ namespace Mechanect.Common
         /// Takes the user's index in the array and gets his distance from the kinect device.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         /// <param name="index">
         /// The user's index in the array.
         /// </param>
@@ -178,8 +198,8 @@ namespace Mechanect.Common
         /// Takes a user as a parameter and returns his index in the array of users.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         /// <param name="user">
         /// The user.
         /// </param>
@@ -203,8 +223,8 @@ namespace Mechanect.Common
         /// Takes a 2D texture as a parameter and colors it according to user's distance from the kinect device.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         /// <param name="texture">
         /// The 2D texture that should be colored.
         /// </param>
@@ -228,8 +248,8 @@ namespace Mechanect.Common
         /// Takes as parameters a 2D texture and a color and changes the texture's color to the specified color.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         /// <param name="texture">
         /// The texture which should be colored.
         /// </param>
