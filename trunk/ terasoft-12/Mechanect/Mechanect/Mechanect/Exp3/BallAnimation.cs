@@ -12,7 +12,7 @@ namespace Mechanect.Exp3
     {
 
         private Ball ball;
-        private bool willFall;
+        public bool willFall;
         private int fallFactor;
 
         /// <summary>

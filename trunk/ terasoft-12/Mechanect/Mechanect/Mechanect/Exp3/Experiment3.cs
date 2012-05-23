@@ -112,13 +112,13 @@ namespace Mechanect.Exp3
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-                if (distance / totalDistance > 1)
+                /*if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     this.shootVelocity = new Vector3(10, 0, -10);
                     animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
-                }
-                /*if (environment.hasBallEnteredShootRegion())
+                }*/
+                if (environment.hasBallEnteredShootRegion())
                 {
                     Vector3 shootVelocity = environment.Shoot(gameTime);
                     if (user.hasShot && shootVelocity.Length() != 0)
@@ -127,7 +127,7 @@ namespace Mechanect.Exp3
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
                         new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
                     }
-                }*/
+                }
                 if (animation.Finished())
                 {
                     //add final screen
