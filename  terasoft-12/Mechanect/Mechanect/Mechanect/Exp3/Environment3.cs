@@ -678,10 +678,10 @@ namespace Mechanect.Exp3
         /// Generates a value for the radius given angle tolerance
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        ///<param name="angletolerance">The tolerance value set by the user.</param>
-        ///<returns>integer value which is the radius of the hole </returns>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
+        /// <param name="angletolerance">The tolerance value set by the user.</param>
+        /// <returns>integer value which is the radius of the hole </returns>
         public int GenerateRadius(int angletolerance)
         {
             switch (angletolerance)
@@ -699,9 +699,9 @@ namespace Mechanect.Exp3
         /// Makes a real square hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///</remarks>
-        ///<param name="position">The central position where the hole should be made around.</param>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
+        /// <param name="position">The central position where the hole should be made around.</param>
         protected void CreateHole(Vector3 position, int radius)
         {
             // double angleStep = 1f / radius;

@@ -1,9 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Common;
 using Microsoft.Xna.Framework.Graphics;
-using UI.Cameras;
 using UI.Components;
 
 namespace Mechanect.Exp3
@@ -26,15 +23,15 @@ namespace Mechanect.Exp3
         }
        
         /// <summary>
-        /// Generates a position for the hole according to certain constraints given the terrain width, terrain height, shooting position and the hole radius.
+        /// Generates a position for the hole according to certain constraints, given the terrain width, terrain height, shooting position and the hole radius.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///<param name="radius">The radius of the hole.</param>
-        ///<param name="terrainWidth">The width of the terrain or the environment where the hole should be generated within.</param>
-        ///<param name="terrainHeight">The height of the terrain or the environment where the hole should be generated within.</param>
-        ///<param name="shootingPosition">The shooting position of the user.</param>
-        ///</remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// <param name="radius">The radius of the hole.</param>
+        /// <param name="terrainWidth">The width of the terrain where the hole should be generated within.</param>
+        /// <param name="terrainHeight">The height of the terrain where the hole should be generated within.</param>
+        /// <param name="shootingPosition">The shooting position of the user.</param>
+        /// </remarks>
         /// <returns>
         /// Vector which is the randomly generated position of the hole.
         /// </returns>
