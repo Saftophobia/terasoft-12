@@ -155,18 +155,23 @@ namespace Mechanect.Exp3
             {
                 case 1:
                     textureStrip = textureStrip1;
+                    Environment3.Friction = -2;
                     break;
                 case 2:
                     textureStrip = textureStrip2;
+                    Environment3.Friction = -3;
                     break;
                 case 3:
                     textureStrip = textureStrip3;
+                    Environment3.Friction = -4;
                     break;
                 case 4:
                     textureStrip = textureStrip4;
+                    Environment3.Friction = -5;
                     break;
                 case 5:
                     textureStrip = textureStrip5;
+                    Environment3.Friction = -6;
                     break;
             }
 
