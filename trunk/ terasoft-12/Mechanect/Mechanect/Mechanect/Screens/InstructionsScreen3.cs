@@ -8,11 +8,20 @@ namespace Mechanect.Screens
     class InstructionsScreen3 : GameScreen
     {
 private string instructions = "";
-        string header= "\n\n\n       .Welcome To Mechanect Football Game."+ '\n'
-             + "                .By TeraSoft Team."  + '\n'
-               +"                       .GUC.";
-        private string title="\n Game Instructions :- \n\n\n\n";
-        private Instruction instruction;
+        string header= "\n\n\n                  .Welcome To Mechanect Football Game."+ '\n'
+             + "                      .By TeraSoft Team."  + '\n'
+               +"                             .GUC.";
+        private string title1="\n\n\n\n\n\n\n Game Instructions :-";
+        private string title2="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n General Instructions :-";
+        private string text1 = "\n\n\n\n\n\n\n\n\n\n1- Goal: Use the law of conservation of momentum to shoot the ball with a velocity that makes \nit reach the hole with zero velocity."
+            +"\n2- Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting position and Friction\n (deceleration)."
+            +"\n3- Gameplay: You will see a ball coming towards you, then the game will pause, and the givens will \nbe displayed on the screen."
+            +"\n4-When you are done with your calculations, you should press the ok button to resume the game and \nbe able to shoot the ball with the calculated velocity "
+            +"\n5- Settings: The next screen allows you to choose a level, which changes the friction, and to adjust \nthe hole size using the angle tolerance slider."
+            +"\n6 Tip: Shoot the ball when you hear the whistle just before the bar is empty.";
+        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n * The avatar on the top right represents your distance from the screen."
+           +"\ngreen: Good.\n2- White: Too Far.\n3- Red: Too Near.\n4- Crossed: Not Detected.";
+        //private Instruction instruction;
         private User3 user3;
         private Texture2D myTexture;
         private Rectangle rect;
@@ -92,6 +101,10 @@ private string instructions = "";
             button.Draw(ScreenManager.SpriteBatch, scale);
             button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, text1, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, text2, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.End();
             //instruction.Draw(gameTime);
             base.Draw(gameTime);
