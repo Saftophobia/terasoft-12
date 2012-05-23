@@ -24,6 +24,9 @@ namespace Mechanect.Screens
         Button experiment1;
         Button experiment2;
         Button experiment3;
+        Texture2D One;
+        Texture2D Two;
+        Texture2D Three;
 
         [System.Obsolete("Will be repaced by ", false)]
         public AllExperiments()
@@ -52,13 +55,22 @@ namespace Mechanect.Screens
             this.screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
             screenWidth = ScreenManager.GraphicsDevice.Viewport.Width;
             screenHeight = ScreenManager.GraphicsDevice.Viewport.Height;
+            One = content.Load<Texture2D>("Resources/Images/exp1-word");
+            Two = content.Load<Texture2D>("Resources/Images/exp2-word");
+            Three = content.Load<Texture2D>("Resources/Images/exp3-word");
 
-            experiment1 = Tools3.OKButton(content, new Vector2(0, device.Viewport.Height / 2),
-           screenWidth, screenHeight, user);
-            experiment2 = Tools3.OKButton(content, new Vector2((device.Viewport.Width / 2) - 70, device.Viewport.Height / 2),
-           screenWidth, screenHeight, user);
-            experiment3 = Tools3.OKButton(content, new Vector2((device.Viewport.Width) - 150, device.Viewport.Height / 2),
-           screenWidth, screenHeight, user);
+            experiment1 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-s"),
+                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-m"), new Vector2(screenWidth*0.1f, screenHeight * 0.4f),
+                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
+
+            experiment2 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-s"),
+                 content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-m"), new Vector2(screenWidth*0.39f, screenHeight * 0.5f),
+                 screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
+            
+            experiment3 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-s"),
+                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-m"), new Vector2(screenWidth*0.7f, screenHeight * 0.4f),
+                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
+
             backgroundTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/background");
         }
         /// <summary>
@@ -95,11 +107,18 @@ namespace Mechanect.Screens
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height), Color.White);
+            ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
             experiment1.Draw(ScreenManager.SpriteBatch);
             experiment2.Draw(ScreenManager.SpriteBatch);
             experiment3.Draw(ScreenManager.SpriteBatch);
             experiment1.DrawHand(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133),
+                (int)(screenHeight*0.6), (int)(screenWidth*0.165), (int)(screenHeight*0.261)), Color.White);
+            ScreenManager.SpriteBatch.Draw(Two, new Rectangle((int)(screenWidth * 0.423),
+                (int)(screenHeight * 0.705), (int)(screenWidth * 0.165), (int)(screenHeight * 0.261)), Color.White);
+            ScreenManager.SpriteBatch.Draw(Three, new Rectangle((int)(screenWidth * 0.733),
+                (int)(screenHeight * 0.6), (int)(screenWidth * 0.165), (int)(screenHeight * 0.261)), Color.White);
+            
             ScreenManager.SpriteBatch.End();
         }
 
