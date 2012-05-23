@@ -114,7 +114,7 @@ namespace Mechanect.Common
             {
                 spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0,
                     new Vector2(avatar[i].Width, avatar[i].Height), 1f, SpriteEffects.None, 0);
-                spriteBatch.DrawString(font, command[i],new Vector2(100, 520 + 100 * i), Color.OrangeRed);
+                //spriteBatch.DrawString(font, command[i],new Vector2(100, 520 + 100 * i), Color.OrangeRed);
             }
             spriteBatch.End();
         }
