@@ -19,6 +19,7 @@ namespace Mechanect.Exp3
         private GraphicsDevice device;
         private SpriteBatch spriteBatch;
         private Ball ball;
+        private Environment3 environment;
         private Vector3 shootPosition;
 
         private SpriteFont font;
@@ -48,6 +49,7 @@ namespace Mechanect.Exp3
             this.device = device;
             this.spriteBatch = spriteBatch;
             this.ball = ball;
+            this.environment = environment;
             this.shootPosition = shootPosition;
 
             ball.Position = shootPosition;
@@ -71,6 +73,7 @@ namespace Mechanect.Exp3
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
+            
             ModelLinearAnimation current = animation1;
             if (animation1.Finished)
             {
@@ -81,6 +84,13 @@ namespace Mechanect.Exp3
                     Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
                 }
                 current = animation2;
+            }
+            else
+            {
+                if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
+                {
+                    animation1.Finished = true;
+                }
             }
             current.Update(gameTime.ElapsedGameTime);
             Camera.Move(ball.Position);
