@@ -43,7 +43,7 @@ namespace Mechanect.Exp3
         /// <param name="content">content manager</param>
         /// <param name="device">draphics device</param>
         /// <param name="spriteBatch">sprite batch</param>
-        public Simulation(Ball ball, Hole hole, Vector3 shootPosition, Vector3 shootVelocity, float friction, ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
+        public Simulation(Ball ball, Environment3 environment, Vector3 shootPosition, Vector3 shootVelocity, ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.device = device;
             this.spriteBatch = spriteBatch;
@@ -54,11 +54,11 @@ namespace Mechanect.Exp3
 
             font = content.Load<SpriteFont>("SpriteFont1");
 
-            Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(hole.Position - 
-                shootPosition, 0, friction);
+            Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(environment.HoleProperty.Position -
+                shootPosition, 0, environment.Friction);
 
-            animation1 = new BallAnimation(ball, hole, shootVelocity, friction);
-            animation2 = new BallAnimation(ball, hole, optimalVelocity, friction);
+            animation1 = new BallAnimation(ball, environment, shootVelocity);
+            animation2 = new BallAnimation(ball, environment, optimalVelocity);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
             velocity1 = String.Format("<{0,4:0.0}, 0.0,{1,4:0.0}>", shootVelocity.X, shootVelocity.Z);
@@ -72,7 +72,7 @@ namespace Mechanect.Exp3
         public void Update(GameTime gameTime)
         {
             ModelLinearAnimation current = animation1;
-            if (animation1.Finished())
+            if (animation1.Finished)
             {
                 if (!secondAnimationStarted)
                 {
@@ -125,11 +125,6 @@ namespace Mechanect.Exp3
                 Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
             spriteBatch.End();
-        }
-
-        public bool Finished()
-        {
-            return animation2.Finished();
         }
 
     }

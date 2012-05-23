@@ -25,14 +25,14 @@ namespace Mechanect.Exp3
         /// <remarks>
         /// Author : Bishoy Bassem, Omar Abdulaal
         /// </remarks>
-        public BallAnimation(Ball ball, Hole hole, Vector3 velocity, float friction)
-            : base(ball, velocity, friction, LinearMotion.CalculateTime(velocity.Length(), 0, friction))
+        public BallAnimation(Ball ball, Environment3 environment, Vector3 velocity)
+            : base(ball, velocity, environment.Friction, LinearMotion.CalculateTime(velocity.Length(), 0, environment.Friction))
         {
             this.ball = ball;
-            Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, friction, Duration);
+            Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, environment.Friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
-            if (Vector3.Distance(stopPosition, hole.Position) < (ball.Radius + hole.Radius))
+            if (Vector3.Distance(stopPosition, environment.HoleProperty.Position) < (ball.Radius + environment.HoleProperty.Radius))
             {
                 willFall = true;
             }
@@ -43,7 +43,7 @@ namespace Mechanect.Exp3
             base.Update(elapsed);
             ball.Rotate(Displacement);
 
-            if (!base.Finished())
+            if (!base.Finished)
             {
                 if (willFall)
                 {
