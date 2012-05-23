@@ -17,11 +17,8 @@ namespace UI.Components
         public Vector3 Rotation { get; set; }
         public Vector3 Scale { get; set; }
 
+        protected Model model;
         private Matrix[] modelTransforms;
-
-        private GraphicsDevice graphicsDevice;
-
-        protected Model Model { get; private set; }
 
         private BoundingSphere boundingSphere;
         public BoundingSphere BoundingSphere
@@ -42,14 +39,13 @@ namespace UI.Components
         /// <param name="rotation">the model's orientation</param>
         /// <param name="scale">the model's scale</param>
         /// <param name="graphicsDevice"></param>
-        public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale, GraphicsDevice graphicsDevice){
+        public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale){
             this.Position = position;
             this.Rotation = rotation;
             this.Scale = scale;
-            this.graphicsDevice = graphicsDevice;
-            Model = model;
+            this.model = model;
             modelTransforms = new Matrix[model.Bones.Count];
-            Model.CopyAbsoluteBoneTransformsTo(modelTransforms);
+            model.CopyAbsoluteBoneTransformsTo(modelTransforms);
             createBoundingSphere();
         }
 
@@ -63,7 +59,7 @@ namespace UI.Components
                 * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) 
                 * Matrix.CreateTranslation(Position);
 
-            foreach (ModelMesh mesh in Model.Meshes)
+            foreach (ModelMesh mesh in model.Meshes)
             {
                 Matrix localWorld = modelTransforms[mesh.ParentBone.Index] * world;
                 foreach (ModelMeshPart part in mesh.MeshParts)
@@ -84,7 +80,7 @@ namespace UI.Components
         private void createBoundingSphere()
         {
             BoundingSphere sphere = new BoundingSphere(Vector3.Zero, 0);
-            foreach (ModelMesh mesh in Model.Meshes)
+            foreach (ModelMesh mesh in model.Meshes)
             {
                 BoundingSphere transformed = mesh.BoundingSphere.Transform(modelTransforms[mesh.ParentBone.Index]);
                 sphere = BoundingSphere.CreateMerged(sphere, transformed);
