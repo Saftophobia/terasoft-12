@@ -59,8 +59,8 @@ namespace Mechanect.Screens
 
             backGround = contentManager.Load<Texture2D>("Textures/Screens/settings");
 
-            scaleH = ((float) screenWidth / (float) backGround.Width);
-            scaleW = ((float)screenHeight / (float)backGround.Height);
+            scaleH = ((float) screenHeight / (float) backGround.Height);
+            scaleW = ((float)screenWidth / (float)backGround.Width);
 
             level.Initialize(screenWidth, screenHeight, scaleH);
 
@@ -107,6 +107,13 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
+
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            level.Draw(spriteBatch, scaleW);
+            spriteBatch.End();
+            
+            
             Rectangle rect = new Rectangle(0, 0, (int)(scaleW * backGround.Width), (int)(scaleH * backGround.Height));
             spriteBatch.Begin();
             spriteBatch.Draw(backGround, rect, Color.White);
@@ -114,11 +121,6 @@ namespace Mechanect.Screens
             velocity.Draw(spriteBatch, scaleW, scaleH);
             angle.Draw(spriteBatch, scaleW, scaleH);
             OKbutton.DrawHand(spriteBatch);
-            spriteBatch.End();
-
-
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            level.Draw(spriteBatch, scaleW);
             spriteBatch.End();
 
             base.Draw(gameTime);
