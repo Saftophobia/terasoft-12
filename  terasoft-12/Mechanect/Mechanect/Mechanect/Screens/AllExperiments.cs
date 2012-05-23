@@ -1,12 +1,11 @@
 ﻿using ButtonsAndSliders;
 using Mechanect.Common;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
-using Mechanect.Exp3;
 using Mechanect.Exp1;
 using Mechanect.Exp2;
+using Mechanect.Exp3;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
     /// <summary>
@@ -74,19 +73,17 @@ namespace Mechanect.Screens
             if (experiment1.IsClicked())
             {
                 Remove();
-                //I commented this line to have a compilation-error free repo
-               // ScreenManager.AddScreen(new Experiment1(new User1(1), new User1(2), new MKinect()));
+                ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
             }
             if (experiment2.IsClicked())
             {
                 Remove();
-                //ScreenManager.AddScreen(new Settings2(new User2()));
+                ScreenManager.AddScreen(new Settings2(new User2()));
             }
             if (experiment3.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Experiment3(new User3()));
-                //ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
+                ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
             }
         }
 
@@ -113,9 +110,6 @@ namespace Mechanect.Screens
         {
             base.Remove();
 
-        }
-
-
-        
+        }        
     }
 }
