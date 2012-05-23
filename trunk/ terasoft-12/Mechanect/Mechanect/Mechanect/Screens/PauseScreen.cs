@@ -10,6 +10,7 @@ using UI.Cameras;
 using Mechanect.Exp3;
 using Microsoft.Kinect;
 using ButtonsAndSliders;
+using Physics;
 
 namespace Mechanect.Screens
 {
@@ -157,19 +158,19 @@ namespace Mechanect.Screens
                     #region GivensString
                     displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
                         + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "["+"X:"+Math.Truncate(holePosition.X)+","+"Y:0,"+"Z:"+Math.Truncate(holePosition.Z)+"]";
-                    string shootingValues ="Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
+                    string shootingValues = "Shooting velocity: " + Math.Truncate(velocity.Length() *Constants3.velocityScale* 1000) / 1000 +" m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     #endregion
 
                     #region DrawingBarAndArrowInfo
                     if (!user.hasMissed)
                     {
-                        velocity = user.SetVelocityRelativeToGivenMass() * Constants3.velocityScale;
+                        velocity = Functions.SetVelocityRelativeToGivenMass((float)user.assumedLegMass,Constants3.normalLegMass,user.velocity);
                         int draw;
-                        if (velocity.Length() > 31)
+                        if (velocity.Length() * Constants3.velocityScale > 31)
                             draw = 31;
                         else
-                            draw = (int)velocity.Length();
+                            draw = (int)velocity.Length() *(int) Constants3.velocityScale;
 
                         for (int i = fills.Count() - 1; i < draw; i++)
                         {
