@@ -690,10 +690,8 @@ namespace Mechanect.Exp3
                 case 2:  return 15; 
                 case 3:  return 20; 
                 case 4:  return 25; 
-                case 5:  return 30; 
                 default: return 10;
             }
-
         }
         /// <summary>
         /// Makes a real square hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
