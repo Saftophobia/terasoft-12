@@ -21,9 +21,9 @@ namespace Mechanect.Screens
         Texture2D backgroundTexture;
         int screenWidth;
         int screenHeight;
-        Button experiment1;
-        Button experiment2;
-        Button experiment3;
+        Button experiment1Button;
+        Button experiment2Button;
+        Button experiment3Button;
         Texture2D One;
         Texture2D Two;
         Texture2D Three;
@@ -59,19 +59,23 @@ namespace Mechanect.Screens
             Two = content.Load<Texture2D>("Resources/Images/exp2-word");
             Three = content.Load<Texture2D>("Resources/Images/exp3-word");
 
-            experiment1 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-s"),
-                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-m"), new Vector2(screenWidth*0.1f, screenHeight * 0.4f),
-                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
+            experiment1Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-s"),
+                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-m"),
+                new Vector2(screenWidth*0.1f, screenHeight * 0.4f), screenWidth, screenHeight,
+                content.Load<Texture2D>("Textures/Buttons/hand"), user);
 
-            experiment2 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-s"),
-                 content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-m"), new Vector2(screenWidth*0.39f, screenHeight * 0.5f),
-                 screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
+            experiment2Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-s"),
+                 content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-m"),
+                 new Vector2(screenWidth*0.39f, screenHeight * 0.5f), screenWidth, screenHeight,
+                 content.Load<Texture2D>("Textures/Buttons/hand"), user);
             
-            experiment3 = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-s"),
-                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-m"), new Vector2(screenWidth*0.7f, screenHeight * 0.4f),
-                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"), user);
-
+            experiment3Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-s"),
+                content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-m"),
+                new Vector2(screenWidth*0.7f, screenHeight * 0.4f),
+                (int)(0.3f*screenWidth),(int)(0.3f*screenHeight), content.Load<Texture2D>("Textures/Buttons/hand"),
+                user);
             backgroundTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/background");
+
         }
         /// <summary>
         /// perfroms the necessary updates for the AllExperiments screen.
@@ -79,23 +83,24 @@ namespace Mechanect.Screens
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
-            experiment1.Update(gameTime);
-            experiment2.Update(gameTime);
-            experiment3.Update(gameTime);
-            if (experiment1.IsClicked())
+            experiment1Button.Update(gameTime);
+            experiment2Button.Update(gameTime);
+            experiment3Button.Update(gameTime);
+            if (experiment1Button.IsClicked())
             {
                 Remove();
                 Game1.user5 = new User1();
                 Game1.user6 = new User1();
                 ScreenManager.AddScreen(new Experiment1(Game1.user5, Game1.user6, new MKinect()));
+                
             }
-            if (experiment2.IsClicked())
+            if (experiment2Button.IsClicked())
             {
                 Remove();
                 Game1.user4 = new User2();
                 ScreenManager.AddScreen(new Settings2(Game1.user4));
             }
-            if (experiment3.IsClicked())
+            if (experiment3Button.IsClicked())
             {
                 Remove();
                 Game1.user3 = new User3();
@@ -111,17 +116,19 @@ namespace Mechanect.Screens
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
-            experiment1.Draw(ScreenManager.SpriteBatch);
-            experiment2.Draw(ScreenManager.SpriteBatch);
-            experiment3.Draw(ScreenManager.SpriteBatch);
-            experiment1.DrawHand(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, screenWidth, screenHeight),
+                Color.White);
+
+            experiment1Button.Draw(ScreenManager.SpriteBatch, (screenWidth * 0.65f) / 1024f);
+            experiment2Button.Draw(ScreenManager.SpriteBatch, (screenWidth * 0.65f) / 1024f);
+            experiment3Button.Draw(ScreenManager.SpriteBatch, (screenWidth * 0.65f) / 1024f);
+            experiment1Button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133),
-                (int)(screenHeight*0.6), (int)(screenWidth*0.165), (int)(screenHeight*0.261)), Color.White);
+                (int)(screenHeight * 0.52), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             ScreenManager.SpriteBatch.Draw(Two, new Rectangle((int)(screenWidth * 0.423),
-                (int)(screenHeight * 0.705), (int)(screenWidth * 0.165), (int)(screenHeight * 0.261)), Color.White);
+                (int)(screenHeight * 0.625), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             ScreenManager.SpriteBatch.Draw(Three, new Rectangle((int)(screenWidth * 0.733),
-                (int)(screenHeight * 0.6), (int)(screenWidth * 0.165), (int)(screenHeight * 0.261)), Color.White);
+                (int)(screenHeight * 0.52), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
             
             ScreenManager.SpriteBatch.End();
         }
