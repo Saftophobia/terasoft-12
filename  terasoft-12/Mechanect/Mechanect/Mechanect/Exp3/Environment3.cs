@@ -763,11 +763,11 @@ namespace Mechanect.Exp3
         #endregion
 
         #region Ball Control Methods
-  
+
 
         /// <summary>
         /// Gets the height of the terrain at any point.
-        /// </summar
+        /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Omar Abdulaal.</para>
         /// </remarks>
@@ -775,16 +775,15 @@ namespace Mechanect.Exp3
         /// Specifies the point you want to get the height of the terrain at.</param>
         public float GetHeight(Vector3 Position)
         {
-            try
+            int xComponent = (int)Position.X + terrainWidth / 2;
+            int zComponent = -(int)Position.Z + terrainHeight / 2;
+            if (xComponent > 0 && xComponent < heightData.GetLength(0)
+                && zComponent > 0 && zComponent < heightData.GetLength(1))
             {
-                int xComponent = (int)Position.X;
-                int zComponent = -(int)Position.Z;
-                return heightData[xComponent + terrainWidth / 2, zComponent + terrainHeight / 2] + ball.Radius;
+                return heightData[xComponent, zComponent] + ball.Radius;
             }
-            catch (Exception e)
-            {
+            else
                 return 0 + ball.Radius;
-            }
         }
 
 
@@ -797,13 +796,13 @@ namespace Mechanect.Exp3
         {
             double ballMass, legMass, initialLegVelocity;
 
-            initialLegVelocity = initialVelocity.Length();
+            initialLegVelocity = initialVelocity.Length() * Constants3.velocityScale;
             ballMass = ball.Mass;
             legMass = user.assumedLegMass;
 
             float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
-            return normalizedVector * finalVelocity * 20;
+            return normalizedVector * finalVelocity;
         }
 
         #endregion
