@@ -291,7 +291,7 @@ namespace Mechanect.Exp3
         {
             DrawEnvironment(c, gameTime);
             DrawHole(c);
-            PlayerModel.Draw(gameTime, c.View, c.Projection);
+            PlayerModel.Draw(c);
         }
 
         #region Environment Generation Code

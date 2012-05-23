@@ -3,25 +3,20 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SkinnedModel;
-
+using UI.Cameras;
 
 namespace UI.Components
 {
-    public class SkinnedCustomModel
+    public class SkinnedCustomModel : CustomModel
     {
         # region Fields
 
-        private Model model;
         private SkinningData skinningData;
 
         private Matrix[] originalBones;
         private Matrix[] boneTransforms;
         private Matrix[] worldTransforms;
         private Matrix[] skinTransforms;
-
-        public Vector3 Position { get; set; }
-        public Vector3 Rotation { get; set; }
-        public Vector3 Scale { get; set; }
 
         #endregion
 
@@ -38,8 +33,8 @@ namespace UI.Components
         /// <param name="rotation">the rotation of the model</param>
         /// <param name="scale">scaling the model</param>
         public SkinnedCustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
+            : base(model, position, rotation, scale)
         {
-            this.model = model;
             this.skinningData = model.Tag as SkinningData;
 
             this.originalBones = new Matrix[skinningData.BindPose.Count];
@@ -118,7 +113,7 @@ namespace UI.Components
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        public void Draw(GameTime gameTimem, Matrix view, Matrix projection)
+        public override void Draw(Camera c)
         {
             Matrix[] bones = skinTransforms;
 
@@ -131,8 +126,8 @@ namespace UI.Components
                 {
                     effect.SetBoneTransforms(bones);
 
-                    effect.View = view;
-                    effect.Projection = projection;
+                    effect.View = c.View;
+                    effect.Projection = c.Projection;
                     effect.World = world;
 
                     effect.EnableDefaultLighting();
