@@ -21,19 +21,26 @@ namespace Mechanect.Screens
         private float scaleH;
         private float scaleW;
 
+
+        /// <summary>
+        /// The constructor of the settings screen for experiment 3.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="user">The instance of the user.</param>
         public Settings3(User user)
         {
             this.user = user;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+        
         /// <summary>
-        /// Initializing the OK button and the two sliders of the velocity and angle and the levels slider
+        /// Loading the OK button and the two sliders of the velocity and angle and the levels slider.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         public override void LoadContent()
         {
             int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
@@ -68,17 +75,15 @@ namespace Mechanect.Screens
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
         /// updating the button, the two sliders and the levels slider. It's requiered to make them run correctly
         /// </summary>
-        /// <param name="gameTime"></param>
-        /// <param name="covered"></param>
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
         {
             if (OKbutton.IsClicked())
             {
@@ -95,15 +100,13 @@ namespace Mechanect.Screens
         }
 
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
         /// <summary>
-        /// drwing the OK button, the two slider on the screen and the levels slider
+        /// Draws the OK button, the two slider and the levels slider on the screen.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
