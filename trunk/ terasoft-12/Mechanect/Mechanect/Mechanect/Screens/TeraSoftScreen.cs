@@ -15,7 +15,7 @@ namespace Mechanect.Screens
         /// Creates a new instance of the TeraSoftScreen.
         /// </summary>
         public TeraSoftScreen()
-            : base("Resources/Images/Terasoft", 0.5f,0,0,-0.06f)
+            : base("Resources/Images/Terasoft", 0.6f,0,0,-0.06f)
         {
             scale = 0.3f;
         }
