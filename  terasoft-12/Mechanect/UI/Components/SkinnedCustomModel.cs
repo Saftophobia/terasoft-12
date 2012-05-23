@@ -23,15 +23,15 @@ namespace UI.Components
         #region Initialization
 
         /// <summary>
-        /// used for a 3D model with skeleton and skin.
+        /// Holds a 3D model with skeleton and skin.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="model">the model</param>
-        /// <param name="position">the position of the model</param>
-        /// <param name="rotation">the rotation of the model</param>
-        /// <param name="scale">scaling the model</param>
+        /// <param name="model">The model with skin and skeleton.</param>
+        /// <param name="position">The position of the model.</param>
+        /// <param name="rotation">The rotation of the model.</param>
+        /// <param name="scale">The scale of the model</param>
         public SkinnedCustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
             : base(model, position, rotation, scale)
         {
@@ -56,7 +56,7 @@ namespace UI.Components
         #region Update and Draw
 
         /// <summary>
-        /// updating the model if any achanges occurred to its skin or bones
+        /// Updates the model if any achanges occurred to its skin or bones.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
@@ -68,7 +68,7 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// updating the world view of every bone according to the changes to its parent bone
+        /// Updates the world view of every bone according to the changes to its parent bone.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
@@ -90,7 +90,7 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// updating the changes of the skin according to the changes in the bones.
+        /// Updates the changes of the skin according to the changes in the bones.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
@@ -105,15 +105,14 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// drawing the model
+        /// Draws the model.
         /// </summary>
-        /// <param name="gameTimem">GameTime object</param>
-        /// <param name="view">The Camera's View</param>
-        /// <param name="projection">The Camera's Projection</param>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        public override void Draw(Camera c)
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="camera">Applies the camer's view and projection to the model.</param>        
+        public override void Draw(Camera camera)
         {
             Matrix[] bones = skinTransforms;
 
@@ -126,8 +125,8 @@ namespace UI.Components
                 {
                     effect.SetBoneTransforms(bones);
 
-                    effect.View = c.View;
-                    effect.Projection = c.Projection;
+                    effect.View = camera.View;
+                    effect.Projection = camera.Projection;
                     effect.World = world;
 
                     effect.EnableDefaultLighting();
@@ -149,9 +148,9 @@ namespace UI.Components
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="boneName">the name of the bone, same as in the model</param>
-        /// <param name="offset">the number of extra bone information</param>
-        /// <param name="bend">the binding of the bone in 3D</param>
+        /// <param name="boneName">The name of the bone, same as in the model.</param>
+        /// <param name="offset">The number of extra bone information.</param>
+        /// <param name="bend">The binding of the bone in 3D.</param>
         public void MoveBone(string boneName, int offset, Vector3 bend)
         {
             int boneId = model.Bones[boneName].Index + offset;
