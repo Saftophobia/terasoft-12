@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Kinect;
 using Mechanect.Screens;
 using Mechanect.Common;
+using Physics;
 
 namespace Mechanect.Exp3
 {
@@ -153,7 +154,7 @@ namespace Mechanect.Exp3
             
              setSkeleton();
              Skeleton skeleton = USER;
-             if (skeleton.Position.Z != 0 && skeleton != null)
+             if (skeleton != null)
              {
                  
                  if (GameScreen.frameNumber % 3 == 0)
@@ -229,7 +230,7 @@ namespace Mechanect.Exp3
              }
              double deltaTime = Math.Abs(currentTime - initialTime);
              Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
-             Vector3 finalVelocity = Tools3.GetVelocity(deltaPosition, deltaTime);
+             Vector3 finalVelocity = Functions.GetVelocity(deltaPosition, deltaTime);
              velocity = finalVelocity;
          }
 
@@ -461,26 +462,6 @@ namespace Mechanect.Exp3
         #endregion
 
          #region OtherMethods
-
-         ///<summary>
-         ///This method calculates the veclocity vector relative to the user's assumed leg mass.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>   
-
-         ///</remarks>
-       
-         ///<returns>A Vector3: velocity of the user relative to it's mass</returns>
-
-         public Vector3 SetVelocityRelativeToGivenMass()
-         {
-
-             float ratio = (float)(Constants3.normalLegMass / assumedLegMass);
-             return new Vector3(velocity.X * ratio, 0, velocity.Z * ratio);
-
-         }
-
-
          ///<summary>
          ///This method initializes all the stored variables.
          ///</summary>
