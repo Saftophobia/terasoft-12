@@ -64,29 +64,38 @@ namespace Mechanect.Exp2
         //Still waiting for Hegazy to do the buttons for me.
         public override void LoadContent()
         {
-            userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, ScreenManager.GraphicsDevice);
+            userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, 
+                ScreenManager.GraphicsDevice);
             if (!correctAnswer)
-                optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, ScreenManager.GraphicsDevice);
+                optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, 
+                    ScreenManager.GraphicsDevice);
 
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition, ScreenManager.GraphicsDevice.Viewport.Width,
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition, 
+                ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
 
-            retry = Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition, ScreenManager.GraphicsDevice.Viewport.Width,
+            retry = Tools3.MainMenuButton(ScreenManager.Game.Content, retryButtonPosition, 
+                ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
 
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, mainMenuButtonPosition, ScreenManager.GraphicsDevice.Viewport.Width,
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, newGameButtonPosition, 
+                ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
 
             if (!correctAnswer)
-                solution = Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition, ScreenManager.GraphicsDevice.Viewport.Width,
+                solution = Tools3.MainMenuButton(ScreenManager.Game.Content, seeResultsButtonPosition, 
+                    ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
         }
 
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
-            userSimulation.Draw(new Rectangle(5, 5, 250, 100), ScreenManager.Game.Content, ScreenManager.SpriteBatch,
-                ScreenManager.GraphicsDevice.Viewport);
+            userSimulation.Draw(new Rectangle((int)0.15*ScreenManager.GraphicsDevice.Viewport.Width, 
+                (int)0.1*ScreenManager.GraphicsDevice.Viewport.Height
+                , (int)0.70 * ScreenManager.GraphicsDevice.Viewport.Width, 
+                (int)0.4 * ScreenManager.GraphicsDevice.Viewport.Height),
+                ScreenManager.SpriteBatch);
             mainMenu.Draw(ScreenManager.SpriteBatch);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
