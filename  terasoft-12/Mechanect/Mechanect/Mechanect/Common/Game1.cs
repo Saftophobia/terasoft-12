@@ -42,8 +42,6 @@ namespace Mechanect
             Content.RootDirectory = "Content";
             #region view
             Window.AllowUserResizing = true;
-            graphics.PreferredBackBufferHeight = 600;
-            graphics.PreferredBackBufferHeight = 800;
             Graphics.IsFullScreen = false;
             #endregion
             user = new User3();
