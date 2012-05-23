@@ -63,10 +63,11 @@ namespace Mechanect.Exp3
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
 
-            ball = new Ball(4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            ball = new Ball(4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content,0.004f,0.006f);
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
 
             environment.ball = ball;
+            
 
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
@@ -125,8 +126,9 @@ namespace Mechanect.Exp3
                     {
                         firstAnimation = false;
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
-                        new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+                       
                     }
+                    animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
                 }
                 if (animation.Finished())
                 {
