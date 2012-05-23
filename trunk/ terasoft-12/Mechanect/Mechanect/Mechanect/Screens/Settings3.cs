@@ -82,9 +82,9 @@ namespace Mechanect.Screens
         {
             if (OKbutton.IsClicked())
             {
-                ScreenManager.AddScreen(new Experiment3((User3)user));
                 Environment3.angleTolerance = angle.Value;
                 Environment3.velocityTolerance = velocity.Value;
+                ScreenManager.AddScreen(new Experiment3((User3)user));
                 Remove();
             }
             OKbutton.Update(gameTime);
