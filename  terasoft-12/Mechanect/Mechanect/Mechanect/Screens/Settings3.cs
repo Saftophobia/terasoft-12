@@ -109,17 +109,19 @@ namespace Mechanect.Screens
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
 
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            level.Draw(spriteBatch, scaleW);
-            spriteBatch.End();
+            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            
+            //spriteBatch.End();
             
             
             Rectangle rect = new Rectangle(0, 0, (int)(scaleW * backGround.Width), (int)(scaleH * backGround.Height));
             spriteBatch.Begin();
             spriteBatch.Draw(backGround, rect, Color.White);
+            level.Draw(spriteBatch, scaleW);
             velocity.Draw(spriteBatch, scaleW, scaleH);
             angle.Draw(spriteBatch, scaleW, scaleH);
             OKbutton.Draw(spriteBatch, scaleW, scaleH);
+            OKbutton.DrawHand(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
