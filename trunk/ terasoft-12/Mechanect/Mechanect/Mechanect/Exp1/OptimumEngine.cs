@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mechanect.Exp1
 {
-    class OptimumEngine
+    public class OptimumEngine
     {
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
