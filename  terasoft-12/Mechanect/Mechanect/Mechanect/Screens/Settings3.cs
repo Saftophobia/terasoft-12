@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using ButtonsAndSliders;
 using Mechanect.Exp3;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 
 namespace Mechanect.Screens
@@ -15,6 +16,9 @@ namespace Mechanect.Screens
         private Slider angle;
         private User user;
         private levelSelect level;
+
+        private Texture2D backGround;
+        private float scale;
 
         public Settings3(User user)
         {
@@ -36,21 +40,26 @@ namespace Mechanect.Screens
             ContentManager contentManager = this.ScreenManager.Game.Content;
 
             OKbutton = Tools3.OKButton(contentManager,
-            new Vector2(screenWidth - 200, screenHeight - 250), screenWidth,
+            new Vector2(screenWidth - 496, screenHeight - 196), screenWidth,
             screenHeight, user);
 
-          velocity = new Slider(new Vector2(20, 300), screenWidth, screenHeight,
+            velocity = new Slider(new Vector2(280, 300), screenWidth, screenHeight,
             contentManager, user);
 
-          angle = new Slider(new Vector2(20, 400), screenWidth, screenHeight,
+            angle = new Slider(new Vector2(280, 360), screenWidth, screenHeight,
             contentManager, user);
 
 
-          level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), 
+            level = new levelSelect(this.ScreenManager.Game, new Vector2(20, 50), 
               this.ScreenManager.SpriteBatch, user);
 
-          level.Initialize(screenWidth, screenHeight);
+            level.Initialize(screenWidth, screenHeight);
 
+            backGround = contentManager.Load<Texture2D>("Textures/Screens/settings");
+
+            scale = ((float) screenWidth / (float) backGround.Width);
+
+            base.LoadContent();
         }
 
 
@@ -94,13 +103,16 @@ namespace Mechanect.Screens
         {
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
             //level.Draw(gameTime);
-
+            Rectangle rect = new Rectangle(0, 0, (int)(scale * backGround.Width), (int)(scale * backGround.Height));
             spriteBatch.Begin();
-            OKbutton.Draw(spriteBatch);
-            velocity.Draw(spriteBatch);
-            angle.Draw(spriteBatch);
+            spriteBatch.Draw(backGround, rect, Color.White);
+            OKbutton.Draw(spriteBatch, scale);
+            velocity.Draw(spriteBatch, scale);
+            angle.Draw(spriteBatch, scale);
             OKbutton.DrawHand(spriteBatch);
             spriteBatch.End();
+            
+            base.Draw(gameTime);
         }
 
     }
