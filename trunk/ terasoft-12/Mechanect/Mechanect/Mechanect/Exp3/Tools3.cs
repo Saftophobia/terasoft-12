@@ -35,6 +35,46 @@ namespace Mechanect.Exp3
                 screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
         }
 
+        /// <summary>
+        /// Create a button that have retry label
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="contentManager"></param>
+        /// <param name="position"></param>
+        /// <param name="screenWidth"></param>
+        /// <param name="screenHeight"></param>
+        /// <param name="user"></param>
+        /// <returns>Button</returns>
+        public static Button RetryButton(ContentManager contentManager, Vector2 position,
+            int screenWidth, int screenHeight, User user)
+        {
+            return new Button(contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/retry-s"),
+                contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/retry-m"), position,
+                screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
+        }
+
+        /// <summary>
+        /// Create a button that have solution label
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="contentManager"></param>
+        /// <param name="position"></param>
+        /// <param name="screenWidth"></param>
+        /// <param name="screenHeight"></param>
+        /// <param name="user"></param>
+        /// <returns>Button</returns>
+        public static Button SolutionButton(ContentManager contentManager, Vector2 position,
+            int screenWidth, int screenHeight, User user)
+        {
+            return new Button(contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/solution-s"),
+                contentManager.Load<GifAnimation.GifAnimation>("Textures/Buttons/solution-m"), position,
+                screenWidth, screenHeight, contentManager.Load<Texture2D>("Textures/Buttons/hand"), user);
+        }
+
 
         /// <summary>
         /// Creates a pre-customized MainMenuButton.
