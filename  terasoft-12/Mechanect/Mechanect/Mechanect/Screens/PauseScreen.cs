@@ -164,7 +164,7 @@ namespace Mechanect.Screens
                     #region DrawingBarAndArrowInfo
                     if (!user.hasMissed)
                     {
-                        velocity = user.SetVelocityRelativeToGivenMass();
+                        velocity = user.SetVelocityRelativeToGivenMass() * Constants3.velocityScale;
                         int draw;
                         if (velocity.Length() > 31)
                             draw = 31;
