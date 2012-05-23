@@ -227,6 +227,8 @@ namespace Mechanect.ButtonsAndSliders
         {
             try
             {
+                if (user[ID].USER.Joints[JointType.HipCenter].Position.Z == 0)
+                    return 0;
                 Vector2 rightHip = new Vector2(user[ID].USER.Joints[JointType.HipRight].Position.X, user[ID].USER.Joints[JointType.HipRight].Position.Z);
                 Vector2 leftHip = new Vector2(user[ID].USER.Joints[JointType.HipLeft].Position.X, user[ID].USER.Joints[JointType.HipLeft].Position.Z);
                 Vector2 fromLeftHipToRightHip = rightHip - leftHip;
@@ -259,9 +261,11 @@ namespace Mechanect.ButtonsAndSliders
         {
             spriteBatch.Draw(curve, position, Color.White);
             for (int i = 0; i < user.Length; i++)
-                spriteBatch.Draw(playerIndicator, new Rectangle(curveRadius + (int)position.X, curveRadius + (int)position.Y,
-                    curveRadius, curveRadius / 8), null, playerColor[i], (float)((Angle(i) - 90) * Math.PI / 180),
-                    new Vector2(0, playerIndicator.Height / 2), SpriteEffects.None, 0f);
+                if (Angle(i) != 0)
+                    spriteBatch.Draw(playerIndicator, new Rectangle(curveRadius + (int)position.X,
+                        curveRadius + (int)position.Y, curveRadius, curveRadius / 8), null, playerColor[i],
+                        (float)((Angle(i) - 90) * Math.PI / 180), new Vector2(0, playerIndicator.Height / 2),
+                        SpriteEffects.None, 0f);
 
         }
 

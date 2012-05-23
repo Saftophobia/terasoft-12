@@ -1,7 +1,6 @@
 ﻿using ButtonsAndSliders;
 using Mechanect.ButtonsAndSliders;
 using Mechanect.Common;
-using Mechanect.Exp2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -54,6 +53,7 @@ namespace Mechanect.Screens
         /// <param name="maxAngle">an integer representing the minimum angle the player should make with the kinect sensor.</param>
         public AdjustPosition(User user, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
+            isTwoPlayers = false;
             this.user = new User[1];
             this.user[0] = user;
             Color[] playerColor = new Color[1];
@@ -80,6 +80,7 @@ namespace Mechanect.Screens
         /// <param name="maxAngle">an integer representing the minimum angle players should make with the kinect sensor.</param>
         public AdjustPosition(User user1, User user2, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
+            isTwoPlayers = true;
             this.user = new User[2];
             user[0] = user1;
             user[1] = user2;
@@ -101,6 +102,7 @@ namespace Mechanect.Screens
             button = Exp3.Tools3.OKButton(ScreenManager.Game.Content, new Vector2(800, 450), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
             depthBar.LoadContent(ScreenManager.GraphicsDevice);
             angleBar.LoadContent(ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            base.LoadContent();
         }
         #endregion
 
@@ -149,14 +151,24 @@ namespace Mechanect.Screens
                 {
                     switch (gameID)
                     {
-                            case 2:
-                                ScreenManager.AddScreen(new Experiment2((User2)user[0]));
-                                Remove();
-                                break;
+                        case 1:
+                            ScreenManager.AddScreen(new Experiment1(new Mechanect.Exp1.User1(), new Mechanect.Exp1.User1(), new MKinect()));
+                            Remove();
+                            break;
+                        case 2:
+                            user[0] = new Mechanect.Exp2.User2();
+                            ScreenManager.AddScreen(new Mechanect.Exp2.Experiment2((Mechanect.Exp2.User2)user[0]));
+                            Remove();
+                            break;
+                        case 3:
+                            user[0] = new Mechanect.Exp3.User3();
+                            ScreenManager.AddScreen(new Mechanect.Exp3.Experiment3((Mechanect.Exp3.User3)user[0]));
+                            Remove();
+                            break;
                     }
-                
                  }
             }
+            base.Update(gameTime);
         }
 
         #endregion
@@ -177,17 +189,21 @@ namespace Mechanect.Screens
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
             ScreenManager.SpriteBatch.Begin();
             if (Accepted)
+            {
                 button.Draw(ScreenManager.SpriteBatch, 1);
+                button.DrawHand(ScreenManager.SpriteBatch);
+            }
             ScreenManager.SpriteBatch.DrawString(font, "Adjust Position", new Vector2(500, 20), Color.OrangeRed);
-            ScreenManager.SpriteBatch.DrawString(font, depthBar.Rule, new Vector2(100, 120), Color.OrangeRed);
-            ScreenManager.SpriteBatch.DrawString(font, angleBar.Rule, new Vector2(100, 220), Color.OrangeRed);
+            ScreenManager.SpriteBatch.DrawString(font, depthBar.Rule, new Vector2(100, 70), Color.OrangeRed);
+            ScreenManager.SpriteBatch.DrawString(font, angleBar.Rule, new Vector2(100, 120), Color.OrangeRed);
             for (int i = 0; i < user.Length; i++)
             {
-                ScreenManager.SpriteBatch.DrawString(font, Command(i), new Vector2(100, 320 + 100 * i), Color.OrangeRed);
+                ScreenManager.SpriteBatch.DrawString(font, Command(i), new Vector2(100, 220 + 50 * i), Color.OrangeRed);
             }
-            depthBar.Draw(ScreenManager.SpriteBatch, new Vector2(100,520));
-            angleBar.Draw(ScreenManager.SpriteBatch, new Vector2(200,520));
+            depthBar.Draw(ScreenManager.SpriteBatch, new Vector2(100,320));
+            angleBar.Draw(ScreenManager.SpriteBatch, new Vector2(200,320));
             ScreenManager.SpriteBatch.End();
+            base.Draw(gameTime);
         }
         #endregion
 
