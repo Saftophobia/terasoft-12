@@ -153,7 +153,7 @@ namespace Mechanect.Exp3
             
              setSkeleton();
              Skeleton skeleton = USER;
-             if (skeleton.Position.Z != 0)
+             if (skeleton.Position.Z != 0 && skeleton != null)
              {
                  
                  if (GameScreen.frameNumber % 3 == 0)
