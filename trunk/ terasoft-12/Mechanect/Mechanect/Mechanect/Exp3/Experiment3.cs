@@ -104,6 +104,12 @@ namespace Mechanect.Exp3
                     ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
+                /*if (distance / totalDistance > 1)
+                {
+                    firstAnimation = false;
+                    shootVelocity = new Vector3(10, 0, -10);
+                    animation = new BallAnimation(ball, environment, this.shootVelocity);
+                }*/
                 if (ball.hasBallEnteredShootRegion())
                 {
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
@@ -171,12 +177,8 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
                 DrawButtons();
-                if (simulation.Finished())
-                {
-                    //FreezeScreen();
-                    Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
-                    Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
-                }
+                Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
+                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
             }
             base.Draw(gameTime);
         }
