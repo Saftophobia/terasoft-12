@@ -8,15 +8,15 @@ namespace ButtonsAndSliders
         private double startTime;
         private bool running;
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// used to start the timer by marking the time and changing the status of the timer
-        /// to runnig
+        /// Starts the timer by marking the time and changing the status of the timer
+        /// to runnig.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Start(GameTime gameTime)
         {
             running = true;
@@ -25,9 +25,13 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// used to get the time since the timer has started, to the time this method is called
+        /// Gets the time since the timer has started to the time this method is called.
         /// </summary>
-        /// <returns>the duration that the timer has spent since it's started</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <returns>The duration the timer has spent since it's started.</returns>
         public double GetDuration(GameTime gameTime)
         {
             if (running)
@@ -38,28 +42,26 @@ namespace ButtonsAndSliders
             return 0;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// changing the status of the timer to not running
+        /// Changes the status of the timer to not running.
         /// </summary>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
         public void Stop()
         {
             running = false;
         }
 
-        ///<remarks>
-        ///<para>
-        ///Author: HegazY
-        ///</para>
-        ///</remarks>
+
         /// <summary>
-        /// used to checks if the timer is running or not
+        /// Checks if the timer is running or not.
         /// </summary>
-        /// <returns>true if the timer is running and tracking the time</returns>
+        /// <remarks>
+        /// <para>Author: HegazY</para>
+        /// </remarks>
+        /// <returns>Returns true if the timer is running.</returns>
         public bool IsRunning()
         {
             return running;
