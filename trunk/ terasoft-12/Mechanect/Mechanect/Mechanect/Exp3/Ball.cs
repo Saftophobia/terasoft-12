@@ -37,7 +37,7 @@ namespace Mechanect.Exp3
         /// <param name="device">graphics device</param>
         /// <param name="content">content manager</param>
         public Ball(float radius, GraphicsDevice device, ContentManager content)
-            : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One, device)
+            : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One)
         {
             Radius = radius;
             Mass = 0.004f;
