@@ -36,12 +36,30 @@ namespace Mechanect.Exp3
         /// <param name="radius">ball radius</param>
         /// <param name="device">graphics device</param>
         /// <param name="content">content manager</param>
-        public Ball(float radius, GraphicsDevice device, ContentManager content)
+        public Ball(float radius, GraphicsDevice device, ContentManager content, float maxMass, float minMass)
             : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One, device)
         {
             Radius = radius;
-            Mass = 0.001;
+            Mass = GenerateBallMass(minMass,maxMass);
         }
+
+
+        ///<remarks>
+        ///<para>
+        ///Author: Cena
+        ///</para> 
+        /// </remarks>
+        /// <summary>
+        /// generates a random mass for the ball within a certain given range
+        /// </summary>
+        /// <returns> returns the generated mass</returns>
+        public float GenerateBallMass(float minMass,float maxMass)
+        {
+            Random random = new Random();
+            float generatedMass = ((float)(random.NextDouble() * (maxMass - minMass))) + minMass;
+            return generatedMass;
+        }
+
 
         /// <summary>
         /// sets the ball position to a random one
