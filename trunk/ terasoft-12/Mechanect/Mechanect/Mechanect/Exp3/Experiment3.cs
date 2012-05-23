@@ -210,12 +210,12 @@ namespace Mechanect.Exp3
             if (mainMenu.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new AllExperiments((User3)Game1.User));
+                ScreenManager.AddScreen(new AllExperiments((User3)Game1.user3));
             }
             if (newGame.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Experiment3((User3)Game1.User));
+                ScreenManager.AddScreen(new Experiment3((User3)Game1.user3));
             }
         }
 
