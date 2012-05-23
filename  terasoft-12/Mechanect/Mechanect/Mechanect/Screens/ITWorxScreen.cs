@@ -27,7 +27,7 @@ namespace Mechanect.Screens
             if (Done)
             {
                 base.Remove();
-                ScreenManager.AddScreen(new AllExperiments());
+                ScreenManager.AddScreen(new AllExperiments(Game1.User));
             }
         }
         /// <summary>
