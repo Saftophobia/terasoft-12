@@ -165,21 +165,21 @@ namespace Mechanect.Exp1
              for (int i = 0; i < user1.ActiveCommand; i++)
                  accumulativeTime += timeOfCommands[i];
 
-             if ((accumulativeTime >= timeInSeconds) && (accumulativeTime <= timeInSeconds + 0.1))
+             if (!((accumulativeTime >= timeInSeconds) && (accumulativeTime <= timeInSeconds + 0.01)))
                  return;
 
              //get the start index of speed list
-             int startIndexFor1 = 0;
-             int startIndexFor2 = 0;
+             int startIndexFor1 = -1;
+             int startIndexFor2 = -1;
              for (int i = 0; i < user1.Velocitylist.Count; i++)
-                 if ((accumulativeTime + 1) >= user1.Velocitylist[i][1])
+                 if ((accumulativeTime + 1) <= user1.Velocitylist[i][1])
                  {
                      startIndexFor1 = i;
                      break;
                  }
 
              for (int i = 0; i < user2.Velocitylist.Count; i++)
-                 if ((accumulativeTime + 1) >= user2.Velocitylist[i][1])
+                 if ((accumulativeTime + 1) <= user2.Velocitylist[i][1])
                  {
                      startIndexFor2 = i;
                      break;
@@ -190,14 +190,14 @@ namespace Mechanect.Exp1
              List<float> speedsOf2 = new List<float>();
              List<float[]> velocitiesWithTimeOf1 = new List<float[]>();
              List<float[]> velocitiesWithTimeOf2 = new List<float[]>();
-             if (startIndexFor1 < user1.Velocitylist.Count)
+             if ((startIndexFor1 < user1.Velocitylist.Count) && (startIndexFor1 > -1))
                  for (int i = startIndexFor1; i < user1.Velocitylist.Count; i++)
                  {
                      speedsOf1.Add(user1.Velocitylist[i][0]);
                      velocitiesWithTimeOf1.Add(user1.Velocitylist[i]);
                  }
 
-             if (startIndexFor2 < user2.Velocitylist.Count)
+             if ((startIndexFor2 < user2.Velocitylist.Count) && (startIndexFor1 > -1))
                  for (int i = startIndexFor2; i < user2.Velocitylist.Count; i++)
                  {
                      speedsOf2.Add(user2.Velocitylist[i][0]);
