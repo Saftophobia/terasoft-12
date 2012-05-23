@@ -48,11 +48,17 @@ namespace Mechanect.Common
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>
-        public UserAvatar(User user, User user2, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch): this(user,content,graphicsDevice,spriteBatch)
+        public UserAvatar(User user, User user2, ContentManager content,GraphicsDevice graphicsDevice, SpriteBatch spriteBatch)
         {
             this.users = new User[2];
             this.users[0] = user;
             this.users[1] = user2;
+            this.graphics = graphicsDevice;
+            screenWidth = graphics.Viewport.Width;
+            screenHeight = graphics.Viewport.Height;
+            this.spriteBatch = spriteBatch;
+            this.content = content;
+            Initialize(); 
         }
         /// <summary>
         /// Initializes the kinect sensor and the arrays that keep track of user's information like avatars, avatar positions, depth and notification messages.
@@ -87,6 +93,7 @@ namespace Mechanect.Common
             for (int i = 0; i < avatar.Length; i++)
             {
                 avatar[i] = allAvatars[0];
+                command[i] = "";
             }
             avatarPosition[0] = new Vector2(screenWidth+25, screenHeight / 2.6f);
             if (avatarPosition.Length == 2)
@@ -107,10 +114,7 @@ namespace Mechanect.Common
             {
                 spriteBatch.Draw(avatar[i], avatarPosition[i], null, Color.White, 0,
                     new Vector2(avatar[i].Width, avatar[i].Height), 1f, SpriteEffects.None, 0);
-
-                //if(command[i]!=null)
-                //spriteBatch.DrawString(font, command[i],
-                //    new Vector2(100, 320 + 100 * i), Color.OrangeRed);
+                spriteBatch.DrawString(font, command[i],new Vector2(100, 520 + 100 * i), Color.OrangeRed);
             }
             spriteBatch.End();
         }
