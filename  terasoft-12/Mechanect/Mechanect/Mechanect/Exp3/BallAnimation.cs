@@ -67,8 +67,12 @@ namespace Mechanect.Exp3
                         }
                     }
                     else
-                        if (Vector3.Distance(ball.Position, environment.HoleProperty.Position) < ball.Radius + environment.HoleProperty.Radius)
+                    {
+                        Hole hole = environment.HoleProperty;
+                        if (ball.Position.X > hole.Position.X-hole.Radius  && ball.Position.Z < hole.Position.X+hole.Radius &&
+                            ball.Position.Z > hole.Position.Z - hole.Radius && ball.Position.Z < hole.Position.Z - hole.Radius)
                             ball.SetHeight(environment.GetHeight(StartPosition) + ball.Radius);
+                    }
                 }
                 else
                 {
