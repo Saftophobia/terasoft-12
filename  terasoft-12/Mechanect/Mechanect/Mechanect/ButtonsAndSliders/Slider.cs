@@ -145,7 +145,7 @@ namespace ButtonsAndSliders
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, ScreenH);
 
-                if ((hand.X - positionPointer.X) >= 30 && !(Value == 5))
+                if ((hand.X - positionPointer.X) >= 30 && !(Value == 4))
                 {
                     positionPointer.X += (barPic.Width / 5);
                     Value++;
