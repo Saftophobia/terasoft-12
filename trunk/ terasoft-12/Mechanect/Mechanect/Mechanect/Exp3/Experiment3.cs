@@ -72,7 +72,7 @@ namespace Mechanect.Exp3
 
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
-            animation = new BallAnimation(ball, environment.HoleProperty, intialVelocity, environment.Friction);
+            animation = new BallAnimation(ball, environment, intialVelocity);
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
@@ -99,7 +99,10 @@ namespace Mechanect.Exp3
         {
             environment.PlayerModel.Update();
             environment.PlayerAnimation.Update();
-            ball.SetHeight(environment.GetHeight(ball.Position));
+            if (IsBallOutsideTerrain())
+            {
+                animation.Finished = true;
+            }
             if (firstAnimation)
             {
                 float distance = animation.Displacement.Length();
@@ -109,14 +112,13 @@ namespace Mechanect.Exp3
                     pauseScreenShowed = true;
                     FreezeScreen();
                     ScreenManager.AddScreen(new PauseScreen(user,7,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
-                    //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
                 /*if (distance / totalDistance > 1)
                 {
                     firstAnimation = false;
                     this.shootVelocity = new Vector3(10, 0, -10);
-                    animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+                    animation = new BallAnimation(ball, environment, shootVelocity);
                 }*/
                 if (ball.hasBallEnteredShootRegion())
                 {
@@ -128,41 +130,31 @@ namespace Mechanect.Exp3
                         this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
                        
                     }
-                    animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+                    animation = new BallAnimation(ball, environment, shootVelocity);
                 }
-                if (animation.Finished())
+                if (animation.Finished)
                 {
-                    //add final screen
+                    UpdateButtons(gameTime);
                 }
             }
-            else if (animation.Finished() && simulation == null)
+            else if (animation.Finished && simulation == null)
             {
-                simulation = new Simulation(ball, environment.HoleProperty, user.shootingPosition, shootVelocity, environment.Friction, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             }
             
             if (simulation != null)
             {
-                mainMenu.Update(gameTime);
-                newGame.Update(gameTime);
-                if (mainMenu.IsClicked())
+                UpdateButtons(gameTime);
+                if (!IsBallOutsideTerrain())
                 {
-                    //add main menu screen
-                }
-                if (newGame.IsClicked())
-                {
-                    //add Experiment3 screen
-                }
-                simulation.Update(gameTime);
-                if (simulation.Finished())
-                {
-                    //add final screen
+                    simulation.Update(gameTime);
                 }
             }
             else
             {
                 animation.Update(gameTime.ElapsedGameTime);
             }
-            
+
             targetCamera.Update();
             base.Update(gameTime);
         }
@@ -185,18 +177,51 @@ namespace Mechanect.Exp3
             ball.Draw(camera);
             if (firstAnimation)
             {
-                bar.Draw();
+                if (animation.Finished)
+                {
+                    DrawButtons();
+                }
+                else
+                {
+                    bar.Draw();
+                }
             }
             if (simulation != null)
             {
                 simulation.Draw();
-                ScreenManager.SpriteBatch.Begin();
-                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
-                mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
-                mainMenu.DrawHand(ScreenManager.SpriteBatch);
-                ScreenManager.SpriteBatch.End();
+                DrawButtons();
             }
             base.Draw(gameTime);
+        }
+
+        private bool IsBallOutsideTerrain()
+        {
+            return ball.Position.X < -environment.terrainWidth / 2 || ball.Position.X > environment.terrainWidth / 2 || ball.Position.Z < -environment.terrainHeight / 2;
+        }
+
+        private void UpdateButtons(GameTime gameTime)
+        {
+            mainMenu.Update(gameTime);
+            newGame.Update(gameTime);
+            if (mainMenu.IsClicked())
+            {
+                Remove();
+                ScreenManager.AddScreen(new AllExperiments(new User3()));
+            }
+            if (newGame.IsClicked())
+            {
+                Remove();
+                ScreenManager.AddScreen(new Experiment3(new User3()));
+            }
+        }
+
+        private void DrawButtons()
+        {
+            ScreenManager.SpriteBatch.Begin();
+            newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
+            mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
+            mainMenu.DrawHand(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.End();
         }
 
         public override void UnloadContent()
