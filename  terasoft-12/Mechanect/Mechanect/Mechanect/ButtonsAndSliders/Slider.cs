@@ -84,6 +84,18 @@ namespace ButtonsAndSliders
             spriteBatch.Draw(barPic, rectangleBar, Color.White);
             spriteBatch.Draw(texture, rectanglePointer, Color.White);
         }
+
+        public void Draw(SpriteBatch spriteBatch, float scaleW, float scaleH)
+        {
+            Rectangle rectangleBar = new Rectangle((int)positionBar.X, (int)positionBar.Y,
+                (int)(scaleW * barPic.Width), (int)(scaleH * barPic.Height));
+
+            Rectangle rectanglePointer = new Rectangle((int)positionPointer.X, (int)positionPointer.Y,
+                (int)(scaleW * texture.Width), (int)(scaleH * texture.Height));
+
+            spriteBatch.Draw(barPic, rectangleBar, Color.White);
+            spriteBatch.Draw(texture, rectanglePointer, Color.White);
+        }
         ///<remarks>
         ///<para>
         ///Author: HegazY
