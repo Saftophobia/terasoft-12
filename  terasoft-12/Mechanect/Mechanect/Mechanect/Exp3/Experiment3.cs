@@ -64,7 +64,7 @@ namespace Mechanect.Exp3
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
 
-            ball = new Ball(4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            ball = new Ball(2.5f, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
 
@@ -100,7 +100,7 @@ namespace Mechanect.Exp3
         {
             environment.PlayerModel.Update();
             environment.PlayerAnimation.Update();
-            if (IsBallOutsideTerrain())
+            if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
             {
                 animation.Finished = true;
             }
@@ -127,7 +127,7 @@ namespace Mechanect.Exp3
                         firstAnimation = false;
                         this.shootVelocity =
                             environment.GetVelocityAfterCollision(shootVelocity);
-                        animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+                        animation = new BallAnimation(ball, environment, this.shootVelocity);
 
                     }
 
@@ -145,7 +145,7 @@ namespace Mechanect.Exp3
             if (simulation != null)
             {
                 UpdateButtons(gameTime);
-                if (!IsBallOutsideTerrain())
+                if (ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
                 {
                     simulation.Update(gameTime);
                 }
@@ -194,11 +194,6 @@ namespace Mechanect.Exp3
             base.Draw(gameTime);
         }
 
-        private bool IsBallOutsideTerrain()
-        {
-            return ball.Position.X < -environment.terrainWidth / 2 || ball.Position.X > environment.terrainWidth / 2 || ball.Position.Z < -environment.terrainHeight / 2;
-        }
-
         private void UpdateButtons(GameTime gameTime)
         {
             mainMenu.Update(gameTime);
@@ -206,12 +201,12 @@ namespace Mechanect.Exp3
             if (mainMenu.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new AllExperiments(new User3()));
+                ScreenManager.AddScreen(new AllExperiments((User3)Game1.User));
             }
             if (newGame.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Experiment3(new User3()));
+                ScreenManager.AddScreen(new Experiment3((User3)Game1.User));
             }
         }
 
