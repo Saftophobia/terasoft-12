@@ -62,13 +62,24 @@ namespace ButtonsAndSliders
         /// drawing the bar and the pointer
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
-        [System.Obsolete("call this method after begining a SpriteBatch", false)]
+        [System.Obsolete("add screen width, to scale the slider", false)]
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(barPic, positionBar, Color.White);
             spriteBatch.Draw(texture, positionPointer, Color.White);
         }
 
+        public void Draw(SpriteBatch spriteBatch, float scale)
+        {
+            Rectangle rectangleBar = new Rectangle((int)positionBar.X, (int)positionBar.Y,
+                (int)(scale * barPic.Width), (int)(scale * barPic.Height));
+
+            Rectangle rectanglePointer = new Rectangle((int)positionPointer.X, (int)positionPointer.Y,
+                (int)(scale * texture.Width), (int)(scale * texture.Height));
+
+            spriteBatch.Draw(barPic, rectangleBar, Color.White);
+            spriteBatch.Draw(texture, rectanglePointer, Color.White);
+        }
         ///<remarks>
         ///<para>
         ///Author: HegazY
