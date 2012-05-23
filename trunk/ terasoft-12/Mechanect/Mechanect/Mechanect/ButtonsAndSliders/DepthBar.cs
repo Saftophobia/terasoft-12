@@ -3,8 +3,9 @@ using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows;
+using Mechanect.Common;
 
-namespace Mechanect.Common
+namespace Mechanect.ButtonsAndSliders
 {
     /// <summary>
     /// A bar that displays Users' current position and the correct range to stand in
@@ -62,7 +63,7 @@ namespace Mechanect.Common
 
         #endregion
 
-        #region LoadTextures
+        #region Construct & Load
 
         /// <summary>
         /// Generates a Depth Bar that displays users state regarding his position with respect to the correct standing region
@@ -192,7 +193,7 @@ namespace Mechanect.Common
         /// <para>Author: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="ID">the index of the User in the users array</param>
-        /// <returns>returns the distance of users[ID] from the kinect sensor</returns>
+        /// <returns>returns the distance of user from the kinect sensor</returns>
         public int Depth(int ID)
         {
             try

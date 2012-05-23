@@ -8,7 +8,11 @@ using Mechanect.Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Kinect;
 
-namespace Mechanect.ButtonsAndSliders {
+namespace Mechanect.ButtonsAndSliders
+{
+    /// <summary>
+    /// A bar that displays Users' current position and the correct range to stand in
+    /// </summary>
     class AngleBar
     {
 
@@ -28,7 +32,13 @@ namespace Mechanect.ButtonsAndSliders {
         Color acceptColor;
         Color rejectColor;
 
-
+        /// <summary>
+        /// Getter for the Users' State
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <returns>bool, Returns true if all users are standing with the correct orientation</returns>
         public bool Accepted
         {
             get
@@ -40,6 +50,13 @@ namespace Mechanect.ButtonsAndSliders {
             }
         }
 
+        /// <summary>
+        /// Getter for the Rule that should be visibile to the user
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <returns>string, returns the Rule that should be followed by the user</returns>
         public string Rule
         {
             get
@@ -64,18 +81,38 @@ namespace Mechanect.ButtonsAndSliders {
 
         #region Construct & Load
 
-        public AngleBar(User[] users, int minAngle, int maxAngle, int radius, Color accept, Color reject, Color[] playerColors)
+        /// <summary>
+        /// Generates an angle Bar that displays users state regarding his orientation with respect to the correct orientation region
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="user">Array of users that be tracked by the depth bar</param>
+        /// <param name ="minAngle">the minimum angle (to the left) the users can stand with</param>
+        /// <param name ="maxAngle">the maximum angle (to the right) the users can stand with</param>
+        /// <param name ="curveRadius">the radius of the semicircle represention various angles</param>
+        /// <param name ="acceptColor">the color representing the accepted range of standing orientation</param>
+        /// <param name ="rejectColor">the color representing the rejected range of standing orientation</param>
+        /// <param name ="playerColor">Array of colors representing each user</param>
+        public AngleBar(User[] user, int minAngle, int maxAngle, int curveRadius, Color acceptColor, Color rejectColor, Color[] playerColor)
         {
-            this.user = users;
+            this.user = user;
             this.minAngle = minAngle;
             this.maxAngle = maxAngle;
-            this.curveRadius = radius;
-            this.curveWidth = radius / 4;
-            this.acceptColor = accept;
-            this.rejectColor = reject;
-            this.playerColor = playerColors;
+            this.curveRadius = curveRadius;
+            this.curveWidth = curveRadius / 4;
+            this.acceptColor = acceptColor;
+            this.rejectColor = rejectColor;
+            this.playerColor = playerColor;
         }
 
+        /// <summary>
+        /// Loads the textures of the angle bar
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="graphicsDevice">The graphics device of the screen manager</param>
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager contentManager)
         {
             curve = CreateCurve(graphicsDevice);
@@ -83,16 +120,14 @@ namespace Mechanect.ButtonsAndSliders {
         }
 
         #region Create Semicircle
-        
+
 
         /// <summary>
         /// gets the suitable color that fits in the gradient in the semicircle
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
         /// <param name="leftAngle"> the start angle of the gradient</param>
         /// <param name="rightAngle"> the end angle of the gradient</param>
         /// <param name="currentAngle"> the pixel's angle</param>
@@ -110,12 +145,10 @@ namespace Mechanect.ButtonsAndSliders {
         /// <summary>
         /// creates the texture2D representing the angle bar
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        ///<returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
         public Texture2D CreateCurve(GraphicsDevice graphicsDevice)
         {
             int textureWidth = 2 * curveRadius;
@@ -163,6 +196,14 @@ namespace Mechanect.ButtonsAndSliders {
 
         #region Functions
 
+        /// <summary>
+        /// A getter to the command that should be visible to the user
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="id">an int representing the ID of the user</param>
+        /// <returns>string, returns the command that should be applied by the user to reach the correct orientation.</returns>
         public string Command(int ID)
         {
             if (Angle(ID) == 0)
@@ -173,20 +214,15 @@ namespace Mechanect.ButtonsAndSliders {
                 return "Turn a little to your left";
             return "OK!";
         }
-        
+
         /// <summary>
-        /// measures the orientation of the user with respect to the kinect sensor
-        /// <example>a player standing facing the kinect sensor will have zero angle, </example>
-        /// <example>a player turned to his right with respect to the kinect sensor will a positive angle, </example>
-        /// <example>a player turned to his left with respect to the kinect sensor will a negative angle. </example>
+        /// Calculates the Angle of the user specified by the ID
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
-        /// <param name="ID"> the index of the User in the users array</param>
-        /// <returns>returns the angle users[ID] makes with the kinect sensor. </returns>
+        /// <remarks>
+        /// <para>Author: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="ID">the index of the User in the users array</param>
+        /// <returns>returns the angle the user with the kinect sensor. 0 when he faces the sensor, +ve when he looks right, -ve when he looks left</returns>
         public int Angle(int ID)
         {
             try
@@ -211,6 +247,14 @@ namespace Mechanect.ButtonsAndSliders {
 
         #region Draw
 
+        /// <summary>
+        /// Draws the angle bar
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name ="spriteBatch">The sprite batch of the screen manager</param>
+        /// <param name ="position">The potition the bar should be drawn at</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
             spriteBatch.Draw(curve, position, Color.White);
