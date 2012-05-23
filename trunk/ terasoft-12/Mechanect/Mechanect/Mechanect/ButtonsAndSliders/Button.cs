@@ -100,7 +100,7 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Checks if the user's hand is hovered on the button.
+        /// Allows the button to run correctly.
         /// </summary>
         /// <remarks>
         /// <para>Author: HegazY</para>
