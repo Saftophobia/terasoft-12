@@ -85,17 +85,21 @@ namespace Mechanect.Screens
             if (experiment1.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
+                Game1.user5 = new User1();
+                Game1.user6 = new User1();
+                ScreenManager.AddScreen(new Experiment1(Game1.user5, Game1.user6, new MKinect()));
             }
             if (experiment2.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new Settings2(new User2()));
+                Game1.user4 = new User2();
+                ScreenManager.AddScreen(new Settings2(Game1.user4));
             }
             if (experiment3.IsClicked())
             {
                 Remove();
-                ScreenManager.AddScreen(new InstructionsScreen3(new User3()));
+                Game1.user3 = new User3();
+                ScreenManager.AddScreen(new InstructionsScreen3(Game1.user3));
             }
         }
 
