@@ -747,10 +747,10 @@ namespace Mechanect.Exp3
             if (xComponent > 0 && xComponent < heightData.GetLength(0)
                 && zComponent > 0 && zComponent < heightData.GetLength(1))
             {
-                return heightData[xComponent, zComponent] + ball.Radius;
+                return heightData[xComponent, zComponent];
             }
             else
-                return 0 + ball.Radius;
+                return 0;
         }
 
 

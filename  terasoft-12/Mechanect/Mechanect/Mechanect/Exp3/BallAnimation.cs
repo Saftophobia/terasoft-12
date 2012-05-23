@@ -40,12 +40,20 @@ namespace Mechanect.Exp3
             }
 
         }
+
+        /// <summary>
+        /// Updates the animation 
+        /// </summary>
+        /// <param name="elapsed">Elapsed Time</param>
+        /// <remarks>
+        /// Author: Omar Abdulaal
+        /// </remarks>
         public override void Update(TimeSpan elapsed)
         {
             base.Update(elapsed);
             ball.Rotate(Displacement);
 
-            ball.SetHeight(environment.GetHeight(ball.Position) - fallFactor*0.15f);
+            ball.SetHeight(environment.GetHeight(ball.Position) + ball.Radius - fallFactor * 0.15f);
             if (!base.Finished)
             {
                 if (fallFactor < 50)
@@ -58,6 +66,9 @@ namespace Mechanect.Exp3
                             ball.SetHeight(ball.Position.Y - ball.Radius - (fallFactor * 0.15f));
                         }
                     }
+                    else
+                        if (Vector3.Distance(ball.Position, environment.HoleProperty.Position) < ball.Radius + environment.HoleProperty.Radius)
+                            ball.SetHeight(environment.GetHeight(StartPosition) + ball.Radius);
                 }
                 else
                 {
