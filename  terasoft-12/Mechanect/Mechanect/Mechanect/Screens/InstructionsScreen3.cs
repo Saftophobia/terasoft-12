@@ -7,7 +7,7 @@ namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-        private string instructions = "\n\n\n\n Welcome to football Mechanect game made by terasoft \n The point of this game is to shoot the ball such that it reaches the hole with zero velocity. \n In the beginning you're shown a screen where you can test shooting and see your angle and velocity. \n The avatar on the right shows whether you're standing in the correct position below is the color code \n Green means you're fine, White means you're too far one step and you're disconnected, Red means that not all your skeleton is detected correctly, the kinect device detects from 0.8 to 4 meters";
+        private string instructions = "\n\n\n\n Welcome to Mechanect football game made by terasoft \n The point of this game is to shoot the ball such that it reaches the hole with zero velocity. \n In the beginning you're shown a screen where you can test shooting and see your angle and velocity. \n The avatar on the right represents your distance from the kinect device, below is the color code \n Green: you're standing in the correct position, White: you're almost too far, Red: Not all your skeleton is detected.";
         private Instruction instruction;
         private User3 user3;
         Texture2D myTexture;
