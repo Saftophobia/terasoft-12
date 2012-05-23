@@ -60,10 +60,17 @@ namespace ButtonsAndSliders
         /// drawing the button and the hand
         /// </summary>
         /// <param name="spriteBatch">used to draw the texture</param>
-        [System.Obsolete("call this method after begining a SpriteBatch", false)]
+        [System.Obsolete("add screen width, to scale the button", false)]
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, float scale)
+        {
+            Rectangle rectangle = new Rectangle((int) position.X, (int) position.Y, 
+                (int)(scale * texture.Width), (int)(scale * texture.Height));
+            spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
         }
 
         ///<remarks>
