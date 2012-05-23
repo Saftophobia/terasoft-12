@@ -43,14 +43,18 @@ namespace ButtonsAndSliders
             Content = c;
             timer = new Timer1();
 
+            positionBar = p;
+            positionPointer.X = p.X;
+        }
+
+        public void LoadContent()
+        {
             texture = Content.Load<Texture2D>("Textures/Slider/off");
             onPic = Content.Load<Texture2D>("Textures/Slider/on");
             offPic = Content.Load<Texture2D>("Textures/Slider/off");
             barPic = Content.Load<Texture2D>("Textures/Slider/bar");
 
-            positionBar = p;
-            positionPointer.X = p.X;
-            positionPointer.Y = p.Y - ((texture.Height - barPic.Height) / 2);
+            positionPointer.Y = positionBar.Y - ((texture.Height - barPic.Height) / 2);
         }
 
         ///<remarks>
