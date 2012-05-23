@@ -12,7 +12,7 @@ namespace Mechanect.Exp3
     public class User3:User
     {
 
-
+        #region InstanceVariables
         #region joint
         public bool rightLeg;
         #endregion
@@ -54,8 +54,8 @@ namespace Mechanect.Exp3
         public bool hasPlayerMoved;
         private bool hasJustStarted;
         #endregion
-
-
+        #endregion
+        #region Constructor
         public User3()
         {
 
@@ -88,6 +88,8 @@ namespace Mechanect.Exp3
 
 
         }
+        #endregion
+        #region Khaled'sMethods
         /// <summary>
         /// Takes the minimum and maximum possible values for the mass of the foot and sets it to a random float number between these two numbers.
         /// </summary>
@@ -131,17 +133,24 @@ namespace Mechanect.Exp3
              else throw new ArgumentException("parameters have to be non negative numbers and max value has to be greater than min value");
          }
 
+        #endregion
+        #region Cena'sMethods
+
+         #region UpdateMethods
+
+         ///<summary>
+         ///This method updates the velocity vector of the user's leg each 3 XNA frames.
+         ///</summary>
          ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
-         ///</remarks>>
-         /// <summary>
-         ///  Updates the velocity, angle variables of the User3 after each captured skeleton frame.
-         /// </summary>
+         ///<para>AUTHOR: Cena </para>  
+         ///</remarks>
+         ///<param name="GameTime">Takes the game time to be used in calculating the velocity</param> 
+         ///<returns>An int that is identical to the parameter passed to the method</returns>
+
 
          public void UpdateMeasuringVelocityAndAngle(GameTime gameTime)
          {
+            
              setSkeleton();
              Skeleton skeleton = USER;
              if (skeleton != null)
@@ -149,7 +158,7 @@ namespace Mechanect.Exp3
                  if (GameScreen.frameNumber % 3 == 0)
                  {
                      StoreTime(gameTime);
-                     if (!hasShot && !hasMissed)  
+                     if (!hasShot && !hasMissed)
                      {
                          if (hasJustStarted)
                          {
@@ -166,16 +175,16 @@ namespace Mechanect.Exp3
                              {
                                  if (IsMovingForward())
                                  {
-                                    
+
                                      UpdateSpeed();
                                      UpdateAngle();
                                      StorePreviousPosition();
                                  }
                                  else
                                  {
-                                     if (HasAlreadyMovedForward()&&HasMovedMinimumDistance())
+                                     if (movedForward && HasMovedMinimumDistance())
                                          hasShot = true;
-                                     if (HasAlreadyMovedForward() && !HasMovedMinimumDistance())
+                                     if (movedForward && !HasMovedMinimumDistance())
                                      {
                                          hasMissed = true;
                                          velocity = Vector3.Zero;
@@ -192,75 +201,43 @@ namespace Mechanect.Exp3
                  }
 
              }
+             else
+                 ResetUserForShootingOrTryingAgain();
              GameScreen.frameNumber++;
          }
 
-
-         private void StoreStartingPosition()
-         {
-            startLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-            startLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-            startRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-            startRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
-         }
-
-         public bool HasMovedMinimumDistance()
-         {
-             if (rightLeg)
-                 return initialRightLegPositionZ - currentRightLegPositionZ > Constants3.minimumShootingDistance;
-             return initialLeftLegPositionZ - currentLeftLegPositionZ > Constants3.minimumShootingDistance;
-         }
-
-
+         ///<summary>
+         ///This method updates the value of the velocity vector.
+         ///</summary>
          ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
+         ///<para>AUTHOR: Cena </para>  
          ///</remarks>
-         /// <summary>
-         /// Checks if the User3 is currently moving their leg forward or not
-         /// </summary>
-         /// <returns>returns true iff the User3 moved his leg forward</returns>
 
-         public bool IsMovingForward()
+         public void UpdateSpeed()
          {
-                 double currentZ = currentLeftLegPositionZ;
-                 double previousZ = previousLeftLegPositionZ;
-                 double startZ = startLeftLegPositionZ;
-                 if (rightLeg)
-                 {
-                     currentZ = currentRightLegPositionZ;
-                     previousZ = previousRightLegPositionZ;
-                     startZ = startRightLegPositionZ;
-                 }
-                 if (startZ >= currentZ)
-                 {
-
-                     if (currentZ - previousZ < (-1 * Constants3.movingForwardTolerance))
-                     {
-                         movedForward = true;
-                         return true;
-
-                     }
-                 }
-                 else{
-                     if (!movedForward)
-                     {
-                         if (rightLeg)
-                         {
-                             initialRightLegPositionZ = currentRightLegPositionZ;
-                             initialRightLegPositionX = currentRightLegPositionX;
-                         }
-                         else
-                         {
-                             initialLeftLegPositionZ = currentLeftLegPositionZ;
-                             initialLeftLegPositionX = currentLeftLegPositionX;
-                         }
-                     }
-
-                     }
-             return false;
+             double currentZ = currentLeftLegPositionZ;
+             double initialZ = initialLeftLegPositionZ;
+             double currentX = currentLeftLegPositionX;
+             double initialX = initialLeftLegPositionX;
+             if (rightLeg)
+             {
+                 currentZ = currentRightLegPositionZ;
+                 initialZ = initialRightLegPositionZ;
+                 currentX = currentRightLegPositionX;
+                 initialX = initialRightLegPositionX;
+             }
+             double deltaTime = Math.Abs(currentTime - initialTime);
+             Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
+             Vector3 finalVelocity = Tools3.GetVelocity(deltaPosition, deltaTime);
+             velocity = finalVelocity;
          }
+
+         ///<summary>
+         ///This method updates the value of the shooting angle.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>  
+         ///</remarks>
 
          public void UpdateAngle()
          {
@@ -285,60 +262,31 @@ namespace Mechanect.Exp3
 
          }
 
+            #endregion
 
+         #region StoreMethods
+         ///<summary>
+         ///This method stores the original position of the user's leg.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para> 
+         ///</remarks>
+        
 
-
-         public void HasPlayerMoved()
+         private void StoreStartingPosition()
          {
-
-          
-             if (Math.Abs(currentLeftLegPositionZ - startLeftLegPositionZ) > Constants3.legMovementTolerance)
-             {
-                 rightLeg = false;
-                 
-                 hasPlayerMoved = true;
-                 return;
-             }
-             if (Math.Abs(currentRightLegPositionZ - startRightLegPositionZ) > Constants3.legMovementTolerance)
-             {
-                 rightLeg = true;
-                 
-                 hasPlayerMoved = true;
-                 return;
-             }
-            
+            startLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+            startLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+            startRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+            startRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
-
-
-
-         public bool HasAlreadyMovedForward()
-         {
-             return movedForward;
-         }
-         public bool HasShot()
-         {
-             return hasShot;
-         }
-         public void UpdateSpeed()
-         {
-             double currentZ = currentLeftLegPositionZ;
-             double initialZ = initialLeftLegPositionZ;
-             double currentX = currentLeftLegPositionX;
-             double initialX = initialLeftLegPositionX;
-             if (rightLeg)
-             {
-                 currentZ = currentRightLegPositionZ;
-                 initialZ = initialRightLegPositionZ;
-                 currentX = currentRightLegPositionX;
-                 initialX = initialRightLegPositionX;
-             }
-             double deltaTime = Math.Abs(currentTime - initialTime);
-             Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
-             Vector3 finalVelocity = Tools3.GetVelocity(deltaPosition, deltaTime);
-             velocity = finalVelocity;
-         }
-
+         ///<summary>
+         ///This method stores the initial position of the user's leg when they start moving forward.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>    
+         ///</remarks>
 
          public void StoreInitialPosition()
          {
@@ -353,6 +301,13 @@ namespace Mechanect.Exp3
          }
 
 
+         ///<summary>
+         ///This method stores the current position of the user's leg.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>    
+         ///</remarks>
+        
          public void StoreCurrentPosition()
          {
              currentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
@@ -361,22 +316,13 @@ namespace Mechanect.Exp3
              currentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
-
-         public void StoreInitialTime(GameTime gameTime)
-         {
-             initialTime = gameTime.TotalGameTime.TotalSeconds;
-         }
-         public void StoreTime(GameTime gameTime)
-         {
-             if (firstUpdate)
-             {
-                 StoreInitialTime(gameTime);
-                 firstUpdate = false;
-             }
-             else
-                 currentTime = gameTime.TotalGameTime.TotalSeconds;
-         }
-
+         ///<summary>
+         ///This method stores the previous position of the user's leg.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para> 
+         ///</remarks>
+         
          public void StorePreviousPosition()
          {
              if (currentRightLegPositionZ != 0)
@@ -388,32 +334,158 @@ namespace Mechanect.Exp3
              }
          }
 
-
+         ///<summary>
+         ///This method stores the initial time that user starting moving his leg forward at.
+         ///</summary>
          ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
+         ///<para>AUTHOR: Cena </para>    
          ///</remarks>
-         /// <summary>
-         /// scales the velocity of the leg's User3 relative to the assumed mass of the User3's leg and maps the velocity in meters to pixels
-         /// </summary>
-         /// <returns>returns the scales velocity</returns>
+         
+         public void StoreInitialTime(GameTime gameTime)
+         {
+             initialTime = gameTime.TotalGameTime.TotalSeconds;
+         }
+
+         ///<summary>
+         ///This method stores the current time.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>    
+         ///</remarks>
+        
+         public void StoreTime(GameTime gameTime)
+         {
+             if (firstUpdate)
+             {
+                 StoreInitialTime(gameTime);
+                 firstUpdate = false;
+             }
+             else
+                 currentTime = gameTime.TotalGameTime.TotalSeconds;
+         }
+
+         
+         #endregion
+         
+         #region CheckMethods
+         ///<summary>
+         ///This method checks if the user moved his leg forward a minimum distance.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>   
+         ///</remarks>
+         ///<returns>A bool which is true if the user moved his leg forward a certain distance</returns>
+         public bool HasMovedMinimumDistance()
+         {
+             if (rightLeg)
+                 return initialRightLegPositionZ - currentRightLegPositionZ > Constants3.minimumShootingDistance;
+             return initialLeftLegPositionZ - currentLeftLegPositionZ > Constants3.minimumShootingDistance;
+         }
+         ///<summary>
+         ///This method checks if the user moved their leg forward
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>   
+         ///</remarks>
+         ///<returns>A bool that is true if the user moved forward c</returns>
+
+
+         public bool IsMovingForward()
+         {
+             double currentZ = currentLeftLegPositionZ;
+             double previousZ = previousLeftLegPositionZ;
+             double startZ = startLeftLegPositionZ;
+             if (rightLeg)
+             {
+                 currentZ = currentRightLegPositionZ;
+                 previousZ = previousRightLegPositionZ;
+                 startZ = startRightLegPositionZ;
+             }
+             if (startZ >= currentZ)
+             {
+
+                 if (currentZ - previousZ < (-1 * Constants3.movingForwardTolerance))
+                 {
+                     movedForward = true;
+                     return true;
+
+                 }
+             }
+             else
+             {
+                 if (!movedForward)
+                 {
+                     if (rightLeg)
+                     {
+                         initialRightLegPositionZ = currentRightLegPositionZ;
+                         initialRightLegPositionX = currentRightLegPositionX;
+                     }
+                     else
+                     {
+                         initialLeftLegPositionZ = currentLeftLegPositionZ;
+                         initialLeftLegPositionX = currentLeftLegPositionX;
+                     }
+                 }
+
+             }
+             return false;
+         }
+         ///<summary>
+         ///This method checks if the user moved their leg.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>   
+         ///</remarks>
+         ///<returns>A bool that is true if the user moved their leg c</returns>
+         public void HasPlayerMoved()
+         {
+
+
+             if (Math.Abs(currentLeftLegPositionZ - startLeftLegPositionZ) > Constants3.legMovementTolerance)
+             {
+                 rightLeg = false;
+
+                 hasPlayerMoved = true;
+                 return;
+             }
+             if (Math.Abs(currentRightLegPositionZ - startRightLegPositionZ) > Constants3.legMovementTolerance)
+             {
+                 rightLeg = true;
+
+                 hasPlayerMoved = true;
+                 return;
+             }
+
+         }
+        #endregion
+
+         #region OtherMethods
+
+         ///<summary>
+         ///This method calculates the veclocity vector relative to the user's assumed leg mass.
+         ///</summary>
+         ///<remarks>
+         ///<para>AUTHOR: Cena </para>   
+
+         ///</remarks>
+       
+         ///<returns>A Vector3: velocity of the user relative to it's mass</returns>
+
          public Vector3 SetVelocityRelativeToGivenMass()
          {
+
              float ratio = (float)(Constants3.normalLegMass / assumedLegMass);
              return new Vector3(velocity.X * ratio, 0, velocity.Z * ratio);
 
          }
 
 
+         ///<summary>
+         ///This method initializes all the stored variables.
+         ///</summary>
          ///<remarks>
-         ///<para>
-         ///Author: Cena
-         ///</para>
+         ///<para>AUTHOR: Cena </para>   
          ///</remarks>
-         /// <summary>
-         /// initializes all the variables that stores the User3's movement inorder to try shooting again
-         /// </summary>
 
          public void ResetUserForShootingOrTryingAgain()
          {
@@ -447,6 +519,8 @@ namespace Mechanect.Exp3
 
 
          }
-       
+     #endregion
+         #endregion
+
     }
 }
