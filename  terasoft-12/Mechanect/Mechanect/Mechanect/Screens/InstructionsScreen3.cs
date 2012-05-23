@@ -18,7 +18,7 @@ namespace Mechanect.Screens
         {
             this.user3 = user3;
         }
-        public InstructionsScreen3(string instructions, User3 user):this(user3)
+        public InstructionsScreen3(string instructions, User3 user3): this(user3)
         {
             this.instructions = instructions;
         }
