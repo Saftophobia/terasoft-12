@@ -238,7 +238,7 @@ namespace Mechanect.Exp3
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
             hole = new Hole(Content, device, terrainWidth, terrainHeight, GenerateRadius(angleTolerance), user.shootingPosition);
-            CreateHole();
+            CreateHole(hole.Position,hole.Radius);
             SetUpVertices();
             LoadEnvironmentContent();
 
@@ -686,12 +686,12 @@ namespace Mechanect.Exp3
         {
             switch (angletolerance)
             {
-                case 1:  return 10; 
-                case 2:  return 12; 
-                case 3:  return 14; 
-                case 4:  return 16; 
-                case 5:  return 18; 
-                default: return 10;
+                case 1:  return 17; 
+                case 2:  return 20; 
+                case 3:  return 25; 
+                case 4:  return 30; 
+                case 5:  return 35; 
+                default: return 17;
             }
 
         }
@@ -702,18 +702,17 @@ namespace Mechanect.Exp3
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
         ///<param name="position">The central position where the hole should be made around.</param>
-        protected void CreateHole()
+        protected void CreateHole(Vector3 position, int radius)
         {
-            int radius = hole.Radius;
             // double angleStep = 1f / radius;
             //    for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
             //    {
             //        int a = (int)Math.Round(radius + radius * Math.Cos(angle));
             //        int b = (int)Math.Round(radius + radius * Math.Sin(angle));
             //    }
-            for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
+            for (float x = position.X - radius; x <= position.X + radius; x++)
             {
-                for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
+                for (float z = position.Z - radius; z <= position.Z + radius; z++)
                 {
                     heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] - 20;
                 }
