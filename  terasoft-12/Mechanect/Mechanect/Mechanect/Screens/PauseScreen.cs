@@ -113,12 +113,12 @@ namespace Mechanect.Screens
             fillPosition = new Vector2(velocityBar.Width / 2 + 20, viewPort.Height - (7 / 2));
 
             givens = content.Load<Texture2D>("Textures/screen");
-            givensPosition = new Vector2(viewPort.Width / 2, givens.Height / 2);
+            givensPosition = new Vector2(viewPort.Width / 2, givens.Height / 4);
 
 
             arrow = content.Load<Texture2D>("Textures/arrow");
-            arrowScale = 1f;
-            arrowPosition = new Vector2(viewPort.Width - (float)( 1.3*arrow.Width), viewPort.Height - (float)( arrow.Height / 2));
+            arrowScale = 0.7f;
+            arrowPosition = new Vector2(viewPort.Width - (float)( Math.Sqrt(arrowScale) * arrow.Width), viewPort.Height - (float)(Math.Sqrt(arrowScale) * arrow.Height / 2));
             arrowAngle = 0;
 
             countPosition = new Vector2(3 * (viewPort.Width / 7), viewPort.Height / 2);
@@ -150,13 +150,13 @@ namespace Mechanect.Screens
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
 
                     displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "[" + Math.Truncate(holePosition.X) + "," + "Y:0," + Math.Truncate(holePosition.Z) + "]";
+                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "[" +"X:"+ Math.Truncate(holePosition.X) + "," + "Y:0," +"Z:"+ Math.Truncate(holePosition.Z) + "]";
                 }
                 else
                 {
                     #region GivensString
                     displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "["+Math.Truncate(holePosition.X)+","+"Y:0,"+Math.Truncate(holePosition.Z)+"]";
+                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "["+"X:"+Math.Truncate(holePosition.X)+","+"Y:0,"+"Z:"+Math.Truncate(holePosition.Z)+"]";
                     string shootingValues ="Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     #endregion
@@ -240,7 +240,7 @@ namespace Mechanect.Screens
            
 
             spriteBatch.Begin();
-            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 1.2f, SpriteEffects.None, 0);
+            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.9f, SpriteEffects.None, 0);
             spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
             for (int i = 0; i < fills.Count; i++)
                 spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
