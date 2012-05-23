@@ -26,9 +26,7 @@ namespace Mechanect.Exp3
         private BallAnimation animation1;
         private BallAnimation animation2;
         private bool secondAnimationStarted;
-        /// <summary>
-        /// the chase camera instance
-        /// </summary>
+
         public ChaseCamera Camera { get; private set; }
 
         private String velocity1;
@@ -63,10 +61,8 @@ namespace Mechanect.Exp3
             animation2 = new BallAnimation(ball, hole, optimalVelocity, friction);
             Camera = new ChaseCamera(new Vector3(0, 40, 80), Vector3.Zero, Vector3.Zero, device);
 
-            velocity1 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", shootVelocity.X, 
-                shootVelocity.Y, shootVelocity.Z);
-            velocity2 = String.Format("<{0,4:0.0},{1,4:0.0},{2,4:0.0}>", optimalVelocity.X, 
-                optimalVelocity.Y, optimalVelocity.Z);
+            velocity1 = String.Format("<{0,4:0.0}, 0.0,{1,4:0.0}>", shootVelocity.X, shootVelocity.Z);
+            velocity2 = String.Format("<{0,4:0.0}, 0.0,{1,4:0.0}>", optimalVelocity.X, optimalVelocity.Z);
         }
 
         /// <summary>
