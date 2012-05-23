@@ -18,16 +18,14 @@ namespace Mechanect.Exp3
         private Texture2D textureStrip, textureStrip1, textureStrip2, textureStrip3, textureStrip4, textureStrip5, texture;
         private int frame, width, height;
         public int level;
-        SpriteBatch spriteBatch;
         ContentManager Content;
         Button rightArrow, leftArrow, firstButton, secondButton, thirdButton;
         List<Button> Buttons;
         int[] values;
 
-        public levelSelect(Microsoft.Xna.Framework.Game game, Vector2 position, SpriteBatch spriteBatch, User u)
+        public levelSelect(Microsoft.Xna.Framework.Game game, Vector2 position, User u)
         {
             this.user = u;
-            this.spriteBatch = spriteBatch;
             this.position = position;
             this.frame = 0;
             this.Content = game.Content;
@@ -39,7 +37,7 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Initializes Buttons and Values.
         /// </summary>
-        public void Initialize(int screenw, int screenh)
+        public void Initialize(int screenw, int screenh, float scale)
         {
             //Initialize level values
             values = new int[3];
@@ -60,7 +58,7 @@ namespace Mechanect.Exp3
 
             level = 1;
 
-            int ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width;
+            int ButtonWidth = Content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width * (int)scale;
             //Create and Initialize all Buttons.
 
             Vector2 leftArrowPos = new Vector2(position.X, position.Y + 15);
@@ -182,16 +180,14 @@ namespace Mechanect.Exp3
         /// <summary>
         /// XNA Draw Method.
         /// </summary>
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch, float scale)
         {
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             //Draw the texture and textureStrip according to the frame
-            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 70, position.Y + 30), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
-            spriteBatch.Draw(texture, position, Color.White);
-            spriteBatch.End();
+            spriteBatch.Draw(textureStrip, new Vector2(position.X + Content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width*scale + 70*scale, position.Y + 30), new Rectangle(142 * frame, 0, width, height), Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture,  position, new Rectangle(0,0, texture.Width, texture.Height), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 1);
             //Draw each Button in the list
             foreach (Button b in Buttons)
-                b.Draw(spriteBatch);
+                b.Draw(spriteBatch, scale);
 
         }
     }
