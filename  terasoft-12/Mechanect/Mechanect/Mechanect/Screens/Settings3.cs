@@ -55,6 +55,9 @@ namespace Mechanect.Screens
 
             level.Initialize(screenWidth, screenHeight);
 
+            velocity.LoadContent();
+            angle.LoadContent();
+
             backGround = contentManager.Load<Texture2D>("Textures/Screens/settings");
 
             scale = ((float) screenWidth / (float) backGround.Width);
