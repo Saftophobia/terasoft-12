@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Common
@@ -12,12 +11,9 @@ namespace Mechanect.Common
     public class ScreenManager : DrawableGameComponent
     {
         #region Fields
-        List<GameScreen> screens = new List<GameScreen>();
-        public List<GameScreen> screensToUpdate = new List<GameScreen>();
-
-        SpriteBatch spriteBatch;
-
-        bool isInitialized;
+        private List<GameScreen> screens = new List<GameScreen>();
+        private List<GameScreen> screensToUpdate = new List<GameScreen>();
+        private SpriteBatch spriteBatch;
         #endregion
 
         #region Properties
@@ -38,20 +34,15 @@ namespace Mechanect.Common
             : base(game)
         {
             base.Initialize();
-
-            isInitialized = true;
+            
         }
 
         /// <summary>
         /// Initialize the spriteBatch and screen dedicated content.
         /// </summary>
         protected override void LoadContent()
-        {
-            ContentManager content = Game.Content;
-            
+        {            
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //load screen dedicated content
             foreach (GameScreen screen in screens)
                 screen.LoadContent();
         }
@@ -127,11 +118,8 @@ namespace Mechanect.Common
         public void AddScreen(GameScreen screen)
         {
             screen.ScreenManager = this;
-            if (this.isInitialized)
-            {
-                screen.Initialize();
-                screen.LoadContent();
-            }
+            screen.Initialize();
+            screen.LoadContent();
             screens.Add(screen);
         }
 
@@ -142,10 +130,7 @@ namespace Mechanect.Common
         /// of managed screens by the screenManager</param>
         public void RemoveScreen(GameScreen screen)
         {
-            if (this.isInitialized)
-            {
-                screen.UnloadContent();
-            }
+            screen.UnloadContent();
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
         }

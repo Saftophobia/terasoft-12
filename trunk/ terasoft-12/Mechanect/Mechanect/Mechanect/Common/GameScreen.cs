@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
 using Mechanect.Screens;
-using System;
+using Microsoft.Xna.Framework;
 namespace Mechanect.Common
 {
     /// <summary>
@@ -83,7 +83,7 @@ namespace Mechanect.Common
         public virtual void Update(GameTime gameTime, bool covered)
         {
        
-            
+                    
              
             if (IsFrozen)
                 return;
