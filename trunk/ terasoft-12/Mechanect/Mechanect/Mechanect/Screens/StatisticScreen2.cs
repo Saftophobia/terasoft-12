@@ -7,8 +7,9 @@ using ButtonsAndSliders;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Exp3;
 using System.Windows;
+using Mechanect.Exp3;
+using Mechanect.Exp2;
 
 namespace Mechanect.Exp2
 {
@@ -64,11 +65,9 @@ namespace Mechanect.Exp2
         //Still waiting for Hegazy to do the buttons for me.
         public override void LoadContent()
         {
-            userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, 
-                ScreenManager.GraphicsDevice);
+            userSimulation.LoadContent(ScreenManager.Game.Content,ScreenManager.GraphicsDevice);
             if (!correctAnswer)
-                optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice.Viewport, 
-                    ScreenManager.GraphicsDevice);
+                optimalSimulation.LoadContent(ScreenManager.Game.Content,ScreenManager.GraphicsDevice);
 
             mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition, 
                 ScreenManager.GraphicsDevice.Viewport.Width,
