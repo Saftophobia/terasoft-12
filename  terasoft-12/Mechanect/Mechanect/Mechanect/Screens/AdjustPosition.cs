@@ -27,7 +27,7 @@ namespace Mechanect.Screens
         /// <para>Author: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>bool, Returns true if all users are standing correctly</returns>
-        bool Accepted
+        public bool Accepted
         {
             get
             {
@@ -114,7 +114,7 @@ namespace Mechanect.Screens
         /// </remarks>
         /// <param name="id">an int representing the ID of the user</param>
         /// <returns>string, returns the command that should be applied by the user to be standing correctly</returns>
-        private string Command(int id)
+        public string Command(int id)
         {
             if (!depthBar.Accepted)
             {
@@ -177,7 +177,7 @@ namespace Mechanect.Screens
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
             ScreenManager.SpriteBatch.Begin();
             if (Accepted)
-                button.Draw(ScreenManager.SpriteBatch);
+                button.Draw(ScreenManager.SpriteBatch, 1);
             ScreenManager.SpriteBatch.DrawString(font, "Adjust Position", new Vector2(500, 20), Color.OrangeRed);
             ScreenManager.SpriteBatch.DrawString(font, depthBar.Rule, new Vector2(100, 120), Color.OrangeRed);
             ScreenManager.SpriteBatch.DrawString(font, angleBar.Rule, new Vector2(100, 220), Color.OrangeRed);
