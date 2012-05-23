@@ -69,7 +69,7 @@ namespace Mechanect.Exp3
         public void GenerateIntialPosition(float terrainWidth, float terrainHeight)
         {
             float number = (float)new Random().NextDouble();
-            Position = new Vector3(-terrainWidth / 2, 0, -(0.25f + number / 2) * terrainHeight / 2);
+            Position = new Vector3(-terrainWidth / 4, 0, -(0.25f + number / 2) * terrainHeight / 2);
         }
 
         /// <summary>
@@ -106,6 +106,11 @@ namespace Mechanect.Exp3
         public void SetHeight(float height)
         {
             Position = new Vector3(Position.X, height + radius, Position.Z);
+        }
+
+        public bool InsideTerrain(float terrainWidth, float terrainHeight)
+        {
+            return Position.X > -terrainWidth / 2 && Position.X < terrainWidth / 2 && Position.Z > -terrainHeight / 2;
         }
 
     }
