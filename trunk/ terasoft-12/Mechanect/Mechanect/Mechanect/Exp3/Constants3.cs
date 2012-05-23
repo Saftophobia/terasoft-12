@@ -36,7 +36,7 @@ namespace Mechanect.Exp3
 
         public const int minShootingX = -10;
         public const int maxShootingX = 10;
-        public const int minShootingZ = 52;
-        public const int maxShootingZ = 62;
+        public const int minShootingZ = 35;
+        public const int maxShootingZ = 45;
     }
 }
