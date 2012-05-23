@@ -14,23 +14,26 @@ namespace Mechanect.ButtonsAndSliders {
 
         #region Variables And Fields
 
-        User[] users;
+        User[] user;
         int minAngle;
         int maxAngle;
-        int curveWidth;
-        int radius;
-        Color accept;
-        Color reject;
-        Color[] playerColors;
 
-        Texture2D semiCircle;
+
+        Texture2D curve;
+        int curveRadius;
+        int curveWidth;
+
         Texture2D playerIndicator;
+        Color[] playerColor;
+        Color acceptColor;
+        Color rejectColor;
+
 
         public bool Accepted
         {
             get
             {
-                for (int i = 0; i < users.Length; i++)
+                for (int i = 0; i < user.Length; i++)
                     if (Angle(i) >= maxAngle || Angle(i) <= minAngle)
                         return false;
                 return true;
@@ -41,7 +44,7 @@ namespace Mechanect.ButtonsAndSliders {
         {
             get
             {
-                float avgAngle = (minAngle + maxAngle) / 2;
+                int avgAngle = (minAngle + maxAngle) / 2;
                 if (avgAngle == 0)
                 {
                     return "Stand facing the kinect sensor";
@@ -59,19 +62,23 @@ namespace Mechanect.ButtonsAndSliders {
 
         #endregion
 
-        #region LoadTextures
+        #region Construct & Load
 
-        public AngleBar(User[] users, int minAngle, int maxAngle, int radius, Color accept, Color reject, Color[] playerColors, GraphicsDevice graphicsDevice, ContentManager contentManager)
+        public AngleBar(User[] users, int minAngle, int maxAngle, int radius, Color accept, Color reject, Color[] playerColors)
         {
-            this.users = users;
+            this.user = users;
             this.minAngle = minAngle;
             this.maxAngle = maxAngle;
-            this.radius = radius;
+            this.curveRadius = radius;
             this.curveWidth = radius / 4;
-            this.accept = accept;
-            this.reject = reject;
-            this.playerColors = playerColors;
-            semiCircle = CreateSemiCircle(graphicsDevice);
+            this.acceptColor = accept;
+            this.rejectColor = reject;
+            this.playerColor = playerColors;
+        }
+
+        public void LoadContent(GraphicsDevice graphicsDevice, ContentManager contentManager)
+        {
+            curve = CreateCurve(graphicsDevice);
             playerIndicator = contentManager.Load<Texture2D>("ball");
         }
 
@@ -86,17 +93,17 @@ namespace Mechanect.ButtonsAndSliders {
         ///Author: Mohamed AbdelAzim
         ///</para>
         ///</remarks>
-        /// <param name="startAngle"> the start angle of the gradient</param>
-        /// <param name="endAngle"> the end angle of the gradient</param>
+        /// <param name="leftAngle"> the start angle of the gradient</param>
+        /// <param name="rightAngle"> the end angle of the gradient</param>
         /// <param name="currentAngle"> the pixel's angle</param>
-        /// <param name="left"> the color at the start (left side) of the gradient</param>
-        /// <param name="right"> the color at the end (right side) of the gradient</param>
+        /// <param name="leftColor"> the color at the start (left side) of the gradient</param>
+        /// <param name="rightColor"> the color at the end (right side) of the gradient</param>
         /// <returns>returns the color corresponding to the gradient respect to pixel's position within the angle ranges</returns>
-        public Color curveColor(int startAngle, int endAngle, int currentAngle, Color left, Color right)
+        public Color CurveColor(int leftAngle, int rightAngle, int currentAngle, Color leftColor, Color rightColor)
         {
-            int R = (right.R * (currentAngle - startAngle) + left.R * (endAngle - currentAngle)) / (endAngle - startAngle);
-            int G = (right.G * (currentAngle - startAngle) + left.G * (endAngle - currentAngle)) / (endAngle - startAngle);
-            int B = (right.B * (currentAngle - startAngle) + left.B * (endAngle - currentAngle)) / (endAngle - startAngle);
+            int R = (rightColor.R * (currentAngle - leftAngle) + leftColor.R * (rightAngle - currentAngle)) / (rightAngle - leftAngle);
+            int G = (rightColor.G * (currentAngle - leftAngle) + leftColor.G * (rightAngle - currentAngle)) / (rightAngle - leftAngle);
+            int B = (rightColor.B * (currentAngle - leftAngle) + leftColor.B * (rightAngle - currentAngle)) / (rightAngle - leftAngle);
             return new Color(R, G, B);
         }
 
@@ -109,42 +116,44 @@ namespace Mechanect.ButtonsAndSliders {
         ///</para>
         ///</remarks>
         ///<returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
-        public Texture2D CreateSemiCircle(GraphicsDevice graphicsDevice)
+        public Texture2D CreateCurve(GraphicsDevice graphicsDevice)
         {
-            int width = 2 * radius;
-            float avgAngle = (minAngle + maxAngle) / 2;
-            Texture2D grad = new Texture2D(graphicsDevice, width, radius);
-            Color[] data = new Color[radius * width];
-            int x = 0;
-            int y = 0;
-            double r = 0;
-            double theta;
-            for (int i = 0; i < data.Length; i++)
+            int textureWidth = 2 * curveRadius;
+            int textureHeight = curveRadius;
+            int avgAngle = (minAngle + maxAngle) / 2;
+            Texture2D curve = new Texture2D(graphicsDevice, textureWidth, textureHeight);
+            Color[] texturePixels = new Color[textureHeight * textureWidth];
+            Vector2 pixelLocation = new Vector2();
+            double radius, theta;
+            for (int pixelIndex = 0; pixelIndex < texturePixels.Length; pixelIndex++)
             {
-                x = (int)(i % width - width / 2);
-                y = radius - i / width;
-                r = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
-                if (r <= width / 2 && r >= width / 2 - curveWidth)
+                pixelLocation.X = (int)(pixelIndex % textureWidth - textureWidth / 2);
+                pixelLocation.Y = textureHeight - pixelIndex / textureWidth;
+                radius = pixelLocation.Length();
+                if (radius <= curveRadius && radius >= curveRadius - curveWidth)
                 {
-                    if (x == 0) theta = 0;
+                    if (pixelLocation.X == 0)
+                        theta = 0;
                     else
                     {
-                        theta = Math.Atan((double)y / x) * 180 / Math.PI;
-                        if (theta > 0) theta = 90 - theta;
-                        else theta = -90 - theta;
+                        theta = MathHelper.ToDegrees((float)Math.Atan(pixelLocation.Y / pixelLocation.X));
+                        if (theta > 0)
+                            theta = 90 - theta;
+                        else
+                            theta = -90 - theta;
                     }
                     if (theta <= minAngle || theta >= maxAngle)
-                        data[i] = reject;
+                        texturePixels[pixelIndex] = rejectColor;
                     else if (theta >= (minAngle + avgAngle) / 2 && theta <= (maxAngle + avgAngle) / 2)
-                        data[i] = accept;
+                        texturePixels[pixelIndex] = acceptColor;
                     else if (theta < avgAngle)
-                        data[i] = curveColor((int)minAngle, (int)(minAngle + avgAngle) / 2, (int)theta, reject, accept);
+                        texturePixels[pixelIndex] = CurveColor(minAngle, (minAngle + avgAngle) / 2, (int)theta, rejectColor, acceptColor);
                     else if (theta > avgAngle)
-                        data[i] = curveColor((int)(maxAngle + avgAngle) / 2, (int)maxAngle, (int)theta, accept, reject);
+                        texturePixels[pixelIndex] = CurveColor((maxAngle + avgAngle) / 2, maxAngle, (int)theta, acceptColor, rejectColor);
                 }
             }
-            grad.SetData(data);
-            return grad;
+            curve.SetData(texturePixels);
+            return curve;
         }
 
 
@@ -182,12 +191,11 @@ namespace Mechanect.ButtonsAndSliders {
         {
             try
             {
-                Vector2 rightHip = new Vector2(users[ID].USER.Joints[JointType.HipRight].Position.X, users[ID].USER.Joints[JointType.HipRight].Position.Z);
-                Vector2 leftHip = new Vector2(users[ID].USER.Joints[JointType.HipLeft].Position.X, users[ID].USER.Joints[JointType.HipLeft].Position.Z);
-                Vector2 point = rightHip - leftHip;
-                double angle = Math.Atan(point.Y / point.X);
-                angle *= (180 / Math.PI);
-                return (int)angle;
+                Vector2 rightHip = new Vector2(user[ID].USER.Joints[JointType.HipRight].Position.X, user[ID].USER.Joints[JointType.HipRight].Position.Z);
+                Vector2 leftHip = new Vector2(user[ID].USER.Joints[JointType.HipLeft].Position.X, user[ID].USER.Joints[JointType.HipLeft].Position.Z);
+                Vector2 fromLeftHipToRightHip = rightHip - leftHip;
+                int angle = (int)MathHelper.ToDegrees((float)Math.Atan(fromLeftHipToRightHip.Y / fromLeftHipToRightHip.X));
+                return angle;
             }
             catch (NullReferenceException)
             {
@@ -205,15 +213,11 @@ namespace Mechanect.ButtonsAndSliders {
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            spriteBatch.Draw(semiCircle, position, Color.White);
-            for (int i = 0; i < users.Length; i++)
-                spriteBatch.Draw(playerIndicator,
-                               new Rectangle(radius + (int)position.X, radius + (int)position.Y, radius, radius / 8),
-                               null, playerColors[i],
-                               (float)((Angle(i) - 90) * Math.PI / 180),
-                               new Vector2(0, playerIndicator.Height / 2),
-                               SpriteEffects.None,
-                               0f);
+            spriteBatch.Draw(curve, position, Color.White);
+            for (int i = 0; i < user.Length; i++)
+                spriteBatch.Draw(playerIndicator, new Rectangle(curveRadius + (int)position.X, curveRadius + (int)position.Y,
+                    curveRadius, curveRadius / 8), null, playerColor[i], (float)((Angle(i) - 90) * Math.PI / 180),
+                    new Vector2(0, playerIndicator.Height / 2), SpriteEffects.None, 0f);
 
         }
 

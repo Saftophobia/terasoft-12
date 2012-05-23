@@ -58,14 +58,14 @@ namespace Mechanect.Screens
         /// <param name="maxDepth"> an integer representing the maximum distance in centimeters the player should stand at.</param>
         /// <param name="minAngle"> a float representing the minimum angle the player should make with the kinect sensor.</param>
         /// <param name="maxAngle"> a float representing the minimum angle the player should make with the kinect sensor.</param>
-        public AdjustPosition(User user, int minDepth, int maxDepth, float minAngle, float maxAngle, int gameID)
+        public AdjustPosition(User user, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
             this.users = new User[1];
             this.users[0] = user;
             Color[] playerColors = new Color[1];
             playerColors[0] = Color.Blue;
-            depthBar = new DepthBar(users, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColors, ScreenManager.GraphicsDevice);
-            angleBar = new AngleBar(users, minDepth, maxDepth, 200, Color.GreenYellow, Color.OrangeRed, playerColors, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            depthBar = new DepthBar(users, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColors);
+            angleBar = new AngleBar(users, minAngle, maxAngle, 200, Color.GreenYellow, Color.OrangeRed, playerColors);
             this.gameID = gameID;
         }
 
@@ -84,7 +84,7 @@ namespace Mechanect.Screens
         /// <param name="maxDepth"> an integer representing the maximum distance in centimeters players should stand at.</param>
         /// <param name="minAngle"> a float representing the minimum angle players should make with the kinect sensor.</param>
         /// <param name="maxAngle"> a float representing the minimum angle players should make with the kinect sensor.</param>
-        public AdjustPosition(User user1, User user2, int minDepth, int maxDepth, float minAngle, float maxAngle, int gameID)
+        public AdjustPosition(User user1, User user2, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
             this.users = new User[2];
             users[0] = user1;
@@ -92,8 +92,8 @@ namespace Mechanect.Screens
             Color[] playerColors = new Color[2];
             playerColors[0] = Color.Blue;
             playerColors[1] = Color.Orange;
-            depthBar = new DepthBar(users, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColors, ScreenManager.GraphicsDevice);
-            angleBar = new AngleBar(users, minDepth, maxDepth, 200, Color.GreenYellow, Color.OrangeRed, playerColors, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
+            depthBar = new DepthBar(users, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColors);
+            angleBar = new AngleBar(users, minAngle, maxAngle, 200, Color.GreenYellow, Color.OrangeRed, playerColors);
             this.gameID = gameID;
         }
 
@@ -106,6 +106,8 @@ namespace Mechanect.Screens
         {
             font = ScreenManager.Game.Content.Load<SpriteFont>("Ariel");
             button = Tools3.OKButton(ScreenManager.Game.Content, new Vector2(800, 450), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
+            depthBar.LoadContent(ScreenManager.GraphicsDevice);
+            angleBar.LoadContent(ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
         }
         #endregion
 
