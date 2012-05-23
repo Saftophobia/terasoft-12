@@ -13,6 +13,7 @@ namespace UI.Animation
     {
         public TimeSpan ElapsedTime { get; protected set; }
         protected CustomModel model;
+        public bool Finished { get; set; }
 
         /// <summary>
         /// intializes the animation's model
@@ -29,11 +30,6 @@ namespace UI.Animation
         /// </summary>
         /// <param name="elapsed">time offset from the last update</param>
         public abstract void Update(TimeSpan elapsed);
-
-        /// <summary>
-        /// returns true if the animation finished
-        /// </summary>
-        public abstract bool Finished();
 
     }
 }

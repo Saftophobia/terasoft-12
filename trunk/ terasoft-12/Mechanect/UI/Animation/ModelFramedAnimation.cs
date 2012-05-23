@@ -32,12 +32,13 @@ namespace UI.Animation
         /// <param name="elapsed">time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
-            this.ElapsedTime += elapsed;
-            if (Finished())
+            if (ElapsedTime > frames[frames.Count - 1].Time)
             {
+                Finished = true;
                 return;
             }
-
+            ElapsedTime += elapsed;
+           
             int i = 0;
             while (frames[i + 1].Time < ElapsedTime)
             {
@@ -86,19 +87,5 @@ namespace UI.Animation
             frames.Add(new AnimationFrame(position, rotation, time));
         }
 
-        /// <summary>
-        /// returns true if the animation finished
-        /// </summary>
-        public override bool Finished()
-        {
-            if (frames.Count == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return ElapsedTime > frames[frames.Count - 1].Time;
-            }
-        }
     }
 }
