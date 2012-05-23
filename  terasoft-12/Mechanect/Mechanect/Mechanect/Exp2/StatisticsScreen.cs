@@ -4,107 +4,118 @@ using System.Linq;
 using System.Text;
 using Mechanect.Common;
 using ButtonsAndSliders;
-//using System.Windows.Shapes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Exp3;
+using System.Windows;
+//using Mechanect.Exp3;
+using Mechanect.Exp2;
 
-namespace Mechanect.Exp2
+namespace Mechanect.Screens
 {
     class StatisticsScreen : GameScreen
     {
-        private Simulation simulation;
-        private Button mainMenue;
+        User2 user;
+        private Simulation userSimulation;
+        private Simulation optimalSimulation;
+        Vector2 mainMenuButtonPosition;
+        Vector2 retryButtonPosition;
+        Vector2 newGameButtonPosition;
+        Vector2 seeResultsButtonPosition;
+        private bool correctAnswer;
+        private Button mainMenu;
         private Button retry;
         private Button solution;
         private Button newGame;
-        private bool winOrLose;
-        private Texture2D hand;
-        private ContentManager content;
-        private SpriteBatch spritebatch;
-        private GifAnimation.GifAnimation texture, animation, stopped;
-        private Texture2D hand;
-        Vector2 mainMenuePositionWin;
-        Vector2 mainMenusePositiionLost;
-        Vector2 retryWin;
-        Vector2 retryLost;
-        Vector2 newGamePositionLost;
-        Vector2 newGamePositionWin;
-        Vector2 seeResultsPosition;
-        User user;
 
-        public StatisticsScreen(Vector2 predatorPosition, Rectangle preyPosition, Rectangle aquariumPosition, float velocity,
-            float angle, bool winOrLose,Game game)
+
+
+
+        public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
+            float userAngle, User2 user)
         {
-            this.simulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, velocity, angle);
-            this.content = game.Content;
-            winOrLose = false;
+
+            this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
+            this.user = user;
+            correctAnswer = true;
         }
-        public void Initialize()
+
+        public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
+            float userAngle, float optimalVelocity, float optimalAngle, User2 user)
         {
-             mainMenuePositionWin = new Vector2((float)0.1665*ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325*ScreenManager.GraphicsDevice.Viewport.Height);
+            this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
+            this.optimalSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, optimalVelocity, optimalAngle);
+            this.user = user;
+            correctAnswer = false;
+        }
 
-             mainMenusePositiionLost = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
+        public override void Initialize()
+        {
+            mainMenuButtonPosition = new Vector2((float)0.01 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.5 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-             retryWin = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
+            retryButtonPosition = new Vector2((float)0.35 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.5 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-             retryLost = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
+            newGameButtonPosition = new Vector2((float)0.7 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.5 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-             newGamePositionLost = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
-
-             newGamePositionWin = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
-
-             seeResultsPosition = new Vector2((float)0.1665 * ScreenManager.GraphicsDevice.Viewport.Width,
-                (float)0.8325 * ScreenManager.GraphicsDevice.Viewport.Height); 
-
-            
+            seeResultsButtonPosition = new Vector2((float)0.7 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.5 * ScreenManager.GraphicsDevice.Viewport.Height);
         }
         //Still waiting for Hegazy to do the buttons for me.
-        public void LoadContent()
+        public override void LoadContent()
         {
-            simulation.LoadContent(content, ScreenManager.GraphicsDevice.Viewport);
-            if (!winOrLose)
-            {
-                mainMenue = Tools3.MainMenuButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
+            userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
+            if (!correctAnswer)
+                optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
 
-                retry = Tools3.MainMenuButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
+            mainMenu = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition,
+                ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Width, user);
 
-                solution = Tools3.MainMenuButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
-            }
+            retry = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, retryButtonPosition,
+                ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Width, user);
+
+            newGame = Mechanect.Exp3.Tools3.NewGameButton(ScreenManager.Game.Content, newGameButtonPosition,
+                ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Width, user);
+
+            if (!correctAnswer)
+                solution = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, seeResultsButtonPosition,
+                    ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Width, user);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            ScreenManager.SpriteBatch.Begin();
+            //userSimulation.Draw(new Rectangle((int)0.7*ScreenManager.GraphicsDevice.Viewport.Width, 
+            //  (int)0.5*ScreenManager.GraphicsDevice.Viewport.Height
+            //, (int) 0.6*ScreenManager.GraphicsDevice.Viewport.Width, 
+            //(int) 0.6*ScreenManager.GraphicsDevice.Viewport.Height),
+            //ScreenManager.SpriteBatch);
+            mainMenu.Draw(ScreenManager.SpriteBatch);
+            retry.Draw(ScreenManager.SpriteBatch);
+            newGame.Draw(ScreenManager.SpriteBatch);
+            if (!correctAnswer)
+                newGame.Draw(ScreenManager.SpriteBatch);
             else
-            {
-                newGame = Tools3.NewGameButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
+                newGame.DrawHand(ScreenManager.SpriteBatch);
 
-                mainMenue = Tools3.MainMenuButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
+            ScreenManager.SpriteBatch.End();
 
-                retry = Tools3.MainMenuButton(content, mainMenuePositionWin, ScreenManager.GraphicsDevice.Viewport.Width,
-                    ScreenManager.GraphicsDevice.Viewport.Width, user);
-            }
         }
 
-        public void Draw()
+        public override void Update(GameTime gametime)
         {
-
+            mainMenu.Update(gametime);
+            retry.Update(gametime);
+            userSimulation.Update(gametime);
         }
 
-        public void Update(GameTime gametime)
-        {
-            simulation.Update(gametime);
-        }
-       
     }
 
-    
+
 }
