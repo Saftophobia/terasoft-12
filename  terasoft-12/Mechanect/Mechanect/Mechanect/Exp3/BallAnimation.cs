@@ -27,11 +27,11 @@ namespace Mechanect.Exp3
         /// Author : Bishoy Bassem, Omar Abdulaal
         /// </remarks>
         public BallAnimation(Ball ball, Environment3 environment, Vector3 velocity)
-            : base(ball, velocity, environment.Friction, LinearMotion.CalculateTime(velocity.Length(), 0, environment.Friction))
+            : base(ball, velocity, Environment3.Friction, LinearMotion.CalculateTime(velocity.Length(), 0, Environment3.Friction))
         {
             this.ball = ball;
             this.environment = environment;
-            Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, environment.Friction, Duration);
+            Vector3 totalDisplacement = LinearMotion.CalculateDisplacement(velocity, Environment3.Friction, Duration);
             Vector3 stopPosition = StartPosition + totalDisplacement;
 
             if (Vector3.Distance(stopPosition, environment.HoleProperty.Position) < (ball.Radius + environment.HoleProperty.Radius))
