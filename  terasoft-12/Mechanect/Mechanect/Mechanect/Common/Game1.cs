@@ -42,11 +42,12 @@ namespace Mechanect
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //fullScreen = true;
-            
+            #region view
             Window.AllowUserResizing = true;
-            if (fullScreen)
-             Graphics.IsFullScreen = true;
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferHeight = 800;
+            Graphics.IsFullScreen = true;
+            #endregion
             user = new User3();
             user2 = new User();
             Constants3.game1 = this;
