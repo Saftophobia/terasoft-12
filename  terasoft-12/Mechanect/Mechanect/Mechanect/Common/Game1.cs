@@ -13,6 +13,7 @@ namespace Mechanect
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        #region InstanceVariables
         GraphicsDeviceManager graphics;
         public GraphicsDeviceManager Graphics
         {
@@ -34,7 +35,7 @@ namespace Mechanect
             set { ;}
         }
         static User user2;
-         Boolean fullScreen = true; //this one is false
+        #endregion
 
         public Game1()
         {
@@ -46,8 +47,10 @@ namespace Mechanect
             graphics.PreferredBackBufferWidth = 800;
             Graphics.IsFullScreen = true;
             #endregion
-            user = new User3();
+            #region Users
+            user = new User();
             user2 = new User();
+            #endregion
             Constants3.game1 = this;
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
@@ -75,19 +78,7 @@ namespace Mechanect
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //screenManager.AddScreen(new PauseScreen(new User3(0.01f), new MKinect()));
-            //screenManager.AddScreen(new InstructionsScreen3());
-           // screenManager.AddScreen(new TeraSoftScreen());
-            //screenManager.AddScreen(new Experiment3(new User3()));
             screenManager.AddScreen(new TeraSoftScreen());
-          //  screenManager.AddScreen(new UserAvatarScreen( new User(), new User(), new MKinect()));
-            //screenManager.AddScreen(new UserAvatarScreen(new User(),new MKinect()));
-            //screenManager.AddScreen(new Experiment2(new User2()));
-            //screenManager.AddScreen(new InstructionsScreen3("Test",new User3()));
-            //screenManager.AddScreen(new Experiment1(new User1(), new User1(), new MKinect()));
-
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
