@@ -2,14 +2,18 @@
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
 using Mechanect.Exp3;
+using ButtonsAndSliders;
 namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-        private string instructions = " Welcome to football Mechanect game made by terasoft \n \nThe point of this game is to shoot the ball such that it reaches the hole with zero velocity, in the beginning you're shown a screen where you can test shooting and see your angle and velocity, press Ok when you're ready";
+        private string instructions = "\n\n\n\n Welcome to football Mechanect game made by terasoft \n The point of this game is to shoot the ball such that it reaches the hole with zero velocity. \n In the beginning you're shown a screen where you can test shooting and see your angle and velocity. \n The avatar on the right shows whether you're standing in the correct position below is the color code \n Green means you're fine, White means you're too far one step and you're disconnected, Red means that not all your skeleton is detected correctly, the kinect device detects from 0.8 to 4 meters";
         private Instruction instruction;
         private User3 user3;
-
+        Texture2D myTexture;
+        Rectangle rect;
+        Button button;
+        float scale;
         public InstructionsScreen3(User3 user3)
         {
             this.user3 = user3;
@@ -29,10 +33,17 @@ namespace Mechanect.Screens
         /// </remarks
         public override void LoadContent()
         {
+            myTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Screens/instructions");
+            scale = ((float)(ScreenManager.GraphicsDevice.Viewport.Width) / (float)myTexture.Width);
+            rect = new Rectangle(0, 0, (int)(scale * myTexture.Width), (int)(scale * myTexture.Height));
             instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
-                ScreenManager.GraphicsDevice, user3);
+                ScreenManager.GraphicsDevice, user3,rect);
             instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
-            instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
+            instruction.LoadContent();
+            button = Tools3.OKButton(ScreenManager.Game.Content,
+            new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 496, ScreenManager.GraphicsDevice.Viewport.Height - 196), ScreenManager.GraphicsDevice.Viewport.Width,
+            ScreenManager.GraphicsDevice.Viewport.Height, user3);
+            base.LoadContent();
         }
 
         /// <summary>
@@ -48,12 +59,13 @@ namespace Mechanect.Screens
         
         public override void Update(GameTime gameTime, bool covered)
         {
-            if (instruction.Button.IsClicked())
+            if (button.IsClicked())
             {
                 ScreenManager.AddScreen(new Settings3(user3));
                 Remove();
             }
-            instruction.Button.Update(gameTime);
+            button.Update(gameTime);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -65,7 +77,13 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
+            ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.Draw(myTexture, rect, Color.White);
+            button.Draw(ScreenManager.SpriteBatch, scale);
+            button.DrawHand(ScreenManager.SpriteBatch);
+            ScreenManager.SpriteBatch.End();
             instruction.Draw(gameTime);
+            base.Draw(gameTime);
         }
         /// <summary>
         /// This is called when you want to exit the screen.
