@@ -30,7 +30,7 @@ namespace ButtonsAndSliders
         /// </remarks>
         /// <param name="texture">The picture of the button when it is not hoverd on.</param>
         /// <param name="animation">The picture of the button when it is hovered on.</param>
-        /// <param name="position">The position of the button, where the center is in the top left corner</param>
+        /// <param name="position">The position of the button, where the center is in the top left corner.</param>
         /// <param name="screenW">The width of the screen.</param>
         /// <param name="screenH">The height of the screen.</param>
         /// <param name="hand">The picture of the hand.</param>
