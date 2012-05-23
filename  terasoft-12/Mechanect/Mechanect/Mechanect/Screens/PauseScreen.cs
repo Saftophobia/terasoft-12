@@ -117,7 +117,7 @@ namespace Mechanect.Screens
 
 
             arrow = content.Load<Texture2D>("Textures/arrow");
-            arrowScale = 0.2f;
+            arrowScale = 0.7f;
             arrowPosition = new Vector2(viewPort.Width - (float)((Math.Sqrt(arrowScale) * arrow.Width)), viewPort.Height / 2 + (float)((Math.Sqrt(arrowScale) * arrow.Height / 2)));
             arrowAngle = 0;
 
