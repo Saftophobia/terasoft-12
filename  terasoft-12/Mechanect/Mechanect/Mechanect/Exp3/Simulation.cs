@@ -98,11 +98,11 @@ namespace Mechanect.Exp3
 
             if (secondAnimationStarted)
             {
-                spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Black, 0, 
+                spriteBatch.DrawString(font, "Replay  ", new Vector2(100, 0), Color.White, 0, 
                     Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
                 if ((int)(animation2.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
                 {
-                    spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
+                    spriteBatch.DrawString(font, "Optimal ", new Vector2(100, font.MeasureString(velocity2).Y), 
                         Color.Red, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
                 }
             }
@@ -110,18 +110,18 @@ namespace Mechanect.Exp3
             {
                 if ((int)(animation1.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
                 {
-                    spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Red, 0, 
+                    spriteBatch.DrawString(font, "Replay  ", new Vector2(100, 0), Color.Red, 0, 
                         Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
                 }
-                spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
-                    Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+                spriteBatch.DrawString(font, "Optimal ", new Vector2(100, font.MeasureString(velocity2).Y),
+                    Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
             }
 
-            spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X, 0),
-                (!secondAnimationStarted) ? Color.Red : Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X + 100, 0),
+                (!secondAnimationStarted) ? Color.Red : Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
-            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X, 
-                font.MeasureString(velocity2).Y), (secondAnimationStarted) ? Color.Red : Color.Black, 0, 
+            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X + 100,
+                font.MeasureString(velocity2).Y), (secondAnimationStarted) ? Color.Red : Color.White, 0, 
                 Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
             spriteBatch.End();
