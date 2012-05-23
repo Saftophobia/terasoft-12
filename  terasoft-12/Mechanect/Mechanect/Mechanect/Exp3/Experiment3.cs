@@ -46,7 +46,7 @@ namespace Mechanect.Exp3
         {
             arriveVelocity = 10;
             firstAnimation = true;
-            user.shootingPosition = new Vector3(0, 3, 62);
+            user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
         }
 
@@ -59,7 +59,7 @@ namespace Mechanect.Exp3
         public override void LoadContent()
         {
 
-            targetCamera = new TargetCamera(new Vector3(0, 70, 195), new Vector3(0,45,0), ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
@@ -68,6 +68,7 @@ namespace Mechanect.Exp3
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
 
+            
             environment.ball = ball;
 
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
@@ -111,15 +112,12 @@ namespace Mechanect.Exp3
                 {
                     pauseScreenShowed = true;
                     FreezeScreen();
-                    ScreenManager.AddScreen(new PauseScreen(user,7,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
+                    ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
+                   
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-                /*if (distance / totalDistance > 1)
-                {
-                    firstAnimation = false;
-                    this.shootVelocity = new Vector3(10, 0, -10);
-                    animation = new BallAnimation(ball, environment, shootVelocity);
-                }*/
+
+
                 if (ball.hasBallEnteredShootRegion())
                 {
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
@@ -127,10 +125,12 @@ namespace Mechanect.Exp3
                     if (user.hasShot && shootVelocity.Length() != 0)
                     {
                         firstAnimation = false;
-                        this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
-                       
+                        this.shootVelocity =
+                            environment.GetVelocityAfterCollision(shootVelocity);
+                        animation = new BallAnimation(ball, environment.HoleProperty, this.shootVelocity, environment.Friction);
+
                     }
-                    animation = new BallAnimation(ball, environment, shootVelocity);
+
                 }
                 if (animation.Finished)
                 {
