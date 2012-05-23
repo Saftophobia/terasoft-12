@@ -70,8 +70,16 @@ namespace ButtonsAndSliders
 
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
+
             Rectangle rectangle = new Rectangle((int) position.X, (int) position.Y, 
                 (int)(scale * texture.Width), (int)(scale * texture.Height));
+            spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, float scaleW, float scaleH)
+        {
+            Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
+                (int)(scaleW * texture.Width), (int)(scaleH * texture.Height));
             spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
         }
 
@@ -225,5 +233,6 @@ namespace ButtonsAndSliders
         {
             spriteBatch.Draw(hand, handPosition, Color.White);
         }
+
     }
 }
