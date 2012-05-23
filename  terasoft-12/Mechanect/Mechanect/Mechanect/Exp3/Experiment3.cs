@@ -58,33 +58,29 @@ namespace Mechanect.Exp3
         public override void LoadContent()
         {
 
-            targetCamera = new TargetCamera(new Vector3(0, 100, 200), new Vector3(0,50,0), ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 70, 195), new Vector3(0,45,0), ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
 
-            ball = new Ball(4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content,0.004f,0.006f);
+            ball = new Ball(4, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
-
-            environment.ball = ball;
-            
+            ball.GenerateBallMass(0.004f, 0.006f);
 
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
             animation = new BallAnimation(ball, environment.HoleProperty, intialVelocity, environment.Friction);
 
-            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.99f, ScreenManager.GraphicsDevice.Viewport.Width * 0.3f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
-
-            //environment = new Environment3(ball.Position, intialVelocity, ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
+            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
             int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
             int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
-  
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(3,
-                screenHeight - 300), screenWidth, screenHeight, user);
 
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(5,
-                screenHeight - 154), screenWidth, screenHeight, user);
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 245,
+                screenHeight - 125), screenWidth, screenHeight, user);
+
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 125,
+                screenHeight - 125), screenWidth, screenHeight, user);
 
             base.LoadContent();
         }
@@ -191,8 +187,8 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
                 ScreenManager.SpriteBatch.Begin();
-                newGame.Draw(ScreenManager.SpriteBatch);
-                mainMenu.Draw(ScreenManager.SpriteBatch);
+                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
+                mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
                 mainMenu.DrawHand(ScreenManager.SpriteBatch);
                 ScreenManager.SpriteBatch.End();
             }
