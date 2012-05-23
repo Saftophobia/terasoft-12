@@ -130,6 +130,7 @@
     <Compile Include="Common\PositionAdjustment.cs" />
     <Compile Include="Common\Program.cs" />
     <Compile Include="Common\User.cs" />
+    <Compile Include="Common\UserAvatar.cs" />
     <Compile Include="Common\VoiceCommands.cs" />
     <Compile Include="Exp1\AvatarprogUI.cs" />
     <Compile Include="Exp1\CountDown.cs" />
@@ -182,7 +183,6 @@
     <Compile Include="Screens\Settings3.cs" />
     <Compile Include="Screens\StatisticScreen2.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
-    <Compile Include="Screens\UserAvatarScreen.cs" />
     <Compile Include="Common\GameScreen.cs" />
     <Compile Include="Common\MKinect.cs" />
     <Compile Include="Common\ScreenManager.cs" />

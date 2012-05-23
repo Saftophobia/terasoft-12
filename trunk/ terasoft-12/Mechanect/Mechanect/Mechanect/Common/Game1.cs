@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-
-
 namespace Mechanect
 {
     /// <summary>
@@ -46,7 +44,7 @@ namespace Mechanect
             Window.AllowUserResizing = true;
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferHeight = 800;
-            Graphics.IsFullScreen = true;
+            Graphics.IsFullScreen = false;
             #endregion
             user = new User3();
             user2 = new User();
