@@ -11,19 +11,9 @@ namespace UI.Cameras
     /// </remarks>
     public abstract class Camera
     {
-        /// <summary>
-        /// the view matrix
-        /// </summary>
-        public Matrix View { get; set; }
-        
-        /// <summary>
-        /// the projection matrix
-        /// </summary>
-        public Matrix Projection { get; set; }
 
-        /// <summary>
-        /// the position of the camera
-        /// </summary>
+        public Matrix View { get; set; }
+        public Matrix Projection { get; set; }
         public Vector3 Position { get; protected set; }
 
         protected GraphicsDevice GraphicsDevice { get; set; }

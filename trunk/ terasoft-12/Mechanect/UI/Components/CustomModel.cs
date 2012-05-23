@@ -13,19 +13,8 @@ namespace UI.Components
     public class CustomModel
     {
 
-        /// <summary>
-        /// the model's position
-        /// </summary>
         public Vector3 Position { get; set; }
-        
-        /// <summary>
-        /// the model's orientation
-        /// </summary>
         public Vector3 Rotation { get; set; }
-        
-        /// <summary>
-        /// the model's scale
-        /// </summary>
         public Vector3 Scale { get; set; }
 
         private Matrix[] modelTransforms;
@@ -89,6 +78,9 @@ namespace UI.Components
             }
         }
 
+        /// <summary>
+        /// creates the intial Bounding Sphere instance
+        /// </summary>
         private void createBoundingSphere()
         {
             BoundingSphere sphere = new BoundingSphere(Vector3.Zero, 0);
