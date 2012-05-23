@@ -9,6 +9,7 @@ using UI.Cameras;
 using UI.Animation;
 using Mechanect.Classes;
 using Physics;
+using Mechanect.Screens;
 using ButtonsAndSliders;
 
 namespace Mechanect.Exp3
@@ -107,7 +108,7 @@ namespace Mechanect.Exp3
                 {
                     pauseScreenShowed = true;
                     FreezeScreen();
-                    //ScreenManager.AddScreen("pausescreen");
+                    ScreenManager.AddScreen(new PauseScreen(user,7,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
                     //add pause screen
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
