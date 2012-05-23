@@ -50,20 +50,15 @@ namespace UI.Animation
         /// <param name="elapsed">time offset from the last update</param>
         public override void Update(TimeSpan elapsed)
         {
-            ElapsedTime += elapsed;
-            if (!Finished())
+            if (ElapsedTime > Duration)
             {
-                model.Position = StartPosition + LinearMotion.CalculateDisplacement(velocity, acceleration, ElapsedTime);
+                Finished = true;
+                return;
             }
+            ElapsedTime += elapsed;
+            model.Position = StartPosition + LinearMotion.CalculateDisplacement(velocity, acceleration, ElapsedTime);
         }
 
-        /// <summary>
-        /// returns true if the animation finished
-        /// </summary>
-        public override bool Finished()
-        {
-            return ElapsedTime > Duration;
-        }
     }
 }
 
