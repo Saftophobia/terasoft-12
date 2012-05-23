@@ -117,10 +117,9 @@ namespace Mechanect.Screens
             Rectangle rect = new Rectangle(0, 0, (int)(scaleW * backGround.Width), (int)(scaleH * backGround.Height));
             spriteBatch.Begin();
             spriteBatch.Draw(backGround, rect, Color.White);
-            OKbutton.Draw(spriteBatch, scaleW, scaleH);
             velocity.Draw(spriteBatch, scaleW, scaleH);
             angle.Draw(spriteBatch, scaleW, scaleH);
-            OKbutton.DrawHand(spriteBatch);
+            OKbutton.Draw(spriteBatch, scaleW, scaleH);
             spriteBatch.End();
 
             base.Draw(gameTime);
