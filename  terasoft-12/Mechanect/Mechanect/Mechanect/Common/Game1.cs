@@ -5,6 +5,8 @@ using Mechanect.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Mechanect.Exp2;
+using Mechanect.Exp1;
 
 namespace Mechanect
 {
@@ -35,6 +37,10 @@ namespace Mechanect
             set { ;}
         }
         static User user2;
+        public static User3 user3;
+        public static User2 user4;
+        public static User1 user5;
+        public static User1 user6;
         #endregion
 
         public Game1()
