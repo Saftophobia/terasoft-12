@@ -58,7 +58,6 @@ namespace Mechanect.Exp3
         /// </remarks>
         public override void LoadContent()
         {
-
             targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
@@ -68,23 +67,13 @@ namespace Mechanect.Exp3
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
 
-            
-            environment.ball = ball;
-
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, environment.Friction);
 
             animation = new BallAnimation(ball, environment, intialVelocity);
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
-            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
-            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
-
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 245,
-                screenHeight - 125), screenWidth, screenHeight, user);
-
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 125,
-                screenHeight - 125), screenWidth, screenHeight, user);
+            InitializeButtons();
 
             base.LoadContent();
         }
@@ -111,32 +100,21 @@ namespace Mechanect.Exp3
                 if (distance / totalDistance > 0.5 && !pauseScreenShowed)
                 {
                     pauseScreenShowed = true;
-                    //FreezeScreen();
-                    //ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
-                   
+                    FreezeScreen();
+                    ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
                 }
                 bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-
-                if (distance / totalDistance > 1)
-                {
-                    firstAnimation = false;
-                    shootVelocity = new Vector3(50, 0, -50);
-                    animation = new BallAnimation(ball, environment, this.shootVelocity);
-                }
-                /*if (ball.hasBallEnteredShootRegion())
+                if (ball.hasBallEnteredShootRegion())
                 {
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
                     Vector3 shootVelocity = user.velocity;
                     if (user.hasShot && shootVelocity.Length() != 0)
                     {
                         firstAnimation = false;
-                        this.shootVelocity =
-                            environment.GetVelocityAfterCollision(shootVelocity);
+                        this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
                         animation = new BallAnimation(ball, environment, this.shootVelocity);
-
                     }
-
-                }*/
+                }
                 if (animation.Finished)
                 {
                     UpdateButtons(gameTime);
@@ -144,7 +122,8 @@ namespace Mechanect.Exp3
             }
             else if (animation.Finished && simulation == null)
             {
-                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity, 
+                    ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
             }
             
             if (simulation != null)
@@ -192,18 +171,41 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
                 DrawButtons();
+                if (simulation.Finished())
+                {
+                    //FreezeScreen();
+                    Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
+                    Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
+                }
             }
-
-            if (simulation.HasFinished())
-            {
-                //FreezeScreen();
-                Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
-                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
-            }
-
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// initializes the experiment's buttons
+        /// </summary>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
+        private void InitializeButtons()
+        {
+            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
+
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 245,
+                screenHeight - 125), screenWidth, screenHeight, user);
+
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 125,
+                screenHeight - 125), screenWidth, screenHeight, user);
+        }
+
+        /// <summary>
+        /// updates the experiment's buttons
+        /// </summary>
+        /// <param name="gameTime">GameTime instance</param>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         private void UpdateButtons(GameTime gameTime)
         {
             mainMenu.Update(gameTime);
@@ -220,6 +222,12 @@ namespace Mechanect.Exp3
             }
         }
 
+        /// <summary>
+        /// draws the experiment's buttons
+        /// </summary>
+        /// <remarks>
+        /// Author : Bishoy Bassem
+        /// </remarks>
         private void DrawButtons()
         {
             ScreenManager.SpriteBatch.Begin();
@@ -227,11 +235,6 @@ namespace Mechanect.Exp3
             mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
-        }
-
-        public override void UnloadContent()
-        {
-
         }
 
     }
