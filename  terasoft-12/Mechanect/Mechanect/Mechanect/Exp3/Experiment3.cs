@@ -12,6 +12,7 @@ using Mechanect.Classes;
 using Physics;
 using Mechanect.Screens;
 using ButtonsAndSliders;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Mechanect.Exp3
 {
@@ -28,6 +29,7 @@ namespace Mechanect.Exp3
 
         private bool pauseScreenShowed;
         private bool firstAnimation;
+        private bool hasWhistled;
 
         private float arriveVelocity;
         private Vector3 shootVelocity;
@@ -35,6 +37,7 @@ namespace Mechanect.Exp3
         private Button mainMenu;
         private Button newGame;
 
+        private SoundEffect whistle, crowd;
         /// <summary>
         /// constructs a new Experiment3 screen
         /// </summary>
@@ -48,6 +51,7 @@ namespace Mechanect.Exp3
             firstAnimation = true;
             user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
+
         }
 
         /// <summary>
@@ -72,6 +76,11 @@ namespace Mechanect.Exp3
             animation = new BallAnimation(ball, environment, intialVelocity);
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
+
+            whistle = ScreenManager.Game.Content.Load<SoundEffect>("whistle");
+
+            crowd = ScreenManager.Game.Content.Load<SoundEffect>("crowd_cheer");
+            crowd.Play();
 
             InitializeButtons();
 
@@ -107,6 +116,11 @@ namespace Mechanect.Exp3
 
                 if (ball.hasBallEnteredShootRegion())
                 {
+                    if (!hasWhistled)
+                    {
+                        whistle.Play();
+                        hasWhistled = true;
+                    }
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
                     Vector3 shootVelocity = user.velocity;
                     if (user.hasShot && shootVelocity.Length() != 0)
