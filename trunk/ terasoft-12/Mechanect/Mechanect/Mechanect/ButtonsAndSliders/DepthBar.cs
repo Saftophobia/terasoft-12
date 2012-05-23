@@ -124,7 +124,7 @@ namespace Mechanect.ButtonsAndSliders
         /// <param name="startColor">the color at the top of the gradient</param>
         /// <param name="endColor">the color at the bottom of the gradient</param>
         /// <returns>returns a color according to the location with respect to the start and end points of the gradient.</returns>
-        public Color GradientColor(int start, int end, int currentPosition, Color startColor, Color endColor)
+        private Color GradientColor(int start, int end, int currentPosition, Color startColor, Color endColor)
         {
             int R = (endColor.R * (currentPosition - start) + startColor.R * (end - currentPosition)) / (end - start);
             int G = (endColor.G * (currentPosition - start) + startColor.G * (end - currentPosition)) / (end - start);
@@ -139,7 +139,7 @@ namespace Mechanect.ButtonsAndSliders
         /// <para>Author: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name ="graphicsDevice">The graphics device of the screen manager</param>
-        public Texture2D CreateBar(GraphicsDevice graphicsDevice)
+        private Texture2D CreateBar(GraphicsDevice graphicsDevice)
         {
             Texture2D gradient = new Texture2D(graphicsDevice, barWidth, barHeight);
             Color[] data = new Color[barHeight];

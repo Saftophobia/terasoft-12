@@ -116,7 +116,7 @@ namespace Mechanect.ButtonsAndSliders
         public void LoadContent(GraphicsDevice graphicsDevice, ContentManager contentManager)
         {
             curve = CreateCurve(graphicsDevice);
-            playerIndicator = contentManager.Load<Texture2D>("ball");
+            playerIndicator = contentManager.Load<Texture2D>("Textures/angleArrow");
         }
 
         #region Create Semicircle
@@ -134,7 +134,7 @@ namespace Mechanect.ButtonsAndSliders
         /// <param name="leftColor"> the color at the start (left side) of the gradient</param>
         /// <param name="rightColor"> the color at the end (right side) of the gradient</param>
         /// <returns>returns the color corresponding to the gradient respect to pixel's position within the angle ranges</returns>
-        public Color CurveColor(int leftAngle, int rightAngle, int currentAngle, Color leftColor, Color rightColor)
+        private Color CurveColor(int leftAngle, int rightAngle, int currentAngle, Color leftColor, Color rightColor)
         {
             int R = (rightColor.R * (currentAngle - leftAngle) + leftColor.R * (rightAngle - currentAngle)) / (rightAngle - leftAngle);
             int G = (rightColor.G * (currentAngle - leftAngle) + leftColor.G * (rightAngle - currentAngle)) / (rightAngle - leftAngle);
@@ -149,7 +149,7 @@ namespace Mechanect.ButtonsAndSliders
         /// <para>Author: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
-        public Texture2D CreateCurve(GraphicsDevice graphicsDevice)
+        private Texture2D CreateCurve(GraphicsDevice graphicsDevice)
         {
             int textureWidth = 2 * curveRadius;
             int textureHeight = curveRadius;
