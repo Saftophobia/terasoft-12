@@ -9,6 +9,7 @@ using UI.Cameras;
 using UI.Animation;
 using Mechanect.Classes;
 using Physics;
+using ButtonsAndSliders;
 
 namespace Mechanect.Exp3
 {
@@ -28,6 +29,9 @@ namespace Mechanect.Exp3
 
         private float arriveVelocity;
         private Vector3 shootVelocity;
+
+        private Button mainMenu;
+        private Button newGame;
 
         /// <summary>
         /// constructs a new Experiment3 screen
@@ -52,6 +56,7 @@ namespace Mechanect.Exp3
         /// </remarks>
         public override void LoadContent()
         {
+
             targetCamera = new TargetCamera(new Vector3(0, 100, 200), new Vector3(0,50,0), ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
@@ -69,6 +74,16 @@ namespace Mechanect.Exp3
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width * 0.99f, ScreenManager.GraphicsDevice.Viewport.Width * 0.3f), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
             //environment = new Environment3(ball.Position, intialVelocity, ScreenManager.SpriteBatch, ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user, ball);
+
+            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
+  
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(3,
+                screenHeight - 300), screenWidth, screenHeight, user);
+
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(5,
+                screenHeight - 154), screenWidth, screenHeight, user);
+
             base.LoadContent();
         }
 
@@ -124,6 +139,16 @@ namespace Mechanect.Exp3
             
             if (simulation != null)
             {
+                mainMenu.Update(gameTime);
+                newGame.Update(gameTime);
+                if (mainMenu.IsClicked())
+                {
+                    //add main menu screen
+                }
+                if (newGame.IsClicked())
+                {
+                    //add Experiment3 screen
+                }
                 simulation.Update(gameTime);
                 if (simulation.Finished())
                 {
@@ -162,6 +187,11 @@ namespace Mechanect.Exp3
             if (simulation != null)
             {
                 simulation.Draw();
+                ScreenManager.SpriteBatch.Begin();
+                newGame.Draw(ScreenManager.SpriteBatch);
+                mainMenu.Draw(ScreenManager.SpriteBatch);
+                mainMenu.DrawHand(ScreenManager.SpriteBatch);
+                ScreenManager.SpriteBatch.End();
             }
             base.Draw(gameTime);
         }
