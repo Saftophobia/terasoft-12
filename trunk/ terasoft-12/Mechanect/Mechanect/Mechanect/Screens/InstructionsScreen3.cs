@@ -8,9 +8,9 @@ namespace Mechanect.Screens
     class InstructionsScreen3 : GameScreen
     {
 private string instructions = "";
-        string header= "\n\n       .Welcome To Mechanect Football Game."+ '\n'
+        string header= "\n\n\n       .Welcome To Mechanect Football Game."+ '\n'
              + "                .By TeraSoft Team."  + '\n'
-               +"                    .GUC.";
+               +"                       .GUC.";
         private string title="\n Game Instructions :- \n\n\n\n";
         private Instruction instruction;
         private User3 user3;
