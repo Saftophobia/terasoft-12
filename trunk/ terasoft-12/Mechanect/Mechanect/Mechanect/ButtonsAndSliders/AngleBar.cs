@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Kinect;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.ButtonsAndSliders
 {
     /// <summary>
     /// A bar that displays Users' current position and the correct range to stand in
     /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Mohamed AbdelAzim</para>
+    /// </remarks>
     class AngleBar
     {
 

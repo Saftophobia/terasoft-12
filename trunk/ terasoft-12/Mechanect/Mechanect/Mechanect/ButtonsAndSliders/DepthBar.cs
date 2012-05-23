@@ -1,15 +1,17 @@
 ﻿using System;
+using Mechanect.Common;
 using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows;
-using Mechanect.Common;
 
 namespace Mechanect.ButtonsAndSliders
 {
     /// <summary>
     /// A bar that displays Users' current position and the correct range to stand in
     /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Mohamed AbdelAzim</para>
+    /// </remarks>
     class DepthBar
     {
 
