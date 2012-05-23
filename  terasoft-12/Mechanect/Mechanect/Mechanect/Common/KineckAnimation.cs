@@ -21,8 +21,8 @@ namespace Mechanect.Common
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="model">the model to animate</param>
-        /// <param name="user">the user which is tracked</param>
+        /// <param name="model">The model with skeleton and bones.</param>
+        /// <param name="user">The instance of the user.</param>
         public KineckAnimation(SkinnedCustomModel model, User user)
         {
             this.model = model;
@@ -34,7 +34,7 @@ namespace Mechanect.Common
         #region Update
 
         /// <summary>
-        /// Updating the movement
+        /// Updating the movement of the model.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
@@ -50,7 +50,7 @@ namespace Mechanect.Common
         #region Animating Bones
 
         /// <summary>
-        /// Animating the the right leg
+        /// Animating the the right leg.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
@@ -73,7 +73,7 @@ namespace Mechanect.Common
 
 
         /// <summary>
-        /// Animating the left leg
+        /// Animating the left leg.
         /// </summary>
         /// <remarks>
         /// <para>Author: AhmeD HegazY</para>
