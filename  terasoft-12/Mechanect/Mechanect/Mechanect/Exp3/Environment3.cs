@@ -144,7 +144,6 @@ namespace Mechanect.Exp3
                 return Constants3.negativeHRadius;
             if (user.assumedLegMass <= 0)
                 return Constants3.negativeLMass;
-            //hole position not before the leg position
             if (hole.Position.Z - user.shootingPosition.Z > 0)
                 return Constants3.negativeHPosZ;
             if (friction <= 0)
@@ -152,18 +151,15 @@ namespace Mechanect.Exp3
             if (ball.Radius > hole.Radius)
                 return Constants3.negativeRDifference;
 
-            var finalPos = Vector3.Zero;
-            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
-
+            Vector3 finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(hole.Position, user.shootingPosition))
                 return Constants3.holeOutOfFarRange;
 
             finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
-
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(hole.Position, user.shootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
-            else
-                return Constants3.solvableExperiment;
+            
+            return Constants3.solvableExperiment;
         }
 
         /// <summary>
