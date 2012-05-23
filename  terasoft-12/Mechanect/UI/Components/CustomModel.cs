@@ -53,7 +53,7 @@ namespace UI.Components
         /// draws the 3d model
         /// </summary>
         /// <param name="camera">a camera instance</param>
-        public void Draw(Camera camera)
+        public virtual void Draw(Camera camera)
         {
             Matrix world = Matrix.CreateScale(Scale) 
                 * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) 
