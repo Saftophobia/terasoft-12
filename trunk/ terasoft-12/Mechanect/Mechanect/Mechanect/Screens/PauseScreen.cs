@@ -151,13 +151,17 @@ namespace Mechanect.Screens
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
 
                     displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "[" +"X:"+ Math.Truncate(holePosition.X) + "," + "Y:0," +"Z:"+ Math.Truncate(holePosition.Z) + "]";
+                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " 
+                     + "[" +"X:"+ Math.Truncate(holePosition.X) + "," + "Y:0," +"Z:"+ Math.Truncate(holePosition.Z) + "]"
+                     +'\n'+"Friction: " + Environment3.Friction;
                 }
                 else
                 {
                     #region GivensString
                     displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "["+"X:"+Math.Truncate(holePosition.X)+","+"Y:0,"+"Z:"+Math.Truncate(holePosition.Z)+"]";
+                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " 
+                        + "["+"X:"+Math.Truncate(holePosition.X)+","+"Y:0,"+"Z:"+Math.Truncate(holePosition.Z)+"]"
+                        + '\n' + "Friction: " + Environment3.Friction ;
                     string shootingValues = "Shooting velocity: " + Math.Truncate(velocity.Length() *Constants3.velocityScale* 1000) / 1000 +" m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     #endregion
