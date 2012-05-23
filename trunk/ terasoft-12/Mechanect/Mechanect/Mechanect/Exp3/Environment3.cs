@@ -270,8 +270,7 @@ namespace Mechanect.Exp3
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
-            //InitializeHole(10);
-            hole = new Hole(Content, device, terrainWidth, terrainHeight, 10, user.shootingPosition);
+            hole = new Hole(Content, device, terrainWidth, terrainHeight, GenerateRadius(angleTolerance), user.shootingPosition);
             CreateHole();
             SetUpVertices();
             LoadEnvironmentContent();
@@ -290,7 +289,7 @@ namespace Mechanect.Exp3
         public void Draw(Camera c, GameTime gameTime)
         {
             DrawEnvironment(c, gameTime);
-            DrawHole(c);
+            hole.Draw(c);
             PlayerModel.Draw(c);
         }
 
@@ -707,42 +706,38 @@ namespace Mechanect.Exp3
         #endregion
 
         #region Hole methods
-        /// <summary>
-        /// Initializes all variables needed to draw the hole.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Khaled Salah </para>
-        ///<param name="radius">The hole radius.</param>
-        ///</remarks>
-        
-        protected void InitializeHole(int radius)
-        {
-            hole = new Hole(Content,device ,terrainWidth ,terrainHeight ,radius ,user.shootingPosition);
-        }
-
 
         /// <summary>
-        /// Draws the 3D hole by rendering each effect in each mesh in the hole model.
+        /// Generates a value for the radius given angle tolerance
         /// </summary>
         /// <remarks>
         ///<para>AUTHOR: Khaled Salah </para>
         ///</remarks>
-        ///<param name="cam">The same camera the environment is viewed from needed to draw the hole model.</param>
-
-        protected void DrawHole(Camera cam)
+        ///<param name="angletolerance">The tolerance value set by the user.</param>
+        ///<returns>integer value which is the radius of the hole </returns>
+        public int GenerateRadius(int angletolerance)
         {
-            hole.Draw(cam);
-        }
+            switch (angletolerance)
+            {
+                case 1:  return 10; 
+                case 2:  return 12; 
+                case 3:  return 14; 
+                case 4:  return 16; 
+                case 5:  return 18; 
+                default: return 10;
+            }
 
+        }
+        /// <summary>
+        /// Makes a real square hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
+        /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        ///<param name="position">The central position where the hole should be made around.</param>
         protected void CreateHole()
         {
-
             int radius = hole.Radius;
-            int xPos = (int)hole.Position.X;
-            int yPos = (int)hole.Position.Y;
-            System.Diagnostics.Debug.WriteLine("The hole model's passed position is " + hole.Position.ToString());
-            System.Diagnostics.Debug.WriteLine("The hole's radius is  " + hole.Radius);
-
             // double angleStep = 1f / radius;
             //    for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
             //    {
@@ -754,8 +749,6 @@ namespace Mechanect.Exp3
                 for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
                 {
                     heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight/2))] - 20;
-              //      vertices[(int)(x + (terrainHeight / 2) * (y + (terrainWidth / 2)))].Position = new Vector3(x, heightData[(int)x, (int)y] - 20, -y);
-                    //vertices[x + y * terrainWidth].Color = Color.Transparent;
                 }
             }
             
