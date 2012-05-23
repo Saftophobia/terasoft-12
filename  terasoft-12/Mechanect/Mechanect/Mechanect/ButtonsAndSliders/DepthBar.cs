@@ -224,7 +224,8 @@ namespace Mechanect.ButtonsAndSliders
         {
             spriteBatch.Draw(bar, position, Color.White);
             for (int i = 0; i < user.Length; i++)
-                spriteBatch.Draw(playerIndicator, position + new Vector2(0, Depth(i)), playerColor[i]);
+                if (Depth(i) > 50)
+                    spriteBatch.Draw(playerIndicator, position + new Vector2(0, (Depth(i) - 50) * barHeight / 400), playerColor[i]);
         }
 
         #endregion
