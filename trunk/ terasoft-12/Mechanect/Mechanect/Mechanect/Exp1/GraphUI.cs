@@ -402,12 +402,12 @@ namespace Mechanect.Exp1
                                     double x = d1 + ((double)(d2 - d1) / (double)2);
                                     if (n < x)
                                     {
-                                        time = timings[i];
+                                        time = timings[i+1];
                                         index = i;
                                     }
                                     else
                                     {
-                                        time = timings[i+1];
+                                        time = timings[i+2];
                                         index = i + 1;
                                     }
                                 }
