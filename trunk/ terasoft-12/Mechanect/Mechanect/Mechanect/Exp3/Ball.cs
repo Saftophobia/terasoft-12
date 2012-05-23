@@ -82,6 +82,23 @@ namespace Mechanect.Exp3
             Rotation = new Vector3(displacement.Length() / (perimeter / 6), (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
+
+        /// <remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Checks whether the ball entered the region user can shoot in.
+        /// </summary>
+        /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
+        public bool hasBallEnteredShootRegion()
+        {
+            float ballPosX = Position.X;
+            float ballPosZ = Position.Z;
+            return ballPosX <= Constants3.maxShootingX && ballPosX >= Constants3.minShootingX &&
+                ballPosZ <= Constants3.maxShootingZ && ballPosZ >= Constants3.minShootingZ;
+
+        }
+        
         /// <summary>
         /// sets the ball height
         /// </summary>
