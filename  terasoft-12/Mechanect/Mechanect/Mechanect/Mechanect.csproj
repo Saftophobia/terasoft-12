@@ -136,7 +136,6 @@
     <Compile Include="Exp1\CountDown.cs" />
     <Compile Include="Exp1\drawstring.cs" />
     <Compile Include="Exp1\Environment1.cs" />
-    <Compile Include="Exp1\exp1finale.cs" />
     <Compile Include="Exp1\Game.cs" />
     <Compile Include="Exp1\Game1b.cs" />
     <Compile Include="Exp1\GameCommands.cs" />
