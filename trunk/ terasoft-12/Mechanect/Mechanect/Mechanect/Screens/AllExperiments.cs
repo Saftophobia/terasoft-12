@@ -75,7 +75,7 @@ namespace Mechanect.Screens
                 (int)(0.3f*screenWidth),(int)(0.3f*screenHeight), content.Load<Texture2D>("Textures/Buttons/hand"),
                 user);
             backgroundTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/background");
-
+            base.LoadContent();
         }
         /// <summary>
         /// perfroms the necessary updates for the AllExperiments screen.
@@ -106,6 +106,7 @@ namespace Mechanect.Screens
                 Game1.user3 = new User3();
                 ScreenManager.AddScreen(new InstructionsScreen3(Game1.user3));
             }
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -134,6 +135,7 @@ namespace Mechanect.Screens
                 (int)(screenHeight * 0.2)), Color.White);
             experiment1Button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
+            base.Draw(gameTime);
         }
 
         /// <summary>
