@@ -88,42 +88,9 @@ namespace Mechanect.Exp3
             this.device = device;
             this.user = user;
             friction = -2f;
+        
         }
 
-        public Environment3(Vector3 initialBallPosition, Vector3 initialBallVelocity, SpriteBatch spriteBatch, ContentManager Content2, GraphicsDevice device,User3 user, Ball ball)
-        {
-            #region dummyInitializations
-            /* the values used here should allow the ball to reach the user's feet.
-             * the velocity is added to the position. friction is reduced
-             * from the Z component of the velocity each time.  
-             */
-            this.user = user;
-            Content = Content2;
-            this.device = device;
-            this.ball = ball;
-           // ball = new Ball(10000.0f, 10001.0f, device, Content);
-            user.shootingPosition = new Vector3(0f, 3, 62f);
-            //friction = 0.5f/3600;
-            wind = 0f;
-            //ball.InitialVelocity = new Vector3(11.25f, 0, 11.25f)/60;
-            user.assumedLegMass = 0.01;
-            
-            #endregion
-            sprite = spriteBatch;
-            Vector3 ballPos = ball.Position;
-
-            ballInitialPosition = initialBallPosition;
-            ballInitialVelocity = initialBallVelocity;
-
-            Vector3 shootingPos = user.shootingPosition;
-            distanceBar = new Bar(new Vector2((0.95f*device.Viewport.Width), (0.5f*device.Viewport.Height)), spriteBatch, new Vector2(ballInitialPosition.X, ballInitialPosition.Z), new Vector2(ballPos.X, ballPos.Z), new Vector2(shootingPos.X, shootingPos.Z), Content);
-            friction = 1.0f;
-
-            PlayerModel = new SkinnedCustomModel(Content2.Load<Model>("dude"), new Vector3(0,3,68), 
-                new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
-            PlayerAnimation = new KineckAnimation(PlayerModel, user);
-            
-        }
 
 
         /// <summary>
@@ -263,8 +230,8 @@ namespace Mechanect.Exp3
         ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadContent()
         {
-            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 3, 68),
-                new Vector3(0, 9.3f, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
+                new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
             PlayerAnimation = new KineckAnimation(PlayerModel, user);
 
             //loads the height data from the height map
