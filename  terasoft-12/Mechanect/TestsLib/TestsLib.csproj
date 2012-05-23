@@ -55,6 +55,7 @@
     <Compile Include="badr\SolvabilityTests.cs" />
     <Compile Include="Bisho\LinearMotionTests.cs" />
     <Compile Include="Cena\MeasureVelocityTests.cs" />
+    <Compile Include="Omar\BallTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
