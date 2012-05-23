@@ -15,7 +15,7 @@ namespace Mechanect.Screens
 {
     class PauseScreen : Mechanect.Common.GameScreen
     {
-
+        #region Cena'sMethods
         #region InstanceVariables
         ContentManager content;
         Viewport viewPort;
@@ -63,12 +63,13 @@ namespace Mechanect.Screens
         string missed;
         Vector2 missedPosition;
         SpriteFont font2;
+        Vector3 holePosition;
         #endregion
-
-        public PauseScreen(User3 user, MKinect kinect, double ballVelocity, double ballMass, double legMass)
+        #region Constructor
+        public PauseScreen(User3 user, double ballVelocity, double ballMass, double legMass, Vector3 holePosition)
         {
             this.user = user;
-            this.kinect = kinect;
+            this.kinect = user.Kinect;
             this.ballVelocity = ballVelocity;
             this.legMass = legMass;
             this.ballMass = ballMass;
@@ -84,11 +85,18 @@ namespace Mechanect.Screens
             countColor = Color.Red;
             missed = "";
             missedPosition = Vector2.Zero;
+            this.holePosition = holePosition;
 
 
         }
-
-
+        #endregion
+        #region Load
+        ///<summary>
+        ///This method loads the textres used in the pause screen.
+        ///</summary>
+        ///<remarks>
+        ///<para>AUTHOR: Cena </para>   
+        ///</remarks>
         public override void LoadContent()
         {
             viewPort = ScreenManager.GraphicsDevice.Viewport;
@@ -116,37 +124,39 @@ namespace Mechanect.Screens
             countPosition = new Vector2(3 * (viewPort.Width / 7), viewPort.Height / 2);
             missedPosition = new Vector2(viewPort.Width / 3, viewPort.Height / 3);
            
-            button = Tools3.OKButton(content, new Vector2(viewPort.Width - 255, 0), viewPort.Width, viewPort.Height, user);
-            
+            button = Tools3.OKButton(content, new Vector2(viewPort.Width - 245, 0), viewPort.Width, viewPort.Height, user);
 
+            base.LoadContent();
 
 
         }
-
-        public override void UnloadContent()
-        {
-
-        }
-
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime, bool covered)
+        #endregion
+        #region Update
+        ///<summary>
+        ///This method updates the positions of the textures each frame.
+        ///</summary>
+        ///<remarks>
+        ///<para>AUTHOR: Cena </para>   
+        ///</remarks>
+        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
             button.Update(gameTime);
             if (!button.IsClicked())
             {
-                if (!user.HasShot()&&!user.hasMissed)
+                if (!user.hasShot&&!user.hasMissed)
                 {
 
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
                     
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                     + (Math.Truncate(legMass * 1000) / 1000);
+                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "[" + Math.Truncate(holePosition.X) + "," + "Y:0," + Math.Truncate(holePosition.Z) + "]";
                 }
                 else
                 {
                     #region GivensString
                     displayedGivens = "Ball Mass: " + ballMass + '\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + Math.Truncate(legMass * 1000) / 1000;
+                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " + "["+Math.Truncate(holePosition.X)+","+"Y:0,"+Math.Truncate(holePosition.Z)+"]";
                     string shootingValues ="Shooting velocity: " + Math.Truncate(velocity.Length() * 1000) / 1000 + " m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     #endregion
@@ -203,15 +213,26 @@ namespace Mechanect.Screens
             else
             {
 
-                user.ResetUserForShootingOrTryingAgain();  
+                user.ResetUserForShootingOrTryingAgain();
+
                 ExitScreen();
             }
 
 
 
-            base.Update(gameTime, covered);
+            base.Update(gameTime);
         }
+        #endregion
+        #region Draw
+        ///<summary>
+        ///This method Draws the textures.
+        ///</summary>
+        ///<remarks>
+        ///<para>AUTHOR: Cena </para>   
 
+        ///</remarks>
+
+        ///<returns>A Vector3: velocity of the user relative to it's mass</returns>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
@@ -219,8 +240,7 @@ namespace Mechanect.Screens
            
 
             spriteBatch.Begin();
-            button.Draw(spriteBatch);
-            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.7f, SpriteEffects.None, 0);
+            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.75f, SpriteEffects.None, 0);
             spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
             for (int i = 0; i < fills.Count; i++)
                 spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
@@ -230,15 +250,23 @@ namespace Mechanect.Screens
             spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.Black);
             spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font2, missed, missedPosition, Color.Red);
+            button.Draw(spriteBatch);
             button.DrawHand(spriteBatch);
 
             spriteBatch.End();
 
-            
 
+            base.Draw(gameTime);
 
         }
-
+        #endregion
+        #region Clear
+        ///<summary>
+        ///This method clears the velocity bar and the user's variables.
+        ///</summary>
+        ///<remarks>
+        ///<para>AUTHOR: Cena </para>   
+        ///</remarks>
         public void Clear()
         {
             fillsPositions.Clear();
@@ -253,7 +281,8 @@ namespace Mechanect.Screens
             countScale = 1;
             missed = "";
         }
-
+        #endregion
+        #endregion
 
         public override void Remove()
         {
