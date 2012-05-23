@@ -153,8 +153,9 @@ namespace Mechanect.Exp3
             
              setSkeleton();
              Skeleton skeleton = USER;
-             if (skeleton != null)
+             if (skeleton.Position.Z != 0)
              {
+                 
                  if (GameScreen.frameNumber % 3 == 0)
                  {
                      StoreTime(gameTime);
@@ -199,11 +200,11 @@ namespace Mechanect.Exp3
                      }
 
                  }
+                 GameScreen.frameNumber++;
 
              }
-             else
-                 ResetUserForShootingOrTryingAgain();
-             GameScreen.frameNumber++;
+            
+             
          }
 
          ///<summary>
