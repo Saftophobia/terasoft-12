@@ -63,7 +63,9 @@ namespace ButtonsAndSliders
         [System.Obsolete("add screen width, to scale the button", false)]
         public void Draw(SpriteBatch spriteBatch)
         {
+            /*
             spriteBatch.Draw(texture.GetTexture(), position, Color.White);
+            */
         }
 
         public void Draw(SpriteBatch spriteBatch, float scale)
