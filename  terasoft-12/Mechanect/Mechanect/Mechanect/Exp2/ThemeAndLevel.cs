@@ -8,190 +8,190 @@ using ButtonsAndSliders;
 
 namespace Mechanect.Exp2
 {
-public class ThemeAndLevel
-{
-
-    public Vector2 themeRectanglePosition { get; set; }
-    private readonly User user;
-    private Texture2D selectedTheme, theme1, outlineFrame;
-    //private Texture2D _theme2;
-    private Texture2D easy, medium, hard, selectedLevel;
-    private int frameTheme, pictureWidth, pictureHeight, frameLevel;
-    public int themeNo, levelNo;
-    ContentManager content;
-    Button themeRightArrow, themeLeftArrow;
-    List<Button> buttons;
-    Button levelRightArrow2, levelLeftArrow;
-    private readonly Vector2 levelRectanglePosition ;
-    public ThemeAndLevel( Vector2 themeRectanglePosition, User user)
+    public class ThemeAndLevel
     {
-        this.user = user;
-        this.themeRectanglePosition = themeRectanglePosition;
-        frameTheme = 0;
-        frameLevel = 0;
-        levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y + 200);
-    }
 
-    /// <summary>
-    /// loading contents and initilizing buttons
-    /// </summary>
-    /// <remarks>
-    /// <para>AUTHOR: Tamer Nabil </para>
-    /// </remarks>
-    /// <param name="screenWidth">screen width</param>
-    /// <param name="screenHeight">screen height</param>
-    ///  <param name="gameContent">Game content</param>
-    public void LoadContent(int screenWidth, int screenHeight, ContentManager gameContent)
-    {
-        content = gameContent;
-        //List that Contains All Buttons
-        buttons = new List<Button>();
-        pictureWidth = 200;
-        pictureHeight = 140;
-        themeNo = 1;
-        levelNo = 1;
-        var buttonWidth = content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width;
-        //Create and Initialize all Buttons.
-
-        var leftArrowPos = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 15);
-        var leftArrowPos2 = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 60 + leftArrowPos.Y);
-
-        themeRightArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-            content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-            new Vector2(themeRectanglePosition.X + buttonWidth + 200 + pictureWidth, themeRectanglePosition.Y + 15),
-            screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
-
-        themeLeftArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"), 
-            content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
-            leftArrowPos, screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
-
-        levelRightArrow2 = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"), 
-            content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-            new Vector2(themeRectanglePosition.X + buttonWidth + 200 + pictureWidth, themeRectanglePosition.Y + 60 + leftArrowPos.Y), 
-            screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
-            
-        levelLeftArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
-            content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
-            leftArrowPos2,screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
-        //Load Textures
-        outlineFrame = content.Load<Texture2D>("Textures/texture");
-        theme1 = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/Theme1");
-        //_theme2 = _content.Load<Texture2D>("Textures/Experiment2/Sliders Images/ball");
-        selectedTheme = theme1;
-
-        easy = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/easy");
-        medium = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/medium");
-        hard = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/hard");
-        selectedLevel = easy;
-        //Add Buttons to the list.
-        buttons.Add(themeRightArrow);
-        buttons.Add(levelRightArrow2);
-        buttons.Add(themeLeftArrow);
-        buttons.Add(levelLeftArrow);
-    }
-
-    /// <summary>
-    /// The update method that update the engine work always
-    /// </summary>
-    /// <remarks>
-    /// <para>AUTHOR: Tamer Nabil </para>
-    /// </remarks>
-    /// <param name="gameTime">gameTime</param>
-    public void Update(GameTime gameTime)
-    {
-        if (themeRightArrow.IsClicked() && frameTheme != 1)
+        public Vector2 themeRectanglePosition { get; set; }
+        private readonly User user;
+        private Texture2D selectedTheme, theme1, outlineFrame;
+        //private Texture2D _theme2;
+        private Texture2D easy, medium, hard, selectedLevel;
+        private int frameTheme, pictureWidth, pictureHeight, frameLevel;
+        public int themeNo, levelNo;
+        ContentManager content;
+        Button themeRightArrow, themeLeftArrow;
+        List<Button> buttons;
+        Button levelRightArrow2, levelLeftArrow;
+        private readonly Vector2 levelRectanglePosition;
+        public ThemeAndLevel(Vector2 themeRectanglePosition, User user)
         {
-            frameTheme = 1;
-            themeNo++;
-            themeRightArrow.Reset();
-        }
-
-        else if (themeLeftArrow.IsClicked() && frameTheme != 0)
-        {
+            this.user = user;
+            this.themeRectanglePosition = themeRectanglePosition;
             frameTheme = 0;
-            themeNo--;
-            themeLeftArrow.Reset();
+            frameLevel = 0;
+            levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y + 200);
         }
-        if (levelRightArrow2.IsClicked() && frameLevel != 3)
+
+        /// <summary>
+        /// loading contents and initilizing buttons
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="screenWidth">screen width</param>
+        /// <param name="screenHeight">screen height</param>
+        ///  <param name="gameContent">Game content</param>
+        public void LoadContent(int screenWidth, int screenHeight, ContentManager gameContent)
         {
-            frameLevel++;
-            levelNo++;
-            levelRightArrow2.Reset();
+            content = gameContent;
+            //List that Contains All Buttons
+            buttons = new List<Button>();
+            pictureWidth = 200;
+            pictureHeight = 140;
+            themeNo = 1;
+            levelNo = 1;
+            var buttonWidth = content.Load<GifAnimation.GifAnimation>("Textures/dummy").GetTexture().Width;
+            //Create and Initialize all Buttons.
+
+            var leftArrowPos = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 15);
+            var leftArrowPos2 = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 60 + leftArrowPos.Y);
+
+            themeRightArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
+                content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
+                new Vector2(themeRectanglePosition.X + buttonWidth + 200 + pictureWidth, themeRectanglePosition.Y + 15),
+                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
+
+            themeLeftArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
+                content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
+                leftArrowPos, screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
+
+            levelRightArrow2 = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
+                content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
+                new Vector2(themeRectanglePosition.X + buttonWidth + 200 + pictureWidth, themeRectanglePosition.Y + 60 + leftArrowPos.Y),
+                screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
+
+            levelLeftArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
+                content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
+                leftArrowPos2, screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
+            //Load Textures
+            outlineFrame = content.Load<Texture2D>("Textures/texture");
+            theme1 = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/Theme1");
+            //_theme2 = _content.Load<Texture2D>("Textures/Experiment2/Sliders Images/ball");
+            selectedTheme = theme1;
+
+            easy = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/easy");
+            medium = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/medium");
+            hard = content.Load<Texture2D>("Textures/Experiment2/Sliders Images/hard");
+            selectedLevel = easy;
+            //Add Buttons to the list.
+            buttons.Add(themeRightArrow);
+            buttons.Add(levelRightArrow2);
+            buttons.Add(themeLeftArrow);
+            buttons.Add(levelLeftArrow);
         }
 
-        else if (levelLeftArrow.IsClicked() && frameLevel != 0)
+        /// <summary>
+        /// The update method that update the engine work always
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="gameTime">gameTime</param>
+        public void Update(GameTime gameTime)
         {
-            frameLevel--;
-            levelNo--;
-            levelLeftArrow.Reset();
+            if (themeRightArrow.IsClicked() && frameTheme != 1)
+            {
+                frameTheme = 1;
+                themeNo++;
+                themeRightArrow.Reset();
+            }
+
+            else if (themeLeftArrow.IsClicked() && frameTheme != 0)
+            {
+                frameTheme = 0;
+                themeNo--;
+                themeLeftArrow.Reset();
+            }
+            if (levelRightArrow2.IsClicked() && frameLevel != 3)
+            {
+                frameLevel++;
+                levelNo++;
+                levelRightArrow2.Reset();
+            }
+
+            else if (levelLeftArrow.IsClicked() && frameLevel != 0)
+            {
+                frameLevel--;
+                levelNo--;
+                levelLeftArrow.Reset();
+            }
+
+            switch (themeNo)
+            {
+                case 1:
+                    selectedTheme = theme1;
+                    break;
+                /* case 2:
+                        _textureStrip = _theme2;
+                        break;*/
+            }
+
+            switch (levelNo)
+            {
+                case 1:
+                    selectedLevel = easy;
+                    break;
+                case 2:
+                    selectedLevel = medium;
+                    break;
+                case 3:
+                    selectedLevel = hard;
+                    break;
+            }
+
+
+            foreach (var b in buttons)
+                b.Update(gameTime);
+
         }
-
-        switch (themeNo)
-        {
-            case 1:
-                selectedTheme = theme1;
-                break;
-            /* case 2:
-                    _textureStrip = _theme2;
-                    break;*/
-        }
-
-        switch (levelNo)
-        {
-            case 1:
-                selectedLevel = easy;
-                break;
-            case 2:
-                selectedLevel = medium;
-                break;
-            case 3:
-                selectedLevel = hard;
-                break;
-        }
-
-
-        foreach (var b in buttons)
-            b.Update(gameTime);
-
-    }
-    /// <summary>
-    /// Draw method update the UI frequently
-    /// </summary>
-    /// <remarks>
-    /// <para>AUTHOR: Tamer Nabil </para>
-    /// </remarks>
-    /// <param name="spriteBatch">spriteBatch</param>
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-        //Draw theme part according to the frame
-        spriteBatch.Draw(selectedTheme, new Vector2(themeRectanglePosition.X + 
-            content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 170,themeRectanglePosition.Y + 10), 
-            new Rectangle(frameTheme, 0, pictureWidth, pictureHeight), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
-           
-        spriteBatch.Draw(outlineFrame, themeRectanglePosition, Color.White);
-        spriteBatch.End();
-
-
-        spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-        //Draw level part according to the frame
-
-        spriteBatch.Draw(selectedLevel, new Vector2(themeRectanglePosition.X + content.Load<GifAnimation.GifAnimation>("Textures/leftArrow")
-            .GetTexture().Width + 200,themeRectanglePosition.Y + 210), 
-            new Rectangle(frameLevel, 0, pictureWidth, pictureHeight), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
-        spriteBatch.Draw(outlineFrame, levelRectanglePosition, Color.White);
-
-        spriteBatch.End();
-
-        //Draw each Button in the list
-        foreach (var b in buttons)
+        /// <summary>
+        /// Draw method update the UI frequently
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="spriteBatch">spriteBatch</param>
+        public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            b.Draw(spriteBatch);
+            //Draw theme part according to the frame
+            spriteBatch.Draw(selectedTheme, new Vector2(themeRectanglePosition.X +
+                content.Load<GifAnimation.GifAnimation>("Textures/leftArrow").GetTexture().Width + 170, themeRectanglePosition.Y + 10),
+                new Rectangle(frameTheme, 0, pictureWidth, pictureHeight), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(outlineFrame, themeRectanglePosition, Color.White);
             spriteBatch.End();
 
-        }
 
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            //Draw level part according to the frame
+
+            spriteBatch.Draw(selectedLevel, new Vector2(themeRectanglePosition.X + content.Load<GifAnimation.GifAnimation>("Textures/leftArrow")
+                .GetTexture().Width + 200, themeRectanglePosition.Y + 210),
+                new Rectangle(frameLevel, 0, pictureWidth, pictureHeight), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(outlineFrame, levelRectanglePosition, Color.White);
+
+            spriteBatch.End();
+
+            //Draw each Button in the list
+            foreach (var b in buttons)
+            {
+                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+                b.Draw(spriteBatch);
+                spriteBatch.End();
+
+            }
+
+        }
     }
- }
 }

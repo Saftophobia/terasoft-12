@@ -1,12 +1,11 @@
-using Mechanect.Common;
-using Microsoft.Xna.Framework;
-using Mechanect.Exp2;
 using ButtonsAndSliders;
+using Mechanect.Common;
 using Mechanect.Exp3;
+using Microsoft.Xna.Framework;
 
 
 
-namespace Mechanect.Screens
+namespace Mechanect.Exp2
 {
     class Settings2 : GameScreen
     {
@@ -48,8 +47,8 @@ namespace Mechanect.Screens
         {
             if (oKbutton.IsClicked())
             {
-
-                //  ScreenManager.AddScreen(new InstructionsScreen2(user));
+                
+                ScreenManager.AddScreen(new InstructionsScreen2(user));
                 Remove();
             }
             oKbutton.Update(gameTime);
