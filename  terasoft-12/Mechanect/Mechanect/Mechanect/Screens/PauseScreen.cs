@@ -252,7 +252,7 @@ namespace Mechanect.Screens
                     Color.White, 0, new Vector2(fills.ElementAt<Texture2D>(i).Width / 2,
                         fills.ElementAt<Texture2D>(i).Height / 2), 1, SpriteEffects.None, 0);
             spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
-            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.Black);
+            spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.DarkViolet);
             spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font2, missed, missedPosition, Color.Red);
             button.Draw(spriteBatch, ((float)viewPort.Width / 1024f) * 0.85f);
