@@ -24,7 +24,18 @@ namespace Mechanect.Exp3
         }
         public Ball ball;
         public User3 user;
-        private float wind;
+        private static float wind;
+        public static float Wind
+        {
+            set
+            {
+                wind = value;
+            }
+            get
+            {
+                return wind;
+            }
+        }
         private static float friction;
         public static float Friction
         {
@@ -113,81 +124,7 @@ namespace Mechanect.Exp3
 
 
 
-        /// <summary>
-        /// This method verifies whether the experiment is solvable.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Ahmed Badr. </para>
-        ///</remarks>
-        /// <returns>Retuns an int that represents the type of the problem with the experiment.</returns>
-        private int IsSolvable()
-        {
-
-            if (ball.Radius <= 0)
-                return Constants3.negativeBRradius;
-            if (ball.Mass <= 0)
-                return Constants3.negativeBMass;
-            if (hole.Radius <= 0)
-                return Constants3.negativeHRadius;
-            if (user.assumedLegMass <= 0)
-                return Constants3.negativeLMass;
-            if (hole.Position.Z - user.shootingPosition.Z > 0)
-                return Constants3.negativeHPosZ;
-            if (friction <= 0)
-                return Constants3.negativeFriction;
-            if (ball.Radius > hole.Radius)
-                return Constants3.negativeRDifference;
-
-            Vector3 finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
-            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(hole.Position, user.shootingPosition))
-                return Constants3.holeOutOfFarRange;
-
-            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
-            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(hole.Position, user.shootingPosition)) //length squared used for better performance than length
-                return Constants3.holeOutOfNearRange;
-            
-            return Constants3.solvableExperiment;
-        }
-
-        /// <summary>
-        /// Generates a solvable experiment.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Ahmed Badr. </para>
-        ///</remarks>
-        public void GenerateSolvable()
-        {
-            if (hole.Position.Z >= Constants3.maxHolePosZ - hole.Radius)
-                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
-            if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX - hole.Radius)
-                hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
-            if (hole.Position.Z <= user.shootingPosition.Z)
-                hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
-       
-            var x = Constants3.solvableExperiment;
-            do
-            {
-                x = IsSolvable();
-                switch (x)
-                {
-                    case Constants3.holeOutOfNearRange: friction++; break;
-                    case Constants3.holeOutOfFarRange: 
-                        if (friction > 1)
-                            friction--;
-                        else if (wind > 1) 
-                            wind--;
-                        else hole.Position = new Vector3(hole.Position.X/2, hole.Position.Y, hole.Position.Z+1); break; 
-                    case Constants3.negativeRDifference: int tmp = (int)ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
-                    case Constants3.negativeLMass: user.assumedLegMass *= -1; break;
-                    case Constants3.negativeBMass: ball.Mass *= -1; break;
-                    case Constants3.negativeBRradius: ball.Radius *= -1; break;
-                    case Constants3.negativeHRadius: hole.Radius *= -1; break;
-                    case Constants3.negativeFriction: friction *= -1; break;
-                    case Constants3.negativeHPosZ: hole.Position = Vector3.Add(hole.Position, new Vector3(0, 0, 1)); break;
-                }
-            } while (x != Constants3.solvableExperiment);    
-        }
-
+ 
 
 
 
