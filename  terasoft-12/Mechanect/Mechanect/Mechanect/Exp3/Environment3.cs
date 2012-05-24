@@ -692,7 +692,7 @@ namespace Mechanect.Exp3
                 case 2:  return 20; 
                 case 3:  return 25; 
                 case 4:  return 30; 
-                default: return 17;
+                default: return 15;
             }
         }
         /// <summary>
@@ -707,6 +707,8 @@ namespace Mechanect.Exp3
         {
             radius =radius / (int)2.5f;
             double angleStep = 1f / radius;
+            int a;
+            int b;
             try
             {
                 for (float x = position.X-radius; x <= position.X + radius; x++)
@@ -715,10 +717,10 @@ namespace Mechanect.Exp3
                     {
                         for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
                             {
-                                int a = (int)Math.Round(radius * Math.Cos(angle));
-                                int b = (int)Math.Round(radius * Math.Sin(angle));
+                                a = (int)Math.Round(radius * Math.Cos(angle));
+                                b = (int)Math.Round(radius * Math.Sin(angle));
                                 heightData[(int)(x+a+ (terrainWidth / 2)), (int)(-z-b + (terrainHeight / 2))] = 
-                                    heightData[(int)(x+a + (terrainWidth / 2)), (int)(- z-b + (terrainHeight / 2))] - 20;
+                                heightData[(int)(x+a + (terrainWidth / 2)), (int)(- z-b + (terrainHeight / 2))] - 20;
                             }
                      }
                  }
