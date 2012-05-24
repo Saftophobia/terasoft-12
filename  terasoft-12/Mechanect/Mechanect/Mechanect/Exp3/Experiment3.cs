@@ -55,6 +55,7 @@ namespace Mechanect.Exp3
             firstAnimation = true;
             user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
+            GenerateSolvable();
         }
 
         /// <summary>
@@ -301,12 +302,18 @@ namespace Mechanect.Exp3
                 return Constants3.negativeFriction;
             if (ball.Radius > environment.HoleProperty.Radius)
                 return Constants3.negativeRDifference;
-
-            Vector3 finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.maxVelocityZ)));
+            
+            Vector3 finalPos = Vector3.Zero; Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
+                new Vector3(0, 0, Constants3.maxVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
+                (float)Constants3.scaleRatio), Environment3.Friction, ball.Position);
+ 
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition))
                 return Constants3.holeOutOfFarRange;
 
-            finalPos = BallFinalPosition(GetVelocityAfterCollision(new Vector3(0, 0, Constants3.minVelocityZ)));
+            finalPos = Vector3.Zero; Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
+                new Vector3(0, 0, Constants3.minVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
+                (float)Constants3.scaleRatio), Environment3.Friction, ball.Position);
+ 
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
