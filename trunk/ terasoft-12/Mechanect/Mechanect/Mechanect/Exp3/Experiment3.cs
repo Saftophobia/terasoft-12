@@ -46,11 +46,15 @@ namespace Mechanect.Exp3
         /// </remarks>
         public Experiment3(User3 user)
         {
+            ball = new Ball(2.5f);
+            ball.GenerateBallMass(0.004f, 0.006f);
+
+            environment = new Environment3(user);
+
             arriveVelocity = 10;
             firstAnimation = true;
             user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
-            environment = new Environment3(user);
         }
 
         /// <summary>
@@ -63,14 +67,13 @@ namespace Mechanect.Exp3
         {
             targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), 
                 ScreenManager.GraphicsDevice);
+
             environment.InitializeUI(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
             environment.LoadContent();
-
-            Model ballModel = ScreenManager.Game.Content.Load<Model>(@"Models/ball");
-            ball = new Ball(ballModel, 2.5f);
+           
+            ball.LoadContent(ScreenManager.Game.Content.Load<Model>(@"Models/ball"));
             ball.GenerateInitialPosition(environment.TerrainWidth, environment.TerrainWidth);
-            ball.GenerateBallMass(0.004f, 0.006f);
-
+           
             environment.ball = ball;
 
             Vector3 initialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
