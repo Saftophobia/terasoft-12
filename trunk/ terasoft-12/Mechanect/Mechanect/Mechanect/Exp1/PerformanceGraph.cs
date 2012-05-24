@@ -27,8 +27,8 @@ namespace Mechanect.Exp1
         private List<float> optimumDisplacement = new List<float>();
         private List<float> optimumVelocity = new List<float>();
         private List<float> optimumAcceleration = new List<float>();
-        private List<String> commandsList;
-        private List<double> timeSpaces;
+        private List<String> commandsList = new List<String>();
+        private List<double> timeSpaces = new List<double>();
         private double totalTime;
         private float maxVelocity;
         private float maxAcceleration;
