@@ -391,7 +391,6 @@ namespace Mechanect.Exp2
                         user.Reset();
                     }
                 }
-                else
                     user.MeasureVelocityAndAngle(gameTime);
             }
             base.Update(gameTime);
