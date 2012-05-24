@@ -6,6 +6,12 @@ using Mechanect.Common;
 
 namespace ButtonsAndSliders
 {
+    /// <summary>
+    /// Button used to perform an action when the user's hand hovers over it.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: AhmeD HegazY</para>
+    /// </remarks>
     public class Button
     {
 
@@ -28,8 +34,8 @@ namespace ButtonsAndSliders
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="texture">The picture of the button when it is not hovered on.</param>
-        /// <param name="animation">The picture of the button when it is hovered on.</param>
+        /// <param name="texture">The picture of the button when it is not selected.</param>
+        /// <param name="animation">The picture of the button when it is selected.</param>
         /// <param name="position">The position of the button, where the center is in the top left corner.</param>
         /// <param name="screenW">The width of the screen.</param>
         /// <param name="screenH">The height of the screen.</param>
@@ -72,7 +78,7 @@ namespace ButtonsAndSliders
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
-        /// <param name="scale">The ratio to scale the width and the height of the button.</param>
+        /// <param name="scale">The ratio used to scale the width and the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
 
@@ -89,8 +95,8 @@ namespace ButtonsAndSliders
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
-        /// <param name="scaleW">The ratio to scale the width of the button.</param>
-        /// <param name="scaleW">The ratio to scale the height of the button.</param>
+        /// <param name="scaleW">The ratio used to scale the width of the button.</param>
+        /// <param name="scaleW">The ratio used to scale the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scaleW, float scaleH)
         {
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
@@ -100,7 +106,7 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Allows the button to run correctly.
+        /// Runs the logic of the button, such as changing the button's picture to the animated one.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -157,7 +163,7 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Changing the button to the animated picture.
+        /// Changes the button to the animated picture.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -169,7 +175,7 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Changing the button to the stopped picture.
+        /// Changes the button to the stopped picture.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -181,19 +187,19 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Checks if the hand of the user's hand is over the button or not.
+        /// Checks if the user's hand is over the button or not.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <returns>Returns true if the user's hand is hovering the button.</returns>
+        /// <returns>Returns true if the user's hand is over the button.</returns>
         private bool CheckCollision()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
             if (skeleton != null)
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH);
-                Rectangle r1 = new Rectangle(hand.X, hand.Y, 20, 20);
+                Rectangle r1 = new Rectangle(hand.X, hand.Y, 5, 5);
                 Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, 
                     texture.GetTexture().Width, texture.GetTexture().Height);
 
@@ -234,6 +240,7 @@ namespace ButtonsAndSliders
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
+        /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
         public void DrawHand(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(hand, handPosition, Color.White);
