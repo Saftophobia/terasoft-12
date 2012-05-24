@@ -26,9 +26,9 @@ namespace ButtonsAndSliders
         /// The constructor used to initialize the button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="texture">The picture of the button when it is not hoverd on.</param>
+        /// <param name="texture">The picture of the button when it is not hovered on.</param>
         /// <param name="animation">The picture of the button when it is hovered on.</param>
         /// <param name="position">The position of the button, where the center is in the top left corner.</param>
         /// <param name="screenW">The width of the screen.</param>
@@ -55,7 +55,7 @@ namespace ButtonsAndSliders
         /// Draws the button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
 
@@ -69,7 +69,7 @@ namespace ButtonsAndSliders
         /// Draws the button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
         /// <param name="scale">The ratio to scale the width and the height of the button.</param>
@@ -86,7 +86,7 @@ namespace ButtonsAndSliders
         /// Draws the button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
         /// <param name="scaleW">The ratio to scale the width of the button.</param>
@@ -103,7 +103,7 @@ namespace ButtonsAndSliders
         /// Allows the button to run correctly.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime)
@@ -141,7 +141,7 @@ namespace ButtonsAndSliders
         /// Used to track the user's hand.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void MoveHand()
         {
@@ -160,7 +160,7 @@ namespace ButtonsAndSliders
         /// Changing the button to the animated picture.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void Animate()
         {
@@ -172,7 +172,7 @@ namespace ButtonsAndSliders
         /// Changing the button to the stopped picture.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void Stop()
         {
@@ -184,7 +184,7 @@ namespace ButtonsAndSliders
         /// Checks if the hand of the user's hand is over the button or not.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <returns>Returns true if the user's hand is hovering the button.</returns>
         private bool CheckCollision()
@@ -207,7 +207,7 @@ namespace ButtonsAndSliders
         /// Checks if the button was clicked or not.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <returns>Returns true if the user clicked on the button.</returns>
         public bool IsClicked()
@@ -220,7 +220,7 @@ namespace ButtonsAndSliders
         /// Resets the status variable to false, which means the button is not clicked.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         public void Reset()
         {
@@ -232,7 +232,7 @@ namespace ButtonsAndSliders
         /// Draws the hand on the screen. It must be called after beginning the SpriteBatch.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         public void DrawHand(SpriteBatch spriteBatch)
         {
