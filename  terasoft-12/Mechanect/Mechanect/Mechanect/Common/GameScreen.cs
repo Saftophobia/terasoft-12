@@ -3,6 +3,7 @@ using Mechanect.Screens;
 using Microsoft.Xna.Framework;
 namespace Mechanect.Common
 {
+    #region ScreenState
     /// <summary>
     /// Represents the screen states.
     /// </summary>
@@ -13,22 +14,23 @@ namespace Mechanect.Common
         Frozen,
         Hidden
     }
+    #endregion
+
     /// <summary>
-    /// This class represents the screen of the game
+    /// This class represents a screen.
     /// </summary>
-    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
+    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     public abstract class GameScreen
     {
         #region Fields and Properties
 
         public static int frameNumber;
         public UserAvatar userAvatar;
-
-        private bool isFrozen;
         public bool IsFrozen
         {
-            get { return isFrozen; }
-            set { isFrozen = value; }
+            get { 
+                return screenState == ScreenState.Frozen;
+            }
         }
 
         private ScreenState screenState;
@@ -41,7 +43,7 @@ namespace Mechanect.Common
         public ScreenManager ScreenManager
         {
             get { return screenManager; }
-            internal set { screenManager = value; }
+            set { screenManager = value; }
         }
         
         public bool IsActive
@@ -56,7 +58,9 @@ namespace Mechanect.Common
         #endregion
 
         #region Initialization
-
+        /// <summary>
+        /// 5o5a
+        /// </summary>
         public virtual void LoadContent() {
             if (showAvatar)
             {
@@ -69,11 +73,16 @@ namespace Mechanect.Common
   
         }
 
+        /// <summary>
+        /// Initializes the GameScreen.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public virtual void Initialize() {
-
-           
         }
-
+        /// <summary>
+        /// Unloads the content of GameScreen.
+        /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public virtual void UnloadContent() { }
         #endregion
 
@@ -92,22 +101,19 @@ namespace Mechanect.Common
         /// Updates the screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
-        /// khaled salah
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
+        /// 5o5a
         public virtual void Update(GameTime gameTime) {
             if (showAvatar)
             {
                     userAvatar.Update(gameTime);  
             }
         }
-        //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
-        //{
-        //    if (IsFrozen)
-        //        return;
-        //}
         
         /// <summary>
         /// Removes the current screen.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public virtual void Remove()
         {
             screenManager.RemoveScreen(this);
@@ -116,6 +122,7 @@ namespace Mechanect.Common
         /// Draws the screen.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
+        /// 5o5a
         public virtual void Draw(GameTime gameTime)
         {
             if(showAvatar)
@@ -130,16 +137,12 @@ namespace Mechanect.Common
                 this.Remove();
         }
 
-
-
         /// <summary>
         /// Freezes the screen. The screen will not be updated.
         /// </summary>
         public void FreezeScreen()
         {
-            //Screen will be drawn but not updated
             screenState = ScreenState.Frozen;
-            IsFrozen = true;
         }
 
         /// <summary>
@@ -148,7 +151,6 @@ namespace Mechanect.Common
         public void UnfreezeScreen()
         {
             screenState = ScreenState.Active;
-            IsFrozen = false;
         }
         #endregion
     }
