@@ -15,11 +15,10 @@ namespace Mechanect.Exp2
              + "                           .By TeraSoft Team."  + '\n'
                +"                                 .GUC.";
         private string title1="\n\n\n\n\n\n      Game Instructions:-";
+        private string title2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n      General Instructions:-";
         private string text1 = "\n\n\n\n\n\n\n\n\n\n\n          1-Goal: Use projectile equations to calculate  angle and velocity  " +
             "\n          that the fish can be thrown by to eat the prey and fall in the aquarium.  \n "
             +"\n          2-Givens: Predator Point,Prey Point,Aquarium point \n"+ 
-            "            \n"
-          +
             "\n          3-Settings: The next screen will tell you how to adjust your position for the game.\n";
         private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n          * The avatar on the top right \n            represents your distance from\n            the screen.\n";
         private string green = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Green: Good.";
@@ -78,6 +77,7 @@ namespace Mechanect.Exp2
             button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, text1, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, text2, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, green, Vector2.Zero, Color.DarkGreen, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
@@ -95,4 +95,5 @@ namespace Mechanect.Exp2
 
     }
 }
+
 
