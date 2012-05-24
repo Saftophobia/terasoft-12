@@ -96,14 +96,7 @@ namespace Mechanect.Common
         public virtual void Update(GameTime gameTime) {
             if (showAvatar)
             {
-                try
-                {
-                    userAvatar.Update(gameTime);
-                }
-                catch (Exception)
-                {
-                    throw new ArgumentException("please call base.Draw() , base.Update(), base.LoadContent() in your methods.... ya noob");
-                }
+                    userAvatar.Update(gameTime);  
             }
         }
         //to be changed to an abstract method when Update(GameTime gametime, bool covered) is removed
