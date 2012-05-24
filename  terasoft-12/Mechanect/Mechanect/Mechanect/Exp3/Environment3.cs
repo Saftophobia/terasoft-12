@@ -688,11 +688,11 @@ namespace Mechanect.Exp3
         {
             switch (angletolerance)
             {
-                case 1:  return 5; 
-                case 2:  return 8; 
-                case 3:  return 11; 
-                case 4:  return 14; 
-                default: return 14;
+                case 1:  return 15; 
+                case 2:  return 20; 
+                case 3:  return 25; 
+                case 4:  return 30; 
+                default: return 17;
             }
         }
         /// <summary>
