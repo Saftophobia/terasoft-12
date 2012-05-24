@@ -650,8 +650,7 @@ namespace Mechanect.Exp3
                             {
                                 a = (int)Math.Round(radius * Math.Cos(angle));
                                 b = (int)Math.Round(radius * Math.Sin(angle));
-                                heightData[(int)(x+a+ (terrainWidth / 2)), (int)(-z-b + (terrainHeight / 2))] = 
-                                heightData[(int)(x+a + (terrainWidth / 2)), (int)(- z-b + (terrainHeight / 2))] - 20;
+                                heightData[(int)(x+a+ (terrainWidth / 2)), (int)(-z-b + (terrainHeight / 2))]-= - 20;
                             }
                      }
                  }
@@ -683,8 +682,7 @@ namespace Mechanect.Exp3
                     for (float z = posZ - (float)Math.Sqrt((radius + x - posX) * (radius - x + posX));
                         z <= posZ + (float)Math.Sqrt((radius + x - posX) * (radius - x + posX)); z++)
                     {
-                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] =
-                            heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] - 20;
+                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -=20;
                     }
                 }
 
@@ -712,7 +710,7 @@ namespace Mechanect.Exp3
                 {
                     for (float z = position.Z - radius; z <= position.Z + radius; z++)
                     {
-                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] = heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] - 20;
+                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -=20;
                     }
                 }
                 hole.Position = new Vector3(hole.Position.X, GetHeight(hole.Position) + 20, hole.Position.Z);
