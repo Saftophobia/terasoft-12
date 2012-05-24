@@ -14,7 +14,7 @@ namespace Mechanect.Exp3
         int terrainHeight;
 
         public Hole(ContentManager content, GraphicsDevice device, int terrainWidth, int terrainHeight, int radius, Vector3 shootingPos)
-            : base(content.Load<Model>(@"Models/holemodel"), Functions.GeneratePosition(radius,terrainWidth,terrainHeight,shootingPos),
+            : base(content.Load<Model>(@"Models/holemodel"), Functions.GeneratePosition(radius,terrainWidth,terrainHeight),
             Vector3.Zero,  new Vector3((float)Constants3.scaleRatio*radius))
         {
             Radius = radius;
