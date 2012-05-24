@@ -175,6 +175,7 @@
     <Compile Include="Screens\CommonPauseScreen.cs" />
     <Compile Include="Screens\Exp1Screens\Exp1.cs" />
     <Compile Include="Screens\Exp1Screens\GraphScreen.cs" />
+    <Compile Include="Screens\Exp1Screens\InstructionsScreen1.cs" />
     <Compile Include="Screens\Exp1Screens\Winnerscreen.cs" />
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />

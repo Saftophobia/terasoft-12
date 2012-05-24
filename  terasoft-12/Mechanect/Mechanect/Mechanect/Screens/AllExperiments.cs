@@ -91,7 +91,7 @@ namespace Mechanect.Screens
                 Remove();
                 Game1.user5 = new User1();
                 Game1.user6 = new User1();
-                ScreenManager.AddScreen(new Experiment1(Game1.user5, Game1.user6, new MKinect()));
+                ScreenManager.AddScreen(new InstructionsScreen1(Game1.user5, Game1.user6));
                 
             }
             if (experiment2Button.IsClicked())
