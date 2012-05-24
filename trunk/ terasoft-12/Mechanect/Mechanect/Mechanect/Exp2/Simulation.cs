@@ -23,6 +23,7 @@ namespace Mechanect.Exp2
         private SpriteFont font;
         private float velocity;
         private float angle;
+        private ContentManager contentManager;
 
         /// <summary>
         /// Generates the Simulation that displays the environment during the projectile motion
@@ -105,9 +106,10 @@ namespace Mechanect.Exp2
         /// <param name ="spriteBatch">The sprite batch of the screen manager.</param>
         public void Draw(Rectangle rectangle, SpriteBatch spriteBatch)
         {
-            environment.Draw(rectangle, spriteBatch);
-            string data = "Velocity = " + velocity + ", Angle = " + angle;
-            spriteBatch.DrawString(font, data, new Vector2(rectangle.X, rectangle.Y), Color.Black);
+            string data = "     Velocity = " + velocity + ", Angle = " + angle;
+            UI.UILib.Write(data, rectangle, spriteBatch, contentManager, font, Color.DarkRed);
+            if (rectangle.Height > 25)
+                environment.Draw(new Rectangle(rectangle.X, rectangle.Y + 25, rectangle.Width, rectangle.Height - 25), spriteBatch);
         }
     }
 }
