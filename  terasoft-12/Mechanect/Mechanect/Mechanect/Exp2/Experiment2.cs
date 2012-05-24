@@ -297,8 +297,8 @@ namespace Mechanect.Exp2
         /// </remarks>
         private void DrawAngVelLabels()
         {
-            String velString = "Velocity = " + Math.Round(user.MeasuredVelocity, 1);
-            String angString = "Angle = " + Math.Round(user.MeasuredAngle, 1);
+            string velString = "Velocity = " + Math.Round(user.MeasuredVelocity, 1);
+            string angString = "Angle = " + Math.Round(user.MeasuredAngle, 1);
 
             SpriteBatch.Begin();
 
