@@ -224,7 +224,6 @@ namespace Mechanect.Exp2
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //Drawing the background since this is the original experiment
-            environment.DrawBackground = true;
 
             //Drawing the Experiment environment
             SpriteBatch.Begin();
