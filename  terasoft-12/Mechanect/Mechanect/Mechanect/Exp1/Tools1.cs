@@ -9,7 +9,7 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Exp1
 {
-    class Tools1
+    public class Tools1
     {
        
         /// <summary>
