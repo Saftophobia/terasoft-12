@@ -51,9 +51,10 @@ namespace Mechanect.Screens
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(gucLogo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - gucLogo.Width * scale) / 1.1f),
-                ((ScreenManager.GraphicsDevice.Viewport.Height - (gucLogo.Height) * scale) / 1.1f)),
-                null, Color.White, 0, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
+            ScreenManager.SpriteBatch.Draw(gucLogo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width
+                - gucLogo.Width * scale) / 1.1f),((ScreenManager.GraphicsDevice.Viewport.Height - (gucLogo.Height)
+                * scale) / 1.1f)), null, Color.White, 0, new Vector2(0, 0), new Vector2(scale, scale),
+                SpriteEffects.None, 0);
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
           
