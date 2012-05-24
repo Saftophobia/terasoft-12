@@ -81,7 +81,7 @@ private string instructions = "";
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
         
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
             if (button.IsClicked())
             {
@@ -126,7 +126,7 @@ private string instructions = "";
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>  
-        public void Remove()
+        public override void Remove()
         {
             base.Remove();
         }

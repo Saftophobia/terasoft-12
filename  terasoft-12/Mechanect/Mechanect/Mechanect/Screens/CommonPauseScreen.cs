@@ -29,8 +29,7 @@ namespace Mechanect.Screens
 
         public override void LoadContent()
         {
-            //I commented this line to have a compilation-error free repo
-            //instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,ScreenManager.GraphicsDevice, user);
+            instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,ScreenManager.GraphicsDevice, user, new Rectangle(0,0,200,200));
             instruction.SpriteFont = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont1");
             instruction.MyTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/screen");
 
@@ -46,14 +45,14 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
 
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
             if (instruction.Button.IsClicked())
             {
-                ExitScreen();
+                Remove();
             }
             instruction.Button.Update(gameTime);
-            base.Update(gameTime, false);
+            base.Update(gameTime);
         }
         /// <summary>
         /// This is called when the game screen should draw itself.
