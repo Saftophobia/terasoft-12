@@ -35,7 +35,6 @@ namespace Mechanect.Exp2
             }
         }
 
-        float size;
 
         Vector2 velocity;
         public Vector2 Velocity

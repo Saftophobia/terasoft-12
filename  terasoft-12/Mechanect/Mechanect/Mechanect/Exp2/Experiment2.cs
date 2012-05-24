@@ -28,7 +28,6 @@ namespace Mechanect.Exp2
         MKinect mKinect;
         Button button;
         Vector2 buttonPosition;
-        int tolerance;
         Boolean ended;
         int milliSeconds;
         Boolean isCopied;
@@ -385,7 +384,7 @@ namespace Mechanect.Exp2
                 if (button != null)
                 {
                     button.Update(gameTime);
-                    if (button.IsClicked() || voiceCommand.GetHeared("go"))
+                    if (button.IsClicked() || voiceCommand.GetHeard("go"))
                     {
                         grayScreen = false;
                         button = null;
