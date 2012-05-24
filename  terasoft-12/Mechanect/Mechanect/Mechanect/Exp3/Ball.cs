@@ -24,7 +24,7 @@ namespace Mechanect.Exp3
             set
             {
                 radius = value;
-                Scale = (radius / BoundingSphere.Radius) * Vector3.One;
+                Scale = (radius / intialBoundingSphere.Radius) * Vector3.One;
             }
         }
 
@@ -38,11 +38,24 @@ namespace Mechanect.Exp3
         /// <remarks>
         /// AUTHOR : Bishoy Bassem.
         /// </remarks>
-        public Ball(Model ballModel, float radius)
-            : base(ballModel, Vector3.Zero, Vector3.Zero, Vector3.One)
+        public Ball(float radius)
+            : base(Vector3.Zero, Vector3.Zero, Vector3.One)
         {
             Radius = radius;
             Mass = 0.004f;
+        }
+
+        /// <summary>
+        /// Loads the ball's 3D model.
+        /// </summary>
+        /// <param name="model">3D model.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
+        public override void LoadContent(Model model)
+        {
+            base.LoadContent(model);
+            Scale = (radius / intialBoundingSphere.Radius) * Vector3.One;
         }
 
         ///<remarks>
