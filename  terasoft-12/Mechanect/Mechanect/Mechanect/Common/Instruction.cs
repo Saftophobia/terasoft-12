@@ -142,23 +142,7 @@ namespace Mechanect
             origin = new Vector2(0f, 0f);
 
         }
-        [System.Obsolete("will be replaced by  public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user,Rectangle rectangle)", false)]
-        /// <summary>
-        /// Constructor of the class Instruction, Sets 
-        /// <remarks>
-        /// <para>Author: Mohamed Raafat & Khaled Salah</para>
-        /// </remarks>
-        /// </summary>
-        public Instruction(string instructions, ContentManager contentManager, SpriteBatch spritebatch, GraphicsDevice device, User user)
-        {
-            this.instructions = instructions;
-            this.origin = new Vector2(0f, 0f);
-            this.contentManager = contentManager;
-            this.spriteBatch = spritebatch;
-            this.device = device;
-            this.user = user;
-            this.button =  Tools3.OKButton(contentManager, ButtonPosition, screenWidth, screenHeight,user);
-        }
+        
 
         /// <summary>
         /// Constructor of the class Instruction, Sets 
