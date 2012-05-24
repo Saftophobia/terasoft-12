@@ -14,7 +14,7 @@ namespace Mechanect.Screens.Exp1Screens
 {
     class Exp1 : Mechanect.Common.GameScreen
     {
-        List<String> gCommands = new List<string>() { "constantDisplacement", "constantAcceleration", "constantVelocity"};//, "increasingAcceleration", "decreasingAcceleration"};
+        public static readonly List<String> gCommands = new List<string>() { "constantDisplacement", "constantAcceleration", "constantVelocity"};//, "increasingAcceleration", "decreasingAcceleration"};
         SpriteFont spritefont1;
         string currentcommand = "";
         List<int> cumtimeslice = new List<int>();
@@ -47,7 +47,6 @@ namespace Mechanect.Screens.Exp1Screens
         int timecounter;
         #endregion
         MKinect kinect;
-        bool talking = false;
         Viewport ViewPort
         {
             get
@@ -120,7 +119,7 @@ namespace Mechanect.Screens.Exp1Screens
             environ1.LoadContent();
             loadcountdown();
             avatarconst = (int)(graphics.DisplayMode.Height * 0.01);
-            this.comm_and_timeslice();
+            this.Initialize_Timeslices();
             base.LoadContent();
         }
 
@@ -152,7 +151,7 @@ namespace Mechanect.Screens.Exp1Screens
                 user1.Velocitylist.Clear();
                 user2.Velocitylist.Clear();
                 user1.Disqualified = user2.Disqualified = user1.Winner = user2.Winner = false;
-                //UI.UILib.SayText("Constant Velocity");
+                
             }
             else
             {
@@ -182,7 +181,7 @@ namespace Mechanect.Screens.Exp1Screens
                     }
 
                    Tools1.CheckTheCommand(timer, user1, user2, timeslice, racecommands,3);
-                   Tools1.GetWinner(user1,user2, (float)(graphics.DisplayMode.Height * 0.91)); // with respect to the track
+                   Tools1.SetWinner(user1,user2, (float)(graphics.DisplayMode.Height * 0.91)); // with respect to the track
 
                    for (int i = 0; i < timeslice.Count(); i++)
                    {
@@ -191,24 +190,9 @@ namespace Mechanect.Screens.Exp1Screens
                            currentcommand = racecommands[i];
                            user1.ActiveCommand = i;
                            user2.ActiveCommand = i;
-                           //UI.UILib.SayText(currentcommand);
+                           
                        }
-                   }
-
-                  /* for (int i = 0; i < timeslice.Count(); i++)
-                   {
-
-                       if (timer == cumtimeslice[i])
-                       {
-                           UI.UILib.SayText(racecommands[user1.ActiveCommand]);
-                           break;
-                       }
-                   }*/
-                    //display commands on screen
-                   if (timer > 10)
-                   {
-                       int b = 0;
-                   }
+                   }                  
                 }
             }
             if (user1.Winner || user2.Winner || (user1.Disqualified && user2.Disqualified))
@@ -245,7 +229,7 @@ namespace Mechanect.Screens.Exp1Screens
                 if (timer < 0)
                 {
                     SpriteBatch.Begin();
-                    countdown.DrawCountdown(SpriteBatch, (int)(graphics.DisplayMode.Width * 0.44), (int)(graphics.DisplayMode.Height * 0.44));
+                    countdown.DrawCountdown(SpriteBatch, (int)(graphics.DisplayMode.Width * 0.5), (int)(graphics.DisplayMode.Height * 0.5));
                     SpriteBatch.End();
                     countdown.PlaySoundEffects();
                 }
@@ -614,11 +598,11 @@ namespace Mechanect.Screens.Exp1Screens
         /// <para>DATE WRITTEN: 15/5/12 </para>
         /// <para>DATE MODIFIED: 24/5/12 </para>
         /// </remarks>
-        public void comm_and_timeslice()
+        public void Initialize_Timeslices()
         {
             for (int i = 0; i < 30; i++) //make commandlist
             {
-                List<string> racecommandshuf = this.gCommands;
+                List<string> racecommandshuf = Exp1.gCommands;
                 Tools1.commandshuffler<string>(racecommandshuf);
                 racecommands = racecommands.Concat<string>(racecommandshuf).ToList<string>();
             }

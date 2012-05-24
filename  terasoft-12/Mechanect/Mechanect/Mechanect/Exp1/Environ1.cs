@@ -33,9 +33,9 @@ namespace Mechanect.Exp1
         /// <summary>
         /// Initializes the Environment, and Calling the Content, Graphicsdevice and the SpriteBatch from the ScreenManager.
         /// </summary>
-        /// <param name="content"></param>
-        /// <param name="device"></param>
-        /// <param name="spriteBatch"></param>
+        /// <param name="content">Initializes content from screenManager</param>
+        /// <param name="device">Initializes graphics device from screenManager</param>
+        /// <param name="spriteBatch">Initializes sprite batch from screenManager</param>
         /// <para>AUTHOR: Safty </para>
         /// <para>DATE WRITTEN: 24/5/12 </para>
         /// <para>DATE MODIFIED: 24/5/12 </para>
@@ -66,8 +66,7 @@ namespace Mechanect.Exp1
             flag2 = new CountDown(Content.Load<Texture2D>("Exp1/2Dcontent/flag2"), (device.DisplayMode.Width / 2) - 100, 0, 50, 50);
             bike1 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) - 45, (int)(device.DisplayMode.Height  * 0.92)));
             bike2 = new Moving2DAvatar(Content.Load<Texture2D>("Exp1/2Dcontent/bike"), new Vector2((device.DisplayMode.Width / 2) + 30, (int)(device.DisplayMode.Height * 0.92)));
-            Chants = Content.Load<SoundEffect>("Exp1/2Dcontent/Crowd1");
-            
+            Chants = Content.Load<SoundEffect>("Exp1/2Dcontent/Crowd1");            
             ChantsInstance = Chants.CreateInstance();
             ChantsInstance.Volume = 0.3f;
         }
@@ -80,8 +79,6 @@ namespace Mechanect.Exp1
         /// </remarks>
         public void Update()
         {
-            //bike1.Move(1);
-            //bike2.Move(2);
             if (!t)//Condition to prevent replaying of the soundtrack
             {
                 ChantsInstance.IsLooped = true;
@@ -91,15 +88,14 @@ namespace Mechanect.Exp1
            
         }
         /// <summary>
-        /// Draws the Environment, Flags, background and Bikes.
+        /// Draws the Environment, Flag, background and Bikes.
         /// </summary>
         /// <para>AUTHOR: Safty </para>
         /// <para>DATE WRITTEN: 24/5/12 </para>
         /// <para>DATE MODIFIED: 24/5/12 </para>
         /// </remarks>
         public void Draw()
-        {
-            
+        {           
             view.Draw(spriteBatch);
             background.Draw(spriteBatch);
             finish.Draw(spriteBatch);
