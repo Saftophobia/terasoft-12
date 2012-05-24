@@ -106,7 +106,7 @@ namespace Mechanect.Screens.Exp1Screens
                 timeslicedouble.Add((double)time);
             } // change this typecasting
            
-            GraphEngine.DrawGraphs(Graph, vel1, time1, vel2, time2, this.racecommands, timeslicedouble, user1.DisqualificationTime, user2.DisqualificationTime, device.DisplayMode.Width, device.DisplayMode.Height, (int)(device.DisplayMode.Height * 1.1));
+            GraphEngine.DrawGraphs(Graph, vel1, time1, vel2, time2, this.racecommands, timeslicedouble, user1.DisqualificationTime, user2.DisqualificationTime, device.DisplayMode.Width, device.DisplayMode.Height, 25);
             
 
             base.Initialize();
