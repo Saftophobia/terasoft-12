@@ -1,3 +1,7 @@
+using Microsoft.Xna.Framework;
+using Mechanect.Common;
+using Microsoft.Xna.Framework.Graphics;
+using Mechanect.Classes;
 using Mechanect.Screens;
 using ButtonsAndSliders;
 using Mechanect.Exp3;
