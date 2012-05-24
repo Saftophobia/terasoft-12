@@ -54,6 +54,7 @@
     <Compile Include="Cameras\TargetCamera.cs" />
     <Compile Include="Components\CustomModel.cs" />
     <Compile Include="Components\SkinnedCustomModel.cs" />
+    <Compile Include="Experiment1\Moving2DAvatar.cs" />
     <Compile Include="UILib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
