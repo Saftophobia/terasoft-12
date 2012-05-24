@@ -173,7 +173,7 @@ namespace Mechanect.Exp2
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
             //loading the button with the initial position
-            buttonPosition = new Vector2(ViewPort.Width - ViewPort.Width / 2.7f, 2 * velAngleFont.MeasureString("A").Y);
+            buttonPosition = new Vector2(ViewPort.Width/2f, 2 * velAngleFont.MeasureString("A").Y);
             button = Tools3.OKButton(Content, buttonPosition, ViewPort.Width, ViewPort.Height, user);
 
             //The sound order needs to be done only once thus will be done in the load content
@@ -183,7 +183,7 @@ namespace Mechanect.Exp2
             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
             var voiceThread = new Thread(voiceCommand.StartAudioStream);
             voiceThread.Start();
-
+            base.LoadContent();
         }
 
 
@@ -241,7 +241,7 @@ namespace Mechanect.Exp2
                 Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2,
                     ViewPort.Height / 2), environment.Win);
 
-
+            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -265,16 +265,16 @@ namespace Mechanect.Exp2
                 velocityTextureScaling, SpriteEffects.None, 0f);
 
             SpriteBatch.Draw(angleTexture, new Vector2(ViewPort.Width - ViewPort.Width * velocityAngleShift -
-                angleTexture.Width * angleTextureScaling, ViewPort.Height * 0.05f), null,
+                angleTexture.Width * angleTextureScaling - ViewPort.Width*0.05f, ViewPort.Height * 0.05f), null,
                 Color.White, 0f, Vector2.Zero, angleTextureScaling, SpriteEffects.None, 0f);
 
             string testString = "Test angle and Velocity";
             string sayString = "Say 'GO' or press OK";
 
-            SpriteBatch.DrawString(velAngleFont, testString, new Vector2((ViewPort.Width / 2), 0), Color.Red, 0f,
+            SpriteBatch.DrawString(velAngleFont, testString, new Vector2((ViewPort.Width / 2.3f), 0), Color.Red, 0f,
                 new Vector2((ViewPort.Width / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
-            SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((ViewPort.Width / 2),
+            SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((ViewPort.Width / 2.3f),
                 velAngleFont.MeasureString(testString).Y), Color.Red, 0f,
                 new Vector2((ViewPort.Width / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
@@ -314,7 +314,7 @@ namespace Mechanect.Exp2
 
 
                 SpriteBatch.DrawString(velAngleFont, angString, new Vector2(ViewPort.Width - (ViewPort.Width *
-                    velocityAngleShift + angleTexture.Width * angleTextureScaling - velAngleFont.MeasureString
+                    velocityAngleShift + angleTexture.Width * angleTextureScaling + ViewPort.Width * 0.054f  - velAngleFont.MeasureString
                     (angString).X * velocityTextureScaling / 2), ViewPort.Height * velocityAngleShift +
                     angleTexture.Height * angleTextureScaling -
                     velAngleFont.MeasureString(angString).Y * velocityTextureScaling / 4),
@@ -374,7 +374,6 @@ namespace Mechanect.Exp2
                     // ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
                     // initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
                     // user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
-
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
@@ -407,6 +406,7 @@ namespace Mechanect.Exp2
                 else
                     user.MeasureAngleAndVelocity(gameTime);
             }
+            base.Update(gameTime);
         }
     }
 
