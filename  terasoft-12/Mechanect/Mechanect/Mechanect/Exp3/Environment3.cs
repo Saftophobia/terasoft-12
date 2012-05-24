@@ -260,18 +260,12 @@ namespace Mechanect.Exp3
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
+            CreateCircularHole(hole.Position, hole.Radius);
+            // CreateAlmostCircularHole(hole.Position, hole.Radius);
+            //CreateSquareHole(hole.Position, hole.Radius);
             SetUpVertices();
             LoadEnvironmentContent();
-
-            
             PlayerModel.LoadContent(Content.Load<Model>("dude"));
-
-            CreateCircularHole(hole.Position, hole.Radius);
-           // CreateAlmostCircularHole(hole.Position, hole.Radius);
-            //CreateSquareHole(hole.Position, hole.Radius);
-
-
-
             //ball.LoadContent();
 
         }
