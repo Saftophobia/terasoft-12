@@ -661,8 +661,8 @@ namespace Mechanect.Exp3
         /// Specifies the point you want to get the height of the terrain at.</param>
         public float GetHeight(Vector3 Position)
         {
-            int xComponent = (int)Position.X + terrainWidth / 2;
-            int zComponent = -(int)Position.Z + terrainHeight / 2;
+            int xComponent = (int)Position.X + (terrainWidth / 2);
+            int zComponent = -(int)Position.Z + (terrainHeight / 2);
             if ((xComponent > 0) && (xComponent < heightData.GetLength(0))
                 && (zComponent > 0) && (zComponent < heightData.GetLength(1)))
             {
