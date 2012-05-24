@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using ButtonsAndSliders;
 using Mechanect.Common;
 using Mechanect.Exp3;
-using Mechanect.Exp2;
-using ButtonsAndSliders;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Exp2
 {
@@ -52,9 +44,8 @@ namespace Mechanect.Exp2
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 24  </para>
         /// </remarks>
-
-
         // Variables that will be used as getters; to get some inherited objects
+        #region: Fields
         Viewport ViewPort
         {
             get
@@ -76,6 +67,7 @@ namespace Mechanect.Exp2
                 return ScreenManager.SpriteBatch;
             }
         }
+        #endregion
 
         // An instance of the environment2 Class (acts as an engine for this class)
         private Environment2 environment;
@@ -105,11 +97,6 @@ namespace Mechanect.Exp2
         private Boolean preyEaten;
 
 
-        // Variables defining the screen Width and Height that will be used in drawing the objects of the experiment
-        private int screenWidth;
-        private int screenHeight;
-
-
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the Content directory.
         /// in adition to initializing some instance variables
@@ -127,7 +114,7 @@ namespace Mechanect.Exp2
             environment = new Environment2();
             initialPredatorPosition = environment.Predator.Location;
             initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y, environment.Prey.Width, environment.Prey.Length);
-            initialAquariumPosition = new Rect(environment.Aquarium.Location.X, environment.Aquarium.Location.Y, environment.Aquarium.Width, environment.Aquarium.Length); 
+            initialAquariumPosition = new Rect(environment.Aquarium.Location.X, environment.Aquarium.Location.Y, environment.Aquarium.Width, environment.Aquarium.Length);
             this.user = user;
             this.mKinect = user.Kinect;
             isCopied = false;
@@ -172,8 +159,6 @@ namespace Mechanect.Exp2
         public override void LoadContent()
         {
             // initializing the screen width and height (just initial values and will be changed later)
-            screenWidth = ViewPort.Width;
-            screenHeight = ViewPort.Height;
             LoadTextures();
 
             grayTextureScaling = new Vector2((float)ViewPort.Width / grayTexture.Width, (float)ViewPort.Height /
@@ -185,12 +170,12 @@ namespace Mechanect.Exp2
             velocityAngleShift = 0.05f;
             //Loading Fonts
             velAngleFont = Content.Load<SpriteFont>("Ariel");
-            
+
             //creating a test environment
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
-            buttonPosition = new Vector2(screenWidth - screenWidth / 2.7f, 0);
-            button = Tools3.OKButton(Content, buttonPosition, screenWidth, screenHeight, user);
+            buttonPosition = new Vector2(ViewPort.Width - ViewPort.Width / 2.7f, 2 * velAngleFont.MeasureString("A").Y);
+            button = Tools3.OKButton(Content, buttonPosition, ViewPort.Width, ViewPort.Height, user);
             //TBC
             // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
 
@@ -234,11 +219,9 @@ namespace Mechanect.Exp2
             environment.DrawBackground = true;
             //Drawing the test environment
             SpriteBatch.Begin();
-            //environment.Draw(new Rectangle(40, (int)(screenHeight * 0.4f), (int)(screenWidth * 0.6f), (int)
-            //(screenHeight * 0.6f)), SpriteBatch);
-            environment.Draw(new Rectangle(0, 0,ViewPort.Width,ViewPort.Height), SpriteBatch);
-            //another test
-            //environment.Draw(new Rectangle(0, 0, ViewPort.Width, ViewPort.Height), SpriteBatch);
+            environment.Draw(new Rectangle(0, (int)(ViewPort.Height * 0.3f), ViewPort.Width, (int)
+            ViewPort.Height), SpriteBatch);
+
             SpriteBatch.End();
             if (grayScreen)
             {
@@ -270,26 +253,28 @@ namespace Mechanect.Exp2
             SpriteBatch.Draw(grayTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, grayTextureScaling,
                 SpriteEffects.None, 0f);
 
-            SpriteBatch.Draw(velocityTexture, new Vector2(screenWidth * velocityAngleShift, screenHeight * 0.05f),
+            SpriteBatch.Draw(velocityTexture, new Vector2(ViewPort.Width * velocityAngleShift, ViewPort.Height * 0.05f),
                 null, Color.White, 0f, Vector2.Zero, velocityTextureScaling, SpriteEffects.None, 0f);
 
-            SpriteBatch.Draw(angleTexture, new Vector2(screenWidth - screenWidth * velocityAngleShift -
-                angleTexture.Width * angleTextureScaling, screenHeight * 0.05f), null, Color.White, 0f, Vector2.Zero,
+            SpriteBatch.Draw(angleTexture, new Vector2(ViewPort.Width - ViewPort.Width * velocityAngleShift -
+                angleTexture.Width * angleTextureScaling, ViewPort.Height * 0.05f), null, Color.White, 0f, Vector2.Zero,
                 angleTextureScaling, SpriteEffects.None, 0f);
 
             string testString = "Test angle and Velocity";
             string sayString = "Say 'GO' or press OK";
 
-            SpriteBatch.DrawString(velAngleFont, testString, new Vector2((screenWidth / 2), 0), Color.Red, 0f,
-                new Vector2((screenWidth / 4), 0), 0.7f, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(velAngleFont, testString, new Vector2((ViewPort.Width / 2), 0), Color.Red, 0f,
+                new Vector2((ViewPort.Width / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
-            SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((screenWidth / 2), velAngleFont.MeasureString
-                (testString).Y), Color.Red, 0f, new Vector2((screenWidth / 4), 0), 0.7f, SpriteEffects.None, 0f);
+            SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((ViewPort.Width / 2), velAngleFont.MeasureString
+                (testString).Y), Color.Red, 0f, new Vector2((ViewPort.Width / 4), 0), 0.7f, SpriteEffects.None, 0f);
 
+
+            button.Draw(SpriteBatch, 0.45f);
+            button.DrawHand(SpriteBatch);
             SpriteBatch.End();
 
-            //TBC
-            //button.Draw(SpriteBatch);
+
         }
 
         /// <summary>
@@ -303,25 +288,24 @@ namespace Mechanect.Exp2
         private void DrawAngVelLabels()
         {
             String velString = "Velocity = " + Math.Round(user.MeasuredVelocity, 2);
-            //I commented this line to have a compilation-error free repo
             String angString = "Angle = " + Math.Round(user.MeasuredAngle, 2);
 
             SpriteBatch.Begin();
 
             if (grayScreen)
             {
-                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(screenWidth * velocityAngleShift +
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2(ViewPort.Width * velocityAngleShift +
                     velocityTexture.Width * velocityTextureScaling - velAngleFont.MeasureString(velString).X *
-                    velocityTextureScaling, screenHeight * velocityAngleShift + velocityTexture.Height *
+                    velocityTextureScaling, ViewPort.Height * velocityAngleShift + velocityTexture.Height *
                     velocityTextureScaling - (velAngleFont.MeasureString(velString).Y * velocityTextureScaling) / 2),
                     Color.Red, 0f, new Vector2(velocityTexture.Width * velocityTextureScaling / 2,
                         velocityTexture.Height * velocityTextureScaling / 2), velocityTextureScaling,
                         SpriteEffects.None, 0f);
 
 
-                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(screenWidth - (screenWidth *
+                SpriteBatch.DrawString(velAngleFont, angString, new Vector2(ViewPort.Width - (ViewPort.Width *
                     velocityAngleShift + angleTexture.Width * angleTextureScaling - velAngleFont.MeasureString
-                    (angString).X * velocityTextureScaling / 2), screenHeight * velocityAngleShift + angleTexture.Height
+                    (angString).X * velocityTextureScaling / 2), ViewPort.Height * velocityAngleShift + angleTexture.Height
                     * angleTextureScaling - velAngleFont.MeasureString(angString).Y * velocityTextureScaling / 4),
                     Color.Red, 0f, new Vector2(angleTexture.Width * angleTextureScaling / 2, angleTexture.Height *
                         angleTextureScaling / 2), velocityTextureScaling, SpriteEffects.None, 0f);
@@ -330,13 +314,13 @@ namespace Mechanect.Exp2
             {
 
                 SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity, 2), new Vector2
-                    (screenWidth - velAngleFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f,
+                    (ViewPort.Width - velAngleFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f,
                     new Vector2(velAngleFont.MeasureString(velString +
                         environment.Velocity + "                    ").X / 2, 0), velocityTextureScaling,
                         SpriteEffects.None, 0f);
 
                 SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle, 2),
-                    new Vector2(screenWidth - velAngleFont.MeasureString(angString).X / 2, 0), Color.Red, 0f,
+                    new Vector2(ViewPort.Width - velAngleFont.MeasureString(angString).X / 2, 0), Color.Red, 0f,
                     new Vector2(velAngleFont.MeasureString(velString + environment.Velocity).X / 2, 0),
                     velocityTextureScaling, SpriteEffects.None, 0f);
             }
@@ -360,9 +344,21 @@ namespace Mechanect.Exp2
                 {
                     this.Remove();
                     if (environment.Win)
-                        ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity, user.MeasuredAngle, user));
+
+                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition,
+                            user.MeasuredVelocity, user.MeasuredAngle, user));
+
+                        //ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                    //    user.MeasuredAngle, user));
+
                     else
-                        ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity, user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+
+                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition,
+                            user.MeasuredVelocity, user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+
+                    // ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                    // user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
@@ -400,5 +396,5 @@ namespace Mechanect.Exp2
 
 }
 
-    
+
 
