@@ -166,7 +166,7 @@ namespace Mechanect.Exp2
         {
             if (list.Count <= 3)
                 return 0;
-            return (1000) * (list[list.Count - 3] / gameTime.TotalGameTime.Milliseconds - startTime);
+            return (float)((1000) * (list[list.Count - 3] / (gameTime.TotalGameTime.TotalMilliseconds - startTime)));
         }
 
         /// <summary>
