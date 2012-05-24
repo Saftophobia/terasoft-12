@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+# Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mechanect", "Mechanect\Mechanect\Mechanect.csproj", "{381BBF5A-322A-434A-9867-2DEBCA749103}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechanectContent", "Mechanect\MechanectContent\MechanectContent.contentproj", "{86D5B048-45DE-4E57-A784-B816A9166EE4}"
