@@ -63,7 +63,8 @@ namespace Mechanect.Exp3
             targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), 
                 ScreenManager.GraphicsDevice);
 
-            environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
+            environment = new Environment3(user);
+            environment.InitializeUI(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
             environment.LoadContent();
 
             Model ballModel = ScreenManager.Game.Content.Load<Model>(@"Models/ball");
