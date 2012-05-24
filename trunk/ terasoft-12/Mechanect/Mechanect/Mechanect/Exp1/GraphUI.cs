@@ -142,12 +142,14 @@ namespace Mechanect.Exp1
         /// <returns>void</returns>
         public static void DrawLabels(SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font)
         {
-            spriteBatch.DrawString(font, "Displacement", new Vector2(5, 20), Color.Black);
-            spriteBatch.DrawString(font, "Velocity", new Vector2(340, 20), Color.Black);
-            spriteBatch.DrawString(font, "Acceleration", new Vector2(640, 20), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(270, 325), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(600, 325), Color.Black);
-            spriteBatch.DrawString(font, "Time", new Vector2(930, 325), Color.Black);
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
+            spriteBatch.DrawString(font, "Displacement", new Vector2(Percentage(width, 0.48), Percentage(height, 3.07)), Color.Black);
+            spriteBatch.DrawString(font, "Velocity", new Vector2(Percentage(width, 33.2), Percentage(height, 3.07)), Color.Black);
+            spriteBatch.DrawString(font, "Acceleration", new Vector2(Percentage(width, 62.5), Percentage(height, 3.07)), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(Percentage(width, 26.36), Percentage(height, 50)), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(Percentage(width, 58.59), Percentage(height, 50)), Color.Black);
+            spriteBatch.DrawString(font, "Time", new Vector2(Percentage(width, 90.82), Percentage(height, 50)), Color.Black);
         }
 
         /// <remarks>
@@ -166,18 +168,20 @@ namespace Mechanect.Exp1
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 50),
-                new Vector2(50, 570));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 50),
-                new Vector2(380, 570));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 50),
-                new Vector2(710, 570));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(50, 299),
-                new Vector2(316, 299));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(380, 299),
-                new Vector2(646, 299));
-            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(710, 299),
-                new Vector2(976, 299));
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 4.9), Percentage(height, 7.7)),
+                new Vector2(Percentage(width, 4.9), Percentage(height, 87.7)));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 37.2), Percentage(height, 7.7)),
+                new Vector2(Percentage(width, 37.2), Percentage(height, 87.7)));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 69.4), Percentage(height, 7.7)),
+                new Vector2(Percentage(width, 69.4), Percentage(height, 87.7)));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 4.9), Percentage(height, 46.2)),
+                new Vector2(Percentage(width, 30.9), Percentage(height, 46.2)));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 37.2), Percentage(height, 46.2)),
+                new Vector2(Percentage(width, 63.1), Percentage(height, 46.2)));
+            DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(Percentage(width, 69.4), Percentage(height, 46.2)),
+                new Vector2(Percentage(width, 95.4), Percentage(height, 46.2)));
         }
 
         /// <remarks>
@@ -196,27 +200,29 @@ namespace Mechanect.Exp1
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
-            int counter = 309;
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
+            int counter = Percentage(width, 30.17);
             for (int i = 0; i <= 2; i++)
             {
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 293),
-                new Vector2(counter + 7, 300));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 307),
-                new Vector2(counter + 7, 300));
-                counter += 330;
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, Percentage(height, 45.07)),
+                new Vector2(counter + Percentage(width, 0.68), Percentage(height, 46.15)));
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, Percentage(height, 47.23)),
+                new Vector2(counter + Percentage(width, 0.68), Percentage(height, 46.15)));
+                counter += Percentage(width, 32.226);
             }
-            counter = 40;
+            counter = Percentage(width, 3.9);
             for (int i = 0; i <= 2; i++)
             {
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 60),
-                new Vector2(counter + 10, 50));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 60),
-                new Vector2(counter + 8, 50));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 560),
-                new Vector2(counter + 10, 570));
-                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + 10 + 8, 560),
-                new Vector2(counter + 8, 570));
-                counter += 330;
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, Percentage(height, 9.23)),
+                    new Vector2(counter + Percentage(width, 0.97), Percentage(height, 7.69)));
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + Percentage(width, 1.75), Percentage(height, 9.23)),
+                    new Vector2(counter + Percentage(width, 0.78), Percentage(height, 7.69)));
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, Percentage(height, 86.15)),
+                    new Vector2(counter + Percentage(width, 0.97), Percentage(height, 87.69)));
+                DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter + Percentage(width, 1.75), Percentage(height, 86.15)),
+                    new Vector2(counter + Percentage(width, 0.78), Percentage(height, 87.69)));
+                counter += Percentage(width, 32.226);
             }
         }
 
@@ -236,20 +242,22 @@ namespace Mechanect.Exp1
         public static void DrawXLabels(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            int counter = 35;
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
+            int counter = Percentage(width, 3.41);
             for (int i = 0; i <= 2; i++)
             {
                 switch (i)
                 {
-                    case 1: counter = 365; break;
-                    case 2: counter = 695; break;
-                    default: counter = 35; break;
+                    case 1: counter = Percentage(width, 35.64); ; break;
+                    case 2: counter = Percentage(width, 67.87); ; break;
+                    default: counter = Percentage(width, 3.41); ; break;
                 }
                 for (int j = 0; j <= 4; j++)
                 {
                     string formatted = g.GetXAxis()[j].ToString("N2");
-                    spriteBatch.DrawString(font2, formatted + "", new Vector2(counter - 5, 308), Color.Black);
-                    counter += 67;
+                    spriteBatch.DrawString(font2, formatted + "", new Vector2(counter - Percentage(width, 0.48), Percentage(height, 47.38)), Color.Black);
+                    counter += Percentage(width, 6.54); ;
                 }
             }
         }
@@ -270,39 +278,41 @@ namespace Mechanect.Exp1
         public static void DrawYLabels(PerformanceGraph g, SpriteBatch spriteBatch, GraphicsDevice GraphicsDevice, SpriteFont font2)
         {
             Texture2D blank = new Texture2D(GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
             //+ve part of the y-axis
-            int y = 10;
+            int y = 0;
             double[] current = g.YAxisDis(); ;
             for (int i = 0; i <= 2; i++)
             {
-                int counter = 60;
+                int counter = Percentage(height, 9.23);
                 switch (i)
                 {
-                    case 1: y = 335; current = g.YAxisVel(); break;
-                    case 2: y = 665; current = g.YAxisAcc(); break;
-                    default: y = 10; current = g.YAxisDis(); break;
+                    case 1: y = Percentage(width, 32.71); current = g.YAxisVel(); break;
+                    case 2: y = Percentage(width, 64.94); current = g.YAxisAcc(); break;
+                    default: y = 0; current = g.YAxisDis(); break;
                 }
                 for (int j = 4; j >= 1; j--)
                 {
                     spriteBatch.DrawString(font2, current[j].ToString("N2") + "", new Vector2(y, counter), Color.Black);
-                    counter += 60;
+                    counter += Percentage(height, 9.23);
                 }
             }
             //-ve part of the y-axis
             for (int i = 0; i <= 2; i++)
             {
-                int counter = 350;
+                int counter = Percentage(height, 53.84);
                 switch (i)
                 {
-                    case 1: y = 335; current = g.YAxisVel(); break;
-                    case 2: y = 665; current = g.YAxisAcc(); break;
-                    default: y = 10; current = g.YAxisDis(); break;
+                    case 1: y = Percentage(width, 32.71); ; current = g.YAxisVel(); break;
+                    case 2: y = Percentage(width, 64.94); ; current = g.YAxisAcc(); break;
+                    default: y = 0; current = g.YAxisDis(); break;
                 }
                 for (int j = 1; j <= 4; j++)
                 {
                     double n = -1 * current[j];
                     spriteBatch.DrawString(font2, n.ToString("N2") + "", new Vector2(y, counter), Color.Black);
-                    counter += 60;
+                    counter += Percentage(height, 9.23);
                 }
             }
         }
@@ -329,49 +339,51 @@ namespace Mechanect.Exp1
             DrawArrows(g, spriteBatch, GraphicsDevice);
             DrawXLabels(g, spriteBatch, GraphicsDevice, font2);
             DrawYLabels(g, spriteBatch, GraphicsDevice, font2);
+            int width = GraphicsDevice.Viewport.Width;
+            int height = GraphicsDevice.Viewport.Height;
             //drawing the marks on the X-axis
-            int counter = 50;
+            int counter = Percentage(width, 4.88);
             for (int i = 0; i <= 2; i++)
             {
                 switch (i)
                 {
-                    case 1: counter = 380; break;
-                    case 2: counter = 710; break;
-                    default: counter = 50; break;
+                    case 1: counter = Percentage(width, 37.1); break;
+                    case 2: counter = Percentage(width, 69.33); break;
+                    default: counter = Percentage(width, 4.88); break;
                 }
                 for (int j = 0; j <= 4; j++)
                 {
-                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, 295), new Vector2(counter, 305));
-                    counter += 64;
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(counter, Percentage(height, 45.38)), new Vector2(counter, Percentage(height, 46.92)));
+                    counter += Percentage(width, 6.25);
                 }
             }
             //drawing the marks on the Y-axis
-            int y = 50;
+            int y = Percentage(width, 4.88);
             for (int i = 0; i <= 2; i++)
             {
-                int counter2 = 68;
+                int counter2 = Percentage(height, 10.46);
                 switch (i)
                 {
-                    case 1: y = 380; break;
-                    case 2: y = 710; break;
-                    default: y = 50; break;
+                    case 1: y = Percentage(width, 37.1); break;
+                    case 2: y = Percentage(width, 69.33); break;
+                    default: y = Percentage(width, 4.88); break;
                 }
                 for (int j = 1; j <= 9; j++)
                 {
-                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - 7, counter2), new Vector2(y + 5, counter2));
-                    counter2 += 58;
+                    DrawLine(spriteBatch, blank, 2, Microsoft.Xna.Framework.Color.Black, new Vector2(y - Percentage(width, 0.68), counter2), new Vector2(y + Percentage(width, 0.48), counter2));
+                    counter2 += Percentage(height, 9);
                 }
             }
             //drawing the legend
-            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Red, new Vector2(130, 580),
-                new Vector2(180, 580));
-            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Blue, new Vector2(460, 580),
-                new Vector2(510, 580));
-            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Yellow, new Vector2(790, 580),
-                new Vector2(840, 580));
-            spriteBatch.DrawString(font, "Player 1", new Vector2(185, 573), Color.Red);
-            spriteBatch.DrawString(font, "Player 2", new Vector2(515, 573), Color.Blue);
-            spriteBatch.DrawString(font, "Optimum", new Vector2(845, 573), Color.Yellow);
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Red, new Vector2(Percentage(width, 12.69), Percentage(height, 89.23)),
+                new Vector2(Percentage(width, 17.57), Percentage(height, 89.23)));
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Blue, new Vector2(Percentage(width, 44.92), Percentage(height, 89.23)),
+                new Vector2(Percentage(width, 49.8), Percentage(height, 89.23)));
+            DrawLine(spriteBatch, blank, 3, Microsoft.Xna.Framework.Color.Yellow, new Vector2(Percentage(width, 77.14), Percentage(height, 89.23)),
+                new Vector2(Percentage(width, 82.03), Percentage(height, 89.23)));
+            spriteBatch.DrawString(font, "Player 1", new Vector2(Percentage(width, 18.06), Percentage(height, 88.15)), Color.Red);
+            spriteBatch.DrawString(font, "Player 2", new Vector2(Percentage(width, 50.29), Percentage(height, 88.15)), Color.Blue);
+            spriteBatch.DrawString(font, "Optimum", new Vector2(Percentage(width, 82.51), Percentage(height, 88.15)), Color.Yellow);
         }
 
         /// <remarks>
