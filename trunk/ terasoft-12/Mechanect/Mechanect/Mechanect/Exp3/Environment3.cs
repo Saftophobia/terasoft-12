@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using UI.Cameras;
 using UI.Components;
 using Mechanect.Common;
+using Physics;
 namespace Mechanect.Exp3
 {
     public class Environment3
@@ -252,12 +253,13 @@ namespace Mechanect.Exp3
             PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
                 new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
             PlayerAnimation = new KineckAnimation(PlayerModel, user);
-
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
-            hole = new Hole(Content, device, terrainWidth, terrainHeight, GenerateRadius(angleTolerance));
-            CreateCircularHole(hole.Position,hole.Radius);
+            int holeRadius = GenerateRadius(angleTolerance);
+            Vector3 holePosition = Functions.GeneratePosition(holeRadius, terrainWidth, terrainHeight);
+            hole = new Hole(holeRadius, holePosition, terrainWidth, terrainHeight);
+            CreateCircularHole(holePosition, holeRadius);
            // CreateAlmostCircularHole(hole.Position, hole.Radius);
             //CreateSquareHole(hole.Position, hole.Radius);
             SetUpVertices();
@@ -277,6 +279,7 @@ namespace Mechanect.Exp3
         public void Draw(Camera c, GameTime gameTime)
         {
             DrawEnvironment(c, gameTime);
+            hole.InitialzeUI(Content, device);
             hole.Draw(c);
             PlayerModel.Draw(c);
         }
@@ -615,7 +618,7 @@ namespace Mechanect.Exp3
         /// </remarks>
         /// <param name="angletolerance">The tolerance value set by the user.</param>
         /// <returns>integer value which is the radius of the hole </returns>
-        public int GenerateRadius(int angletolerance)
+        public static int GenerateRadius(int angletolerance)
         {
             switch (angletolerance)
             {
@@ -626,6 +629,7 @@ namespace Mechanect.Exp3
                 default: return 15;
             }
         }
+
         /// <summary>
         /// Makes a square hole with circular surroundings in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
         /// </summary>
@@ -636,33 +640,33 @@ namespace Mechanect.Exp3
         /// <param name="radius">The radius of the hole.</param>
         protected void CreateAlmostCircularHole(Vector3 position, int radius)
         {
-            radius =radius / (int)2.5f;
+            radius = radius / (int)2.5f;
             double angleStep = 1f / radius;
             int a;
             int b;
             try
             {
-                for (float x = position.X-radius; x <= position.X + radius; x++)
+                for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
                 {
-                    for (float z = position.Z-radius; z <= position.Z + radius; z++)
+                    for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
                     {
                         for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
-                            {
-                                a = (int)Math.Round(radius * Math.Cos(angle));
-                                b = (int)Math.Round(radius * Math.Sin(angle));
-                                heightData[(int)(x+a+ (terrainWidth / 2)), (int)(-z-b + (terrainHeight / 2))]-= - 20;
-                            }
-                     }
-                 }
-                hole.Position = new Vector3(hole.Position.X, GetHeight(hole.Position) + 20, hole.Position.Z);
+                        {
+                            a = (int)Math.Round(radius * Math.Cos(angle));
+                            b = (int)Math.Round(radius * Math.Sin(angle));
+                            heightData[(int)(x + a + (terrainWidth / 2)), (int)(-z - b + (terrainHeight / 2))] -= -20;
+                        }
+                    }
+                }
+                hole.Position = new Vector3(position.X, GetHeight(position) + 21, position.Z);
             }
-             
+
             catch (IndexOutOfRangeException)
             {
                 CreateAlmostCircularHole(position, radius);
             }
         }
-        
+
         /// <summary>
         /// Makes a real circular hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
         /// </summary>
@@ -673,8 +677,8 @@ namespace Mechanect.Exp3
         /// <param name="radius">The radius of the hole.</param>
         protected void CreateCircularHole(Vector3 position, int radius)
         {
-            float posX = position.X;
-            float posZ = position.Z;
+            float posX = hole.Position.X;
+            float posZ = hole.Position.Z;
             try
             {
                 for (float x = posX - radius; x <= posX + radius; x++)
@@ -682,11 +686,11 @@ namespace Mechanect.Exp3
                     for (float z = posZ - (float)Math.Sqrt((radius + x - posX) * (radius - x + posX));
                         z <= posZ + (float)Math.Sqrt((radius + x - posX) * (radius - x + posX)); z++)
                     {
-                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -=20;
+                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -= 20;
                     }
                 }
 
-                hole.Position = new Vector3(posX, GetHeight(hole.Position) + 20, posZ);
+                hole.Position = new Vector3(posX, GetHeight(position) + 21, posZ);
             }
             catch (IndexOutOfRangeException)
             {
@@ -706,14 +710,14 @@ namespace Mechanect.Exp3
         {
             try
             {
-                for (float x = position.X - radius; x <= position.X + radius; x++)
+                for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
                 {
-                    for (float z = position.Z - radius; z <= position.Z + radius; z++)
+                    for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
                     {
-                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -=20;
+                        heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -= 20;
                     }
                 }
-                hole.Position = new Vector3(hole.Position.X, GetHeight(hole.Position) + 20, hole.Position.Z);
+                hole.Position = new Vector3(hole.Position.X, GetHeight(position) + 21, hole.Position.Z);
             }
             catch (IndexOutOfRangeException)
             {
@@ -721,7 +725,6 @@ namespace Mechanect.Exp3
             }
         }
         #endregion
-
         #region Ball Control Methods
 
 
