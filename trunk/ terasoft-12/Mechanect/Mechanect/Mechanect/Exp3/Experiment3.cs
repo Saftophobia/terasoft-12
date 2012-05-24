@@ -67,13 +67,15 @@ namespace Mechanect.Exp3
             environment.LoadContent();
 
             ball = new Ball(2.5f, ScreenManager.Game.Content);
-            ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
+            ball.GenerateInitialPosition(environment.TerrainWidth, environment.TerrainWidth);
             ball.GenerateBallMass(0.004f, 0.006f);
+
             environment.ball = ball;
-            Vector3 intialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
+
+            Vector3 initialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
                 arriveVelocity, Environment3.Friction);
 
-            animation = new BallAnimation(ball, environment, intialVelocity);
+            animation = new BallAnimation(ball, environment, initialVelocity);
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, 
                 ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, 
@@ -169,7 +171,7 @@ namespace Mechanect.Exp3
             if (firstAnimation)
                 return;
             
-            if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
+            if (!ball.InsideTerrain(environment.TerrainWidth, environment.TerrainHeight))
                 animation.Stop();
             
             if (animation.Finished && simulation == null)
