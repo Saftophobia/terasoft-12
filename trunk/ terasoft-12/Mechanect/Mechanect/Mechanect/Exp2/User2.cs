@@ -182,7 +182,10 @@ namespace Mechanect.Exp2
         /// <returns>bool, True if hand has stopped, false otherwise</returns>
         private bool HandStopped(List<float> angleList)
         {
-            return angleList[angleList.Count - 1] - angleList[angleList.Count - 2] < 0.3;
+            if (angleList.Count < 3)
+                return false;
+            else
+                return angleList[angleList.Count - 1] - angleList[angleList.Count - 2] < 0.3;
         }
 
 
