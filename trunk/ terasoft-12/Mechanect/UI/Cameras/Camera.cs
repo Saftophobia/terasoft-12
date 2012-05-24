@@ -16,8 +16,6 @@ namespace UI.Cameras
         public Matrix Projection { get; set; }
         public Vector3 Position { get; protected set; }
 
-        protected GraphicsDevice GraphicsDevice { get; set; }
-
         /// <summary>
         /// Intializes the camera's attributes.
         /// </summary>
@@ -27,9 +25,8 @@ namespace UI.Cameras
         /// </remarks>
         public Camera(GraphicsDevice graphicsDevice)
         {
-            this.GraphicsDevice = graphicsDevice;
-            this.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 
-                graphicsDevice.Viewport.AspectRatio, 0.1f, 1000000.0f);
+            Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 
+                graphicsDevice.Viewport.AspectRatio,0.1f,1000000.0f);
         }
 
         /// <summary>
