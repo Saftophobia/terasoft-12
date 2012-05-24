@@ -210,7 +210,7 @@ namespace Mechanect.Common
         /// <returns>
         /// Int number which is the index of this user in the array.
         /// </returns>
-        public int getUserindex(User user)
+        public static int getUserindex(User user, User[] users)
         {
             int userindex = 0;
             for (int i = 0; i < users.Length; i++)
@@ -234,7 +234,7 @@ namespace Mechanect.Common
         /// </param>
         public void UpdateAvatar(Texture2D texture, User user)
         {
-            int userindex = getUserindex(user);
+            int userindex = getUserindex(user,users);
             if (user.USER != null)
             {
                 if (depth[userindex] < maxDepth / 4)
