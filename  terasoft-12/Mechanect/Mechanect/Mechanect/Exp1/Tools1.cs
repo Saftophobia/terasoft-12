@@ -486,64 +486,7 @@ namespace Mechanect.Exp1
              return true;
          }
 
-        /// <summary>
-        /// Gets Y position of the Knee every frame and returns the knee speed at the equivalent Frame
-        /// </summary>
-        /// <param name="kneeposition">Y coordinate of the knee position from kinect</param>
-         /// <returns>knee speed at the equivalent Frame</returns>
-         /// <remarks>
-         /// <para>AUTHOR: Safty</para>
-         /// <para>DATE WRITTEN: 15/5/12 </para>
-         /// <para>DATE MODIFIED: 15/5/12 </para>
-         /// </remarks>
-         public static void getKneespeed(List<float> kneeposition, List<float> playerdisplacement)
-         {
-
-             if (kneeposition.Count() == 0 || kneeposition.Count() == 1)
-             {
-                 //do nothing
-             }
-             if (kneeposition.Count() == 2)
-             {
-                 
-
-             }
-             else
-             {
-
-             }
-
-
-             return;
-         }
-         
-        /// <summary>
-        /// converts kneespeed list to displacement list
-        /// </summary>
-        /// <param name="kneespeed">Speed of the knee on specific frame</param>
-        /// <returns>linear displacement which the avatar should move on screen</returns>
-        /// <remarks>
-        /// <para>AUTHOR: Safty</para>
-        /// <para>DATE WRITTEN: 15/5/12 </para>
-        /// <para>DATE MODIFIED: 15/5/12 </para>
-        /// </remarks>
-         public static List<float> TransitionalDisplacment(List<float> kneespeed)
-         {
-             return null;
-         }
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
 
         }
 
