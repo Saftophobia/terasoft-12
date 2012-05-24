@@ -156,11 +156,11 @@ namespace Mechanect.Exp3
              Skeleton skeleton = USER;
              if (skeleton != null)
              {
-                 
-                 if (GameScreen.frameNumber % 3 == 0)
+
+                 if (!hasShot && !hasMissed)
                  {
                      StoreTime(gameTime);
-                     if (!hasShot && !hasMissed)
+                     if (GameScreen.frameNumber % 3 == 0)
                      {
                          if (hasJustStarted)
                          {
