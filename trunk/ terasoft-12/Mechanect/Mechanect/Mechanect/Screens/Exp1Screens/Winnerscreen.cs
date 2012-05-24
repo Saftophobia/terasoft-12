@@ -45,7 +45,19 @@ namespace Mechanect.Screens.Exp1Screens
         SpriteFont spritefont1;
         string winningstring;
 
-
+        /// <summary>
+        /// Class Constructor.
+        /// </summary>
+        /// <param name="user1">Player 1</param>
+        /// <param name="user2">Player 2</param>
+        /// <param name="device">Graphics Device to be called from the Screen manager</param>
+        /// <param name="racecommands">Race Commands for Graphs</param>
+        /// <param name="timeslice">Time slice of each command for the Graphs </param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public Winnerscreen(User1 user1,User1 user2,GraphicsDevice device,List<string> racecommands,List<int> timeslice)
         {
             this.user1 = user1;
@@ -54,7 +66,14 @@ namespace Mechanect.Screens.Exp1Screens
             this.racecommands = racecommands;
             this.timeslice = timeslice;
         }
-
+        /// <summary>
+        /// Initializes the Graph.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Initialize()
         {
             spritefont1 = Content.Load<SpriteFont>("SpriteFont1");
@@ -93,6 +112,14 @@ namespace Mechanect.Screens.Exp1Screens
             base.Initialize();
 
         }
+        /// <summary>
+        /// Loads the Textures from the content manager.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void LoadContent()
         {
             winningstring = "";
@@ -105,6 +132,15 @@ namespace Mechanect.Screens.Exp1Screens
            
             base.LoadContent();
         }
+        /// <summary>
+        /// Updates the Screen's logic.
+        /// </summary>
+        /// <param name="gameTime">game time for synchronization </param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -140,6 +176,15 @@ namespace Mechanect.Screens.Exp1Screens
             }
             base.Update(gameTime);
         }
+        /// <summary>
+        /// Draws the Winner status followed by Graphs.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
            //Draw the Background

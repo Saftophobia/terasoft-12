@@ -74,17 +74,44 @@ namespace Mechanect.Screens.Exp1Screens
         User1 user1, user2;
         float timer = -4;
         CountDown countdown;
+
+        /// <summary>
+        /// Class constructor.
+        /// </summary>
+        /// <param name="user1">Player 1 </param>
+        /// <param name="user2">Player 2</param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public Exp1(User1 user1, User1 user2)
         {
             this.user1 = user1;
             this.user2 = user2;
         }
+        /// <summary>
+        /// Initializes the Kinect.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Initialize()
         {
             kinect = new MKinect();
             isTwoPlayers = true;
             base.Initialize();
         }
+        /// <summary>
+        /// Loads the textures needed for this Screen from the content manager.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void LoadContent()
         {
             spritefont1 = Content.Load<SpriteFont>("SpriteFont1");
@@ -96,6 +123,19 @@ namespace Mechanect.Screens.Exp1Screens
             this.comm_and_timeslice();
             base.LoadContent();
         }
+
+
+
+
+        /// <summary>
+        /// Updates the logic of the game, including Skeleton selection, game commands representation, Countdown and Disqualification.
+        /// </summary>
+        /// <param name="gameTime">Game time for Synchronization issues</param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {          
             environ1.Update();
@@ -178,6 +218,16 @@ namespace Mechanect.Screens.Exp1Screens
             }
             base.Update(gameTime);
         }
+
+        /// <summary>
+        /// Draws the Countdown, Race environment and the Commands.
+        /// </summary>
+        /// <param name="gameTime">Game time for Synchronization issues</param>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             
@@ -210,6 +260,14 @@ namespace Mechanect.Screens.Exp1Screens
             base.Draw(gameTime);
 
         }
+        /// <summary>
+        /// Load the countdown textures from the Content Manager.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void loadcountdown()
         {
             Texture2D Texthree = Content.Load<Texture2D>("3");
@@ -231,7 +289,15 @@ namespace Mechanect.Screens.Exp1Screens
                 user2.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 1));     
         }
 
-
+       
+        /// <summary>
+        /// converts left knee positions to velocity list.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void getspeedleft()
         {
             if (user1.Kneepos.Count() != 0)
@@ -302,6 +368,15 @@ namespace Mechanect.Screens.Exp1Screens
                 }
             }
         }
+        
+        /// <summary>
+        /// converts Right knee positions to velocity list.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void getspeedright()
         {
             if (user1.Kneeposr.Count() != 0)
@@ -372,6 +447,15 @@ namespace Mechanect.Screens.Exp1Screens
                 }
             }
         }
+
+        /// <summary>
+        /// converts left knee positions to velocity list.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void getspeedleft2()
         {
             if (user2.Kneepos.Count() != 0)
@@ -441,6 +525,15 @@ namespace Mechanect.Screens.Exp1Screens
                 }
             }
         }
+       
+        /// <summary>
+        /// converts Right knee positions to velocity list.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void getspeedright2()
         {
 
@@ -512,6 +605,15 @@ namespace Mechanect.Screens.Exp1Screens
             }
         }
         #endregion
+
+        /// <summary>
+        /// Initializes the commulative time array and the shuffled race commands to be used.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Safty</para>
+        /// <para>DATE WRITTEN: 15/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void comm_and_timeslice()
         {
             for (int i = 0; i < 30; i++) //make commandlist

@@ -30,14 +30,29 @@ namespace Mechanect.Exp1
         
         
         Boolean t = false;
-
+        /// <summary>
+        /// Initializes the Environment, and Calling the Content, Graphicsdevice and the SpriteBatch from the ScreenManager.
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="device"></param>
+        /// <param name="spriteBatch"></param>
+        /// <para>AUTHOR: Safty </para>
+        /// <para>DATE WRITTEN: 24/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public Environ1(ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.Content = content;
             this.device = device;
             this.spriteBatch = spriteBatch;
         }
-
+        /// <summary>
+        /// Loads the Textures from the Content Manager.
+        /// </summary>
+        /// <para>AUTHOR: Safty </para>
+        /// <para>DATE WRITTEN: 24/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void LoadContent()
         {
             spriteBatch = new SpriteBatch(this.device);
@@ -56,6 +71,13 @@ namespace Mechanect.Exp1
             ChantsInstance = Chants.CreateInstance();
             ChantsInstance.Volume = 0.3f;
         }
+        /// <summary>
+        /// Updates the Logic of the Environment, including the Cheers.
+        /// </summary>
+        /// <para>AUTHOR: Safty </para>
+        /// <para>DATE WRITTEN: 24/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void Update()
         {
             //bike1.Move(1);
@@ -68,7 +90,13 @@ namespace Mechanect.Exp1
             }
            
         }
-
+        /// <summary>
+        /// Draws the Environment, Flags, background and Bikes.
+        /// </summary>
+        /// <para>AUTHOR: Safty </para>
+        /// <para>DATE WRITTEN: 24/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
         public void Draw()
         {
             
