@@ -40,6 +40,9 @@ namespace Mechanect.Exp2
         int milliSeconds;
         Boolean isCopied;
 
+        private Vector2 initialPredatorPosition;
+        private Rect initialPreyPosition;
+        private Rect initialAquariumPosition;
 
         /// <summary>
         /// Instance Variables
@@ -122,7 +125,9 @@ namespace Mechanect.Exp2
         {
 
             environment = new Environment2();
-
+            initialPredatorPosition = environment.Predator.Location;
+            initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y, environment.Prey.Width, environment.Prey.Length);
+            initialAquariumPosition = new Rect(environment.Aquarium.Location.X, environment.Aquarium.Location.Y, environment.Aquarium.Width, environment.Aquarium.Length); 
             this.user = user;
             this.mKinect = user.Kinect;
             isCopied = false;
@@ -353,11 +358,11 @@ namespace Mechanect.Exp2
                 milliSeconds += gameTime.ElapsedGameTime.Milliseconds;
                 if (milliSeconds > 3000)
                 {
-                    //this.Remove();
-                    //if (environment.win)
-                    //    screenmanager.addscreen(new exp2.statisticsscreen());
-                    //else
-                    //    screenmanager.addscreen(new exp2.statisticsscreen());
+                    this.Remove();
+                    if (environment.Win)
+                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity, user.MeasuredAngle, user));
+                    else
+                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity, user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
