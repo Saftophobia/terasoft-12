@@ -210,6 +210,7 @@ namespace Mechanect.Exp2
                     shooting = false;
                     beforeHip = true;
                     angleList.Clear();
+                    return;
                 }
 
                 if (!shooting && beforeHip && currentAngle > 0)
