@@ -173,7 +173,7 @@ namespace Mechanect.Exp2
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
             //loading the button with the initial position
-            buttonPosition = new Vector2(ViewPort.Width/2f, 2 * velAngleFont.MeasureString("A").Y);
+            buttonPosition = new Vector2(ViewPort.Width/2.5f, 2 * velAngleFont.MeasureString("A").Y);
             button = Tools3.OKButton(Content, buttonPosition, ViewPort.Width, ViewPort.Height, user);
 
             //The sound order needs to be done only once thus will be done in the load content
