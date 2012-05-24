@@ -7,6 +7,12 @@ using UI.Cameras;
 
 namespace UI.Components
 {
+    /// <summary>
+    /// Represents a 3D model with skin and bones.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: AhmeD HegazY</para>
+    /// </remarks>
     public class SkinnedCustomModel : CustomModel
     {
         # region Fields
@@ -31,7 +37,7 @@ namespace UI.Components
         /// <param name="model">The model with skin and skeleton.</param>
         /// <param name="position">The position of the model.</param>
         /// <param name="rotation">The rotation of the model.</param>
-        /// <param name="scale">The scale of the model</param>
+        /// <param name="scale">The scale of the model.</param>
         public SkinnedCustomModel(Vector3 position, Vector3 rotation, Vector3 scale)
             : base(position, rotation, scale)
         { }
@@ -65,7 +71,7 @@ namespace UI.Components
         #region Update and Draw
 
         /// <summary>
-        /// Updates the model if any achanges occurred to its skin or bones.
+        /// Updates the model if any changes occurred to its skin or bones.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -120,7 +126,7 @@ namespace UI.Components
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <param name="camera">Applies the camer's view and projection to the model.</param>        
+        /// <param name="camera">Applies the camera's view and projection to the model.</param>        
         public override void Draw(Camera camera)
         {
             Matrix[] bones = skinTransforms;
@@ -152,12 +158,12 @@ namespace UI.Components
         #region Animation
 
         /// <summary>
-        /// moving a specific bone 
+        /// Moves a specific bone.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="boneName">The name of the bone, same as in the model.</param>
+        /// <param name="boneName">The name of the bone which is the same as the one in the model.</param>
         /// <param name="offset">The number of extra bone information.</param>
         /// <param name="bend">The binding of the bone in 3D.</param>
         public void MoveBone(string boneName, int offset, Vector3 bend)
