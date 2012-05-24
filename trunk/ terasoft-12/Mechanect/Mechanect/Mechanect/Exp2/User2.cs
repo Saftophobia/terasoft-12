@@ -171,14 +171,29 @@ namespace Mechanect.Exp2
 
             return (float)measuredVelocity;
         }
-
+        /// <summary>
+        /// Helper method to update the velocity being measured according to the angle being measured
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="gametime"></param>
+        /// <param name="angleTimeList"></param>
+        /// <param name="angle"></param>
         private void UpdateVelocity(GameTime gametime, List<Vector2> angleTimeList, float angle)
         {
             if (angleTimeList.Count == 5)
                 angleTimeList.RemoveAt(0);
             angleTimeList.Add(new Vector2((float)angle, (float)gametime.TotalGameTime.TotalSeconds));
         }
-
+        /// <summary>
+        /// Helper method to detect when will the hand stop and the user stopped shooting
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="angleTimeList"></param>
+        /// <returns></returns>
         private bool HandStopped(List<Vector2> angleTimeList)
         {
             return angleTimeList[angleTimeList.Count - 1].X - angleTimeList[angleTimeList.Count - 2].X < 0.5;
