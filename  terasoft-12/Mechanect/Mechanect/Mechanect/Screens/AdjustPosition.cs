@@ -11,16 +11,16 @@ namespace Mechanect.Screens
 
         #region Variables
 
-        User[] user;
-        Color[] userColor;
-        int gameID;
-        Button button;
-        SpriteFont font;
+        private User[] user;
+        private Color[] userColor;
+        private int gameID;
+        private Button button;
+        private SpriteFont font;
 
-        DepthBar depthBar;
-        AngleBar angleBar;
+        private DepthBar depthBar;
+        private AngleBar angleBar;
 
-        Texture2D background;
+        private Texture2D background;
         /// <summary>
         /// Getter for the Users' State
         /// </summary>
@@ -188,7 +188,7 @@ namespace Mechanect.Screens
         ///</para>
         ///</remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
