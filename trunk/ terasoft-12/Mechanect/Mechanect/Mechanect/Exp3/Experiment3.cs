@@ -305,14 +305,14 @@ namespace Mechanect.Exp3
             
             Vector3 finalPos = Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
                 new Vector3(0, 0, Constants3.maxVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
-                (float)Constants3.scaleRatio), Environment3.Friction, ball.Position);
+                (float)Constants3.velocityScale), Environment3.Friction, ball.Position);
  
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition))
                 return Constants3.holeOutOfFarRange;
 
             finalPos = Vector3.Zero; Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
                 new Vector3(0, 0, Constants3.minVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
-                (float)Constants3.scaleRatio), Environment3.Friction, ball.Position);
+                (float)Constants3.velocityScale), Environment3.Friction, ball.Position);
  
             if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
