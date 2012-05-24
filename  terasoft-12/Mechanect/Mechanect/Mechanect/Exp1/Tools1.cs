@@ -459,7 +459,7 @@ namespace Mechanect.Exp1
              List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
              for (int i = 1; i < accelerations.Count; i++)
-                 if ((accelerations[i] <= (accelerations[i - 1] - currentTolerance))
+                 if ((accelerations[i] <= (accelerations[i - 1] - currentTolerance)))
                     return false;
              return (accelerations.Count != 0);
          }
