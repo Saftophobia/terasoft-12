@@ -35,7 +35,8 @@ namespace Mechanect.Exp2
         /// <param name="scale">The scaling of the texture</param>
         public void DrawTexture(Texture2D texture2D, Vector2 position, float angle, Vector2 scale)
         {
-            SpriteBatch.Draw(texture2D, position, null, Color.White, angle, new Vector2(texture2D.Width, texture2D.Height)/2, scale, SpriteEffects.None, 0);
+            SpriteBatch.Draw(texture2D, position, null, Color.White, angle,
+                new Vector2(texture2D.Width, texture2D.Height)/2, scale, SpriteEffects.None, 0);
         }
 
 
