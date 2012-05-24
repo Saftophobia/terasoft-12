@@ -103,7 +103,7 @@ namespace Mechanect.Exp2
         /// <param name="user">Takes an instance of User2 </param>
         public Experiment2(User2 user)
         {
-
+            user.Reset();
             environment = new Environment2();
             initialPredatorPosition = environment.Predator.Location;
             initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y,
@@ -129,6 +129,7 @@ namespace Mechanect.Exp2
         /// <param name="aquariumPosition">Rect, the rectangle that represents the position of the aquarium</param>
         public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
         {
+            user.Reset();
             environment = new Environment2(predatorPosition, preyPosition, AquariumPosition);
             initialPredatorPosition = environment.Predator.Location;
             initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y,
@@ -352,17 +353,14 @@ namespace Mechanect.Exp2
                 if (milliSeconds > 3000)
                 {
                     this.Remove();
-                    float measuredVelocity = user.MeasuredAngle;
-                    float measuredAngle = user.MeasuredAngle;
-                    user.Reset();
                     if (environment.Win)
                         ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, 
-                            initialPreyPosition, initialAquariumPosition, measuredVelocity,
-                            measuredAngle, user));
+                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                            user.MeasuredAngle, user));
                     else
                         ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
-                            initialPreyPosition, initialAquariumPosition, measuredVelocity,
-                            measuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                            user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
                     
                 }
             }
