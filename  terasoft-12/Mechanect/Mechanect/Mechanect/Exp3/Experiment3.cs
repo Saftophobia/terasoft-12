@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 using UI.Cameras;
 using UI.Animation;
 using UI.Components;
@@ -12,7 +10,7 @@ using Mechanect.Classes;
 using Physics;
 using Mechanect.Screens;
 using ButtonsAndSliders;
-using Microsoft.Xna.Framework.Audio;
+
 
 namespace Mechanect.Exp3
 {
@@ -38,12 +36,13 @@ namespace Mechanect.Exp3
         private Button newGame;
 
         private SoundEffect whistle, crowd;
+
         /// <summary>
-        /// constructs a new Experiment3 screen
+        /// Creates a new Experiment3 game screen.
         /// </summary>
-        /// <param name="user">user</param>
+        /// <param name="user">User</param>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         public Experiment3(User3 user)
         {
@@ -51,11 +50,10 @@ namespace Mechanect.Exp3
             firstAnimation = true;
             user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
-
         }
 
         /// <summary>
-        /// loads the experiment's content
+        /// Loads the experiment's environment and buttons.
         /// </summary>
         /// <remarks>
         /// Author : Bishoy Bassem
@@ -70,7 +68,7 @@ namespace Mechanect.Exp3
             ball = new Ball(2.5f, ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
-            environment.ball = ball;
+
             Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, Environment3.Friction);
 
             animation = new BallAnimation(ball, environment, intialVelocity);
@@ -88,59 +86,18 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// updates the experiment's screen
+        /// Updates the experiment's screen.
         /// </summary>
         /// <param name="gameTime">GameTime instance</param>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         public override void Update(GameTime gameTime)
         {
             environment.PlayerModel.Update();
             environment.PlayerAnimation.Update();
-            if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
-            {
-                animation.Finished = true;
-            }
-            if (firstAnimation)
-            {
-                float distance = animation.Displacement.Length();
-                float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
-                if (distance / totalDistance > 0.5 && !pauseScreenShowed)
-                {
-                    pauseScreenShowed = true;
-                    FreezeScreen();
-                    ScreenManager.AddScreen(new PauseScreen(user,arriveVelocity,ball.Mass,user.assumedLegMass,environment.HoleProperty.Position));
-                }
-                bar.Update(new Vector2(ball.Position.X,ball.Position.Z));
-
-                if (ball.hasBallEnteredShootRegion())
-                {
-                    //if (!hasWhistled)
-                    //{
-                    //    //whistle.Play();
-                    //    hasWhistled = true;
-                    //}
-                    user.UpdateMeasuringVelocityAndAngle(gameTime);
-                    Vector3 shootVelocity = user.velocity;
-                    if (user.hasShot && shootVelocity.Length() != 0)
-                    {
-                        firstAnimation = false;
-                        this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
-                        animation = new BallAnimation(ball, environment, this.shootVelocity);
-                   }
-                }
-                if (animation.Finished)
-                {
-                    UpdateButtons(gameTime);
-                }
-            }
-            else if (animation.Finished && simulation == null)
-            {
-                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity, 
-                    ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
-            }
-            
+            UpdateFirstAnimation(gameTime);
+            UpdateSecondAnimation();
             if (simulation != null)
             {
                 UpdateButtons(gameTime);
@@ -150,17 +107,83 @@ namespace Mechanect.Exp3
             {
                 animation.Update(gameTime.ElapsedGameTime);
             }
-
             targetCamera.Update();
             base.Update(gameTime);
         }
 
         /// <summary>
-        /// draws the experiment's screen
+        /// Updates the first animation.
         /// </summary>
         /// <param name="gameTime">GameTime instance</param>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
+        /// </remarks>
+        public void UpdateFirstAnimation(GameTime gameTime)
+        {
+            if (!firstAnimation)
+            {
+                return;
+            }
+            float distance = animation.Displacement.Length();
+            float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
+            if (distance / totalDistance > 0.5 && !pauseScreenShowed)
+            {
+                pauseScreenShowed = true;
+                FreezeScreen();
+                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
+            }
+            bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
+            if (ball.hasBallEnteredShootRegion())
+            {
+                /*if (!hasWhistled)
+                {
+                    whistle.Play();
+                    hasWhistled = true;
+                }*/
+                user.UpdateMeasuringVelocityAndAngle(gameTime);
+                Vector3 shootVelocity = user.velocity;
+                if (user.hasShot && shootVelocity.Length() != 0)
+                {
+                    firstAnimation = false;
+                    this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
+                    animation = new BallAnimation(ball, environment, this.shootVelocity);
+                }
+            }
+            if (animation.Finished)
+            {
+                UpdateButtons(gameTime);
+            }
+        }
+
+        /// <summary>
+        /// Updates the second animation.
+        /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem
+        /// </remarks>
+        public void UpdateSecondAnimation()
+        {
+            if (firstAnimation)
+            {
+                return;
+            }
+            if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
+            {
+                animation.Stop();
+            }
+            if (animation.Finished && simulation == null)
+            {
+                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity,
+                    ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
+            }
+        }
+
+        /// <summary>
+        /// Draws the experiment's screen.
+        /// </summary>
+        /// <param name="gameTime">GameTime instance</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         public override void Draw(GameTime gameTime)
         {
@@ -173,8 +196,11 @@ namespace Mechanect.Exp3
             ball.Draw(camera);
             if (firstAnimation)
             {
-                if (animation.Finished)
+                float distance = animation.Displacement.Length();
+                float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
+                if (distance / totalDistance > 1)
                 {
+                    //DrawStatus();
                     DrawButtons();
                 }
                 else
@@ -186,17 +212,16 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
                 DrawButtons();
-                Vector2 position = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2, ScreenManager.GraphicsDevice.Viewport.Height / 2);
-                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content, position, animation.willFall);
+                //DrawStatus();
             }
             base.Draw(gameTime);
         }
 
         /// <summary>
-        /// initializes the experiment's buttons
+        /// Initializes the experiment's buttons.
         /// </summary>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         private void InitializeButtons()
         {
@@ -211,11 +236,11 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// updates the experiment's buttons
+        /// Updates the experiment's buttons.
         /// </summary>
         /// <param name="gameTime">GameTime instance</param>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         private void UpdateButtons(GameTime gameTime)
         {
@@ -234,10 +259,10 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// draws the experiment's buttons
+        /// Draws the experiment's buttons.
         /// </summary>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem
         /// </remarks>
         private void DrawButtons()
         {

@@ -7,10 +7,10 @@ using UI.Components;
 namespace Mechanect.Exp3
 {
     /// <summary>
-    /// represents the ball type
+    /// Represents the ball type
     /// </summary>
     /// <remarks>
-    /// Author : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem
     /// </remarks>
     public class Ball : CustomModel
     {
@@ -31,11 +31,11 @@ namespace Mechanect.Exp3
         public double Mass { get; set; }
 
         /// <summary>
-        /// constructs a new ball instance
+        /// Creates a new ball instance.
         /// </summary>
-        /// <param name="radius">ball radius</param>
-        /// <param name="device">graphics device</param>
-        /// <param name="content">content manager</param>
+        /// <param name="radius">Ball radius</param>
+        /// <param name="device">Graphics device</param>
+        /// <param name="content">Content manager</param>
         public Ball(float radius, GraphicsDevice device, ContentManager content)
             : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One)
         {
@@ -67,13 +67,13 @@ namespace Mechanect.Exp3
         public void GenerateIntialPosition(float terrainWidth, float terrainHeight)
         {
             float number = (float)new Random().NextDouble();
-            Position = new Vector3(-terrainWidth / 4, 0, -(0.20f + number / 2) * terrainHeight / 2);
+            Position = new Vector3(-terrainWidth / 4, 0, (0.25f + number / 2) * -terrainHeight / 2);
         }
 
         /// <summary>
-        /// sets the ball orientation according to the moving direction
+        /// Sets the ball orientation according to the moving direction.
         /// </summary>
-        /// <param name="displacement">displacement vector</param>
+        /// <param name="displacement">Displacement vector</param>
         public void Rotate(Vector3 displacement)
         {
             float perimeter = (float)(2 * Math.PI * radius);
@@ -98,22 +98,22 @@ namespace Mechanect.Exp3
         }
         
         /// <summary>
-        /// sets the ball height
+        /// Sets the ball height.
         /// </summary>
-        /// <param name="height">height</param>
+        /// <param name="height">Height magnitude</param>
         public void SetHeight(float height)
         {
             Position = new Vector3(Position.X, height + radius, Position.Z);
         }
 
         /// <summary>
-        /// checks whether the ball is inside the terrain
+        /// Checks whether the ball is inside the terrain or not.
         /// </summary>
-        /// <param name="terrainWidth">terrain width</param>
-        /// <param name="terrainHeight">terrain height</param>
+        /// <param name="terrainWidth">Terrain width</param>
+        /// <param name="terrainHeight">Terrain height</param>
         public bool InsideTerrain(float terrainWidth, float terrainHeight)
         {
-            return Position.X > -terrainWidth / 3 && Position.X < terrainWidth / 3 && Position.Z > (-terrainHeight / 2 + 45);
+            return Position.X > -terrainWidth / 3 && Position.X < terrainWidth / 3 && Position.Z > (-0.8 * terrainHeight / 2);
         }
 
     }
