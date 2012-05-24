@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using ButtonsAndSliders;
 using Mechanect.Common;
@@ -6,7 +7,6 @@ using Mechanect.Exp3;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Threading;
 
 namespace Mechanect.Exp2
 {
@@ -240,8 +240,8 @@ namespace Mechanect.Exp2
             DrawAngVelLabels();
 
             if (ended && milliSeconds > 1000)
-                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2,
-                    ViewPort.Height / 2), environment.Win);
+                Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(0.18f * ViewPort.Width,
+                    0.35f * ViewPort.Height), environment.Win);
 
             base.Draw(gameTime);
         }
@@ -347,7 +347,6 @@ namespace Mechanect.Exp2
         /// <para>AUTHOR: Mohamed AbdelAzim </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <param name="covered">determines whether there exist another screen covering this one or not.</param>
         public override void Update(GameTime gameTime)
         {
             if (ended)
