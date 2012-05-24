@@ -188,9 +188,7 @@ namespace Mechanect.Exp1
              if (!((accumulativeTime >= timeInSeconds - 0.01) && (accumulativeTime <= timeInSeconds + 0.01)))
                  return;
 
-             float startCommandTime = 0;
-             for (int i = 0; i < user1.ActiveCommand; i++)
-                 startCommandTime += timeOfCommands[i];
+             float startCommandTime = timeOfCommands.Take<int>(user1.ActiveCommand).Sum();
 
              //get the start index of speed list
              UI.UILib.SayText(currentCommands[user1.ActiveCommand + 1]);
