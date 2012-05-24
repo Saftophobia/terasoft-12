@@ -25,9 +25,9 @@ namespace UI.Experiment1
         /// </summary>
         /// <param name="value">The value to be decremented from the Y position of the avatar.</param>
         /// <returns>void.</returns>
-        public void Move(Vector2 value)
+        public void Move(float value)
         {
-            Position.Y -= value.Y;
+            Position.Y -= value;
         }
 
         /// <remarks>
