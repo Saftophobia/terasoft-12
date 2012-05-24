@@ -41,6 +41,16 @@ namespace UI
             }
 
         }
+        /// <summary>
+        /// Public, static, and main method to handle the the text wrapping.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="text"></param>
+        /// <param name="position"></param>
+        /// <param name="spriteBatch"></param>
+        /// <param name="contentManager"></param>
         public static void Write(string text, Rectangle position, SpriteBatch spriteBatch, ContentManager contentManager)
         {
             if (spriteFont == null)
@@ -50,6 +60,15 @@ namespace UI
             spriteBatch.DrawString(spriteFont, WrapText(text, position), new Vector2(position.X, position.Y), Color.Black);
 
         }
+        /// <summary>
+        /// Helper method that contains the algorithm for handeling the text wraping
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="text"></param>
+        /// <param name="position"></param>
+        /// <returns></returns>
         private static string WrapText(string text, Rectangle position)
         {
             string line = string.Empty;
