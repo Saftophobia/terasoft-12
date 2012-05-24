@@ -24,9 +24,7 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 18  </para>
         /// </remarks>
         #region: Variables for generating the GUI
-        public bool DrawBackground { set; get; }
         private Texture2D xyAxisTexture;
-
         private Texture2D lineConnector;
         private Vector2 predatorScaling;
         private Vector2 preyScaling;
