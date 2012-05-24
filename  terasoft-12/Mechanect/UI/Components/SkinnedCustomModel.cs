@@ -32,9 +32,22 @@ namespace UI.Components
         /// <param name="position">The position of the model.</param>
         /// <param name="rotation">The rotation of the model.</param>
         /// <param name="scale">The scale of the model</param>
-        public SkinnedCustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
-            : base(model, position, rotation, scale)
+        public SkinnedCustomModel(Vector3 position, Vector3 rotation, Vector3 scale)
+            : base(position, rotation, scale)
+        { }
+
+
+        /// <summary>
+        /// Loads the model.
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: AhmeD HegazY</para>
+        /// </remarks>
+        /// <param name="model">The model with skin and skeleton.</param>
+        public override void LoadContent(Model model)
         {
+            base.LoadContent(model);
+
             this.skinningData = model.Tag as SkinningData;
 
             this.originalBones = new Matrix[skinningData.BindPose.Count];
@@ -45,7 +58,6 @@ namespace UI.Components
 
             this.worldTransforms = new Matrix[skinningData.BindPose.Count];
             this.skinTransforms = new Matrix[skinningData.BindPose.Count];
-
         }
 
         #endregion
