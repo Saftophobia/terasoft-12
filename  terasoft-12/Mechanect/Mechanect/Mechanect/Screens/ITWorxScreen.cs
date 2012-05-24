@@ -6,6 +6,7 @@ namespace Mechanect.Screens
     /// <summary>
     /// This class Represents the ITWorx screen.
     /// </summary>
+    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class ITworxScreen : FadingScreen
     {
         /// <summary>

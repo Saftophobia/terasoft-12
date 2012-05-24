@@ -8,6 +8,7 @@ namespace Mechanect.Screens
     /// <summary>
     /// This class creates a screen that fades in and out. The screen has a white background.
     /// </summary>
+    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class FadingScreen : GameScreen
     {
         private bool first;
