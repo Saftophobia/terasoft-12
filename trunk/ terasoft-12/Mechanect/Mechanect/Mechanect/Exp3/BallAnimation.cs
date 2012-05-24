@@ -22,10 +22,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Creates a new BallAnimation instance.
         /// </summary>
-        /// <param name="ball">ball</param>
-        /// <param name="hole">hole</param>
-        /// <param name="velocity">intial velocity vector</param>
-        /// <param name="friction">friction magnitude</param>
+        /// <param name="ball">Ball instance.</param>
+        /// <param name="environment">Environment3 instance.</param>
+        /// <param name="velocity">Intial velocity vector.</param>
         public BallAnimation(Ball ball, Environment3 environment, Vector3 velocity)
             : base(ball, velocity, Environment3.Friction, LinearMotion.CalculateTime(velocity.Length(), 0, Environment3.Friction))
         {
