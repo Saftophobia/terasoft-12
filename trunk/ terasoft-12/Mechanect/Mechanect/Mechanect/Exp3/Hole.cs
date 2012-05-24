@@ -16,7 +16,17 @@ namespace Mechanect.Exp3
         private HoleModel holeModel;
         private int terrainWidth;
         private int terrainHeight;
-        public int Radius { get; set; }
+        public int Radius
+        {
+            get
+            {
+                return radius;
+            }
+            set
+            {
+                radius = value;
+            }
+        }
         public Hole(int radius, Vector3 position,int terrainWidth,int terrainHeight)
         {
             this.radius = radius;
