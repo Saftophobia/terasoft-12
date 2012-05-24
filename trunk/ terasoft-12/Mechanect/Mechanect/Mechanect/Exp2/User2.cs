@@ -125,6 +125,17 @@ namespace Mechanect.Exp2
             measuredAngle = 0;
             measuredVelocity = 0;
         }
+        /// <summary>
+        /// Helper method to calculate current angle being meausred
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="leftShoulder"></param>
+        /// <param name="rightShoulder"></param>
+        /// <param name="centerHip"></param>
+        /// <param name="leftHand"></param>
+        /// <returns></returns>
 
         private float CurrentAngle(Vector3 leftShoulder, Vector3 rightShoulder, Vector3 centerHip, Vector3 leftHand)
         {
@@ -143,6 +154,14 @@ namespace Mechanect.Exp2
             }
             return angle;
         }
+        /// <summary>
+        /// Helper method to calculate the measured final velocity
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// </remarks>
+        /// <param name="list"></param>
+        /// <returns>float: meausred velocity</returns>
 
 
         private float MeasureVelocity(List<Vector2> list)
@@ -167,8 +186,7 @@ namespace Mechanect.Exp2
 
 
         /// <summary>
-        /// Calculate the angle between two planes, one is a vertical plane containing: left shoulder, right shoulder,
-        /// and center hip, and another plane that is inclined containing: left shoulder, right shoulder, and left hand
+        /// Main method to that sets the final angle and velocity being measured
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
