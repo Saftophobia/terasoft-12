@@ -66,7 +66,8 @@ namespace Mechanect.Exp3
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
 
-            ball = new Ball(2.5f, ScreenManager.Game.Content);
+            Model ballModel = ScreenManager.Game.Content.Load<Model>(@"Models/ball");
+            ball = new Ball(ballModel, 2.5f);
             ball.GenerateInitialPosition(environment.TerrainWidth, environment.TerrainWidth);
             ball.GenerateBallMass(0.004f, 0.006f);
 

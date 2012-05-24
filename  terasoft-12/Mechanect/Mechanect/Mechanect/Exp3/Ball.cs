@@ -38,8 +38,8 @@ namespace Mechanect.Exp3
         /// <remarks>
         /// AUTHOR : Bishoy Bassem.
         /// </remarks>
-        public Ball(float radius, ContentManager content)
-            : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One)
+        public Ball(Model ballModel, float radius)
+            : base(ballModel, Vector3.Zero, Vector3.Zero, Vector3.One)
         {
             Radius = radius;
             Mass = 0.004f;
