@@ -70,7 +70,7 @@ namespace Mechanect.Exp3
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
 
-            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, 
+            Vector3 intialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
                 arriveVelocity, Environment3.Friction);
 
             animation = new BallAnimation(ball, environment, intialVelocity);
