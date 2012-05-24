@@ -85,7 +85,7 @@ namespace Mechanect
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             screenManager.AddScreen(new TeraSoftScreen());
-           // screenManager.AddScreen(new InstructionsScreen3(new User3()));
+          
            
         }
 
