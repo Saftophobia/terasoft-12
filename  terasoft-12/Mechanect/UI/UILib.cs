@@ -12,7 +12,7 @@ namespace UI
     public static class UILib
     {
         private static SpeechSynthesizer speechSynthesizer;
-        private static SpriteFont spriteFont;
+        
         /// <summary>
         /// This method takes a string of text and reads it to the user.
         /// </summary>
@@ -51,13 +51,11 @@ namespace UI
         /// <param name="position"></param>
         /// <param name="spriteBatch"></param>
         /// <param name="contentManager"></param>
-        public static void Write(string text, Rectangle position, SpriteBatch spriteBatch, ContentManager contentManager)
+        public static void Write(string text, Rectangle position, SpriteBatch spriteBatch, ContentManager contentManager,
+            SpriteFont spriteFont, Color color)
         {
-            if (spriteFont == null)
-            {
-                spriteFont = contentManager.Load<SpriteFont>("Ariel");
-            }
-            spriteBatch.DrawString(spriteFont, WrapText(text, position), new Vector2(position.X, position.Y), Color.Black);
+
+            spriteBatch.DrawString(spriteFont, WrapText(text, position, spriteFont), new Vector2(position.X, position.Y), color);
 
         }
         /// <summary>
@@ -69,7 +67,7 @@ namespace UI
         /// <param name="text"></param>
         /// <param name="position"></param>
         /// <returns></returns>
-        private static string WrapText(string text, Rectangle position)
+        private static string WrapText(string text, Rectangle position,SpriteFont spriteFont)
         {
             string line = string.Empty;
             string returnString = string.Empty;
