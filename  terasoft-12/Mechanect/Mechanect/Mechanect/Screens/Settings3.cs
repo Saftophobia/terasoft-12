@@ -110,13 +110,7 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch spriteBatch = this.ScreenManager.SpriteBatch;
-
-
-            //spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
-            
-            //spriteBatch.End();
-            
-            
+                        
             Rectangle rect = new Rectangle(0, 0, (int)(scaleW * backGround.Width), (int)(scaleH * backGround.Height));
             spriteBatch.Begin();
             spriteBatch.Draw(backGround, rect, Color.White);
