@@ -8,7 +8,7 @@ namespace UI.Components
     /// Represents a 3d model with its  position, orientation and scale.
     /// </summary>
     /// <remarks>
-    /// AUTHOR : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public class CustomModel
     {
@@ -34,11 +34,14 @@ namespace UI.Components
         /// <summary>
         /// Creates a new CustomModel instance.
         /// </summary>
-        /// <param name="model">3D model</param>
-        /// <param name="position">Model's position</param>
-        /// <param name="rotation">Model's orientation</param>
-        /// <param name="scale">Model's scale</param>
-        /// <param name="graphicsDevice"></param>
+        /// <param name="model">3D model.</param>
+        /// <param name="position">Model's position.</param>
+        /// <param name="rotation">Model's orientation.</param>
+        /// <param name="scale">Model's scale.</param>
+        /// <param name="graphicsDevice">Displays graphics on the screen.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale){
             this.Position = position;
             this.Rotation = rotation;
@@ -52,7 +55,10 @@ namespace UI.Components
         /// <summary>
         /// Draws the 3D model.
         /// </summary>
-        /// <param name="camera">Camera instance</param>
+        /// <param name="camera">Camera instance.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public virtual void Draw(Camera camera)
         {
             Matrix world = Matrix.CreateScale(Scale) 
@@ -75,8 +81,11 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// Creates the intial Bounding Sphere instance.
+        /// Creates the intial BoundingSphere.
         /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         private void createBoundingSphere()
         {
             BoundingSphere sphere = new BoundingSphere(Vector3.Zero, 0);
