@@ -7,39 +7,40 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// Class statistics Screen , responsible for showing the statistics for the player after playing
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Mohamed raafat</para>
+    /// </remarks>
     class StatisticsScreen : GameScreen
     {
+        #region:Instance Variables
         User2 user;
         private Simulation userSimulation;
         private Simulation optimalSimulation;
-
         private Rectangle leftSimulationPosition;
         private Rectangle rightSimulationPosition;
         private Rectangle centerSimulationPosition;
         private Rectangle currentUserSimulationPosition;
-
-        Vector2 mainMenuButtonPosition;
-        Vector2 retryButtonPosition;
-        Vector2 newGameButtonPosition;
-        Vector2 seeResultsButtonPosition;
-
+        private Vector2 mainMenuButtonPosition;
+        private Vector2 retryButtonPosition;
+        private Vector2 newGameButtonPosition;
+        private Vector2 seeResultsButtonPosition;
         private bool correctAnswer;
         private bool solutionVisible;
-
         private Vector2 predatorPosition;
         private Rect preyPosition;
         private Rect aquariumPosition;
-
         private Button mainMenu;
         private Button retry;
         private Button solution;
         private Button newGame;
-
         private Viewport ViewPort
         {
             get { return ScreenManager.GraphicsDevice.Viewport; }
         }
-
+        #endregion
         /// <summary>
         /// Constructor to initialize the instance variables
         /// </summary>
@@ -229,6 +230,5 @@ namespace Mechanect.Exp2
         }
 
     }
-
 
 }
