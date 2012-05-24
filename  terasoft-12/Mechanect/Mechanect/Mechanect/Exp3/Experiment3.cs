@@ -60,7 +60,8 @@ namespace Mechanect.Exp3
         /// </remarks>
         public override void LoadContent()
         {
-            targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), ScreenManager.GraphicsDevice);
+            targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), 
+                ScreenManager.GraphicsDevice);
 
             environment = new Environment3(ScreenManager.Game.Content, ScreenManager.GraphicsDevice, user);
             environment.LoadContent();
@@ -69,11 +70,15 @@ namespace Mechanect.Exp3
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
 
-            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, arriveVelocity, Environment3.Friction);
+            Vector3 intialVelocity = LinearMotion.CalculateIntialVelocity(user.shootingPosition - ball.Position, 
+                arriveVelocity, Environment3.Friction);
 
             animation = new BallAnimation(ball, environment, intialVelocity);
 
-            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
+            bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, 
+                ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, 
+                new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), 
+                new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
             //whistle = ScreenManager.Game.Content.Load<SoundEffect>("whistle");
 
@@ -130,7 +135,8 @@ namespace Mechanect.Exp3
             {
                 pauseScreenShowed = true;
                 FreezeScreen();
-                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
+                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, 
+                    environment.HoleProperty.Position));
             }
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
             if (ball.hasBallEnteredShootRegion())
