@@ -7,7 +7,7 @@ namespace UI.Cameras
     /// Represents the target camera type.
     /// </summary>
     /// <remarks>
-    /// AUTHOR : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public class TargetCamera : Camera
     {
@@ -15,11 +15,14 @@ namespace UI.Cameras
         private Vector3 target;
 
         /// <summary>
-        /// Constructs a TargetCamera instance.
+        /// Creates a new TargetCamera instance.
         /// </summary>
-        /// <param name="graphicsDevice"></param>
-        /// <param name="position">Position of the camera</param>
-        /// <param name="target">The postion the camera is looking at</param>
+        /// <param name="graphicsDevice">Displays graphics on the screen.</param>
+        /// <param name="position">Position of the camera.</param>
+        /// <param name="target">The postion the camera is looking at.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public TargetCamera(Vector3 position, Vector3 target, GraphicsDevice graphicsDevice)
             : base(graphicsDevice)
         {
@@ -28,8 +31,11 @@ namespace UI.Cameras
         }
 
         /// <summary>
-        /// Causes the camera to update its view and projection matrices.
+        /// Updates the camera's view and projection matrices.
         /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public override void Update()
         {
             View = Matrix.CreateLookAt(Position, target, Vector3.Up);
