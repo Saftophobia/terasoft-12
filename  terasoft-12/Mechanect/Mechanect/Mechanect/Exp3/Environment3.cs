@@ -210,7 +210,8 @@ namespace Mechanect.Exp3
             skyDome.Meshes[0].MeshParts[0].Effect = effect;
 
             PresentationParameters presentationParameters = device.PresentationParameters;
-            cloudsRenderTarget = new RenderTarget2D(device, presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
+            cloudsRenderTarget = new RenderTarget2D(device, presentationParameters.BackBufferWidth, 
+                presentationParameters.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
 
             cloudStaticMap = CreateStaticMap(32);
 
@@ -268,7 +269,8 @@ namespace Mechanect.Exp3
                 device.Indices = myIndexBuffer;
                 device.SetVertexBuffer(myVertexBuffer);
 
-                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
+                device.DrawUserIndexedPrimitives(PrimitiveType.TriangleList, vertices, 0, 
+                    vertices.Length, indices, 0, indices.Length / 3, VertexPositionNormalTexture.VertexDeclaration);
 
             }
             
@@ -333,7 +335,8 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on the color of each pixel to the 2D array heightMap.
+        /// Iterates on evey pixel in the grayscale heightmap, and adds height data depending on 
+        /// the color of each pixel to the 2D array heightMap.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="heightMap">The grayscale picture that will be used to define the heightmap.</param>
@@ -355,13 +358,15 @@ namespace Mechanect.Exp3
         
         /// <summary>
         /// Copies the vertices and indices to GPU buffers. 
-        /// This allows the data to be called from the GPU's memory directly without having to send it to the GPU everytime the Draw() method is called.
+        /// This allows the data to be called from the GPU's memory directly without having to 
+        /// send it to the GPU everytime the Draw() method is called.
         /// This should increase performance as the GPU's memory is generally faster.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CopyToBuffers()
         {
-            myVertexBuffer = new VertexBuffer(device, VertexPositionNormalTexture.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
+            myVertexBuffer = new VertexBuffer(device, VertexPositionNormalTexture.VertexDeclaration, 
+                vertices.Length, BufferUsage.WriteOnly);
             myVertexBuffer.SetData(vertices);
             myIndexBuffer = new IndexBuffer(device, typeof(int), indices.Length, BufferUsage.WriteOnly);
             myIndexBuffer.SetData(indices);
@@ -369,7 +374,8 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Calculates the normal to the planes of the triangles and adds this info to the normal of vertices defined by VertexPositioColorNormal.
+        /// Calculates the normal to the planes of the triangles and adds this info 
+        /// to the normal of vertices.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CalculateNormals()
@@ -411,7 +417,8 @@ namespace Mechanect.Exp3
             Matrix[] modelTransforms = new Matrix[skyDome.Bones.Count];
             skyDome.CopyAbsoluteBoneTransformsTo(modelTransforms);
 
-            var wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(camera.Position);
+            var wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * 
+                Matrix.CreateScale(100) * Matrix.CreateTranslation(camera.Position);
             foreach (ModelMesh mesh in skyDome.Meshes)
             {
                 foreach (Effect currentEffect in mesh.Effects)
