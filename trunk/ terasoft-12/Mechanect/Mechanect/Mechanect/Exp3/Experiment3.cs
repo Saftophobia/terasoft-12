@@ -129,8 +129,8 @@ namespace Mechanect.Exp3
             if (distance / totalDistance > 0.5 && !pauseScreenShowed)
             {
                 pauseScreenShowed = true;
-                FreezeScreen();
-                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
+                //FreezeScreen();
+                //ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
             }
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
             if (ball.hasBallEnteredShootRegion())
@@ -228,10 +228,10 @@ namespace Mechanect.Exp3
             int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
             int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
 
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(5,
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(60,
                 screenHeight - 125), screenWidth, screenHeight, user);
 
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 125,
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 180,
                 screenHeight - 125), screenWidth, screenHeight, user);
         }
 
