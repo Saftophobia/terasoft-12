@@ -129,8 +129,8 @@ namespace Mechanect.Exp3
             if (distance / totalDistance > 0.5 && !pauseScreenShowed)
             {
                 pauseScreenShowed = true;
-                //FreezeScreen();
-                //ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
+                FreezeScreen();
+                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, environment.HoleProperty.Position));
             }
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
             if (ball.hasBallEnteredShootRegion())
