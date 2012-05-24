@@ -3,11 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
 using Mechanect.Exp1;
 using ButtonsAndSliders;
+using Microsoft.Xna.Framework.Content;
 
 namespace Mechanect.Screens
 {
     class InstructionsScreen1 : GameScreen
     {
+       
+        
         string header = "\n\n\n\n                  .Welcome To Mechanect Racing Game." + '\n'
              + "                           .By TeraSoft Team." + '\n'
                + "                                 .GUC.";
@@ -48,6 +51,9 @@ namespace Mechanect.Screens
         /// </remarks
         public override void LoadContent()
         {
+
+
+            
             isTwoPlayers = true;
             myTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Screens/instructions");
             scale = ((float)(ScreenManager.GraphicsDevice.Viewport.Width) / (float)myTexture.Width);
@@ -72,7 +78,7 @@ namespace Mechanect.Screens
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="covered">Determines whether you want this screen to be covered by another screen or not.</param>
 
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
             if (button.IsClicked())
             {
@@ -120,7 +126,7 @@ namespace Mechanect.Screens
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>  
-        public void Remove()
+        public override void Remove()
         {
             base.Remove();
         }

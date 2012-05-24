@@ -201,7 +201,7 @@ namespace Mechanect.Exp1
                      velocitiesWithTimeOf1.Add(user1.Velocitylist[i]);
                  }
 
-             if ((startIndexFor2 < user2.Velocitylist.Count) && (startIndexFor1 > -1))
+             if ((startIndexFor2 < user2.Velocitylist.Count) && (startIndexFor2 > -1))
                  for (int i = startIndexFor2; i < user2.Velocitylist.Count; i++)
                  {
                      speedsOf2.Add(user2.Velocitylist[i][0]);
