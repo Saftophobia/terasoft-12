@@ -5,7 +5,7 @@ using Mechanect.Exp2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Mechanect.Screens
+namespace Mechanect.Exp2
 {
     class StatisticsScreen : GameScreen
     {
@@ -187,7 +187,7 @@ namespace Mechanect.Screens
             if (mainMenu.IsClicked())
             {
                 this.Remove();
-                ScreenManager.AddScreen(new AllExperiments(user));
+                ScreenManager.AddScreen(new Mechanect.Screens.AllExperiments(user));
             }
             if (retry.IsClicked())
             {
