@@ -163,14 +163,14 @@ namespace Mechanect.Exp2
         {
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(background, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
-            mainMenu.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
-            retry.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
+            mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
+            retry.Draw(ScreenManager.SpriteBatch, 0.5f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             if (correctAnswer || solutionVisible)
-                newGame.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
+                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
             else
-                solution.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
+                solution.Draw(ScreenManager.SpriteBatch, 0.5f);
             if (currentUserSimulationPosition.X <= leftSimulationPosition.X)
                 optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
 
