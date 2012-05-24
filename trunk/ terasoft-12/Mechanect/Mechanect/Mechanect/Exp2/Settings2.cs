@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// Settings2 Class is Screen that allows you to change theme and level.
+    /// </summary>
     class Settings2 : GameScreen
     {
         private Button oKbutton;
@@ -41,7 +44,7 @@ namespace Mechanect.Exp2
         }
 
         /// <summary>
-        /// Update method that  updae at gameTime and check for button clicking to exit
+        /// Update is method that get updated at gameTime and checks for button clicking to exit
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
@@ -69,7 +72,7 @@ namespace Mechanect.Exp2
             base.Update(gameTime);
         }
         /// <summary>
-        /// drwing the OK button and the Theme And level selection bar
+        /// Drawing the OK button and the Theme And level selection bar
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
