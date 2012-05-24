@@ -31,7 +31,8 @@ namespace Mechanect.Exp2
         private bool beforeHip;
         private float measuredVelocity;
         private float measuredAngle;
-        private List<Vector2> angleAndTime = new List<Vector2>();
+        private List<float> angleList = new List<float>();
+        private float startTime;
 
 
         private Vector3 CenterHip
@@ -121,7 +122,7 @@ namespace Mechanect.Exp2
         {
             shooting = false;
             beforeHip = false;
-            angleAndTime = new List<Vector2>();
+            angleList = new List<float>();
             measuredAngle = 0;
             measuredVelocity = 0;
         }
@@ -164,39 +165,24 @@ namespace Mechanect.Exp2
         /// <returns>float: meausred velocity</returns>
 
 
-        private float MeasureVelocity(List<Vector2> list)
+        private float MeasureVelocity(List<float> list, GameTime gameTime)
         {
-            this.measuredVelocity = (list[list.Count-2].X - list[0].X) /
-                (list[list.Count].Y - list[0].Y);
+            this.measuredVelocity = (1000) * (measuredAngle / gameTime.TotalGameTime.Milliseconds - startTime);
 
             return (float)measuredVelocity;
         }
-        /// <summary>
-        /// Helper method to update the velocity being measured according to the angle being measured
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
-        /// </remarks>
-        /// <param name="gametime"></param>
-        /// <param name="angleTimeList"></param>
-        /// <param name="angle"></param>
-        private void UpdateVelocity(GameTime gametime, List<Vector2> angleTimeList, float angle)
-        {
-            if (angleTimeList.Count == 5)
-                angleTimeList.RemoveAt(0);
-            angleTimeList.Add(new Vector2((float)angle, (float)gametime.TotalGameTime.TotalSeconds));
-        }
+       
         /// <summary>
         /// Helper method to detect when will the hand stop and the user stopped shooting
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="angleTimeList"></param>
-        /// <returns></returns>
-        private bool HandStopped(List<Vector2> angleTimeList)
+        /// <param name="angleList"></param>
+        /// <returns>bool, True if hand has stopped, false otherwise</returns>
+        private bool HandStopped(List<float> angleList)
         {
-            return angleTimeList[angleTimeList.Count - 1].X - angleTimeList[angleTimeList.Count - 2].X < 0.5;
+            return angleList[angleList.Count - 1] - angleList[angleList.Count - 2] < 0.3;
         }
 
 
@@ -225,14 +211,17 @@ namespace Mechanect.Exp2
                     return;
                 }
 
-                UpdateVelocity(gametime, angleAndTime, currentAngle);
-                if (HandStopped(angleAndTime))
+                if (!shooting && beforeHip && currentAngle > 0)
+                    startTime = gametime.TotalGameTime.Milliseconds;
+
+               
+                if (HandStopped(angleList))
                 {
                     measuredAngle = currentAngle;
-                    measuredVelocity = MeasureVelocity(angleAndTime);
+                    measuredVelocity = MeasureVelocity(angleList,gametime);
                     shooting = false;
                     beforeHip = false;
-                    angleAndTime = new List<Vector2>();
+                    angleList = new List<float>();
                 }
             }
         }
