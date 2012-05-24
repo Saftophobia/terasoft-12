@@ -363,6 +363,7 @@ namespace Mechanect.Exp2
                         ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
                             initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
                             user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+                    user.Reset();
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
