@@ -97,7 +97,7 @@ namespace Mechanect.Exp3
         /// Checks whether the ball entered the shooting region.
         /// </summary>
         /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
-        public bool hasBallEnteredShootRegion()
+        public bool HasBallEnteredShootRegion()
         {
             float ballPosX = Position.X;
             float ballPosZ = Position.Z;
