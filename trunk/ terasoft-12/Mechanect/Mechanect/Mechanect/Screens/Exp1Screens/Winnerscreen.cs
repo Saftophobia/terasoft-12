@@ -155,14 +155,13 @@ namespace Mechanect.Screens.Exp1Screens
             {
                 SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
                 SpriteFont font2 = Content.Load<SpriteFont>("SpriteFont1");
-                //Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xRed");
-                //Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
+                Texture2D P1Tex = Content.Load<Texture2D>("xRed");
+                Texture2D P2Tex = Content.Load<Texture2D>("xBlue");
                 SpriteBatch.Begin();
-                //GraphUI.DrawRange(SpriteBatch, device, Graph);
                 GraphUI.DrawEnvironment(Graph, SpriteBatch, device, font, font2);
-                //  GraphUI.DrawDisqualification(Graph, spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, P1Tex, P2Tex, player1DisqualificationTime, player2DisqualificationTime);
-                SpriteBatch.End();
-                
+                GraphUI.DrawCurves(Graph, SpriteBatch, device);
+                GraphUI.DrawDisqualification(Graph, device, SpriteBatch, device.Viewport.Width, device.Viewport.Height, P1Tex, P2Tex, user1.DisqualificationTime, user2.DisqualificationTime);
+                SpriteBatch.End();                
             }
             base.Draw(gameTime);
         }
