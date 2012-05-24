@@ -27,8 +27,7 @@ namespace Mechanect.Exp2
         private bool shooting;
         private bool beforeHip;
         private float previousAngle;
-        int counter = 0;
-
+        private int counter = 0;
         private float measuredVelocity;
         private float measuredAngle;
         /// <summary>
@@ -159,7 +158,7 @@ namespace Mechanect.Exp2
                     return;
                 }
                 currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
-                measuredAngle = angle;
+                MeasuredAngle = angle;
                 shooting = false;
             }
 
@@ -182,7 +181,7 @@ namespace Mechanect.Exp2
                 return;
             }
 
-            measuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
+            MeasuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
         }
 
 
