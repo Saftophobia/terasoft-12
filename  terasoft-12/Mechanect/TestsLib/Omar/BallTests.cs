@@ -37,14 +37,14 @@ namespace TestsLib.Omar
         [Test]
         public void CheckIfFall()
         {
-            animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 0, friction), friction);
+         //   animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 0, friction), friction);
             Assert.IsTrue(animation.willFall);
         }
 
         [Test]
         public void CheckIfWontFall()
         {
-            animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 10, friction), friction);
+            //animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 10, friction), friction);
             Assert.IsFalse(animation.willFall);
         }
     }
