@@ -183,7 +183,7 @@ namespace Mechanect.Exp2
             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
             var t = new Thread(voiceCommand.StartAudioStream);
             t.Start();
-
+            base.LoadContent();
         }
 
 
@@ -241,7 +241,7 @@ namespace Mechanect.Exp2
                 Tools3.DisplayIsWin(ScreenManager.SpriteBatch, Content, new Vector2(ViewPort.Width / 2,
                     ViewPort.Height / 2), environment.Win);
 
-
+            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -374,7 +374,6 @@ namespace Mechanect.Exp2
                     // ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
                     // initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
                     // user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
-
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
@@ -407,6 +406,7 @@ namespace Mechanect.Exp2
                 else
                     user.MeasureAngleAndVelocity(gameTime);
             }
+            base.Update(gameTime);
         }
     }
 
