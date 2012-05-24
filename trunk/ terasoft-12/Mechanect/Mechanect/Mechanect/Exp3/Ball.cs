@@ -99,10 +99,8 @@ namespace Mechanect.Exp3
         /// <returns>A boolean representing whether the ball entered the shooting region or not.</returns>
         public bool HasBallEnteredShootRegion()
         {
-            float ballPosX = Position.X;
-            float ballPosZ = Position.Z;
-            return (ballPosX <= Constants3.maxShootingX) && (ballPosX >= Constants3.minShootingX) &&
-                (ballPosZ <= Constants3.maxShootingZ) && (ballPosZ >= Constants3.minShootingZ);
+            return (Position.X <= Constants3.maxShootingX) && (Position.X >= Constants3.minShootingX) &&
+                (Position.Z <= Constants3.maxShootingZ) && (Position.Z >= Constants3.minShootingZ);
 
         }
         
