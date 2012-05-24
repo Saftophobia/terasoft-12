@@ -59,10 +59,8 @@ namespace Mechanect.Exp3
         private VertexPositionNormalTexture[] vertices;
         private int[] indices;
 
-        [Obsolete("terrainWidth will be made private, please use TerrainWidth instead, unless you are accessing it from inside class Environment3.")]
-        public int terrainWidth;
-        [Obsolete("terrainHeight will be made private, please use TerrainHeight instead, unless you are accessing it from inside class Environment3.")]
-        public int terrainHeight;
+        private int terrainWidth;
+        private int terrainHeight;
 
         public int TerrainWidth
         {
@@ -84,8 +82,6 @@ namespace Mechanect.Exp3
         private VertexBuffer myVertexBuffer;
         private IndexBuffer myIndexBuffer;
 
-        private Texture2D[] skyboxTextures;
-        private Model skyboxModel;
         private ContentManager Content;
         private SpriteBatch sprite;
 
@@ -102,10 +98,8 @@ namespace Mechanect.Exp3
         private Texture2D cloudStaticMap;
         private VertexPositionTexture[] fullScreenVertices;
 
-        public Environment3(ContentManager content, GraphicsDevice device, User3 user)
+        public Environment3(User3 user)
         {
-            Content = content;
-            this.device = device;
             this.user = user;
             friction = -2f;
             int holeRadius = GenerateRadius(angleTolerance);
@@ -246,23 +240,32 @@ namespace Mechanect.Exp3
             }
         }
 
+        public void InitializeUI(ContentManager content, GraphicsDevice graphics)
+        {
+            this.Content = content;
+            device = graphics;
+        }
+
         /// <summary>
         /// Loads the content of the environment.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadContent()
         {
-            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
-                new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
-            PlayerAnimation = new KineckAnimation(PlayerModel, user);
+            
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
+            SetUpVertices();
+            LoadEnvironmentContent();
+
+            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
+                new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
+            PlayerAnimation = new KineckAnimation(PlayerModel, user);
             CreateCircularHole(hole.Position, hole.Radius);
            // CreateAlmostCircularHole(hole.Position, hole.Radius);
             //CreateSquareHole(hole.Position, hole.Radius);
-            SetUpVertices();
-            LoadEnvironmentContent();
+
 
 
             //ball.LoadContent();
@@ -284,21 +287,7 @@ namespace Mechanect.Exp3
         }
 
         #region Environment Generation Code
-        
-        
-        /// <summary>
-        /// Initializes the Environment.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <param name="graphics">The graphics device used to display graphics on the screen.</param>
-        public void InitializeEnvironment(GraphicsDevice graphics)
-        {
-            device = graphics;
-               
-
-        }
-
-       
+            
         /// <summary>
         /// Loads the content of the environment.
         /// </summary>
