@@ -165,6 +165,7 @@
     <Compile Include="Exp3\Environment3.cs" />
     <Compile Include="Exp3\Experiment3.cs" />
     <Compile Include="Exp3\Hole.cs" />
+    <Compile Include="Exp3\HoleModel.cs" />
     <Compile Include="Exp3\LevelSelect.cs" />
     <Compile Include="Exp3\Simulation.cs" />
     <Compile Include="Exp3\Tools3.cs" />
