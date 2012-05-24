@@ -124,6 +124,14 @@ namespace Mechanect.Screens.Exp1Screens
             {
                 winningstring = " Damn, you guys sucks!!";
             }
+            if (user1.Disqualified && user1.Winner)
+            {
+                winningstring = " Player1 is Disqualified, congratulations player 2";
+            }
+            if (user2.Disqualified && user2.Winner)
+            {
+                 winningstring = " Player2 is Disqualified, congratulations player 1";
+            }
 
             if (timer > 6)
             {
@@ -140,7 +148,7 @@ namespace Mechanect.Screens.Exp1Screens
             if (timer < 6)
             {
                 SpriteBatch.Begin();
-                SpriteBatch.DrawString(spritefont1, winningstring, new Vector2((int)(device.DisplayMode.Width * 0.35), (int)(device.DisplayMode.Height * 0.3)), Microsoft.Xna.Framework.Color.Black);
+                SpriteBatch.DrawString(spritefont1, winningstring, new Vector2((int)(device.DisplayMode.Width * 0.3), (int)(device.DisplayMode.Height * 0.3)), Microsoft.Xna.Framework.Color.Black);
                 SpriteBatch.End();
             }
             else
