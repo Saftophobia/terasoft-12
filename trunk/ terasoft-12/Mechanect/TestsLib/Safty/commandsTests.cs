@@ -11,20 +11,24 @@ namespace TestsLib.Safty
     [TestFixture]
     public class commandsTests
     {
-        
+        List<string> gcommands;
 
         [SetUp]
         public void init()
         {
-           
+           gcommands = new List<string>(){ "constantDisplacement", "constantAcceleration", "constantVelocity", "increasingAcceleration", "decreasingAcceleration"};
 
         }
 
         [Test]
-        public void getkneelefttest()
+        public void shufflecommands()
         {
 
+            List<string> gcommands1 = new List<string>();
+            gcommands1= this.gcommands;
+            Tools1.commandshuffler<string>(gcommands1);
 
+            Assert.AreEqual(gcommands1[1], "constantVelocity");
            
 
 
