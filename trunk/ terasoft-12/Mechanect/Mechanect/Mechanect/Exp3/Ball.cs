@@ -36,7 +36,7 @@ namespace Mechanect.Exp3
         /// <param name="radius">Ball radius</param>
         /// <param name="device">Graphics device</param>
         /// <param name="content">Content manager</param>
-        public Ball(float radius, GraphicsDevice device, ContentManager content)
+        public Ball(float radius, ContentManager content)
             : base(content.Load<Model>(@"Models/ball"), Vector3.Zero, Vector3.Zero, Vector3.One)
         {
             Radius = radius;
