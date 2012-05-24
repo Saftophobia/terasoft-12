@@ -13,6 +13,7 @@ namespace Tests
         Hole hole;
         ScreenManager screenManager;
         Environment3 environment3;
+        int angleTolerance;
         [SetUp]
         public void Init()
         {
@@ -21,17 +22,23 @@ namespace Tests
             game1.Run();
             environment3 = Constants3.environment3;
             screenManager = new ScreenManager(game1);
+            angleTolerance = 4;
         }
 
         [Test]
         public void Test()
         {
             hole = new Hole(screenManager.Game.Content, screenManager.GraphicsDevice, environment3.terrainWidth, environment3.terrainHeight, 10, environment3.user.shootingPosition);
-            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, (environment3.user.shootingPosition.Z - hole.Radius));
-            Assert.GreaterOrEqual(environment3.HoleProperty.Position.Z, -(environment3.terrainHeight - hole.Radius) / 2);
-            Assert.LessOrEqual(environment3.HoleProperty.Position.X, environment3.terrainWidth / 4);
-            Assert.GreaterOrEqual(environment3.HoleProperty.Position.X, -environment3.terrainWidth / 4);
-            Assert.AreEqual(environment3.HoleProperty.Position.Y, 0);
+            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.terrainHeight);
+            Assert.GreaterOrEqual(environment3.HoleProperty.Position.Z, -(environment3.terrainHeight));
+            Assert.LessOrEqual(environment3.HoleProperty.Position.X, environment3.terrainWidth);
+            Assert.GreaterOrEqual(environment3.HoleProperty.Position.X, -environment3.terrainWidth);
+        }
+        [Test]
+        public void RadiusTest()
+        {
+            Assert.LessOrEqual(environment3.GenerateRadius(angleTolerance), 40);
+            Assert.GreaterOrEqual(environment3.GenerateRadius(angleTolerance), 5);
         }
     }
 }
