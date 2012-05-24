@@ -47,13 +47,10 @@ namespace UI.Animation
            
             int i = 0;
             while (frames[i + 1].Time < ElapsedTime)
-            {
                 i++;
-            }
 
             TimeSpan frameElapsedTime = ElapsedTime - frames[i].Time;
-            float amt = (float)((frameElapsedTime.TotalSeconds) 
-                / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
+            float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
 
             model.Position = Vector3.CatmullRom(
                frames[Wrap(i - 1, frames.Count - 1)].Position,
@@ -76,13 +73,11 @@ namespace UI.Animation
         private int Wrap(int value, int max)
         {
             while (value > max)
-            {
                 value -= max;
-            }
+            
             while (value < 0)
-            {
                 value += max;
-            }
+            
             return value;
         }
 
