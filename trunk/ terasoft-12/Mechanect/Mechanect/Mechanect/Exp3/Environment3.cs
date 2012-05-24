@@ -105,6 +105,10 @@ namespace Mechanect.Exp3
             int holeRadius = GenerateRadius(angleTolerance);
             Vector3 holePosition = Functions.GeneratePosition(holeRadius,(int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
             hole = new Hole(holeRadius, holePosition, (int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
+
+            PlayerModel = new SkinnedCustomModel(new Vector3(0, 0, 45),
+                new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
+            PlayerAnimation = new KineckAnimation(PlayerModel, user);
         }
 
 
@@ -259,9 +263,9 @@ namespace Mechanect.Exp3
             SetUpVertices();
             LoadEnvironmentContent();
 
-            PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
-                new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
-            PlayerAnimation = new KineckAnimation(PlayerModel, user);
+            
+            PlayerModel.LoadContent(Content.Load<Model>("dude"));
+
             CreateCircularHole(hole.Position, hole.Radius);
            // CreateAlmostCircularHole(hole.Position, hole.Radius);
             //CreateSquareHole(hole.Position, hole.Radius);
