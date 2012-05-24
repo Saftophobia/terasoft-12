@@ -112,11 +112,11 @@ namespace Mechanect.Screens.Exp1Screens
             
             
               
-            if (user1.Winner)
+            if (user1.Winner && !user1.Disqualified)
             {
                 winningstring = " Player 1 is the winner!";
             }
-            if (user2.Winner)
+            if (user2.Winner && !user2.Disqualified)
             {
                 winningstring = "Player 2 is the winner!";
             }
