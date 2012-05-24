@@ -148,7 +148,6 @@ C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Test
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\GifAnimation.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\GifAnimation.Pipeline.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Mechanect.exe
-C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\nunit.framework.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Physics.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\UI.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModel.dll
