@@ -123,33 +123,6 @@ namespace Mechanect.Exp3
         }
 
 
-
- 
-
-
-
-
-        /// <summary>
-        /// Takes the initial velocity of the ball and the friction and calculates its final position.
-        /// </summary>
-        /// <remarks>
-        ///<para>AUTHOR: Ahmad Sanad </para>
-        ///</remarks>
-        /// <param name="velocity">
-        /// The initial velocity of the ball after being shot.
-        /// </param>
-        /// <returns>
-        /// Returns the position of the ball when its velocity reaches 0.
-        /// </returns>
-        private Vector3 BallFinalPosition(Vector3 velocity)
-        {
-            var vxsquared = (float)Math.Pow(velocity.X, 2);
-            var vzsquared = (float)Math.Pow(velocity.Z, 2);
-            float x = (vxsquared / (2 * friction)) + ballInitialPosition.X;
-            float z = (vzsquared / (2 * friction)) + ballInitialPosition.Z;
-            return new Vector3(x, 0, z);
-        }
-
        
         /// <summary>
         /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, then calls methods to inform the user if he won or not.

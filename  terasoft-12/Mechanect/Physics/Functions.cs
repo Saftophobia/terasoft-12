@@ -132,5 +132,32 @@ namespace Physics
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
             return normalizedVector * finalVelocity;
         }
+
+        /// <summary>
+        /// Takes the initial velocity of a moving object and the friction and calculates its final position.
+        /// </summary>
+        /// <remarks>
+        ///<para>AUTHOR: Ahmad Sanad </para>
+        ///</remarks>
+        /// <param name="velocity">
+        /// The initial velocity of the ball after being shot.
+        /// </param>
+        /// <param name="friction">
+        /// The friction as positive deceleration.
+        /// </param>
+        /// <param name="ballInitialPosition">
+        /// The initial position of the moving object.
+        /// </param>
+        /// <returns>
+        /// Returns the position of the ball when its velocity reaches 0.
+        /// </returns>
+        private static Vector3 getFinalPosition(Vector3 velocity, float friction, Vector3 initialPosition)
+        {
+            var vxsquared = (float)Math.Pow(velocity.X, 2);
+            var vzsquared = (float)Math.Pow(velocity.Z, 2);
+            float x = (vxsquared / (2 * friction)) + initialPosition.X;
+            float z = (vzsquared / (2 * friction)) + initialPosition.Z;
+            return new Vector3(x, 0, z);
+        }
     }
 }
