@@ -173,40 +173,14 @@ namespace Mechanect.Exp1
 
              //get the start index of speed list
              UI.UILib.SayText(currentCommands[user1.ActiveCommand + 1]);
-             int startIndexFor1 = -1;
-             int startIndexFor2 = -1;
-             for (int i = 0; i < user1.Velocitylist.Count; i++)
-                 if ((startCommandTime + 1) <= user1.Velocitylist[i][1])
-                 {
-                     startIndexFor1 = i;
-                     break;
-                 }
-
-             for (int i = 0; i < user2.Velocitylist.Count; i++)
-                 if ((startCommandTime + 1) <= user2.Velocitylist[i][1])
-                 {
-                     startIndexFor2 = i;
-                     break;
-                 }
+             int startIndexFor1 = GetStartIndex(user1, startCommandTime);
+             int startIndexFor2 = GetStartIndex(user2, startCommandTime);
 
              //set the list of speeds
-             List<float> speedsOf1 = new List<float>();
-             List<float> speedsOf2 = new List<float>();
-             List<float[]> velocitiesWithTimeOf1 = new List<float[]>();
-             List<float[]> velocitiesWithTimeOf2 = new List<float[]>();
-             if ((startIndexFor1 < user1.Velocitylist.Count) && (startIndexFor1 > -1))
-                 for (int i = startIndexFor1; i < user1.Velocitylist.Count; i++)
-                 {
-                     speedsOf1.Add(user1.Velocitylist[i][0]);
-                     velocitiesWithTimeOf1.Add(user1.Velocitylist[i]);
-                 }
-
-             if ((startIndexFor2 < user2.Velocitylist.Count) && (startIndexFor2 > -1))
-                 for (int i = startIndexFor2; i < user2.Velocitylist.Count; i++)
-                 {
-                     speedsOf2.Add(user2.Velocitylist[i][0]);
-                     velocitiesWithTimeOf2.Add(user2.Velocitylist[i]);
-                 }
+             List<float> speedsOf1 = GetSpeedsList(user1, startIndexFor1);
+             List<float> speedsOf2 = GetSpeedsList(user2, startIndexFor2);
+             List<float[]> velocitiesWithTimeOf1 = GetVelocitiesWithTime(user1, startIndexFor1);
+             List<float[]> velocitiesWithTimeOf2 = GetVelocitiesWithTime(user2, startIndexFor2);
 
              //here the command is checked pver the two players to see if any of them got disqualified
              string s = "";
@@ -224,6 +198,69 @@ namespace Mechanect.Exp1
                  s += "User 2 got Disqualified";
                  Console.Write("User 2 got Disqualified");
              }
+         }
+
+        /// <summary>
+        /// Gets the list containing the velocities caught during this command.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="startIndex">The index of the array VelocityList to start from.</param>
+        /// <returns>List<float>: The list containing the velocities</returns>
+        /// <remarks>
+        /// <para>AUTHOR: Michel Nader </para>
+        /// <para>DATE WRITTEN: 24/5/12 </para>
+        /// <para>DATE MODIFIED: 24/5/12 </para>
+        /// </remarks>
+         static List<float> GetSpeedsList(User1 user, int startIndex)
+         {
+             List<float> speeds = new List<float>();
+             if ((startIndex < user.Velocitylist.Count) && (startIndex > -1))
+                 for (int i = startIndex; i < user.Velocitylist.Count; i++)
+                 {
+                     speeds.Add(user.Velocitylist[i][0]);
+                 }
+             return speeds;
+         }
+
+         /// <summary>
+         /// Gets the list containing the velocities caught during this command with their respective time.
+         /// </summary>
+         /// <param name="user">The user.</param>
+         /// <param name="startIndex">The index of the array VelocityList to start from.</param>
+         /// <returns>List<float>: The list containing the velocities and their respective time.</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 24/5/12 </para>
+         /// <para>DATE MODIFIED: 24/5/12 </para>
+         /// </remarks>
+         static List<float[]> GetVelocitiesWithTime(User1 user, int startIndex)
+         {
+             List<float[]> velocitiesWithTime = new List<float[]>();
+             if ((startIndex < user.Velocitylist.Count) && (startIndex > -1))
+                 for (int i = startIndex; i < user.Velocitylist.Count; i++)
+                 {
+                     velocitiesWithTime.Add(user.Velocitylist[i]);
+                 }
+             return velocitiesWithTime;
+         }
+
+        /// <summary>
+        /// Gets the start index of the array of velocities.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="startCommandTime">The when the command started.</param>
+         /// <returns>int: The index of the array velicityList</returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 24/5/12 </para>
+         /// <para>DATE MODIFIED: 24/5/12 </para>
+         /// </remarks>
+         static int GetStartIndex(User1 user, float startCommandTime)
+         {
+             for (int i = 0; i < user.Velocitylist.Count; i++)
+                 if ((startCommandTime + 1) <= user.Velocitylist[i][1])
+                     return i;
+             return -1;
          }
 
          /// <summary>
@@ -301,7 +338,7 @@ namespace Mechanect.Exp1
          /// </summary>
          /// <param name="command">Which is the name of the command that should be satisfied.</param>
          /// <param name="velocities">A list containing the velocities of the user.</param>
-         /// <param name="tolerance">The tolerance level.</param>
+         /// <param name="currentTolerance">The tolerance level.</param>
          /// <param name="velocityListWithTime">A list containing the velocities of the user with its respective time.</param>
          /// <returns>bool: If the command sent is satified then "true" else "false".</returns>
          /// <remarks>
@@ -309,44 +346,23 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 19/4/12 </para>
          /// <para>DATE MODIFIED: 26/4/12 </para>
          /// </remarks>
-         public static bool CommandSatisfied(string command, List<float> velocities, float tolerance, List<float[]> velocityListWithTime)
+         public static bool CommandSatisfied(string command, List<float> velocities, float currentTolerance, List<float[]> velocityListWithTime)
          {
-             bool result = true;
-             float currentTolerance = tolerance;
-
              if (command.Equals("constantVelocity"))
-             {
-                 result = ConstantVelocity(velocities, currentTolerance);
-             }
+                 return ConstantVelocity(velocities, currentTolerance);
              else
-             {
                  if (command.Equals("constantAcceleration"))
-                 {
-                     result = ConstantAcceleration(velocityListWithTime, currentTolerance);
-                 }
+                     return ConstantAcceleration(velocityListWithTime, currentTolerance);
                  else
-                 {
                      if (command.Equals("constantDisplacement"))
-                     {
-                         result = ConstantDisplacement(velocities, currentTolerance);
-                     }
+                         return ConstantDisplacement(velocities);
                      else
-                     {
                          if (command.Equals("increasingAcceleration"))
-                         {
-                             result = IncreasingAcceleration(velocityListWithTime, currentTolerance);
-                         }
+                             return IncreasingAcceleration(velocityListWithTime, currentTolerance);
                          else
-                         {
                              if (command.Equals("decreasingAcceleration"))
-                             {
-                                 result = DecreasingAcceleration(velocityListWithTime, currentTolerance);
-                             }
-                         }
-                     }
-                 }
-             }
-             return result;
+                                 return DecreasingAcceleration(velocityListWithTime, currentTolerance);
+             return true;
          }
 
         /// <summary>
@@ -377,19 +393,11 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 20/5/12 </para>
+         /// <para>DATE MODIFIED: 24/5/12 </para>
          /// </remarks>
          public static bool ConstantVelocity(List<float> velocities, float currentTolerance)
          {
-             for (int i = 1; i < velocities.Count; i++)
-             {
-                 if (!((velocities[i] >= (velocities[i - 1] - currentTolerance)) &&
-                     (velocities[i] <= (velocities[i - 1] + currentTolerance))))
-                 {
-                     return false;
-                 }
-             }
-             return true;
+             return CheckForConstants(velocities, currentTolerance);
          }
          
          /// <summary>
@@ -401,21 +409,21 @@ namespace Mechanect.Exp1
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 23/4/12 </para>
-         /// <para>DATE MODIFIED: 20/5/12 </para>
+         /// <para>DATE MODIFIED: 24/5/12 </para>
          /// </remarks>
          public static bool ConstantAcceleration(List<float[]> velocitiesWithTime, float currentTolerance)
          {
 
              List<float> accelerations = GetAcceleration(velocitiesWithTime);
+             return CheckForConstants(accelerations, currentTolerance);
+         }
 
-             for (int i = 1; i < accelerations.Count; i++)
-             {
-                 if (!((accelerations[i] >= (accelerations[i - 1] - currentTolerance)) && 
-                     (accelerations[i] <= (accelerations[i - 1] + currentTolerance))))
-                 {
+         static bool CheckForConstants(List<float> constantList, float tolerance)
+         {
+             for (int i = 1; i < constantList.Count; i++)
+                 if (!((constantList[i] >= (constantList[i - 1] - tolerance)) &&
+                     (constantList[i] <= (constantList[i - 1] + tolerance))))
                      return false;
-                 }
-             }
              return true;
          }
 
@@ -430,7 +438,7 @@ namespace Mechanect.Exp1
          /// <para>DATE WRITTEN: 23/4/12 </para>
          /// <para>DATE MODIFIED: 20/5/12 </para>
          /// </remarks>
-         public static bool ConstantDisplacement(List<float> velocities, float currentTolerance)
+         public static bool ConstantDisplacement(List<float> velocities)
          {
              return (velocities.Count <= 1);
          }
@@ -451,12 +459,8 @@ namespace Mechanect.Exp1
              List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
              for (int i = 1; i < accelerations.Count; i++)
-             {
-                 if (!(accelerations[i] > (accelerations[i - 1] - currentTolerance)))
-                {
+                 if ((accelerations[i] <= (accelerations[i - 1] - currentTolerance))
                     return false;
-                 }
-             }
              return (accelerations.Count != 0);
          }
 
@@ -476,13 +480,8 @@ namespace Mechanect.Exp1
              List<float> accelerations = GetAcceleration(velocitiesWithTime);
 
              for (int i = 1; i < accelerations.Count; i++)
-             {
-                 if (!(accelerations[i] < (accelerations[i - 1] + currentTolerance)))
-                 {
+                 if (accelerations[i] >= (accelerations[i - 1] + currentTolerance))
                      return false;
-                 }
-             }
-
              return true;
          }
 
