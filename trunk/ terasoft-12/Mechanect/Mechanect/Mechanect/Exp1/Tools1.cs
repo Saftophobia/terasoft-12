@@ -139,8 +139,8 @@ namespace Mechanect.Exp1
          /// </remarks>
          public static void GetWinner(User1 user1, User1 user2, float raceLength)
          {
-             user1.Winner = (user1.Positions.Sum() >= raceLength) && !(user1.Disqualified);
-             user2.Winner = (user2.Positions.Sum() >= raceLength) && !(user2.Disqualified);
+             user1.Winner = (user1.Positions.Sum() >= raceLength) ;
+             user2.Winner = (user2.Positions.Sum() >= raceLength) ;
          }
 
          /// <summary>
