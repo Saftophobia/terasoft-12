@@ -493,7 +493,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                         // this.Environment1.MoveAvatar(1, (int)speed * 15);
-                                        this.environ1.bike1.Move(speed2 * avatarconst);
+                                        this.environ1.bike2.Move(speed2 * avatarconst);
 
 
 
@@ -580,7 +580,7 @@ namespace Mechanect.Screens.Exp1Screens
                                         user2.Positions.Add(speedr2 * this.avatarconst);
 
                                         // this.Environment1.MoveAvatar(1, (int)speedr * 15);
-                                        this.environ1.bike1.Move(speedr2 * avatarconst);
+                                        this.environ1.bike2.Move(speedr2 * avatarconst);
 
 
                                         calculatespeedboolr2 = false;
