@@ -42,7 +42,8 @@ namespace UI.Components
         /// <remarks>
         /// AUTHOR : Bishoy Bassem.
         /// </remarks>
-        public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale){
+        public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
+        {
             this.Position = position;
             this.Rotation = rotation;
             this.Scale = scale;
