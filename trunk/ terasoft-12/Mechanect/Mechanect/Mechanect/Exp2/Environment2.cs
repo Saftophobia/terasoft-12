@@ -26,7 +26,7 @@ namespace Mechanect.Exp2
         #region: Variables for generating the GUI
         public bool DrawBackground { set; get; }
         private Texture2D xyAxisTexture;
-        private Texture2D backgroundTexture;
+
         private Texture2D lineConnector;
         private Vector2 predatorScaling;
         private Vector2 preyScaling;
@@ -321,8 +321,7 @@ namespace Mechanect.Exp2
             this.graphicsDevice = graphicsDevice;
             this.viewPort = viewPort;
 
-            xyAxisTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/xyAxis");
-            backgroundTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
+            xyAxisTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/xyAxis");            
             lineConnector = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             lineConnector.SetData(new[] { Color.Gray });
             labelsFont = contentManager.Load<SpriteFont>("Ariel");
@@ -355,11 +354,9 @@ namespace Mechanect.Exp2
             if (this.spriteBatch == null)
                 this.spriteBatch = spriteBatch;
 
-            if (DrawBackground)
-                spriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
-
-
             this.axisesPercentage = 0.047f;
+
+           
 
             rectangle = new Rectangle((int)(Math.Max(0, rectangle.X) + 3 * labelsFont.MeasureString("99.9").X),
                 Math.Max(0, rectangle.Y), (Math.Min(rectangle.Width,
@@ -368,6 +365,7 @@ namespace Mechanect.Exp2
                 rectangle.Y) - 3 * labelsFont.MeasureString("0").Y));
 
             spriteBatch.Draw(xyAxisTexture, rectangle, Color.White);
+
 
             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + rectangle.Width * axisesPercentage),
                 (int)(rectangle.Y+4.5f*rectangle.Height*axisesPercentage), (int)(rectangle.Width -
@@ -394,7 +392,7 @@ namespace Mechanect.Exp2
         {
             StartAquarium.Draw(mySpriteBatch, PositionMapper(initialPredatorLocation), aquariumScaling);
             Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
-            Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
+            Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), 0.9f*predatorScaling);
 
             if (!Prey.Eaten)
                 Prey.Draw(mySpriteBatch, PositionMapper(Prey.Location), preyScaling);
@@ -435,6 +433,8 @@ namespace Mechanect.Exp2
             aquariumScaling = Aquarium.Width * pixelsPerMeter;
             predatorScaling = Aquarium.Width * pixelsPerMeter;
             preyScaling = Prey.Width * pixelsPerMeter;
+
+            
         }
 
         /// <summary>

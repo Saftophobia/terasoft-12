@@ -80,6 +80,7 @@ namespace Mechanect.Exp2
         private Texture2D grayTexture;
         private Texture2D velocityTexture;
         private Texture2D angleTexture;
+        private Texture2D backgroundTexture;
 
         // Variables That will be used as scaling for the Textures
         private Vector2 grayTextureScaling;
@@ -203,6 +204,7 @@ namespace Mechanect.Exp2
             grayTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/GrayScreen");
             velocityTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/VelocityGauge");
             angleTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/AngleGauge");
+            backgroundTexture = Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
         }
 
 
@@ -226,6 +228,7 @@ namespace Mechanect.Exp2
 
             //Drawing the Experiment environment
             SpriteBatch.Begin();
+            SpriteBatch.Draw(backgroundTexture, new Rectangle(0, 0, ViewPort.Width, ViewPort.Height), Color.White);
             environment.Draw(new Rectangle(0, (int)(ViewPort.Height * 0.3f), ViewPort.Width, (int)
             ViewPort.Height), SpriteBatch);
             SpriteBatch.End();
