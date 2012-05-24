@@ -7,7 +7,7 @@ namespace UI.Cameras
     /// Represents a generic type for all camera types.
     /// </summary>
     /// <remarks>
-    /// AUTHOR : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public abstract class Camera
     {
@@ -21,7 +21,10 @@ namespace UI.Cameras
         /// <summary>
         /// Intializes the camera's attributes.
         /// </summary>
-        /// <param name="graphicsDevice">Graphics device</param>
+        /// <param name="graphicsDevice">Displays graphics on the screen.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public Camera(GraphicsDevice graphicsDevice)
         {
             this.GraphicsDevice = graphicsDevice;
@@ -30,8 +33,11 @@ namespace UI.Cameras
         }
 
         /// <summary>
-        /// Causes the camera to update its view and projection matrices.
+        /// Updates the camera's view and projection matrices.
         /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public abstract void Update();
 
     }
