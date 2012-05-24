@@ -5,8 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
     /// <summary>
-    /// This class represents the Terasoft screen.
+    /// This class Represents the Terasoft screen.
     /// </summary>
+	/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class TeraSoftScreen : FadingScreen
     {
         private float scale;
@@ -31,8 +32,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Updates the content of this screen.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
-        /// <param name="covered">specifies wether the screen is covered.</param>
+        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -46,7 +46,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the content of this screen.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
