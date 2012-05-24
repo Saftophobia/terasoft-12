@@ -102,7 +102,7 @@ namespace Physics
         /// Vector which is the randomly generated position of the hole.
         /// </returns>
 
-        public static Vector3 GeneratePosition(int radius, int terrainWidth, int terrainHeight, Vector3 shootingPosition)
+        public static Vector3 GeneratePosition(int radius, int terrainWidth, int terrainHeight)
         {
             float X = GenerateRandomValue(-(terrainWidth) / 4 + 3 * radius, (terrainWidth) / 4 - 3 * radius);
             float Y = -1;
