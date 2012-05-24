@@ -15,13 +15,10 @@ namespace Mechanect.Exp2
     /// This Class is responsible for running Experiment2 and displaying it's GUI
     /// </summary>
     /// <remarks>
-    /// <para>AUTHOR: Mohamed Alzayat, Mohamed Abdelazim </para>
+    /// <para>AUTHOR: Mohamed Alzayat, Mohamed AbdelAzim </para>
     /// </remarks>
     public class Experiment2 : Mechanect.Common.GameScreen
     {
-
-
-
         VoiceCommands voiceCommand;
         User2 user;
         Boolean aquariumReached;
@@ -132,14 +129,15 @@ namespace Mechanect.Exp2
         /// <param name="aquariumPosition">Rect, the rectangle that represents the position of the aquarium</param>
         public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
         {
-
             environment = new Environment2(predatorPosition, preyPosition, AquariumPosition);
-
+            initialPredatorPosition = environment.Predator.Location;
+            initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y,
+                environment.Prey.Width, environment.Prey.Length);
+            initialAquariumPosition = new Rect(environment.Aquarium.Location.X,
+                environment.Aquarium.Location.Y, environment.Aquarium.Width, environment.Aquarium.Length);
             this.user = user;
             this.mKinect = user.Kinect;
             isCopied = false;
-
-
         }
 
 
@@ -354,15 +352,18 @@ namespace Mechanect.Exp2
                 if (milliSeconds > 3000)
                 {
                     this.Remove();
+                    float measuredVelocity = user.MeasuredAngle;
+                    float measuredAngle = user.MeasuredAngle;
+                    user.Reset();
                     if (environment.Win)
                         ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, 
-                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
-                            user.MeasuredAngle, user));
+                            initialPreyPosition, initialAquariumPosition, measuredVelocity,
+                            measuredAngle, user));
                     else
                         ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
-                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
-                            user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
-                    user.Reset();
+                            initialPreyPosition, initialAquariumPosition, measuredVelocity,
+                            measuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+                    
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
