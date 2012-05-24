@@ -7,7 +7,7 @@ namespace Mechanect.Screens
     /// <summary>
     /// This class Represents the Terasoft screen.
     /// </summary>
-	/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
+    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class TeraSoftScreen : FadingScreen
     {
         private float scale;
