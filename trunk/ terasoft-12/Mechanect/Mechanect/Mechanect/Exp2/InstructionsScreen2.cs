@@ -87,7 +87,7 @@ namespace Mechanect.Screens
         {
             if (button.IsClicked())
             {
-                ScreenManager.AddScreen(new Settings3(user2));
+            ScreenManager.AddScreen(new AdjustPosition(user2, 150, 350, -40, 40, 2));
                 Remove();
             }
             button.Update(gameTime);
