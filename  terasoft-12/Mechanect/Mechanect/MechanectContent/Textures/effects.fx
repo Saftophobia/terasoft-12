@@ -1,252 +1,207 @@
-//------------------------------------------------------
-//--                                                  --
-//--		   www.riemers.net                    --
-//--   		    Basic shaders                     --
-//--		Use/modify as you like                --
-//--                                                  --
-//------------------------------------------------------
+//View matrix.
+float4x4 xView;
+//Projection Matrix.
+float4x4 xProjection;
+//World matrix.
+float4x4 xWorld;
+//Light direction.
+float3 xLightDirection;
+//Ambient light power.
+float xAmbient;
+//Chooses whether or not to enable lighting.
+bool xEnableLighting;
+//Current time
+float xTime;
+//The overcast i.e. How cloudy the sky is.
+float xOvercast;
+//A texture to be mapped.
+Texture xTexture;
+//A sampler for the texture.
+sampler TextureSampler = sampler_state { texture = <xTexture>; magfilter = LINEAR; 
+minfilter = LINEAR; mipfilter=LINEAR; AddressU = mirror; AddressV = mirror;};
 
-struct VertexToPixel
+
+//Textured Technique (for grass)
+
+////Defines an output struct for the vertex shader.
+struct TexVertexToPixel
 {
-    float4 Position   	: POSITION;    
-    float4 Color		: COLOR0;
-    float LightingFactor: TEXCOORD0;
-    float2 TextureCoords: TEXCOORD1;
+    float4 Position   	 : POSITION;    
+    float4 Color		 : COLOR0;
+    float LightingFactor : TEXCOORD0;
+    float2 TextureCoords : TEXCOORD1;
 };
-
-struct PixelToFrame
+//Defines an output struct for the pixel shader.
+struct TexPixelToFrame
 {
     float4 Color : COLOR0;
 };
 
-//------- Constants --------
-float4x4 xView;
-float4x4 xProjection;
-float4x4 xWorld;
-float3 xLightDirection;
-float xAmbient;
-bool xEnableLighting;
-bool xShowNormals;
-float3 xCamPos;
-float3 xCamUp;
-float xPointSpriteSize;
-
-//------- Texture Samplers --------
-
-Texture xTexture;
-sampler TextureSampler = sampler_state { texture = <xTexture>; magfilter = LINEAR; minfilter = LINEAR; mipfilter=LINEAR; AddressU = mirror; AddressV = mirror;};
-
-//------- Technique: Pretransformed --------
-
-VertexToPixel PretransformedVS( float4 inPos : POSITION, float4 inColor: COLOR)
+//The vertex shader for the textured technique.
+//Takes as input from XNA, the position, normal and texture coordinates
+TexVertexToPixel TexturedVS( float4 inPos : POSITION, float3 inNormal: NORMAL, float2 inTexCoords: TEXCOORD0)
 {	
-	VertexToPixel Output = (VertexToPixel)0;
-	
-	Output.Position = inPos;
-	Output.Color = inColor;
-    
-	return Output;    
-}
 
-PixelToFrame PretransformedPS(VertexToPixel PSIn) 
-{
-	PixelToFrame Output = (PixelToFrame)0;		
-	
-	Output.Color = PSIn.Color;
-
-	return Output;
-}
-
-technique Pretransformed
-{
-	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 PretransformedVS();
-		PixelShader  = compile ps_2_0 PretransformedPS();
-	}
-}
-
-//------- Technique: Colored --------
-
-VertexToPixel ColoredVS( float4 inPos : POSITION, float3 inNormal: NORMAL, float4 inColor: COLOR)
-{	
-	VertexToPixel Output = (VertexToPixel)0;
+	TexVertexToPixel Output = (TexVertexToPixel)0;
+	//Multiplies the view and projection matrices, into a matrix containing information of both.
 	float4x4 preViewProjection = mul (xView, xProjection);
+	//Multiplies the world matrix with the matrix containing information of the view and projection matrices, made in the last line.
+	//This creates a matrix containing the information of all three matrices. This matrix is needed to be able to
+	//map the position of each vertex or point in the 3D world to our 2D screen.
 	float4x4 preWorldViewProjection = mul (xWorld, preViewProjection);
     
+	//Multiplies the input position with the World*View*Projection matrix, to map this 3D vertex to our 2D screen.
+	//Sets the output position to this value, as this will be the position of the vertex on the screen.
 	Output.Position = mul(inPos, preWorldViewProjection);
-	Output.Color = inColor;
-	
-	float3 Normal = normalize(mul(normalize(inNormal), xWorld));	
-	Output.LightingFactor = 1;
-	if (xEnableLighting)
-		Output.LightingFactor = dot(Normal, -xLightDirection);
-    
-	return Output;    
-}
-
-PixelToFrame ColoredPS(VertexToPixel PSIn) 
-{
-	PixelToFrame Output = (PixelToFrame)0;		
-    
-	Output.Color = PSIn.Color;
-	Output.Color.rgb *= saturate(PSIn.LightingFactor) + xAmbient;
-
-	return Output;
-}
-
-technique Colored
-{
-	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 ColoredVS();
-		PixelShader  = compile ps_2_0 ColoredPS();
-	}
-}
-
-//------- Technique: ColoredNoShading --------
-
-VertexToPixel ColoredNoShadingVS( float4 inPos : POSITION, float4 inColor: COLOR)
-{	
-	VertexToPixel Output = (VertexToPixel)0;
-	float4x4 preViewProjection = mul (xView, xProjection);
-	float4x4 preWorldViewProjection = mul (xWorld, preViewProjection);
-    
-	Output.Position = mul(inPos, preWorldViewProjection);
-	Output.Color = inColor;
-    
-	return Output;    
-}
-
-PixelToFrame ColoredNoShadingPS(VertexToPixel PSIn) 
-{
-	PixelToFrame Output = (PixelToFrame)0;		
-    
-	Output.Color = PSIn.Color;
-
-	return Output;
-}
-
-technique ColoredNoShading
-{
-	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 ColoredNoShadingVS();
-		PixelShader  = compile ps_2_0 ColoredNoShadingPS();
-	}
-}
-
-
-//------- Technique: Textured --------
-
-VertexToPixel TexturedVS( float4 inPos : POSITION, float3 inNormal: NORMAL, float2 inTexCoords: TEXCOORD0)
-{	
-	VertexToPixel Output = (VertexToPixel)0;
-	float4x4 preViewProjection = mul (xView, xProjection);
-	float4x4 preWorldViewProjection = mul (xWorld, preViewProjection);
-    
-	Output.Position = mul(inPos, preWorldViewProjection);	
+		
+	//Sets the output texture coordinate to the input directly, as it will be chosen in XNA.
 	Output.TextureCoords = inTexCoords;
 	
-	float3 Normal = normalize(mul(normalize(inNormal), xWorld));	
+	//Multiplies the World matrix with the unit vector of the input normal.
+	float3 Normal = normalize(mul(normalize(inNormal), xWorld));
+	//
 	Output.LightingFactor = 1;
 	if (xEnableLighting)
-		Output.LightingFactor = dot(Normal, -xLightDirection);
+		Output.LightingFactor = saturate(dot(Normal, -xLightDirection));
     
-	return Output;    
+	return Output;     
 }
 
-PixelToFrame TexturedPS(VertexToPixel PSIn) 
+//Pixel shader for the Textured technique.
+TexPixelToFrame TexturedPS(TexVertexToPixel PSIn) 
 {
-	PixelToFrame Output = (PixelToFrame)0;		
-	
+
+	TexPixelToFrame Output = (TexPixelToFrame)0;		
+    //Sets the color of the pixel to the value of the Texture Sampler, at the coordinates from the input.
 	Output.Color = tex2D(TextureSampler, PSIn.TextureCoords);
-	Output.Color.rgb *= saturate(PSIn.LightingFactor) + xAmbient;
+	//Sets the output color to the sum of the ambient light and the lighting factor of the input. 
+	//Saturate changes the result to a range between 0 and 1.
+	Output.Color.rgb *= saturate(PSIn.LightingFactor + xAmbient);
 
 	return Output;
 }
 
+//Defines the Textured technique, and defines its vertex and pixel shaders.
 technique Textured
 {
 	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 TexturedVS();
-		PixelShader  = compile ps_2_0 TexturedPS();
-	}
+    {   
+    	VertexShader = compile vs_2_0 TexturedVS();
+        PixelShader  = compile ps_2_0 TexturedPS();
+    }
 }
 
-//------- Technique: TexturedNoShading --------
+//Technique: PerlinNoise (for creating cloudmap)
 
-VertexToPixel TexturedNoShadingVS( float4 inPos : POSITION, float3 inNormal: NORMAL, float2 inTexCoords: TEXCOORD0)
-{	
-	VertexToPixel Output = (VertexToPixel)0;
-	float4x4 preViewProjection = mul (xView, xProjection);
-	float4x4 preWorldViewProjection = mul (xWorld, preViewProjection);
-    
-	Output.Position = mul(inPos, preWorldViewProjection);	
-	Output.TextureCoords = inTexCoords;
-    
-	return Output;    
-}
+//Defines an output struct for the vertex shader.
+ struct PNVertexToPixel
+ {    
+     float4 Position         : POSITION;
+     float2 TextureCoords    : TEXCOORD0;
+ };
+ 
+ //Defines an output struct for the pixel shader.
+ struct PNPixelToFrame
+ {
+     float4 Color : COLOR0;
+ };
+ 
+ //Vertex shader for the perlin noise technique.
+ PNVertexToPixel PerlinVS(float4 inPos : POSITION, float2 inTexCoords: TEXCOORD)
+ {    
+     PNVertexToPixel Output = (PNVertexToPixel)0;
+     
+     Output.Position = inPos;
+     Output.TextureCoords = inTexCoords;
+     
+     return Output;    
+ }
+ 
+ //Pixel shader for the perlin noise technique.
+ //It takes the noise image, and renders it 6 times at different resolutions.
+ //It also makes the 6 images move over eachother at different speeds to give the effect that the clouds are moving and changing shape.
+ PNPixelToFrame PerlinPS(PNVertexToPixel PSIn)
+ {
+     PNPixelToFrame Output = (PNPixelToFrame)0;    
+     
+     float2 move = float2(0,1);
+     float4 perlin = tex2D(TextureSampler, (PSIn.TextureCoords)+(xTime*move))/2;
+     perlin += tex2D(TextureSampler, ((PSIn.TextureCoords)*2)+(xTime*move))/4;
+     perlin += tex2D(TextureSampler, ((PSIn.TextureCoords)*4)+(xTime*move))/8;
+     perlin += tex2D(TextureSampler, ((PSIn.TextureCoords)*8)+(xTime*move))/16;
+     perlin += tex2D(TextureSampler, ((PSIn.TextureCoords)*16)+(xTime*move))/32;
+     perlin += tex2D(TextureSampler, ((PSIn.TextureCoords)*32)+(xTime*move))/32;    
+     
+     Output.Color.rgb = 1.0f-(pow(perlin.r, xOvercast)*2.0f);
+     Output.Color.a =1;
+ 
+     return Output;
+ }
+ 
+ //Defines the perlin noise technique, and sets its vertex and pixel shaders.
+ technique PerlinNoise
+ {
+     pass Pass0
+     {
+         VertexShader = compile vs_2_0 PerlinVS();
+         PixelShader = compile ps_2_0 PerlinPS();
+     }
+ }
 
-PixelToFrame TexturedNoShadingPS(VertexToPixel PSIn) 
+//Technique: SkyDome (for creating the skydome)
+
+////Defines an output struct for the pixel shader.
+struct SDVertexToPixel
+{    
+    float4 Position         : POSITION;
+    float2 TextureCoords    : TEXCOORD0;
+    float4 ObjectPosition   : TEXCOORD1;
+};
+
+//Defines an output struct for the pixel shader.
+struct SDPixelToFrame
 {
-	PixelToFrame Output = (PixelToFrame)0;		
-	
-	Output.Color = tex2D(TextureSampler, PSIn.TextureCoords);
+    float4 Color : COLOR0;
+};
 
-	return Output;
-}
-
-technique TexturedNoShading
-{
-	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 TexturedNoShadingVS();
-		PixelShader  = compile ps_2_0 TexturedNoShadingPS();
-	}
-}
-
-//------- Technique: PointSprites --------
-
-VertexToPixel PointSpriteVS(float3 inPos: POSITION0, float2 inTexCoord: TEXCOORD0)
-{
-    VertexToPixel Output = (VertexToPixel)0;
-
-    float3 center = mul(inPos, xWorld);
-    float3 eyeVector = center - xCamPos;
-
-    float3 sideVector = cross(eyeVector,xCamUp);
-    sideVector = normalize(sideVector);
-    float3 upVector = cross(sideVector,eyeVector);
-    upVector = normalize(upVector);
-
-    float3 finalPosition = center;
-    finalPosition += (inTexCoord.x-0.5f)*sideVector*0.5f*xPointSpriteSize;
-    finalPosition += (0.5f-inTexCoord.y)*upVector*0.5f*xPointSpriteSize;
-
-    float4 finalPosition4 = float4(finalPosition, 1);
-
+//The vertex shader for the skydome technique.
+//similar to the one for the textured technique.
+SDVertexToPixel SkyDomeVS( float4 inPos : POSITION, float2 inTexCoords: TEXCOORD0)
+{    
+    SDVertexToPixel Output = (SDVertexToPixel)0;
     float4x4 preViewProjection = mul (xView, xProjection);
-    Output.Position = mul(finalPosition4, preViewProjection);
+    float4x4 preWorldViewProjection = mul (xWorld, preViewProjection);
+    
+    Output.Position = mul(inPos, preWorldViewProjection);
+    Output.TextureCoords = inTexCoords;
+    Output. ObjectPosition = inPos;
+    
+    return Output;    
+}
 
-    Output.TextureCoords = inTexCoord;
+//Pixel shader for the skydome technique. Defines two colors, one for the top of the sky and one for the bottom.
+//This is to make the bottom look brighter to make it look more realistic, like a horizon.
+SDPixelToFrame SkyDomePS(SDVertexToPixel PSIn)
+{
+    SDPixelToFrame Output = (SDPixelToFrame)0;        
+
+    float4 topColor = float4(0.3f, 0.3f, 0.8f, 1);    
+    float4 bottomColor = 1;    
+    
+    float4 baseColor = lerp(bottomColor, topColor, saturate((PSIn. ObjectPosition.y)/0.4f));
+    float4 cloudValue = tex2D(TextureSampler, PSIn.TextureCoords).r;
+    
+    Output.Color = lerp(baseColor,1, cloudValue);        
 
     return Output;
 }
 
-PixelToFrame PointSpritePS(VertexToPixel PSIn) : COLOR0
+//Defines the skydome technique and sets its vertex and pixel shaders.
+technique SkyDome
 {
-    PixelToFrame Output = (PixelToFrame)0;
-    Output.Color = tex2D(TextureSampler, PSIn.TextureCoords);
-    return Output;
-}
-
-technique PointSprites
-{
-	pass Pass0
-	{   
-		VertexShader = compile vs_2_0 PointSpriteVS();
-		PixelShader  = compile ps_2_0 PointSpritePS();
-	}
+    pass Pass0
+    {
+        VertexShader = compile vs_2_0 SkyDomeVS();
+        PixelShader = compile ps_2_0 SkyDomePS();
+    }
 }

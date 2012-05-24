@@ -204,7 +204,7 @@ namespace Mechanect.Exp3
         {
 
             //loads the the fx file to use the effects defined in it
-            effect = Content.Load<Effect>("Textures/MYHLSL");
+            effect = Content.Load<Effect>("Textures/Effects");
             skyDome = Content.Load<Model>("Models/dome");
             cloudMap = Content.Load<Texture2D>("Textures/cloudMap");
             skyDome.Meshes[0].MeshParts[0].Effect = effect;
