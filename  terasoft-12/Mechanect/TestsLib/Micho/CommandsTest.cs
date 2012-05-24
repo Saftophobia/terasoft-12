@@ -28,7 +28,7 @@ namespace Tests
                 "constantVelocity", "constantDisplacement", "constantAcceleration", "abcd" };
             tolerance = 0F;
         }
-        [Test]
+        [TestFixtureSetUp]
         public void MyTestInitialize()
         {
             user1.Disqualified = false;
