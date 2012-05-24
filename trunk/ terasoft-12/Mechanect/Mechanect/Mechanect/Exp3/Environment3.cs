@@ -57,8 +57,27 @@ namespace Mechanect.Exp3
         private Effect effect;
         private VertexPositionNormalTexture[] vertices;
         private int[] indices;
-        public int terrainWidth { get; private set; }
-        public int terrainHeight { get; private set; }
+
+        [Obsolete("terrainWidth will be made private, please use TerrainWidth instead, unless you are accessing it from inside class Environment3.")]
+        public int terrainWidth;
+        [Obsolete("terrainHeight will be made private, please use TerrainHeight instead, unless you are accessing it from inside class Environment3.")]
+        public int terrainHeight;
+
+        public int TerrainWidth
+        {
+            get
+            {
+                return terrainWidth;
+            }
+        }
+
+        public int TerrainHeight
+        {
+            get
+            {
+                return terrainHeight;
+            }
+        }
 
         private float[,] heightData; //2D array
         private VertexBuffer myVertexBuffer;
@@ -75,12 +94,12 @@ namespace Mechanect.Exp3
         private Vector3 ballInitialPosition, ballInitialVelocity;
         public float arriveVelocity { get; set; }
         
-        Texture2D grassTexture;
-        Texture2D cloudMap;
-        Model skyDome;
-        RenderTarget2D cloudsRenderTarget;
-        Texture2D cloudStaticMap;
-        VertexPositionTexture[] fullScreenVertices;
+        private Texture2D grassTexture;
+        private Texture2D cloudMap;
+        private Model skyDome;
+        private RenderTarget2D cloudsRenderTarget;
+        private Texture2D cloudStaticMap;
+        private VertexPositionTexture[] fullScreenVertices;
 
         public Environment3(ContentManager content, GraphicsDevice device, User3 user)
         {
@@ -198,8 +217,8 @@ namespace Mechanect.Exp3
         /// Checks whether or not the ball will reach the hole with zero velocity, by checking if the user shot it with the optimum velocity, then calls methods to inform the user if he won or not.
         /// </summary>
         /// <remarks>
-        ///<para>AUTHOR: Ahmad Sanad </para>
-        ///</remarks>
+        /// <para>AUTHOR: Ahmad Sanad </para>
+        /// </remarks>
         private void HasScored()
         {
             Vector3 hole = this.hole.Position;
@@ -227,7 +246,7 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Loads the content of the environment.
         /// </summary>
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadContent()
         {
             PlayerModel = new SkinnedCustomModel(Content.Load<Model>("dude"), new Vector3(0, 0, 45),
@@ -254,7 +273,7 @@ namespace Mechanect.Exp3
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="c">The camera the environment is viewed from.</param>
-        ///<param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Draw(Camera c, GameTime gameTime)
         {
             DrawEnvironment(c, gameTime);
@@ -268,11 +287,11 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Initializes the Environment.
         /// </summary>
-        /// <param name="g">The graphics device used to display graphics on the screen.</param>
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        public void InitializeEnvironment(GraphicsDevice g)
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <param name="graphics">The graphics device used to display graphics on the screen.</param>
+        public void InitializeEnvironment(GraphicsDevice graphics)
         {
-            device = g;
+            device = graphics;
                
 
         }
@@ -281,7 +300,7 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Loads the content of the environment.
         /// </summary>
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         public void LoadEnvironmentContent()
         {
 
@@ -289,23 +308,18 @@ namespace Mechanect.Exp3
             effect = Content.Load<Effect>("Textures/MYHLSL");
             skyDome = Content.Load<Model>("Models/dome");
             cloudMap = Content.Load<Texture2D>("Textures/cloudMap");
-            skyDome.Meshes[0].MeshParts[0].Effect = effect.Clone();
+            skyDome.Meshes[0].MeshParts[0].Effect = effect;
 
-
-            
-            PresentationParameters pp = device.PresentationParameters;
-            cloudsRenderTarget = new RenderTarget2D(device, pp.BackBufferWidth, pp.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
+            PresentationParameters presentationParameters = device.PresentationParameters;
+            cloudsRenderTarget = new RenderTarget2D(device, presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false, SurfaceFormat.Color, DepthFormat.Depth24Stencil8);
 
             cloudStaticMap = CreateStaticMap(32);
 
             grassTexture = Content.Load<Texture2D>("Textures/grass2");
 
-            
             SetUpIndices();
             CalculateNormals();
             CopyToBuffers();
-           
-            
 
         }
 
@@ -316,10 +330,10 @@ namespace Mechanect.Exp3
         /// Draws the environment. Similar to the Draw() method of XNA and should be called in it.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        ///<param name="gameTime">Provides a snapshot of timing values.</param>
-        public void DrawEnvironment(Camera c, GameTime gameTime)
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public void DrawEnvironment(Camera camera, GameTime gameTime)
         {
-            float time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
+            var time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
             GeneratePerlinNoise(time);
 
 
@@ -327,13 +341,13 @@ namespace Mechanect.Exp3
             //Clears the Z buffer
             device.Clear(ClearOptions.Target | ClearOptions.DepthBuffer, Color.Black, 1.0f, 0);
 
-            DrawSkyDome(c);
+            DrawSkyDome(camera);
 
             //Creates a rasterizer state removes culling, and makes the fill mode solid, for the triangles to be filled
-            RasterizerState rs = new RasterizerState();
-            rs.CullMode = CullMode.None;
-            rs.FillMode = FillMode.Solid;
-            device.RasterizerState = rs;
+            var rasterizerState = new RasterizerState();
+            rasterizerState.CullMode = CullMode.None;
+            rasterizerState.FillMode = FillMode.Solid;
+            device.RasterizerState = rasterizerState;
 
             var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
             //Matrix worldMatrix = Matrix.Identity;
@@ -344,8 +358,8 @@ namespace Mechanect.Exp3
             effect.Parameters["xLightDirection"].SetValue(lightDirection);
             effect.Parameters["xAmbient"].SetValue(0.1f);
             effect.Parameters["xEnableLighting"].SetValue(true);
-            effect.Parameters["xView"].SetValue(c.View);
-            effect.Parameters["xProjection"].SetValue(c.Projection);
+            effect.Parameters["xView"].SetValue(camera.View);
+            effect.Parameters["xProjection"].SetValue(camera.Projection);
             effect.Parameters["xWorld"].SetValue(worldMatrix);
             effect.Parameters["xTexture"].SetValue(grassTexture);
             foreach (EffectPass pass in effect.CurrentTechnique.Passes)
@@ -365,7 +379,7 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
         /// </summary>
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpVertices()
         {
             vertices = new VertexPositionNormalTexture[terrainWidth * terrainHeight];
@@ -392,7 +406,7 @@ namespace Mechanect.Exp3
         /// Creates the indices of the triangles used to generate the terrain. 
         /// This data is used to connect the vertices previously created to make them into triangles.
         /// </summary>
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
+        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpIndices()
         {
             indices = new int[(terrainWidth - 1) * (terrainHeight - 1) * 6];
@@ -442,8 +456,8 @@ namespace Mechanect.Exp3
         
         /// <summary>
         /// Copies the vertices and indices to GPU buffers. 
-        /// This allow the data to be called from the GPU's memory directly without having to send it to the GPU everytime the Draw() method is called.
-        /// This should increase performance as the GPU memory is generally faster.
+        /// This allows the data to be called from the GPU's memory directly without having to send it to the GPU everytime the Draw() method is called.
+        /// This should increase performance as the GPU's memory is generally faster.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void CopyToBuffers()
@@ -453,25 +467,6 @@ namespace Mechanect.Exp3
             myIndexBuffer = new IndexBuffer(device, typeof(int), indices.Length, BufferUsage.WriteOnly);
             myIndexBuffer.SetData(indices);
         }
-
-        /// <summary>
-        /// Contains the position, color and normal of the vertices.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        public struct VertexPositionColorNormal
-        {
-            public Vector3 Position;
-            public Color Color;
-            public Vector3 Normal;
-
-            public readonly static VertexDeclaration VertexDeclaration = new VertexDeclaration
-            (
-                new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
-                new VertexElement(sizeof(float) * 3, VertexElementFormat.Color, VertexElementUsage.Color, 0),
-                new VertexElement(sizeof(float) * 3 + 4, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0)
-            );
-        }
-
 
 
         /// <summary>
@@ -503,101 +498,38 @@ namespace Mechanect.Exp3
         }
 
 
-
-        ///<remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        /// <summary>
-        /// Loads a model and adds a texture to it.
-        /// </summary>
-        /// <param name="assetName">The name of the model to be loaded.</param>
-        /// <param name="textures">The name of the texture to be mapped on the model.</param>
-        /// <returns>Returns the model after adding the texture effect.</returns>
-        private Model LoadModel(string assetName, out Texture2D[] textures)
-        {
-
-            Model newModel = Content.Load<Model>(assetName);
-            textures = new Texture2D[newModel.Meshes.Count];
-            var i = 0;
-            foreach (ModelMesh mesh in newModel.Meshes)
-                foreach (BasicEffect currentEffect in mesh.Effects)
-                    textures[i++] = currentEffect.Texture;
-
-            foreach (ModelMesh mesh in newModel.Meshes)
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                    meshPart.Effect = effect.Clone();
-
-            return newModel;
-        }
-
-
-        /// <summary>
-        /// Creates, draws and adds effects to the skybox to display the sky all in all directions with a constant distance from the camera.
-        /// </summary>
-        /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        private void DrawSkybox(Camera c)
-        {
-            var ss = new SamplerState();
-            ss.AddressU = TextureAddressMode.Clamp;
-            ss.AddressV = TextureAddressMode.Clamp;
-            device.SamplerStates[0] = ss;
-
-            var dss = new DepthStencilState();
-            dss.DepthBufferEnable = false;
-            device.DepthStencilState = dss;
-
-            Matrix[] skyboxTransforms = new Matrix[skyboxModel.Bones.Count];
-            skyboxModel.CopyAbsoluteBoneTransformsTo(skyboxTransforms);
-            var i = 0;
-            foreach (ModelMesh mesh in skyboxModel.Meshes)
-            {
-                foreach (Effect currentEffect in mesh.Effects)
-                {
-                    var worldMatrix = skyboxTransforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(c.Position);
-                    currentEffect.CurrentTechnique = currentEffect.Techniques["Textured"];
-                    currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
-                    currentEffect.Parameters["xView"].SetValue(c.View);
-                    currentEffect.Parameters["xProjection"].SetValue(c.Projection);
-                    currentEffect.Parameters["xTexture"].SetValue(skyboxTextures[i++]);
-                }
-                mesh.Draw();
-            }
-
-            dss = new DepthStencilState();
-            dss.DepthBufferEnable = true;
-            device.DepthStencilState = dss;
-        }
-
         /// <summary>
         /// Draws the skydome to display the sky, and fills it with moving clouds.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="c">The camera used in the environment.</param>
-        private void DrawSkyDome(Camera c)
+        private void DrawSkyDome(Camera camera)
         {
-            DepthStencilState dss = new DepthStencilState();
-            dss.DepthBufferWriteEnable = false;
-            device.DepthStencilState = dss;
+            var depthStencilState = new DepthStencilState();
+            depthStencilState.DepthBufferWriteEnable = false;
+            device.DepthStencilState = depthStencilState;
 
             Matrix[] modelTransforms = new Matrix[skyDome.Bones.Count];
             skyDome.CopyAbsoluteBoneTransformsTo(modelTransforms);
 
-            Matrix wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(c.Position);
+            var wMatrix = Matrix.CreateTranslation(0, -0.3f, 0) * Matrix.CreateScale(100) * Matrix.CreateTranslation(camera.Position);
             foreach (ModelMesh mesh in skyDome.Meshes)
             {
                 foreach (Effect currentEffect in mesh.Effects)
                 {
-                    Matrix worldMatrix = modelTransforms[mesh.ParentBone.Index] * wMatrix;
+                    var worldMatrix = modelTransforms[mesh.ParentBone.Index] * wMatrix;
                     currentEffect.CurrentTechnique = currentEffect.Techniques["SkyDome"];
                     currentEffect.Parameters["xWorld"].SetValue(worldMatrix);
-                    currentEffect.Parameters["xView"].SetValue(c.View);
-                    currentEffect.Parameters["xProjection"].SetValue(c.Projection);
+                    currentEffect.Parameters["xView"].SetValue(camera.View);
+                    currentEffect.Parameters["xProjection"].SetValue(camera.Projection);
                     currentEffect.Parameters["xTexture"].SetValue(cloudMap);
                     currentEffect.Parameters["xEnableLighting"].SetValue(false);
                 }
                 mesh.Draw();
             }
-            DepthStencilState dss2 = new DepthStencilState();
-            dss2.DepthBufferWriteEnable = true;
-            device.DepthStencilState = dss2;
+            depthStencilState = new DepthStencilState();
+            depthStencilState.DepthBufferWriteEnable = true;
+            device.DepthStencilState = depthStencilState;
         }
 
 
@@ -606,20 +538,20 @@ namespace Mechanect.Exp3
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="resolution">Desired resolution of the map that will be created.</param>
-        /// <returns></returns>
+        /// <returns>Returns the generated noise map.</returns>
         private Texture2D CreateStaticMap(int resolution)
         {
-            Random rand = new Random();
+            var rand = new Random();
             Color[] noisyColors = new Color[resolution * resolution];
 
-            for (int x = 0; x < resolution; x++)
+            for (var x = 0; x < resolution; x++)
             {
-                for (int y = 0; y < resolution; y++)
+                for (var y = 0; y < resolution; y++)
                 {
                     noisyColors[x + y * resolution] = new Color(new Vector3((float)rand.Next(1000) / 1000.0f, 0, 0));
                 }
             }
-            Texture2D noiseImage = new Texture2D(device, 32, 32, false, SurfaceFormat.Color);
+            var noiseImage = new Texture2D(device, 32, 32, false, SurfaceFormat.Color);
             noiseImage.SetData(noisyColors);
             return noiseImage;
         }
@@ -662,7 +594,6 @@ namespace Mechanect.Exp3
             {
 
                 pass.Apply();
-                //device.VertexDeclaration = fullScreenVertexDeclaration;
                 device.DrawUserPrimitives(PrimitiveType.TriangleStrip, fullScreenVertices, 0, 2);
 
 
