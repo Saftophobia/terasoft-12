@@ -290,7 +290,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                    // this.Environment1.MoveAvatar(2, (int)speed2 * 15);
-                                    //this.environ1.bike2.Move(new Vector2(0,(int)speed2* avatarconst));
+                                    this.environ1.bike2.Move(new Vector2(0,(int)speed2* avatarconst));
 
                                     calculatespeedbool2 = false;
                                 }
@@ -368,7 +368,7 @@ namespace Mechanect.Screens.Exp1Screens
                                     user2.Positions.Add(speedr2);
 
                                  //   this.Environment1.MoveAvatar(2, (int)speedr2 * 15);
-                                    //this.environ1.bike2.Move(new Vector2(0,(int)speedr2 * avatarconst));
+                                    this.environ1.bike2.Move(new Vector2(0,(int)speedr2 * avatarconst));
 
                                     calculatespeedboolr2 = false;
                                 }
@@ -449,7 +449,7 @@ namespace Mechanect.Screens.Exp1Screens
 
 
                                    // this.Environment1.MoveAvatar(1, (int)speed * 15);
-                                    //this.environ1.bike1.Move(new Vector2(0,(int)speed * avatarconst));
+                                    this.environ1.bike1.Move(new Vector2(0,(int)speed * avatarconst));
 
 
                                     calculatespeedbool = false;
@@ -528,7 +528,7 @@ namespace Mechanect.Screens.Exp1Screens
                                     user1.Positions.Add(speedr);
                                  
                                    // this.Environment1.MoveAvatar(1, (int)speedr * 15);
-                                   // this.environ1.bike1.Move(new Vector2(0,(int)speedr * avatarconst));
+                                   this.environ1.bike1.Move(new Vector2(0,(int)speedr * avatarconst));
 
 
                                     calculatespeedboolr = false;
