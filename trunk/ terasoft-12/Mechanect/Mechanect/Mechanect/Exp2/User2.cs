@@ -133,14 +133,25 @@ namespace Mechanect.Exp2
                 if (counter % 3 != 0)
                     return;
                 counter = 0;
-
-                Vector2 hand = new Vector2(USER.Joints[JointType.HandLeft].Position.X - USER.Joints[JointType.ShoulderLeft].Position.X
-                    , USER.Joints[JointType.HandLeft].Position.Y - USER.Joints[JointType.ShoulderLeft].Position.Y);
-
-                float angle = (float)Math.Atan(hand.Y / hand.X);
-                angle = (float)(angle * 180 / Math.PI);
-                angle += 90;
-                angle /= 2;
+                Vector3 leftShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X,USER.Joints[JointType.ShoulderLeft].Position.Y,USER.Joints[JointType.ShoulderLeft].Position.Z);
+                Vector3 centerHip = new Vector3(USER.Joints[JointType.HipCenter].Position.X,USER.Joints[JointType.HipCenter].Position.Y,USER.Joints[JointType.HipCenter].Position.Z);
+                Vector3 rightShoulder = new Vector3(USER.Joints[JointType.ShoulderRight].Position.X,USER.Joints[JointType.ShoulderRight].Position.Y,USER.Joints[JointType.ShoulderRight].Position.Z);
+                
+                Vector3 leftHand = new Vector3(USER.Joints[JointType.HandLeft].Position.X,USER.Joints[JointType.HandLeft].Position.Y,USER.Joints[JointType.HandLeft].Position.Z);
+               // Vector3 leftShoulder = new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X,USER.Joints[JointType.ShoulderLeft].Position.Y,USER.Joints[JointType.ShoulderLeft].Position.Z;
+                
+                
+                
+                Vector3 centerHipToLeftShoulder = leftShoulder - centerHip;
+                Vector3 centerHipToRightShoulder = rightShoulder - centerHip;
+                Vector3 leftHandToLeftShoulder = leftHand - leftShoulder;
+                Vector3 leftHandToRightShoulder = leftHand - rightShoulder;
+                Vector3 normalToHipPlane = Vector3.Cross(centerHipToLeftShoulder, centerHipToRightShoulder);
+                Vector3 normalToHandPlane = Vector3.Cross(leftHandToLeftShoulder, leftHandToRightShoulder);
+                float angle = (float)Math.Acos(Vector3.Dot(normalToHandPlane, normalToHipPlane)
+                    / (normalToHipPlane.Length() * normalToHandPlane.Length()));
+                angle = MathHelper.ToDegrees(angle);
+                
 
                 if (angle - previousAngle > 0.5)
                 {
@@ -148,7 +159,7 @@ namespace Mechanect.Exp2
                     return;
                 }
                 currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
-                measuredAngle = (int)(10 * angle) / 10f;
+                measuredAngle = angle;
                 shooting = false;
             }
 
