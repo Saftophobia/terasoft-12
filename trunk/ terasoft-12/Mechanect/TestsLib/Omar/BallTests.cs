@@ -15,6 +15,7 @@ namespace TestsLib.Omar
         User3 user;
         BallAnimation animation;
         Experiment3 exp;
+        Environment3 environment;
         GraphicsDevice graphics;
         ContentManager Content;
         float friction;
@@ -28,8 +29,9 @@ namespace TestsLib.Omar
             friction = -2;
             graphics = exp.ScreenManager.GraphicsDevice;
             Content = exp.ScreenManager.Game.Content;
-            ball = new Ball(10, exp.ScreenManager.GraphicsDevice, exp.ScreenManager.Game.Content);
-            hole = new Hole(Content, graphics, 200, 200, 10, user.shootingPosition);
+            environment = Constants3.environment3;
+            ball = environment.ball;
+            hole = environment.HoleProperty;
             
         }
 
@@ -37,14 +39,14 @@ namespace TestsLib.Omar
         [Test]
         public void CheckIfFall()
         {
-         //   animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 0, friction), friction);
+            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.shootingPosition, 0, friction));
             Assert.IsTrue(animation.willFall);
         }
 
         [Test]
         public void CheckIfWontFall()
         {
-            //animation = new BallAnimation(ball, hole, LinearMotion.CalculateIntialVelocity(hole.Position - user.shootingPosition, 10, friction), friction);
+            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.shootingPosition, 10, friction));
             Assert.IsFalse(animation.willFall);
         }
     }
