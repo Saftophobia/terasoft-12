@@ -142,6 +142,7 @@ namespace Mechanect.Exp3
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
             if (ball.HasBallEnteredShootRegion())
             {
+                environment.arriveVelocity = arriveVelocity;
                 /*if (!hasWhistled)
                 {
                     whistle.Play();
