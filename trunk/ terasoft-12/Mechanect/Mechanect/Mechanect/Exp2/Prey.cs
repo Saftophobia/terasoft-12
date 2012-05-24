@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Content;
 using Mechanect.Exp2;
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// Represents one of the targets that the predator has to pass by in order to win the game
+    /// </summary>
     public class Prey
     {
         Vector2 location;
