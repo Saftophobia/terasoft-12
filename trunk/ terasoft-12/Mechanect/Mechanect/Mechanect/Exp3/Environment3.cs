@@ -216,7 +216,7 @@ namespace Mechanect.Exp3
         public void Draw(Camera c, GameTime gameTime)
         {
             DrawEnvironment(c, gameTime);
-            hole.InitialzeUI(Content, device);
+            hole.LoadContent(Content.Load<Model>("Models/holemodel"));
             hole.Draw(c);
             PlayerModel.Draw(c);
         }
@@ -546,10 +546,10 @@ namespace Mechanect.Exp3
             switch (angletolerance)
             {
                 case 1:  return 15; 
-                case 2:  return 18; 
-                case 3:  return 21; 
-                case 4:  return 24; 
-                default: return 15;
+                case 2:  return 20; 
+                case 3:  return 25; 
+                case 4:  return 30; 
+                default: return 30;
             }
         }
 
@@ -581,7 +581,7 @@ namespace Mechanect.Exp3
                         }
                     }
                 }
-                hole.Position = new Vector3(position.X, GetHeight(position) + 21, position.Z);
+                hole.Position = new Vector3(position.X, GetHeight(position) + 20, position.Z);
             }
 
             catch (IndexOutOfRangeException)
@@ -613,11 +613,11 @@ namespace Mechanect.Exp3
                     }
                 }
 
-                hole.Position = new Vector3(posX, GetHeight(position) + 21, posZ);
+                hole.Position = new Vector3(posX, GetHeight(position) + 20, posZ);
             }
             catch (IndexOutOfRangeException)
             {
-                CreateAlmostCircularHole(position, radius);
+                CreateCircularHole(position, radius);
             }
         }
 
