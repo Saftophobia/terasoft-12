@@ -256,9 +256,9 @@ namespace Mechanect.Exp3
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
-            hole = new Hole(Content, device, terrainWidth, terrainHeight, GenerateRadius(angleTolerance), user.shootingPosition);
+            hole = new Hole(Content, device, terrainWidth, terrainHeight, GenerateRadius(angleTolerance));
             CreateCircularHole(hole.Position,hole.Radius);
-            //CreateAlmostCircularHole(hole.Position, hole.Radius);
+           // CreateAlmostCircularHole(hole.Position, hole.Radius);
             //CreateSquareHole(hole.Position, hole.Radius);
             SetUpVertices();
             LoadEnvironmentContent();
@@ -620,9 +620,9 @@ namespace Mechanect.Exp3
             switch (angletolerance)
             {
                 case 1:  return 15; 
-                case 2:  return 20; 
-                case 3:  return 25; 
-                case 4:  return 30; 
+                case 2:  return 18; 
+                case 3:  return 21; 
+                case 4:  return 24; 
                 default: return 15;
             }
         }
@@ -688,7 +688,7 @@ namespace Mechanect.Exp3
                     }
                 }
 
-                hole.Position = new Vector3(hole.Position.X, GetHeight(hole.Position) + 20, hole.Position.Z);
+                hole.Position = new Vector3(posX, GetHeight(hole.Position) + 20, posZ);
             }
             catch (IndexOutOfRangeException)
             {
