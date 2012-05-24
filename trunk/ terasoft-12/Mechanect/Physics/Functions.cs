@@ -151,7 +151,7 @@ namespace Physics
         /// <returns>
         /// Returns the position of the ball when its velocity reaches 0.
         /// </returns>
-        private static Vector3 getFinalPosition(Vector3 velocity, float friction, Vector3 initialPosition)
+        public static Vector3 GetFinalPosition(Vector3 velocity, float friction, Vector3 initialPosition)
         {
             var vxsquared = (float)Math.Pow(velocity.X, 2);
             var vzsquared = (float)Math.Pow(velocity.Z, 2);
