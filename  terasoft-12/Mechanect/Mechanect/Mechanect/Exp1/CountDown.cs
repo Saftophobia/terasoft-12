@@ -14,21 +14,18 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace Mechanect.Exp1
 {
-    class CountDown
+    public class CountDown
     {
-        Texture2D Texture;
         Rectangle r;
         int counter;
         SoundEffect effect1;
         SoundEffect effect2;
-        Texture2D three;
-        Texture2D two;
-        Texture2D one;
-        Texture2D go;
+        Texture2D[] numbers;
 
         public CountDown(Texture2D tex, int v1, int v2, int v3, int v4)
         {
-            Texture = tex;
+            numbers = new Texture2D[1];
+            numbers[0] = tex;
             r = new Rectangle(v1, v2, v3, v4);
             counter = r.Height;
         }
@@ -55,10 +52,11 @@ namespace Mechanect.Exp1
         /// <returns>void</returns>
         public void InitializeCountDown(Texture2D Texthree, Texture2D Textwo, Texture2D Texone, Texture2D Texgo, SoundEffect Seffect1, SoundEffect Seffect2)
         {
-            three = Texthree;
-            two = Textwo;
-            one = Texone;
-            go = Texgo;
+            numbers = new Texture2D[4];
+            numbers[3] = Texthree;
+            numbers[2] = Textwo;
+            numbers[1] = Texone;
+            numbers[0] = Texgo;
             effect1 = Seffect1;
             effect2 = Seffect2;
             counter = 0;
@@ -94,18 +92,12 @@ namespace Mechanect.Exp1
             try
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(Texture, r, Color.White);
+                spriteBatch.Draw(numbers[0], r, Color.White);
                 spriteBatch.End();
             }
             catch (Exception e)
             {
-                try
-                {
-                    spriteBatch.Draw(Texture, r, Color.White);
-                }
-                catch (Exception f)
-                {
-                }
+                spriteBatch.Draw(numbers[0], r, Color.White);
             }
         }
 
@@ -138,30 +130,30 @@ namespace Mechanect.Exp1
         /// The function DrawCountdown is used to draw the numbers on the screen.
         /// </summary>  
         /// <returns>void</returns>
-        public void DrawCountdown(SpriteBatch spriteBatch,int x, int y)
+        public void DrawCountdown(SpriteBatch spriteBatch, int x, int y)
         {
-            
             Rectangle r = new Rectangle(x, y, 140, 140);
-           //if (counter < 170)
-            //{
+            spriteBatch.Begin();
+            if (counter < 230)
+            {
                 if (counter >= 0 && counter < 50)
                 {
-                    spriteBatch.Draw(three, r, Color.White);
+                    spriteBatch.Draw(numbers[3], r, Color.White);
                 }
                 if (counter >= 50 && counter < 100)
                 {
-                    spriteBatch.Draw(two, r, Color.White);
+                    spriteBatch.Draw(numbers[2], r, Color.White);
                 }
                 if (counter >= 100 && counter < 150)
                 {
-                    spriteBatch.Draw(one, r, Color.White);
+                    spriteBatch.Draw(numbers[1], r, Color.White);
                 }
                 if (counter >= 150)
                 {
-                    spriteBatch.Draw(go, r, Color.White);
+                    spriteBatch.Draw(numbers[0], r, Color.White);
                 }
-            //}
-            
+            }
+            spriteBatch.End();
         }
     }
 }
