@@ -1,12 +1,9 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
 using Microsoft.Xna.Framework;
-using Mechanect.Common;
-using Mechanect.Classes;
-
 
 namespace Mechanect.Exp2
 {
@@ -21,61 +18,26 @@ namespace Mechanect.Exp2
 
         /// <summary>
         /// Instance Variables
-        /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-
-        private int counter;
+        /// </summary>
+        private int currentTime;
+        private int startTime;
         private bool shooting;
         private bool beforeHip;
+        private float previousAngle;
+        int counter = 0;
+
         private float measuredVelocity;
         private float measuredAngle;
-        private List<float> angleList = new List<float>();
-        private float startTime;
-
-
-        private Vector3 CenterHip
-        {
-            get
-            {
-                return new Vector3(USER.Joints[JointType.HipCenter].Position.X,
-                    USER.Joints[JointType.HipCenter].Position.Y, USER.Joints[JointType.HipCenter].Position.Z);
-            }
-        }
-        private Vector3 LeftShoulder
-        {
-            get
-            {
-                return new Vector3(USER.Joints[JointType.ShoulderLeft].Position.X,
-                    USER.Joints[JointType.ShoulderLeft].Position.Y, USER.Joints[JointType.ShoulderLeft].Position.Z);
-            }
-        }
-        private Vector3 RightShoulder
-        {
-            get
-            {
-                return new Vector3(USER.Joints[JointType.ShoulderRight].Position.X,
-                    USER.Joints[JointType.ShoulderRight].Position.Y, USER.Joints[JointType.ShoulderRight].Position.Z);
-            }
-        }
-        private Vector3 LeftHand
-        {
-            get
-            {
-                return new Vector3(USER.Joints[JointType.HandLeft].Position.X,
-                    USER.Joints[JointType.HandLeft].Position.Y, USER.Joints[JointType.HandLeft].Position.Z);
-            }
-        }
-
-
         /// <summary>
-        /// Setter and Getter for Instance variable "measuredFinalAngle"
+        /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>float, The value of the measuredFinalAngle</returns>
+        /// <returns> the measured angle</returns>
 
         public float MeasuredAngle
         {
@@ -83,150 +45,137 @@ namespace Mechanect.Exp2
             {
                 return measuredAngle;
             }
+            set
+            {
+                measuredAngle = value;
+            }
         }
 
         /// <summary>
-        /// Setter and Getter for Instance variable "measuredVelocity"
+        /// Getter and setter for the MeasuredVelocity Value
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>double, The value of the measuredVelocity</returns>
-        /// 
+        /// <returns> the measured velocity</returns>
+
+
         public float MeasuredVelocity
         {
             get
             {
                 return measuredVelocity;
             }
+            set
+            {
+                measuredVelocity = value;
+            }
         }
-
 
         /// <summary>
-        /// Constructor for User2 class, that sets the value of the counter and listCounter
+        /// Getter and setter for the MeasuredAgnle Value
         /// </summary>
-        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
-        public User2()
+        /// <remarks>
+        /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
+
+        public void MeasureVelocityAndAngle(GameTime gameTime)
         {
-            Reset();
+            MeasureAngle(gameTime);
+            MeasureVelocity();
         }
-
-
 
         /// <summary>
         /// Resets all instance variables to their intitial values
         /// </summary>
-        /// <remarks>AUTHOR: Mohamed Raafat</remarks>
 
         public void Reset()
         {
             shooting = false;
             beforeHip = false;
-            angleList = new List<float>();
             measuredAngle = 0;
-            measuredVelocity = 0;
-        }
-        /// <summary>
-        /// Helper method to calculate current angle being meausred
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
-        /// </remarks>
-        /// <param name="leftShoulder"></param>
-        /// <param name="rightShoulder"></param>
-        /// <param name="centerHip"></param>
-        /// <param name="leftHand"></param>
-        /// <returns></returns>
-
-        private float CurrentAngle(Vector3 leftShoulder, Vector3 rightShoulder, Vector3 centerHip, Vector3 leftHand)
-        {
-            Vector3 centerHipToLeftShoulder = leftShoulder - centerHip;
-            Vector3 centerHipToRightShoulder = rightShoulder - centerHip;
-            Vector3 leftHandToLeftShoulder = leftHand - leftShoulder;
-            Vector3 leftHandToRightShoulder = leftHand - rightShoulder;
-            Vector3 normalToHipPlane = Vector3.Cross(centerHipToLeftShoulder, centerHipToRightShoulder);
-            Vector3 normalToHandPlane = Vector3.Cross(leftHandToLeftShoulder, leftHandToRightShoulder);
-            float angle = (float)Math.Acos(Vector3.Dot(normalToHandPlane, normalToHipPlane)
-                / (normalToHipPlane.Length() * normalToHandPlane.Length()));
-
-            if (Vector3.Cross(normalToHipPlane, normalToHandPlane).X < 0)
-            {
-                angle *= -1;
-            }
-            return angle;
-        }
-        /// <summary>
-        /// Helper method to calculate the measured final velocity
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
-        /// </remarks>
-        /// <param name="list"></param>
-        /// <returns>float: meausred velocity</returns>
-
-
-        private float MeasureVelocity(List<float> list, GameTime gameTime)
-        {
-            this.measuredVelocity = (1000) * (measuredAngle / gameTime.TotalGameTime.Milliseconds - startTime);
-
-            return (float)measuredVelocity;
-        }
-       
-        /// <summary>
-        /// Helper method to detect when will the hand stop and the user stopped shooting
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
-        /// </remarks>
-        /// <param name="angleList"></param>
-        /// <returns>bool, True if hand has stopped, false otherwise</returns>
-        private bool HandStopped(List<float> angleList)
-        {
-            if (angleList.Count < 3)
-                return false;
-            else
-                return angleList[angleList.Count - 1] - angleList[angleList.Count - 2] < 0.3;
+            previousAngle = 0;
         }
 
 
+
+
         /// <summary>
-        /// Main method to that sets the final angle and velocity being measured
+        /// Gets the angle between two Vectors, from left hip to left shoulder and from left shoulder to left hand
+        /// and convert it to degrees.
         /// </summary>
         /// <remarks>
-        /// <para>AUTHOR: Mohamed Raafat</para>
+        /// <para>Author: Mohamed Raafat</para>
         /// </remarks>
         /// <param name ="gametime">Takes the gametime to make time calculations </param>
-        public void MeasureAngleAndVelocity(GameTime gametime)
+        public void MeasureAngle(GameTime gametime)
         {
-            if (++counter % 3 == 0)
+            if (USER == null)
             {
-                counter = 0;
-                if (USER == null || USER.Position.Z == 0)
-                {
-                    return;
-                }
-
-                float currentAngle = CurrentAngle(LeftShoulder, RightShoulder, CenterHip, LeftHand);
-                if (!shooting)
-                {
-                    shooting = beforeHip && currentAngle > 0;
-                    beforeHip = currentAngle < 0;
-                    return;
-                }
-
-                if (!shooting && beforeHip && currentAngle > 0)
-                    startTime = gametime.TotalGameTime.Milliseconds;
-
-               
-                if (HandStopped(angleList))
-                {
-                    measuredAngle = currentAngle;
-                    measuredVelocity = MeasureVelocity(angleList,gametime);
-                    shooting = false;
-                    beforeHip = false;
-                    angleList = new List<float>();
-                }
+                return;
             }
+            if (!shooting && !beforeHip)
+            {
+                beforeHip = USER.Joints[JointType.HandLeft].Position.X < USER.Joints[JointType.HipCenter].Position.X;
+                return;
+            }
+            if (!shooting && beforeHip && USER.Joints[JointType.HandLeft].Position.X > USER.Joints[JointType.HipCenter].Position.X)
+            {
+                beforeHip = false;
+                shooting = true;
+                startTime = (int)gametime.TotalGameTime.TotalMilliseconds;
+                previousAngle = 0;
+                return;
+            }
+            if (shooting)
+            {
+                counter++;
+                if (counter % 3 != 0)
+                    return;
+                counter = 0;
+
+                Vector2 hand = new Vector2(USER.Joints[JointType.HandLeft].Position.X - USER.Joints[JointType.ShoulderLeft].Position.X
+                    , USER.Joints[JointType.HandLeft].Position.Y - USER.Joints[JointType.ShoulderLeft].Position.Y);
+
+                float angle = (float)Math.Atan(hand.Y / hand.X);
+                angle = (float)(angle * 180 / Math.PI);
+                angle += 90;
+                angle /= 2;
+
+                if (angle - previousAngle > 0.5)
+                {
+                    previousAngle = angle;
+                    return;
+                }
+                currentTime = (int)gametime.TotalGameTime.TotalMilliseconds - startTime;
+                measuredAngle = (int)(10 * angle) / 10f;
+                shooting = false;
+            }
+
         }
+
+
+        /// <summary>
+        /// Calculate the angular velocity and then the linear velocity
+        /// </summary>
+        /// <remarks>
+        /// <para>Author: Mohamed Raafat</para>
+        /// </remarks>
+        /// <returns>Returns the linear velocity of the arm</returns>
+        public void MeasureVelocity()
+        {
+
+            if (USER == null || currentTime == 0)
+            {
+                MeasuredVelocity = 0;
+                return;
+            }
+
+            measuredVelocity = ((int)(500 * measuredAngle / currentTime)) / 10f;
+        }
+
+
+
     }
+
 }
