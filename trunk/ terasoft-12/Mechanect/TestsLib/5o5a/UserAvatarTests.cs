@@ -22,7 +22,7 @@ namespace Tests
         [Test]
         public void TestGetUserIndex()
         {
-            Assert.AreEqual(UserAvatar.getUserindex(user,users), user);
+            Assert.AreEqual(UserAvatar.getUserindex(user,users), 0);
         }
     }
 }
