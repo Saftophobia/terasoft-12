@@ -350,21 +350,21 @@ namespace Mechanect.Exp1
          }
 
         /// <summary>
-        /// This method calculates the acceleration of the joint.
+        /// This method calculates the absolute acceleration value of the joint.
         /// </summary>
         /// <param name="velocities">The list of velocities and time of each velocity.</param>
         /// <returns>List<float>: The acceleration of the joint.</returns>
          /// <remarks>
          /// <para>AUTHOR: Michel Nader </para>
          /// <para>DATE WRITTEN: 19/5/12 </para>
-         /// <para>DATE MODIFIED: 19/5/12 </para>
+         /// <para>DATE MODIFIED: 24/5/12 </para>
          /// </remarks>
          public static List<float> GetAcceleration(List<float[]> velocities)
          {
              List<float> acc = new List<float>();
              if (velocities.Count > 2)
                  for (int i = 1; i < velocities.Count; i++)
-                     acc.Add((velocities[i][0] - velocities[i - 1][0]) / (velocities[i][1] - velocities[i - 1][1]));
+                     acc.Add(Math.Abs(velocities[i][0] - velocities[i - 1][0]) / (velocities[i][1] - velocities[i - 1][1]));
              return acc;
          }
 
