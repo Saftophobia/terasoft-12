@@ -122,13 +122,14 @@ namespace Physics
         /// <param name="arriveVelocity">Velocity of the ball before collision.</param>
         /// <param name="velocityScale">Constants3.velocityScale</param>
         /// <returns>Vector3 velocity after collision.</returns>
-        public static Vector3 GetVelocityAfterCollision(Vector3 initialVelocity, double ballMass, double legMass, float arriveVelocity, float velocityScale)
+        public static Vector3 GetVelocityAfterCollision(Vector3 initialVelocity, double ballMass, double legMass, 
+            float arriveVelocity, float velocityScale)
         {
             double initialLegVelocity;
 
             initialLegVelocity = initialVelocity.Length() * velocityScale;
 
-            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
+            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity)) / ballMass);
             Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
             return normalizedVector * finalVelocity;
         }
