@@ -32,12 +32,7 @@ namespace Mechanect.Screens
                 return done;
             }
         }
-        /// <summary>
-        /// Creates a new instance of FadingScreen.
-        /// </summary>
-        public FadingScreen()
-        {
-        }
+		
         /// <summary>
         /// Creates a new instance of FadingScreen.
         /// </summary>
@@ -73,8 +68,7 @@ namespace Mechanect.Screens
        /// <summary>
        /// Updates the content of this screen.
        /// </summary>
-       /// <param name="gameTime">represents the time of the game.</param>
-       /// <param name="covered">specifies wether the screen is covered.</param>
+       /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
             if ((fading <= 0.01f) || !first)
@@ -95,7 +89,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the content of the fading screen.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
