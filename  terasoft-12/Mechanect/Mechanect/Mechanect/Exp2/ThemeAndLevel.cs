@@ -8,17 +8,17 @@ using ButtonsAndSliders;
 
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// ThemeAndLevel class is the one that allows you to change theme and level for the game.
+    /// </summary>
     public class ThemeAndLevel
     {
-
-
 
         private readonly User user;
         private Texture2D selectedTheme, theme1, outlineFrame;
         //private Texture2D _theme2;
         private Texture2D easy, medium, hard, selectedLevel;
         private int frameTheme, pictureWidth, pictureHeight, frameLevel;
-        // private int themeNo, levelNo;
         ContentManager content;
         Button themeRightArrow, themeLeftArrow;
         List<Button> buttons;
@@ -38,13 +38,13 @@ namespace Mechanect.Exp2
         }
 
         /// <summary>
-        /// loading contents and initilizing buttons
+        /// Loading contents and initializing buttons
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="screenWidth">screen width</param>
-        /// <param name="screenHeight">screen height</param>
+        /// <param name="screenWidth">Screen width</param>
+        /// <param name="screenHeight">Screen height</param>
         ///  <param name="gameContent">Game content</param>
         public void LoadContent(int screenWidth, int screenHeight, ContentManager gameContent)
         {
@@ -96,7 +96,7 @@ namespace Mechanect.Exp2
         }
 
         /// <summary>
-        /// The update method that update the engine work always
+        /// Update is method that get updated at gameTime 
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
@@ -160,12 +160,12 @@ namespace Mechanect.Exp2
 
         }
         /// <summary>
-        /// Draw method update the UI frequently
+        /// Draw method that updates the UI frequently
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="spriteBatch">spriteBatch</param>
+        /// <param name="spriteBatch">SpriteBatch</param>
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
