@@ -19,6 +19,7 @@ namespace Mechanect.Screens
         DepthBar depthBar;
         AngleBar angleBar;
 
+        Texture2D background;
         /// <summary>
         /// Getter for the Users' State
         /// </summary>
@@ -98,6 +99,7 @@ namespace Mechanect.Screens
         /// </summary>
         public override void LoadContent()
         {
+            background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Screens/AdjustPosition");
             font = ScreenManager.Game.Content.Load<SpriteFont>("Ariel");
             button = Exp3.Tools3.OKButton(ScreenManager.Game.Content,new Vector2(600,350), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
             depthBar.LoadContent(ScreenManager.GraphicsDevice);
@@ -187,7 +189,9 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+            
             ScreenManager.SpriteBatch.Begin();
+            ScreenManager.SpriteBatch.Draw(background, ScreenManager.GraphicsDevice.Viewport.Bounds,Color.White);
             if (Accepted)
             {
                 button.Draw(ScreenManager.SpriteBatch, 0.7f);
