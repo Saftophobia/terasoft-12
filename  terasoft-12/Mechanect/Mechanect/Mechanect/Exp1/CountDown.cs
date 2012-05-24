@@ -133,7 +133,7 @@ namespace Mechanect.Exp1
         public void DrawCountdown(SpriteBatch spriteBatch, int x, int y)
         {
             Rectangle r = new Rectangle(x, y, 140, 140);
-            spriteBatch.Begin();
+            
             if (counter < 230)
             {
                 if (counter >= 0 && counter < 50)
@@ -153,7 +153,7 @@ namespace Mechanect.Exp1
                     spriteBatch.Draw(numbers[0], r, Color.White);
                 }
             }
-            spriteBatch.End();
+            
         }
     }
 }

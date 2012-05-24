@@ -74,7 +74,7 @@ namespace Mechanect.Screens.Exp1Screens
                 vel1.Add(user1.Velocitylist[i][0]);
                 time1.Add(user1.Velocitylist[i][1]);
             }
-            for (int i = 0; i < user1.Velocitylist.Count(); i++)
+            for (int i = 0; i < user2.Velocitylist.Count(); i++)
             {
 
                 vel2.Add(user2.Velocitylist[i][0]);
