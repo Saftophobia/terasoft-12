@@ -50,6 +50,7 @@ namespace Mechanect.Exp3
             firstAnimation = true;
             user.shootingPosition = new Vector3(0, 3, 45);
             this.user = user;
+            environment = new Environment3(user);
         }
 
         /// <summary>
@@ -62,8 +63,6 @@ namespace Mechanect.Exp3
         {
             targetCamera = new TargetCamera(new Vector3(0, 30, 95), new Vector3(0,20,0), 
                 ScreenManager.GraphicsDevice);
-
-            environment = new Environment3(user);
             environment.InitializeUI(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
             environment.LoadContent();
 
