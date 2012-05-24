@@ -12,16 +12,16 @@ Due to the fact that we need to unify our documentation conventions, it was deci
 Here is a sample documentation for a method called *_foo_*
 
 {{{
-///<summary>
-///This foo method does nothing useful!
-///</summary>
-///<remarks>
-///<para>AUTHOR: My Name </para>   
-///<para>DATE WRITTEN: Month, dd</para>
-///<para>DATE MODIFIED: Month, dd</para>
-///</remarks>
-///<param name="x">A parameter that has no meaning what so ever</param> 
-///<returns>An int that is identical to the parameter passed to the method</returns>
+/// <summary>
+/// This foo method does nothing useful!
+/// </summary>
+/// <remarks>
+/// <para>AUTHOR: My Name </para>   
+/// <para>DATE WRITTEN: Month, dd</para>
+/// <para>DATE MODIFIED: Month, dd</para>
+/// </remarks>
+/// <param name="x">A parameter that has no meaning what so ever</param> 
+/// <returns>An int that is identical to the parameter passed to the method</returns>
 
    int foo (int x)
    {
