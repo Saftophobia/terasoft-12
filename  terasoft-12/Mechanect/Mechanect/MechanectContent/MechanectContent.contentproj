@@ -808,6 +808,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArielBig.spritefont">
+      <Name>ArielBig</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Resources\Images\exp1-word.png">
       <Name>exp1-word</Name>
       <Importer>TextureImporter</Importer>

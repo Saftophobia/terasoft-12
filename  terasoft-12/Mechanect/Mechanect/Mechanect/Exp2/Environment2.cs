@@ -6,6 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// Here Lives the higly scalable GUI that draws the x,y axises a predator together with it's aquarium ,
+    /// a prey, a edstination aquarium and connects them to the x,y axises with their labels
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Mohamed Alzayat, Mohamed Abdelazim </para>
+    /// </remarks>
     public class Environment2
     {
         /// <summary>
@@ -17,7 +24,6 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 18  </para>
         /// </remarks>
         #region: Variables for generating the GUI
-
         public bool DrawBackground { set; get; }
         private Texture2D xyAxisTexture;
         private Texture2D backgroundTexture;
@@ -389,11 +395,6 @@ namespace Mechanect.Exp2
         {
             StartAquarium.Draw(mySpriteBatch, PositionMapper(initialPredatorLocation), aquariumScaling);
             Aquarium.Draw(mySpriteBatch, PositionMapper(Aquarium.Location), aquariumScaling);
-
-            //in case rescaling the Environment will InheritanceBehavior removed
-            //if (rectangle.Contains(new Microsoft.Xna.Framework.Point((int)PositionMapper(Predator.Location).X, (int)
-            //    PositionMapper(Predator.Location).Y))) ;
-
             Predator.Draw(mySpriteBatch, PositionMapper(Predator.Location), predatorScaling);
 
             if (!Prey.Eaten)
@@ -507,27 +508,30 @@ namespace Mechanect.Exp2
             Vector2 aquariumPosition = PositionMapper(Aquarium.Location);
             Vector2 axis = PositionMapper(Vector2.Zero);
 
+            //Connectors
+            //startAquarium
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, startAquariumPosition,
                 new Vector2(startAquariumPosition.X, axis.Y + axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, startAquariumPosition,
                 new Vector2(axis.X - 2 * axisesPercentage * rectangle.X, startAquariumPosition.Y));
-
+            //predator
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition,
                 new Vector2(predatorPosition.X, axis.Y + axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, predatorPosition,
                 new Vector2(axis.X - 2 * axisesPercentage * rectangle.X, predatorPosition.Y));
-
-
+            //prey
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(preyPosition.X, axis.Y +
                  axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, preyPosition, new Vector2(axis.X - 2 *
                 axisesPercentage * rectangle.X, preyPosition.Y));
-
+            //destinationAquarium
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(aquariumPosition.X,
                 axis.Y + axisesPercentage * rectangle.Height));
             DrawLine(spriteBatch, lineConnector, 2, Color.LightGray, aquariumPosition, new Vector2(axis.X - 2 *
                 axisesPercentage * rectangle.X, aquariumPosition.Y));
 
+
+            //Labels
             //Start Aquarium
             spriteBatch.DrawString(labelsFont, (Math.Round(StartAquarium.Location.X, 1) + ""),
                  new Vector2(startAquariumPosition.X -
@@ -546,7 +550,8 @@ namespace Mechanect.Exp2
 
             //Predator
             spriteBatch.DrawString(labelsFont, (Math.Round(Predator.Location.X, 1) + ""),
-                new Vector2(predatorPosition.X - labelsFont.MeasureString((Math.Round(Predator.Location.X, 1) + "")).X /
+                new Vector2(predatorPosition.X -
+                 labelsFont.MeasureString((Math.Round(Predator.Location.X, 1) + "")).X /
                  2, axis.Y + axisesPercentage * rectangle.Height +
                  (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).Y,
                 labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).Y))),

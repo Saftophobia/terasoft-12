@@ -6,6 +6,7 @@ using Mechanect.Exp3;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Threading;
 
 namespace Mechanect.Exp2
 {
@@ -177,7 +178,9 @@ namespace Mechanect.Exp2
             UI.UILib.SayText("Test angle and Velocity using your left hand, then say GOo or press ok");
 
             //TBC
-            // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
+             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
+             var t = new Thread(voiceCommand.StartAudioStream);
+             t.Start();
 
         }
 
@@ -352,7 +355,7 @@ namespace Mechanect.Exp2
                             user.MeasuredVelocity, user.MeasuredAngle, user));
 
                         //ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
-                    //    user.MeasuredAngle, user));
+                        //user.MeasuredAngle, user));
 
                     else
 
@@ -383,7 +386,7 @@ namespace Mechanect.Exp2
                 if (button != null)
                 {
                     button.Update(gameTime);
-                    if (button.IsClicked())// || voiceCommand.GetHeared("go"))
+                    if (button.IsClicked() || voiceCommand.GetHeared("go"))
                     {
                         grayScreen = false;
                         button = null;
