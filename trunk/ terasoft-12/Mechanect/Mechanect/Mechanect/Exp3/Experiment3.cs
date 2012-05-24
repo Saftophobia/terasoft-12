@@ -40,9 +40,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Creates a new Experiment3 game screen.
         /// </summary>
-        /// <param name="user">User</param>
+        /// <param name="user">User3 instance.</param>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public Experiment3(User3 user)
         {
@@ -56,7 +56,7 @@ namespace Mechanect.Exp3
         /// Loads the experiment's environment and buttons.
         /// </summary>
         /// <remarks>
-        /// Author : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public override void LoadContent()
         {
@@ -88,9 +88,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Updates the experiment's screen.
         /// </summary>
-        /// <param name="gameTime">GameTime instance</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public override void Update(GameTime gameTime)
         {
@@ -114,9 +114,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Updates the first animation.
         /// </summary>
-        /// <param name="gameTime">GameTime instance</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public void UpdateFirstAnimation(GameTime gameTime)
         {
@@ -159,7 +159,7 @@ namespace Mechanect.Exp3
         /// Updates the second animation.
         /// </summary>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public void UpdateSecondAnimation()
         {
@@ -181,9 +181,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Draws the experiment's screen.
         /// </summary>
-        /// <param name="gameTime">GameTime instance</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         public override void Draw(GameTime gameTime)
         {
@@ -221,7 +221,7 @@ namespace Mechanect.Exp3
         /// Initializes the experiment's buttons.
         /// </summary>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         private void InitializeButtons()
         {
@@ -238,9 +238,9 @@ namespace Mechanect.Exp3
         /// <summary>
         /// Updates the experiment's buttons.
         /// </summary>
-        /// <param name="gameTime">GameTime instance</param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         private void UpdateButtons(GameTime gameTime)
         {
@@ -262,7 +262,7 @@ namespace Mechanect.Exp3
         /// Draws the experiment's buttons.
         /// </summary>
         /// <remarks>
-        /// AUTHOR : Bishoy Bassem
+        /// AUTHOR : Bishoy Bassem.
         /// </remarks>
         private void DrawButtons()
         {

@@ -9,10 +9,10 @@ using Physics;
 namespace Mechanect.Exp3
 {
     /// <summary>
-    /// represents the simulation of the result
+    /// Represents the simulation of the result.
     /// </summary>
     /// <remarks>
-    /// Auther : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public class Simulation
     {
@@ -23,7 +23,7 @@ namespace Mechanect.Exp3
         private Vector3 shootPosition;
 
         private SpriteFont font;
-        Texture2D box;
+        private Texture2D box;
 
         private BallAnimation animation1;
         private BallAnimation animation2;
@@ -35,16 +35,19 @@ namespace Mechanect.Exp3
         private String velocity2;
 
         /// <summary>
-        /// constructs a new Simulation instance and intializes it
+        /// Creates a new Simulation instance and intializes it.
         /// </summary>
-        /// <param name="ball">ball instance</param>
-        /// <param name="shootPosition">shoot position vector</param>
-        /// <param name="holePosition">hole position vector</param>
-        /// <param name="shootVelocity">shoot velocity vector</param>
-        /// <param name="friction">friction magnitude</param>
-        /// <param name="content">content manager</param>
-        /// <param name="device">draphics device</param>
-        /// <param name="spriteBatch">sprite batch</param>
+        /// <param name="ball">Ball instance.</param>
+        /// <param name="shootPosition">Shoot position.</param>
+        /// <param name="holePosition">Hole position.</param>
+        /// <param name="shootVelocity">Shoot velocity vector.</param>
+        /// <param name="friction">Friction magnitude.</param>
+        /// <param name="content">Loads objects from files.</param>
+        /// <param name="device">Displays graphics on the screen.</param>
+        /// <param name="spriteBatch">Enables a group of sprites to be drawn.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public Simulation(Ball ball, Environment3 environment, Vector3 shootPosition, Vector3 shootVelocity, ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.device = device;
@@ -70,12 +73,14 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// updates the chase camera and model's position and orientation according to the time elapsed
+        /// Updates the chase camera and model positions and orientations according to the time elapsed.
         /// </summary>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public void Update(GameTime gameTime)
         {
-            
             ModelLinearAnimation current = animation1;
             if (animation1.Finished)
             {
@@ -101,8 +106,11 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// draws the velocity values
+        /// Displays the velocity values.
         /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public void Draw()
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, 
@@ -139,11 +147,6 @@ namespace Mechanect.Exp3
                 Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
 
             spriteBatch.End();
-        }
-
-        public bool Finished()
-        {
-            return animation2.Finished;
         }
 
     }
