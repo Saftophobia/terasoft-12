@@ -46,9 +46,6 @@ namespace UI.Components
             this.worldTransforms = new Matrix[skinningData.BindPose.Count];
             this.skinTransforms = new Matrix[skinningData.BindPose.Count];
 
-            Position = position;
-            Rotation = rotation;
-            Scale = scale;
         }
 
         #endregion
