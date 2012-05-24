@@ -15,7 +15,10 @@ namespace Mechanect.Screens.Exp1Screens
         float timer;
         SoundEffectInstance CheersInstance;
         SoundEffect Cheers;
+        PerformanceGraph Graph;
         CountDown view;
+        List<string> racecommands;
+        List<int> timeslice;
         GraphicsDevice device;
         User1 user1, user2;
         Viewport ViewPort
@@ -43,18 +46,52 @@ namespace Mechanect.Screens.Exp1Screens
         string winningstring;
 
 
-        public Winnerscreen(User1 user1,User1 user2,GraphicsDevice device)
+        public Winnerscreen(User1 user1,User1 user2,GraphicsDevice device,List<string> racecommands,List<int> timeslice)
         {
             this.user1 = user1;
             this.user2 = user2;
             this.device = device;
+            this.racecommands = racecommands;
+            this.timeslice = timeslice;
         }
 
         public override void Initialize()
         {
             spritefont1 = Content.Load<SpriteFont>("SpriteFont1");
             isTwoPlayers = true;
+            Graph = new PerformanceGraph();
+            List<float> vel1 = new List<float>();
+            List<double> time1 = new List<double>();
+            List<float> vel2 = new List<float>();
+            List<double> time2 = new List<double>();
+            vel1.Add(0);
+            vel2.Add(0);
+            time1.Add(0);
+            time2.Add(0);
+
+            for (int i = 0; i < user1.Velocitylist.Count(); i++)
+            {
+                vel1.Add(user1.Velocitylist[i][0]);
+                time1.Add(user1.Velocitylist[i][1]);
+            }
+            for (int i = 0; i < user1.Velocitylist.Count(); i++)
+            {
+
+                vel2.Add(user2.Velocitylist[i][0]);
+                time2.Add(user2.Velocitylist[i][1]);
+            }
+
+            List<double> timeslicedouble = new List<double>();
+            foreach (float time in this.timeslice)
+            {
+                timeslicedouble.Add((double)time);
+            } // change this typecasting
+           
+            GraphEngine.DrawGraphs(Graph, vel1, time1, vel2, time2, this.racecommands, timeslicedouble, user1.DisqualificationTime, user2.DisqualificationTime, device.DisplayMode.Width, device.DisplayMode.Height, (int)(device.DisplayMode.Height * 1.1));
+            
+
             base.Initialize();
+
         }
         public override void LoadContent()
         {
@@ -108,7 +145,16 @@ namespace Mechanect.Screens.Exp1Screens
             }
             else
             {
-
+                SpriteFont font = Content.Load<SpriteFont>("SpriteFont1");
+                SpriteFont font2 = Content.Load<SpriteFont>("SpriteFont1");
+                //Texture2D P1Tex = Content.Load<Texture2D>("MechanectContent/xRed");
+                //Texture2D P2Tex = Content.Load<Texture2D>("MechanectContent/xBlue");
+                SpriteBatch.Begin();
+                //GraphUI.DrawRange(SpriteBatch, device, Graph);
+                GraphUI.DrawEnvironment(Graph, SpriteBatch, device, font, font2);
+                //  GraphUI.DrawDisqualification(Graph, spriteBatch, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, P1Tex, P2Tex, player1DisqualificationTime, player2DisqualificationTime);
+                SpriteBatch.End();
+                
             }
             base.Draw(gameTime);
         }
