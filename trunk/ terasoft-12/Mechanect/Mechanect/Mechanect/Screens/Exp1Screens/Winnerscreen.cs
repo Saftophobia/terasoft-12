@@ -53,6 +53,7 @@ namespace Mechanect.Screens.Exp1Screens
         public override void Initialize()
         {
             spritefont1 = Content.Load<SpriteFont>("SpriteFont1");
+            isTwoPlayers = true;
             base.Initialize();
         }
         public override void LoadContent()
@@ -109,6 +110,7 @@ namespace Mechanect.Screens.Exp1Screens
             {
 
             }
+            base.Draw(gameTime);
         }
     }
 

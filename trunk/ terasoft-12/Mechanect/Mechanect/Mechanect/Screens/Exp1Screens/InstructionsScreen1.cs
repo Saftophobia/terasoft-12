@@ -48,6 +48,7 @@ namespace Mechanect.Screens
         /// </remarks
         public override void LoadContent()
         {
+            isTwoPlayers = true;
             myTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Screens/instructions");
             scale = ((float)(ScreenManager.GraphicsDevice.Viewport.Width) / (float)myTexture.Width);
             rect = new Rectangle(0, 0, (int)(scale * myTexture.Width), (int)(scale * myTexture.Height));
