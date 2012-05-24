@@ -62,7 +62,7 @@ namespace Mechanect.Exp3
             font = content.Load<SpriteFont>("SpriteFont1");
             box = content.Load<Texture2D>("Textures/screen");
 
-            Vector3 optimalVelocity = LinearMotion.CalculateIntialVelocity(environment.HoleProperty.Position -
+            Vector3 optimalVelocity = LinearMotion.CalculateInitialVelocity(environment.HoleProperty.Position -
                 shootPosition, 0, Environment3.Friction);
 
             animation1 = new BallAnimation(ball, environment, shootVelocity);
