@@ -185,10 +185,9 @@ namespace Mechanect.Screens.Exp1Screens
             if (user1.skeleton == null || user2.skeleton == null)
             {
                 SpriteBatch.Begin();
-                SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
-                SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
-                SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
-                SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
+                SpriteBatch.DrawString(spritefont1, "Please stand in range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.02), (int)(graphics.DisplayMode.Height * 0.5)), Color.White);
+                SpriteBatch.DrawString(spritefont1, "Please stand in range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.63), (int)(graphics.DisplayMode.Height * 0.5)), Color.White);
+                
                 SpriteBatch.End();
             }
             else
@@ -203,10 +202,8 @@ namespace Mechanect.Screens.Exp1Screens
                 if (timer > 0)
                 {
                     SpriteBatch.Begin();
-                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
-                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
-                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
-                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
+                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.02), (int)(graphics.DisplayMode.Height * 0.5)), Color.White);
+                    SpriteBatch.DrawString(spritefont1, this.currentcommand, new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.63), (int)(graphics.DisplayMode.Height * 0.5)), Color.White);
                     SpriteBatch.End();
                 }
             }
