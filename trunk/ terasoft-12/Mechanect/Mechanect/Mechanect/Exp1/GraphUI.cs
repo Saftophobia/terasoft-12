@@ -100,7 +100,7 @@ namespace Mechanect.Exp1
                     {
                         case 2:
                         case 5:
-                        case 8: distance = 7; break;
+                        case 8: distance = 6; break;
                         case 0:
                         case 3:
                         case 6: distance = (int)((g.GetTimings1()[i + 1]) / x); break;
