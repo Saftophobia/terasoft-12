@@ -9,9 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
     /// <summary>
-    /// This class represents the screen where the user picks an experiment.
+    /// This class Represents the screen where the user picks an experiment.
     /// </summary>
-    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
+    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class AllExperiments : Mechanect.Common.GameScreen
     {
         User user;
@@ -35,9 +35,9 @@ namespace Mechanect.Screens
             user = new User();
         }
         /// <summary>
-        /// Creates a new instance of AllExperiments
+        /// Creates a new instance of AllExperiments.
         /// </summary>
-        /// <param name="user">The user that will be tracked when this screen is active</param>
+        /// <param name="user">The user that will be tracked when this screen is active.</param>
         public AllExperiments(User user)
         {
             
@@ -78,9 +78,9 @@ namespace Mechanect.Screens
             base.LoadContent();
         }
         /// <summary>
-        /// perfroms the necessary updates for the AllExperiments screen.
+        /// Performs the necessary updates for the AllExperiments screen.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
             experiment1Button.Update(gameTime);
@@ -110,9 +110,9 @@ namespace Mechanect.Screens
         }
 
         /// <summary>
-        /// draws the AllExperiments screen.
+        /// Draws the AllExperiments screen.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);
@@ -136,15 +136,6 @@ namespace Mechanect.Screens
             experiment1Button.DrawHand(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        /// <summary>
-        /// removes this screen from the screens that should be managed by the screenManager
-        /// </summary>
-        public override void Remove()
-        {
-            base.Remove();
-
         }        
     }
 }
