@@ -126,6 +126,8 @@ namespace Mechanect.Exp2
         /// </summary>
         public override void LoadContent()
         {
+            background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
+            
             userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
             if (!correctAnswer)
                 optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
@@ -141,6 +143,7 @@ namespace Mechanect.Exp2
             newGame = Mechanect.Exp3.Tools3.NewGameButton(ScreenManager.Game.Content, newGameButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
+            
             
 
             if (!correctAnswer)
