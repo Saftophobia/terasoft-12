@@ -75,7 +75,7 @@ namespace Mechanect.Screens
        /// </summary>
        /// <param name="gameTime">represents the time of the game.</param>
        /// <param name="covered">specifies wether the screen is covered.</param>
-        public override void Update(GameTime gameTime, bool covered)
+        public override void Update(GameTime gameTime)
         {
             if ((fading <= 0.01f) || !first)
             {
