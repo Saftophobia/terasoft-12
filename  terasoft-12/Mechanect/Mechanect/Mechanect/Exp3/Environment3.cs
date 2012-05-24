@@ -108,7 +108,9 @@ namespace Mechanect.Exp3
             this.device = device;
             this.user = user;
             friction = -2f;
-        
+            int holeRadius = GenerateRadius(angleTolerance);
+            Vector3 holePosition = Functions.GeneratePosition(holeRadius,(int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
+            hole = new Hole(holeRadius, holePosition, (int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
         }
 
 
@@ -256,10 +258,7 @@ namespace Mechanect.Exp3
             //loads the height data from the height map
             Texture2D heightMap = Content.Load<Texture2D>("Textures/heightmaplargeflat");
             LoadHeightData(heightMap);
-            int holeRadius = GenerateRadius(angleTolerance);
-            Vector3 holePosition = Functions.GeneratePosition(holeRadius, terrainWidth, terrainHeight);
-            hole = new Hole(holeRadius, holePosition, terrainWidth, terrainHeight);
-            CreateCircularHole(holePosition, holeRadius);
+            CreateCircularHole(hole.Position, hole.Radius);
            // CreateAlmostCircularHole(hole.Position, hole.Radius);
             //CreateSquareHole(hole.Position, hole.Radius);
             SetUpVertices();
