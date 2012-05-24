@@ -199,7 +199,7 @@ namespace Mechanect.Exp2
             if (retry.IsClicked())
             {
                 
-                ScreenManager.AddScreen(new Experiment2(new User2(), predatorPosition, preyPosition, aquariumPosition));
+                ScreenManager.AddScreen(new Experiment2(user, predatorPosition, preyPosition, aquariumPosition));
                 this.Remove();
             }
 
