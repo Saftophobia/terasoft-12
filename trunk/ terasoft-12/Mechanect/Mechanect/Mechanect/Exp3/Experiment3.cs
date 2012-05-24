@@ -69,7 +69,7 @@ namespace Mechanect.Exp3
             ball = new Ball(2.5f, ScreenManager.Game.Content);
             ball.GenerateIntialPosition(environment.terrainWidth, environment.terrainHeight);
             ball.GenerateBallMass(0.004f, 0.006f);
-
+            environment.ball = ball;
             Vector3 intialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
                 arriveVelocity, Environment3.Friction);
 
@@ -225,10 +225,10 @@ namespace Mechanect.Exp3
             int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
             int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
 
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(60,
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 500,
                 screenHeight - 125), screenWidth, screenHeight, user);
 
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 180,
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 140,
                 screenHeight - 125), screenWidth, screenHeight, user);
         }
 
