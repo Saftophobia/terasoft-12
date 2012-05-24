@@ -356,25 +356,13 @@ namespace Mechanect.Exp2
                 {
                     this.Remove();
                     if (environment.Win)
-
-                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen(
-                            initialPredatorPosition, initialPreyPosition, initialAquariumPosition,
-                            user.MeasuredVelocity, user.MeasuredAngle, user));
-
-                        //ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
-                    // initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
-                    //user.MeasuredAngle, user));
-
+                        ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition, 
+                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                            user.MeasuredAngle, user));
                     else
-
-                        ScreenManager.AddScreen(new Mechanect.Screens.StatisticsScreen
-                            (initialPredatorPosition, initialPreyPosition, initialAquariumPosition,
-                            user.MeasuredVelocity, user.MeasuredAngle, (float)environment.Velocity, 
-                            (float)environment.Angle, user));
-
-                    // ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
-                    // initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
-                    // user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
+                        ScreenManager.AddScreen(new StatisticsScreen(initialPredatorPosition,
+                            initialPreyPosition, initialAquariumPosition, user.MeasuredVelocity,
+                            user.MeasuredAngle, (float)environment.Velocity, (float)environment.Angle, user));
                 }
             }
             else if (!grayScreen && user.MeasuredVelocity != 0)
