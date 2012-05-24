@@ -754,6 +754,7 @@ namespace Mechanect.Exp3
         /// </summary>
         /// <param name="initialVelocity">Initial velocity before collision.</param>
         /// <returns>Vector3 velocity after collision.</returns>
+        [Obsolete("Method will be moved to Physics Library")]
         public Vector3 GetVelocityAfterCollision(Vector3 initialVelocity)
         {
             double ballMass, legMass, initialLegVelocity;
