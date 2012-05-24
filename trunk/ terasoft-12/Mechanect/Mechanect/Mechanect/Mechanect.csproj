@@ -13,7 +13,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaProfile>Reach</XnaProfile>
+    <XnaProfile>HiDef</XnaProfile>
     <XnaCrossPlatformGroupID>e3d3a6ab-e44d-4946-a3d5-a40905dc40ba</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
@@ -183,7 +183,6 @@
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
     <Compile Include="Screens\ITWorxScreen.cs" />
-    <Compile Include="Screens\LastScreen.cs" />
     <Compile Include="Exp2\Settings2.cs" />
     <Compile Include="Screens\Settings3.cs" />
     <Compile Include="Screens\TeraSoftScreen.cs" />
