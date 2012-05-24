@@ -61,6 +61,14 @@ namespace Mechanect.Common
         /// <summary>
         /// 5o5a
         /// </summary>
+
+        /// <summary>
+        /// LoadContent will be called only once before drawing and it's the place to load
+        /// all of your content.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Khaled Salah </para>
+        /// </remarks>
         public virtual void LoadContent() {
             if (showAvatar)
             {
@@ -98,11 +106,13 @@ namespace Mechanect.Common
                 return;
         }
         /// <summary>
-        /// Updates the screen.
+        /// Allows the game screen to run logic such as updating the world,
+        /// checking for collisions, gathering input, and playing audio.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
-        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
-        /// 5o5a
+        /// <remarks>
+        /// <para>AUTHOR: Ahmed Badr & Khaled Salah </para>
+        /// </remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public virtual void Update(GameTime gameTime) {
             if (showAvatar)
             {
@@ -117,11 +127,14 @@ namespace Mechanect.Common
         public virtual void Remove()
         {
             screenManager.RemoveScreen(this);
-        }
+        }    
         /// <summary>
-        /// Draws the screen.
+        /// This is called when the game screen should draw itself.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <remarks>
+        ///<para>AUTHOR: Khaled Salah </para>
+        ///</remarks>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         /// 5o5a
         public virtual void Draw(GameTime gameTime)
         {
