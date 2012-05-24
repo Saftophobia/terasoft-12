@@ -59,6 +59,8 @@
     <Compile Include="Cena\MeasureVelocityTests.cs" />
     <Compile Include="Omar\BallTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shirin\AvatarTest.cs" />
+    <Compile Include="Shirin\GraphTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GifAnimation.Pipeline\GifAnimation.Pipeline.csproj">
