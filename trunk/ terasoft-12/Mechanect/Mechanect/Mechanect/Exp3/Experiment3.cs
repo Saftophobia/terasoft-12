@@ -77,10 +77,10 @@ namespace Mechanect.Exp3
 
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
 
-            whistle = ScreenManager.Game.Content.Load<SoundEffect>("whistle");
+            //whistle = ScreenManager.Game.Content.Load<SoundEffect>("whistle");
 
-            crowd = ScreenManager.Game.Content.Load<SoundEffect>("crowd_cheer");
-            crowd.Play();
+            //crowd = ScreenManager.Game.Content.Load<SoundEffect>("crowd_cheer");
+            //crowd.Play();
 
             InitializeButtons();
 
@@ -116,11 +116,11 @@ namespace Mechanect.Exp3
 
                 if (ball.hasBallEnteredShootRegion())
                 {
-                    if (!hasWhistled)
-                    {
-                        whistle.Play();
-                        hasWhistled = true;
-                    }
+                    //if (!hasWhistled)
+                    //{
+                    //    //whistle.Play();
+                    //    hasWhistled = true;
+                    //}
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
                     Vector3 shootVelocity = user.velocity;
                     if (user.hasShot && shootVelocity.Length() != 0)
