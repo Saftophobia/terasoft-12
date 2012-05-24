@@ -52,38 +52,32 @@ namespace Mechanect.Exp3
             base.Update(elapsed);
             ball.Rotate(Displacement);
 
-            ball.SetHeight(environment.GetHeight(ball.Position) + ball.Radius - fallFactor * 0.15f);
-            if (!base.Finished)
+            if (!Finished)
             {
-                if (fallFactor < 50)
+                if (willFall)
                 {
-                    if (willFall)
+                    if (ElapsedTime > Duration - TimeSpan.FromSeconds(4))
                     {
-                        if (ElapsedTime > Duration - TimeSpan.FromSeconds(4))
+                        if (fallFactor < 100)
                         {
+                            ball.SetHeight(ball.Position.Y - ball.Radius - (fallFactor * 0.15f));
                             fallFactor++;
+                        }
+                        else
+                        {
                             ball.SetHeight(ball.Position.Y - ball.Radius - (fallFactor * 0.15f));
                         }
                     }
                     else
-                    {
-                        if (ball.Position.Y < environment.HoleProperty.Position.Y)
-                        {
-                            ball.SetHeight(environment.GetHeight(StartPosition) + ball.Radius);
-                        }
-                    }
+                        ball.SetHeight(environment.GetHeight(ball.Position) + ball.Radius);
                 }
                 else
                 {
-                    ball.SetHeight(ball.Position.Y - ball.Radius - fallFactor * 0.15f);
-                    Finished = true;
+                    ball.SetHeight(environment.GetHeight(ball.Position) + ball.Radius);
+                    if (ball.Position.Y < environment.HoleProperty.Position.Y)
+                        ball.SetHeight(environment.GetHeight(StartPosition) + ball.Radius);
                 }
             }
-            else
-            {
-                ball.SetHeight(ball.Position.Y - ball.Radius - fallFactor * 0.15f);
-            }
         }
-
     }
 }
