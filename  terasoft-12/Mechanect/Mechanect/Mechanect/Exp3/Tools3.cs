@@ -19,14 +19,14 @@ namespace Mechanect.Exp3
         /// Creates a pre-customized OKButton.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="contentManager">Content managaer to load the pictures.</param>
-        /// <param name="position">The Position of the button.</param>
+        /// <param name="contentManager">Content manager to load the pictures.</param>
+        /// <param name="position">The position of the button.</param>
         /// <param name="screenWidth">The width of the screen.</param>
         /// <param name="screenHeight">The height of the screen.</param>
         /// <param name="user">The instance of the user.</param>
-        /// <returns>returns OKButton button</returns>
+        /// <returns>Returns an OKButton button.</returns>
         public static Button OKButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
@@ -77,17 +77,17 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Creates a pre-customized MainMenuButton.
+        /// Creates a pre-customized MainMenu button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="contentManager">Content managaer to load the pictures.</param>
-        /// <param name="position">The Position of the button.</param>
+        /// <param name="contentManager">Content manager to load the pictures.</param>
+        /// <param name="position">The position of the button.</param>
         /// <param name="screenWidth">The width of the screen.</param>
         /// <param name="screenHeight">The height of the screen.</param>
         /// <param name="user">The instance of the user.</param>
-        /// <returns>returns MainMenu button</returns>
+        /// <returns>Returns a MainMenu button.</returns>
         public static Button MainMenuButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
@@ -98,17 +98,17 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Creates a pre-customized NewGame.
+        /// Creates a pre-customized NewGame button.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="contentManager">Content managaer to load the pictures.</param>
-        /// <param name="position">The Position of the button.</param>
+        /// <param name="contentManager">Content manager to load the pictures.</param>
+        /// <param name="position">The position of the button.</param>
         /// <param name="screenWidth">The width of the screen.</param>
         /// <param name="screenHeight">The height of the screen.</param>
         /// <param name="user">The instance of the user.</param>
-        /// <returns>returns NewGame button</returns>
+        /// <returns>Returns a NewGame button.</returns>
         public static Button NewGameButton(ContentManager contentManager, Vector2 position, 
             int screenWidth, int screenHeight, User user)
         {
@@ -119,15 +119,15 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Displays the wining or losing word on the screen.
+        /// Displays the winning or losing word on the screen.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="spriteBatch">Draws the image on the screen</param>
+        /// <param name="spriteBatch">Draws the image on the screen.</param>
         /// <param name="content">Loads the images.</param>
         /// <param name="position">The position of the word.</param>
-        /// <param name="status">The user has won or not.</param>
+        /// <param name="status">Specifies if the user won or not.</param>
         public static void DisplayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, bool status)
         {
             spriteBatch.Begin();
@@ -146,16 +146,16 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Displays the wining or losing word on the screen.
+        /// Displays the winning or losing word on the screen.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="spriteBatch">Draws the image on the screen</param>
+        /// <param name="spriteBatch">Draws the image on the screen.</param>
         /// <param name="content">Loads the images.</param>
         /// <param name="position">The position of the word.</param>
         /// <param name="scale">Scales the size of the word.</param>
-        /// <param name="status">The user has won or not.</param>
+        /// <param name="status">Specifies if the user won or not.</param>
         public static void DisplayIsWin(SpriteBatch spriteBatch, ContentManager content, Vector2 position, 
             float scale, bool status)
         {
