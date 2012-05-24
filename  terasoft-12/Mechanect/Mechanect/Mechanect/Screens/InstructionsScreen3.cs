@@ -14,25 +14,23 @@ namespace Mechanect.Screens
         int screenWidth;
         int screenHeight;
         ContentManager content;
-        private string instructions = "";
         string header= "\n\n\n                  .Welcome To Mechanect Football Game."+ '\n'
              + "                           .By TeraSoft Team."  + '\n'
                +"                                 .GUC.";
-        private string title1="\n\n\n\n\n\n      Game Instructions:-";
-        private string title2="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n      General Instructions:-";
-        private string text1 = "\n\n\n\n\n\n\n\n\n\n\n          1-Goal: Use the law of conservation of momentum to shoot the ball with a velocity" +       
-            "\n            that makes it reach the hole with zero velocity.  \n "
-            +"\n          2-Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting \n"+ 
-            "            position and Friction (deceleration).\n"
-            +"\n          3-Gameplay: You will see a ball coming towards you, then the game will pause," +
-            "\n            and the givens will be displayed on the screen.When you are done with your\n            calculations, you should press the ok button to resume the game and be able\n            to shoot the ball with the calculated velocity.\n "  
-            +"\n          4-Settings: The next screen allows you to choose a level, which changes the friction,\n            and to adjust the hole size using the angle tolerance slider.\n"
-            +"\n          5-Tip: Shoot the ball when you hear the whistle just before the bar is empty.\n";
-        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n          * The avatar on the top right \n            represents your distance from\n            the screen.\n";
-        private string green = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Green: Good.";
-        private string white = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             White: Too Far.";
-        private string red = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Red: Too Near.";
-        private string crossed = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Crossed: Not Detected.";
+        private string title1="\n Game Instructions:-";
+        private string title2="\n General Instructions:-";
+        private string text1="1-Goal: Use the law of conservation of momentum to shoot the ball with a velocity that makes it reach the hole with zero velocity"
+            +"\n\n2-Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting position and Friction (deceleration)."
+            +"\n\n3-Gameplay: You will see a ball coming towards you, then the game will pause, and the givens will be displayed on the screen.When you are done with your calculations, you should press the ok button to resume the game and be able to shoot the ball with the calculated velocity."
+            +"\n\n4-Settings: The next screen allows you to choose a level, which changes the friction, and to adjust the hole size using the angle tolerance slider"
+            +"\n\n5-Tip: Shoot the ball when you hear the whistle just before the bar is empty.\n\n";
+        private string text2 = "* The avatar on the top right \n  represents your distance from \n  the screen.";
+        private string green = "Green: Good.";
+        private string white = "White: Too Far.";
+        private string red = "Red: Too Near.";
+        private string crossed = "Crossed: Not Detected.";
+        private string[] strings;
+        private Color[] colors;
         //private Instruction instruction;
         private User3 user3;
         private Texture2D myTexture;
@@ -42,6 +40,7 @@ namespace Mechanect.Screens
         SpriteFont font1;
         SpriteFont font2;
         SpriteFont font3;
+        private Rectangle[] rectangles;
         Color colorCode;
 
         public InstructionsScreen3(User3 user3)
@@ -51,7 +50,6 @@ namespace Mechanect.Screens
 
         public InstructionsScreen3(string instructions, User3 user3): this(user3)
         {
-            this.instructions = instructions;
         }
         /// <summary>
         /// LoadContent will be called only once before drawing and its the place to load
@@ -115,17 +113,16 @@ namespace Mechanect.Screens
             spriteBatch.Draw(myTexture, rect, Color.White);
             button.Draw(spriteBatch, scale);
             button.DrawHand(spriteBatch);
-            ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, text1, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, text2, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, green, Vector2.Zero, Color.DarkGreen, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, white, Vector2.Zero, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, red, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.DarkGray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            //UILib.Write(this.instructions, rect, spriteBatch, content);
-            ScreenManager.SpriteBatch.End();
+            spriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+                UILib.Write(title1, new Rectangle(screenWidth/10-40,screenHeight/5,screenWidth,screenHeight), spriteBatch, content,font2 , Color.DarkRed);
+                UILib.Write(text1, new Rectangle(screenWidth / 10 -22, screenHeight / 4 + 18, screenWidth-200, screenHeight), spriteBatch, content, font3, Color.Black);
+                UILib.Write(title2, new Rectangle(screenWidth / 10 -40, screenHeight / 2 + 90, screenWidth, screenHeight), spriteBatch, content, font2, Color.DarkRed);
+                UILib.Write(text2, new Rectangle(screenWidth / 10 -22, screenHeight / 2 + 140, screenWidth, screenHeight), spriteBatch, content, font3, Color.Black);
+                UILib.Write(green, new Rectangle(screenWidth / 2+130, screenHeight / 2 + 155, screenWidth, screenHeight), spriteBatch, content, font3, Color.Green);
+                UILib.Write(white, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 170, screenWidth, screenHeight), spriteBatch, content, font3, Color.White);
+                UILib.Write(red, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 185, screenWidth, screenHeight), spriteBatch, content, font3, Color.DarkRed);
+                UILib.Write(crossed, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 200, screenWidth, screenHeight), spriteBatch, content, font3, Color.DarkGray);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
         /// <summary>
