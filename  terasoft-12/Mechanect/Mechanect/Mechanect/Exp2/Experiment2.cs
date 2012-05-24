@@ -44,7 +44,7 @@ namespace Mechanect.Exp2
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: April, 24  </para>
         /// </remarks>
-        // Variables that will be used as getters; to get some inherited objects
+        // Fields that will be used as getters; to get some inherited objects
         #region: Fields
         Viewport ViewPort
         {
@@ -68,13 +68,12 @@ namespace Mechanect.Exp2
             }
         }
         #endregion
-
+        #region: GUI instance Variables
         // An instance of the environment2 Class (acts as an engine for this class)
         private Environment2 environment;
 
-        // Variables for fontSprites
+        // Variable for fontSprite
         private SpriteFont velAngleFont;
-        //private velAngleFont velAngleFont;
 
         // Variables Contaiing the Textures Definintion 
         private Texture2D grayTexture;
@@ -82,7 +81,6 @@ namespace Mechanect.Exp2
         private Texture2D angleTexture;
 
         // Variables That will be used as scaling for the Textures
-
         private Vector2 grayTextureScaling;
         private float velocityTextureScaling;
         private float angleTextureScaling;
@@ -90,12 +88,10 @@ namespace Mechanect.Exp2
         // A variable to specify the percentage left and write when drawing the velocity and angle gauges
         private float velocityAngleShift;
 
-        // Variables that will change how the Gui will look
-
-        // Variables defining the appearence of some objects
+        // Variables defining the appearence of some objects or states
         private Boolean grayScreen;
         private Boolean preyEaten;
-
+        #endregion
 
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the Content directory.
@@ -104,10 +100,9 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat, Tamer Nabil </para>   
         /// <para>DATE WRITTEN: April, 20 </para>
-        /// <para>DATE MODIFIED: April, 20  </para>
+        /// <para>DATE MODIFIED: May, 24  </para>
         /// </remarks>
         /// <param name="user">Takes an instance of User2 </param>
-        /// <param name="mKinect">takes an instance of mKinect</param>
         public Experiment2(User2 user)
         {
 
@@ -169,7 +164,7 @@ namespace Mechanect.Exp2
             angleTextureScaling = 0.65f;
             velocityAngleShift = 0.05f;
             //Loading Fonts
-            velAngleFont = Content.Load<SpriteFont>("Ariel");
+            velAngleFont = Content.Load<SpriteFont>("ArielBig");
 
             //creating a test environment
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
