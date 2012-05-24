@@ -156,7 +156,7 @@ namespace Mechanect.Exp3
                 if (user.hasShot && shootVelocity.Length() != 0)
                 {
                     firstAnimation = false;
-                    this.shootVelocity = environment.GetVelocityAfterCollision(shootVelocity);
+                    this.shootVelocity = Functions.GetVelocityAfterCollision(shootVelocity, ball.Mass, user.assumedLegMass, arriveVelocity, Constants3.velocityScale);
                     animation = new BallAnimation(ball, environment, this.shootVelocity);
                 }
             }
