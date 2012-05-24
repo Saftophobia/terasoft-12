@@ -12,6 +12,7 @@ namespace Mechanect.Screens
         #region Variables
 
         User[] user;
+        Color[] userColor;
         int gameID;
         Button button;
         SpriteFont font;
@@ -57,10 +58,10 @@ namespace Mechanect.Screens
             isTwoPlayers = false;
             this.user = new User[1];
             this.user[0] = user;
-            Color[] playerColor = new Color[1];
-            playerColor[0] = Color.Blue;
-            depthBar = new DepthBar(this.user, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColor);
-            angleBar = new AngleBar(this.user, minAngle, maxAngle, 200, Color.GreenYellow, Color.OrangeRed, playerColor);
+            userColor = new Color[1];
+            userColor[0] = Color.Blue;
+            depthBar = new DepthBar(this.user, minDepth, maxDepth, 20, 300, Color.Violet, Color.DarkMagenta, userColor);
+            angleBar = new AngleBar(this.user, minAngle, maxAngle, 120, Color.Violet, Color.DarkMagenta, userColor);
             this.gameID = gameID;
         }
 
@@ -85,11 +86,11 @@ namespace Mechanect.Screens
             this.user = new User[2];
             user[0] = user1;
             user[1] = user2;
-            Color[] playerColor = new Color[2];
-            playerColor[0] = Color.Blue;
-            playerColor[1] = Color.Orange;
-            depthBar = new DepthBar(user, minDepth, maxDepth, 50, 200, Color.GreenYellow, Color.OrangeRed, playerColor);
-            angleBar = new AngleBar(user, minAngle, maxAngle, 200, Color.GreenYellow, Color.OrangeRed, playerColor);
+            userColor = new Color[2];
+            userColor[0] = Color.Blue;
+            userColor[1] = Color.Red;
+            depthBar = new DepthBar(user, minDepth, maxDepth, 20, 300, Color.Violet, Color.DarkMagenta, userColor);
+            angleBar = new AngleBar(user, minAngle, maxAngle, 120, Color.Violet, Color.DarkMagenta, userColor);
             this.gameID = gameID;
         }
 
@@ -99,9 +100,10 @@ namespace Mechanect.Screens
         /// </summary>
         public override void LoadContent()
         {
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Screens/AdjustPosition");
             font = ScreenManager.Game.Content.Load<SpriteFont>("Ariel");
-            button = Exp3.Tools3.OKButton(ScreenManager.Game.Content,new Vector2(600,350), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
+            button = Exp3.Tools3.OKButton(ScreenManager.Game.Content, new Vector2((int)(viewport.Width * 0.38), (int)(viewport.Height * 0.68)), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
             depthBar.LoadContent(ScreenManager.GraphicsDevice);
             angleBar.LoadContent(ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             base.LoadContent();
@@ -189,23 +191,22 @@ namespace Mechanect.Screens
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(background, ScreenManager.GraphicsDevice.Viewport.Bounds,Color.White);
             if (Accepted)
             {
-                button.Draw(ScreenManager.SpriteBatch, 0.7f);
+                button.Draw(ScreenManager.SpriteBatch, viewport.Width / 1024f);
                 button.DrawHand(ScreenManager.SpriteBatch);
             }
-            ScreenManager.SpriteBatch.DrawString(font, "Adjust Position", new Vector2(500, 20), Color.OrangeRed);
-            ScreenManager.SpriteBatch.DrawString(font, depthBar.Rule, new Vector2(100, 70), Color.OrangeRed);
-            ScreenManager.SpriteBatch.DrawString(font, angleBar.Rule, new Vector2(100, 120), Color.OrangeRed);
+            UI.UILib.Write(depthBar.Rule, new Rectangle((int)(0.2 * viewport.Width), (int)(0.25 * viewport.Height), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, Color.DarkViolet);
+            UI.UILib.Write(angleBar.Rule, new Rectangle((int)(0.2 * viewport.Width), (int)(0.25 * viewport.Height + 60), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, Color.DarkViolet);
             for (int i = 0; i < user.Length; i++)
             {
-                ScreenManager.SpriteBatch.DrawString(font, Command(i), new Vector2(100, 220 + 50 * i), Color.OrangeRed);
+                UI.UILib.Write(Command(i), new Rectangle((int)(0.25 * viewport.Width), (int)(0.25 * viewport.Height + 110 + 35 * i), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, userColor[i]);
             }
-            depthBar.Draw(ScreenManager.SpriteBatch, new Vector2(100,320));
-            angleBar.Draw(ScreenManager.SpriteBatch, new Vector2(200,320));
+            depthBar.Draw(ScreenManager.SpriteBatch, new Vector2((int)(0.1 * viewport.Width), (int)(0.25 * viewport.Height)));
+            angleBar.Draw(ScreenManager.SpriteBatch, new Vector2((int)(0.6 * viewport.Width), (int)(0.4 * viewport.Height)));
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
         }

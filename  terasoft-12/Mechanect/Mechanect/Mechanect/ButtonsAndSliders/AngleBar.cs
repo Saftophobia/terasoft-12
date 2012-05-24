@@ -100,7 +100,7 @@ namespace Mechanect.ButtonsAndSliders
             this.minAngle = minAngle;
             this.maxAngle = maxAngle;
             this.curveRadius = curveRadius;
-            this.curveWidth = curveRadius / 4;
+            this.curveWidth = curveRadius / 5;
             this.acceptColor = acceptColor;
             this.rejectColor = rejectColor;
             this.playerColor = playerColor;
@@ -207,11 +207,11 @@ namespace Mechanect.ButtonsAndSliders
         public string Command(int ID)
         {
             if (Angle(ID) == 0)
-                return "No player detected";
+                return "Not detected";
             if (Angle(ID) < minAngle)
-                return "Turn a little to your right";
+                return "Turn right";
             if (Angle(ID) > maxAngle)
-                return "Turn a little to your left";
+                return "Turn left";
             return "OK!";
         }
 
