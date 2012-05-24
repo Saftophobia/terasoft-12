@@ -93,13 +93,9 @@ namespace Mechanect.Exp3
                 }
                 current = animation2;
             }
-            else
-            {
-                if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
-                {
-                    animation1.Stop();
-                }
-            }
+            else if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
+                animation1.Stop();
+
             current.Update(gameTime.ElapsedGameTime);
             Camera.Move(ball.Position);
             Camera.Rotate(new Vector3(0, 0.005f, 0));
@@ -123,21 +119,19 @@ namespace Mechanect.Exp3
             {
                 spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.White, 0, 
                     Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+
                 if ((int)(animation2.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
-                {
                     spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
                         Color.Red, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-                }
             }
             else
             {
-                if ((int)(animation1.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
-                {
-                    spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Red, 0, 
-                        Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-                }
                 spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y),
                     Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+
+                if ((int)(animation1.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
+                    spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Red, 0,
+                        Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
             }
 
             spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X + 5, 0),

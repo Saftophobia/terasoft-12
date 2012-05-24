@@ -109,9 +109,8 @@ namespace Mechanect.Exp3
                 simulation.Update(gameTime);
             }
             else
-            {
                 animation.Update(gameTime.ElapsedGameTime);
-            }
+            
             targetCamera.Update();
             base.Update(gameTime);
         }
@@ -126,9 +125,8 @@ namespace Mechanect.Exp3
         public void UpdateFirstAnimation(GameTime gameTime)
         {
             if (!firstAnimation)
-            {
                 return;
-            }
+            
             float distance = animation.Displacement.Length();
             float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
             if (distance / totalDistance > 0.5 && !pauseScreenShowed)
@@ -155,10 +153,9 @@ namespace Mechanect.Exp3
                     animation = new BallAnimation(ball, environment, this.shootVelocity);
                 }
             }
+
             if (animation.Finished)
-            {
                 UpdateButtons(gameTime);
-            }
         }
 
         /// <summary>
@@ -170,18 +167,14 @@ namespace Mechanect.Exp3
         public void UpdateSecondAnimation()
         {
             if (firstAnimation)
-            {
                 return;
-            }
+            
             if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
-            {
                 animation.Stop();
-            }
+            
             if (animation.Finished && simulation == null)
-            {
                 simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity,
                     ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
-            }
         }
 
         /// <summary>
@@ -195,9 +188,8 @@ namespace Mechanect.Exp3
         {
             Camera camera = targetCamera;
             if (simulation != null)
-            {
                 camera = simulation.Camera;
-            }
+            
             environment.Draw(camera, gameTime);
             ball.Draw(camera);
             if (firstAnimation)
@@ -210,9 +202,8 @@ namespace Mechanect.Exp3
                     DrawButtons();
                 }
                 else
-                {
                     bar.Draw();
-                }
+               
             }
             if (simulation != null)
             {
