@@ -150,27 +150,32 @@ namespace Mechanect.Exp2
         /// <para>DATE WRITTEN: April, 20 </para>
         /// <para>DATE MODIFIED: May, 22  </para>
         /// </remarks>
-
         public override void LoadContent()
         {
-            // initializing the screen width and height (just initial values and will be changed later)
+
             LoadTextures();
 
             grayTextureScaling = new Vector2((float)ViewPort.Width / grayTexture.Width, (float)ViewPort.Height /
                 grayTexture.Height);
+            // initially
             grayScreen = true;
             preyEaten = false;
             velocityTextureScaling = 0.4f;
             angleTextureScaling = 0.65f;
             velocityAngleShift = 0.05f;
-            //Loading Fonts
+            //Loading Font
             velAngleFont = Content.Load<SpriteFont>("ArielBig");
 
-            //creating a test environment
+            //Loading the content of the environment
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);
 
+            //loading the button with the initial position
             buttonPosition = new Vector2(ViewPort.Width - ViewPort.Width / 2.7f, 2 * velAngleFont.MeasureString("A").Y);
             button = Tools3.OKButton(Content, buttonPosition, ViewPort.Width, ViewPort.Height, user);
+
+            //The sound order needs to be done only once thus will be done in the load content
+            UI.UILib.SayText("Test angle and Velocity using your left hand, then say GOo or press ok");
+
             //TBC
             // voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
 
@@ -181,7 +186,7 @@ namespace Mechanect.Exp2
 
         /// <summary>
         /// Allows the game to initialize all the textures 
-        /// Initializing the Background and x,y Axises textures
+        /// Loading  the gray screen , velocity and angle gauges textures.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
@@ -206,18 +211,20 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 22  </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-
         public override void Draw(GameTime gameTime)
         {
 
             ScreenManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            //Drawing the background since this is the original experiment
             environment.DrawBackground = true;
-            //Drawing the test environment
+
+            //Drawing the Experiment environment
             SpriteBatch.Begin();
             environment.Draw(new Rectangle(0, (int)(ViewPort.Height * 0.3f), ViewPort.Width, (int)
             ViewPort.Height), SpriteBatch);
-
             SpriteBatch.End();
+
             if (grayScreen)
             {
                 DrawGrayScreen();
@@ -263,17 +270,18 @@ namespace Mechanect.Exp2
 
             SpriteBatch.DrawString(velAngleFont, sayString, new Vector2((ViewPort.Width / 2), velAngleFont.MeasureString
                 (testString).Y), Color.Red, 0f, new Vector2((ViewPort.Width / 4), 0), 0.7f, SpriteEffects.None, 0f);
-
-
+            
+            //Draw The button and hand
             button.Draw(SpriteBatch, 0.45f);
             button.DrawHand(SpriteBatch);
+
             SpriteBatch.End();
 
 
         }
 
         /// <summary>
-        /// This Method is to be called whenDrawing The angle and velocity Labels.
+        /// This Method is to be called to draw the angle and velocity Labels.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Alzayat </para>   
@@ -282,8 +290,8 @@ namespace Mechanect.Exp2
         /// </remarks>
         private void DrawAngVelLabels()
         {
-            String velString = "Velocity = " + Math.Round(user.MeasuredVelocity, 2);
-            String angString = "Angle = " + Math.Round(user.MeasuredAngle, 2);
+            String velString = "Velocity = " + Math.Round(user.MeasuredVelocity, 1);
+            String angString = "Angle = " + Math.Round(user.MeasuredAngle, 1);
 
             SpriteBatch.Begin();
 
