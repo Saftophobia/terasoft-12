@@ -19,7 +19,7 @@ namespace Mechanect.Common
         /// Used to animate the SkinnedCustomModel according to the movement of the player.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="model">The model with skeleton and bones.</param>
         /// <param name="user">The instance of the user.</param>
@@ -37,7 +37,7 @@ namespace Mechanect.Common
         /// Updating the movement of the model.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         public void Update()
         {
@@ -53,7 +53,7 @@ namespace Mechanect.Common
         /// Animating the the right leg.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void MoveRightLeg()
         {
@@ -76,7 +76,7 @@ namespace Mechanect.Common
         /// Animating the left leg.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void MoveLeftLeg()
         {
