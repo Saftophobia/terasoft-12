@@ -18,7 +18,7 @@ namespace Mechanect.Common
 
         #region Properties
         /// <summary>
-        /// Return the sprite batch object.
+        /// Returns the sprite batch object.
         /// </summary>
         public SpriteBatch SpriteBatch
         {
@@ -28,7 +28,7 @@ namespace Mechanect.Common
 
         #region Initialization
         /// <summary>
-        /// Constructor, initializes the manager
+        /// Creates a new instance of ScreenManager.
         /// </summary>
         public ScreenManager(Game game)
             : base(game)
@@ -38,7 +38,7 @@ namespace Mechanect.Common
         }
 
         /// <summary>
-        /// Initialize the spriteBatch and screen dedicated content.
+        /// Loads the content of the screens managed by the screenManager.
         /// </summary>
         protected override void LoadContent()
         {            
@@ -48,7 +48,7 @@ namespace Mechanect.Common
         }
 
         /// <summary>
-        /// Unload screen dedicated content
+        /// Unloads the conent of the screens managed by the screenManager.
         /// </summary>
         protected override void UnloadContent()
         {
@@ -60,12 +60,11 @@ namespace Mechanect.Common
         #region Update and Draw
 
         /// <summary>
-        /// Updates all the screens that should be drawn in a first in first updated manner.
+        /// Updates the screens that are managed by the screenManager.
         /// </summary>
+        /// <param name="gameTime">represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
-            //clear out the screensToUpdate list to copy the screens list
-            //this allows us to add or remove screens without complaining.
             screensToUpdate.Clear();
           
             
@@ -88,14 +87,12 @@ namespace Mechanect.Common
                     GameScreen screen = screensToUpdate[screensToUpdate.Count - 1];
 
                     screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
-                    screen.Update(gameTime, false);
                     screen.Update(gameTime);
-
                 }
             }
         }
         /// <summary>
-        /// Draws all the screens that should be drawn in a first in first drawn manner.
+        /// Updates the screens that are managed by the screenManager.
         /// </summary>
         /// <param name="gameTime">represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
@@ -114,7 +111,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Adds a screen to the list of screens that are managed by the screenManager.
         /// </summary>
-        /// <param name="screen">Represents the screen that should be managed by the screenManager</param>
+        /// <param name="screen">Represents the screen that should be managed by the screenManager.</param>
         public void AddScreen(GameScreen screen)
         {
             screen.ScreenManager = this;
@@ -127,7 +124,7 @@ namespace Mechanect.Common
         /// Removes a screen from the list of screens that are managed by the screenManager.
         /// </summary>
         /// <param name="screen">Represents the screen that should be removed from the list
-        /// of managed screens by the screenManager</param>
+        /// of managed screens by the screenManager.</param>
         public void RemoveScreen(GameScreen screen)
         {
             screen.UnloadContent();
