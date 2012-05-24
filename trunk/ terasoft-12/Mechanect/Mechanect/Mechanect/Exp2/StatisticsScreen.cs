@@ -37,7 +37,7 @@ namespace Mechanect.Exp2
         private Button solution;
         private Button newGame;
         private Texture2D background;
-        private Viewport ViewPort
+        private Viewport viewPort
         {
             get { return ScreenManager.GraphicsDevice.Viewport; }
         }
@@ -110,12 +110,12 @@ namespace Mechanect.Exp2
             seeResultsButtonPosition = new Vector2((float)0.84 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            rightSimulationPosition = new Rectangle(7*ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3,
-                4 * ViewPort.Height / 10); ///
-            centerSimulationPosition = new Rectangle(ViewPort.Width / 3, ViewPort.Height / 10, ViewPort.Width / 3,
-                4 * ViewPort.Height / 10);
-            leftSimulationPosition = new Rectangle(ViewPort.Width / 12, ViewPort.Height / 10, ViewPort.Width / 3,
-                4 * ViewPort.Height / 10); ///
+            rightSimulationPosition = new Rectangle(7*viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
+                4 * viewPort.Height / 10); ///
+            centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 3,
+                4 * viewPort.Height / 10);
+            leftSimulationPosition = new Rectangle(viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
+                4 * viewPort.Height / 10); ///
             currentUserSimulationPosition = centerSimulationPosition; ///
         }
         /// <summary>
@@ -160,14 +160,14 @@ namespace Mechanect.Exp2
         {
             ScreenManager.SpriteBatch.Begin();
             background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
-            mainMenu.Draw(ScreenManager.SpriteBatch,0.5f);
-            retry.Draw(ScreenManager.SpriteBatch, 0.5f);
+            mainMenu.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
+            retry.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             if (correctAnswer || solutionVisible)
-                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
+                newGame.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             else
-                solution.Draw(ScreenManager.SpriteBatch, 0.5f);
+                solution.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             if (currentUserSimulationPosition.X <= leftSimulationPosition.X)
                 optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
 
