@@ -31,12 +31,10 @@ namespace Mechanect.Screens.Exp1Screens
         float[] speedlistr = new float[2];
         float[] speedlist2 = new float[2];
         float[] speedlistr2 = new float[2];
-
         bool calculatespeedbool = false;
         bool calculatespeedbool2 = false;
         bool calculatespeedboolr = false;
         bool calculatespeedboolr2 = false;
-
         float[] min = new float[2];
         float[] minr = new float[2];
         float[] min2 = new float[2];
@@ -45,7 +43,6 @@ namespace Mechanect.Screens.Exp1Screens
         float[] maxr = new float[2];
         float[] max2 = new float[2];
         float[] maxr2 = new float[2];
-
         Joint left, right;
         int timecounter;
         #endregion
@@ -72,7 +69,6 @@ namespace Mechanect.Screens.Exp1Screens
                 return ScreenManager.SpriteBatch;
             }
         }
-        //Environment1 Environment1;
         Environ1 environ1;
         GraphicsDevice graphics;
         User1 user1, user2;
@@ -101,18 +97,14 @@ namespace Mechanect.Screens.Exp1Screens
             base.LoadContent();
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
-        {
-
-           
+        {          
             environ1.Update();
             if (user1.skeleton == null || user2.skeleton == null)
-            {
-              
+            {           
                 kinect.requestSkeleton();
                 user1.skeleton = kinect.globalSkeleton;
                 kinect.request2ndSkeleton();
                 user2.skeleton = kinect.globalSkeleton2;
-
                 user1.Kneepos.Clear();
                 user2.Kneepos.Clear();
                 user1.Kneeposr.Clear();
@@ -120,9 +112,7 @@ namespace Mechanect.Screens.Exp1Screens
                 user1.Velocitylist.Clear();
                 user2.Velocitylist.Clear();
                 user1.Disqualified = user2.Disqualified = user1.Winner = user2.Winner = false;
-
                 //UI.UILib.SayText("Constant Velocity");
-
             }
             else
             {
@@ -140,8 +130,7 @@ namespace Mechanect.Screens.Exp1Screens
                      countdown.Update();
                 }
                 if (timer > 0)
-                {
-                    
+                {              
                    if (firstframe != (user1.skeleton.Joints[JointType.KneeLeft].Position.Y))
                     {
                         fill_Knee_pos();
@@ -161,8 +150,9 @@ namespace Mechanect.Screens.Exp1Screens
                        {
                            currentcommand = racecommands[i];
                            user1.ActiveCommand = i;
+                           user2.ActiveCommand = i;
+                           //UI.UILib.SayText(currentcommand);
                        }
-
                    }
 
                   /* for (int i = 0; i < timeslice.Count(); i++)
@@ -174,18 +164,13 @@ namespace Mechanect.Screens.Exp1Screens
                            break;
                        }
                    }*/
-
-
                     //display commands on screen
                    if (timer > 10)
                    {
                        int b = 0;
                    }
-
                 }
-
             }
-
             if (user1.Winner || user2.Winner || (user1.Disqualified && user2.Disqualified))
             {
                 ScreenManager.AddScreen(new Winnerscreen(user1,user2,graphics,this.racecommands,this.timeslice));
@@ -195,29 +180,24 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            //Environment1.Draw(gameTime);
+            
             environ1.Draw();
             if (user1.skeleton == null || user2.skeleton == null)
             {
-
                 SpriteBatch.Begin();
-
                 SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
                 SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.2)), Color.White);
                 SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.2), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
                 SpriteBatch.DrawString(spritefont1, "please stand in Range", new Microsoft.Xna.Framework.Vector2((int)(graphics.DisplayMode.Width * 0.6), (int)(graphics.DisplayMode.Height * 0.6)), Color.White);
-
                 SpriteBatch.End();
             }
             else
             {
                 if (timer < 0)
                 {
-
                     SpriteBatch.Begin();
                     countdown.DrawCountdown(SpriteBatch, (int)(graphics.DisplayMode.Width * 0.44), (int)(graphics.DisplayMode.Height * 0.44));
                     SpriteBatch.End();
-
                     countdown.PlaySoundEffects();
                 }
                 if (timer > 0)
@@ -250,7 +230,6 @@ namespace Mechanect.Screens.Exp1Screens
         {
                 user1.Kneepos.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
                 user2.Kneepos.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeLeft].Position.Y), 1));
-
                 user1.Kneeposr.Add((float)Math.Round((user1.skeleton.Joints[JointType.KneeRight].Position.Y), 1));
                 user2.Kneeposr.Add((float)Math.Round((user2.skeleton.Joints[JointType.KneeRight].Position.Y), 1));     
         }
@@ -258,7 +237,6 @@ namespace Mechanect.Screens.Exp1Screens
 
         public void getspeedleft()
         {
-
             if (user1.Kneepos.Count() != 0)
             {
                 if (user1.Kneepos.Count() == 1)
@@ -268,8 +246,6 @@ namespace Mechanect.Screens.Exp1Screens
                 }
                 else
                 {
-
-
                     if (user1.Kneepos[user1.Kneepos.Count() - 1] == user1.Kneepos[user1.Kneepos.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
                     {
 
@@ -284,28 +260,22 @@ namespace Mechanect.Screens.Exp1Screens
                             min[1] = timer;
                         }
                         user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
-                        // and set one b4 to be the min
                     }
                     else
                     {
                         if (user1.Kneepos[user1.Kneepos.Count() - 1] > user1.Kneepos[user1.Kneepos.Count() - 2]) // if the next input greater than the one b4 .. set it to max
                         {
-
                             calculatespeedbool = true;
                             max[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
                             max[1] = timer;
                             user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
-
                         }
                         else // the next input is smaller than the one b4 .. 
                         {
-
-
                             if (calculatespeedbool)
                             {
                                 if ((max[0] - min[0]) >= 0.3)
                                 {
-
                                     speed = Math.Abs(((max[0] - min[0]) / (max[1] - min[1])));
                                     if (speed <= 4)
                                     {
@@ -313,14 +283,8 @@ namespace Mechanect.Screens.Exp1Screens
                                         speedlist[0] = speed;
                                         speedlist[1] = timer;//calculate the speed of the oscillation from min to max
                                         user1.Velocitylist.Add(speedlist);
-                                        user1.Positions.Add(speed * this.avatarconst);
-
-
-                                        // this.Environment1.MoveAvatar(1, (int)speed * 15);
-                                        this.environ1.bike1.Move(speed * avatarconst);
-                                       
-
-
+                                        user1.Positions.Add(speed * this.avatarconst);                                     
+                                        this.environ1.bike1.Move(speed * avatarconst);                                    
                                         calculatespeedbool = false;
                                     }
                                     else
@@ -336,18 +300,13 @@ namespace Mechanect.Screens.Exp1Screens
                             min[0] = user1.Kneepos[user1.Kneepos.Count() - 1];
                             min[1] = timer;
                             user1.Kneepos.RemoveAt(user1.Kneepos.Count() - 2);
-
-
                         }
                     }
-
-
                 }
             }
         }
         public void getspeedright()
         {
-
             if (user1.Kneeposr.Count() != 0)
             {
                 if (user1.Kneeposr.Count() == 1)
@@ -357,11 +316,8 @@ namespace Mechanect.Screens.Exp1Screens
                 }
                 else
                 {
-
-
-                    if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == user1.Kneeposr[user1.Kneeposr.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
+                   if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == user1.Kneeposr[user1.Kneeposr.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
                     {
-
                         if (user1.Kneeposr[user1.Kneeposr.Count() - 1] == maxr[0])
                         {
                             maxr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
@@ -373,23 +329,18 @@ namespace Mechanect.Screens.Exp1Screens
                             minr[1] = timer;
                         }
                         user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
-                        // and set one b4 to be the min
                     }
                     else
                     {
                         if (user1.Kneeposr[user1.Kneeposr.Count() - 1] > user1.Kneeposr[user1.Kneeposr.Count() - 2]) // if the next input greater than the one b4 .. set it to max
                         {
-
                             calculatespeedboolr = true;
                             maxr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
                             maxr[1] = timer;
                             user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
-
                         }
                         else // the next input is smaller than the one b4 .. 
                         {
-
-
                             if (calculatespeedboolr)
                             {
                                 if ((maxr[0] - minr[0]) >= 0.3)
@@ -402,11 +353,8 @@ namespace Mechanect.Screens.Exp1Screens
                                         speedlistr[1] = timer;//calculate the speed of the oscillation from min to max
                                         user1.Velocitylist.Add(speedlistr);
                                         user1.Positions.Add(speedr * this.avatarconst);
-
                                         // this.Environment1.MoveAvatar(1, (int)speedr * 15);
                                         this.environ1.bike1.Move(speedr * avatarconst);
-
-
                                         calculatespeedboolr = false;
                                     }
                                     else
@@ -422,19 +370,13 @@ namespace Mechanect.Screens.Exp1Screens
                             minr[0] = user1.Kneeposr[user1.Kneeposr.Count() - 1];
                             minr[1] = timer;
                             user1.Kneeposr.RemoveAt(user1.Kneeposr.Count() - 2);
-
-
                         }
-
                     }
-
-
                 }
             }
         }
         public void getspeedleft2()
         {
-
             if (user2.Kneepos.Count() != 0)
             {
                 if (user2.Kneepos.Count() == 1)
@@ -444,11 +386,8 @@ namespace Mechanect.Screens.Exp1Screens
                 }
                 else
                 {
-
-
                     if (user2.Kneepos[user2.Kneepos.Count() - 1] == user2.Kneepos[user2.Kneepos.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
                     {
-
                         if (user2.Kneepos[user2.Kneepos.Count() - 1] == max2[0])
                         {
                             max2[0] = user2.Kneepos[user2.Kneepos.Count() - 1];
@@ -460,28 +399,22 @@ namespace Mechanect.Screens.Exp1Screens
                             min2[1] = timer;
                         }
                         user2.Kneepos.RemoveAt(user2.Kneepos.Count() - 2);
-                        // and set one b4 to be the min
                     }
                     else
                     {
                         if (user2.Kneepos[user2.Kneepos.Count() - 1] > user2.Kneepos[user2.Kneepos.Count() - 2]) // if the next input greater than the one b4 .. set it to max
                         {
-
                             calculatespeedbool2 = true;
                             max2[0] = user2.Kneepos[user2.Kneepos.Count() - 1];
                             max2[1] = timer;
                             user2.Kneepos.RemoveAt(user2.Kneepos.Count() - 2);
-
                         }
                         else // the next input is smaller than the one b4 .. 
                         {
-
-
                             if (calculatespeedbool2)
                             {
                                 if ((max2[0] - min2[0]) >= 0.3)
                                 {
-
                                     speed2 = Math.Abs(((max2[0] - min2[0]) / (max2[1] - min2[1])));
                                     if (speed2 <= 4)
                                     {
@@ -490,13 +423,7 @@ namespace Mechanect.Screens.Exp1Screens
                                         speedlist2[1] = timer;//calculate the speed of the oscillation from min to max
                                         user2.Velocitylist.Add(speedlist2);
                                         user2.Positions.Add(speed2 * this.avatarconst);
-
-
-                                        // this.Environment1.MoveAvatar(1, (int)speed * 15);
                                         this.environ1.bike2.Move(speed2 * avatarconst);
-
-
-
                                         calculatespeedbool2 = false;
                                     }
                                     else
@@ -512,12 +439,8 @@ namespace Mechanect.Screens.Exp1Screens
                             min2[0] = user2.Kneepos[user2.Kneepos.Count() - 1];
                             min2[1] = timer;
                             user2.Kneepos.RemoveAt(user2.Kneepos.Count() - 2);
-
-
                         }
                     }
-
-
                 }
             }
         }
@@ -533,11 +456,8 @@ namespace Mechanect.Screens.Exp1Screens
                 }
                 else
                 {
-
-
                     if (user2.Kneeposr[user2.Kneeposr.Count() - 1] == user2.Kneeposr[user2.Kneeposr.Count() - 2]) // if the next input inlist equal the one b4 .. discard the one b4
                     {
-
                         if (user2.Kneeposr[user2.Kneeposr.Count() - 1] == maxr2[0])
                         {
                             maxr2[0] = user2.Kneeposr[user2.Kneeposr.Count() - 1];
@@ -548,24 +468,19 @@ namespace Mechanect.Screens.Exp1Screens
                             minr2[0] = user2.Kneeposr[user2.Kneeposr.Count() - 1];
                             minr2[1] = timer;
                         }
-                        user2.Kneeposr.RemoveAt(user2.Kneeposr.Count() - 2);
-                        // and set one b4 to be the min
+                        user2.Kneeposr.RemoveAt(user2.Kneeposr.Count() - 2);                       
                     }
                     else
                     {
                         if (user2.Kneeposr[user2.Kneeposr.Count() - 1] > user2.Kneeposr[user2.Kneeposr.Count() - 2]) // if the next input greater than the one b4 .. set it to max
                         {
-
                             calculatespeedboolr2 = true;
                             maxr2[0] = user2.Kneeposr[user2.Kneeposr.Count() - 1];
                             maxr2[1] = timer;
                             user2.Kneeposr.RemoveAt(user2.Kneeposr.Count() - 2);
-
                         }
                         else // the next input is smaller than the one b4 .. 
                         {
-
-
                             if (calculatespeedboolr2)
                             {
                                 if ((maxr2[0] - minr2[0]) >= 0.3)
@@ -578,11 +493,7 @@ namespace Mechanect.Screens.Exp1Screens
                                         speedlistr2[1] = timer;//calculate the speed of the oscillation from min to max
                                         user2.Velocitylist.Add(speedlistr2);
                                         user2.Positions.Add(speedr2 * this.avatarconst);
-
-                                        // this.Environment1.MoveAvatar(1, (int)speedr * 15);
                                         this.environ1.bike2.Move(speedr2 * avatarconst);
-
-
                                         calculatespeedboolr2 = false;
                                     }
                                     else
@@ -598,18 +509,11 @@ namespace Mechanect.Screens.Exp1Screens
                             minr2[0] = user2.Kneeposr[user2.Kneeposr.Count() - 1];
                             minr2[1] = timer;
                             user2.Kneeposr.RemoveAt(user2.Kneeposr.Count() - 2);
-
-
                         }
-
                     }
-
-
                 }
             }
         }
-
-
         #endregion
         public void comm_and_timeslice()
         {
@@ -618,9 +522,7 @@ namespace Mechanect.Screens.Exp1Screens
                 List<string> racecommandshuf = this.gCommands;
                 Tools1.commandshuffler<string>(racecommandshuf);
                 racecommands = racecommands.Concat<string>(racecommandshuf).ToList<string>();
-
             }
-
             Random rand = new Random();
             foreach (string command in racecommands)
             {
@@ -641,10 +543,8 @@ namespace Mechanect.Screens.Exp1Screens
                     case "constantVelocity":
                         timeslice.Add(rand.Next(6, 9));
                         break;
-
                 }
             }
-
             cumtimeslice.Add(0);
             cumtimeslice.Add(timeslice[0]);
             for (int i = 1; i < timeslice.Count(); i++)
