@@ -14,19 +14,20 @@ namespace Mechanect.Screens
     /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class AllExperiments : Mechanect.Common.GameScreen
     {
-        User user;
-        ContentManager content;
-        SpriteBatch spriteBatch;
-        GraphicsDevice device;
-        Texture2D backgroundTexture;
-        int screenWidth;
-        int screenHeight;
-        Button experiment1Button;
-        Button experiment2Button;
-        Button experiment3Button;
-        Texture2D One;
-        Texture2D Two;
-        Texture2D Three;
+        private User user;
+        private ContentManager content;
+        private SpriteBatch spriteBatch;
+        private GraphicsDevice device;
+        private Texture2D backgroundTexture;
+        private int screenWidth;
+        private int screenHeight;
+        private Button experiment1Button;
+        private Button experiment2Button;
+        private Button experiment3Button;
+        private Texture2D One;
+        private Texture2D Two;
+        private Texture2D Three;
+        private float heightOffset; //due to the button's scaling with the screen
 
         [System.Obsolete("Will be repaced by ", false)]
         public AllExperiments()
@@ -39,9 +40,9 @@ namespace Mechanect.Screens
         /// </summary>
         /// <param name="user">The user that will be tracked when this screen is active.</param>
         public AllExperiments(User user)
-        {
-            
+        {    
             this.user = user;
+            heightOffset = ((screenWidth / 1024) * screenHeight * 0.05f);
         }
         /// <summary>
         /// Loads the content of this screen.
@@ -124,15 +125,17 @@ namespace Mechanect.Screens
             experiment2Button.Draw(spriteBatch, (screenWidth * 0.65f) / 1024f);
             experiment3Button.Draw(spriteBatch, (screenWidth * 0.65f) / 1024f);
             experiment1Button.DrawHand(spriteBatch);
-            spriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133),
-                (int)((screenHeight * 0.47) + ((screenWidth / 1024) * screenHeight * 0.05)), (int)(screenWidth * 0.12),
-                (int)(screenHeight * 0.2)), Color.White);
+            
+            spriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133), (int)((screenHeight * 0.47) + heightOffset),
+                (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)), Color.White);
+            
             spriteBatch.Draw(Two, new Rectangle((int)(screenWidth * 0.423),
-                (int)((screenHeight * 0.725) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12),
-                (int)(screenHeight * 0.2)), Color.White);
+                (int)((screenHeight * 0.725) + heightOffset), (int)(screenWidth * 0.12), (int)(screenHeight * 0.2)),
+                Color.White);
+            
             spriteBatch.Draw(Three, new Rectangle((int)(screenWidth * 0.733),
-                (int)((screenHeight * 0.47) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12),
-                (int)(screenHeight * 0.2)), Color.White);
+                (int)((screenHeight * 0.47) + heightOffset), (int)(screenWidth * 0.12),(int)(screenHeight * 0.2)),
+                Color.White);
             experiment1Button.DrawHand(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
