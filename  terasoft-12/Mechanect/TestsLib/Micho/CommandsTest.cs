@@ -186,12 +186,12 @@ namespace Tests
         }
 
         [Test]
-        public void GetWinnerTest()
+        public void SetWinnerTest()
         {
             List<float> distances = new List<float>(){2.001f, 2.05f, 1.5f, 3.9f};
             user1.Positions = distances;
             user2.Positions = new List<float>();
-            Tools1.GetWinner(user1, user2, 9.0f);
+            Tools1.SetWinner(user1, user2, 9.0f);
             Assert.AreEqual(true, user1.Winner);
             Assert.AreEqual(false, user2.Winner);
         }
