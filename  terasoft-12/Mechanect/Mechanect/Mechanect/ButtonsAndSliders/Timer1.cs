@@ -3,6 +3,12 @@ using Microsoft.Xna.Framework;
 
 namespace ButtonsAndSliders
 {
+    /// <summary>
+    /// Timer
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: AhmeD HegazY</para>
+    /// </remarks>
     class Timer1
     {
         private double startTime;
@@ -11,7 +17,7 @@ namespace ButtonsAndSliders
 
         /// <summary>
         /// Starts the timer by marking the time and changing the status of the timer
-        /// to runnig.
+        /// to running.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -25,13 +31,13 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Gets the time since the timer has started to the time this method is called.
+        /// Gets the difference between the start time and the current time.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        /// <returns>The duration the timer has spent since it's started.</returns>
+        /// <returns>The duration the timer has spent since it started.</returns>
         public double GetDuration(GameTime gameTime)
         {
             if (running)
