@@ -126,11 +126,11 @@ namespace Mechanect.Screens.Exp1Screens
             }
             if (user1.Disqualified && user1.Winner)
             {
-                winningstring = " Player1 is Disqualified, congratulations player 2";
+                winningstring = " Player1 is Disqualified \n congratulations player 2";
             }
             if (user2.Disqualified && user2.Winner)
             {
-                 winningstring = " Player2 is Disqualified, congratulations player 1";
+                 winningstring = " Player2 is Disqualified \n congratulations player 1";
             }
 
             if (timer > 6)
