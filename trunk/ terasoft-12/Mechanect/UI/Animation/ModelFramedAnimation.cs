@@ -52,7 +52,8 @@ namespace UI.Animation
             }
 
             TimeSpan frameElapsedTime = ElapsedTime - frames[i].Time;
-            float amt = (float)((frameElapsedTime.TotalSeconds) / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
+            float amt = (float)((frameElapsedTime.TotalSeconds) 
+                / (frames[i + 1].Time - frames[i].Time).TotalSeconds);
 
             model.Position = Vector3.CatmullRom(
                frames[Wrap(i - 1, frames.Count - 1)].Position,

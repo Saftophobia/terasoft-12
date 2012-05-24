@@ -48,7 +48,8 @@ namespace Mechanect.Exp3
         /// <remarks>
         /// AUTHOR : Bishoy Bassem.
         /// </remarks>
-        public Simulation(Ball ball, Environment3 environment, Vector3 shootPosition, Vector3 shootVelocity, ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
+        public Simulation(Ball ball, Environment3 environment, Vector3 shootPosition, Vector3 shootVelocity,
+            ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
         {
             this.device = device;
             this.spriteBatch = spriteBatch;

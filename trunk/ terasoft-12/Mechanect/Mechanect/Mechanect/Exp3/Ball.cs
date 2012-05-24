@@ -85,7 +85,8 @@ namespace Mechanect.Exp3
         public void Rotate(Vector3 displacement)
         {
             float perimeter = (float)(2 * Math.PI * radius);
-            Rotation = new Vector3(displacement.Length() / (perimeter / 6), (float)Math.Atan2(displacement.X, displacement.Z), 0);
+            Rotation = new Vector3(displacement.Length() / (perimeter / 6), 
+                (float)Math.Atan2(displacement.X, displacement.Z), 0);
         }
 
 
@@ -127,7 +128,8 @@ namespace Mechanect.Exp3
         /// </remarks>
         public bool InsideTerrain(float terrainWidth, float terrainHeight)
         {
-            return Position.X > -terrainWidth / 3 && Position.X < terrainWidth / 3 && Position.Z > (-0.8 * terrainHeight / 2);
+            return Position.X > -terrainWidth / 3 && Position.X < terrainWidth / 3 
+                && Position.Z > (-0.8 * terrainHeight / 2);
         }
 
     }
