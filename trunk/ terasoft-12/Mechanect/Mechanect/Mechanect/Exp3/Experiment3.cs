@@ -227,11 +227,11 @@ namespace Mechanect.Exp3
             int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
             int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
 
-            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 500,
-                screenHeight - 125), screenWidth, screenHeight, user);
+            mainMenu = Tools3.MainMenuButton(ScreenManager.Game.Content, new Vector2(screenWidth - 105,
+                screenHeight - 105), screenWidth, screenHeight, user);
 
-            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth - 140,
-                screenHeight - 125), screenWidth, screenHeight, user);
+            newGame = Tools3.NewGameButton(ScreenManager.Game.Content, new Vector2(screenWidth / 2 - 70,
+                screenHeight - 150), screenWidth, screenHeight, user);
         }
 
         /// <summary>
@@ -266,8 +266,8 @@ namespace Mechanect.Exp3
         private void DrawButtons()
         {
             ScreenManager.SpriteBatch.Begin();
-            newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
-            mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
+            newGame.Draw(ScreenManager.SpriteBatch, 0.6f);
+            mainMenu.Draw(ScreenManager.SpriteBatch, 0.4f);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
         }
