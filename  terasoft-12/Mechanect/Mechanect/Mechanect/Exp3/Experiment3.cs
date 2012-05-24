@@ -206,7 +206,7 @@ namespace Mechanect.Exp3
                 float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
                 if (distance / totalDistance > 1)
                 {
-                    //DrawStatus();
+                    DrawStatus();
                     DrawButtons();
                 }
                 else
@@ -217,9 +217,23 @@ namespace Mechanect.Exp3
             {
                 simulation.Draw();
                 DrawButtons();
-                //DrawStatus();
+                DrawStatus();
             }
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Displays winner or loser according to the winning conditions
+        /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
+        private void DrawStatus()
+        {
+            int screenWidth = this.ScreenManager.GraphicsDevice.Viewport.Width;
+            int screenHeight = this.ScreenManager.GraphicsDevice.Viewport.Height;
+            Tools3.DisplayIsWin(ScreenManager.SpriteBatch, ScreenManager.Game.Content,
+                new Vector2(35, screenHeight - 110), 0.5f, animation.willFall);
         }
 
         /// <summary>
