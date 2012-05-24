@@ -40,6 +40,7 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void Initialize()
         {
+            isTwoPlayers = true;
             base.Initialize();
         }
         public override void LoadContent()
@@ -52,6 +53,7 @@ namespace Mechanect.Screens.Exp1Screens
         }
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
+            base.Draw(gameTime);
             throw new NotImplementedException();
         }
 

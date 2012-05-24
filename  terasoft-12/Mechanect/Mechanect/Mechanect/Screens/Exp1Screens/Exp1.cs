@@ -84,6 +84,7 @@ namespace Mechanect.Screens.Exp1Screens
         public override void Initialize()
         {
             kinect = new MKinect();
+            isTwoPlayers = true;
             base.Initialize();
         }
         public override void LoadContent()
@@ -95,10 +96,7 @@ namespace Mechanect.Screens.Exp1Screens
             loadcountdown();
             avatarconst = (int)(graphics.DisplayMode.Height * 0.1);
             this.comm_and_timeslice();
-            
-               
-
-
+            base.LoadContent();
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
@@ -193,6 +191,7 @@ namespace Mechanect.Screens.Exp1Screens
                 {
                 }
             }
+            base.Draw(gameTime);
 
         }
         public void loadcountdown()
