@@ -263,7 +263,8 @@ namespace Mechanect.Exp1
                 g.setPreviousD(g.getOptD()[g.getOptD().Count - 1]);
                 start = end;
                 tempList.Clear();
-            }
+            }      
+            Choose(g);
             if (!CheckOptimum(g))
             {
                 g.getOptD().Clear();
@@ -271,62 +272,43 @@ namespace Mechanect.Exp1
                 g.getOptA().Clear();
                 GetOptimum(round + 1, g);
             }
-            Traverse(g);
-            List<float> l = g.getOptD();
         }
-
 
         /// <remarks>
         /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Created: 23/5/2012</para>
-        /// <para>Date Modified: 23/5/2012</para>
+        /// <para>Date Created: 24/5/2012</para>
+        /// <para>Date Modified: 24/5/2012</para>
         /// </remarks>
         /// <summary>
-        /// The function Traverse is used to discard un-necessary values from the optimal curve.
+        /// The function Choose is used to guarantee that the curve does not cover more/less than 25% of the screen width.
         /// </summary>
         /// <param name="g">Aninstance of the PerformanceGraph.</param>
-        /// <returns>List: The generated list.</returns>
-        public static void Traverse(PerformanceGraph g)
+        /// <returns>void.</returns>
+        public static void Choose(PerformanceGraph g)
         {
-            int flag = 0; Boolean found = false;
-            for (int i = 0; i <= g.getOptD().Count - 1; i++)
+            int size=g.getOptD().Count;
+            if (size > 256)
             {
-                if (g.getOptD()[i] == 0 && !found)
+                int [] chosenTimings = new int[256];
+                int timeCounter = 0;
+                for (int i = 0; i <= chosenTimings.Length - 1; i++)
                 {
-                    flag = i;
-                    found = true;
+                    chosenTimings[i] = (int)(256* ((double)timeCounter / (double)256));
+                    timeCounter++;
                 }
+                List<float> temp1 = new List<float>();
+                List<float> temp2 = new List<float>();
+                List<float> temp3 = new List<float>();
+                for (int i = 0; i <= chosenTimings.Length - 1; i++)
+                {
+                    temp1.Add(g.getOptD()[chosenTimings[i]]);
+                    temp2.Add(g.getOptV()[chosenTimings[i]]);
+                    temp3.Add(g.getOptA()[chosenTimings[i]]);
+                }
+                g.setOptD(temp1);
+                g.setOptV(temp2);
+                g.setOptA(temp3);
             }
-            try
-            {
-                g.setOptD(Cut(flag + 1, g.getOptD()));
-                g.setOptV(Cut(flag + 1, g.getOptV()));
-                g.setOptA(Cut(flag + 1, g.getOptA()));
-            }
-            catch (Exception e)
-            {
-            }
-        }
-
-        /// <remarks>
-        /// <para>Author: Ahmed Shirin</para>
-        /// <para>Date Created: 23/5/2012</para>
-        /// <para>Date Modified: 23/5/2012</para>
-        /// </remarks>
-        /// <summary>
-        /// The function Cut is used to return the first n-th elements from a list.
-        /// </summary>
-        /// <param name="list">The list to be traversed.</param>
-        /// <param name="n">The required size.</param>
-        /// <returns>List: The generated list.</returns>
-        public static List<float> Cut(int n, List<float> list)
-        {
-            List<float> temp = new List<float>();
-            for (int i = 0; i <= n - 1; i++)
-            {
-                temp.Add(list[i]);
-            }
-            return temp;
         }
 
         /// <remarks>
@@ -348,7 +330,5 @@ namespace Mechanect.Exp1
             }
             return x;
         }
-
-
     }
 }

@@ -100,7 +100,7 @@ namespace Mechanect.Exp1
                     {
                         case 2:
                         case 5:
-                        case 8: distance = (int)(1 / x); break;
+                        case 8: if (g.getOptD().Count < 256) { distance = (int)(1 / x); } else { distance = 1; } break;
                         case 0:
                         case 3:
                         case 6: distance = (int)((g.GetTimings1()[i + 1]) / x); break;
