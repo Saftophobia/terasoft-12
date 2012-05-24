@@ -184,7 +184,7 @@ namespace Mechanect.Exp2
             angleTextureScaling = 0.65f;
             velocityAngleShift = 0.05f;
             //Loading Fonts
-            velAngleFont = Content.Load<SpriteFont>("ArielBig");
+            velAngleFont = Content.Load<SpriteFont>("Ariel");
             
             //creating a test environment
             environment.LoadContent(Content, ScreenManager.GraphicsDevice, ViewPort);

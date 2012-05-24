@@ -26,13 +26,15 @@ namespace Mechanect.Exp2
         public override void LoadContent()
         {
             oKbutton = Tools3.OKButton(ScreenManager.Game.Content,
-              new Vector2(ScreenManager.GraphicsDevice.Viewport.Width + 100, 
-                          ScreenManager.GraphicsDevice.Viewport.Height + 50),
+              new Vector2(ScreenManager.GraphicsDevice.Viewport.Width/1.5f, 
+                          ScreenManager.GraphicsDevice.Viewport.Height/1.5f),
              ScreenManager.GraphicsDevice.Viewport.Width,
              ScreenManager.GraphicsDevice.Viewport.Height, user);
-            levelAndTheme = new ThemeAndLevel(new Vector2(150, 150), user);
+            levelAndTheme = new ThemeAndLevel(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width/30f, ScreenManager.GraphicsDevice.Viewport.Height/25f), user);
             levelAndTheme.LoadContent(ScreenManager.GraphicsDevice.Viewport.Width,
             ScreenManager.GraphicsDevice.Viewport.Height,ScreenManager.Game.Content);
+
+            base.LoadContent();
 
         }
 
@@ -47,6 +49,12 @@ namespace Mechanect.Exp2
         {
             if (oKbutton.IsClicked())
             {
+                if (levelAndTheme.levelNo == 1)
+                    Tools2.tolerance = 30;
+                else if (levelAndTheme.levelNo == 2)
+                    Tools2.tolerance = 20;
+                else if (levelAndTheme.levelNo == 3)
+                    Tools2.tolerance = 10;
                 
                 ScreenManager.AddScreen(new InstructionsScreen2(user));
                 Remove();
@@ -67,13 +75,14 @@ namespace Mechanect.Exp2
 
             levelAndTheme.Draw(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.Begin();
-            oKbutton.Draw(ScreenManager.SpriteBatch);
+            oKbutton.Draw(ScreenManager.SpriteBatch,0.6f);
             ScreenManager.SpriteBatch.End();
             ScreenManager.SpriteBatch.Begin();
             oKbutton.DrawHand(ScreenManager.SpriteBatch);
+            
             ScreenManager.SpriteBatch.End();
-
-
+            base.Draw(gameTime);
+            
         }
 
     }
