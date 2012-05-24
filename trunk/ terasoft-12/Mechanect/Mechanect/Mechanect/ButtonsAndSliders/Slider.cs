@@ -25,7 +25,7 @@ namespace ButtonsAndSliders
         /// The constructor used to initialize the slider.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="position">The position of the slider, where the center is the top left corner </param>
         /// <param name="screenW">The width of the screen.</param>
@@ -46,6 +46,13 @@ namespace ButtonsAndSliders
             positionPointer.X = position.X;
         }
 
+
+        /// <summary>
+        /// Loads the images of the slider and the pointer.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: AhmeD HegazY</para>
+        /// </remarks>
         public void LoadContent()
         {
             texture = content.Load<Texture2D>("Textures/Slider/off");
@@ -61,7 +68,7 @@ namespace ButtonsAndSliders
         /// Draws the slider.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the textures.</param>
         public void Draw(SpriteBatch spriteBatch)
@@ -75,7 +82,7 @@ namespace ButtonsAndSliders
         /// Draws the slider.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the textures.</param>
         /// <param name="scale">The ratio to scale the width and the height of the slider.</param>
@@ -96,7 +103,7 @@ namespace ButtonsAndSliders
         /// Draws the slider.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="spriteBatch">The spritebatch used to draw the textures.</param>
         /// <param name="scaleW">The ratio to scale the width of the slider.</param>
@@ -118,7 +125,7 @@ namespace ButtonsAndSliders
         /// Allows the slider to run correctly.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Update(GameTime gameTime) 
@@ -151,7 +158,7 @@ namespace ButtonsAndSliders
         /// or decrementing the value according to the movement.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void Move()
         {
@@ -178,7 +185,7 @@ namespace ButtonsAndSliders
         /// Changes the pointer to the activated pointer picture.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void On()
         {
@@ -190,7 +197,7 @@ namespace ButtonsAndSliders
         /// Changes the pointer to the disactivated pointer picture.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void Off()
         {
@@ -202,7 +209,7 @@ namespace ButtonsAndSliders
         /// Checks if the hand of the user is over the pointer or not.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <returns>Returns true if the user is hovering the pointer.</returns>
         private bool CheckCollision()
