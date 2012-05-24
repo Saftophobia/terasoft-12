@@ -11,14 +11,14 @@ namespace Mechanect.Exp2
     public class ThemeAndLevel
     {
 
-         
+
 
         private readonly User user;
         private Texture2D selectedTheme, theme1, outlineFrame;
         //private Texture2D _theme2;
         private Texture2D easy, medium, hard, selectedLevel;
         private int frameTheme, pictureWidth, pictureHeight, frameLevel;
-       // private int themeNo, levelNo;
+        // private int themeNo, levelNo;
         ContentManager content;
         Button themeRightArrow, themeLeftArrow;
         List<Button> buttons;
@@ -27,14 +27,14 @@ namespace Mechanect.Exp2
         public int levelNo { get; set; }
         public int themeNo { get; set; }
         public Vector2 themeRectanglePosition { get; set; }
-        
+
         public ThemeAndLevel(Vector2 themeRectanglePosition, User user)
         {
             this.user = user;
             this.themeRectanglePosition = themeRectanglePosition;
             frameTheme = 0;
             frameLevel = 0;
-            levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y+200);
+            levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y + 170);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Mechanect.Exp2
             //Create and Initialize all Buttons.
 
             var leftArrowPos = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 15);
-            var leftArrowPos2 = new Vector2(levelRectanglePosition.X + 100, levelRectanglePosition.Y +20);
+            var leftArrowPos2 = new Vector2(levelRectanglePosition.X + 100, levelRectanglePosition.Y + 20);
 
             themeRightArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
                 content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
@@ -181,8 +181,8 @@ namespace Mechanect.Exp2
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             //Draw level part according to the frame
 
-            spriteBatch.Draw(selectedLevel, new Vector2(themeRectanglePosition.X + content.Load<GifAnimation.GifAnimation>("Textures/leftArrow")
-                .GetTexture().Width + 200, themeRectanglePosition.Y + 210),
+            spriteBatch.Draw(selectedLevel, new Vector2(levelRectanglePosition.X + content.Load<GifAnimation.GifAnimation>("Textures/leftArrow")
+                .GetTexture().Width + 200, levelRectanglePosition.Y + 20),
                 new Rectangle(frameLevel, 0, pictureWidth, pictureHeight), Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0);
             spriteBatch.Draw(outlineFrame, levelRectanglePosition, Color.White);
 
