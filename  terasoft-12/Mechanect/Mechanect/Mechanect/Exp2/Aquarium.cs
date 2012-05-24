@@ -9,7 +9,10 @@ using Microsoft.Xna.Framework.Content;
 
 
 namespace Mechanect.Exp2
-{
+{   
+    /// <summary>
+    /// Represents am Aquarium that will be used once as a start position for the fish and another as a destination
+    /// </summary>
     public class Aquarium
     {
 

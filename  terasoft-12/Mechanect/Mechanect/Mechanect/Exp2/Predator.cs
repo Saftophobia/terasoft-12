@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Mechanect.Exp2
 {
+    /// <summary>
+    /// Represents a predator (in this case a fish) that will be used to represent the projectile motion passing by it's target points
+    /// </summary>
     public class Predator
     {
 
