@@ -5,7 +5,7 @@ using Mechanect.Exp2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Mechanect.Exp2
+namespace Mechanect.Screens
 {
     /// <summary>
     /// Class statistics Screen , responsible for showing the statistics for the player after playing
