@@ -99,7 +99,7 @@ namespace Mechanect.Screens
         public override void LoadContent()
         {
             font = ScreenManager.Game.Content.Load<SpriteFont>("Ariel");
-            button = Exp3.Tools3.OKButton(ScreenManager.Game.Content, new Vector2(800, 450), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
+            button = Exp3.Tools3.OKButton(ScreenManager.Game.Content,new Vector2(600,350), ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height, new User());
             depthBar.LoadContent(ScreenManager.GraphicsDevice);
             angleBar.LoadContent(ScreenManager.GraphicsDevice, ScreenManager.Game.Content);
             base.LoadContent();
@@ -190,7 +190,7 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.Begin();
             if (Accepted)
             {
-                button.Draw(ScreenManager.SpriteBatch, 1);
+                button.Draw(ScreenManager.SpriteBatch, 0.7f);
                 button.DrawHand(ScreenManager.SpriteBatch);
             }
             ScreenManager.SpriteBatch.DrawString(font, "Adjust Position", new Vector2(500, 20), Color.OrangeRed);

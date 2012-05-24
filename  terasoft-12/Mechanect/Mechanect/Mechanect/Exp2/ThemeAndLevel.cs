@@ -11,25 +11,30 @@ namespace Mechanect.Exp2
     public class ThemeAndLevel
     {
 
-        public Vector2 themeRectanglePosition { get; set; }
+         
+
         private readonly User user;
         private Texture2D selectedTheme, theme1, outlineFrame;
         //private Texture2D _theme2;
         private Texture2D easy, medium, hard, selectedLevel;
         private int frameTheme, pictureWidth, pictureHeight, frameLevel;
-        public int themeNo, levelNo;
+       // private int themeNo, levelNo;
         ContentManager content;
         Button themeRightArrow, themeLeftArrow;
         List<Button> buttons;
         Button levelRightArrow2, levelLeftArrow;
         private readonly Vector2 levelRectanglePosition;
+        public int levelNo { get; set; }
+        public int themeNo { get; set; }
+        public Vector2 themeRectanglePosition { get; set; }
+        
         public ThemeAndLevel(Vector2 themeRectanglePosition, User user)
         {
             this.user = user;
             this.themeRectanglePosition = themeRectanglePosition;
             frameTheme = 0;
             frameLevel = 0;
-            levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y + 200);
+            levelRectanglePosition = new Vector2(themeRectanglePosition.X, themeRectanglePosition.Y+200);
         }
 
         /// <summary>
@@ -54,7 +59,7 @@ namespace Mechanect.Exp2
             //Create and Initialize all Buttons.
 
             var leftArrowPos = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 15);
-            var leftArrowPos2 = new Vector2(themeRectanglePosition.X + 100, themeRectanglePosition.Y + 60 + leftArrowPos.Y);
+            var leftArrowPos2 = new Vector2(levelRectanglePosition.X + 100, levelRectanglePosition.Y +20);
 
             themeRightArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
                 content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
@@ -67,7 +72,7 @@ namespace Mechanect.Exp2
 
             levelRightArrow2 = new Button(content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
                 content.Load<GifAnimation.GifAnimation>("Textures/rightArrow"),
-                new Vector2(themeRectanglePosition.X + buttonWidth + 200 + pictureWidth, themeRectanglePosition.Y + 60 + leftArrowPos.Y),
+                new Vector2(levelRectanglePosition.X + buttonWidth + 200 + pictureWidth, levelRectanglePosition.Y + 20),
                 screenWidth, screenHeight, content.Load<Texture2D>("Textures/Buttons/Hand"), user);
 
             levelLeftArrow = new Button(content.Load<GifAnimation.GifAnimation>("Textures/leftArrow"),
