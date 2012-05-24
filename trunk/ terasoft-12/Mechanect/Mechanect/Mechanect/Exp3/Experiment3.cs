@@ -140,7 +140,7 @@ namespace Mechanect.Exp3
                     environment.HoleProperty.Position));
             }
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
-            if (ball.hasBallEnteredShootRegion())
+            if (ball.HasBallEnteredShootRegion())
             {
                 /*if (!hasWhistled)
                 {
