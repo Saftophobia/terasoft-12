@@ -61,7 +61,7 @@ namespace Mechanect.Screens
 
             experiment1Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-s"),
                 content.Load<GifAnimation.GifAnimation>("Resources/Images/exp1-button-m"),
-                new Vector2(screenWidth*0.1f, screenHeight * 0.4f), screenWidth, screenHeight,
+                new Vector2(screenWidth*0.1f, screenHeight * 0.35f), screenWidth, screenHeight,
                 content.Load<Texture2D>("Textures/Buttons/hand"), user);
 
             experiment2Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp2-button-s"),
@@ -71,7 +71,7 @@ namespace Mechanect.Screens
             
             experiment3Button = new Button(content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-s"),
                 content.Load<GifAnimation.GifAnimation>("Resources/Images/exp3-button-m"),
-                new Vector2(screenWidth*0.7f, screenHeight * 0.4f),
+                new Vector2(screenWidth*0.7f, screenHeight * 0.35f),
                 screenWidth,screenHeight, content.Load<Texture2D>("Textures/Buttons/hand"),
                 user);
             backgroundTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/background");
@@ -125,13 +125,13 @@ namespace Mechanect.Screens
             experiment3Button.Draw(spriteBatch, (screenWidth * 0.65f) / 1024f);
             experiment1Button.DrawHand(spriteBatch);
             spriteBatch.Draw(One, new Rectangle((int)(screenWidth*0.133),
-                (int)((screenHeight * 0.52) + ((screenWidth / 1024) * screenHeight * 0.05)), (int)(screenWidth * 0.12),
+                (int)((screenHeight * 0.47) + ((screenWidth / 1024) * screenHeight * 0.05)), (int)(screenWidth * 0.12),
                 (int)(screenHeight * 0.2)), Color.White);
             spriteBatch.Draw(Two, new Rectangle((int)(screenWidth * 0.423),
                 (int)((screenHeight * 0.725) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12),
                 (int)(screenHeight * 0.2)), Color.White);
             spriteBatch.Draw(Three, new Rectangle((int)(screenWidth * 0.733),
-                (int)((screenHeight * 0.52) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12),
+                (int)((screenHeight * 0.47) + ((screenWidth/1024)*screenHeight*0.05)), (int)(screenWidth * 0.12),
                 (int)(screenHeight * 0.2)), Color.White);
             experiment1Button.DrawHand(spriteBatch);
             spriteBatch.End();
