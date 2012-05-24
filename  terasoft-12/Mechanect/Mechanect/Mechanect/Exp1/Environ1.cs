@@ -28,6 +28,7 @@ namespace Mechanect.Exp1
         SoundEffect Chants;
         SoundEffectInstance ChantsInstance;
         
+        
         Boolean t = false;
 
         public Environ1(ContentManager content, GraphicsDevice device, SpriteBatch spriteBatch)
@@ -53,7 +54,7 @@ namespace Mechanect.Exp1
             Chants = Content.Load<SoundEffect>("Exp1/2Dcontent/Crowd1");
             
             ChantsInstance = Chants.CreateInstance();
-            
+            ChantsInstance.Volume = 0.3f;
         }
         public void Update()
         {
