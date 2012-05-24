@@ -7,7 +7,7 @@ namespace UI.Animation
     /// Represents the object's position and orientation after certain amount of time.
     /// </summary>
     /// <remarks>
-    /// AUTHOR : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public class AnimationFrame
     {
@@ -16,11 +16,14 @@ namespace UI.Animation
         public TimeSpan Time { get; private set; }
 
         /// <summary>
-        /// Creates an AnimationFrame instance.
+        /// Creates a new AnimationFrame instance.
         /// </summary>
-        /// <param name="position">Object's position</param>
-        /// <param name="rotation">Object's orientation</param>
-        /// <param name="time">Frame's time offset from the start of the animation</param>
+        /// <param name="position">Object's position.</param>
+        /// <param name="rotation">Object's orientation.</param>
+        /// <param name="time">Frame's time offset from the start of the animation.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public AnimationFrame(Vector3 position, Vector3 rotation, TimeSpan time)
         {
             this.Position = position;
