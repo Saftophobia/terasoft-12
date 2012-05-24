@@ -7,7 +7,12 @@ using Microsoft.Xna.Framework.Content;
 
 namespace ButtonsAndSliders
 {
-
+    /// <summary>
+    /// Slider used to select a cerain value according the motion of the user's hand.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: AhmeD HegazY</para>
+    /// </remarks>
     public class Slider
     {
         private Vector2 positionBar;
@@ -27,7 +32,7 @@ namespace ButtonsAndSliders
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <param name="position">The position of the slider, where the center is the top left corner </param>
+        /// <param name="position">The position of the slider, where the center is the top left corner.</param>
         /// <param name="screenW">The width of the screen.</param>
         /// <param name="screenH">The height of the screen.</param>
         /// <param name="content">The content manager to load the textures.</param>
@@ -206,15 +211,14 @@ namespace ButtonsAndSliders
 
 
         /// <summary>
-        /// Checks if the hand of the user is over the pointer or not.
+        /// Checks if the user's hand is over the pointer or not.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        /// <returns>Returns true if the user is hovering the pointer.</returns>
+        /// <returns>Returns true if the user's hand is hovering over the pointer.</returns>
         private bool CheckCollision()
         {
-
             Skeleton skeleton = user.USER;
             if (skeleton != null)
             {
