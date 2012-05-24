@@ -99,16 +99,16 @@ namespace Mechanect.Exp2
         public override void Initialize()
         {
             mainMenuButtonPosition = new Vector2((float)0.01*ScreenManager.GraphicsDevice.Viewport.Width,
-               (float)0.8*ScreenManager.GraphicsDevice.Viewport.Height);
+               (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            retryButtonPosition = new Vector2((float)0.42 * ScreenManager.GraphicsDevice.Viewport.Width,
-               (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
+            retryButtonPosition = new Vector2((float)0.38 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            newGameButtonPosition = new Vector2((float)0.84 * ScreenManager.GraphicsDevice.Viewport.Width,
-               (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
+            newGameButtonPosition = new Vector2((float)0.75 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            seeResultsButtonPosition = new Vector2((float)0.84 * ScreenManager.GraphicsDevice.Viewport.Width,
-               (float)0.8 * ScreenManager.GraphicsDevice.Viewport.Height);
+            seeResultsButtonPosition = new Vector2((float)0.75 * ScreenManager.GraphicsDevice.Viewport.Width,
+               (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
             rightSimulationPosition = new Rectangle(7*viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
                 4 * viewPort.Height / 10); ///
@@ -134,15 +134,15 @@ namespace Mechanect.Exp2
 
             mainMenu = Mechanect.Exp3.Tools3.MainMenuButton(ScreenManager.Game.Content, mainMenuButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
-                ScreenManager.GraphicsDevice.Viewport.Width, user);
+                ScreenManager.GraphicsDevice.Viewport.Height, user);
 
             retry = Mechanect.Exp3.Tools3.RetryButton(ScreenManager.Game.Content, retryButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
-                ScreenManager.GraphicsDevice.Viewport.Width, user);
+                ScreenManager.GraphicsDevice.Viewport.Height, user);
 
             newGame = Mechanect.Exp3.Tools3.NewGameButton(ScreenManager.Game.Content, newGameButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
-                ScreenManager.GraphicsDevice.Viewport.Width, user);
+                ScreenManager.GraphicsDevice.Viewport.Height, user);
             
             
 
@@ -163,14 +163,14 @@ namespace Mechanect.Exp2
         {
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(background, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
-            mainMenu.Draw(ScreenManager.SpriteBatch, 0.5f);
-            retry.Draw(ScreenManager.SpriteBatch, 0.5f);
+            mainMenu.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
+            retry.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             if (correctAnswer || solutionVisible)
-                newGame.Draw(ScreenManager.SpriteBatch, 0.5f);
+                newGame.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             else
-                solution.Draw(ScreenManager.SpriteBatch, 0.5f);
+                solution.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             if (currentUserSimulationPosition.X <= leftSimulationPosition.X)
                 optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
 
@@ -208,8 +208,6 @@ namespace Mechanect.Exp2
                 newGame.Update(gametime);
                 if (newGame.IsClicked())
                 {
-
-                    
                     ScreenManager.AddScreen(new Experiment2(user));
                     this.Remove();
                 }
