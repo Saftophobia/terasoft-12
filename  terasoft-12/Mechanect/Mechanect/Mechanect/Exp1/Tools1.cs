@@ -160,26 +160,30 @@ namespace Mechanect.Exp1
          /// </remarks>
          public static void CheckTheCommand(float timeInSeconds, User1 user1, User1 user2, List<int> timeOfCommands, List<string> currentCommands, float tolerance)
          {
-             //get the accumulative time of current command
              float accumulativeTime = 0;
-             for (int i = 0; i < user1.ActiveCommand; i++)
+             for (int i = 0; i <= user1.ActiveCommand; i++)
                  accumulativeTime += timeOfCommands[i];
 
-             if (!((accumulativeTime >= timeInSeconds) && (accumulativeTime <= timeInSeconds + 0.01)))
+             if (!((accumulativeTime >= timeInSeconds - 0.01) && (accumulativeTime <= timeInSeconds + 0.01)))
                  return;
 
+             float startCommandTime = 0;
+             for (int i = 0; i < user1.ActiveCommand; i++)
+                 startCommandTime += timeOfCommands[i];
+
              //get the start index of speed list
+             UI.UILib.SayText(currentCommands[user1.ActiveCommand + 1]);
              int startIndexFor1 = -1;
              int startIndexFor2 = -1;
              for (int i = 0; i < user1.Velocitylist.Count; i++)
-                 if ((accumulativeTime + 1) <= user1.Velocitylist[i][1])
+                 if ((startCommandTime + 1) <= user1.Velocitylist[i][1])
                  {
                      startIndexFor1 = i;
                      break;
                  }
 
              for (int i = 0; i < user2.Velocitylist.Count; i++)
-                 if ((accumulativeTime + 1) <= user2.Velocitylist[i][1])
+                 if ((startCommandTime + 1) <= user2.Velocitylist[i][1])
                  {
                      startIndexFor2 = i;
                      break;
