@@ -162,7 +162,7 @@ namespace Mechanect.Exp2
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
-            background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
+            ScreenManager.SpriteBatch.Draw(background, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
             mainMenu.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             retry.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
