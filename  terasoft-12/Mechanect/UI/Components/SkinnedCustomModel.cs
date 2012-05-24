@@ -26,7 +26,7 @@ namespace UI.Components
         /// Holds a 3D model with skeleton and skin.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="model">The model with skin and skeleton.</param>
         /// <param name="position">The position of the model.</param>
@@ -41,7 +41,7 @@ namespace UI.Components
         /// Loads the model.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="model">The model with skin and skeleton.</param>
         public override void LoadContent(Model model)
@@ -68,7 +68,7 @@ namespace UI.Components
         /// Updates the model if any achanges occurred to its skin or bones.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         public void Update()
         {
@@ -80,7 +80,7 @@ namespace UI.Components
         /// Updates the world view of every bone according to the changes to its parent bone.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void UpdateWorldTransforms()
         {
@@ -102,7 +102,7 @@ namespace UI.Components
         /// Updates the changes of the skin according to the changes in the bones.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         private void UpdateSkinTransforms()
         {
@@ -117,7 +117,7 @@ namespace UI.Components
         /// Draws the model.
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <param name="camera">Applies the camer's view and projection to the model.</param>        
@@ -155,7 +155,7 @@ namespace UI.Components
         /// moving a specific bone 
         /// </summary>
         /// <remarks>
-        /// <para>Author: AhmeD HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="boneName">The name of the bone, same as in the model.</param>
         /// <param name="offset">The number of extra bone information.</param>
