@@ -42,7 +42,8 @@ namespace Mechanect.Screens
         /// <param name="rotation">rotation for the image.</param>
         /// <param name="xPositionPercentOffset">X-axis position offset of the image.</param>
         /// <param name="yPositionPercentOffset">Y-axis position offset of the image.</param>
-        public FadingScreen(string path, float logoScalePercentage,float rotation,float xPositionPercentOffset, float yPositionPercentOffset)
+        public FadingScreen(string path, float logoScalePercentage,float rotation,float xPositionPercentOffset,
+            float yPositionPercentOffset)
         {
             this.path = path;
             this.rotation = rotation;
@@ -52,7 +53,7 @@ namespace Mechanect.Screens
             fading = 1f;
             scale = logoScalePercentage;
             done = false;
-            showAvatar = false;
+            showAvatar = false; 
         }
         /// <summary>
         /// Loads the content of this screen.
@@ -94,12 +95,14 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(logo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width - logo.Width * scale) / 2) + xPositionPercentOffset,
-                ((ScreenManager.GraphicsDevice.Viewport.Height - (logo.Height) * scale) / 2) + yPositionPercentOffset),
-                null, Color.White, rotation, new Vector2(0, 0), new Vector2(scale, scale), SpriteEffects.None, 0);
+            ScreenManager.SpriteBatch.Draw(logo, new Vector2(((ScreenManager.GraphicsDevice.Viewport.Width
+                - logo.Width * scale) / 2) + xPositionPercentOffset,((ScreenManager.GraphicsDevice.Viewport.Height
+                - (logo.Height) * scale) / 2) + yPositionPercentOffset), null, Color.White, rotation, new Vector2(0, 0),
+                new Vector2(scale, scale), SpriteEffects.None, 0);
 
             ScreenManager.SpriteBatch.Draw(black, Vector2.Zero, null, Color.White * fading, 0, new Vector2(0, 0),
-                new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height), SpriteEffects.None, 0);
+                new Vector2(ScreenManager.GraphicsDevice.Viewport.Width, ScreenManager.GraphicsDevice.Viewport.Height),
+                SpriteEffects.None, 0);
             ScreenManager.SpriteBatch.End();
         }        
 
