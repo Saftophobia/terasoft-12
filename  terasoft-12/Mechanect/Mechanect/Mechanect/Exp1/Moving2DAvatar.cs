@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Mechanect.Exp1
 {
-    class Moving2DAvatar
+    public class Moving2DAvatar
     {
-        Vector2 Position;
-        Texture2D Texture;
+        private Vector2 Position;
+        private Texture2D Texture;
 
-        public Moving2DAvatar(Texture2D a, Vector2 b)
+        public Moving2DAvatar(Texture2D texture, Vector2 position)
         {
-            Position = b;
-            Texture = a;
+            Position = position;
+            Texture = texture;
         }
 
         /// <remarks>
@@ -28,9 +25,9 @@ namespace Mechanect.Exp1
         /// </summary>
         /// <param name="value">The value to be decremented from the Y position of the avatar.</param>
         /// <returns>void.</returns>
-        public void Move(int value)
+        public void Move(Vector2 value)
         {
-            Position.Y -= value;
+            Position.Y -= value.Y;
         }
 
         /// <remarks>
@@ -46,7 +43,7 @@ namespace Mechanect.Exp1
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(Texture, Position, Microsoft.Xna.Framework.Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White);
             spriteBatch.End();
         }
     }
