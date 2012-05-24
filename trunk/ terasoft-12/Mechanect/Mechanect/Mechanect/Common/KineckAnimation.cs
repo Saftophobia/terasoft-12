@@ -4,6 +4,12 @@ using UI.Components;
 
 namespace Mechanect.Common
 {
+    /// <summary>
+    /// Animates a 3D model according to the movement of the user from the Kinect.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: AhmeD HegazY</para>
+    /// </remarks>
     public class KineckAnimation
     {
         #region Fields
@@ -34,7 +40,7 @@ namespace Mechanect.Common
         #region Update
 
         /// <summary>
-        /// Updating the movement of the model.
+        /// Updates the movement of the model.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -50,7 +56,7 @@ namespace Mechanect.Common
         #region Animating Bones
 
         /// <summary>
-        /// Animating the the right leg.
+        /// Animates the the right leg.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
@@ -73,7 +79,7 @@ namespace Mechanect.Common
 
 
         /// <summary>
-        /// Animating the left leg.
+        /// Animates the left leg.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
