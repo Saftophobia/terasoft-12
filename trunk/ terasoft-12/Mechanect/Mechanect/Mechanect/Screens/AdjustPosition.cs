@@ -156,7 +156,7 @@ namespace Mechanect.Screens
                     switch (gameID)
                     {
                         case 1:
-                            ScreenManager.AddScreen(new Experiment1(new Mechanect.Exp1.User1(), new Mechanect.Exp1.User1(), new MKinect()));
+                           // ScreenManager.AddScreen(new Experiment1(new Mechanect.Exp1.User1(), new Mechanect.Exp1.User1(), new MKinect())); //commented becoz as a User1 i dont need it anymore
                             Remove();
                             break;
                         case 2:

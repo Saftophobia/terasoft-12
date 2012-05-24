@@ -132,14 +132,8 @@
     <Compile Include="Common\User.cs" />
     <Compile Include="Common\UserAvatar.cs" />
     <Compile Include="Common\VoiceCommands.cs" />
-    <Compile Include="Exp1\AvatarprogUI.cs" />
     <Compile Include="Exp1\CountDown.cs" />
-    <Compile Include="Exp1\drawstring.cs" />
     <Compile Include="Exp1\Environ1.cs" />
-    <Compile Include="Exp1\Environment1.cs" />
-    <Compile Include="Exp1\Game.cs" />
-    <Compile Include="Exp1\Game1b.cs" />
-    <Compile Include="Exp1\GameCommands.cs" />
     <Compile Include="Exp1\GraphEngine.cs" />
     <Compile Include="Exp1\GraphUI.cs" />
     <Compile Include="Exp1\OptimumEngine.cs" />
@@ -174,11 +168,8 @@
     <Compile Include="Screens\AllExperiments.cs" />
     <Compile Include="Screens\CommonPauseScreen.cs" />
     <Compile Include="Screens\Exp1Screens\Exp1.cs" />
-    <Compile Include="Screens\Exp1Screens\GraphScreen.cs" />
     <Compile Include="Screens\Exp1Screens\InstructionsScreen1.cs" />
     <Compile Include="Screens\Exp1Screens\Winnerscreen.cs" />
-    <Compile Include="Screens\Experiment1.cs" />
-    <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
     <Compile Include="Screens\InstructionsScreen3.cs" />
     <Compile Include="Screens\IntroScreen.cs" />
