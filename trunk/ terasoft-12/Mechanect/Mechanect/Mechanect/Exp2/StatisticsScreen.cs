@@ -36,6 +36,7 @@ namespace Mechanect.Screens
         private Button retry;
         private Button solution;
         private Button newGame;
+        private Texture2D background;
         private Viewport ViewPort
         {
             get { return ScreenManager.GraphicsDevice.Viewport; }
@@ -158,6 +159,7 @@ namespace Mechanect.Screens
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
+            background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
             mainMenu.Draw(ScreenManager.SpriteBatch,0.5f);
             retry.Draw(ScreenManager.SpriteBatch, 0.5f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
