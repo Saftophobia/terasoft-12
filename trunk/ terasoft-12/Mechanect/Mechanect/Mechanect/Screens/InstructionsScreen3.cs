@@ -9,21 +9,23 @@ namespace Mechanect.Screens
     {
 private string instructions = "";
         string header= "\n\n\n                  .Welcome To Mechanect Football Game."+ '\n'
-             + "                      .By TeraSoft Team."  + '\n'
-               +"                             .GUC.";
-        private string title1="\n\n\n\n\n\n\n Game Instructions :-";
-        private string title2="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n General Instructions :-";
-        private string text1 = "\n\n\n\n\n\n\n\n\n\n1- Goal: Use the law of conservation of momentum to shoot the ball with a velocity that makes \nit reach the hole with zero velocity."
-            +"\n2- Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting position and Friction\n (deceleration)."
-            +"\n3- Gameplay: You will see a ball coming towards you, then the game will pause, and the givens will \nbe displayed on the screen."
-            +"\n4-When you are done with your calculations, you should press the ok button to resume the game and \nbe able to shoot the ball with the calculated velocity "
-            +"\n5- Settings: The next screen allows you to choose a level, which changes the friction, and to adjust \nthe hole size using the angle tolerance slider."
-            +"\n6 Tip: Shoot the ball when you hear the whistle just before the bar is empty.";
-        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n * The avatar on the top right represents your distance from the screen.";
-        private string green = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n green: Good.";
-        private string white = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n white: Too Far.";
-        private string red = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Red: Too Near.";
-        private string crossed = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Crossed: Not Detected.";
+             + "                           .By TeraSoft Team."  + '\n'
+               +"                                 .GUC.";
+        private string title1="\n\n\n\n\n\n      Game Instructions:-";
+        private string title2="\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n      General Instructions:-";
+        private string text1 = "\n\n\n\n\n\n\n\n\n\n\n          1-Goal: Use the law of conservation of momentum to shoot the ball with a velocity" +       
+            "\n            that makes it reach the hole with zero velocity.  \n "
+            +"\n          2-Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting \n"+ 
+            "            position and Friction (deceleration).\n"
+            +"\n          3-Gameplay: You will see a ball coming towards you, then the game will pause," +
+            "\n            and the givens will be displayed on the screen.When you are done with your\n            calculations, you should press the ok button to resume the game and be able\n            to shoot the ball with the calculated velocity.\n "  
+            +"\n          4-Settings: The next screen allows you to choose a level, which changes the friction,\n            and to adjust the hole size using the angle tolerance slider.\n"
+            +"\n          5-Tip: Shoot the ball when you hear the whistle just before the bar is empty.\n";
+        private string text2 = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n          * The avatar on the top right \n            represents your distance from\n            the screen.\n";
+        private string green = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Green: Good.";
+        private string white = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             White: Too Far.";
+        private string red = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Red: Too Near.";
+        private string crossed = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                             Crossed: Not Detected.";
         //private Instruction instruction;
         private User3 user3;
         private Texture2D myTexture;
@@ -99,11 +101,13 @@ private string instructions = "";
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
+            float sw = ScreenManager.GraphicsDevice.Viewport.Width;
+            float sh = ScreenManager.GraphicsDevice.Viewport.Height;
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(myTexture, rect, Color.White);
             button.Draw(ScreenManager.SpriteBatch, scale);
             button.DrawHand(ScreenManager.SpriteBatch);
-            ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, text1, Vector2.Zero, Color.Black, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
@@ -111,7 +115,7 @@ private string instructions = "";
             ScreenManager.SpriteBatch.DrawString(font3, green, Vector2.Zero, Color.DarkGreen, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, white, Vector2.Zero, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, red, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.Gray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.DarkGray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.End();
             //instruction.Draw(gameTime);
             base.Draw(gameTime);
