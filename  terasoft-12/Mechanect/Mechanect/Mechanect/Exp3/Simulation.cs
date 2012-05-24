@@ -93,7 +93,7 @@ namespace Mechanect.Exp3
                 }
                 current = animation2;
             }
-            else if (!ball.InsideTerrain(environment.terrainWidth, environment.terrainHeight))
+            else if (!ball.InsideTerrain(environment.TerrainWidth, environment.TerrainHeight))
                 animation1.Stop();
 
             current.Update(gameTime.ElapsedGameTime);

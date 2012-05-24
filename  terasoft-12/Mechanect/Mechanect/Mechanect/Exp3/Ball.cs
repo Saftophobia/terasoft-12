@@ -69,7 +69,7 @@ namespace Mechanect.Exp3
         /// <remarks>
         /// AUTHOR : Bishoy Bassem.
         /// </remarks>
-        public void GenerateIntialPosition(float terrainWidth, float terrainHeight)
+        public void GenerateInitialPosition(float terrainWidth, float terrainHeight)
         {
             float number = (float)new Random().NextDouble();
             Position = new Vector3(-terrainWidth / 4, 0, (0.25f + number / 2) * -terrainHeight / 2);
