@@ -287,13 +287,26 @@ namespace Mechanect.Exp1
         public static void Choose(PerformanceGraph g)
         {
             int size=g.getOptD().Count;
-            if (size > 256)
+            if (size < 32)
             {
-                int [] chosenTimings = new int[256];
+                float finalD = g.getOptD()[size - 1];
+                float finalV = g.getOptV()[size - 1];
+                float finalA = g.getOptA()[size - 1];
+                int difference = 32 - size;
+                for (int i = 0; i <= difference - 1; i++)
+                {
+                    g.getOptD().Add(finalD);
+                    g.getOptV().Add(finalV);
+                    g.getOptA().Add(finalA);
+                }
+            }
+            if (size > 32)
+            {
+                int [] chosenTimings = new int[32];
                 int timeCounter = 0;
                 for (int i = 0; i <= chosenTimings.Length - 1; i++)
                 {
-                    chosenTimings[i] = (int)(256* ((double)timeCounter / (double)256));
+                    chosenTimings[i] = (int)(32* ((double)timeCounter / (double)32));
                     timeCounter++;
                 }
                 List<float> temp1 = new List<float>();
