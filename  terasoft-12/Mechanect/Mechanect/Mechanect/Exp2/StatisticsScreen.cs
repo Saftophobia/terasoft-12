@@ -187,13 +187,15 @@ namespace Mechanect.Screens
             userSimulation.Update(gametime);
             if (mainMenu.IsClicked())
             {
-                this.Remove();
+               
                 ScreenManager.AddScreen(new Mechanect.Screens.AllExperiments(user));
+                this.Remove();
             }
             if (retry.IsClicked())
             {
-                this.Remove();
+                
                 ScreenManager.AddScreen(new Experiment2(user, predatorPosition, preyPosition, aquariumPosition));
+                this.Remove();
             }
 
             if (correctAnswer || solutionVisible)
@@ -202,8 +204,9 @@ namespace Mechanect.Screens
                 if (newGame.IsClicked())
                 {
 
-                    this.Remove();
+                    
                     ScreenManager.AddScreen(new Experiment2(user));
+                    this.Remove();
                 }
                 if (!correctAnswer)
                 {
