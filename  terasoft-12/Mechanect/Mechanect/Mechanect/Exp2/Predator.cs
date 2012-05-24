@@ -135,7 +135,7 @@ namespace Mechanect.Exp2
             fishTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
         }
 
-        // <summary>
+        /// <summary>
         /// Draws The scaled sprite batch
         /// </summary>
         /// <remarks>

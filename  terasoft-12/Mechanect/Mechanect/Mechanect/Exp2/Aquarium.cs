@@ -120,7 +120,7 @@ namespace Mechanect.Exp2
         }
 
 
-        // <summary>
+        /// <summary>
         /// Draws The scaled sprite batch
         /// </summary>
         /// <remarks>
