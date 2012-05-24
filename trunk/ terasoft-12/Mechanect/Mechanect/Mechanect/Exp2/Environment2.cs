@@ -371,7 +371,7 @@ namespace Mechanect.Exp2
 
             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + rectangle.Width * axisesPercentage),
                 (int)(rectangle.Y+4.5f*rectangle.Height*axisesPercentage), (int)(rectangle.Width -
-                5 * rectangle.Width * axisesPercentage), (int)(rectangle.Height - 0.57f*rectangle.Width * axisesPercentage - 4.5f*rectangle.Height*axisesPercentage));
+                5 * rectangle.Width * axisesPercentage), (int)(rectangle.Height - rectangle.Height * axisesPercentage - 4.5f*rectangle.Height*axisesPercentage));
 
             ConfigureWindowSize(smallerRrectangle, viewPort);
             DrawObjects(smallerRrectangle, mySpriteBatch);
