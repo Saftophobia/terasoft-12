@@ -109,5 +109,28 @@ namespace Physics
             float Z = GenerateRandomValue(-(terrainHeight / 2) + (3 * radius), -(terrainHeight / 4) + 3 * radius);
             return new Vector3(X, Y, Z);
         }
+
+        ///<remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <summary>
+        /// Calculates velocity after collision using conservation of momentum laws.
+        /// </summary>
+        /// <param name="initialVelocity">Initial velocity before collision.</param>
+        /// <param name="ballMass">Ball's mass.</param>
+        /// <param name="legMass">User's leg mass.</param>
+        /// <param name="arriveVelocity">Velocity of the ball before collision.</param>
+        /// <param name="velocityScale">Constants3.velocityScale</param>
+        /// <returns>Vector3 velocity after collision.</returns>
+        public static Vector3 GetVelocityAfterCollision(Vector3 initialVelocity, double ballMass, double legMass, float arriveVelocity, float velocityScale)
+        {
+            double initialLegVelocity;
+
+            initialLegVelocity = initialVelocity.Length() * velocityScale;
+
+            float finalVelocity = (float)(((legMass * initialLegVelocity) + (ballMass * arriveVelocity) - (0)) / ballMass);
+            Vector3 normalizedVector = Vector3.Normalize(initialVelocity);
+            return normalizedVector * finalVelocity;
+        }
     }
 }
