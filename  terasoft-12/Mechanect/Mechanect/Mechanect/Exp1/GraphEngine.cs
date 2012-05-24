@@ -100,13 +100,38 @@ namespace Mechanect.Exp1
             g.SetTimings1(timings1);
             g.SetTimings2(timings2);
             g.setTrackLength(length);
-            g.setCommandsList(Commands);
-            g.setTimeSlices(time);
-            OptimumEngine.GetOptimum(1, g);
             g.setTotalTime(GetTotalTime(g));
+            SetTimeSlices(g, time, Commands);
+            OptimumEngine.GetOptimum(1, g);
             ReflexOptimum(g);
             SetMaximum(g);
             SetAxis(g);
+        }
+
+        /// <remarks>
+        /// <para>Author: Ahmed Shirin</para>
+        /// <para>Date Written 24/5/2012</para>
+        /// <para>Date Modified 24/5/2012</para>
+        /// </remarks>
+        /// <summary>
+        /// The function SetTimeSlices is discard unwanted time slices.
+        /// </summary>
+        /// <param name="g">An instance of the PerformanceGraph.</param>
+        /// <param name="commands">The commands list.</param>
+        /// <param name="time">The time slices.</param>
+        /// <returns>void.</returns>
+        public static void SetTimeSlices(PerformanceGraph g, List<double> time, List<String> commands)
+        {
+            double acc = 0;
+            for (int i = 0; i <= time.Count - 1; i++)
+            {
+                if (acc < g.getTotalTime())
+                {
+                    g.getTimeSpaces().Add(time[i]);
+                    g.getCommands().Add(commands[i]);
+                }
+                acc += time[i];
+            }
         }
 
         /// <remarks>
@@ -123,18 +148,13 @@ namespace Mechanect.Exp1
         {
             double first = g.GetCum1()[g.GetCum1().Count - 1];
             double second = g.GetCum2()[g.GetCum2().Count - 1];
-            double third = g.getOptD().Count;
-            if (first >= second && first >= third)
+            if (first >= second)
             {
                 return first;
             }
-            if (second >= first && second >= third)
-            {
-                return second;
-            }
             else
             {
-                return third;
+                return second;
             }
         }
 
