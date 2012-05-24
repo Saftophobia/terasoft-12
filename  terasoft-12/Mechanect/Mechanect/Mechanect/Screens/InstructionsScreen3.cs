@@ -2,12 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using Mechanect.Common;
 using Mechanect.Exp3;
+using UI;
 using ButtonsAndSliders;
+using Microsoft.Xna.Framework.Content;
 namespace Mechanect.Screens
 {
     class InstructionsScreen3 : GameScreen
     {
-private string instructions = "";
+        SpriteBatch spriteBatch;
+        GraphicsDevice graphics;
+        int screenWidth;
+        int screenHeight;
+        ContentManager content;
+        private string instructions = "";
         string header= "\n\n\n                  .Welcome To Mechanect Football Game."+ '\n'
              + "                           .By TeraSoft Team."  + '\n'
                +"                                 .GUC.";
@@ -55,18 +62,19 @@ private string instructions = "";
         /// </remarks
         public override void LoadContent()
         {
+            content = ScreenManager.Game.Content;
+            graphics = ScreenManager.GraphicsDevice;
+            spriteBatch = ScreenManager.SpriteBatch;
+            screenHeight = graphics.Viewport.Height;
+            screenWidth = graphics.Viewport.Width;
             myTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Screens/instructions");
             scale = ((float)(ScreenManager.GraphicsDevice.Viewport.Width) / (float)myTexture.Width);
             rect = new Rectangle(0, 0, (int)(scale * myTexture.Width), (int)(scale * myTexture.Height));
-            //instruction = new Instruction(instructions, ScreenManager.Game.Content, ScreenManager.SpriteBatch,
-            //    ScreenManager.GraphicsDevice, user3,rect);
-            font1 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont4");
-            font2 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont5");
-            font3 = ScreenManager.Game.Content.Load<SpriteFont>("SpriteFont6");
-           // instruction.LoadContent();
+            font1 = content.Load<SpriteFont>("SpriteFont4");
+            font2 = content.Load<SpriteFont>("SpriteFont5");
+            font3 = content.Load<SpriteFont>("SpriteFont6");
             button = Tools3.OKButton(ScreenManager.Game.Content,
-            new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 496, ScreenManager.GraphicsDevice.Viewport.Height - 196), ScreenManager.GraphicsDevice.Viewport.Width,
-            ScreenManager.GraphicsDevice.Viewport.Height, user3);
+            new Vector2(screenWidth - 496, screenHeight - 196), screenWidth,screenHeight, user3);
             base.LoadContent();
         }
 
@@ -101,12 +109,12 @@ private string instructions = "";
         /// <param name="gameTime">Provides a snapshot of timing values.</param>    
         public override void Draw(GameTime gameTime)
         {
-            float sw = ScreenManager.GraphicsDevice.Viewport.Width;
-            float sh = ScreenManager.GraphicsDevice.Viewport.Height;
-            ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(myTexture, rect, Color.White);
-            button.Draw(ScreenManager.SpriteBatch, scale);
-            button.DrawHand(ScreenManager.SpriteBatch);
+            float sw = screenWidth;
+            float sh = screenHeight;
+            spriteBatch.Begin();
+            spriteBatch.Draw(myTexture, rect, Color.White);
+            button.Draw(spriteBatch, scale);
+            button.DrawHand(spriteBatch);
             ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
@@ -116,8 +124,8 @@ private string instructions = "";
             ScreenManager.SpriteBatch.DrawString(font3, white, Vector2.Zero, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, red, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.DarkGray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            //UILib.Write(this.instructions, rect, spriteBatch, content);
             ScreenManager.SpriteBatch.End();
-            //instruction.Draw(gameTime);
             base.Draw(gameTime);
         }
         /// <summary>
