@@ -7,18 +7,21 @@ namespace UI.Animation
     /// Represents a generic type for all animation types.
     /// </summary>
     /// <remarks>
-    /// AUTHOR : Bishoy Bassem
+    /// AUTHOR : Bishoy Bassem.
     /// </remarks>
     public abstract class Animation
     {
         public TimeSpan ElapsedTime { get; protected set; }
         protected CustomModel model;
-        public bool Finished { get; set; }
+        public bool Finished { get; protected set; }
 
         /// <summary>
         /// Intializes the animation's attributes.
         /// </summary>
-        /// <param name="model">model</param>
+        /// <param name="model">CustomModel instance.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         protected Animation(CustomModel model)
         {
             this.model = model;
@@ -26,10 +29,24 @@ namespace UI.Animation
         }
 
         /// <summary>
-        /// Updates the model position and orientation according to the time elapsed.
+        /// Updates the model's position and orientation according to the time elapsed.
         /// </summary>
-        /// <param name="elapsed">Time offset from the last update</param>
+        /// <param name="elapsed">Time offset from the last update.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
         public abstract void Update(TimeSpan elapsed);
+
+        /// <summary>
+        /// Stops the animation.
+        /// </summary>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
+        public virtual void Stop()
+        {
+            Finished = true;
+        }
 
     }
 }
