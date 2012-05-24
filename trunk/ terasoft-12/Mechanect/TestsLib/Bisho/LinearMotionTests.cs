@@ -33,8 +33,8 @@ namespace Tests
         [Test]
         public void TestVelocity()
         {
-            Assert.AreEqual(LinearMotion.CalculateIntialVelocity(new Vector3(6, 0, 0), 4, 1), new Vector3(2, 0, 0));
-            Assert.AreEqual(LinearMotion.CalculateIntialVelocity(new Vector3(0, 0, 5.5f), 5, -1), new Vector3(0, 0, 6));
+            Assert.AreEqual(LinearMotion.CalculateInitialVelocity(new Vector3(6, 0, 0), 4, 1), new Vector3(2, 0, 0));
+            Assert.AreEqual(LinearMotion.CalculateInitialVelocity(new Vector3(0, 0, 5.5f), 5, -1), new Vector3(0, 0, 6));
         }
     }
 }

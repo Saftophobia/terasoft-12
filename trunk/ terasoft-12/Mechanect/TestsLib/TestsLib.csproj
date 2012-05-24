@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="5o5a\HoleTests.cs" />
     <Compile Include="badr\SolvabilityTests.cs" />
+    <Compile Include="Bisho\AnimationTests.cs" />
+    <Compile Include="Bisho\BallTests.cs" />
     <Compile Include="Bisho\LinearMotionTests.cs" />
     <Compile Include="Cena\MeasureVelocityTests.cs" />
     <Compile Include="Omar\BallTests.cs" />
