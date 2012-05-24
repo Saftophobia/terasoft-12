@@ -135,6 +135,7 @@
     <Compile Include="Exp1\AvatarprogUI.cs" />
     <Compile Include="Exp1\CountDown.cs" />
     <Compile Include="Exp1\drawstring.cs" />
+    <Compile Include="Exp1\Environ1.cs" />
     <Compile Include="Exp1\Environment1.cs" />
     <Compile Include="Exp1\Game.cs" />
     <Compile Include="Exp1\Game1b.cs" />
@@ -172,6 +173,9 @@
     <Compile Include="Screens\AdjustPosition.cs" />
     <Compile Include="Screens\AllExperiments.cs" />
     <Compile Include="Screens\CommonPauseScreen.cs" />
+    <Compile Include="Screens\Exp1Screens\Exp1.cs" />
+    <Compile Include="Screens\Exp1Screens\GraphScreen.cs" />
+    <Compile Include="Screens\Exp1Screens\Winnerscreen.cs" />
     <Compile Include="Screens\Experiment1.cs" />
     <Compile Include="Screens\Experimentnew1.cs" />
     <Compile Include="Screens\FadingScreen.cs" />
