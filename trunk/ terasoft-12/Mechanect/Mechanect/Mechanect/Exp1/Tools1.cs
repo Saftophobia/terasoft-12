@@ -122,7 +122,7 @@ namespace Mechanect.Exp1
 
         //Michel's Methods:
 
-
+        [Obsolete("this method will be removed by midnight and please use method SetWinner(User1 user1, User1 user2, float raceLength) instead")]
          /// <summary>
          /// Check if any of both players won the race or not.
          /// </summary>
@@ -141,6 +141,27 @@ namespace Mechanect.Exp1
          {
              user1.Winner = (user1.Positions.Sum() >= raceLength) ;
              user2.Winner = (user2.Positions.Sum() >= raceLength) ;
+         }
+
+         /// <summary>
+         /// Check if any of both players won the race or not.
+         /// </summary>
+         /// <param name="user1">The first player.</param>
+        /// <param name="user2">The second player.</param>
+        /// <param name="racelength">The total length of the race that the user must run to win.</param>
+         /// <returns>
+         /// string: The status of both players, whether any of them won, 
+         /// both of them won, no one won, or the race is still going (will be an empty string)
+         /// </returns>
+         /// <remarks>
+         /// <para>AUTHOR: Michel Nader </para>
+         /// <para>DATE WRITTEN: 20/5/12 </para>
+         /// <para>DATE MODIFIED: 20/5/12 </para>
+         /// </remarks>
+         public static void SetWinner(User1 user1, User1 user2, float raceLength)
+         {
+             user1.Winner = (user1.Positions.Sum() >= raceLength);
+             user2.Winner = (user2.Positions.Sum() >= raceLength);
          }
 
          /// <summary>
