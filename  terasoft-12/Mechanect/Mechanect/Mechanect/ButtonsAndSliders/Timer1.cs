@@ -14,7 +14,7 @@ namespace ButtonsAndSliders
         /// to runnig.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public void Start(GameTime gameTime)
@@ -28,7 +28,7 @@ namespace ButtonsAndSliders
         /// Gets the time since the timer has started to the time this method is called.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         /// <returns>The duration the timer has spent since it's started.</returns>
@@ -47,7 +47,7 @@ namespace ButtonsAndSliders
         /// Changes the status of the timer to not running.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         public void Stop()
         {
@@ -59,7 +59,7 @@ namespace ButtonsAndSliders
         /// Checks if the timer is running or not.
         /// </summary>
         /// <remarks>
-        /// <para>Author: HegazY</para>
+        /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
         /// <returns>Returns true if the timer is running.</returns>
         public bool IsRunning()
