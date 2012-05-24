@@ -115,33 +115,41 @@ namespace Mechanect.Exp3
 
             spriteBatch.Draw(box, new Rectangle(-20 ,-130, 360, 205), Color.White);
 
-            if (secondAnimationStarted)
-            {
-                spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.White, 0, 
-                    Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            Display("Replay  ", new Vector2(5, 0), (!secondAnimationStarted) ? Color.Red : Color.White,
+                !secondAnimationStarted);
 
-                if ((int)(animation2.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
-                    spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
-                        Color.Red, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-            }
-            else
-            {
-                spriteBatch.DrawString(font, "Optimal ", new Vector2(5, font.MeasureString(velocity2).Y),
-                    Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            Display("Optimal ", new Vector2(5, font.MeasureString(velocity2).Y), 
+                (secondAnimationStarted && !animation2.Finished) ? Color.Red : Color.White, 
+                secondAnimationStarted && !animation2.Finished);
 
-                if ((int)(animation1.ElapsedTime.TotalSeconds / 0.4) % 2 == 0)
-                    spriteBatch.DrawString(font, "Replay  ", new Vector2(5, 0), Color.Red, 0,
-                        Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-            }
+            Display(velocity1, new Vector2(font.MeasureString("Optimal ").X + 5, 0),
+                (!secondAnimationStarted) ? Color.Red : Color.White, false);
 
-            spriteBatch.DrawString(font, velocity1, new Vector2(font.MeasureString("Optimal ").X + 5, 0),
-                (!secondAnimationStarted) ? Color.Red : Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
-
-            spriteBatch.DrawString(font, velocity2, new Vector2(font.MeasureString("Optimal ").X + 5,
-                font.MeasureString(velocity2).Y), (secondAnimationStarted) ? Color.Red : Color.White, 0, 
-                Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
+            Display(velocity2, new Vector2(font.MeasureString("Optimal ").X + 5, font.MeasureString(velocity2).Y), 
+                (secondAnimationStarted && !animation2.Finished) ? Color.Red : Color.White, false);
 
             spriteBatch.End();
+        }
+
+        /// <summary>
+        /// Displays certain text on the screen.
+        /// </summary>
+        /// <param name="text">String to be displayed.</param>
+        /// <param name="position">Text start position.</param>
+        /// <param name="color">Text color.</param>
+        /// <param name="flicker">Creates flickering effect.</param>
+        /// <remarks>
+        /// AUTHOR : Bishoy Bassem.
+        /// </remarks>
+        private void Display(string text, Vector2 position, Color color, bool flicker)
+        {
+            if (flicker)
+            {
+                double seconds = (secondAnimationStarted) ? animation2.ElapsedTime.TotalSeconds : animation1.ElapsedTime.TotalSeconds;
+                if ((int)(seconds / 0.4) % 2 == 1)
+                    return;
+            }
+            spriteBatch.DrawString(font, text, position, color, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.5f);
         }
 
     }
