@@ -180,11 +180,11 @@ namespace Mechanect.ButtonsAndSliders
         public string Command(int ID)
         {
             if (Depth(ID) == 0)
-                return "No player detected";
+                return "Not detected";
             if (Depth(ID) < minDepth)
-                return "Move backwards away from the kinect sensor";
+                return "Move backwards";
             if (Depth(ID) > maxDepth)
-                return "Move forward towards the kinect sensor";
+                return "Move forward";
             return "OK!";
         }
 
