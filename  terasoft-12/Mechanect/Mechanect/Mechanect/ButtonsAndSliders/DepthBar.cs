@@ -17,18 +17,18 @@ namespace Mechanect.ButtonsAndSliders
 
         #region Variables And Fields
 
-        User[] user;
-        int minDepth;
-        int maxDepth;
-        Color acceptColor;
-        Color rejectColor;
-        Color[] playerColor;
+        private User[] user;
+        private int minDepth;
+        private int maxDepth;
+        private Color acceptColor;
+        private Color rejectColor;
+        private Color[] playerColor;
 
-        Texture2D bar;
-        int barWidth;
-        int barHeight;
+        private Texture2D bar;
+        private int barWidth;
+        private int barHeight;
 
-        Texture2D playerIndicator;
+        private Texture2D playerIndicator;
 
         /// <summary>
         /// Getter for the Users' State
