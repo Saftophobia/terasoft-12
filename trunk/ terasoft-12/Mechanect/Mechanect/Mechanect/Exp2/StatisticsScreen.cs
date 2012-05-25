@@ -126,12 +126,12 @@ namespace Mechanect.Exp2
             seeResultsButtonPosition = new Vector2((float)0.75 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            rightSimulationPosition = new Rectangle(7 * viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
-                4 * viewPort.Height / 10); ///
-            centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 3,
+            rightSimulationPosition = new Rectangle(7 * viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 2,
+                5 * viewPort.Height / 10); ///
+            centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 2,
                 5 * viewPort.Height / 10);
-            leftSimulationPosition = new Rectangle(viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
-                4 * viewPort.Height / 10); ///
+            leftSimulationPosition = new Rectangle(viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 2,
+                5 * viewPort.Height / 10); ///
             currentUserSimulationPosition = centerSimulationPosition; 
         }
         /// <summary>
