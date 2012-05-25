@@ -107,7 +107,7 @@ namespace Mechanect.Exp2
         public void Draw(Rectangle rectangle, SpriteBatch spriteBatch)
         {
             string data = "     Velocity = " + velocity + ", Angle = " + angle;
-            UI.UILib.Write(data, rectangle, spriteBatch, contentManager, font, Color.DarkRed);
+            UI.UILib.Write(data, rectangle, spriteBatch, font, Color.DarkRed);
             if (rectangle.Height > 25)
                 environment.Draw(new Rectangle(rectangle.X, rectangle.Y + 25, rectangle.Width, rectangle.Height - 25), spriteBatch);
         }
