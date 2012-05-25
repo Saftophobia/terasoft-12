@@ -59,6 +59,23 @@ namespace UI
             spriteBatch.DrawString(spriteFont, WrapText(text, position, spriteFont), new Vector2(position.X, position.Y), color);
 
         }
+
+         /// <summary>
+         /// Public, static, and main method to handle the the text wrapping.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Mohamed Raafat</para>
+         /// </remarks>
+         /// <param name="text">String containing instructions</param>
+         /// <param name="position">Position on the screen for the text to be dsiplayed</param>
+         /// <param name="spriteBatch">Sprite batch to draw the string</param>
+         public static void Write(string text, Rectangle position, SpriteBatch spriteBatch, SpriteFont spriteFont, Color color)
+         {
+
+             spriteBatch.DrawString(spriteFont, WrapText(text, position, spriteFont), new Vector2(position.X, position.Y), color);
+
+         }
+
         /// <summary>
         /// Helper method that contains the algorithm for handeling the text wraping
         /// </summary>
