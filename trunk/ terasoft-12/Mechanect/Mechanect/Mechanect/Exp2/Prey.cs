@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Mechanect.Exp2;
+using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Exp2
 {
     /// <summary>
@@ -15,10 +9,12 @@ namespace Mechanect.Exp2
     public class Prey
     {
         Vector2 location;
+        float length;
+        float width;
         public bool Eaten {get; set;}
+
         Texture2D preyTexture;
        
-
         public Vector2 Location
         {
             get
@@ -31,7 +27,6 @@ namespace Mechanect.Exp2
             }
         }
 
-        float length;
         public float Length
         {
             get
@@ -43,7 +38,6 @@ namespace Mechanect.Exp2
                 length = value;
             }
         }
-        float width;
         public float Width
         {
             get
