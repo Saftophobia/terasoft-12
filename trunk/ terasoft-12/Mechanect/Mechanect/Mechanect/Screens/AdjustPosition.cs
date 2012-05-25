@@ -64,7 +64,7 @@ namespace Mechanect.Screens
             angleBar = new AngleBar(this.user, minAngle, maxAngle, 120, Color.Violet, Color.DarkMagenta, userColor);
             this.gameID = gameID;
         }
-
+        
 
         /// <summary>
         /// Creates object "AdjustPosition" that makes sure that users are standing correctly. works for 2 users.
@@ -122,11 +122,11 @@ namespace Mechanect.Screens
         /// <returns>string, returns the command that should be applied by the user to be standing correctly</returns>
         public string Command(int id)
         {
-            if (!depthBar.Accepted)
+            if (!depthBar.UserAccepted(id))
             {
                 return depthBar.Command(id);
             }
-            if (!angleBar.Accepted)
+            if (!angleBar.UserAccepted(id))
             {
                 return angleBar.Command(id);
             }
