@@ -27,6 +27,8 @@ namespace ButtonsAndSliders
 
         private bool status;
 
+        private float scaleW;
+        private float scaleH;
 
         /// <summary>
         /// The constructor used to initialize the button.
@@ -53,7 +55,8 @@ namespace ButtonsAndSliders
             this.hand = hand;
             this.user = user;
             timer = new Timer1();
-
+            scaleW = 1f;
+            scaleH = 1f;
         }
 
 
@@ -81,7 +84,8 @@ namespace ButtonsAndSliders
         /// <param name="scale">The ratio used to scale the width and the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scale)
         {
-
+            scaleH = scale;
+            scaleW = scale;
             Rectangle rectangle = new Rectangle((int) position.X, (int) position.Y, 
                 (int)(scale * texture.Width), (int)(scale * texture.Height));
             spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
@@ -99,6 +103,8 @@ namespace ButtonsAndSliders
         /// <param name="scaleW">The ratio used to scale the height of the button.</param>
         public void Draw(SpriteBatch spriteBatch, float scaleW, float scaleH)
         {
+            this.scaleW = scaleW;
+            this.scaleH = scaleH;
             Rectangle rectangle = new Rectangle((int)position.X, (int)position.Y,
                 (int)(scaleW * texture.Width), (int)(scaleH * texture.Height));
             spriteBatch.Draw(texture.GetTexture(), rectangle, Color.White);
@@ -201,7 +207,7 @@ namespace ButtonsAndSliders
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 20, 20);
                 Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, 
-                    texture.GetTexture().Width, texture.GetTexture().Height);
+                    (int)(texture.GetTexture().Width * scaleW), (int)(texture.GetTexture().Height * scaleH));
 
                 return r1.Intersects(r2);
             }
