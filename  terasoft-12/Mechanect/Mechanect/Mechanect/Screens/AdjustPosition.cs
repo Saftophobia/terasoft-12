@@ -53,6 +53,7 @@ namespace Mechanect.Screens
         /// <param name="maxDepth">an integer representing the maximum distance in centimeters the player should stand at.</param>
         /// <param name="minAngle">an integer representing the minimum angle the player should make with the kinect sensor.</param>
         /// <param name="maxAngle">an integer representing the minimum angle the player should make with the kinect sensor.</param>
+        /// <param name="maxAngle">an integer representing the id of the game to determine which game will be opened after this screen.</param>
         public AdjustPosition(User user, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
             isTwoPlayers = false;
@@ -80,6 +81,7 @@ namespace Mechanect.Screens
         /// <param name="maxDepth">an integer representing the maximum distance in centimeters players should stand at.</param>
         /// <param name="minAngle">an integer representing the minimum angle players should make with the kinect sensor.</param>
         /// <param name="maxAngle">an integer representing the minimum angle players should make with the kinect sensor.</param>
+        /// <param name="gameID">an integer representing the id of the game to determine which game will be opened after this screen.</param>
         public AdjustPosition(User user1, User user2, int minDepth, int maxDepth, int minAngle, int maxAngle, int gameID)
         {
             isTwoPlayers = true;
