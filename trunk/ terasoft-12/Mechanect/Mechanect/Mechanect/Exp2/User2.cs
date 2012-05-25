@@ -29,8 +29,10 @@ namespace Mechanect.Exp2
         private float measuredAngle;
         private List<float> angleList = new List<float>();
         private float startTime;
-
-
+        /// <summary>
+        /// Getters for the Vectors
+        /// </summary>
+        #region Vector getters
         private Vector3 CenterHip
         {
             get
@@ -63,7 +65,7 @@ namespace Mechanect.Exp2
                     USER.Joints[JointType.HandLeft].Position.Y, USER.Joints[JointType.HandLeft].Position.Z);
             }
         }
-
+        #endregion
 
         /// <summary>
         /// Setter and Getter for Instance variable "measuredFinalAngle"
@@ -71,7 +73,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>float, The value of the measuredFinalAngle</returns>
+        /// <returns>Float, The value of the measuredFinalAngle</returns>
 
         public float MeasuredAngle
         {
@@ -87,7 +89,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <returns>double, The value of the measuredVelocity</returns>
+        /// <returns>Double, The value of the measuredVelocity</returns>
         /// 
         public float MeasuredVelocity
         {
@@ -128,11 +130,11 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="leftShoulder"></param>
-        /// <param name="rightShoulder"></param>
-        /// <param name="centerHip"></param>
-        /// <param name="leftHand"></param>
-        /// <returns></returns>
+        /// <param name="leftShoulder">Left shoulder vector</param>
+        /// <param name="rightShoulder">Right Shoulder vector</param>
+        /// <param name="centerHip">Center Hip Vector</param>
+        /// <param name="leftHand">Left hand vector</param>
+        /// <returns>float, current calculated angle</returns>
 
         private float CurrentAngle(Vector3 leftShoulder, Vector3 rightShoulder, Vector3 centerHip, Vector3 leftHand)
         {
@@ -152,13 +154,15 @@ namespace Mechanect.Exp2
             angle = MathHelper.ToDegrees(angle);
             return angle;
         }
+
         /// <summary>
         /// Helper method to calculate the measured final velocity
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="list"></param>
+        /// <param name="list">list containing set of measured angles</param>
+        /// <param name="gameTime">An instance of the game time</param>
         /// <returns>float: meausred velocity</returns>
 
 
@@ -175,7 +179,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="angleList"></param>
+        /// <param name="angleList">List containing set of calculated angles</param>
         /// <returns>bool, True if hand has stopped, false otherwise</returns>
         private bool HandStopped(List<float> angleList)
         {
