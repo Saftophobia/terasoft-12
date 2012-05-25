@@ -27,8 +27,6 @@ namespace TestsLib.Omar
             user.ShootingPosition = new Vector3(0, 3, 62);
             exp = new Experiment3(user);
             friction = -2;
-            graphics = exp.ScreenManager.GraphicsDevice;
-            Content = exp.ScreenManager.Game.Content;
             environment = exp.EnvironmentProperty;
             ball = exp.BallPorperty;
             hole = environment.HoleProperty;
