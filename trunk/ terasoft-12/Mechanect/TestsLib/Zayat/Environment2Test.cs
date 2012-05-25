@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using NUnit.Framework;
+using System;
+using System.Windows;
 
 
 
@@ -79,7 +81,7 @@ namespace TestProjec
         public void PositionMapperTest()
         {
 
-            Environment2 target = new Environment2(Vector2.Zero, new Rectangle(5, 5, 1, 1), new Rectangle(10, 3, 2, 2)); 
+            Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2)); 
             target.Draw(new Rectangle(10, 10, 100, 100),
                 new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
                 new GraphicsProfile(), new PresentationParameters())));
