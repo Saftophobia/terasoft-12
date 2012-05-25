@@ -20,6 +20,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Returns the sprite batch object.
         /// </summary>
+	    /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         public SpriteBatch SpriteBatch
         {
             get { return spriteBatch; }
@@ -30,6 +31,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Creates a new instance of ScreenManager.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         public ScreenManager(Game game)
             : base(game)
         {
@@ -40,6 +42,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Loads the content of the screens managed by the screenManager.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         protected override void LoadContent()
         {            
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -50,6 +53,7 @@ namespace Mechanect.Common
         /// <summary>
         /// Unloads the conent of the screens managed by the screenManager.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         protected override void UnloadContent()
         {
             foreach (GameScreen screen in screens)
@@ -62,7 +66,8 @@ namespace Mechanect.Common
         /// <summary>
         /// Updates the screens that are managed by the screenManager.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
+		/// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
             screensToUpdate.Clear();
@@ -94,7 +99,8 @@ namespace Mechanect.Common
         /// <summary>
         /// Updates the screens that are managed by the screenManager.
         /// </summary>
-        /// <param name="gameTime">represents the time of the game.</param>
+        /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
+		/// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             foreach (GameScreen screen in screens)
@@ -111,7 +117,8 @@ namespace Mechanect.Common
         /// <summary>
         /// Adds a screen to the list of screens that are managed by the screenManager.
         /// </summary>
-        /// <param name="screen">Represents the screen that should be managed by the screenManager.</param>
+        /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
+		/// <param name="screen">Represents the screen that should be managed by the screenManager.</param>
         public void AddScreen(GameScreen screen)
         {
             screen.ScreenManager = this;
@@ -123,8 +130,9 @@ namespace Mechanect.Common
         /// <summary>
         /// Removes a screen from the list of screens that are managed by the screenManager.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         /// <param name="screen">Represents the screen that should be removed from the list
-        /// of managed screens by the screenManager.</param>
+		/// of screens managed by the screenManager.</param>
         public void RemoveScreen(GameScreen screen)
         {
             screen.UnloadContent();
