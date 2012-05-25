@@ -229,7 +229,7 @@ namespace Mechanect.Screens.Exp1Screens
                 if (timer < 0)
                 {
                     SpriteBatch.Begin();
-                    countdown.DrawCountdown(SpriteBatch, (int)(graphics.DisplayMode.Width * 0.5), (int)(graphics.DisplayMode.Height * 0.5));
+                    countdown.DrawCountdown(SpriteBatch, (int)(graphics.DisplayMode.Width * 0.4), (int)(graphics.DisplayMode.Height * 0.4));
                     SpriteBatch.End();
                     countdown.PlaySoundEffects();
                 }

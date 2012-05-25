@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Mechanect.Exp3;
+using ButtonsAndSliders;
 
 namespace Mechanect.Screens.Exp1Screens
 {
@@ -21,6 +23,8 @@ namespace Mechanect.Screens.Exp1Screens
         List<int> timeslice;
         GraphicsDevice device;
         User1 user1, user2;
+        Button button;
+        
         Viewport ViewPort
         {
             get
@@ -108,7 +112,7 @@ namespace Mechanect.Screens.Exp1Screens
            
             GraphEngine.DrawGraphs(Graph, vel1, time1, vel2, time2, this.racecommands, timeslicedouble, user1.DisqualificationTime, user2.DisqualificationTime, device.DisplayMode.Width, device.DisplayMode.Height, 25);
             
-
+            
             base.Initialize();
 
         }
@@ -129,6 +133,9 @@ namespace Mechanect.Screens.Exp1Screens
             CheersInstance.Play();
             //load the background
             //load the soundeffect
+            button = Tools3.MainMenuButton(ScreenManager.Game.Content,new Vector2(device.Viewport.Width * 0.4f ,device.Viewport.Height * 0.6f),device.Viewport.Width, device.Viewport.Height, user1);
+
+            
            
             base.LoadContent();
         }
@@ -171,7 +178,13 @@ namespace Mechanect.Screens.Exp1Screens
 
             if (timer > 6)
             {
-                
+                button.Update(gameTime);
+                if (button.IsClicked())
+                {
+                    User1 user3 = new User1();
+                    ScreenManager.AddScreen(new AllExperiments(user3));
+                    Remove();
+                }
                 
             }
             base.Update(gameTime);
@@ -206,7 +219,13 @@ namespace Mechanect.Screens.Exp1Screens
                 GraphUI.DrawEnvironment(Graph, SpriteBatch, device, font, font2);
                 GraphUI.DrawCurves(Graph, SpriteBatch, device);
                 GraphUI.DrawDisqualification(Graph, device, SpriteBatch, device.Viewport.Width, device.Viewport.Height, P1Tex, P2Tex, user1.DisqualificationTime, user2.DisqualificationTime);
-                SpriteBatch.End();                
+               // SpriteBatch.End();
+
+
+               // SpriteBatch.Begin();
+                button.Draw(SpriteBatch,(float)(device.Viewport.Width/1024f),(float)(device.Viewport.Height/768f));
+                button.DrawHand(SpriteBatch);
+                SpriteBatch.End();
             }
             base.Draw(gameTime);
         }
