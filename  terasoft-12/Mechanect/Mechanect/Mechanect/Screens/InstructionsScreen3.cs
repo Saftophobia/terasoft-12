@@ -25,9 +25,11 @@ namespace Mechanect.Screens
                +"                                 .GUC.";
         private string title1="\n Game Instructions:-";
         private string title2="\n General Instructions:-";
-        private string text1="1-Goal: Use the law of conservation of momentum to shoot the ball with a velocity that makes it reach the hole with zero velocity"
+        private string text1="1-Goal: Use the law of conservation of momentum to shoot the ball with a "
+            +"velocity that makes it reach the hole with zero velocity"
             +"\n\n2-Givens: Ball Mass, Ball Initial Velocity, Leg Mass, Hole Position, Shooting position and Friction (deceleration)."
-            +"\n\n3-Gameplay: You will see a ball coming towards you, then the game will pause, and the givens will be displayed on the screen.When you are done with your calculations, you should press the ok button to resume the game and be able to shoot the ball with the calculated velocity."
+            +"\n\n3-Gameplay: You will see a ball coming towards you, then the game will pause, and the givens will be displayed on the screen."
+            +"When you are done with your calculations, you should press the ok button to resume the game and be able to shoot the ball with the calculated velocity."
             +"\n\n4-Settings: The next screen allows you to choose a level, which changes the friction, and to adjust the hole size using the angle tolerance slider"
             +"\n\n5-Tip: Shoot the ball when you hear the whistle just before the bar is empty.\n\n";
         private string text2 = "* The avatar on the top right \n  represents your distance from \n  the screen.";
@@ -115,14 +117,22 @@ namespace Mechanect.Screens
             spriteBatch.Draw(myTexture, rect, Color.White);
             button.Draw(spriteBatch, scale);
             spriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-                UILib.Write(title1, new Rectangle(screenWidth/10-40,screenHeight/5,screenWidth,screenHeight), spriteBatch, font2 , Color.DarkRed);
-                UILib.Write(text1, new Rectangle(screenWidth / 10 -22, screenHeight / 4 + 18, screenWidth-200, screenHeight), spriteBatch,  font3, Color.Black);
-                UILib.Write(title2, new Rectangle(screenWidth / 10 -40, screenHeight / 2 + 90, screenWidth, screenHeight), spriteBatch,  font2, Color.DarkRed);
-                UILib.Write(text2, new Rectangle(screenWidth / 10 -22, screenHeight / 2 + 140, screenWidth, screenHeight), spriteBatch,  font3, Color.Black);
-                UILib.Write(green, new Rectangle(screenWidth / 2+130, screenHeight / 2 + 155, screenWidth, screenHeight), spriteBatch,  font3, Color.Green);
-                UILib.Write(white, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 170, screenWidth, screenHeight), spriteBatch,  font3, Color.White);
-                UILib.Write(red, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 185, screenWidth, screenHeight), spriteBatch,  font3, Color.DarkRed);
-                UILib.Write(crossed, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 200, screenWidth, screenHeight), spriteBatch, font3, Color.DarkGray);
+                UILib.Write(title1, new Rectangle(screenWidth/10-40,screenHeight/5,screenWidth,screenHeight), 
+                    spriteBatch, font2 , Color.DarkRed);
+                UILib.Write(text1, new Rectangle(screenWidth / 10 -22, screenHeight / 4 + 18, screenWidth-200, screenHeight),
+                    spriteBatch,  font3, Color.Black);
+                UILib.Write(title2, new Rectangle(screenWidth / 10 -40, screenHeight / 2 + 90, screenWidth, screenHeight),
+                    spriteBatch,  font2, Color.DarkRed);
+                UILib.Write(text2, new Rectangle(screenWidth / 10 -22, screenHeight / 2 + 140, screenWidth, screenHeight),
+                    spriteBatch,  font3, Color.Black);
+                UILib.Write(green, new Rectangle(screenWidth / 2+130, screenHeight / 2 + 155, screenWidth, screenHeight),
+                    spriteBatch,  font3, Color.Green);
+                UILib.Write(white, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 170, screenWidth, screenHeight),
+                    spriteBatch,  font3, Color.White);
+                UILib.Write(red, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 185, screenWidth, screenHeight),
+                    spriteBatch,  font3, Color.DarkRed);
+                UILib.Write(crossed, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 200, screenWidth, screenHeight),
+                    spriteBatch, font3, Color.DarkGray);
             button.DrawHand(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
