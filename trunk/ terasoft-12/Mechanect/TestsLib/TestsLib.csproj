@@ -59,6 +59,7 @@
     <Compile Include="Bisho\BallTests.cs" />
     <Compile Include="Bisho\LinearMotionTests.cs" />
     <Compile Include="Cena\MeasureVelocityTests.cs" />
+    <Compile Include="Micho\CommandsTest.cs" />
     <Compile Include="Omar\BallTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Safty\commandsTests.cs" />
