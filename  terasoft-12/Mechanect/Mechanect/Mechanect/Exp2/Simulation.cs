@@ -23,7 +23,6 @@ namespace Mechanect.Exp2
         private SpriteFont font;
         private float velocity;
         private float angle;
-        private ContentManager contentManager;
 
         /// <summary>
         /// Generates the Simulation that displays the environment during the projectile motion
