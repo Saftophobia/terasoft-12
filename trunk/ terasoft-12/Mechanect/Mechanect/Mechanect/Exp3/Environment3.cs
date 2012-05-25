@@ -521,7 +521,7 @@ namespace Mechanect.Exp3
         /// </remarks>
         /// <param name="angletolerance">The tolerance value set by the user.</param>
         /// <returns>Integer value which is the radius of the hole. </returns>
-        public static int GenerateRadius(int angletolerance)
+        private static int GenerateRadius(int angletolerance)
         {
             switch (angletolerance)
             {
