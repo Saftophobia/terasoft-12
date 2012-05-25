@@ -6,6 +6,13 @@ using Microsoft.Kinect;
 
 namespace Mechanect.Common
 {
+
+    /// <summary>
+    /// This class represents an avatar which tracks a player's distance from the kinect device and changes its color according to this distance, its implemented to work for two players aswell since the kinect device can only track two players maximum at the same time
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Khaled Salah </para>
+    /// </remarks>
     public class UserAvatar
     {
         private GraphicsDevice graphics;
