@@ -57,40 +57,6 @@ namespace Mechanect.Exp2
             this.width = width;
         }
         /// <summary>
-        /// returns the location of the prey.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns Vector2 postion of the Prey</returns>
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-
-        /// <summary>
-        /// return the Height of the Prey
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns Height  of the prey</returns>
-        public float getHeight()
-        {
-            return length;
-        }
-        /// <summary>
-        /// return the Width of the Prey
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns Width of the prey</returns>
-        public float getWidth()
-        {
-            return width;
-        }
-        /// <summary>
         /// Sets the texture for the Prey
         /// </summary>
         /// <remarks>
