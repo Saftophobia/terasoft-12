@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -19,6 +14,8 @@ namespace Mechanect.Exp2
         Vector2 location;
         Texture2D aquariumTexture;
         float angle;
+        float length;
+        float width;
         public float Angle
         {
             set
@@ -41,7 +38,7 @@ namespace Mechanect.Exp2
                 location = value;
             }
         }
-        float length;
+        
         public float Length
         {
             get
@@ -53,7 +50,7 @@ namespace Mechanect.Exp2
                 length = value;
             }
         }
-        float width;
+        
         public float Width
         {
             get
@@ -72,39 +69,7 @@ namespace Mechanect.Exp2
             this.length = length;
             this.width = width;
         }
-        /// <summary>
-        /// returns the location of the Aquarium.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns Vector2 postion of the Aquarium</returns>
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-        /// <summary>
-        /// returns the height of the Aquarium.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns the height of of Aquarium</returns>
-        public float getHeight()
-        {
-            return length;
-        }
-        /// <summary>
-        /// returns the width of the Aquarium.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns the width of the Aquarium</returns>
-        public float getWidth()
-        {
-            return width;
-        }
+
         /// <summary>
         /// Sets the texture for the Aquarium
         /// </summary>
