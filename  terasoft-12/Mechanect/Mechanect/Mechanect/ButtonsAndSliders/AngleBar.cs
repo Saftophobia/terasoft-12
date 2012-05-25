@@ -18,19 +18,19 @@ namespace Mechanect.ButtonsAndSliders
 
         #region Variables And Fields
 
-        User[] user;
-        int minAngle;
-        int maxAngle;
+        private User[] user;
+        private int minAngle;
+        private int maxAngle;
 
 
-        Texture2D curve;
-        int curveRadius;
-        int curveWidth;
-
-        Texture2D playerIndicator;
-        Color[] playerColor;
-        Color acceptColor;
-        Color rejectColor;
+        private Texture2D curve;
+        private int curveRadius;
+        private int curveWidth;
+        
+        private Texture2D playerIndicator;
+        private Color[] playerColor;
+        private Color acceptColor;
+        private Color rejectColor;
 
         /// <summary>
         /// Getter for the Users' State
