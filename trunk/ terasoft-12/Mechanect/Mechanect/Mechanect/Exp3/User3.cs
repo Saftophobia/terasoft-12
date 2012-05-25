@@ -11,7 +11,7 @@ using Physics;
 namespace Mechanect.Exp3
 {
     /// <summary>
-    /// Holds the information about the user for exp3.
+    /// Holds information about the user for exp3.
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: Cena </para>
@@ -157,7 +157,7 @@ namespace Mechanect.Exp3
          /// <remarks>
          /// <para>AUTHOR: Cena </para>  
          /// </remarks>
-         /// <param name="gameTime">The time used in calculating the velocity</param> 
+         /// <param name="gameTime">The time used in calculating the velocity.</param> 
 
          public void UpdateMeasuringVelocityAndAngle(GameTime gameTime)
          {
@@ -361,6 +361,7 @@ namespace Mechanect.Exp3
          /// <remarks>
          /// <para>AUTHOR: Cena </para>    
          /// </remarks>
+         /// <param name="gameTime">The time used to be stored.</param> 
          
          public void StoreInitialTime(GameTime gameTime)
          {
@@ -373,6 +374,7 @@ namespace Mechanect.Exp3
          /// <remarks>
          /// <para>AUTHOR: Cena </para>    
          /// </remarks>
+         /// <param name="gameTime">The time to be stored.</param> 
         
          public void StoreTime(GameTime gameTime)
          {
