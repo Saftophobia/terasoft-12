@@ -278,7 +278,7 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Creates the vertices for the triangles used to generate the terrain, and sets their color and height according to the height map.
+        /// Creates the vertices for the triangles used to generate the terrain, and sets their height according to the height map.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         private void SetUpVertices()
@@ -440,7 +440,7 @@ namespace Mechanect.Exp3
 
 
         /// <summary>
-        /// Creates a noise map, based on Perlin's noise.
+        /// Creates a noise map, based on Perlin noise.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="resolution">Desired resolution of the map that will be created.</param>
