@@ -17,8 +17,22 @@ namespace Mechanect.Exp3
     public class Experiment3 : Mechanect.Common.GameScreen
     {
         private Ball ball;
+        public Ball BallPorperty
+        {
+            get
+            {
+                return ball;
+            }
+        }
         private Bar bar;
         private Environment3 environment;
+        public Environment3 EnvironmentProperty
+        {
+            get
+            {
+                return environment;
+            }
+        }
         private User3 user;
 
         private TargetCamera targetCamera;
@@ -363,10 +377,10 @@ namespace Mechanect.Exp3
                 {
                     case Constants3.holeOutOfNearRange: Environment3.Friction++; break;
                     case Constants3.holeOutOfFarRange:
-                        if (Environment3.Friction > 1)
-                            Environment3.Friction--;
-                        else if (Environment3.Wind > 1)
-                            Environment3.Wind--;
+                        if (Environment3.Friction < -1)
+                            Environment3.Friction /= 2;
+                        else if (Environment3.Wind < 0)
+                            Environment3.Wind++;
                         else hole.Position = new Vector3(hole.Position.X / 2, hole.Position.Y, hole.Position.Z + 1); break;
                     case Constants3.negativeRDifference: int tmp = (int)ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
                     case Constants3.negativeLMass: user.assumedLegMass *= -1; break;
