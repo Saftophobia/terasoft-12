@@ -19,7 +19,7 @@ namespace Mechanect.Exp2
         /// Instance Variables
         /// </summary>
         #region:Instance Variables
-        User2 user;
+        private User2 user;
         private float optimalVelocity;
         private float optimalAngle;
         private Simulation userSimulation;
@@ -102,7 +102,7 @@ namespace Mechanect.Exp2
             this.predatorPosition = predatorPosition;
             this.preyPosition = preyPosition;
             this.aquariumPosition = aquariumPosition;
-            correctAnswer = false;
+            this.correctAnswer = false;
         }
         #endregion
       
