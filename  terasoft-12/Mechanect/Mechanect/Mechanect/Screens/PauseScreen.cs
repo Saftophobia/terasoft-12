@@ -15,7 +15,7 @@ using Physics;
 namespace Mechanect.Screens
 {
     /// <summary>
-    /// A screen that appears to the user containing the givens.
+    /// A screen that appears to the user, containing the givens.
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: Cena </para>   
