@@ -14,59 +14,70 @@ using Physics;
 
 namespace Mechanect.Screens
 {
+    /// <summary>
+    /// A screen that appears to the user containing the givens.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Cena </para>   
+    /// </remarks>
     class PauseScreen : Mechanect.Common.GameScreen
     {
         #region Cena'sMethods
         #region InstanceVariables
-        ContentManager content;
-        Viewport viewPort;
-        SpriteBatch spriteBatch;
+        private ContentManager content;
+        private Viewport viewPort;
+        private SpriteBatch spriteBatch;
 
-        Texture2D givens;
-        Vector2 givensPosition;
-
-
-        Texture2D velocityBar;
-        Vector2 vBarPosition;
+        private Texture2D givens;
+        private Vector2 givensPosition;
 
 
-        Vector2 fillPosition;
-        List<Vector2> fillsPositions;
-        List<Texture2D> fills;
+        private Texture2D velocityBar;
+        private Vector2 vBarPosition;
 
 
-        Texture2D arrow;
-        Vector2 arrowPosition;
-        float arrowAngle;
-        float arrowScale;
-
-        User3 user;
-        MKinect kinect;
-        VoiceCommands voiceCommands;
-        double ballVelocity;
-        double ballMass;
-        double legMass;
-        String displayedGivens;
+        private Vector2 fillPosition;
+        private List<Vector2> fillsPositions;
+        private List<Texture2D> fills;
 
 
-        SpriteFont font;
-        int framesToWait;
-        Vector3 velocity;
+        private Texture2D arrow;
+        private Vector2 arrowPosition;
+        private float arrowAngle;
+        private float arrowScale;
+
+        private User3 user;
+        private MKinect kinect;
+        private double ballVelocity;
+        private double ballMass;
+        private double legMass;
+        private String displayedGivens;
 
 
-        string count;
-        Vector2 countPosition;
-        Color countColor;
-        SpriteFont countFont;
-        float countScale;
+        private SpriteFont font;
+        private int framesToWait;
+        private Vector3 velocity;
 
-        Button button;
-        string missed;
-        Vector2 missedPosition;
-        SpriteFont font2;
-        Vector3 holePosition;
+
+        private string count;
+        private Vector2 countPosition;
+        private Color countColor;
+        private SpriteFont countFont;
+        private float countScale;
+
+        private Button button;
+        private string missed;
+        private Vector2 missedPosition;
+        private SpriteFont font2;
+        private Vector3 holePosition;
         #endregion
         #region Constructor
+        /// <summary>
+        /// Creates an instance of PauseScreen.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
         public PauseScreen(User3 user, double ballVelocity, double ballMass, double legMass, Vector3 holePosition)
         {
             this.user = user;
@@ -76,7 +87,6 @@ namespace Mechanect.Screens
             this.ballMass = ballMass;
             framesToWait = 0;
             velocity = Vector3.Zero;
-            voiceCommands = new VoiceCommands(kinect._KinectDevice, "ready,go");
             fillsPositions = new List<Vector2>();
             fills = new List<Texture2D>();
             displayedGivens = "";
@@ -92,12 +102,12 @@ namespace Mechanect.Screens
         }
         #endregion
         #region Load
-        ///<summary>
-        ///This method loads the textres used in the pause screen.
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>   
-        ///</remarks>
+        /// <summary>
+        /// This method loads the textures used in the pause screen.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
         public override void LoadContent()
         {
             viewPort = ScreenManager.GraphicsDevice.Viewport;
@@ -119,13 +129,15 @@ namespace Mechanect.Screens
 
             arrow = content.Load<Texture2D>("Textures/arrow");
             arrowScale = 0.7f;
-            arrowPosition = new Vector2(viewPort.Width - (float)( Math.Sqrt(arrowScale) * arrow.Width), viewPort.Height - (float)(Math.Sqrt(arrowScale) * arrow.Height / 2));
+            arrowPosition = new Vector2(viewPort.Width - (float)(Math.Sqrt(arrowScale) * arrow.Width), viewPort.Height 
+                - (float)(Math.Sqrt(arrowScale) * arrow.Height / 2));
             arrowAngle = 0;
 
             countPosition = new Vector2(3 * (viewPort.Width / 7), viewPort.Height / 2);
             missedPosition = new Vector2(viewPort.Width / 3, viewPort.Height / 3);
-           
-            button = Tools3.OKButton(content, new Vector2(viewPort.Width - 245, 0), viewPort.Width, viewPort.Height, user);
+
+            button = Tools3.OKButton(content, new Vector2(viewPort.Width - 245, 0), viewPort.Width, viewPort.Height,
+                user);
 
             base.LoadContent();
 
@@ -133,40 +145,45 @@ namespace Mechanect.Screens
         }
         #endregion
         #region Update
-        ///<summary>
-        ///This method updates the positions of the textures each frame.
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>   
-        ///</remarks>
+        /// <summary>
+        /// This method updates the positions of the textures every frame.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
             button.Update(gameTime);
             if (!button.IsClicked())
             {
-                if (!user.hasShot&&!user.hasMissed)
+                if (!user.hasShot && !user.hasMissed)
                 {
 
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
 
-                    displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " 
+                    displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " 
+                        + ballVelocity + '\n' + "Leg Mass: "
+                     + (Math.Truncate(legMass * 1000) / 1000) + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' +
+                     "Hole Position: " 
                      + "[" +"X:"+ Math.Truncate(holePosition.X) + "," + "Y:0," +"Z:"+ Math.Truncate(holePosition.Z) + "]"
                      +'\n'+"Friction: " + Environment3.Friction;
                 }
                 else
                 {
-                    #region GivensString
-                    displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " + ballVelocity + '\n' + "Leg Mass: "
-                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' + "Hole Position: " 
+                     
+                    displayedGivens = "Ball Mass: " + Math.Truncate(ballMass * 1000) / 1000 +'\n' + "Ball Velocity: " +
+                        ballVelocity + '\n' + "Leg Mass: "
+                        + Math.Truncate(legMass * 1000) / 1000 + '\n' + "Ball Position: " + "[X:0,Y:0,Z:62]" + '\n' +
+                        "Hole Position: " 
                         + "["+"X:"+Math.Truncate(holePosition.X)+","+"Y:0,"+"Z:"+Math.Truncate(holePosition.Z)+"]"
                         + '\n' + "Friction: " + Environment3.Friction ;
-                    string shootingValues = "Shooting velocity: " + Math.Truncate(velocity.Length() *Constants3.velocityScale* 1000) / 1000 +" m/s "
+                    string shootingValues = "Shooting velocity: " + Math.Truncate(velocity.Length() *Constants3.velocityScale* 1000)
+                        / 1000 +" m/s "
                         + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
-                    #endregion
+                    
 
-                    #region DrawingBarAndArrowInfo
+                   
                     if (!user.hasMissed)
                     {
                         velocity = Functions.SetVelocityRelativeToGivenMass((float)user.assumedLegMass,Constants3.normalLegMass,user.velocity);
@@ -189,9 +206,9 @@ namespace Mechanect.Screens
                     }
                     else
                         missed = "Missed!";
-                    #endregion
+                   
 
-                    #region CountDown And Clear
+                    
                     if (framesToWait > 240) // after 4 seconds
                             Clear();
 
@@ -212,7 +229,7 @@ namespace Mechanect.Screens
                             framesToWait++;
 
                         }
-                    #endregion
+                    
                 }
             }
             else
@@ -220,7 +237,7 @@ namespace Mechanect.Screens
 
                 user.ResetUserForShootingOrTryingAgain();
 
-                ExitScreen();
+                Remove();
             }
 
 
@@ -229,15 +246,12 @@ namespace Mechanect.Screens
         }
         #endregion
         #region Draw
-        ///<summary>
-        ///This method Draws the textures.
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>   
-
-        ///</remarks>
-
-        ///<returns>A Vector3: velocity of the user relative to it's mass</returns>
+        /// <summary>
+        /// This method draws the textures.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
@@ -245,13 +259,18 @@ namespace Mechanect.Screens
            
 
             spriteBatch.Begin();
-            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2), 0.9f, SpriteEffects.None, 0);
-            spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2),
+                0.9f, SpriteEffects.None, 0);
+            spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2),
+                1f, SpriteEffects.None, 0);
+
             for (int i = 0; i < fills.Count; i++)
                 spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
                     Color.White, 0, new Vector2(fills.ElementAt<Texture2D>(i).Width / 2,
                         fills.ElementAt<Texture2D>(i).Height / 2), 1, SpriteEffects.None, 0);
-            spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2), arrowScale, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(arrow, arrowPosition, null, Color.White, arrowAngle, new Vector2((arrow.Width) / 2, (arrow.Height) / 2),
+                arrowScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font, displayedGivens, new Vector2(viewPort.Width / 6, givens.Height / 30), Color.DarkViolet);
             spriteBatch.DrawString(countFont, count, countPosition, countColor, 0, Vector2.Zero, countScale, SpriteEffects.None, 0);
             spriteBatch.DrawString(font2, missed, missedPosition, Color.Red);
@@ -266,12 +285,12 @@ namespace Mechanect.Screens
         }
         #endregion
         #region Clear
-        ///<summary>
-        ///This method clears the velocity bar and the user's variables.
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>   
-        ///</remarks>
+        /// <summary>
+        /// This method clears the velocity bar and the user's variables.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
         public void Clear()
         {
             fillsPositions.Clear();
@@ -288,11 +307,6 @@ namespace Mechanect.Screens
         }
         #endregion
         #endregion
-
-        public override void Remove()
-        {
-            base.Remove();
-        }
     }
 
 }
