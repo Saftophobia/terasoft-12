@@ -36,7 +36,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Getter for the Users' State
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>bool, Returns true if all users are standing with the correct orientation</returns>
         public bool Accepted
@@ -54,7 +54,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Getter for the Rule that should be visibile to the user
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>string, returns the Rule that should be followed by the user</returns>
         public string Rule
@@ -126,7 +126,7 @@ namespace Mechanect.ButtonsAndSliders
         /// gets the suitable color that fits in the gradient in the semicircle
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="leftAngle"> the start angle of the gradient</param>
         /// <param name="rightAngle"> the end angle of the gradient</param>
@@ -146,7 +146,7 @@ namespace Mechanect.ButtonsAndSliders
         /// creates the texture2D representing the angle bar
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>returns the semicircle with gradient indicating the accepted ranges for user's angle</returns>
         private Texture2D CreateCurve(GraphicsDevice graphicsDevice)
@@ -200,7 +200,7 @@ namespace Mechanect.ButtonsAndSliders
         /// A getter to the command that should be visible to the user
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="id">an int representing the ID of the user</param>
         /// <returns>string, returns the command that should be applied by the user to reach the correct orientation.</returns>
@@ -219,7 +219,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Calculates the Angle of the user specified by the ID
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="ID">the index of the User in the users array</param>
         /// <returns>returns the angle the user with the kinect sensor. 0 when he faces the sensor, +ve when he looks right, -ve when he looks left</returns>
