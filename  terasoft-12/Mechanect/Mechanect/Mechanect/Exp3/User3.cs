@@ -10,12 +10,18 @@ using Physics;
 
 namespace Mechanect.Exp3
 {
+    /// <summary>
+    /// Holds the information about the user for exp3.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Cena </para>
+    /// </remarks>
     public class User3:User
     {
 
         #region InstanceVariables
-        #region joint
-        public bool rightLeg;
+        #region Leg
+        public bool rightLeg { get; set; }
         #endregion
         #region rightLegPositions
         public double initialRightLegPositionX { get; set; }
@@ -50,13 +56,19 @@ namespace Mechanect.Exp3
         #region states
         public bool hasShot { get; set; }
         public bool hasMissed { get; set; }
+        public bool hasPlayerMoved { get; set; }
         private bool movedForward;
         private bool firstUpdate;
-        public bool hasPlayerMoved;
         private bool hasJustStarted;
         #endregion
         #endregion
         #region Constructor
+        /// <summary>
+        /// Creates an new instance of User3.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>
+        /// </remarks>
         public User3()
         {
 
@@ -139,15 +151,13 @@ namespace Mechanect.Exp3
 
          #region UpdateMethods
 
-         ///<summary>
-         ///This method updates the velocity vector of the user's leg each 3 XNA frames.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>  
-         ///</remarks>
-         ///<param name="GameTime">Takes the game time to be used in calculating the velocity</param> 
-         ///<returns>An int that is identical to the parameter passed to the method</returns>
-
+         /// <summary>
+         /// This method updates the velocity vector of the user's leg each three XNA frames.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>  
+         /// </remarks>
+         /// <param name="gameTime">The time used in calculating the velocity</param> 
 
          public void UpdateMeasuringVelocityAndAngle(GameTime gameTime)
          {
@@ -208,25 +218,29 @@ namespace Mechanect.Exp3
              
          }
 
-         ///<summary>
-         ///This method updates the value of the velocity vector.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>  
-         ///</remarks>
+         /// <summary>
+         /// This method updates the value of the velocity vector.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>  
+         /// </remarks>
 
          public void UpdateSpeed()
          {
-             double currentZ = currentLeftLegPositionZ;
-             double initialZ = initialLeftLegPositionZ;
-             double currentX = currentLeftLegPositionX;
-             double initialX = initialLeftLegPositionX;
+             double currentZ,initialZ,currentX,initialX;
              if (rightLeg)
              {
                  currentZ = currentRightLegPositionZ;
                  initialZ = initialRightLegPositionZ;
                  currentX = currentRightLegPositionX;
                  initialX = initialRightLegPositionX;
+             }
+             else
+             {
+                 currentZ = currentLeftLegPositionZ;
+                 initialZ = initialLeftLegPositionZ;
+                 currentX = currentLeftLegPositionX;
+                 initialX = initialLeftLegPositionX;
              }
              double deltaTime = Math.Abs(currentTime - initialTime);
              Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
@@ -235,24 +249,29 @@ namespace Mechanect.Exp3
          }
 
          ///<summary>
-         ///This method updates the value of the shooting angle.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>  
-         ///</remarks>
+         /// This method updates the value of the shooting angle.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>  
+         /// </remarks>
 
          public void UpdateAngle()
          {
-             double positionX1 = initialLeftLegPositionX;
-             double positionX2 = currentLeftLegPositionX;
-             double positionZ1 = initialLeftLegPositionZ;
-             double positionZ2 = currentLeftLegPositionZ;
+             double positionX1, positionX2, positionZ1, positionZ2;
+            
              if (rightLeg)
              {
                  positionX1 = initialRightLegPositionX;
                  positionX2 = currentRightLegPositionX;
                  positionZ1 = initialRightLegPositionZ;
                  positionZ2 = currentRightLegPositionZ;
+             }
+             else
+             {
+                 positionX1 = initialLeftLegPositionX;
+                 positionX2 = currentLeftLegPositionX;
+                 positionZ1 = initialLeftLegPositionZ;
+                 positionZ2 = currentLeftLegPositionZ;
              }
              if (positionZ2 != positionZ1)
                  angle = Math.Atan((positionX2 - positionX1) / Math.Abs((positionZ2 - positionZ1)));
@@ -267,12 +286,12 @@ namespace Mechanect.Exp3
             #endregion
 
          #region StoreMethods
-         ///<summary>
-         ///This method stores the original position of the user's leg.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para> 
-         ///</remarks>
+         /// <summary>
+         /// This method stores the original position of the user's leg.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para> 
+         /// </remarks>
         
 
          private void StoreStartingPosition()
@@ -283,12 +302,12 @@ namespace Mechanect.Exp3
             startRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
-         ///<summary>
-         ///This method stores the initial position of the user's leg when they start moving forward.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>    
-         ///</remarks>
+         /// <summary>
+         /// This method stores the initial position of the user's leg when they start moving forward.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>    
+         /// </remarks>
 
          public void StoreInitialPosition()
          {
@@ -303,12 +322,12 @@ namespace Mechanect.Exp3
          }
 
 
-         ///<summary>
-         ///This method stores the current position of the user's leg.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>    
-         ///</remarks>
+         /// <summary>
+         /// This method stores the current position of the user's leg.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>    
+         /// </remarks>
         
          public void StoreCurrentPosition()
          {
@@ -318,12 +337,12 @@ namespace Mechanect.Exp3
              currentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
-         ///<summary>
-         ///This method stores the previous position of the user's leg.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para> 
-         ///</remarks>
+         /// <summary>
+         /// This method stores the previous position of the user's leg.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para> 
+         /// </remarks>
          
          public void StorePreviousPosition()
          {
@@ -336,24 +355,24 @@ namespace Mechanect.Exp3
              }
          }
 
-         ///<summary>
-         ///This method stores the initial time that user starting moving his leg forward at.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>    
-         ///</remarks>
+         /// <summary>
+         /// This method stores the initial time that the user started moving his leg forward at.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>    
+         /// </remarks>
          
          public void StoreInitialTime(GameTime gameTime)
          {
              initialTime = gameTime.TotalGameTime.TotalSeconds;
          }
 
-         ///<summary>
-         ///This method stores the current time.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>    
-         ///</remarks>
+         /// <summary>
+         /// This method stores the current time.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>    
+         /// </remarks>
         
          public void StoreTime(GameTime gameTime)
          {
@@ -370,26 +389,26 @@ namespace Mechanect.Exp3
          #endregion
          
          #region CheckMethods
-         ///<summary>
-         ///This method checks if the user moved his leg forward a minimum distance.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>   
-         ///</remarks>
-         ///<returns>A bool which is true if the user moved his leg forward a certain distance</returns>
+         /// <summary>
+         /// This method checks if the user moved his leg forward a minimum distance.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>   
+         /// </remarks>
+         /// <returns>A bool which is true if the user moved his leg forward a certain distance.</returns>
          public bool HasMovedMinimumDistance()
          {
              if (rightLeg)
-                 return initialRightLegPositionZ - currentRightLegPositionZ > Constants3.minimumShootingDistance;
-             return initialLeftLegPositionZ - currentLeftLegPositionZ > Constants3.minimumShootingDistance;
+                 return (initialRightLegPositionZ - currentRightLegPositionZ) > Constants3.minimumShootingDistance;
+             return (initialLeftLegPositionZ - currentLeftLegPositionZ) > Constants3.minimumShootingDistance;
          }
-         ///<summary>
-         ///This method checks if the user moved their leg forward
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>   
-         ///</remarks>
-         ///<returns>A bool that is true if the user moved forward c</returns>
+         /// <summary>
+         /// This method checks if the user moved their leg forward
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>   
+         /// </remarks>
+         /// <returns>A bool that is true if the user moved their leg forward.</returns>
 
 
          public bool IsMovingForward()
@@ -406,7 +425,7 @@ namespace Mechanect.Exp3
              if (startZ >= currentZ)
              {
 
-                 if (currentZ - previousZ < (-1 * Constants3.movingForwardTolerance))
+                 if ((currentZ - previousZ) < (-1 * Constants3.movingForwardTolerance))
                  {
                      movedForward = true;
                      return true;
@@ -432,13 +451,13 @@ namespace Mechanect.Exp3
              }
              return false;
          }
-         ///<summary>
-         ///This method checks if the user moved their leg.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>   
-         ///</remarks>
-         ///<returns>A bool that is true if the user moved their leg c</returns>
+         /// <summary>
+         /// This method checks if the user moved their leg.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>   
+         /// </remarks>
+         /// <returns>A bool that is true if the user moved their leg.</returns>
          public void HasPlayerMoved()
          {
 
@@ -462,12 +481,12 @@ namespace Mechanect.Exp3
         #endregion
 
          #region OtherMethods
-         ///<summary>
-         ///This method initializes all the stored variables.
-         ///</summary>
-         ///<remarks>
-         ///<para>AUTHOR: Cena </para>   
-         ///</remarks>
+         /// <summary>
+         /// This method initializes all the stored variables.
+         /// </summary>
+         /// <remarks>
+         /// <para>AUTHOR: Cena </para>   
+         /// </remarks>
 
          public void ResetUserForShootingOrTryingAgain()
          {
