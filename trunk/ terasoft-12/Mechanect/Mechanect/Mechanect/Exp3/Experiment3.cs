@@ -67,7 +67,7 @@ namespace Mechanect.Exp3
 
             arriveVelocity = 10;
             firstAnimation = true;
-            user.shootingPosition = new Vector3(0, 3, 45);
+            user.ShootingPosition = new Vector3(0, 3, 45);
             this.user = user;
             GenerateSolvable();
         }
@@ -91,7 +91,7 @@ namespace Mechanect.Exp3
            
             environment.ball = ball;
 
-            Vector3 initialVelocity = LinearMotion.CalculateInitialVelocity(user.shootingPosition - ball.Position, 
+            Vector3 initialVelocity = LinearMotion.CalculateInitialVelocity(user.ShootingPosition - ball.Position, 
                 arriveVelocity, Environment3.Friction);
 
             animation = new BallAnimation(ball, environment, initialVelocity);
@@ -99,7 +99,7 @@ namespace Mechanect.Exp3
             bar = new Bar(new Vector2(ScreenManager.GraphicsDevice.Viewport.Width - 10, 
                 ScreenManager.GraphicsDevice.Viewport.Height - 225), ScreenManager.SpriteBatch, 
                 new Vector2(ball.Position.X, ball.Position.Z), new Vector2(ball.Position.X, ball.Position.Z), 
-                new Vector2(user.shootingPosition.X, user.shootingPosition.Z), ScreenManager.Game.Content);
+                new Vector2(user.ShootingPosition.X, user.ShootingPosition.Z), ScreenManager.Game.Content);
 
             //whistle = ScreenManager.Game.Content.Load<SoundEffect>("whistle");
 
@@ -149,12 +149,12 @@ namespace Mechanect.Exp3
                 return;
             
             float distance = animation.Displacement.Length();
-            float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
+            float totalDistance = (user.ShootingPosition - animation.StartPosition).Length();
             if (distance / totalDistance > 0.5 && !pauseScreenShowed)
             {
                 pauseScreenShowed = true;
                 FreezeScreen();
-                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.assumedLegMass, 
+                ScreenManager.AddScreen(new PauseScreen(user, arriveVelocity, ball.Mass, user.AssumedLegMass, 
                     environment.HoleProperty.Position));
             }
             bar.Update(new Vector2(ball.Position.X, ball.Position.Z));
@@ -167,11 +167,11 @@ namespace Mechanect.Exp3
                     hasWhistled = true;
                 }*/
                 user.UpdateMeasuringVelocityAndAngle(gameTime);
-                Vector3 shootVelocity = user.velocity;
-                if (user.hasShot && shootVelocity.Length() != 0)
+                Vector3 shootVelocity = user.Velocity;
+                if (user.HasShot && shootVelocity.Length() != 0)
                 {
                     firstAnimation = false;
-                    this.shootVelocity = Functions.GetVelocityAfterCollision(shootVelocity, ball.Mass, user.assumedLegMass, arriveVelocity, Constants3.velocityScale);
+                    this.shootVelocity = Functions.GetVelocityAfterCollision(shootVelocity, ball.Mass, user.AssumedLegMass, arriveVelocity, Constants3.velocityScale);
                     animation = new BallAnimation(ball, environment, this.shootVelocity);
                 }
             }
@@ -195,7 +195,7 @@ namespace Mechanect.Exp3
                 animation.Stop();
             
             if (animation.Finished && simulation == null)
-                simulation = new Simulation(ball, environment, user.shootingPosition, shootVelocity,
+                simulation = new Simulation(ball, environment, user.ShootingPosition, shootVelocity,
                     ScreenManager.Game.Content, ScreenManager.GraphicsDevice, ScreenManager.SpriteBatch);
         }
 
@@ -217,7 +217,7 @@ namespace Mechanect.Exp3
             if (firstAnimation)
             {
                 float distance = animation.Displacement.Length();
-                float totalDistance = (user.shootingPosition - animation.StartPosition).Length();
+                float totalDistance = (user.ShootingPosition - animation.StartPosition).Length();
                 if (distance / totalDistance > 1)
                 {
                     DrawStatus();
@@ -322,9 +322,9 @@ namespace Mechanect.Exp3
                 return Constants3.negativeBMass;
             if (environment.HoleProperty.Radius <= 0)
                 return Constants3.negativeHRadius;
-            if (user.assumedLegMass <= 0)
+            if (user.AssumedLegMass <= 0)
                 return Constants3.negativeLMass;
-            if (environment.HoleProperty.Position.Z - user.shootingPosition.Z > 0)
+            if (environment.HoleProperty.Position.Z - user.ShootingPosition.Z > 0)
                 return Constants3.negativeHPosZ;
             if (Environment3.Friction > 0)
                 return Constants3.negativeFriction;
@@ -332,17 +332,17 @@ namespace Mechanect.Exp3
                 return Constants3.negativeRDifference;
             
             Vector3 finalPos = Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
-                new Vector3(0, 0, Constants3.maxVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
+                new Vector3(0, 0, Constants3.maxVelocityZ), ball.Mass, user.AssumedLegMass, arriveVelocity,
                 (float)Constants3.velocityScale), Environment3.Friction, ball.Position);
  
-            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) < Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition))
+            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) < Vector3.DistanceSquared(environment.HoleProperty.Position, user.ShootingPosition))
                 return Constants3.holeOutOfFarRange;
 
             finalPos = Vector3.Zero; Functions.GetFinalPosition(Functions.GetVelocityAfterCollision(
-                new Vector3(0, 0, Constants3.minVelocityZ), ball.Mass, user.assumedLegMass, arriveVelocity,
+                new Vector3(0, 0, Constants3.minVelocityZ), ball.Mass, user.AssumedLegMass, arriveVelocity,
                 (float)Constants3.velocityScale), Environment3.Friction, ball.Position);
  
-            if (Vector3.DistanceSquared(finalPos, user.shootingPosition) > Vector3.DistanceSquared(environment.HoleProperty.Position, user.shootingPosition)) //length squared used for better performance than length
+            if (Vector3.DistanceSquared(finalPos, user.ShootingPosition) > Vector3.DistanceSquared(environment.HoleProperty.Position, user.ShootingPosition)) //length squared used for better performance than length
                 return Constants3.holeOutOfNearRange;
 
             return Constants3.solvableExperiment;
@@ -366,7 +366,7 @@ namespace Mechanect.Exp3
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
             if (Math.Abs(hole.Position.X) > Constants3.maxHolePosX - hole.Radius)
                 hole.Position = new Vector3(Constants3.maxHolePosX - hole.Radius, hole.Position.Y, hole.Position.Z);
-            if (hole.Position.Z >= user.shootingPosition.Z)
+            if (hole.Position.Z >= user.ShootingPosition.Z)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
 
             var x = Constants3.solvableExperiment;
@@ -383,7 +383,7 @@ namespace Mechanect.Exp3
                             Environment3.Wind++;
                         else hole.Position = new Vector3(hole.Position.X / 2, hole.Position.Y, hole.Position.Z + 1); break;
                     case Constants3.negativeRDifference: int tmp = (int)ball.Radius; ball.Radius = (hole.Radius); hole.Radius = (tmp); break;
-                    case Constants3.negativeLMass: user.assumedLegMass *= -1; break;
+                    case Constants3.negativeLMass: user.AssumedLegMass *= -1; break;
                     case Constants3.negativeBMass: ball.Mass *= -1; break;
                     case Constants3.negativeBRradius: ball.Radius *= -1; break;
                     case Constants3.negativeHRadius: hole.Radius *= -1; break;
