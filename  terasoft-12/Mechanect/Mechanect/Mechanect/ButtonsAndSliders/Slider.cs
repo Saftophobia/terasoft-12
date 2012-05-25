@@ -24,8 +24,6 @@ namespace ButtonsAndSliders
         private User user;
         private Timer1 timer;
 
-        private ContentManager content;
-
         /// <summary>
         /// The constructor used to initialize the slider.
         /// </summary>
@@ -35,16 +33,14 @@ namespace ButtonsAndSliders
         /// <param name="position">The position of the slider, where the center is the top left corner.</param>
         /// <param name="screenW">The width of the screen.</param>
         /// <param name="screenH">The height of the screen.</param>
-        /// <param name="content">The content manager to load the textures.</param>
         /// <param name="user">The instance of the user.</param>
-        public Slider(Vector2 position, int screenW, int screenH, ContentManager content, User user)
+        public Slider(Vector2 position, int screenW, int screenH, User user)
         {
             this.screenW = screenW;
             this.screenH = screenH;
             Value = 1;
 
             this.user = user;
-            this.content = content;
             timer = new Timer1();
 
             positionBar = position;
@@ -58,7 +54,8 @@ namespace ButtonsAndSliders
         /// <remarks>
         /// <para>AUTHOR: AhmeD HegazY</para>
         /// </remarks>
-        public void LoadContent()
+        /// <param name="content">The content manager to load the textures.</param>
+        public void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("Textures/Slider/off");
             onPic = content.Load<Texture2D>("Textures/Slider/on");
