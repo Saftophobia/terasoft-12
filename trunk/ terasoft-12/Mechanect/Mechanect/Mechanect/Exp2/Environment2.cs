@@ -288,7 +288,7 @@ namespace Mechanect.Exp2
         /// </para>
         /// </remarks>
         /// <returns>a boolean flag which is true if the prey is eating and false otherwise</returns>
-        private bool isPreyEaten()
+        private bool PreyEaten()
         {
             if (Predator.Location.X >= Prey.Location.X - Prey.Width / 2
                 && Predator.Location.X <= Prey.Location.X + Prey.Width / 2
@@ -308,7 +308,7 @@ namespace Mechanect.Exp2
         /// </para>
         /// </remarks>
         /// <returns>returns true if the predator reached the aquarium</returns>
-        private bool isAquariumReached()
+        private bool AquariumReached()
         {
             if (Predator.Location.X >= Aquarium.Location.X - Aquarium.Width / 2
                 && Predator.Location.X <= Aquarium.Location.X + Aquarium.Width / 2
@@ -331,8 +331,8 @@ namespace Mechanect.Exp2
             if (Predator.Movable)
             {
                 Predator.UpdatePosition(gameTime);
-                if (!Prey.Eaten) Prey.Eaten = isPreyEaten();
-                Predator.Movable = !(isAquariumReached() || Predator.Location.Y < 0);
+                if (!Prey.Eaten) Prey.Eaten = PreyEaten();
+                Predator.Movable = !(AquariumReached() || Predator.Location.Y < 0);
                 return true;
             }
             return false;
