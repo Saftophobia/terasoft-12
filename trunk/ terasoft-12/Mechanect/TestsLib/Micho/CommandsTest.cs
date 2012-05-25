@@ -16,18 +16,6 @@ namespace Tests
          List<string> currentCommands;
          float tolerance;
 
-        //[SetUp]
-        //public void Init()
-        //{
-
-        //    timeInSeconds = 0F;
-        //    user1 = new User1();
-        //    user2 = new User1();
-        //    timeOfCommands = new List<int> { 5, 4, 6, 3, 8, 1 };
-        //    currentCommands = new List<string> { "increasingAcceleration", "decreasingAcceleration", 
-        //        "constantVelocity", "constantDisplacement", "constantAcceleration", "abcd" };
-        //    tolerance = 0F;
-        //}
         [TestFixtureSetUp]
         public void MyTestInitialize()
         {
