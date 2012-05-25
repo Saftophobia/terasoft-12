@@ -234,8 +234,11 @@ namespace Mechanect.Exp2
 
                     if (HandStopped(angleList))
                     {
-                        measuredAngle = currentAngle;
-                        measuredVelocity = MeasureVelocity(angleList, gametime);
+                        if (currentAngle > 10)
+                        {
+                            measuredAngle = currentAngle;
+                            measuredVelocity = MeasureVelocity(angleList, gametime);
+                        }
                         shooting = false;
                         beforeHip = false;
                         angleList.Clear();
