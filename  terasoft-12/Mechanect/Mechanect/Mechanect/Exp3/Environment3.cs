@@ -249,7 +249,7 @@ namespace Mechanect.Exp3
             rasterizerState.FillMode = FillMode.Solid;
             device.RasterizerState = rasterizerState;
 
-            var worldMatrix = Matrix.CreateTranslation(-terrainWidth / 2.0f, 0, terrainHeight / 2.0f);
+            var worldMatrix = Matrix.CreateTranslation((-terrainWidth / 2.0f), 0, (terrainHeight / 2.0f));
             //Matrix worldMatrix = Matrix.Identity;
             //Sets the effects to be used from the fx file such as coloring the terrain and adding lighting.
             effect.CurrentTechnique = effect.Techniques["Textured"];
@@ -448,7 +448,7 @@ namespace Mechanect.Exp3
         private Texture2D CreateStaticMap(int resolution)
         {
             var rand = new Random();
-            Color[] noisyColors = new Color[resolution * resolution];
+            Color[] noisyColors = new Color[(resolution * resolution)];
 
             for (var x = 0; x < resolution; x++)
             {
