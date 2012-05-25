@@ -129,10 +129,12 @@ namespace Mechanect.Exp2
         /// <param name="predatorPosition">Vector2, the center point of the predator</param>
         /// <param name="preyPosition">Rect, the rectangle that represents the position of the prey</param>
         /// <param name="aquariumPosition">Rect, the rectangle that represents the position of the aquarium</param>
-        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition, float optimalVelocity, float optimalAngle)
+        /// <param name="optimalVelocity">float, the correct velocity that should be applied by the user</param>
+        /// <param name="optimalAngle">float, the correct angle that should be applied by the user</param>
+        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float optimalVelocity, float optimalAngle)
         {
             user.Reset();
-            environment = new Environment2(predatorPosition, preyPosition, AquariumPosition, optimalVelocity, optimalAngle);
+            environment = new Environment2(predatorPosition, preyPosition, aquariumPosition, optimalVelocity, optimalAngle);
             initialPredatorPosition = environment.Predator.Location;
             initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y,
                 environment.Prey.Width, environment.Prey.Length);
