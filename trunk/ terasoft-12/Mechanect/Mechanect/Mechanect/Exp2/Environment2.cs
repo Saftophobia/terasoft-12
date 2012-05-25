@@ -77,26 +77,7 @@ namespace Mechanect.Exp2
             StartAquarium = new Aquarium(initialPredatorLocation, Aquarium.Width, Aquarium.Length);
 
         }
-        /// <summary>
-        /// Constructor that assigns Predator,prey and aquarium positions,length and width
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <param name="position">represents position for predator</param>
-        /// <param name="prey">represents x and y coordinates for prey + length + width</param>
-        /// <param name="aquriaum">represents x and y coordinates for aquarium + length + width</param>
-
-        public Environment2(Vector2 position, Rectangle prey, Rectangle aquriaum)
-        {
-            Predator = new Predator(position);
-            Prey = new Prey(new Vector2(prey.X, prey.Y), prey.Width, prey.Height);
-            Aquarium = new Aquarium(new Vector2(aquriaum.X, aquriaum.Y), aquriaum.Width, aquriaum.Height);
-            initialPredatorLocation = new Vector2(position.X, position.Y);
-            StartAquarium = new Aquarium(initialPredatorLocation, aquriaum.Width, aquriaum.Height);
-
-        }
-
+       
         /// <summary>
         /// Constructor that assigns Predator,prey and aquarium positions,length and width
         /// </summary>
@@ -114,6 +95,18 @@ namespace Mechanect.Exp2
             (float)aquriaum.Width, (float)aquriaum.Height);
             initialPredatorLocation = new Vector2(position.X, position.Y);
             StartAquarium = new Aquarium(initialPredatorLocation, (float)aquriaum.Width, (float)aquriaum.Height);
+        }
+
+        public Environment2(Vector2 position, Rect prey, Rect aquriaum,double velocity,double angle)
+        {
+            Predator = new Predator(position);
+            Prey = new Prey(new Vector2((float)prey.X, (float)prey.Y), (float)prey.Width, (float)prey.Height);
+            Aquarium = new Aquarium(new Vector2((float)aquriaum.X, (float)aquriaum.Y),
+            (float)aquriaum.Width, (float)aquriaum.Height);
+            initialPredatorLocation = new Vector2(position.X, position.Y);
+            StartAquarium = new Aquarium(initialPredatorLocation, (float)aquriaum.Width, (float)aquriaum.Height);
+            this.velocity = velocity;
+            this.angle = angle * (Math.PI / 180);
         }
         /// <summary>
         /// generates random angle between 20 and 70
