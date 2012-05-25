@@ -30,7 +30,7 @@ namespace TestsLib.Omar
             graphics = exp.ScreenManager.GraphicsDevice;
             Content = exp.ScreenManager.Game.Content;
             environment = Constants3.environment3;
-            ball = environment.ball;
+            ball = exp.BallPorperty;
             hole = environment.HoleProperty;
             
         }
