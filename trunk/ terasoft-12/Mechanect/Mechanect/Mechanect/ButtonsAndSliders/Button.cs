@@ -199,7 +199,7 @@ namespace ButtonsAndSliders
             if (skeleton != null)
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH);
-                Rectangle r1 = new Rectangle(hand.X, hand.Y, 5, 5);
+                Rectangle r1 = new Rectangle(hand.X, hand.Y, 20, 20);
                 Rectangle r2 = new Rectangle((int)position.X, (int)position.Y, 
                     texture.GetTexture().Width, texture.GetTexture().Height);
 
