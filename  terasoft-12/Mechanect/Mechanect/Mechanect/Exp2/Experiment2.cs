@@ -117,10 +117,7 @@ namespace Mechanect.Exp2
 
         }
 
-        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
-        {
-        }
-
+        
         /// <summary>
         /// A constructor that specifies a special setup to the game
         /// </summary>
