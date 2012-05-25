@@ -292,7 +292,6 @@ C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Co
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Textures\Buttons\solution-s.xnb
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Textures\effects.xnb
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\effects.xnb
-C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Textures\MYHLSL.xnb
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\BEEP1B.xnb
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\StartBeep.xnb
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\crowd_cheer.xnb
@@ -315,7 +314,6 @@ C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Te
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\GifAnimation.dll
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\GifAnimation.Pipeline.dll
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Mechanect.exe
-C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\nunit.framework.dll
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Physics.dll
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\UI.dll
 C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModel.dll
@@ -545,3 +543,18 @@ E:\Mechanect Final\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\nunit.f
 E:\Mechanect Final\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Microsoft.Xna.Framework.Content.Pipeline.xml
 E:\Mechanect Final\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModel.pdb
 E:\Mechanect Final\terasoft-12\ terasoft-12\Mechanect\TestsLib\obj\Debug\TestsLib.pdb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\1.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\2.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\back.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\bike.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\chearingbackground.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\finish.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\flag1.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\flag2.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\start.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\track.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Textures\Screens\AdjustPosition.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Textures\Screens\SettingsScreen.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\ArielBig.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\Crowd1.xnb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Exp1\2Dcontent\Crowd2.xnb
