@@ -51,7 +51,7 @@ namespace Mechanect.Common
         }
 
         /// <summary>
-        /// Unloads the conent of the screens managed by the screenManager.
+        /// Unloads the content of the screens managed by the screenManager.
         /// </summary>
 		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         protected override void UnloadContent()
@@ -64,7 +64,7 @@ namespace Mechanect.Common
         #region Update and Draw
 
         /// <summary>
-        /// Updates the screens that are managed by the screenManager.
+        /// Updates the screens managed by the screenManager.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
 		/// <param name="gameTime">Represents the time of the game.</param>
@@ -97,7 +97,7 @@ namespace Mechanect.Common
             }
         }
         /// <summary>
-        /// Updates the screens that are managed by the screenManager.
+        /// Updates the screens managed by the screenManager.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
 		/// <param name="gameTime">Represents the time of the game.</param>
@@ -115,7 +115,7 @@ namespace Mechanect.Common
 
         #region Methods
         /// <summary>
-        /// Adds a screen to the list of screens that are managed by the screenManager.
+        /// Adds a screen to the list of screens managed by the screenManager.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
 		/// <param name="screen">Represents the screen that should be managed by the screenManager.</param>
@@ -128,7 +128,7 @@ namespace Mechanect.Common
         }
 
         /// <summary>
-        /// Removes a screen from the list of screens that are managed by the screenManager.
+        /// Removes a screen from the list of screens managed by the screenManager.
         /// </summary>
 		/// <remarks><para>AUTHOR: Ahmed Badr</para></remarks>
         /// <param name="screen">Represents the screen that should be removed from the list
