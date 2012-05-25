@@ -7,6 +7,12 @@ using ButtonsAndSliders;
 using Microsoft.Xna.Framework.Content;
 namespace Mechanect.Screens
 {
+    /// <summary>
+    /// This class represents the instructions screen for experiment 3 which shows the user the basic rules of the game.
+    /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Khaled Salah </para>
+    /// </remarks>
     class InstructionsScreen3 : GameScreen
     {
         SpriteBatch spriteBatch;
