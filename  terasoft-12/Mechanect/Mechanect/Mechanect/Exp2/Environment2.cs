@@ -43,12 +43,36 @@ namespace Mechanect.Exp2
         #endregion
 
         #region InstanceVariables + gettersAndSetters/Tamer
+        /// <summary>
+        /// getter and setter for Prey
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public Prey Prey { get; set; }
+        /// <summary>
+        /// getter and setter for Predator
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public Predator Predator { get; set; }
+        /// <summary>
+        /// getter and setter for Aquarium
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public Aquarium Aquarium { get; set; }
         public Aquarium StartAquarium { get; set; }
         private readonly Random random;
         private double velocity;
+        /// <summary>
+        /// getter and setter for velocity
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public double Velocity
         {
             get { return velocity; }
@@ -59,6 +83,9 @@ namespace Mechanect.Exp2
         /// <summary>
         /// getAngle,returns the angle in degree.
         /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public double Angle
         {
             get { return angle * (180 / Math.PI); }
@@ -66,7 +93,12 @@ namespace Mechanect.Exp2
         #endregion
 
         #region Constructor + generatingSolvablePoints/Tamer
-
+        /// <summary>
+        /// Constructor for Enviroment2 Class
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public Environment2()
         {
             random = new Random();
@@ -77,16 +109,16 @@ namespace Mechanect.Exp2
             StartAquarium = new Aquarium(initialPredatorLocation, Aquarium.Width, Aquarium.Length);
 
         }
-       
         /// <summary>
-        /// Constructor that assigns Predator,prey and aquarium positions,length and width
+        /// Constructor that assigns Predator,prey and aquarium positions,length and width.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
-        /// <param name="position">represents position for predator</param>
-        /// <param name="prey">represents x and y coordinates for prey + length + width</param>
-        /// <param name="aquriaum">represents x and y coordinates for aquarium + length + width</param>
+        /// <param name="position">Represents position for predator</param>
+        /// <param name="prey">Represents x and y coordinates for prey + length + width</param>
+        /// <param name="aquriaum">Represents x and y coordinates for aquarium + length + width</param>
+
         public Environment2(Vector2 position, Rect prey, Rect aquriaum)
         {
             Predator = new Predator(position);
@@ -95,7 +127,21 @@ namespace Mechanect.Exp2
             (float)aquriaum.Width, (float)aquriaum.Height);
             initialPredatorLocation = new Vector2(position.X, position.Y);
             StartAquarium = new Aquarium(initialPredatorLocation, (float)aquriaum.Width, (float)aquriaum.Height);
+         
         }
+
+
+        /// <summary>
+        /// Constructor that assigns Predator,prey and aquarium positions,length and width,velocity and angle.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="position">Represents position for predator</param>
+        /// <param name="prey">Represents x and y coordinates for prey + length + width</param>
+        /// <param name="aquriaum">Represents x and y coordinates for aquarium + length + width</param>
+        /// <param name="velocity">Represents the velocity of hand</param>
+        /// <param name="angle">Represents the angle of hand</param>
 
         public Environment2(Vector2 position, Rect prey, Rect aquriaum,double velocity,double angle)
         {
@@ -218,7 +264,7 @@ namespace Mechanect.Exp2
         /// <summary>
         /// generate Random number between min and max
         /// </summary>
-        ///   <remarks>
+        ///  <remarks>
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <param name="min">min number to generate</param>
