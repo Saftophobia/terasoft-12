@@ -51,7 +51,7 @@ namespace Mechanect.Screens
         private double ballVelocity;
         private double ballMass;
         private double legMass;
-        private String displayedGivens;
+        private string displayedGivens;
 
 
         private SpriteFont font;
@@ -186,7 +186,7 @@ namespace Mechanect.Screens
                    
                     if (!user.hasMissed)
                     {
-                        velocity = Functions.SetVelocityRelativeToGivenMass((float)user.assumedLegMass,Constants3.normalLegMass,user.velocity);
+                        velocity = Functions.SetVelocityRelativeToGivenMass((float)user.assumedLegMass, Constants3.normalLegMass, user.velocity);
                         int draw;
                         if (velocity.Length() * Constants3.velocityScale > 31)
                             draw = 31;
@@ -216,10 +216,13 @@ namespace Mechanect.Screens
                         {
                             if (framesToWait >= 0 && framesToWait <= 60)
                                 count = "3";
+                            else
                             if (framesToWait > 60 && framesToWait <= 120)
                                 count = "2";
+                            else
                             if (framesToWait > 120 && framesToWait <= 180)
                                 count = "1";
+                            else
                             if (framesToWait > 180 && framesToWait <= 240)
                             {
                                 count = "GO!";
@@ -261,8 +264,8 @@ namespace Mechanect.Screens
             spriteBatch.Begin();
             spriteBatch.Draw(givens, givensPosition, null, Color.White, 0, new Vector2(givens.Width / 2, givens.Height / 2),
                 0.9f, SpriteEffects.None, 0);
-            spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2, velocityBar.Height / 2),
-                1f, SpriteEffects.None, 0);
+            spriteBatch.Draw(velocityBar, vBarPosition, null, Color.White, 0, new Vector2(velocityBar.Width / 2,
+                velocityBar.Height / 2), 1f, SpriteEffects.None, 0);
 
             for (int i = 0; i < fills.Count; i++)
                 spriteBatch.Draw(fills.ElementAt<Texture2D>(i), fillsPositions.ElementAt<Vector2>(i), null,
