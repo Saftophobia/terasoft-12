@@ -364,7 +364,7 @@ namespace Mechanect.Exp2
             labelsFont = contentManager.Load<SpriteFont>("Ariel");
 
             Predator.setTexture(contentManager);
-            Prey.setTexture(contentManager);
+            Prey.SetTexture(contentManager);
             Aquarium.setTexture(contentManager);
             StartAquarium.setTexture(contentManager);
 
