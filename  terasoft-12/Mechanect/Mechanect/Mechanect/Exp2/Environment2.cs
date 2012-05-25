@@ -580,8 +580,8 @@ namespace Mechanect.Exp2
             spriteBatch.DrawString(labelsFont, (Math.Round(StartAquarium.Location.Y, 1) + ""), new Vector2(axis.X - 4 *
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) +
                 "")).X - 1.3f * (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X,
-                labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X)), predatorPosition.Y -
-                labelsFont.MeasureString((Math.Round(Predator.Location.Y, 1) + "")).Y / 2), Color.Red, 0f,
+                labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X)), startAquariumPosition.Y -
+                labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) + "")).Y / 2), Color.Red, 0f,
                 Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
             //Predator
@@ -592,6 +592,7 @@ namespace Mechanect.Exp2
                  (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).Y,
                 labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).Y))),
                 Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            
             spriteBatch.DrawString(labelsFont, (Math.Round(Predator.Location.Y, 1) + ""), new Vector2(axis.X - 4 *
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(Predator.Location.Y, 1) +
                 "")).X - 1.3f * (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X,
