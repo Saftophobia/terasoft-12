@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Screens
 {
     /// <summary>
-    /// This class Represents the screen where the user picks an experiment.
+    /// This class represents the screen where the user picks an experiment.
     /// </summary>
     /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
     class AllExperiments : Mechanect.Common.GameScreen
@@ -38,6 +38,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Creates a new instance of AllExperiments.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="user">The user that will be tracked when this screen is active.</param>
         public AllExperiments(User user)
         {    
@@ -47,6 +48,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Loads the content of this screen.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public override void LoadContent()
         {
             this.content = ScreenManager.Game.Content;
@@ -81,6 +83,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Performs the necessary updates for the AllExperiments screen.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
@@ -113,6 +116,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the AllExperiments screen.
         /// </summary>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
