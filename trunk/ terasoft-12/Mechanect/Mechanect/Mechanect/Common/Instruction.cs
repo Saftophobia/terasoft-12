@@ -1,12 +1,9 @@
-using System;
-using System.Text;
+using ButtonsAndSliders;
+using Mechanect.Common;
+using Mechanect.Exp3;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Mechanect.Common;
-using Mechanect.Classes;
-using ButtonsAndSliders;
-using Mechanect.Exp3;
 
 namespace Mechanect
 {
