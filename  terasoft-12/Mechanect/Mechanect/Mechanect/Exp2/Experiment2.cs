@@ -19,19 +19,45 @@ namespace Mechanect.Exp2
     /// </remarks>
     public class Experiment2 : Mechanect.Common.GameScreen
     {
-        VoiceCommands voiceCommand;
-        User2 user;
-        Boolean aquariumReached;
-        MKinect mKinect;
-        Button button;
-        Vector2 buttonPosition;
-        Boolean ended;
-        int milliSeconds;
-        Boolean isCopied;
+        private VoiceCommands voiceCommand;
+        private User2 user;
+        private bool aquariumReached;
+        private MKinect mKinect;
+        private Button button;
+        private Vector2 buttonPosition;
+        private bool ended;
+        private int milliSeconds;
+        private bool isCopied;
 
         private Vector2 initialPredatorPosition;
         private Rect initialPreyPosition;
         private Rect initialAquariumPosition;
+#region: GUI instance Variables
+        // An instance of the environment2 Class (acts as an engine for this class)
+        private Environment2 environment;
+
+        // Variable for fontSprite
+        private SpriteFont velAngleFont;
+
+        // Variables Contaiing the Textures Definintion 
+        private Texture2D grayTexture;
+        private Texture2D velocityTexture;
+        private Texture2D angleTexture;
+        private Texture2D backgroundTexture;
+
+        // Variables That will be used as scaling for the Textures
+        private Vector2 grayTextureScaling;
+        private float velocityTextureScaling;
+        private float angleTextureScaling;
+
+        // A variable to specify the percentage left and write when drawing the velocity and angle gauges
+        private float velocityAngleShift;
+
+        // Variables defining the appearence of some objects or states
+        private bool grayScreen;
+        private bool preyEaten;
+        #endregion
+
 
         /// <summary>
         /// Instance Variables
@@ -65,32 +91,7 @@ namespace Mechanect.Exp2
             }
         }
         #endregion
-        #region: GUI instance Variables
-        // An instance of the environment2 Class (acts as an engine for this class)
-        private Environment2 environment;
-
-        // Variable for fontSprite
-        private SpriteFont velAngleFont;
-
-        // Variables Contaiing the Textures Definintion 
-        private Texture2D grayTexture;
-        private Texture2D velocityTexture;
-        private Texture2D angleTexture;
-        private Texture2D backgroundTexture;
-
-        // Variables That will be used as scaling for the Textures
-        private Vector2 grayTextureScaling;
-        private float velocityTextureScaling;
-        private float angleTextureScaling;
-
-        // A variable to specify the percentage left and write when drawing the velocity and angle gauges
-        private float velocityAngleShift;
-
-        // Variables defining the appearence of some objects or states
-        private Boolean grayScreen;
-        private Boolean preyEaten;
-        #endregion
-
+        
         /// <summary>
         /// This is a constructor that will initialize the grphicsDeviceManager and define the Content directory.
         /// in adition to initializing some instance variables
