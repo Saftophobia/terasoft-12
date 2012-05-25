@@ -186,12 +186,12 @@ namespace Mechanect.Exp3
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="c">The camera the environment is viewed from.</param>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Draw(Camera c, GameTime gameTime)
+        public void Draw(Camera camera, GameTime gameTime)
         {
-            DrawEnvironment(c, gameTime);
+            DrawEnvironment(camera, gameTime);
             hole.LoadContent(Content.Load<Model>("Models/holemodel"));
-            hole.Draw(c);
-            PlayerModel.Draw(c);
+            hole.Draw(camera);
+            PlayerModel.Draw(camera);
         }
 
         #region Environment Generation Code
@@ -200,7 +200,7 @@ namespace Mechanect.Exp3
         /// Loads the content of the environment.
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
-        public void LoadEnvironmentContent()
+        private void LoadEnvironmentContent()
         {
 
             //loads the the fx file to use the effects defined in it
@@ -231,7 +231,7 @@ namespace Mechanect.Exp3
         /// </summary>
         /// <remarks><para>AUTHOR: Ahmad Sanad</para></remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void DrawEnvironment(Camera camera, GameTime gameTime)
+        private void DrawEnvironment(Camera camera, GameTime gameTime)
         {
             var time = (float)gameTime.TotalGameTime.TotalMilliseconds / 100.0f;
             GeneratePerlinNoise(time);
