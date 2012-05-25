@@ -35,8 +35,6 @@ namespace Mechanect.Screens
         private string white = "White: Too Far.";
         private string red = "Red: Too Near.";
         private string crossed = "Crossed: Not Detected.";
-        private string[] strings;
-        private Color[] colors;
         //private Instruction instruction;
         private User3 user3;
         private Texture2D myTexture;
@@ -46,8 +44,6 @@ namespace Mechanect.Screens
         SpriteFont font1;
         SpriteFont font2;
         SpriteFont font3;
-        private Rectangle[] rectangles;
-        Color colorCode;
 
         public InstructionsScreen3(User3 user3)
         {
