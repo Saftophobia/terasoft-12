@@ -37,7 +37,9 @@ namespace TestsLib.Omar
         [Test]
         public void CheckIfFall()
         {
-            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.ShootingPosition, 0, friction));
+            Vector3 optimalVelocity = LinearMotion.CalculateInitialVelocity(hole.Position -
+                user.ShootingPosition, 0, Environment3.Friction);
+            animation = new BallAnimation(ball, environment, optimalVelocity);
             Assert.IsTrue(animation.willFall);
         }
 
