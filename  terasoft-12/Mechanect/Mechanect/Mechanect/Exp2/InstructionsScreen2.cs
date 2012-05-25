@@ -108,14 +108,22 @@ namespace Mechanect.Screens
             spriteBatch.Draw(myTexture, rect, Color.White);
             button.Draw(spriteBatch, scale);
             spriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
-            UILib.Write(title1, new Rectangle(screenWidth / 10 - 40, screenHeight / 5, screenWidth, screenHeight), spriteBatch, content, font2, Color.DarkRed);
-            UILib.Write(text1, new Rectangle(screenWidth / 10 - 22, screenHeight / 4 + 18, screenWidth - 200, screenHeight), spriteBatch, content, font3, Color.Black);
-            UILib.Write(title2, new Rectangle(screenWidth / 10 - 40, screenHeight / 2 + 90, screenWidth, screenHeight), spriteBatch, content, font2, Color.DarkRed);
-            UILib.Write(text2, new Rectangle(screenWidth / 10 - 22, screenHeight / 2 + 140, screenWidth, screenHeight), spriteBatch, content, font3, Color.Black);
-            UILib.Write(green, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 155, screenWidth, screenHeight), spriteBatch, content, font3, Color.Green);
-            UILib.Write(white, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 170, screenWidth, screenHeight), spriteBatch, content, font3, Color.White);
-            UILib.Write(red, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 185, screenWidth, screenHeight), spriteBatch, content, font3, Color.DarkRed);
-            UILib.Write(crossed, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 200, screenWidth, screenHeight), spriteBatch, content, font3, Color.DarkGray);
+            UILib.Write(title1, new Rectangle(screenWidth / 10 - 40, screenHeight / 5, screenWidth, screenHeight), 
+                spriteBatch, font2, Color.DarkRed);
+            UILib.Write(text1, new Rectangle(screenWidth / 10 - 22, screenHeight / 4 + 18, screenWidth - 200, screenHeight), 
+                spriteBatch, font3, Color.Black);
+            UILib.Write(title2, new Rectangle(screenWidth / 10 - 40, screenHeight / 2 + 90, screenWidth, screenHeight), 
+                spriteBatch, font2, Color.DarkRed);
+            UILib.Write(text2, new Rectangle(screenWidth / 10 - 22, screenHeight / 2 + 140, screenWidth, screenHeight), 
+                spriteBatch, font3, Color.Black);
+            UILib.Write(green, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 155, screenWidth, screenHeight), 
+                spriteBatch, font3, Color.Green);
+            UILib.Write(white, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 170, screenWidth, screenHeight), 
+                spriteBatch, font3, Color.White);
+            UILib.Write(red, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 185, screenWidth, screenHeight), 
+                spriteBatch, font3, Color.DarkRed);
+            UILib.Write(crossed, new Rectangle(screenWidth / 2 + 130, screenHeight / 2 + 200, screenWidth, screenHeight), 
+                spriteBatch, font3, Color.DarkGray);
             button.DrawHand(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
