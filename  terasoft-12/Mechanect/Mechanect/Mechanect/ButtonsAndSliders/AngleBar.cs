@@ -215,6 +215,20 @@ namespace Mechanect.ButtonsAndSliders
             return "OK!";
         }
 
+
+        /// <summary>
+        /// Getter for the User's State
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="id">an int representing the ID of the user</param>
+        /// <returns>bool, Returns true if the user is standing with the correct orientation</returns>
+        public bool UserAccepted(int ID)
+        {
+            return Angle(ID) < maxAngle && Angle(ID) > minAngle;
+        }
+
         /// <summary>
         /// Calculates the Angle of the user specified by the ID
         /// </summary>

@@ -34,7 +34,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Getter for the Users' State
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>bool, Returns true if all users are standing in the correct region</returns>
         public bool Accepted
@@ -52,7 +52,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Getter for the Rule that should be visibile to the user
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>string, returns the Rule that should be followed by the user</returns>
         public string Rule
@@ -116,7 +116,7 @@ namespace Mechanect.ButtonsAndSliders
         /// The method gets the suitable color to fit in the gradient.
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="start">the start position of the gradient</param>
         /// <param name="end">the end position of the gradient</param>
@@ -136,7 +136,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Creates the bar texture, with a gradient representing the accepted and rejected regions
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name ="graphicsDevice">The graphics device of the screen manager</param>
         private Texture2D CreateBar(GraphicsDevice graphicsDevice)
@@ -170,10 +170,23 @@ namespace Mechanect.ButtonsAndSliders
         #region Functions
 
         /// <summary>
+        /// Getter for the User's State
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
+        /// </remarks>
+        /// <param name="id">an int representing the ID of the user</param>
+        /// <returns>bool, Returns true if the user is standing in the correct region</returns>
+        public bool UserAccepted(int ID)
+        {
+            return Depth(ID) < maxDepth && Depth(ID) > minDepth;
+        }
+
+        /// <summary>
         /// A getter to the command that should be visible to the user
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="id">an int representing the ID of the user</param>
         /// <returns>string, returns the command that should be applied by the user to reach the correct position.</returns>
@@ -192,7 +205,7 @@ namespace Mechanect.ButtonsAndSliders
         /// Calculates the Depth of the user specified by the ID
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="ID">the index of the User in the users array</param>
         /// <returns>returns the distance of user from the kinect sensor</returns>
