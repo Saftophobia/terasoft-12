@@ -25,7 +25,7 @@ namespace Mechanect.Screens
         /// Getter for the Users' State
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <returns>bool, Returns true if all users are standing correctly</returns>
         public bool Accepted
@@ -45,7 +45,7 @@ namespace Mechanect.Screens
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Author: Mohamed AbdelAzim
+        /// AUTHOR: Mohamed AbdelAzim
         /// </para>
         /// </remarks>
         /// <param name="user">the object User which tracks the skeleton of the player</param>
@@ -71,7 +71,7 @@ namespace Mechanect.Screens
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Author: Mohamed AbdelAzim
+        /// AUTHOR: Mohamed AbdelAzim
         /// </para>
         /// </remarks>
         /// <param name="user1">the object User which tracks the skeleton of the first player</param>
@@ -116,7 +116,7 @@ namespace Mechanect.Screens
         /// A getter to the command that should be visible to the user
         /// </summary>
         /// <remarks>
-        /// <para>Author: Mohamed AbdelAzim</para>
+        /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
         /// <param name="id">an int representing the ID of the user</param>
         /// <returns>string, returns the command that should be applied by the user to be standing correctly</returns>
@@ -138,7 +138,7 @@ namespace Mechanect.Screens
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Author: Mohamed AbdelAzim
+        /// AUTHOR: Mohamed AbdelAzim
         /// </para>
         /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
@@ -156,7 +156,7 @@ namespace Mechanect.Screens
                     switch (gameID)
                     {
                         case 1:
-                           // ScreenManager.AddScreen(new Experiment1(new Mechanect.Exp1.User1(), new Mechanect.Exp1.User1(), new MKinect())); //commented becoz as a User1 i dont need it anymore
+                           //ScreenManager.AddScreen(new Experiment1(new Mechanect.Exp1.User1(), new Mechanect.Exp1.User1(), new MKinect())); //commented becoz as a User1 i dont need it anymore
                             Remove();
                             break;
                         case 2:
@@ -182,11 +182,11 @@ namespace Mechanect.Screens
         /// <summary>
         /// This is called when the screen should draw itself. displays depth bar and user's rules and commands that allow him to stand correctly
         /// </summary>
-        ///<remarks>
-        ///<para>
-        ///Author: Mohamed AbdelAzim
-        ///</para>
-        ///</remarks>
+        /// <remarks>
+        /// <para>
+        /// AUTHOR: Mohamed AbdelAzim
+        /// </para>
+        /// </remarks>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
