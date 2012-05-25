@@ -107,7 +107,6 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.Begin();
             ScreenManager.SpriteBatch.Draw(myTexture, rect, Color.White);
             button.Draw(ScreenManager.SpriteBatch, scale);
-            button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.DrawString(font1, header, Vector2.Zero, Color.DarkViolet, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title1, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font2, title2, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
@@ -117,6 +116,7 @@ namespace Mechanect.Screens
             ScreenManager.SpriteBatch.DrawString(font3, white, Vector2.Zero, Color.White, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, red, Vector2.Zero, Color.DarkRed, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
             ScreenManager.SpriteBatch.DrawString(font3, crossed, Vector2.Zero, Color.DarkGray, 0, Vector2.Zero, 1f, SpriteEffects.None, 0.0f);
+            button.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
         }
