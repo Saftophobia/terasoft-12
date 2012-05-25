@@ -196,25 +196,14 @@ namespace Mechanect
             spriteBatch.DrawString(spriteFont, output , positionInScreen, Color.Black, 0, origin, 1f, SpriteEffects.None, 0.0f);
             spriteBatch.End();
         }
-        /// <summary>
-        /// This Method would retrun the string, in wraped form
-        /// </summary>
-        /// <para>Author: Mohamed Raafat</para>
-        /// <returns>string</returns>
-        
-
-        string getInsructions()
-        {
-            string output = WrapText(this.instructions);
-            return output;
-        }
-
+  
         /// <summary>
         /// Makes sure that text displayed will not exceeds screen boundries
         /// </summary>
         /// <para>AUTHOR: Mohamed Raafat </para>
         /// <param name="text">text to be displayed on screen</param>
         /// <returns>string</returns>
+        [System.Obsolete("Will be removed from the Entire class. Please make necessary adjusments", false)]
         private string WrapText(string text)
         {
             string line = string.Empty;
