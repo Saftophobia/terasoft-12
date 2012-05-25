@@ -227,7 +227,7 @@ namespace Mechanect.Exp3
 
          public void UpdateSpeed()
          {
-             double currentZ,initialZ,currentX,initialX;
+             double currentZ, initialZ, currentX, initialX;
              if (RightLeg)
              {
                  currentZ = CurrentRightLegPositionZ;
@@ -413,14 +413,18 @@ namespace Mechanect.Exp3
 
          public bool IsMovingForward()
          {
-             double currentZ = CurrentLeftLegPositionZ;
-             double previousZ = PreviousLeftLegPositionZ;
-             double startZ = StartLeftLegPositionZ;
+             double currentZ, previousZ, startZ; 
              if (RightLeg)
              {
                  currentZ = CurrentRightLegPositionZ;
                  previousZ = PreviousRightLegPositionZ;
                  startZ = StartRightLegPositionZ;
+             }
+             else
+             {
+                  currentZ = CurrentLeftLegPositionZ;
+                  previousZ = PreviousLeftLegPositionZ;
+                  startZ = StartLeftLegPositionZ;
              }
              if (startZ >= currentZ)
              {
