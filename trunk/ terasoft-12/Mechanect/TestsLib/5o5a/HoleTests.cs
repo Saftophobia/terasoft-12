@@ -15,17 +15,17 @@ namespace Tests
         {
 
             experiment3 = new Experiment3(new User3());
-            environment3 = experiment3.EnvironmentProperty; 
+            environment3 = experiment3.EnvironmentProperty;
             angleTolerance = 4;
         }
 
         [Test]
         public void Test()
         {
-            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.TerrainHeight);
-            Assert.GreaterOrEqual(environment3.HoleProperty.Position.Z, -(environment3.TerrainHeight));
-            Assert.LessOrEqual(environment3.HoleProperty.Position.X, environment3.TerrainWidth);
-            Assert.GreaterOrEqual(environment3.HoleProperty.Position.X, -environment3.TerrainWidth);
+            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, Constants3.maxHolePosZ);
+            Assert.GreaterOrEqual(environment3.HoleProperty.Position.Z, -(Constants3.maxHolePosZ));
+            Assert.LessOrEqual(environment3.HoleProperty.Position.X, Constants3.maxHolePosX);
+            Assert.GreaterOrEqual(environment3.HoleProperty.Position.X, -Constants3.maxHolePosX);
         }
         [Test]
         public void RadiusTest()
