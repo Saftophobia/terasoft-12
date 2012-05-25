@@ -47,10 +47,11 @@ namespace UI
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="text"></param>
-        /// <param name="position"></param>
-        /// <param name="spriteBatch"></param>
-        /// <param name="contentManager"></param>
+        /// <param name="text">String containing instructions</param>
+        /// <param name="position">Position on the screen for the text to be dsiplayed</param>
+        /// <param name="spriteBatch">Sprite batch to draw the string</param>
+        /// <param name="contentManager">Content</param>
+         [System.Obsolete("will be replaced by  public Instruction(string text, Rectangle position, SpriteBatch spriteBatch, SpriteFont spriteFont, Color color)", false)]
         public static void Write(string text, Rectangle position, SpriteBatch spriteBatch, ContentManager contentManager,
             SpriteFont spriteFont, Color color)
         {
