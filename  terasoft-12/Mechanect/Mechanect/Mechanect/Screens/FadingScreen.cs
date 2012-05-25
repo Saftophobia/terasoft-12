@@ -37,9 +37,9 @@ namespace Mechanect.Screens
         /// <summary>
         /// Creates a new instance of FadingScreen.
         /// </summary>
-        /// <param name="path">path of the image that will be added to the middle of the screen.</param>
-        /// <param name="logoScale">scaling ratio of the image according to the screen's width.</param>
-        /// <param name="rotation">rotation for the image.</param>
+        /// <param name="path">Path of the image that will be added to the middle of the screen.</param>
+        /// <param name="logoScale">Scaling ratio of the image according to the screen's width.</param>
+        /// <param name="rotation">Rotation for the image.</param>
         /// <param name="xPositionPercentOffset">X-axis position offset of the image.</param>
         /// <param name="yPositionPercentOffset">Y-axis position offset of the image.</param>
         public FadingScreen(string path, float logoScalePercentage,float rotation,float xPositionPercentOffset,
@@ -58,6 +58,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Loads the content of this screen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public override void LoadContent()
         {
             black = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/black");
@@ -70,6 +71,7 @@ namespace Mechanect.Screens
        /// <summary>
        /// Updates the content of this screen.
        /// </summary>
+	   /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
        /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
@@ -91,6 +93,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the content of the fading screen.
         /// </summary>
+	    /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
