@@ -82,13 +82,13 @@ namespace TestProjec
         {
 
             Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2)); 
-            target.Draw(new Rectangle(10, 10, 100, 100),
+            target.Draw(new Rectangle(10, 10, 500, 300),
                 new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
                 new GraphicsProfile(), new PresentationParameters())));
             Vector2[] unMapped = { new Vector2(-1, -1), new Vector2(0, 0), new Vector2(1, 1), new Vector2(-1, 1), 
                                      new Vector2(10, 10) };
-            Vector2[] expected = { new Vector2(90.9f, 97.1f), new Vector2(84, 104), new Vector2(90.9f, 97.1f),
-                                     new Vector2(90.9f, 97.1f), new Vector2(153, 35) };
+            Vector2[] expected = { new Vector2(174.2f,193.8f), new Vector2(145, 223), new Vector2(174.2f,193.8f),
+                                     new Vector2(174.2f,193.8f), new Vector2(311,57) };
             
             Vector2 actual;
             for (int i = 0; i < unMapped.Length; i++)
