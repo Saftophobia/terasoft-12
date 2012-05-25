@@ -16,12 +16,12 @@ namespace Mechanect.Exp3
         private int fallFactor;
         private Environment3 environment;
 
-        ///<remarks>
-        ///<para>AUTHOR:Bishoy Bassem,  Omar Abdulaal</para>
-        ///</remarks>
         /// <summary>
         /// Creates a new BallAnimation instance.
         /// </summary>
+        ///<remarks>
+        ///<para>AUTHOR:Bishoy Bassem,  Omar Abdulaal</para>
+        ///</remarks>
         /// <param name="ball">Ball instance.</param>
         /// <param name="environment">Environment3 instance.</param>
         /// <param name="velocity">Intial velocity vector.</param>
@@ -40,13 +40,13 @@ namespace Mechanect.Exp3
 
         }
 
-        ///<remarks>
-        ///<para>AUTHOR: Omar Abdulaal </para>
-        ///</remarks>
         /// <summary>
         /// Updates the animation 
         /// </summary>
-        /// <param name="elapsed">Elapsed Time</param>
+        ///<remarks>
+        ///<para>AUTHOR: Omar Abdulaal </para>
+        ///</remarks>
+        /// <param name="elapsed">Time offset from the last update.</param>
         public override void Update(TimeSpan elapsed)
         {
             base.Update(elapsed);
