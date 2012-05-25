@@ -51,18 +51,18 @@ namespace Mechanect.Screens
             new Vector2((int)(screenWidth * 0.38), (int)(screenHeight * 0.68)), screenWidth,
             screenHeight, user);
 
-            velocity = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.5)), screenWidth, screenHeight,
-            contentManager, user);
+            velocity = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.5)), 
+                screenWidth, screenHeight, user);
 
-            angle = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.6)), screenWidth, screenHeight,
-            contentManager, user);
+            angle = new Slider(new Vector2((int)(screenWidth * 0.35), (int)(screenHeight * 0.6)), 
+                screenWidth, screenHeight, user);
 
 
             level = new levelSelect(this.ScreenManager.Game, new Vector2(110, 125), user);
 
 
-            velocity.LoadContent();
-            angle.LoadContent();
+            velocity.LoadContent(contentManager);
+            angle.LoadContent(contentManager);
 
             backGround = contentManager.Load<Texture2D>("Textures/Screens/settings");
 
