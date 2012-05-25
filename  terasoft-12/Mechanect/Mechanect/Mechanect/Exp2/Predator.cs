@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 
 namespace Mechanect.Exp2
@@ -16,12 +12,12 @@ namespace Mechanect.Exp2
     public class Predator
     {
 
-        Vector2 location;
+        private Vector2 location;
+        private Vector2 velocity;
+
+        private Texture2D fishTexture;
+
         public bool Movable { get; set; }
-
-        Texture2D fishTexture;
-
-
 
         public Vector2 Location
         {
@@ -36,7 +32,6 @@ namespace Mechanect.Exp2
         }
 
 
-        Vector2 velocity;
         public Vector2 Velocity
         {
             get
@@ -46,28 +41,6 @@ namespace Mechanect.Exp2
             set
             {
                 velocity = value;
-            }
-        }
-        public float VelocityX
-        {
-            get
-            {
-                return velocity.X;
-            }
-            set
-            {
-                velocity.X = value;
-            }
-        }
-        public float VelocitY
-        {
-            get
-            {
-                return velocity.Y;
-            }
-            set
-            {
-                velocity.Y = value;
             }
         }
 
@@ -81,11 +54,11 @@ namespace Mechanect.Exp2
             }
         }
 
+
         public Predator(Vector2 location)
         {
             this.location = location;
             Movable = true;
-
         }
 
 
@@ -96,8 +69,6 @@ namespace Mechanect.Exp2
         /// <para>AUTHOR: Tamer Nabil </para>
         /// </remarks>
         /// <returns>returns Vector2 Position of the Predator</returns>
-
-
         public Vector2 getLocation()
         {
             return location;
@@ -128,7 +99,6 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
         /// <param name="contentManager">A content Manager to get the texture from the directories</param>
-
         public void setTexture(ContentManager contentManager)
         {   
             fishTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
