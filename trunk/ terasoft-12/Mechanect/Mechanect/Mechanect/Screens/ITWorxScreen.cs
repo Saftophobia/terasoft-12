@@ -12,14 +12,16 @@ namespace Mechanect.Screens
         /// <summary>
         /// Creates a new instance of ITWorxScreen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public ITworxScreen()
             : base("Resources/Images/ITWorx", 0.6f, 0, 0, -0.06f)
         {
             
         }
         /// <summary>
-        /// Updates this screen
+        /// Updates the content of this screen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
@@ -33,7 +35,8 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the content of this screen.
         /// </summary>
-        /// <param name="gameTime">Represents the time of the game.</param>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
+		/// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.GraphicsDevice.Clear(Color.White);

@@ -15,6 +15,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Creates a new instance of the TeraSoftScreen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public TeraSoftScreen()
             : base("Resources/Images/Terasoft", 0.6f,0,0,-0.06f)
         {
@@ -24,6 +25,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Loads the content of this screen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         public override void LoadContent()
         {
             gucLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Resources/Images/GUC");
@@ -32,7 +34,8 @@ namespace Mechanect.Screens
         /// <summary>
         /// Updates the content of this screen.
         /// </summary>
-        /// <param name="gameTime">Represents the time of the game.</param>
+        /// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
+		/// <param name="gameTime">Represents the time of the game.</param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -46,6 +49,7 @@ namespace Mechanect.Screens
         /// <summary>
         /// Draws the content of this screen.
         /// </summary>
+		/// <remarks><para>AUTHOR: Ahmed Badr.</para></remarks>
         /// <param name="gameTime">Represents the time of the game.</param>
         public override void Draw(GameTime gameTime)
         {
