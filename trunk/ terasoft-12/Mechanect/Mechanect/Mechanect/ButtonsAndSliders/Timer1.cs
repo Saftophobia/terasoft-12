@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace ButtonsAndSliders
 {
     /// <summary>
-    /// Timer
+    /// Timer that calculates the elapsed time.
     /// </summary>
     /// <remarks>
     /// <para>AUTHOR: AhmeD HegazY</para>
