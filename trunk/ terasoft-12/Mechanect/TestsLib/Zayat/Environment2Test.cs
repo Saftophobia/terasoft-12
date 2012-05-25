@@ -78,25 +78,93 @@ namespace TestProjec
         /// <para>DATE MODIFIED: May, 22 </para>
         /// </remarks>
         [Test]
-        public void PositionMapperTest()
+        public void PositionMapperTestLess()
         {
 
             Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2)); 
             target.Draw(new Rectangle(10, 10, 500, 300),
                 new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
                 new GraphicsProfile(), new PresentationParameters())));
-            Vector2[] unMapped = { new Vector2(-1, -1), new Vector2(0, 0), new Vector2(1, 1), new Vector2(-1, 1), 
-                                     new Vector2(10, 10) };
-            Vector2[] expected = { new Vector2(174.2f,193.8f), new Vector2(145, 223), new Vector2(174.2f,193.8f),
-                                     new Vector2(174.2f,193.8f), new Vector2(311,57) };
+            Vector2 unMapped = new Vector2(-1, -1);
+            Vector2 expected = new Vector2(174.2f,193.8f);
             
             Vector2 actual;
-            for (int i = 0; i < unMapped.Length; i++)
-            {
+           
+                actual = target.PositionMapper(unMapped);
+                Assert.AreEqual(expected, actual);
+                Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+        [Test]
+        public void PositionMapperTestEqual()
+        {
 
-                actual = target.PositionMapper(unMapped[i]);
-                Assert.AreEqual(expected[i], actual);
-            }
+            Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2));
+            target.Draw(new Rectangle(10, 10, 500, 300),
+                new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
+                new GraphicsProfile(), new PresentationParameters())));
+            Vector2 unMapped = new Vector2(0, 0);
+            Vector2 expected = new Vector2(145, 223);
+
+            Vector2 actual;
+        
+                actual = target.PositionMapper(unMapped);
+                Assert.AreEqual(expected, actual);
+          
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+        [Test]
+        public void PositionMapperTestMore()
+        {
+
+            Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2));
+            target.Draw(new Rectangle(10, 10, 500, 300),
+                new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
+                new GraphicsProfile(), new PresentationParameters())));
+            Vector2 unMapped = new Vector2(1, 1);
+            Vector2 expected = new Vector2(174.2f, 193.8f);
+
+            Vector2 actual;
+           actual = target.PositionMapper(unMapped);
+                Assert.AreEqual(expected, actual);
+                Assert.Inconclusive("Verify the correctness of this test method.");
+            
+        }
+        [Test]
+        public void PositionMapperTestMixed()
+        {
+
+            Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2));
+            target.Draw(new Rectangle(10, 10, 500, 300),
+                new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
+                new GraphicsProfile(), new PresentationParameters())));
+            Vector2 unMapped = new Vector2(-1, 1);
+            Vector2 expected = new Vector2(174.2f, 193.8f);
+
+            Vector2 actual;
+
+
+            actual = target.PositionMapper(unMapped);
+            Assert.AreEqual(expected, actual);
+
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+        [Test]
+        public void PositionMapperTestLarge()
+        {
+
+            Environment2 target = new Environment2(Vector2.Zero, new Rect(5, 5, 1, 1), new Rect(10, 3, 2, 2));
+            target.Draw(new Rectangle(10, 10, 500, 300),
+                new Microsoft.Xna.Framework.Graphics.SpriteBatch(new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
+                new GraphicsProfile(), new PresentationParameters())));
+            Vector2 unMapped = new Vector2(10,10);
+            Vector2 expected = new Vector2(311, 57);
+
+            Vector2 actual;
+
+
+            actual = target.PositionMapper(unMapped);
+            Assert.AreEqual(expected, actual);
+
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
