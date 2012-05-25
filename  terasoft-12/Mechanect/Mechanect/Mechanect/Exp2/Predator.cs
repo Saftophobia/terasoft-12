@@ -62,20 +62,7 @@ namespace Mechanect.Exp2
         }
 
 
-        /// <summary>
-        /// returns the location of the predator.
-        /// </summary>
-        /// <remarks>
-        /// <para>AUTHOR: Tamer Nabil </para>
-        /// </remarks>
-        /// <returns>returns Vector2 Position of the Predator</returns>
-        public Vector2 getLocation()
-        {
-            return location;
-        }
-
-
-
+ 
         /// <summary>
         /// UpdatePosition is called in each frame when the predator is moving
         /// to update the location of the predator in each frame
