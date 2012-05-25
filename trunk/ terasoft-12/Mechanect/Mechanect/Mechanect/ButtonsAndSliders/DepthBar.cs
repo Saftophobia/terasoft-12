@@ -146,14 +146,15 @@ namespace Mechanect.ButtonsAndSliders
             int avgDepth = (minDepth + maxDepth) / 2;
             for (int i = 0; i < barHeight; i++)
             {
-                if ((400 / barHeight) * i + 50 <= minDepth || (400 / barHeight) * i + 50 >= maxDepth)
+                int currentDepth = (400 * i / barHeight) + 50;
+                if (currentDepth <= minDepth || currentDepth >= maxDepth)
                     data[i] = rejectColor;
-                else if ((400 / barHeight) * i + 50 > (avgDepth + minDepth) / 2 && (400 / barHeight) * i + 50 < (avgDepth + maxDepth) / 2)
+                else if (currentDepth > (avgDepth + minDepth) / 2 && currentDepth < (avgDepth + maxDepth) / 2)
                     data[i] = acceptColor;
-                else if ((400 / barHeight) * i + 50 < avgDepth)
-                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, (400 / barHeight) * i + 50, rejectColor, acceptColor);
-                else if ((400 / barHeight) * i + 50 > avgDepth)
-                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, (400 / barHeight) * i + 50, acceptColor, rejectColor);
+                else if (currentDepth < avgDepth)
+                    data[i] = GradientColor(minDepth, (avgDepth + minDepth) / 2, currentDepth, rejectColor, acceptColor);
+                else if (currentDepth > avgDepth)
+                    data[i] = GradientColor((avgDepth + maxDepth) / 2, maxDepth, currentDepth, acceptColor, rejectColor);
             }
             Color[] finalData = new Color[barHeight * barWidth];
             for (int j = 0; j < finalData.Length; j++)
@@ -175,7 +176,7 @@ namespace Mechanect.ButtonsAndSliders
         /// <remarks>
         /// <para>AUTHOR: Mohamed AbdelAzim</para>
         /// </remarks>
-        /// <param name="id">an int representing the ID of the user</param>
+        /// <param name="id">an int representing the ID of the user</param>0
         /// <returns>bool, Returns true if the user is standing in the correct region</returns>
         public bool UserAccepted(int ID)
         {
