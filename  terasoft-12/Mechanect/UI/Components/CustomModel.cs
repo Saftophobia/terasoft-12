@@ -35,28 +35,6 @@ namespace UI.Components
         /// <summary>
         /// Creates a new CustomModel instance.
         /// </summary>
-        /// <param name="model">3D model.</param>
-        /// <param name="position">Model's position.</param>
-        /// <param name="rotation">Model's orientation.</param>
-        /// <param name="scale">Model's scale.</param>
-        /// <remarks>
-        /// AUTHOR : Bishoy Bassem.
-        /// </remarks>
-        [Obsolete("This constructor will be removed please ude the other one and invoke LoadContent to load the model")]
-        public CustomModel(Model model, Vector3 position, Vector3 rotation, Vector3 scale)
-        {
-            this.Position = position;
-            this.Rotation = rotation;
-            this.Scale = scale;
-            this.model = model;
-            modelTransforms = new Matrix[model.Bones.Count];
-            model.CopyAbsoluteBoneTransformsTo(modelTransforms);
-            createBoundingSphere();
-        }
-
-        /// <summary>
-        /// Creates a new CustomModel instance.
-        /// </summary>
         /// <param name="position">Model's position.</param>
         /// <param name="rotation">Model's orientation.</param>
         /// <param name="scale">Model's scale.</param>
