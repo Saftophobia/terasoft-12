@@ -6,15 +6,15 @@ namespace Physics
     public class Functions
     {
 
-        ///<summary>
-        ///This method gets the velocity using v = x/t
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>  
-        ///</remarks>
-        ///<param name="Vector3">Takes the displacement</param> 
-        ///<param name="Vector3">Takes the totaltime</param> 
-        ///<returns>A Vector3: the velocity</returns>
+        /// <summary>
+        /// This method calculates the velocity given the total displacement and total time.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>  
+        /// </remarks>
+        /// <param name="position">The total displacement moved.</param> 
+        /// <param name="totalTime">The total time taken.</param> 
+        /// <returns>The calculated velocity.</returns>
 
 
         public static Vector3 GetVelocity(Vector3 position, double totalTime)
@@ -22,35 +22,16 @@ namespace Physics
             return new Vector3(position.X / (float)totalTime, 0, position.Z / (float)totalTime);
         }
 
-        ///<summary>
-        ///This method corrects the velocity
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>  
-        ///</remarks>
-        ///<param name="Vector3">Takes the velocity</param> 
-
-
-        public static void CorrectVelocity(Vector3 velocity)
-        {
-            if (velocity.Length() <= 1 && velocity.Length() > 0)
-                velocity *= 10;
-            if (velocity.Length() <= 10 && velocity.Length() > 0)
-                velocity *= 2;
-            else
-                velocity *= 1.5f;
-
-        }
-
-        ///<summary>
-        ///This method calculates the veclocity vector relative to the user's assumed leg mass.
-        ///</summary>
-        ///<remarks>
-        ///<para>AUTHOR: Cena </para>   
-
-        ///</remarks>
-
-        ///<returns>A Vector3: velocity of the user relative to it's mass</returns>
+        /// <summary>
+        /// This method scales the given velocity relative to the ratio between any two numbers.
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Cena </para>   
+        /// </remarks>
+        /// <param name="n1">The first number.</param> 
+        /// <param name="n2">The second number.</param> 
+        /// <param name="velocity">The velocity to be scaled.</param>
+        /// <returns> The scaled velocity.</returns>
 
         public static Vector3 SetVelocityRelativeToGivenMass(float n1, float n2,Vector3 velocity)
         {
