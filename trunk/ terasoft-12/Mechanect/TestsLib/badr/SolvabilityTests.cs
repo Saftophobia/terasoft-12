@@ -34,7 +34,7 @@ namespace Tests
         [Test]
         public void TestsHoleAfterShootingPosition()
         {
-            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.user.shootingPosition.Z);
+            Assert.LessOrEqual(environment3.HoleProperty.Position.Z, environment3.user.ShootingPosition.Z);
         }
 
         [Test]
@@ -85,9 +85,9 @@ namespace Tests
         [Test]
         public void TestsNegativeLegMass()
         {
-            environment3.user.assumedLegMass = -1;
+            environment3.user.AssumedLegMass = -1;
             experiment3.GenerateSolvable();
-            Assert.Greater(environment3.user.assumedLegMass, 0);
+            Assert.Greater(environment3.user.AssumedLegMass, 0);
         }
     }
 }
