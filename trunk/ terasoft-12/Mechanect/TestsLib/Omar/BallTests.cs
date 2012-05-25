@@ -29,7 +29,7 @@ namespace TestsLib.Omar
             friction = -2;
             graphics = exp.ScreenManager.GraphicsDevice;
             Content = exp.ScreenManager.Game.Content;
-            environment = Constants3.environment3;
+            environment = exp.EnvironmentProperty;
             ball = exp.BallPorperty;
             hole = environment.HoleProperty;
             
