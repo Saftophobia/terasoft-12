@@ -58,9 +58,6 @@ namespace Mechanect.Common
         #endregion
 
         #region Initialization
-        /// <summary>
-        /// 5o5a
-        /// </summary>
 
         /// <summary>
         /// LoadContent will be called only once before drawing and it's the place to load
