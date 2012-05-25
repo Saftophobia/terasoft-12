@@ -592,3 +592,5 @@ C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Cont
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\Content\Models\flag.xnb
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModelPipeline.dll
 C:\Users\Cena\Desktop\terasoft-12\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModelPipeline.pdb
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModelPipeline.dll
+C:\Users\Cena\Desktop\terasoft-12-2\ terasoft-12\Mechanect\TestsLib\bin\Debug\SkinnedModelPipeline.pdb
