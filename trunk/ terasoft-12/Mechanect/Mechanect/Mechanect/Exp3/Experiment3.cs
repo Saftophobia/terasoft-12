@@ -361,6 +361,7 @@ namespace Mechanect.Exp3
         ///</remarks>
         public void GenerateSolvable()
         {
+
             Hole hole = environment.HoleProperty;
             if (hole.Position.Z >= Constants3.maxHolePosZ - hole.Radius)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
@@ -369,9 +370,9 @@ namespace Mechanect.Exp3
             if (hole.Position.Z >= user.ShootingPosition.Z)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
 
-            var isSolvable = Constants3.solvableExperiment;
-            while (isSolvable != Constants3.solvableExperiment)
-            {
+            var isSolvable = IsSolvable();
+
+            do{
                 switch (isSolvable)
                 {
                     case Constants3.holeOutOfNearRange: Environment3.Friction++; break;
@@ -389,7 +390,7 @@ namespace Mechanect.Exp3
                     case Constants3.negativeFriction: Environment3.Friction *= -1; break;
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Add(hole.Position, new Vector3(0, 0, 1)); break;
                 }
-            }
+            } while ((isSolvable=IsSolvable()) != Constants3.solvableExperiment) ;
         }
 
     
