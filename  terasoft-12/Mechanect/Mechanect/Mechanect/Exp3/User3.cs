@@ -21,42 +21,42 @@ namespace Mechanect.Exp3
 
         #region InstanceVariables
         #region Leg
-        public bool rightLeg { get; set; }
+        public bool RightLeg { get; set; }
         #endregion
         #region rightLegPositions
-        public double initialRightLegPositionX { get; set; }
-        public double currentRightLegPositionX { get; set; }
-        public double initialRightLegPositionZ { get; set; }
-        public double currentRightLegPositionZ { get; set; }
-        public double previousRightLegPositionX { get; set; }
-        public double previousRightLegPositionZ { get; set; }
-        public double startRightLegPositionX { get; set; }
-        public double startRightLegPositionZ { get; set; }
+        public double InitialRightLegPositionX { get; set; }
+        public double CurrentRightLegPositionX { get; set; }
+        public double InitialRightLegPositionZ { get; set; }
+        public double CurrentRightLegPositionZ { get; set; }
+        public double PreviousRightLegPositionX { get; set; }
+        public double PreviousRightLegPositionZ { get; set; }
+        public double StartRightLegPositionX { get; set; }
+        public double StartRightLegPositionZ { get; set; }
         #endregion
         #region leftLegPositions
-        public double initialLeftLegPositionX { get; set; }
-        public double currentLeftLegPositionX { get; set; }
-        public double initialLeftLegPositionZ { get; set; }
-        public double currentLeftLegPositionZ { get; set; }
-        public double previousLeftLegPositionX { get; set; }
-        public double previousLeftLegPositionZ { get; set; }
-        public double startLeftLegPositionX { get; set; }
-        public double startLeftLegPositionZ { get; set; }
+        public double InitialLeftLegPositionX { get; set; }
+        public double CurrentLeftLegPositionX { get; set; }
+        public double InitialLeftLegPositionZ { get; set; }
+        public double CurrentLeftLegPositionZ { get; set; }
+        public double PreviousLeftLegPositionX { get; set; }
+        public double PreviousLeftLegPositionZ { get; set; }
+        public double StartLeftLegPositionX { get; set; }
+        public double StartLeftLegPositionZ { get; set; }
         #endregion
         #region others
-        public Vector3 velocity { get; set; }
-        public double angle { get; set; }
-        public double assumedLegMass { get; set; }
-        public Vector3 shootingPosition { get; set; }
+        public Vector3 Velocity { get; set; }
+        public double Angle { get; set; }
+        public double AssumedLegMass { get; set; }
+        public Vector3 ShootingPosition { get; set; }
         #endregion
         #region time
         private double currentTime;
         private double initialTime;
         #endregion
         #region states
-        public bool hasShot { get; set; }
-        public bool hasMissed { get; set; }
-        public bool hasPlayerMoved { get; set; }
+        public bool HasShot { get; set; }
+        public bool HasMissed { get; set; }
+        public bool HasPlayerMovedProperty { get; set; }
         private bool movedForward;
         private bool firstUpdate;
         private bool hasJustStarted;
@@ -74,28 +74,28 @@ namespace Mechanect.Exp3
 
 
 
-            initialLeftLegPositionX = 0;
-            currentLeftLegPositionX = 0;
-            initialLeftLegPositionZ = 0;
-            currentLeftLegPositionZ = 0;
+            InitialLeftLegPositionX = 0;
+            CurrentLeftLegPositionX = 0;
+            InitialLeftLegPositionZ = 0;
+            CurrentLeftLegPositionZ = 0;
 
-            initialRightLegPositionX = 0;
-            currentRightLegPositionX = 0;
-            initialRightLegPositionZ = 0;
-            currentRightLegPositionZ = 0;
+            InitialRightLegPositionX = 0;
+            CurrentRightLegPositionX = 0;
+            InitialRightLegPositionZ = 0;
+            CurrentRightLegPositionZ = 0;
 
-            velocity = Vector3.Zero;
-            angle = 0;
+            Velocity = Vector3.Zero;
+            Angle = 0;
 
             movedForward = false;
-            assumedLegMass = 0.01f;
+            AssumedLegMass = 0.01f;
             currentTime = 0;
             initialTime = 0;
             hasJustStarted = true;
-            hasShot = false;
+            HasShot = false;
             firstUpdate = true;
-            hasMissed = false;
-            hasPlayerMoved = false;
+            HasMissed = false;
+            HasPlayerMovedProperty = false;
 
 
 
@@ -118,7 +118,7 @@ namespace Mechanect.Exp3
      
          public void SetFootMassInThisRange(float minMass, float maxMass)
          {
-             assumedLegMass = GenerateFootMass(minMass, maxMass);
+             AssumedLegMass = GenerateFootMass(minMass, maxMass);
          } 
          /// <summary>
          /// Takes the minimum and maximum possible values for the mass of the foot and generates a random float between these two numbers.
@@ -167,7 +167,7 @@ namespace Mechanect.Exp3
              if (skeleton != null)
              {
 
-                 if (!hasShot && !hasMissed)
+                 if (!HasShot && !HasMissed)
                  {
                      StoreTime(gameTime);
                      if (GameScreen.frameNumber % 3 == 0)
@@ -181,7 +181,7 @@ namespace Mechanect.Exp3
                          else
                          {
                              StoreCurrentPosition();
-                             if (!hasPlayerMoved)
+                             if (!HasPlayerMovedProperty)
                                  HasPlayerMoved();
                              else
                              {
@@ -195,12 +195,12 @@ namespace Mechanect.Exp3
                                  else
                                  {
                                      if (movedForward && HasMovedMinimumDistance())
-                                         hasShot = true;
+                                         HasShot = true;
                                      if (movedForward && !HasMovedMinimumDistance())
                                      {
-                                         hasMissed = true;
-                                         velocity = Vector3.Zero;
-                                         angle = 0;
+                                         HasMissed = true;
+                                         Velocity = Vector3.Zero;
+                                         Angle = 0;
                                      }
                                      else
                                          StoreInitialTime(gameTime);
@@ -228,24 +228,24 @@ namespace Mechanect.Exp3
          public void UpdateSpeed()
          {
              double currentZ,initialZ,currentX,initialX;
-             if (rightLeg)
+             if (RightLeg)
              {
-                 currentZ = currentRightLegPositionZ;
-                 initialZ = initialRightLegPositionZ;
-                 currentX = currentRightLegPositionX;
-                 initialX = initialRightLegPositionX;
+                 currentZ = CurrentRightLegPositionZ;
+                 initialZ = InitialRightLegPositionZ;
+                 currentX = CurrentRightLegPositionX;
+                 initialX = InitialRightLegPositionX;
              }
              else
              {
-                 currentZ = currentLeftLegPositionZ;
-                 initialZ = initialLeftLegPositionZ;
-                 currentX = currentLeftLegPositionX;
-                 initialX = initialLeftLegPositionX;
+                 currentZ = CurrentLeftLegPositionZ;
+                 initialZ = InitialLeftLegPositionZ;
+                 currentX = CurrentLeftLegPositionX;
+                 initialX = InitialLeftLegPositionX;
              }
              double deltaTime = Math.Abs(currentTime - initialTime);
              Vector3 deltaPosition = new Vector3((float)(currentX - initialX), 0, (float)(currentZ - initialZ));
              Vector3 finalVelocity = Functions.GetVelocity(deltaPosition, deltaTime);
-             velocity = finalVelocity;
+             Velocity = finalVelocity;
          }
 
          ///<summary>
@@ -259,27 +259,27 @@ namespace Mechanect.Exp3
          {
              double positionX1, positionX2, positionZ1, positionZ2;
             
-             if (rightLeg)
+             if (RightLeg)
              {
-                 positionX1 = initialRightLegPositionX;
-                 positionX2 = currentRightLegPositionX;
-                 positionZ1 = initialRightLegPositionZ;
-                 positionZ2 = currentRightLegPositionZ;
+                 positionX1 = InitialRightLegPositionX;
+                 positionX2 = CurrentRightLegPositionX;
+                 positionZ1 = InitialRightLegPositionZ;
+                 positionZ2 = CurrentRightLegPositionZ;
              }
              else
              {
-                 positionX1 = initialLeftLegPositionX;
-                 positionX2 = currentLeftLegPositionX;
-                 positionZ1 = initialLeftLegPositionZ;
-                 positionZ2 = currentLeftLegPositionZ;
+                 positionX1 = InitialLeftLegPositionX;
+                 positionX2 = CurrentLeftLegPositionX;
+                 positionZ1 = InitialLeftLegPositionZ;
+                 positionZ2 = CurrentLeftLegPositionZ;
              }
              if (positionZ2 != positionZ1)
-                 angle = Math.Atan((positionX2 - positionX1) / Math.Abs((positionZ2 - positionZ1)));
+                 Angle = Math.Atan((positionX2 - positionX1) / Math.Abs((positionZ2 - positionZ1)));
              else
                  if (positionX1 < positionX2)
-                     angle = (Math.PI / 2);
+                     Angle = (Math.PI / 2);
                  else
-                     angle = -(Math.PI / 2);
+                     Angle = -(Math.PI / 2);
 
          }
 
@@ -296,10 +296,10 @@ namespace Mechanect.Exp3
 
          private void StoreStartingPosition()
          {
-            startLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-            startLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-            startRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-            startRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+            StartLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+            StartLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+            StartRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+            StartRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
          /// <summary>
@@ -311,14 +311,14 @@ namespace Mechanect.Exp3
 
          public void StoreInitialPosition()
          {
-             initialLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-             initialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-             initialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-             initialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
-             previousLeftLegPositionX = initialLeftLegPositionX;
-             previousLeftLegPositionZ = initialLeftLegPositionZ;
-             previousRightLegPositionX = initialRightLegPositionX;
-             previousRightLegPositionZ = initialRightLegPositionZ;
+             InitialLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             InitialLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             InitialRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+             InitialRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+             PreviousLeftLegPositionX = InitialLeftLegPositionX;
+             PreviousLeftLegPositionZ = InitialLeftLegPositionZ;
+             PreviousRightLegPositionX = InitialRightLegPositionX;
+             PreviousRightLegPositionZ = InitialRightLegPositionZ;
          }
 
 
@@ -331,10 +331,10 @@ namespace Mechanect.Exp3
         
          public void StoreCurrentPosition()
          {
-             currentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
-             currentLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
-             currentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
-             currentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
+             CurrentLeftLegPositionX = USER.Joints[JointType.AnkleLeft].Position.X;
+             CurrentLeftLegPositionZ = USER.Joints[JointType.AnkleLeft].Position.Z;
+             CurrentRightLegPositionX = USER.Joints[JointType.AnkleRight].Position.X;
+             CurrentRightLegPositionZ = USER.Joints[JointType.AnkleRight].Position.Z;
          }
 
          /// <summary>
@@ -346,12 +346,12 @@ namespace Mechanect.Exp3
          
          public void StorePreviousPosition()
          {
-             if (currentRightLegPositionZ != 0)
+             if (CurrentRightLegPositionZ != 0)
              {
-                 previousLeftLegPositionX = currentLeftLegPositionX;
-                 previousLeftLegPositionZ = currentLeftLegPositionZ;
-                 previousRightLegPositionX = currentRightLegPositionX;
-                 previousRightLegPositionZ = currentRightLegPositionZ;
+                 PreviousLeftLegPositionX = CurrentLeftLegPositionX;
+                 PreviousLeftLegPositionZ = CurrentLeftLegPositionZ;
+                 PreviousRightLegPositionX = CurrentRightLegPositionX;
+                 PreviousRightLegPositionZ = CurrentRightLegPositionZ;
              }
          }
 
@@ -398,9 +398,9 @@ namespace Mechanect.Exp3
          /// <returns>A bool which is true if the user moved his leg forward a certain distance.</returns>
          public bool HasMovedMinimumDistance()
          {
-             if (rightLeg)
-                 return (initialRightLegPositionZ - currentRightLegPositionZ) > Constants3.minimumShootingDistance;
-             return (initialLeftLegPositionZ - currentLeftLegPositionZ) > Constants3.minimumShootingDistance;
+             if (RightLeg)
+                 return (InitialRightLegPositionZ - CurrentRightLegPositionZ) > Constants3.minimumShootingDistance;
+             return (InitialLeftLegPositionZ - CurrentLeftLegPositionZ) > Constants3.minimumShootingDistance;
          }
          /// <summary>
          /// This method checks if the user moved their leg forward
@@ -413,14 +413,14 @@ namespace Mechanect.Exp3
 
          public bool IsMovingForward()
          {
-             double currentZ = currentLeftLegPositionZ;
-             double previousZ = previousLeftLegPositionZ;
-             double startZ = startLeftLegPositionZ;
-             if (rightLeg)
+             double currentZ = CurrentLeftLegPositionZ;
+             double previousZ = PreviousLeftLegPositionZ;
+             double startZ = StartLeftLegPositionZ;
+             if (RightLeg)
              {
-                 currentZ = currentRightLegPositionZ;
-                 previousZ = previousRightLegPositionZ;
-                 startZ = startRightLegPositionZ;
+                 currentZ = CurrentRightLegPositionZ;
+                 previousZ = PreviousRightLegPositionZ;
+                 startZ = StartRightLegPositionZ;
              }
              if (startZ >= currentZ)
              {
@@ -436,15 +436,15 @@ namespace Mechanect.Exp3
              {
                  if (!movedForward)
                  {
-                     if (rightLeg)
+                     if (RightLeg)
                      {
-                         initialRightLegPositionZ = currentRightLegPositionZ;
-                         initialRightLegPositionX = currentRightLegPositionX;
+                         InitialRightLegPositionZ = CurrentRightLegPositionZ;
+                         InitialRightLegPositionX = CurrentRightLegPositionX;
                      }
                      else
                      {
-                         initialLeftLegPositionZ = currentLeftLegPositionZ;
-                         initialLeftLegPositionX = currentLeftLegPositionX;
+                         InitialLeftLegPositionZ = CurrentLeftLegPositionZ;
+                         InitialLeftLegPositionX = CurrentLeftLegPositionX;
                      }
                  }
 
@@ -462,18 +462,18 @@ namespace Mechanect.Exp3
          {
 
 
-             if (Math.Abs(currentLeftLegPositionZ - startLeftLegPositionZ) > Constants3.legMovementTolerance)
+             if (Math.Abs(CurrentLeftLegPositionZ - StartLeftLegPositionZ) > Constants3.legMovementTolerance)
              {
-                 rightLeg = false;
+                 RightLeg = false;
 
-                 hasPlayerMoved = true;
+                 HasPlayerMovedProperty = true;
                  return;
              }
-             if (Math.Abs(currentRightLegPositionZ - startRightLegPositionZ) > Constants3.legMovementTolerance)
+             if (Math.Abs(CurrentRightLegPositionZ - StartRightLegPositionZ) > Constants3.legMovementTolerance)
              {
-                 rightLeg = true;
+                 RightLeg = true;
 
-                 hasPlayerMoved = true;
+                 HasPlayerMovedProperty = true;
                  return;
              }
 
@@ -491,30 +491,30 @@ namespace Mechanect.Exp3
          public void ResetUserForShootingOrTryingAgain()
          {
 
-             initialLeftLegPositionX = 0;
-             currentLeftLegPositionX = 0;
-             initialLeftLegPositionZ = 0;
-             currentLeftLegPositionZ = 0;
+             InitialLeftLegPositionX = 0;
+             CurrentLeftLegPositionX = 0;
+             InitialLeftLegPositionZ = 0;
+             CurrentLeftLegPositionZ = 0;
 
-             initialRightLegPositionX = 0;
-             currentRightLegPositionX = 0;
-             initialRightLegPositionZ = 0;
-             currentRightLegPositionZ = 0;
+             InitialRightLegPositionX = 0;
+             CurrentRightLegPositionX = 0;
+             InitialRightLegPositionZ = 0;
+             CurrentRightLegPositionZ = 0;
 
              currentTime = 0;
              initialTime = 0;
         
              hasJustStarted = true;
-             hasShot = false;
+             HasShot = false;
              firstUpdate = true;
 
-             velocity = Vector3.Zero;
-             angle = 0;
+             Velocity = Vector3.Zero;
+             Angle = 0;
 
              movedForward = false;
              GameScreen.frameNumber = 0;
-             hasMissed = false;
-             hasPlayerMoved = false;
+             HasMissed = false;
+             HasPlayerMovedProperty = false;
 
 
 
