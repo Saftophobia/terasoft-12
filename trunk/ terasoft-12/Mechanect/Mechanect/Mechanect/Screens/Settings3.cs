@@ -77,7 +77,7 @@ namespace Mechanect.Screens
 
 
         /// <summary>
-        /// updating the button, the two sliders and the levels slider. It's requiered to make them run correctly
+        /// Updates the button, the two sliders and the levels slider. It's required to make them run correctly.
         /// </summary>
         /// <remarks>
         /// <para>Author: HegazY</para>
