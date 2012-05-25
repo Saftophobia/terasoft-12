@@ -34,7 +34,7 @@ namespace Mechanect.Exp3
         /// <param name="radius">The value of the radius of the hole.</param>
         /// <param name="position">The 3D position of the hole.</param>
         public Hole(int radius, Vector3 position):
-            base(position, Vector3.Zero, new Vector3((float)Constants3.scaleRatio * 1f * radius))
+            base(position, Vector3.Zero, new Vector3((float)Constants3.scaleRatio * radius))
         {
             this.radius = radius;
             Position = position;
@@ -47,7 +47,7 @@ namespace Mechanect.Exp3
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>
         /// <param name="model">The model of the hole which should be drawn.</param>
-        public override void LoadContent(Model model)
+        public void LoadContent(Model model)
         {
             base.LoadContent(model);
           //  Scale = (radius / intialBoundingSphere.Radius) * Vector3.One;
