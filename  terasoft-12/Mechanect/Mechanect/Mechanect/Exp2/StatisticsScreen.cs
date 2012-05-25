@@ -61,7 +61,7 @@ namespace Mechanect.Exp2
         /// <param name="userVelocity">float, containing the user velocity</param>
         /// <param name="userAngle">float, containing the user angle</param>
         /// <param name="user">user, instance of the User2 class</param>
-       
+
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, User2 user)
         {
@@ -75,7 +75,7 @@ namespace Mechanect.Exp2
             this.aquariumPosition = aquariumPosition;
             correctAnswer = true;
         }
-       
+
         /// <summary>
         /// Constructor to initialize the instance variables
         /// </summary>
@@ -90,7 +90,7 @@ namespace Mechanect.Exp2
         /// <param name="optimalVelocity">float, containing the correct optimal velocity</param>
         /// <param name="optimalAngle">float, containing the correct optimal angle</param>
         /// <param name="user">user, instance of User2 class</param>
-      
+
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, float optimalVelocity, float optimalAngle, User2 user)
         {
@@ -105,7 +105,7 @@ namespace Mechanect.Exp2
             this.correctAnswer = false;
         }
         #endregion
-      
+
         /// <summary>
         /// Initialize the positions of the buttons and simulation graphs
         /// <remarks>
@@ -114,7 +114,7 @@ namespace Mechanect.Exp2
         /// </summary>
         public override void Initialize()
         {
-            mainMenuButtonPosition = new Vector2((float)0.01*ScreenManager.GraphicsDevice.Viewport.Width,
+            mainMenuButtonPosition = new Vector2((float)0.01 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
             retryButtonPosition = new Vector2((float)0.38 * ScreenManager.GraphicsDevice.Viewport.Width,
@@ -126,7 +126,7 @@ namespace Mechanect.Exp2
             seeResultsButtonPosition = new Vector2((float)0.75 * ScreenManager.GraphicsDevice.Viewport.Width,
                (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
-            rightSimulationPosition = new Rectangle(7*viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
+            rightSimulationPosition = new Rectangle(7 * viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
                 4 * viewPort.Height / 10); ///
             centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 3,
                 4 * viewPort.Height / 10);
@@ -143,7 +143,7 @@ namespace Mechanect.Exp2
         public override void LoadContent()
         {
             background = ScreenManager.Game.Content.Load<Texture2D>("Textures/Experiment2/ImageSet1/background");
-            
+
             userSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
             if (!correctAnswer)
                 optimalSimulation.LoadContent(ScreenManager.Game.Content, ScreenManager.GraphicsDevice);
@@ -159,13 +159,14 @@ namespace Mechanect.Exp2
             newGame = Mechanect.Exp3.Tools3.NewGameButton(ScreenManager.Game.Content, newGameButtonPosition,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Height, user);
-            
-            
+
+
 
             if (!correctAnswer)
                 solution = Mechanect.Exp3.Tools3.SolutionButton(ScreenManager.Game.Content, seeResultsButtonPosition,
                     ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Width, user);
+            base.LoadContent();
         }
 
         /// <summary>
@@ -190,6 +191,7 @@ namespace Mechanect.Exp2
                 optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
+            base.Draw(gameTime);
 
         }
         /// <summary>
@@ -201,13 +203,13 @@ namespace Mechanect.Exp2
         /// <param name="gametime">gameTime, provide snapshot of the GameTime class</param>
         public override void Update(GameTime gametime)
         {
-            
+
             mainMenu.Update(gametime);
             retry.Update(gametime);
             userSimulation.Update(gametime);
             if (mainMenu.IsClicked())
             {
-               
+
                 ScreenManager.AddScreen(new Mechanect.Screens.AllExperiments(user));
                 this.Remove();
             }
@@ -249,8 +251,8 @@ namespace Mechanect.Exp2
                     solutionVisible = true;
                 }
             }
+            base.Update(gametime);
         }
-
     }
 
 }
