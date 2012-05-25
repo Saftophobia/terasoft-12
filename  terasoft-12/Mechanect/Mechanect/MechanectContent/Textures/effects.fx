@@ -38,7 +38,7 @@ struct TexPixelToFrame
 };
 
 //The vertex shader for the textured technique.
-//Takes as input from XNA, the position, normal and texture coordinates
+//Takes as input from XNA, the position, normal and texture coordinates.
 TexVertexToPixel TexturedVS( float4 inPos : POSITION, float3 inNormal: NORMAL, float2 inTexCoords: TEXCOORD0)
 {	
 
