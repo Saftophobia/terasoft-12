@@ -79,7 +79,7 @@ namespace Mechanect.Exp2
         {
             get
             {
-                return measuredAngle;
+                return (float)Math.Round(measuredAngle,2);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Mechanect.Exp2
         {
             get
             {
-                return measuredVelocity;
+                return (float)Math.Round(measuredVelocity,2);
             }
         }
 
