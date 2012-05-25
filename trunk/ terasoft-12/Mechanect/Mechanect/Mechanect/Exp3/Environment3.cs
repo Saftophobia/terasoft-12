@@ -115,7 +115,7 @@ namespace Mechanect.Exp3
             friction = -2f;
             int holeRadius = GenerateRadius(angleTolerance);
             Vector3 holePosition = Functions.GeneratePosition(holeRadius,(int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
-            hole = new Hole(holeRadius, holePosition, (int) Constants3.maxHolePosX,(int) Constants3.maxHolePosZ);
+            hole = new Hole(holeRadius, holePosition);
 
             PlayerModel = new SkinnedCustomModel(new Vector3(0, 0, 45),
                 new Vector3(0, 9.3f, 0), new Vector3(0.3f, 0.3f, 0.3f));
@@ -514,13 +514,13 @@ namespace Mechanect.Exp3
         #region Hole methods
 
         /// <summary>
-        /// Generates a value for the radius given angle tolerance
+        /// Generates a value for the radius given angle tolerance.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
         /// </remarks>
         /// <param name="angletolerance">The tolerance value set by the user.</param>
-        /// <returns>integer value which is the radius of the hole </returns>
+        /// <returns>Integer value which is the radius of the hole. </returns>
         public static int GenerateRadius(int angletolerance)
         {
             switch (angletolerance)
@@ -534,7 +534,7 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Makes a square hole with circular surroundings in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
+        /// Creates a square hole with circular surroundings in the environment. The method takes a value for the hole position and radius as parameters and creates the hole by looping in the environment and decreasing the heights of the terrain points.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
@@ -571,7 +571,7 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Makes a real circular hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
+        /// Creates a circular hole in the environment. The method takes a value for the hole position and radius as parameters and creates the hole by looping in the environment and decreasing the heights of the terrain points.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
@@ -602,7 +602,7 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Makes a real square hole in the environment given a certain position by looping through the terrain vertices in the hole position and decrease their heights.
+        ///  Creates a square hole in the environment. The method takes a value for the hole position and radius as parameters and creates the hole by looping in the environment and decreasing the heights of the terrain points.
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Khaled Salah </para>
