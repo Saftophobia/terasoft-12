@@ -70,7 +70,7 @@ namespace TestsLib
         {
             bool test = true;
             Reset();
-            user.rightLeg = true;
+            user.RightLeg = true;
             while (frameNumber < 100)
             {
                 GenerateFrameForward();
@@ -83,7 +83,7 @@ namespace TestsLib
         public void IsMovingForwardFalseRight()
         {
             bool test = true;
-            user.rightLeg = true;
+            user.RightLeg = true;
             Reset();
             while (frameNumber < 100)
             {
@@ -98,7 +98,7 @@ namespace TestsLib
         {
             bool test = true;
             Reset();
-            user.rightLeg = true;
+            user.RightLeg = true;
             while (frameNumber < 100)
             {
 
@@ -117,7 +117,7 @@ namespace TestsLib
         public void HasMovedMinimumDistanceTrueRight()
         {
             Reset();
-            user.rightLeg = true;
+            user.RightLeg = true;
             bool test = false;
             while (frameNumber < 100)
             {
@@ -132,7 +132,7 @@ namespace TestsLib
         public void HasMovedMinimumDistanceFalseRight()
         {
             Reset();
-            user.rightLeg = true;
+            user.RightLeg = true;
             bool test = false;
             while (frameNumber < 100)
             {
@@ -149,7 +149,7 @@ namespace TestsLib
             Reset();
             bool test = false;
             GenerateFrameForward();
-            user.rightLeg = false;
+            user.RightLeg = false;
             while (frameNumber < 100)
             {
                 if (frameNumber == RandomFrame())
@@ -165,7 +165,7 @@ namespace TestsLib
         {
             Reset();
             bool test = false;
-            user.rightLeg = false;
+            user.RightLeg = false;
             while (frameNumber < 100)
             {
                 test |= user.HasMovedMinimumDistance();
@@ -186,7 +186,7 @@ namespace TestsLib
                     GenerateFrameForward();
                 frameNumber++;
                 user.HasPlayerMoved();
-                test |= user.hasPlayerMoved;
+                test |= user.HasPlayerMovedProperty;
             }
             Assert.IsTrue(test);
         }
@@ -200,7 +200,7 @@ namespace TestsLib
                     GenerateFrameBackward();
                 frameNumber++;
                 user.HasPlayerMoved();
-                test |= user.hasPlayerMoved;
+                test |= user.HasPlayerMovedProperty;
             }
             Assert.IsTrue(test);
         }
@@ -212,7 +212,7 @@ namespace TestsLib
             {
                 frameNumber++;
                 user.HasPlayerMoved();
-                test |= user.hasPlayerMoved;
+                test |= user.HasPlayerMovedProperty;
             }
             Assert.IsFalse(test);
         }
@@ -220,51 +220,51 @@ namespace TestsLib
         #region Helper Methods
         private void Reset()
         {
-            user.previousLeftLegPositionX = 0;
-            user.previousLeftLegPositionZ = 0;
-            user.previousRightLegPositionX = 0;
-            user.previousRightLegPositionZ = 0;
-            user.currentLeftLegPositionX = 0;
-            user.currentLeftLegPositionZ = 0;
-            user.currentRightLegPositionX = 0;
-            user.currentRightLegPositionZ = 0;
-            user.rightLeg = false;
+            user.PreviousLeftLegPositionX = 0;
+            user.PreviousLeftLegPositionZ = 0;
+            user.PreviousRightLegPositionX = 0;
+            user.PreviousRightLegPositionZ = 0;
+            user.CurrentLeftLegPositionX = 0;
+            user.CurrentLeftLegPositionZ = 0;
+            user.CurrentRightLegPositionX = 0;
+            user.CurrentRightLegPositionZ = 0;
+            user.RightLeg = false;
             frameNumber = 0;
         }
         private void GenerateFrameBackward()
         {
-            if (!user.rightLeg)
+            if (!user.RightLeg)
             {
-                user.previousLeftLegPositionX = user.currentLeftLegPositionX;
-                user.previousLeftLegPositionZ = user.currentLeftLegPositionZ;
-                user.currentLeftLegPositionX += step;
-                user.currentLeftLegPositionZ += step;
+                user.PreviousLeftLegPositionX = user.CurrentLeftLegPositionX;
+                user.PreviousLeftLegPositionZ = user.CurrentLeftLegPositionZ;
+                user.CurrentLeftLegPositionX += step;
+                user.CurrentLeftLegPositionZ += step;
             }
             else
             {
-                user.previousRightLegPositionX = user.currentRightLegPositionX;
-                user.previousRightLegPositionZ = user.currentRightLegPositionZ;
-                user.currentRightLegPositionX += step;
-                user.currentRightLegPositionZ += step;
+                user.PreviousRightLegPositionX = user.CurrentRightLegPositionX;
+                user.PreviousRightLegPositionZ = user.CurrentRightLegPositionZ;
+                user.CurrentRightLegPositionX += step;
+                user.CurrentRightLegPositionZ += step;
             }
         }
         private void GenerateFrameForward()
         {
-            if (!user.rightLeg)
+            if (!user.RightLeg)
             {
-                user.previousLeftLegPositionX = user.currentLeftLegPositionX;
-                user.previousLeftLegPositionZ = user.currentLeftLegPositionZ;
-                user.currentLeftLegPositionX -= step;
-                user.currentLeftLegPositionZ -= step;
+                user.PreviousLeftLegPositionX = user.CurrentLeftLegPositionX;
+                user.PreviousLeftLegPositionZ = user.CurrentLeftLegPositionZ;
+                user.CurrentLeftLegPositionX -= step;
+                user.CurrentLeftLegPositionZ -= step;
                 
             }
             else
             {
 
-                user.previousRightLegPositionX = user.currentRightLegPositionX;
-                user.previousRightLegPositionZ = user.currentRightLegPositionZ;
-                user.currentRightLegPositionX -= step;
-                user.currentRightLegPositionZ -= step;
+                user.PreviousRightLegPositionX = user.CurrentRightLegPositionX;
+                user.PreviousRightLegPositionZ = user.CurrentRightLegPositionZ;
+                user.CurrentRightLegPositionX -= step;
+                user.CurrentRightLegPositionZ -= step;
             }
         }
         private int RandomFrame()
