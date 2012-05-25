@@ -7,7 +7,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Mechanect.Exp2
 {
     /// <summary>
-    /// Here Lives the higly scalable GUI that draws the x,y axises a predator together with it's aquarium ,
+    /// In this class a higly scalable GUI is generated and drawn. 
+    /// This class draws the x,y axises a predator together with it's aquarium ,
     /// a prey, a edstination aquarium and connects them to the x,y axises with their labels
     /// </summary>
     /// <remarks>
@@ -366,10 +367,10 @@ namespace Mechanect.Exp2
             lineConnector.SetData(new[] { Color.Gray });
             labelsFont = contentManager.Load<SpriteFont>("Ariel");
 
-            Predator.setTexture(contentManager);
+            Predator.SetTexture(contentManager);
             Prey.SetTexture(contentManager);
-            Aquarium.setTexture(contentManager);
-            StartAquarium.setTexture(contentManager);
+            Aquarium.SetTexture(contentManager);
+            StartAquarium.SetTexture(contentManager);
 
         }
 
@@ -409,7 +410,9 @@ namespace Mechanect.Exp2
 
             Rectangle smallerRrectangle = new Rectangle((int)(rectangle.X + rectangle.Width * axisesPercentage),
                 (int)(rectangle.Y + 4.5f * rectangle.Height * axisesPercentage), (int)(rectangle.Width -
-                5 * rectangle.Width * axisesPercentage), (int)(rectangle.Height - rectangle.Height * axisesPercentage - 4.5f * rectangle.Height * axisesPercentage));
+                5 * rectangle.Width * axisesPercentage), 
+                (int)(rectangle.Height - rectangle.Height * 
+                axisesPercentage - 4.5f * rectangle.Height * axisesPercentage));
 
             ConfigureWindowSize(smallerRrectangle, viewPort);
             DrawObjects(smallerRrectangle, mySpriteBatch);
@@ -581,7 +584,8 @@ namespace Mechanect.Exp2
                  ((Math.Round(Aquarium.Location.X, 1) + "")).Y))), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None,
                  0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(StartAquarium.Location.Y, 1) + ""), new Vector2(axis.X - 4 *
-                axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) +
+                axisesPercentage * rectangle.Height - 
+                labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) +
                 "")).X - 1.3f * (Math.Max(labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X,
                 labelsFont.MeasureString((Math.Round(Aquarium.Location.X, 1) + "")).X)), startAquariumPosition.Y -
                 labelsFont.MeasureString((Math.Round(StartAquarium.Location.Y, 1) + "")).Y / 2), Color.Red, 0f,
@@ -604,8 +608,9 @@ namespace Mechanect.Exp2
                 Vector2.Zero, 1f, SpriteEffects.None, 0f);
             //Prey
             spriteBatch.DrawString(labelsFont, (Math.Round(Prey.Location.X, 1) + ""), new Vector2(preyPosition.X -
-                    labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X / 2, axis.Y + 2 * axisesPercentage *
-                rectangle.Height), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    labelsFont.MeasureString((Math.Round(Prey.Location.X, 1) + "")).X / 2,
+                    axis.Y + 2 * axisesPercentage * rectangle.Height), Color.Red, 0f, Vector2.Zero, 1f,
+                    SpriteEffects.None, 0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(Prey.Location.Y, 1) + ""),
                 new Vector2(axis.X - 4 * axisesPercentage * rectangle.Height -
                     labelsFont.MeasureString((Math.Round(Prey.Location.Y, 1) + "")).X,
@@ -618,7 +623,8 @@ namespace Mechanect.Exp2
                2 * axisesPercentage * rectangle.Height), Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.DrawString(labelsFont, (Math.Round(Aquarium.Location.Y, 1) + ""), new Vector2(axis.X - 4 *
                 axisesPercentage * rectangle.Height - labelsFont.MeasureString((Math.Round(Aquarium.Location.Y, 1) +
-                "")).X, aquariumPosition.Y - labelsFont.MeasureString((Math.Round(Aquarium.Location.Y, 1) + "")).Y / 2),
+                "")).X, aquariumPosition.Y - 
+                labelsFont.MeasureString((Math.Round(Aquarium.Location.Y, 1) + "")).Y / 2),
                 Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
         }

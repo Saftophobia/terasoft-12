@@ -86,7 +86,7 @@ namespace Mechanect.Exp2
         /// <para>DATE MODIFIED: May, 17  </para>
         /// </remarks>
         /// <param name="contentManager">A content Manager to get the texture from the directories</param>
-        public void setTexture(ContentManager contentManager)
+        public void SetTexture(ContentManager contentManager)
         {   
             fishTexture = contentManager.Load<Texture2D>("Textures/Experiment2/ImageSet1/fish");
         }
