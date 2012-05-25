@@ -345,7 +345,7 @@ namespace Mechanect.Exp2
         #endregion
 
 
-        // <summary>
+        /// <summary>
         /// Sets the texture for the X, Y axises, and basic obkects of the experiment.
         /// </summary>
         /// <remarks>
