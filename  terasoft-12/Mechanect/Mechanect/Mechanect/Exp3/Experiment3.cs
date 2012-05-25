@@ -369,11 +369,10 @@ namespace Mechanect.Exp3
             if (hole.Position.Z >= user.ShootingPosition.Z)
                 hole.Position = new Vector3(hole.Position.X, hole.Position.Y, Constants3.maxHolePosZ - hole.Radius);
 
-            var x = Constants3.solvableExperiment;
-            do
+            var isSolvable = Constants3.solvableExperiment;
+            while (isSolvable != Constants3.solvableExperiment)
             {
-                x = IsSolvable();
-                switch (x)
+                switch (isSolvable)
                 {
                     case Constants3.holeOutOfNearRange: Environment3.Friction++; break;
                     case Constants3.holeOutOfFarRange:
@@ -390,7 +389,7 @@ namespace Mechanect.Exp3
                     case Constants3.negativeFriction: Environment3.Friction *= -1; break;
                     case Constants3.negativeHPosZ: hole.Position = Vector3.Add(hole.Position, new Vector3(0, 0, 1)); break;
                 }
-            } while (x != Constants3.solvableExperiment);
+            }
         }
 
     
