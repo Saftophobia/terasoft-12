@@ -20,6 +20,8 @@ namespace Mechanect.Exp2
         /// </summary>
         #region:Instance Variables
         User2 user;
+        private float optimalVelocity;
+        private float optimalAngle;
         private Simulation userSimulation;
         private Simulation optimalSimulation;
         private Rectangle leftSimulationPosition;
@@ -66,6 +68,8 @@ namespace Mechanect.Exp2
 
             this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
             this.user = user;
+            this.optimalVelocity = userVelocity;
+            this.optimalAngle = userAngle;
             this.predatorPosition = predatorPosition;
             this.preyPosition = preyPosition;
             this.aquariumPosition = aquariumPosition;
@@ -93,6 +97,8 @@ namespace Mechanect.Exp2
             this.userSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, userVelocity, userAngle);
             this.optimalSimulation = new Simulation(predatorPosition, preyPosition, aquariumPosition, optimalVelocity, optimalAngle);
             this.user = user;
+            this.optimalAngle = optimalAngle;
+            this.optimalVelocity = optimalVelocity;
             this.predatorPosition = predatorPosition;
             this.preyPosition = preyPosition;
             this.aquariumPosition = aquariumPosition;
@@ -208,8 +214,9 @@ namespace Mechanect.Exp2
             }
             if (retry.IsClicked())
             {
-                
-                ScreenManager.AddScreen(new Experiment2(user, predatorPosition, preyPosition, aquariumPosition));
+
+                ScreenManager.AddScreen(new Experiment2(user, predatorPosition, preyPosition, aquariumPosition,
+                    optimalVelocity, optimalAngle));
                 this.Remove();
             }
 
