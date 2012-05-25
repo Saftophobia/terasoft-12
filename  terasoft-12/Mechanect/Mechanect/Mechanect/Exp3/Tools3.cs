@@ -36,17 +36,17 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Create a button that have retry label
+        /// Creates a pre-customized Retry button
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="contentManager"></param>
-        /// <param name="position"></param>
-        /// <param name="screenWidth"></param>
-        /// <param name="screenHeight"></param>
-        /// <param name="user"></param>
-        /// <returns>Button</returns>
+        /// <param name="contentManager">Content manager to load the pictures.</param>
+        /// <param name="position">The position of the button.</param>
+        /// <param name="screenWidth">The width of the screen.</param>
+        /// <param name="screenHeight">The height of the screen.</param>
+        /// <param name="user">The instance of the user.</param>
+        /// <returns>Button, returns the instance of the button</returns>
         public static Button RetryButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
@@ -56,17 +56,17 @@ namespace Mechanect.Exp3
         }
 
         /// <summary>
-        /// Create a button that have solution label
+        /// Creates a pre-customized Solution button
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="contentManager"></param>
-        /// <param name="position"></param>
-        /// <param name="screenWidth"></param>
-        /// <param name="screenHeight"></param>
-        /// <param name="user"></param>
-        /// <returns>Button</returns>
+        /// <param name="contentManager">Content manager to load the pictures.</param>
+        /// <param name="position">The position of the button.</param>
+        /// <param name="screenWidth">The width of the screen.</param>
+        /// <param name="screenHeight">The height of the screen.</param>
+        /// <param name="user">The instance of the user.</param>
+        /// <returns>Button, returns the instance of the button</returns>
         public static Button SolutionButton(ContentManager contentManager, Vector2 position,
             int screenWidth, int screenHeight, User user)
         {
