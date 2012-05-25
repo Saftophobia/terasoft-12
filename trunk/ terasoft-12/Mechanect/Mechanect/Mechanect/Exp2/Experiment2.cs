@@ -176,7 +176,7 @@ namespace Mechanect.Exp2
             button = Tools3.OKButton(Content, buttonPosition, ViewPort.Width, ViewPort.Height, user);
 
             //The sound order needs to be done only once thus will be done in the load content
-            UI.UILib.SayText("Test angle and Velocity using your left hand, then say GOo or press ok");
+            UI.UILib.SayText("Test angle and Velocity using your left hand, then say GO or press ok");
 
             //TBC
             voiceCommand = new VoiceCommands(mKinect._KinectDevice, "go");
@@ -324,13 +324,13 @@ namespace Mechanect.Exp2
             else
             {
 
-                SpriteBatch.DrawString(velAngleFont, velString + Math.Round(environment.Velocity, 2), new Vector2
+                SpriteBatch.DrawString(velAngleFont, velString, new Vector2
                     (ViewPort.Width - velAngleFont.MeasureString(velString + angString).X / 2, 0), Color.Red, 0f,
                     new Vector2(velAngleFont.MeasureString(velString +
                         environment.Velocity + "                    ").X / 2, 0), velocityTextureScaling,
                         SpriteEffects.None, 0f);
 
-                SpriteBatch.DrawString(velAngleFont, angString + Math.Round(environment.Angle, 2),
+                SpriteBatch.DrawString(velAngleFont, angString,
                     new Vector2(ViewPort.Width - velAngleFont.MeasureString(angString).X / 2, 0), Color.Red, 0f,
                     new Vector2(velAngleFont.MeasureString(velString + environment.Velocity).X / 2, 0),
                     velocityTextureScaling, SpriteEffects.None, 0f);
