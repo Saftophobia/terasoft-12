@@ -543,25 +543,25 @@ namespace Mechanect.Exp3
         /// <param name="radius">The radius of the hole.</param>
         protected void CreateAlmostCircularHole(Vector3 position, int radius)
         {
-            radius = radius / (int)2.5f;
-            double angleStep = 1f / radius;
+            radius = (radius / (int)2.5f);
+            double angleStep = (1f / radius);
             int a;
             int b;
             try
             {
-                for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
+                for (float x = (hole.Position.X - radius); (x <= hole.Position.X + radius); x++)
                 {
-                    for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
+                    for (float z = (hole.Position.Z - radius); (z <= hole.Position.Z + radius); z++)
                     {
                         for (double angle = 0; angle < Math.PI * 2; angle += angleStep)
                         {
                             a = (int)Math.Round(radius * Math.Cos(angle));
                             b = (int)Math.Round(radius * Math.Sin(angle));
-                            heightData[(int)(x + a + (terrainWidth / 2)), (int)(-z - b + (terrainHeight / 2))] -= -20;
+                            heightData[(int)((x + a) + (terrainWidth / 2)), (int)((-z - b) + (terrainHeight / 2))] -= -20;
                         }
                     }
                 }
-                hole.Position = new Vector3(position.X, GetHeight(position) + 20, position.Z);
+                hole.Position = new Vector3(position.X, (GetHeight(position) + 20), position.Z);
             }
 
             catch (IndexOutOfRangeException)
@@ -584,16 +584,16 @@ namespace Mechanect.Exp3
             float posZ = hole.Position.Z;
             try
             {
-                for (float x = posX - radius; x <= posX + radius; x++)
+                for (float x = (posX - radius); (x <= posX + radius); x++)
                 {
-                    for (float z = posZ - (float)Math.Sqrt((radius + x - posX) * (radius - x + posX));
-                        z <= posZ + (float)Math.Sqrt((radius + x - posX) * (radius - x + posX)); z++)
+                    for (float z = (posZ - (float)Math.Sqrt((radius + x - posX) * (radius - x + posX)));
+                        z <= (posZ + (float)Math.Sqrt((radius + x - posX) * (radius - x + posX))); z++)
                     {
                         heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -= 20;
                     }
                 }
 
-                hole.Position = new Vector3(posX, GetHeight(position) + 20, posZ);
+                hole.Position = new Vector3(posX, (GetHeight(position) + 20), posZ);
             }
             catch (IndexOutOfRangeException)
             {
@@ -613,14 +613,14 @@ namespace Mechanect.Exp3
         {
             try
             {
-                for (float x = hole.Position.X - radius; x <= hole.Position.X + radius; x++)
+                for (float x = (hole.Position.X - radius); x <= (hole.Position.X + radius); x++)
                 {
-                    for (float z = hole.Position.Z - radius; z <= hole.Position.Z + radius; z++)
+                    for (float z = (hole.Position.Z - radius); z <= (hole.Position.Z + radius); z++)
                     {
                         heightData[(int)(x + (terrainWidth / 2)), (int)(-z + (terrainHeight / 2))] -= 20;
                     }
                 }
-                hole.Position = new Vector3(hole.Position.X, GetHeight(position) + 21, hole.Position.Z);
+                hole.Position = new Vector3(hole.Position.X, (GetHeight(position) + 20), hole.Position.Z);
             }
             catch (IndexOutOfRangeException)
             {
