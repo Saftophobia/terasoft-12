@@ -126,11 +126,14 @@ namespace Mechanect.Exp2
                (float)0.7 * ScreenManager.GraphicsDevice.Viewport.Height);
 
             rightSimulationPosition = new Rectangle(7 * viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 2,
-                5 * viewPort.Height / 10); ///
+                5 * viewPort.Height / 10); 
+
             centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 2,
                 5 * viewPort.Height / 10);
+
             leftSimulationPosition = new Rectangle(viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 2,
-                5 * viewPort.Height / 10); ///
+                5 * viewPort.Height / 10); 
+
             currentUserSimulationPosition = centerSimulationPosition; 
         }
         /// <summary>
@@ -178,17 +181,21 @@ namespace Mechanect.Exp2
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
+            
             ScreenManager.SpriteBatch.Draw(background, new Rectangle(0, 0, viewPort.Width, viewPort.Height), Color.White);
             mainMenu.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             retry.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             userSimulation.Draw(currentUserSimulationPosition, ScreenManager.SpriteBatch);
+           
             if (correctAnswer || solutionVisible)
                 newGame.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             else
                 solution.Draw(ScreenManager.SpriteBatch, viewPort.Width / 1024f);
             if (currentUserSimulationPosition.X <= leftSimulationPosition.X)
                 optimalSimulation.Draw(rightSimulationPosition, ScreenManager.SpriteBatch);
+           
             mainMenu.DrawHand(ScreenManager.SpriteBatch);
+           
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
 
