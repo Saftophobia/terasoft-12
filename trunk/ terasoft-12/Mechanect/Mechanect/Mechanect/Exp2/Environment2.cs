@@ -43,6 +43,12 @@ namespace Mechanect.Exp2
         #endregion
 
         #region InstanceVariables + gettersAndSetters/Tamer
+
+
+        private readonly Random random;
+        private double angle;
+        private double velocity;
+
         /// <summary>
         /// getter and setter for Prey
         /// </summary>
@@ -65,8 +71,6 @@ namespace Mechanect.Exp2
         /// </remarks>
         public Aquarium Aquarium { get; set; }
         public Aquarium StartAquarium { get; set; }
-        private readonly Random random;
-        private double velocity;
         /// <summary>
         /// getter and setter for velocity
         /// </summary>
@@ -78,7 +82,6 @@ namespace Mechanect.Exp2
             get { return velocity; }
             set { velocity = value; }
         }
-        private double angle;
 
         /// <summary>
         /// getAngle,returns the angle in degree.
