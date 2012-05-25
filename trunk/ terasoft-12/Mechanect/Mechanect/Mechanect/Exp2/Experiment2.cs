@@ -117,6 +117,10 @@ namespace Mechanect.Exp2
 
         }
 
+        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
+        {
+        }
+
         /// <summary>
         /// A constructor that specifies a special setup to the game
         /// </summary>
@@ -127,10 +131,10 @@ namespace Mechanect.Exp2
         /// <param name="predatorPosition">Vector2, the center point of the predator</param>
         /// <param name="preyPosition">Rect, the rectangle that represents the position of the prey</param>
         /// <param name="aquariumPosition">Rect, the rectangle that represents the position of the aquarium</param>
-        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition)
+        public Experiment2(User2 user, Vector2 predatorPosition, Rect preyPosition, Rect AquariumPosition, float optimalVelocity, float optimalAngle)
         {
             user.Reset();
-            environment = new Environment2(predatorPosition, preyPosition, AquariumPosition);
+            environment = new Environment2(predatorPosition, preyPosition, AquariumPosition, optimalVelocity, optimalAngle);
             initialPredatorPosition = environment.Predator.Location;
             initialPreyPosition = new Rect(environment.Prey.Location.X, environment.Prey.Location.Y,
                 environment.Prey.Width, environment.Prey.Length);
