@@ -15,6 +15,9 @@ namespace Mechanect.Exp2
     /// </remarks>
     class StatisticsScreen : GameScreen
     {
+        /// <summary>
+        /// Instance Variables
+        /// </summary>
         #region:Instance Variables
         User2 user;
         private Simulation userSimulation;
@@ -42,18 +45,21 @@ namespace Mechanect.Exp2
             get { return ScreenManager.GraphicsDevice.Viewport; }
         }
         #endregion
+
+        #region Constructors
         /// <summary>
         /// Constructor to initialize the instance variables
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="predatorPosition"></param>
-        /// <param name="preyPosition"></param>
-        /// <param name="aquariumPosition"></param>
-        /// <param name="userVelocity"></param>
-        /// <param name="userAngle"></param>
-        /// <param name="user"></param>
+        /// <param name="predatorPosition">Vector2 for predator position</param>
+        /// <param name="preyPosition">Rect, containing position and dimension of the prey</param>
+        /// <param name="aquariumPosition">Rect, containing position and dimension of the aquarium</param>
+        /// <param name="userVelocity">float, containing the user velocity</param>
+        /// <param name="userAngle">float, containing the user angle</param>
+        /// <param name="user">user, instance of the User2 class</param>
+       
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, User2 user)
         {
@@ -65,20 +71,22 @@ namespace Mechanect.Exp2
             this.aquariumPosition = aquariumPosition;
             correctAnswer = true;
         }
+       
         /// <summary>
         /// Constructor to initialize the instance variables
         /// </summary>
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="predatorPosition"></param>
-        /// <param name="preyPosition"></param>
-        /// <param name="aquariumPosition"></param>
-        /// <param name="userVelocity"></param>
-        /// <param name="userAngle"></param>
-        /// <param name="optimalVelocity"></param>
-        /// <param name="optimalAngle"></param>
-        /// <param name="user"></param>
+        /// <param name="predatorPosition">Vector2 for predator position</param>
+        /// <param name="preyPosition">Rect, containing position and dimension of the prey</param>
+        /// <param name="aquariumPosition">Rect, containing position and dimension of the aquarium</param>
+        /// <param name="userVelocity">float, containing the user velocity</param>
+        /// <param name="userAngle">float, containing the user angle</param>
+        /// <param name="optimalVelocity">float, containing the correct optimal velocity</param>
+        /// <param name="optimalAngle">float, containing the correct optimal angle</param>
+        /// <param name="user">user, instance of User2 class</param>
+      
         public StatisticsScreen(Vector2 predatorPosition, Rect preyPosition, Rect aquariumPosition, float userVelocity,
             float userAngle, float optimalVelocity, float optimalAngle, User2 user)
         {
@@ -90,6 +98,8 @@ namespace Mechanect.Exp2
             this.aquariumPosition = aquariumPosition;
             correctAnswer = false;
         }
+        #endregion
+      
         /// <summary>
         /// Initialize the positions of the buttons and simulation graphs
         /// <remarks>
@@ -158,7 +168,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="gameTime"></param>
+        /// <param name="gameTime">gameTime, provide snapshot of the GameTime class</param>
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.SpriteBatch.Begin();
@@ -183,7 +193,7 @@ namespace Mechanect.Exp2
         /// <remarks>
         /// <para>AUTHOR: Mohamed Raafat</para>
         /// </remarks>
-        /// <param name="gametime"></param>
+        /// <param name="gametime">gameTime, provide snapshot of the GameTime class</param>
         public override void Update(GameTime gametime)
         {
             
