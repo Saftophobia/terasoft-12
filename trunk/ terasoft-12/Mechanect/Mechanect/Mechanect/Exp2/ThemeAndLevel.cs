@@ -11,6 +11,9 @@ namespace Mechanect.Exp2
     /// <summary>
     /// ThemeAndLevel class is the one that allows you to change theme and level for the game.
     /// </summary>
+    /// <remarks>
+    /// <para>AUTHOR: Tamer Nabil </para>
+    /// </remarks>
     public class ThemeAndLevel
     {
 
@@ -24,9 +27,36 @@ namespace Mechanect.Exp2
         List<Button> buttons;
         Button levelRightArrow2, levelLeftArrow;
         private readonly Vector2 levelRectanglePosition;
+        /// <summary>
+        /// getter and setter for level number
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public int levelNo { get; set; }
+        /// <summary>
+        /// getter and setter for theme number
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public int themeNo { get; set; }
+        /// <summary>
+        /// getters and setters for Rectangle Position of theme
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
         public Vector2 themeRectanglePosition { get; set; }
+
+        /// <summary>
+        /// Constructor that takes Theme Rectangle Position and User as input
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="themeRectanglePosition">Theme Rectangle position that will be drawn at</param>
+        /// <param name="user">User</param>
 
         public ThemeAndLevel(Vector2 themeRectanglePosition, User user)
         {

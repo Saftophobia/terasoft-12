@@ -18,6 +18,14 @@ namespace Mechanect.Exp2
         private ThemeAndLevel levelAndTheme;
         Texture2D background;
 
+        /// <summary>
+        /// Constructor for Settings2 taking User2 as input
+        /// </summary>
+        /// <remarks>
+        /// <para>AUTHOR: Tamer Nabil </para>
+        /// </remarks>
+        /// <param name="user">Represents User2</param>
+
         public Settings2(User2 user)
         {
             this.user = user;
