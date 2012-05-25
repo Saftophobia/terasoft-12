@@ -122,7 +122,7 @@ namespace Mechanect.Common
     /// <param name="e">Event argument</param>
         private void SpeechRecognitionEngineSpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            if (e.Result.Confidence > 0.4)
+            if (e.Result.Confidence >= 0.55)
                 heardString = e.Result.Text;
         }
 
