@@ -157,7 +157,7 @@ namespace Mechanect.Screens
             button.Update(gameTime);
             if (!button.IsClicked())
             {
-                if (!user.hasShot && !user.hasMissed)
+                if (!user.HasShot && !user.HasMissed)
                 {
 
                     user.UpdateMeasuringVelocityAndAngle(gameTime);
@@ -180,13 +180,13 @@ namespace Mechanect.Screens
                         + '\n' + "Friction: " + Environment3.Friction ;
                     string shootingValues = "Shooting velocity: " + Math.Truncate(velocity.Length() *Constants3.velocityScale* 1000)
                         / 1000 +" m/s "
-                        + '\n' + "Shooting angle: " + Math.Truncate((user.angle * 180 / Math.PI) * 1000) / 1000 + " deg";
+                        + '\n' + "Shooting angle: " + Math.Truncate((user.Angle * 180 / Math.PI) * 1000) / 1000 + " deg";
                     
 
                    
-                    if (!user.hasMissed)
+                    if (!user.HasMissed)
                     {
-                        velocity = Functions.SetVelocityRelativeToGivenMass((float)user.assumedLegMass, Constants3.normalLegMass, user.velocity);
+                        velocity = Functions.SetVelocityRelativeToGivenMass((float)user.AssumedLegMass, Constants3.normalLegMass, user.Velocity);
                         int draw;
                         if (velocity.Length() * Constants3.velocityScale > 31)
                             draw = 31;
@@ -200,8 +200,8 @@ namespace Mechanect.Screens
                             fillPosition.Y -= 8;
                         }
 
-                        user.velocity = velocity;
-                        arrowAngle = (float)user.angle;
+                        user.Velocity = velocity;
+                        arrowAngle = (float)user.Angle;
                         displayedGivens += ('\n' + shootingValues);
                     }
                     else
