@@ -24,7 +24,7 @@ namespace TestsLib.Omar
         public void Init()
         {
             user = new User3();
-            user.shootingPosition = new Vector3(0, 3, 62);
+            user.ShootingPosition = new Vector3(0, 3, 62);
             exp = new Experiment3(user);
             friction = -2;
             graphics = exp.ScreenManager.GraphicsDevice;
@@ -39,14 +39,14 @@ namespace TestsLib.Omar
         [Test]
         public void CheckIfFall()
         {
-            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.shootingPosition, 0, friction));
+            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.ShootingPosition, 0, friction));
             Assert.IsTrue(animation.willFall);
         }
 
         [Test]
         public void CheckIfWontFall()
         {
-            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.shootingPosition, 10, friction));
+            animation = new BallAnimation(ball, environment, LinearMotion.CalculateInitialVelocity(hole.Position - user.ShootingPosition, 10, friction));
             Assert.IsFalse(animation.willFall);
         }
     }
