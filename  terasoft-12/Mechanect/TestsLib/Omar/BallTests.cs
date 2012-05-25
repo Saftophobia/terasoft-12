@@ -24,7 +24,7 @@ namespace TestsLib.Omar
         public void Init()
         {
             user = new User3();
-            user.ShootingPosition = new Vector3(0, 3, 62);
+            user.ShootingPosition = new Vector3(0, 3, 45);
             exp = new Experiment3(user);
             friction = -2;
             environment = exp.EnvironmentProperty;
