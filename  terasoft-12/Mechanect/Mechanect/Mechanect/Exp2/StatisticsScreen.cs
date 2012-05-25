@@ -128,8 +128,8 @@ namespace Mechanect.Exp2
 
             rightSimulationPosition = new Rectangle(7 * viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
                 4 * viewPort.Height / 10); ///
-            centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, 2 * viewPort.Width / 3,
-                6 * viewPort.Height / 10);
+            centerSimulationPosition = new Rectangle(viewPort.Width / 3, viewPort.Height / 10, viewPort.Width / 3,
+                5 * viewPort.Height / 10);
             leftSimulationPosition = new Rectangle(viewPort.Width / 12, viewPort.Height / 10, viewPort.Width / 3,
                 4 * viewPort.Height / 10); ///
             currentUserSimulationPosition = centerSimulationPosition; 
