@@ -151,7 +151,7 @@ namespace Mechanect.Exp2
             {
                 angle *= -1;
             }
-            angle = MathHelper.ToDegrees(angle);
+            angle = MathHelper.ToDegrees(angle) / 2;
             return angle;
         }
 
@@ -170,7 +170,7 @@ namespace Mechanect.Exp2
         {
             if (list.Count <= 3)
                 return 0;
-            return (float)((1000) * (list[list.Count - 3] / (gameTime.TotalGameTime.TotalMilliseconds - startTime)));
+            return (float)((166) * (list[list.Count - 3] / (gameTime.TotalGameTime.TotalMilliseconds - startTime)));
         }
 
         /// <summary>
@@ -227,15 +227,19 @@ namespace Mechanect.Exp2
                     return;
                 }
 
-
-
-                if (HandStopped(angleList))
+                if (shooting)
                 {
-                    measuredAngle = currentAngle;
-                    measuredVelocity = MeasureVelocity(angleList, gametime);
-                    shooting = false;
-                    beforeHip = false;
-                    angleList.Clear();
+                    angleList.Add(currentAngle);
+
+
+                    if (HandStopped(angleList))
+                    {
+                        measuredAngle = currentAngle;
+                        measuredVelocity = MeasureVelocity(angleList, gametime);
+                        shooting = false;
+                        beforeHip = false;
+                        angleList.Clear();
+                    }
                 }
             }
         }
