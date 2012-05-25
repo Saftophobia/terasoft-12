@@ -199,11 +199,17 @@ namespace Mechanect.Screens
                 button.Draw(ScreenManager.SpriteBatch, viewport.Width / 1024f);
                 button.DrawHand(ScreenManager.SpriteBatch);
             }
-            UI.UILib.Write(depthBar.Rule, new Rectangle((int)(0.2 * viewport.Width), (int)(0.25 * viewport.Height), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, Color.DarkViolet);
-            UI.UILib.Write(angleBar.Rule, new Rectangle((int)(0.2 * viewport.Width), (int)(0.25 * viewport.Height + 60), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, Color.DarkViolet);
+            UI.UILib.Write(depthBar.Rule, new Rectangle((int)(0.2 * viewport.Width), 
+                (int)(0.25 * viewport.Height), (int)(0.5 * viewport.Width),
+                (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, font, Color.DarkViolet);
+            UI.UILib.Write(angleBar.Rule, new Rectangle((int)(0.2 * viewport.Width), 
+                (int)(0.25 * viewport.Height + 60), (int)(0.5 * viewport.Width),
+                (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, font, Color.DarkViolet);
             for (int i = 0; i < user.Length; i++)
             {
-                UI.UILib.Write(Command(i), new Rectangle((int)(0.25 * viewport.Width), (int)(0.25 * viewport.Height + 110 + 35 * i), (int)(0.5 * viewport.Width), (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, ScreenManager.Game.Content, font, userColor[i]);
+                UI.UILib.Write(Command(i), new Rectangle((int)(0.25 * viewport.Width), 
+                    (int)(0.25 * viewport.Height + 110 + 35 * i), (int)(0.5 * viewport.Width), 
+                    (int)(0.25 * viewport.Height)), ScreenManager.SpriteBatch, font, userColor[i]);
             }
             depthBar.Draw(ScreenManager.SpriteBatch, new Vector2((int)(0.1 * viewport.Width), (int)(0.25 * viewport.Height)));
             angleBar.Draw(ScreenManager.SpriteBatch, new Vector2((int)(0.6 * viewport.Width), (int)(0.4 * viewport.Height)));
