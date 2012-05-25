@@ -202,7 +202,7 @@ namespace ButtonsAndSliders
         private bool CheckCollision()
         {
             Skeleton skeleton = user.Kinect.requestSkeleton();
-            if (skeleton != null)
+            if ((skeleton != null) && (skeleton.TrackingState == SkeletonTrackingState.Tracked))
             {
                 Point hand = user.Kinect.GetJointPoint(skeleton.Joints[JointType.HandRight], screenW, screenH);
                 Rectangle r1 = new Rectangle(hand.X, hand.Y, 20, 20);
