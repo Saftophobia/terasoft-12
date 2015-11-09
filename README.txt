@@ -1,5 +1,4 @@
-This is a Subversion repository; use the 'svnadmin' tool to examine
-it.  Do not add, delete, or modify files here unless you know how
-to avoid corrupting the repository.
+#Terasoft12
 
-Visit http://subversion.apache.org/ for more information.
+Software Engineering course in German University of Cairo divides the class to a number of teams, where each team has it's own Product Owner, product's description and evaluation. 
+
