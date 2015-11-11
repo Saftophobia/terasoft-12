@@ -2,9 +2,9 @@
 
 Software Engineering course in German University of Cairo divides the class to a number of teams, where each team has it's own Product Owner, product's description and evaluation. The idea is to research, design and implement the product in 2 sprints under SCRUM restrictions. Each team (now called Company) is divided to 4 sub-components, with 4 team leads and 1 Company Manager get elected.
 
-##Mechanict
+##Mechanect
 
-Mechanict was our product. To implement Educational Games for children using Microsoft Kinect, C# and Microsoft XNA framework.
+Mechanect was our product. To implement Educational Games for children using Microsoft Kinect, C# and Microsoft XNA framework.
 
 <p align="center"> https://www.youtube.com/watch?v=sl8d_kQj3c0 </p>
 
