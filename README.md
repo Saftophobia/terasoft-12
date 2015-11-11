@@ -9,6 +9,6 @@ Mechanict was our product. To implement Educational Games for children using Mic
 <p align="center"> https://www.youtube.com/watch?v=sl8d_kQj3c0 </p>
 
 ####Games:
-* A race between two children to get the sense of acceleration. (My part)
+* A race between two children to get the sense of acceleration. (Code is ported from code.google.com, my commits are enlisted under asafty2003@gmail.com )
 * Angry-Bird like to teach children how to adjust speed and angle.
 * Football shootout to get the sense of Power/Angle.
