@@ -6,8 +6,9 @@ Software Engineering course in German University of Cairo divides the class to a
 
 Mechanect was our product. To implement Educational Games for children using Microsoft Kinect, C# and Microsoft XNA framework.
 
-<p align="center"> https://www.youtube.com/watch?v=sl8d_kQj3c0 </p>
-<p align="center"> ![screenshot](https://github.com/Saftophobia/terasoft-12/blob/master/terasoft-12/gif.gif) </p>
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Saftophobia/terasoft-12/blob/master/terasoft-12/gif.gif" href="https://www.youtube.com/watch?v=sl8d_kQj3c0">
+</p>
 
 #### Games:
 * A race between two children to get the sense of acceleration. (Code is ported from code.google.com, my commits are enlisted under asafty2003@gmail.com )
