@@ -13,6 +13,9 @@ Mechanect was our product. To implement Educational Games for children using Mic
 </p>
 
 #### Games:
-* A race between two children to get the sense of acceleration. (Code is ported from code.google.com, my commits are enlisted under asafty2003@gmail.com )
+* A race between two children to get the sense of acceleration.
 * Angry-Bird like to teach children how to adjust speed and angle.
 * Football shootout to get the sense of Power/Angle.
+
+#### Misc
+Code is migrated from code.google.com.
